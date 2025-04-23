@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Book, Trophy, Phone, List } from "lucide-react"
+import { Book, Trophy, Users, Sparkles, ArrowRight } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Home() {
@@ -12,45 +12,48 @@ export default function Home() {
       </div>
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Demo Quiz</CardTitle>
-          <CardDescription className="text-green-600 dark:text-green-500">
-            IQRA:Islamic Quiz Rivalry App
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Challenge</CardTitle>
+          <CardDescription className="text-green-600 dark:text-green-500">Islamic Quiz Rivalry App</CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            ما شاء الله (Masha Allah!) Welcome to IQRA Demo. Test your knowledge across 11 Islamic categories with easy
-            and advanced difficulty levels. Do send your suggestions to Rafique by WhatsApp on +91 7558845528.
+          <p className="mb-6 text-gray-700 dark:text-gray-300">
+            Challenge your Islamic knowledge through competitive quizzes. Learn, compete, and grow your Knowledge Points
+            (KP).
           </p>
-          <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-            <Book className="w-16 h-16 text-green-600 dark:text-green-400" />
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <Users className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
+              <h3 className="font-medium dark:text-white">Challenge Friends</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Compete with study partners</p>
+            </div>
+            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <Trophy className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
+              <h3 className="font-medium dark:text-white">Earn KP</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Build your knowledge score</p>
+            </div>
+            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <Book className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
+              <h3 className="font-medium dark:text-white">11 Categories</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Diverse Islamic subjects</p>
+            </div>
+            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
+              <h3 className="font-medium dark:text-white">Daily Challenges</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Special events & rewards</p>
+            </div>
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Link href="/categories" className="w-full">
+          <Link href="/auth/login" className="w-full">
             <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center justify-center">
-              <List className="mr-2 h-4 w-4" />
-              Browse Categories
+              Get Started
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
-          <div className="flex gap-4 w-full">
-            <Link href="/leaderboard" className="w-1/2">
-              <Button
-                variant="outline"
-                className="w-full flex items-center justify-center dark:border-green-700 dark:text-green-400"
-              >
-                <Trophy className="mr-2 h-4 w-4" />
-                Hall of Fame
-              </Button>
-            </Link>
-            <Link href="/contact" className="w-1/2">
-              <Button
-                variant="outline"
-                className="w-full flex items-center justify-center dark:border-green-700 dark:text-green-400"
-              >
-                <Phone className="mr-2 h-4 w-4" />
-                Contact
-              </Button>
+          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+            Already have an account?{" "}
+            <Link href="/auth/login" className="text-green-600 dark:text-green-400 hover:underline">
+              Sign in
             </Link>
           </div>
         </CardFooter>
