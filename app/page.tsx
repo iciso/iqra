@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Book, Trophy, Users, Sparkles, ArrowRight } from "lucide-react"
+import { Book, Trophy, Users, Sparkles } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Home() {
@@ -10,54 +10,92 @@ export default function Home() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Challenge</CardTitle>
-          <CardDescription className="text-green-600 dark:text-green-500">Islamic Quiz Rivalry App</CardDescription>
-        </CardHeader>
-        <CardContent className="text-center">
-          <p className="mb-6 text-gray-700 dark:text-gray-300">
-            Challenge your Islamic knowledge through competitive quizzes. Learn, compete, and grow your Knowledge Points
-            (KP).
-          </p>
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-              <Users className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
-              <h3 className="font-medium dark:text-white">Challenge Friends</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Compete with study partners</p>
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-2">IQRA</h1>
+        <p className="text-xl text-green-600 dark:text-green-500">Islamic Quiz Rivalry App</p>
+        <p className="mt-2 text-gray-700 dark:text-gray-300 max-w-md mx-auto">
+          ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge of Islam through learning or challenges.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+        <Card className="border-green-200 shadow-lg hover:shadow-xl transition-shadow dark:border-green-800">
+          <CardHeader className="text-center">
+            <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900 rounded-full">
+              <Book className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
-            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-              <Trophy className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
-              <h3 className="font-medium dark:text-white">Earn KP</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Build your knowledge score</p>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Learn</CardTitle>
+            <CardDescription className="text-green-600 dark:text-green-500">Learn at your own pace</CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Browse through 11 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
+              learn at your own pace.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                Quran
+              </span>
+              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                Fiqh
+              </span>
+              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                Tafsir
+              </span>
+              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                Hadeeth
+              </span>
+              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                Aqeedah
+              </span>
             </div>
-            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-              <Book className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
-              <h3 className="font-medium dark:text-white">11 Categories</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Diverse Islamic subjects</p>
-            </div>
-            <div className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-              <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
-              <h3 className="font-medium dark:text-white">Daily Challenges</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Special events & rewards</p>
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-4">
-          <Link href="/auth/login" className="w-full">
-            <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center justify-center">
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            Already have an account?{" "}
-            <Link href="/auth/login" className="text-green-600 dark:text-green-400 hover:underline">
-              Sign in
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <Link href="/categories">
+              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                Start Learning
+              </Button>
             </Link>
-          </div>
-        </CardFooter>
-      </Card>
+          </CardFooter>
+        </Card>
+
+        <Card className="border-green-200 shadow-lg hover:shadow-xl transition-shadow dark:border-green-800">
+          <CardHeader className="text-center">
+            <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900 rounded-full">
+              <Trophy className="w-8 h-8 text-green-600 dark:text-green-400" />
+            </div>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">ICHAL Challenge</CardTitle>
+            <CardDescription className="text-green-600 dark:text-green-500">Compete with others</CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Challenge your friends or join the daily challenge. Compete with others and test your Islamic knowledge in
+              a fun and engaging way.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                <Users className="h-3 w-3" /> Friend Challenge
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-xs rounded-full">
+                <Sparkles className="h-3 w-3" /> Daily Challenge
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <Link href="/challenges">
+              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                Start Challenges
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
+      </div>
+
+      <div className="mt-8 text-center">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Do send your suggestions to Rafique by WhatsApp on +91 7558845528
+        </p>
+      </div>
     </main>
   )
 }

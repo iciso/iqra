@@ -1612,6 +1612,7 @@ const quizData: QuizCategory[] = [
   },
 ]
 
+// Function to get quiz questions for a specific category and difficulty level
 export const getQuizQuestions = (categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] => {
   const category = quizData.find((cat) => cat.id === categoryId)
   if (!category) {
@@ -1620,6 +1621,7 @@ export const getQuizQuestions = (categoryId: string, difficulty: DifficultyLevel
   return category.levels[difficulty] || []
 }
 
+// Function to get a specific category by ID
 export const getCategory = (categoryId: string): QuizCategory | undefined => {
   return quizData.find((category) => category.id === categoryId)
 }
