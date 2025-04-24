@@ -66,7 +66,7 @@ export default function Home() {
             <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900 rounded-full">
               <Trophy className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">ICHAL Challenge</CardTitle>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Challenge</CardTitle>
             <CardDescription className="text-green-600 dark:text-green-500">Compete with others</CardDescription>
           </CardHeader>
           <CardContent className="text-center">
