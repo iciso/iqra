@@ -93,7 +93,7 @@ export default function Home() {
 
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Do send your suggestions to Rafique by WhatsApp on +91 7558845528
+          Do send your Frontend suggestions to Rafique by WhatsApp on +91 7558845528 and Backend to Joy on +880 1799553632 
         </p>
       </div>
     </main>
