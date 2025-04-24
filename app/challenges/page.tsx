@@ -111,7 +111,7 @@ export default function ChallengesPage() {
               {challenge.active ? (
                 <Button className="w-full">Start Challenge</Button>
               ) : challenge.comingSoon ? (
-                <Button className="w-full" variant="outline" disabled>
+                <Button className="w-full" variant="outline" onClick={() => router.push(`/quiz?category=${challenge.id}&difficulty=${challenge.difficulty.toLowerCase()}`)}>
                   Coming Soon
                 </Button>
               ) : (
