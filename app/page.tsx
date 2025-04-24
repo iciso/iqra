@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -64,7 +66,7 @@ export default function Home() {
             <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900 rounded-full">
               <Trophy className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">IQRA Challenge</CardTitle>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">ICHAL Challenge</CardTitle>
             <CardDescription className="text-green-600 dark:text-green-500">Compete with others</CardDescription>
           </CardHeader>
           <CardContent className="text-center">
@@ -83,7 +85,7 @@ export default function Home() {
           </CardContent>
           <CardFooter className="flex justify-center">
             <Link href="/challenges">
-              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"  onClick={() => router.push(`/quiz?category=${challenge.id}&difficulty=${challenge.difficulty.toLowerCase()}`)}>
+              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                 Start Challenges
               </Button>
             </Link>
@@ -93,7 +95,7 @@ export default function Home() {
 
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Do send your Frontend suggestions to Rafique by WhatsApp on +91 7558845528 and Backend to Joy on +880 1799553632 
+          Do send your suggestions to Rafique by WhatsApp on +91 7558845528
         </p>
       </div>
     </main>
