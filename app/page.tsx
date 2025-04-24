@@ -83,7 +83,7 @@ export default function Home() {
           </CardContent>
           <CardFooter className="flex justify-center">
             <Link href="/challenges">
-              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"  onClick={() => router.push(`/quiz?category=${challenge.id}&difficulty=${challenge.difficulty.toLowerCase()}`)}>
                 Start Challenges
               </Button>
             </Link>
