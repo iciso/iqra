@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -33,11 +32,11 @@ export default function HomePage() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Link href="/categories" className="w-full">
+            <a href="/categories" className="w-full">
               <Button size="lg" className="w-full">
                 Start Learning
               </Button>
-            </Link>
+            </a>
           </CardFooter>
         </Card>
 
@@ -59,11 +58,11 @@ export default function HomePage() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Link href="/challenges" className="w-full">
+            <a href="/challenges" className="w-full">
               <Button size="lg" variant="outline" className="w-full">
                 Enter Challenges
               </Button>
-            </Link>
+            </a>
           </CardFooter>
         </Card>
       </div>

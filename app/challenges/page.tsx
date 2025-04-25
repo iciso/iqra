@@ -1,135 +1,192 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
 export default function ChallengesPage() {
-  // Sample challenge data - in a real app, this would come from a database
-  const challenges = [
-    {
-      id: "daily-quiz",
-      title: "Daily Quiz Challenge",
-      description: "Test your knowledge with our daily quiz covering various Islamic topics",
-      questions: 10,
-      timeLimit: "5 minutes",
-      difficulty: "Mixed",
-      participants: 245,
-      active: true,
-    },
-    {
-      id: "quran-challenge",
-      title: "Quran Knowledge Challenge",
-      description: "How well do you know the Quran? Take this challenge to find out!",
-      questions: 15,
-      timeLimit: "7 minutes",
-      difficulty: "Intermediate",
-      participants: 189,
-      active: true,
-    },
-    {
-      id: "seerah-special",
-      title: "Seerah Special Challenge",
-      description: "Test your knowledge about the life of Prophet Muhammad (PBUH)",
-      questions: 12,
-      timeLimit: "6 minutes",
-      difficulty: "Advanced",
-      participants: 132,
-      active: true,
-    },
-    {
-      id: "fiqh-basics",
-      title: "Fiqh Fundamentals",
-      description: "Challenge yourself on the basics of Islamic jurisprudence",
-      questions: 10,
-      timeLimit: "5 minutes",
-      difficulty: "Beginner",
-      participants: 201,
-      active: true,
-    },
-    {
-      id: "ramadan-special",
-      title: "Ramadan Special",
-      description: "A special challenge about Ramadan, its virtues, and practices",
-      questions: 15,
-      timeLimit: "8 minutes",
-      difficulty: "Mixed",
-      participants: 310,
-      active: false,
-      comingSoon: true,
-    },
-  ]
-
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">IQRA Challenge Mode</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Test your Islamic knowledge against time and compete with others on our leaderboards
-        </p>
-      </div>
+    <div className="container mx-auto py-12 px-4 max-w-6xl">
+      <h1 className="text-3xl font-bold text-center mb-2">IQRA Challenge Mode</h1>
+      <p className="text-center mb-8 text-gray-600">
+        Test your Islamic knowledge against time and compete with others on our leaderboards
+      </p>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
-        {challenges.map((challenge) => (
-          <Card
-            key={challenge.id}
-            className={`border-2 ${challenge.active ? "border-primary/20 hover:border-primary/50" : "border-muted/50"} transition-colors`}
+      <div className="grid md:grid-cols-2 gap-6 mb-6">
+        {/* Daily Quiz Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-xl font-bold">Daily Quiz Challenge</h2>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+          </div>
+          <p className="text-gray-600 mb-4">Test your knowledge with our daily quiz covering various Islamic topics</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500">Questions</h3>
+              <p className="font-medium">10</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Time Limit</h3>
+              <p className="font-medium">5 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Difficulty</h3>
+              <p className="font-medium">Mixed</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Participants</h3>
+              <p className="font-medium">245</p>
+            </div>
+          </div>
+
+          <a
+            href="/quiz?category=quran&difficulty=easy&challenge=daily"
+            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
           >
-            <CardHeader className="pb-3">
-              <div className="flex justify-between items-start">
-                <CardTitle className="text-xl">{challenge.title}</CardTitle>
-                {challenge.active ? (
-                  <Badge variant="default">Active</Badge>
-                ) : challenge.comingSoon ? (
-                  <Badge variant="outline">Coming Soon</Badge>
-                ) : (
-                  <Badge variant="secondary">Ended</Badge>
-                )}
-              </div>
-              <CardDescription>{challenge.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div>
-                  <p className="text-muted-foreground">Questions</p>
-                  <p className="font-medium">{challenge.questions}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Time Limit</p>
-                  <p className="font-medium">{challenge.timeLimit}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Difficulty</p>
-                  <p className="font-medium">{challenge.difficulty}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Participants</p>
-                  <p className="font-medium">{challenge.participants}</p>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              {challenge.active ? (
-                <Button className="w-full">Start Challenge</Button>
-              ) : challenge.comingSoon ? (
-                <Button className="w-full" variant="outline" onClick={() => router.push(`/quiz?category=${challenge.id}&difficulty=${challenge.difficulty.toLowerCase()}`)}>
-                  Coming Soon
-                </Button>
-              ) : (
-                <Button className="w-full" variant="outline" disabled>
-                  Challenge Ended
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
-        ))}
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Quran Knowledge Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-xl font-bold">Quran Knowledge Challenge</h2>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+          </div>
+          <p className="text-gray-600 mb-4">How well do you know the Quran? Take this challenge to find out!</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500">Questions</h3>
+              <p className="font-medium">15</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Time Limit</h3>
+              <p className="font-medium">7 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Difficulty</h3>
+              <p className="font-medium">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Participants</h3>
+              <p className="font-medium">189</p>
+            </div>
+          </div>
+
+          <a
+            href="/quiz?category=quran&difficulty=advanced&challenge=quran"
+            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Seerah Special Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-xl font-bold">Seerah Special Challenge</h2>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+          </div>
+          <p className="text-gray-600 mb-4">Test your knowledge about the life of Prophet Muhammad (PBUH)</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500">Questions</h3>
+              <p className="font-medium">12</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Time Limit</h3>
+              <p className="font-medium">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Difficulty</h3>
+              <p className="font-medium">Advanced</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Participants</h3>
+              <p className="font-medium">132</p>
+            </div>
+          </div>
+
+          <a
+            href="/quiz?category=seerah&difficulty=advanced&challenge=seerah"
+            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Fiqh Fundamentals */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-xl font-bold">Fiqh Fundamentals</h2>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+          </div>
+          <p className="text-gray-600 mb-4">Challenge yourself on the basics of Islamic jurisprudence</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500">Questions</h3>
+              <p className="font-medium">10</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Time Limit</h3>
+              <p className="font-medium">5 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Difficulty</h3>
+              <p className="font-medium">Beginner</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500">Participants</h3>
+              <p className="font-medium">201</p>
+            </div>
+          </div>
+
+          <a
+            href="/quiz?category=fiqh&difficulty=easy&challenge=fiqh"
+            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Start Challenge
+          </a>
+        </div>
       </div>
 
-      <div className="text-center mt-12">
-        <Link href="/leaderboard">
-          <Button variant="outline" size="lg">
-            View Global Leaderboard
-          </Button>
-        </Link>
+      {/* Ramadan Special */}
+      <div className="border rounded-lg p-6 bg-white shadow-sm mb-8">
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-xl font-bold">Ramadan Special</h2>
+          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Coming Soon</span>
+        </div>
+        <p className="text-gray-600 mb-4">A special challenge about Ramadan, its virtues, and practices</p>
+
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <h3 className="text-sm text-gray-500">Questions</h3>
+            <p className="font-medium">15</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-gray-500">Time Limit</h3>
+            <p className="font-medium">8 minutes</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-gray-500">Difficulty</h3>
+            <p className="font-medium">Mixed</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-gray-500">Participants</h3>
+            <p className="font-medium">310</p>
+          </div>
+        </div>
+
+        <div className="block w-full py-2 px-4 bg-gray-300 text-gray-600 text-center rounded-md cursor-not-allowed">
+          Coming Soon
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <a
+          href="/leaderboard"
+          className="inline-block py-2 px-6 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+        >
+          View Global Leaderboard
+        </a>
       </div>
     </div>
   )

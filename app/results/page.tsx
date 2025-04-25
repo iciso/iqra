@@ -21,6 +21,7 @@ export default function ResultsPage() {
   const [isClient, setIsClient] = useState(false)
   const [categoryId, setCategoryId] = useState<string | null>(null)
   const [difficulty, setDifficulty] = useState<string | null>(null)
+  const [challenge, setChallenge] = useState<string | null>(null)
   const [categoryTitle, setCategoryTitle] = useState("")
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function ResultsPage() {
       const savedTotal = localStorage.getItem("totalQuestions")
       const savedCategory = localStorage.getItem("quizCategory")
       const savedDifficulty = localStorage.getItem("quizDifficulty")
+      const savedChallenge = localStorage.getItem("quizChallenge")
 
       if (savedScore && savedTotal) {
         setScore(Number.parseInt(savedScore))
@@ -49,6 +51,10 @@ export default function ResultsPage() {
 
       if (savedDifficulty) {
         setDifficulty(savedDifficulty)
+      }
+
+      if (savedChallenge) {
+        setChallenge(savedChallenge)
       }
     } catch (error) {
       console.error("Error accessing localStorage:", error)
@@ -86,6 +92,7 @@ export default function ResultsPage() {
       date: formattedDate,
       category: categoryTitle || "Unknown",
       difficulty: difficulty ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1) : "Unknown",
+      challenge: challenge || undefined,
     })
 
     setSubmitted(true)
@@ -96,7 +103,9 @@ export default function ResultsPage() {
   }
 
   const tryAgain = () => {
-    if (categoryId && difficulty) {
+    if (challenge) {
+      router.push(`/challenges`)
+    } else if (categoryId && difficulty) {
       router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
     } else {
       router.push("/categories")
@@ -131,6 +140,7 @@ export default function ResultsPage() {
           {categoryTitle && difficulty && (
             <p className="text-green-600 dark:text-green-500 mt-1">
               {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+              {challenge && " Challenge"}
             </p>
           )}
         </CardHeader>
@@ -210,10 +220,10 @@ export default function ResultsPage() {
           )}
         </CardContent>
         <CardFooter className="flex justify-center gap-4">
-          <Link href="/categories">
+          <Link href={challenge ? "/challenges" : "/categories"}>
             <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Categories
+              {challenge ? "Challenges" : "Categories"}
             </Button>
           </Link>
           <Button

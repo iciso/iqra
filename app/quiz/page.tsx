@@ -7,7 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { getQuizQuestions, getCategory } from "@/data/quiz-data-manager"
-import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home } from "lucide-react"
+import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -19,6 +19,7 @@ export default function QuizPage() {
   const searchParams = useSearchParams()
   const categoryId = searchParams.get("category") || "quran"
   const difficulty = (searchParams.get("difficulty") || "easy") as DifficultyLevel
+  const challenge = searchParams.get("challenge") || ""
 
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([])
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -30,6 +31,8 @@ export default function QuizPage() {
   const [progress, setProgress] = useState(0)
   const [isClient, setIsClient] = useState(false)
   const [categoryTitle, setCategoryTitle] = useState("")
+  const [timeLeft, setTimeLeft] = useState(0)
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -46,7 +49,44 @@ export default function QuizPage() {
     if (category) {
       setCategoryTitle(category.title)
     }
-  }, [categoryId, difficulty])
+
+    // Set timer based on challenge type
+    if (challenge) {
+      let minutes = 5 // Default
+
+      if (challenge === "daily") minutes = 5
+      else if (challenge === "quran") minutes = 7
+      else if (challenge === "seerah") minutes = 6
+      else if (challenge === "fiqh") minutes = 5
+
+      setTimeLeft(minutes * 60)
+      setIsTimerRunning(true)
+    }
+  }, [categoryId, difficulty, challenge])
+
+  // Timer effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+
+    if (isTimerRunning && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1)
+      }, 1000)
+    } else if (timeLeft === 0 && isTimerRunning) {
+      // Time's up - submit the quiz
+      handleFinishQuiz()
+    }
+
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [isTimerRunning, timeLeft])
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`
+  }
 
   const handleAnswerSelect = (value: string) => {
     if (showExplanation) return // Prevent changing answer after submission
@@ -77,17 +117,25 @@ export default function QuizPage() {
       setCurrentQuestion(currentQuestion + 1)
       setSelectedAnswer(answers[currentQuestion + 1])
     } else {
-      // Save score to localStorage and redirect to results
-      try {
-        localStorage.setItem("quizScore", score.toString())
-        localStorage.setItem("totalQuestions", quizQuestions.length.toString())
-        localStorage.setItem("quizCategory", categoryId)
-        localStorage.setItem("quizDifficulty", difficulty)
-      } catch (error) {
-        console.error("Error saving to localStorage:", error)
-      }
-      router.push("/results")
+      handleFinishQuiz()
     }
+  }
+
+  const handleFinishQuiz = () => {
+    // Stop the timer
+    setIsTimerRunning(false)
+
+    // Save score to localStorage and redirect to results
+    try {
+      localStorage.setItem("quizScore", score.toString())
+      localStorage.setItem("totalQuestions", quizQuestions.length.toString())
+      localStorage.setItem("quizCategory", categoryId)
+      localStorage.setItem("quizDifficulty", difficulty)
+      localStorage.setItem("quizChallenge", challenge || "")
+    } catch (error) {
+      console.error("Error saving to localStorage:", error)
+    }
+    router.push("/results")
   }
 
   const handlePrevious = () => {
@@ -150,10 +198,10 @@ export default function QuizPage() {
         <ThemeToggle />
       </div>
       <div className="absolute top-4 left-4">
-        <Link href="/categories">
+        <Link href={challenge ? "/challenges" : "/categories"}>
           <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
             <Home className="h-4 w-4" />
-            <span className="sr-only">Categories</span>
+            <span className="sr-only">{challenge ? "Challenges" : "Categories"}</span>
           </Button>
         </Link>
       </div>
@@ -162,12 +210,24 @@ export default function QuizPage() {
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-green-700 dark:text-green-400">
             {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+            {challenge && ` Challenge`}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
             Question {currentQuestion + 1} of {quizQuestions.length}
           </span>
         </div>
         <Progress value={progress} className="h-2 bg-green-100 dark:bg-green-800" />
+
+        {challenge && (
+          <div className="flex justify-end items-center mt-2">
+            <Clock className="h-4 w-4 mr-1 text-green-700 dark:text-green-400" />
+            <span
+              className={`text-sm font-medium ${timeLeft < 60 ? "text-red-600 dark:text-red-400" : "text-green-700 dark:text-green-400"}`}
+            >
+              {formatTime(timeLeft)}
+            </span>
+          </div>
+        )}
       </div>
 
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">

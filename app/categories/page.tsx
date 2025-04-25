@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -128,12 +127,13 @@ export default function CategoriesPage() {
         <ThemeToggle />
       </div>
       <div className="absolute top-4 left-4">
-        <Link href="/">
-          <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
-            <Home className="h-4 w-4" />
-            <span className="sr-only">Home</span>
-          </Button>
-        </Link>
+        <a
+          href="/"
+          className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
+        >
+          <Home className="h-4 w-4" />
+          <span className="sr-only">Home</span>
+        </a>
       </div>
 
       <Card className="w-full max-w-3xl border-green-200 shadow-lg dark:border-green-800">

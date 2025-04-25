@@ -1,12 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Trophy, Medal, Home } from "lucide-react"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 interface LeaderboardEntry {
   name: string
@@ -69,12 +67,13 @@ export default function LeaderboardPage() {
         <ThemeToggle />
       </div>
       <div className="absolute top-4 left-4">
-        <Link href="/">
-          <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
-            <Home className="h-4 w-4" />
-            <span className="sr-only">Home</span>
-          </Button>
-        </Link>
+        <a
+          href="/"
+          className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
+        >
+          <Home className="h-4 w-4" />
+          <span className="sr-only">Home</span>
+        </a>
       </div>
 
       <Card className="w-full max-w-3xl border-green-200 shadow-lg dark:border-green-800">
@@ -127,11 +126,12 @@ export default function LeaderboardPage() {
           )}
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Link href="/">
-            <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-              Back to Home
-            </Button>
-          </Link>
+          <a
+            href="/quiz-challenges"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-10 px-4 py-2"
+          >
+            Back to Challenges
+          </a>
         </CardFooter>
       </Card>
     </main>

@@ -1,7 +1,3 @@
-"use client"
-
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Book, Trophy, Users, Sparkles } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -53,11 +49,12 @@ export default function Home() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Link href="/categories">
-              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                Start Learning
-              </Button>
-            </Link>
+            <a
+              href="/categories"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-10 px-4 py-2"
+            >
+              Start Learning
+            </a>
           </CardFooter>
         </Card>
 
@@ -84,18 +81,19 @@ export default function Home() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Link href="/challenges">
-              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                Start Challenges
-              </Button>
-            </Link>
+            <a
+              href="/challenges"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-10 px-4 py-2"
+            >
+              Start Challenges
+            </a>
           </CardFooter>
         </Card>
       </div>
 
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Do send your suggestions to Rafique by WhatsApp on +91 7558845528
+          Do send your Frontend suggestions to Rafique by WhatsApp on +91 7558845528 and Backend ones to Joy by mail on  joy_ahmed_007@yahoo.com
         </p>
       </div>
     </main>

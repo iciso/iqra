@@ -6,6 +6,7 @@ export interface LeaderboardEntry {
   date: string
   category?: string
   difficulty?: string
+  challenge?: string
 }
 
 // Check if code is running in browser
