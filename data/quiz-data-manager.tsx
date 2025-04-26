@@ -1,5 +1,8 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz"
 
+// Make sure the seerah category is imported and added to the quizData array
+import seerahCategory from "./quiz-data-manager-additions"
+
 const quizData: QuizCategory[] = [
   {
     id: "quran",
@@ -1611,6 +1614,9 @@ const quizData: QuizCategory[] = [
     },
   },
 ]
+
+// Add this line at the end of the quizData array in the quiz-data-manager.tsx file
+quizData.push(seerahCategory)
 
 // Function to get quiz questions for a specific category and difficulty level
 export const getQuizQuestions = (categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] => {

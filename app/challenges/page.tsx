@@ -36,7 +36,7 @@ export default function ChallengesPage() {
 
           <a
             href="/quiz?category=quran&difficulty=easy&challenge=daily"
-            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors"
           >
             Start Challenge
           </a>
@@ -71,7 +71,7 @@ export default function ChallengesPage() {
 
           <a
             href="/quiz?category=quran&difficulty=advanced&challenge=quran"
-            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors"
           >
             Start Challenge
           </a>
@@ -106,7 +106,7 @@ export default function ChallengesPage() {
 
           <a
             href="/quiz?category=seerah&difficulty=advanced&challenge=seerah"
-            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors"
           >
             Start Challenge
           </a>
@@ -141,7 +141,7 @@ export default function ChallengesPage() {
 
           <a
             href="/quiz?category=fiqh&difficulty=easy&challenge=fiqh"
-            className="block w-full py-2 px-4 bg-black text-white text-center rounded-md hover:bg-gray-800 transition-colors"
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors"
           >
             Start Challenge
           </a>
@@ -183,7 +183,7 @@ export default function ChallengesPage() {
       <div className="flex justify-center">
         <a
           href="/leaderboard"
-          className="inline-block py-2 px-6 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          className="inline-block py-2 px-6 border border-green-300 text-green-700 rounded-md hover:bg-green-50"
         >
           View Global Leaderboard
         </a>
