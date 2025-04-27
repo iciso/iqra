@@ -93,7 +93,8 @@ export default function Home() {
 
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Do send your Frontend suggestions to Rafique by WhatsApp on +91 7558845528 and Backend ones to Joy by mail on  joy_ahmed_007@yahoo.com
+          Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.
+So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is  joy_ahmed_007@yahoo.com for his guidance and help.
         </p>
       </div>
     </main>

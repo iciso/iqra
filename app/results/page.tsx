@@ -11,6 +11,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { addToLeaderboard } from "@/utils/leaderboard"
 import { getCategory } from "@/data/quiz-data-manager"
+import { checkForBadges } from "@/utils/badges"
+import badgesData from "@/data/badges-data"
+import BadgeNotification from "@/components/badges/badge-notification"
+import BadgesProfile from "@/components/badges/badges-profile"
 
 export default function ResultsPage() {
   const router = useRouter()
@@ -23,6 +27,9 @@ export default function ResultsPage() {
   const [difficulty, setDifficulty] = useState<string | null>(null)
   const [challenge, setChallenge] = useState<string | null>(null)
   const [categoryTitle, setCategoryTitle] = useState("")
+  const [newBadges, setNewBadges] = useState<typeof badgesData>([])
+  const [timeLeft, setTimeLeft] = useState<number | null>(null)
+  const [timeTotal, setTimeTotal] = useState<number | null>(null)
 
   useEffect(() => {
     // Mark that we're on the client
@@ -35,6 +42,8 @@ export default function ResultsPage() {
       const savedCategory = localStorage.getItem("quizCategory")
       const savedDifficulty = localStorage.getItem("quizDifficulty")
       const savedChallenge = localStorage.getItem("quizChallenge")
+      const savedTimeLeft = localStorage.getItem("quizTimeLeft")
+      const savedTimeTotal = localStorage.getItem("quizTimeTotal")
 
       if (savedScore && savedTotal) {
         setScore(Number.parseInt(savedScore))
@@ -55,6 +64,33 @@ export default function ResultsPage() {
 
       if (savedChallenge) {
         setChallenge(savedChallenge)
+      }
+
+      if (savedTimeLeft) {
+        setTimeLeft(Number.parseInt(savedTimeLeft))
+      }
+
+      if (savedTimeTotal) {
+        setTimeTotal(Number.parseInt(savedTimeTotal))
+      }
+
+      // Check for new badges
+      if (savedScore && savedTotal) {
+        const awardedBadgeIds = checkForBadges({
+          score: Number.parseInt(savedScore),
+          totalQuestions: Number.parseInt(savedTotal),
+          category: savedCategory || undefined,
+          difficulty: savedDifficulty || undefined,
+          challenge: savedChallenge || undefined,
+          timeLeft: savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
+          timeTotal: savedTimeTotal ? Number.parseInt(savedTimeTotal) : undefined,
+        })
+
+        // Find badge details for the awarded badge IDs
+        if (awardedBadgeIds.length > 0) {
+          const newBadgeDetails = badgesData.filter((badge) => awardedBadgeIds.includes(badge.id))
+          setNewBadges(newBadgeDetails)
+        }
       }
     } catch (error) {
       console.error("Error accessing localStorage:", error)
@@ -131,109 +167,117 @@ export default function ResultsPage() {
         <ThemeToggle />
       </div>
 
-      <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-2">
-            <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
-          </div>
-          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Quiz Results</CardTitle>
-          {categoryTitle && difficulty && (
-            <p className="text-green-600 dark:text-green-500 mt-1">
-              {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-              {challenge && " Challenge"}
-            </p>
-          )}
-        </CardHeader>
-        <CardContent className="text-center">
-          {score !== null && totalQuestions !== null ? (
-            <>
-              <div className="mb-6">
-                <div className="relative w-32 h-32 mx-auto">
-                  <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                  <div
-                    className="absolute top-0 left-0 w-full h-full rounded-full border-8 border-green-500 dark:border-green-600"
-                    style={{
-                      clipPath: `polygon(50% 50%, 50% 0%, ${
-                        percentage! >= 25
-                          ? "100% 0%"
-                          : `${50 + 50 * Math.sin(((percentage! / 100) * Math.PI) / 2)}% ${
-                              50 - 50 * Math.cos(((percentage! / 100) * Math.PI) / 2)
-                            }%`
-                      }${percentage! >= 50 ? ", 100% 100%" : ""}${percentage! >= 75 ? ", 0% 100%" : ""}${
-                        percentage! >= 100 ? ", 0% 0%" : ""
-                      })`,
-                    }}
-                  ></div>
-                  <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <span className="text-2xl font-bold dark:text-white">{percentage}%</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-xl mb-2 dark:text-white">
-                You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
-                <span className="font-bold">{totalQuestions}</span>
-              </p>
-              <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
+      {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
-              {!submitted ? (
-                <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-medium mb-2 flex items-center justify-center dark:text-white">
-                    <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
-                    Join the Hall of Fame
-                  </h3>
-                  <div className="mb-4">
-                    <Label htmlFor="user-name" className="text-left block mb-1 dark:text-gray-300">
-                      Enter your name:
-                    </Label>
-                    <Input
-                      id="user-name"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      placeholder="Your name"
-                      className="dark:bg-gray-800 dark:border-gray-700"
-                    />
+      <div className="w-full max-w-3xl flex flex-col md:flex-row gap-6">
+        <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
+          <CardHeader className="text-center">
+            <div className="flex justify-center mb-2">
+              <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
+            </div>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Quiz Results</CardTitle>
+            {categoryTitle && difficulty && (
+              <p className="text-green-600 dark:text-green-500 mt-1">
+                {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                {challenge && " Challenge"}
+              </p>
+            )}
+          </CardHeader>
+          <CardContent className="text-center">
+            {score !== null && totalQuestions !== null ? (
+              <>
+                <div className="mb-6">
+                  <div className="relative w-32 h-32 mx-auto">
+                    <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                    <div
+                      className="absolute top-0 left-0 w-full h-full rounded-full border-8 border-green-500 dark:border-green-600"
+                      style={{
+                        clipPath: `polygon(50% 50%, 50% 0%, ${
+                          percentage! >= 25
+                            ? "100% 0%"
+                            : `${50 + 50 * Math.sin(((percentage! / 100) * Math.PI) / 2)}% ${
+                                50 - 50 * Math.cos(((percentage! / 100) * Math.PI) / 2)
+                              }%`
+                        }${percentage! >= 50 ? ", 100% 100%" : ""}${percentage! >= 75 ? ", 0% 100%" : ""}${
+                          percentage! >= 100 ? ", 0% 0%" : ""
+                        })`,
+                      }}
+                    ></div>
+                    <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                      <span className="text-2xl font-bold dark:text-white">{percentage}%</span>
+                    </div>
                   </div>
-                  <Button
-                    onClick={handleSubmitScore}
-                    disabled={!userName.trim()}
-                    className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                  >
-                    Submit to Leaderboard
-                  </Button>
                 </div>
-              ) : (
-                <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                  <p className="text-green-700 dark:text-green-400 mb-4">
-                    Your score has been added to the Hall of Fame!
-                  </p>
-                  <Button
-                    onClick={viewLeaderboard}
-                    className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                  >
-                    View Leaderboard
-                  </Button>
-                </div>
-              )}
-            </>
-          ) : (
-            <p className="dark:text-white">No results found. Try taking the quiz first!</p>
-          )}
-        </CardContent>
-        <CardFooter className="flex justify-center gap-4">
-          <Link href={challenge ? "/challenges" : "/categories"}>
-            <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {challenge ? "Challenges" : "Categories"}
+                <p className="text-xl mb-2 dark:text-white">
+                  You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
+                  <span className="font-bold">{totalQuestions}</span>
+                </p>
+                <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
+
+                {!submitted ? (
+                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                    <h3 className="text-lg font-medium mb-2 flex items-center justify-center dark:text-white">
+                      <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
+                      Join the Hall of Fame
+                    </h3>
+                    <div className="mb-4">
+                      <Label htmlFor="user-name" className="text-left block mb-1 dark:text-gray-300">
+                        Enter your name:
+                      </Label>
+                      <Input
+                        id="user-name"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                        placeholder="Your name"
+                        className="dark:bg-gray-800 dark:border-gray-700"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleSubmitScore}
+                      disabled={!userName.trim()}
+                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                    >
+                      Submit to Leaderboard
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                    <p className="text-green-700 dark:text-green-400 mb-4">
+                      Your score has been added to the Hall of Fame!
+                    </p>
+                    <Button
+                      onClick={viewLeaderboard}
+                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                    >
+                      View Leaderboard
+                    </Button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="dark:text-white">No results found. Try taking the quiz first!</p>
+            )}
+          </CardContent>
+          <CardFooter className="flex justify-center gap-4">
+            <Link href={challenge ? "/challenges" : "/categories"}>
+              <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {challenge ? "Challenges" : "Categories"}
+              </Button>
+            </Link>
+            <Button
+              className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+              onClick={tryAgain}
+            >
+              Try Again
             </Button>
-          </Link>
-          <Button
-            className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-            onClick={tryAgain}
-          >
-            Try Again
-          </Button>
-        </CardFooter>
-      </Card>
+          </CardFooter>
+        </Card>
+
+        <div className="flex flex-col gap-4">
+          <BadgesProfile />
+        </div>
+      </div>
     </main>
   )
 }

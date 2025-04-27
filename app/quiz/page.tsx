@@ -50,7 +50,7 @@ export default function QuizPage() {
       setCategoryTitle(category.title)
     }
 
-    // Set timer based on challenge type
+    // Add these lines to track time for badges
     if (challenge) {
       let minutes = 5 // Default
 
@@ -59,7 +59,9 @@ export default function QuizPage() {
       else if (challenge === "seerah") minutes = 6
       else if (challenge === "fiqh") minutes = 5
 
-      setTimeLeft(minutes * 60)
+      const totalTime = minutes * 60
+      setTimeLeft(totalTime)
+      localStorage.setItem("quizTimeTotal", totalTime.toString())
       setIsTimerRunning(true)
     }
   }, [categoryId, difficulty, challenge])
@@ -125,13 +127,14 @@ export default function QuizPage() {
     // Stop the timer
     setIsTimerRunning(false)
 
-    // Save score to localStorage and redirect to results
+    // Save score and time to localStorage
     try {
       localStorage.setItem("quizScore", score.toString())
       localStorage.setItem("totalQuestions", quizQuestions.length.toString())
       localStorage.setItem("quizCategory", categoryId)
       localStorage.setItem("quizDifficulty", difficulty)
       localStorage.setItem("quizChallenge", challenge || "")
+      localStorage.setItem("quizTimeLeft", timeLeft.toString())
     } catch (error) {
       console.error("Error saving to localStorage:", error)
     }
