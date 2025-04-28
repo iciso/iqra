@@ -93,8 +93,13 @@ export default function Home() {
 
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.
-So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is  joy_ahmed_007@yahoo.com for his guidance and help.
+          وهي صدقة جارية لوجه الله تعالى or This is an ongoing charity for the sake of Allah Almighty.
+          <br />
+          <br />
+          Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source. <br />
+          <br />
+          So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is
+          joy_ahmed_007@yahoo.com for his guidance and help.
         </p>
       </div>
     </main>

@@ -38,7 +38,9 @@ export default function QuizPage() {
     setIsClient(true)
 
     // Get questions for the selected category and difficulty
+    console.log(`Requesting questions for ${categoryId}/${difficulty}`)
     const questions = getQuizQuestions(categoryId, difficulty)
+    console.log(`Received ${questions.length} questions for ${categoryId}/${difficulty}`)
     setQuizQuestions(questions)
 
     // Initialize answers array
@@ -48,6 +50,9 @@ export default function QuizPage() {
     const category = getCategory(categoryId)
     if (category) {
       setCategoryTitle(category.title)
+      console.log(`Category title set to: ${category.title}`)
+    } else {
+      console.log(`Category not found for ID: ${categoryId}`)
     }
 
     // Add these lines to track time for badges

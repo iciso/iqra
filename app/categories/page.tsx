@@ -154,7 +154,10 @@ export default function CategoriesPage() {
                       ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
                       : "border-gray-200 hover:border-green-300 dark:border-gray-700 dark:hover:border-green-700"
                   }`}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => {
+                  console.log(`Selected category: ${category.id}`)
+                  setSelectedCategory(category.id)
+                }}
               >
                 <div className="flex flex-col items-center text-center">
                   {category.icon}
