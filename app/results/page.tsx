@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Award, ArrowLeft } from "lucide-react"
+import { Trophy, Award, ArrowLeft, ArrowRight } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,6 +15,9 @@ import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
 import BadgeNotification from "@/components/badges/badge-notification"
 import BadgesProfile from "@/components/badges/badges-profile"
+import { getRandomOpponent, generateBotScore, getNextChallenge } from "@/utils/opponents"
+import type { Opponent } from "@/components/challenge/opponent-profile"
+import ChallengeResultsComparison from "@/components/challenge/challenge-results-comparison"
 
 export default function ResultsPage() {
   const router = useRouter()
@@ -30,6 +33,12 @@ export default function ResultsPage() {
   const [newBadges, setNewBadges] = useState<typeof badgesData>([])
   const [timeLeft, setTimeLeft] = useState<number | null>(null)
   const [timeTotal, setTimeTotal] = useState<number | null>(null)
+  const [opponent, setOpponent] = useState<Opponent | null>(null)
+  const [nextChallenge, setNextChallenge] = useState<{
+    category: string
+    difficulty: string
+    challenge: string
+  } | null>(null)
 
   useEffect(() => {
     // Mark that we're on the client
@@ -44,10 +53,35 @@ export default function ResultsPage() {
       const savedChallenge = localStorage.getItem("quizChallenge")
       const savedTimeLeft = localStorage.getItem("quizTimeLeft")
       const savedTimeTotal = localStorage.getItem("quizTimeTotal")
+      const savedOpponentId = localStorage.getItem("quizOpponentId")
 
       if (savedScore && savedTotal) {
-        setScore(Number.parseInt(savedScore))
-        setTotalQuestions(Number.parseInt(savedTotal))
+        const parsedScore = Number.parseInt(savedScore)
+        const parsedTotal = Number.parseInt(savedTotal)
+
+        setScore(parsedScore)
+        setTotalQuestions(parsedTotal)
+
+        // Generate an opponent if this was a challenge
+        if (savedChallenge) {
+          // Get or create an opponent
+          const newOpponent = savedOpponentId
+            ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+            : getRandomOpponent()
+
+          if (newOpponent) {
+            // Generate a score for the bot
+            newOpponent.score = generateBotScore(parsedScore, parsedTotal)
+            setOpponent(newOpponent)
+
+            // Store the opponent for reference
+            localStorage.setItem("quizOpponentId", newOpponent.id)
+            localStorage.setItem("quizOpponent", JSON.stringify(newOpponent))
+          }
+
+          // Set up the next challenge
+          setNextChallenge(getNextChallenge(savedCategory || undefined, savedDifficulty || undefined))
+        }
       }
 
       if (savedCategory) {
@@ -131,6 +165,22 @@ export default function ResultsPage() {
       challenge: challenge || undefined,
     })
 
+    // If there's an opponent, add them to the leaderboard too
+    if (opponent && opponent.score !== undefined) {
+      const opponentPercentage = Math.round((opponent.score / totalQuestions) * 100)
+
+      addToLeaderboard({
+        name: opponent.name,
+        score: opponent.score,
+        totalQuestions,
+        percentage: opponentPercentage,
+        date: formattedDate,
+        category: categoryTitle || "Unknown",
+        difficulty: difficulty ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1) : "Unknown",
+        challenge: challenge || undefined,
+      })
+    }
+
     setSubmitted(true)
   }
 
@@ -145,6 +195,16 @@ export default function ResultsPage() {
       router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
     } else {
       router.push("/categories")
+    }
+  }
+
+  const goToNextChallenge = () => {
+    if (nextChallenge) {
+      router.push(
+        `/quiz?category=${nextChallenge.category}&difficulty=${nextChallenge.difficulty}&challenge=${nextChallenge.challenge}&questions=10`,
+      )
+    } else {
+      router.push("/challenges")
     }
   }
 
@@ -168,6 +228,18 @@ export default function ResultsPage() {
       </div>
 
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
+
+      {challenge && opponent && (
+        <div className="w-full max-w-md mx-auto mb-6">
+          <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
+          <ChallengeResultsComparison
+            userName={userName || "You"}
+            userScore={score || 0}
+            opponent={opponent}
+            totalQuestions={totalQuestions || 10}
+          />
+        </div>
+      )}
 
       <div className="w-full max-w-3xl flex flex-col md:flex-row gap-6">
         <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
@@ -271,6 +343,15 @@ export default function ResultsPage() {
             >
               Try Again
             </Button>
+            {challenge && nextChallenge && (
+              <Button
+                className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 ml-2"
+                onClick={goToNextChallenge}
+              >
+                Next Challenge
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )}
           </CardFooter>
         </Card>
 
