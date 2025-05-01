@@ -2,6 +2,7 @@ import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz"
 import seerahCategory from "./quiz-data-manager-additions"
 import { additionalCategories } from "./quiz-data-manager-additional-categories"
 import comparativeReligionCategory from "./comparative-religion"
+import islamicFinanceCategory from "./islamic-finance"
 
 // Define all quiz categories directly in this file
 const quizData: QuizCategory[] = [
@@ -1004,6 +1005,7 @@ const quizData: QuizCategory[] = [
   seerahCategory,
   ...additionalCategories,
   comparativeReligionCategory,
+  islamicFinanceCategory,
 ]
 
 // Add this at the top of the file, right after the import statements:

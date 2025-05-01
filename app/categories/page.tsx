@@ -19,6 +19,7 @@ import {
   Globe,
   Home,
   ArrowRight,
+  DollarSign,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -89,6 +90,12 @@ const categories = [
     title: "Comparative Religion",
     description: "Atheism, Science and Islamic Thought",
     icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "islamic-finance",
+    title: "Islamic Finance",
+    description: "Principles and practices of Islamic economics",
+    icon: <DollarSign className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
 ]
 
