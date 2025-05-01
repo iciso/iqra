@@ -15,6 +15,7 @@ import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { LoadingAnimation } from "@/components/loading-animation"
+import { getAllCategories, getCategory } from "@/data/categories"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -72,7 +73,17 @@ export default function QuizContainer({ questions, category, difficulty, challen
       localStorage.setItem("quizTimeTotal", totalTime.toString())
       setIsTimerRunning(true)
     }
-  }, [questions.length, challengeMode])
+
+    const categoryId = category.id
+
+    console.log("Quiz Container - Category ID:", categoryId)
+    console.log("Quiz Container - Difficulty:", difficulty)
+    console.log(
+      "Quiz Container - Available Categories:",
+      getAllCategories().map((c) => c.id),
+    )
+    console.log("Quiz Container - Questions loaded:", questions.length)
+  }, [questions.length, challengeMode, category.id, difficulty, category])
 
   // Timer effect
   useEffect(() => {
@@ -210,6 +221,19 @@ export default function QuizContainer({ questions, category, difficulty, challen
 
   // If no questions are available
   if (questions.length === 0) {
+    const categoryId = category.id
+    console.error(`No questions found for category: ${categoryId}, difficulty: ${difficulty}`)
+    // Check if the category exists
+    const categoryExists = getAllCategories().some((c) => c.id === categoryId)
+    console.log(`Category ${categoryId} exists: ${categoryExists}`)
+
+    // If it exists, check if it has questions for the specified difficulty
+    if (categoryExists) {
+      const categoryData = getCategory(categoryId)
+      console.log(
+        `Category ${categoryId} has ${categoryData?.levels[difficulty]?.length || 0} questions for ${difficulty} difficulty`,
+      )
+    }
     return (
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">

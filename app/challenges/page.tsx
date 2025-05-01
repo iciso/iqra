@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
-import { User, Users } from "lucide-react"
+import { User, Users, HandHeart, Heart, Landmark, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -359,7 +359,7 @@ export default function ChallengesPage() {
           </a>
         </div>
 
-        {/* Comparative Religion Challenge - NEW */}
+        {/* Comparative Religion Challenge */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative">
           {/* Glowing border for new challenge */}
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 animate-gradient-x p-0.5 -z-10"></div>
@@ -398,6 +398,210 @@ export default function ChallengesPage() {
 
           <a
             href={`/quiz?category=comparative&difficulty=easy&challenge=comparative&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Islamic Finance Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+          {/* Animated badge for newest challenge */}
+          <div className="absolute top-0 right-0">
+            <div className="relative h-16 w-16 overflow-hidden">
+              <div className="absolute top-0 right-0 h-16 w-16 bg-green-500 rotate-45 transform origin-bottom-left"></div>
+              <span className="absolute top-0 right-0 mt-2 mr-2 text-white text-xs font-bold">NEW</span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <HandHeart className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Islamic Finance Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Test your knowledge of Islamic financial principles, contracts, and ethical investing
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">87</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=islamic-finance&difficulty=easy&challenge=finance&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Tazkiyah (Spiritual Purification) Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative">
+          {/* Sparkling new badge */}
+          <div className="absolute top-0 right-0 mt-2 mr-2">
+            <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-md shadow-lg">
+              NEW
+            </span>
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <Heart className="h-6 w-6 text-pink-600 mr-2 dark:text-pink-400" />
+              <h2 className="text-xl font-bold dark:text-white">Tazkiyah Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Explore the depths of spiritual purification and the journey of the soul in Islam
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">76</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=tazkiyah&difficulty=easy&challenge=tazkiyah&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Islamic History and Civilization Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative">
+          {/* Animated badge for newest challenge */}
+          <div className="absolute -top-3 -left-3">
+            <div className="relative inline-flex">
+              <div className="w-24 h-24 absolute">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-20"></span>
+              </div>
+              <span className="relative inline-flex rounded-md bg-amber-500 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                NEW
+              </span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <Landmark className="h-6 w-6 text-amber-600 mr-2 dark:text-amber-400" />
+              <h2 className="text-xl font-bold dark:text-white">Islamic History & Civilization</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Explore the golden ages of Islamic civilization, scientific achievements, and cultural contributions
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">7 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">92</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=history&difficulty=easy&challenge=history&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Dawah (Islamic Outreach) Challenge - NEW */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative">
+          {/* Floating badge for newest challenge */}
+          <div className="absolute top-2 right-2">
+            <div className="animate-bounce">
+              <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-teal-600 rounded-md shadow-lg">
+                NEW
+              </span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <MessageCircle className="h-6 w-6 text-teal-600 mr-2 dark:text-teal-400" />
+              <h2 className="text-xl font-bold dark:text-white">Dawah Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Master the art of Islamic outreach with wisdom, beautiful preaching, and respectful dialogue
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">68</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=dawah&difficulty=easy&challenge=dawah&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
             className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
           >
             Start Challenge

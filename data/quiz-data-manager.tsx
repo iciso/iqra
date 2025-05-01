@@ -3,6 +3,8 @@ import seerahCategory from "./quiz-data-manager-additions"
 import { additionalCategories } from "./quiz-data-manager-additional-categories"
 import comparativeReligionCategory from "./comparative-religion"
 import islamicFinanceCategory from "./islamic-finance"
+import islamicHistoryCategory from "./islamic-history"
+import dawahCategory from "./dawah"
 
 // Define all quiz categories directly in this file
 const quizData: QuizCategory[] = [
@@ -1006,7 +1008,15 @@ const quizData: QuizCategory[] = [
   ...additionalCategories,
   comparativeReligionCategory,
   islamicFinanceCategory,
+  islamicHistoryCategory,
+  dawahCategory,
 ]
+
+// Add this right after the quizData array definition
+console.log(
+  "Loaded categories:",
+  quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
+)
 
 // Add this at the top of the file, right after the import statements:
 // This will help us see if all categories are being loaded properly
@@ -1015,12 +1025,20 @@ console.log(
   quizData.map((cat) => cat.id),
 )
 
+// Update the getQuizQuestions function to handle intermediate difficulty
+
 export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
   console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`)
   const category = quizData.find((cat) => cat.id === categoryId)
   if (!category) {
     console.log(`Category ${categoryId} not found`)
     return []
+  }
+
+  // If intermediate difficulty is requested but not available, fall back to easy
+  if (difficulty === "intermediate" && (!category.levels.intermediate || category.levels.intermediate.length === 0)) {
+    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`)
+    difficulty = "easy"
   }
 
   const questions = category.levels[difficulty] || []

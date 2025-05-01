@@ -66,7 +66,7 @@ export function getOpponentById(id: string): Opponent | undefined {
   return opponentsList.find((o) => o.id === id)
 }
 
-// Update the getNextChallenge function to include the new Comparative Religion challenge
+// Update the getNextChallenge function to include the new Dawah challenge
 export function getNextChallenge(
   currentCategory?: string,
   currentDifficulty?: string,
@@ -80,6 +80,10 @@ export function getNextChallenge(
     { category: "tafsir", difficulty: "advanced", challenge: "tafsir" },
     { category: "aqeedah", difficulty: "intermediate", challenge: "aqeedah" },
     { category: "comparative", difficulty: "advanced", challenge: "comparative" },
+    { category: "islamic-finance", difficulty: "intermediate", challenge: "finance" },
+    { category: "tazkiyah", difficulty: "intermediate", challenge: "tazkiyah" },
+    { category: "history", difficulty: "intermediate", challenge: "history" },
+    { category: "dawah", difficulty: "intermediate", challenge: "dawah" },
   ]
 
   if (!currentCategory || !currentDifficulty) {

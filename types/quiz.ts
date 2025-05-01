@@ -16,4 +16,4 @@ export interface QuizCategory {
   }
 }
 
-export type DifficultyLevel = "easy" | "advanced"
+export type DifficultyLevel = "easy" | "advanced" | "intermediate"
