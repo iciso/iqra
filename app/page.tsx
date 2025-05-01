@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Book, Trophy, Users, Sparkles } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { IqraLogo } from "@/components/iqra-logo"
 
 export default function Home() {
   return (
@@ -9,6 +10,10 @@ export default function Home() {
         <ThemeToggle />
       </div>
       <div className="text-center mb-8">
+        {/* Clean IQRA Logo without text */}
+        <div className="flex justify-center mb-4">
+          <IqraLogo size="lg" showText={false} />
+        </div>
         <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-2">IQRA</h1>
         <p className="text-xl text-green-600 dark:text-green-500">Islamic Quiz Rivalry App</p>
         <p className="mt-2 text-gray-700 dark:text-gray-300 max-w-md mx-auto">

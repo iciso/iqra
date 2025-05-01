@@ -5,6 +5,8 @@ import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { User, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { IqraLogo } from "@/components/iqra-logo"
 
 export default function ChallengesPage() {
   // Define a consistent number of questions for all challenges
@@ -20,6 +22,17 @@ export default function ChallengesPage() {
 
   return (
     <div className="container mx-auto py-12 px-4 max-w-6xl">
+      {/* Add Back to Home link with logo */}
+      <div className="absolute top-4 left-4">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
+        >
+          <IqraLogo size="sm" isLink={false} />
+          <span className="font-medium">Back to Home</span>
+        </Link>
+      </div>
+
       <h1 className="text-3xl font-bold text-center mb-2">IQRA Challenge Mode</h1>
       <p className="text-center mb-8 text-gray-600">
         Test your Islamic knowledge against time and compete with others on our leaderboards
