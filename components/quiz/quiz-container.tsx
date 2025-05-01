@@ -14,6 +14,7 @@ import Link from "next/link"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
+import { LoadingAnimation } from "@/components/loading-animation"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -35,6 +36,8 @@ export default function QuizContainer({ questions, category, difficulty, challen
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const [quizId, setQuizId] = useState("")
   const [opponent, setOpponent] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
   // Generate a unique quiz ID when the component mounts
   useEffect(() => {
@@ -107,25 +110,44 @@ export default function QuizContainer({ questions, category, difficulty, challen
   const handleSubmitAnswer = () => {
     if (!questions[currentQuestion]) return
 
-    const correct = selectedAnswer === questions[currentQuestion].correctAnswer
-    setIsCorrect(correct)
-    if (correct) {
-      setScore(score + 1)
-    }
-    setShowExplanation(true)
+    setTransitionType("submit")
+    setIsLoading(true)
+
+    // Simulate a brief loading period
+    setTimeout(() => {
+      const correct = selectedAnswer === questions[currentQuestion].correctAnswer
+      setIsCorrect(correct)
+      if (correct) {
+        setScore(score + 1)
+      }
+      setShowExplanation(true)
+      setIsLoading(false)
+      setTransitionType(null)
+    }, 800) // Brief loading animation
   }
 
   const handleNext = () => {
-    setShowExplanation(false)
-    setIsCorrect(null)
+    setTransitionType("next")
+    setIsLoading(true)
 
-    // Move to next question or finish quiz
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-      setSelectedAnswer(answers[currentQuestion + 1])
-    } else {
-      handleFinishQuiz()
-    }
+    // Simulate a brief loading period
+    setTimeout(() => {
+      setShowExplanation(false)
+      setIsCorrect(null)
+
+      // Move to next question or finish quiz
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1)
+        setSelectedAnswer(answers[currentQuestion + 1])
+      } else {
+        setTransitionType("finish")
+        handleFinishQuiz()
+        return
+      }
+
+      setIsLoading(false)
+      setTransitionType(null)
+    }, 800) // Brief loading animation
   }
 
   const handleFinishQuiz = () => {
@@ -146,15 +168,31 @@ export default function QuizContainer({ questions, category, difficulty, challen
     } catch (error) {
       console.error("Error saving to localStorage:", error)
     }
-    router.push("/results")
+
+    if (transitionType === "finish") {
+      // Simulate a brief loading period before redirecting
+      setTimeout(() => {
+        router.push("/results")
+      }, 1200) // Slightly longer for final transition
+    } else {
+      router.push("/results")
+    }
   }
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      setShowExplanation(false)
-      setIsCorrect(null)
-      setCurrentQuestion(currentQuestion - 1)
-      setSelectedAnswer(answers[currentQuestion - 1])
+      setTransitionType("next")
+      setIsLoading(true)
+
+      // Simulate a brief loading period
+      setTimeout(() => {
+        setShowExplanation(false)
+        setIsCorrect(null)
+        setCurrentQuestion(currentQuestion - 1)
+        setSelectedAnswer(answers[currentQuestion - 1])
+        setIsLoading(false)
+        setTransitionType(null)
+      }, 800) // Brief loading animation
     }
   }
 
@@ -187,6 +225,14 @@ export default function QuizContainer({ questions, category, difficulty, challen
   }
 
   const question = questions[currentQuestion]
+
+  // Loading text based on transition type
+  const getLoadingText = () => {
+    if (transitionType === "submit") return "Checking answer..."
+    if (transitionType === "next") return "Loading next question..."
+    if (transitionType === "finish") return "Calculating results..."
+    return "Loading..."
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -226,87 +272,98 @@ export default function QuizContainer({ questions, category, difficulty, challen
         )}
       </div>
 
-      <Card className="border-green-200 shadow-lg dark:border-green-800">
-        <CardHeader className="flex flex-col items-center">
-          <Book className="w-10 h-10 text-green-600 dark:text-green-400 mb-2" />
-          <CardTitle className="text-xl text-green-800 dark:text-green-400">Question {currentQuestion + 1}</CardTitle>
-          {challengeMode && opponent && (
-            <div className="flex justify-center mt-2">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
-                <span className="text-xs text-gray-600 dark:text-gray-300">Opponent:</span>
-                <OpponentProfile opponent={opponent} size="sm" />
-              </div>
-            </div>
-          )}
-        </CardHeader>
-        <CardContent>
-          <div className="mb-6">
-            <h2 className="text-lg font-medium mb-4 dark:text-white">{question.question}</h2>
-            <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
-              {question.options.map((option, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center space-x-2 mb-2 p-2 rounded 
-                    ${
-                      showExplanation && option === question.correctAnswer
-                        ? "bg-green-100 dark:bg-green-900"
-                        : showExplanation && option === selectedAnswer && option !== question.correctAnswer
-                          ? "bg-red-100 dark:bg-red-900"
-                          : "hover:bg-green-50 dark:hover:bg-green-900/50"
-                    }`}
-                >
-                  <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
-                  <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
-                    {option}
-                    {showExplanation && option === question.correctAnswer && (
-                      <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />
-                    )}
-                    {showExplanation && option === selectedAnswer && option !== question.correctAnswer && (
-                      <XCircle className="inline-block ml-2 h-4 w-4 text-red-600 dark:text-red-400" />
-                    )}
-                  </Label>
-                </div>
-              ))}
-            </RadioGroup>
-
-            {showExplanation && question.explanation && (
-              <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-                <AlertDescription className="text-blue-800 dark:text-blue-300">
-                  <strong className="block mb-1">Explanation:</strong>
-                  {question.explanation}
-                </AlertDescription>
-              </Alert>
-            )}
+      <Card className="border-green-200 shadow-lg dark:border-green-800 min-h-[400px] flex flex-col">
+        {isLoading ? (
+          <div className="flex-1 flex items-center justify-center p-6">
+            <LoadingAnimation size="md" text={getLoadingText()} />
           </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button
-            variant="outline"
-            onClick={handlePrevious}
-            disabled={currentQuestion === 0}
-            className="dark:border-green-700 dark:text-green-400"
-          >
-            <ChevronLeft className="mr-1 h-4 w-4" /> Previous
-          </Button>
+        ) : (
+          <>
+            <CardHeader className="flex flex-col items-center">
+              <Book className="w-10 h-10 text-green-600 dark:text-green-400 mb-2" />
+              <CardTitle className="text-xl text-green-800 dark:text-green-400">
+                Question {currentQuestion + 1}
+              </CardTitle>
+              {challengeMode && opponent && (
+                <div className="flex justify-center mt-2">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
+                    <span className="text-xs text-gray-600 dark:text-gray-300">Opponent:</span>
+                    <OpponentProfile opponent={opponent} size="sm" />
+                  </div>
+                </div>
+              )}
+            </CardHeader>
+            <CardContent>
+              <div className="mb-6">
+                <h2 className="text-lg font-medium mb-4 dark:text-white">{question.question}</h2>
+                <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
+                  {question.options.map((option, index) => (
+                    <div
+                      key={index}
+                      className={`flex items-center space-x-2 mb-2 p-2 rounded 
+                        ${
+                          showExplanation && option === question.correctAnswer
+                            ? "bg-green-100 dark:bg-green-900"
+                            : showExplanation && option === selectedAnswer && option !== question.correctAnswer
+                              ? "bg-red-100 dark:bg-red-900"
+                              : "hover:bg-green-50 dark:hover:bg-green-900/50"
+                        }`}
+                    >
+                      <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
+                      <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
+                        {option}
+                        {showExplanation && option === question.correctAnswer && (
+                          <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />
+                        )}
+                        {showExplanation && option === selectedAnswer && option !== question.correctAnswer && (
+                          <XCircle className="inline-block ml-2 h-4 w-4 text-red-600 dark:text-red-400" />
+                        )}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
 
-          {!showExplanation ? (
-            <Button
-              className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-              onClick={handleSubmitAnswer}
-              disabled={!selectedAnswer}
-            >
-              Submit Answer
-            </Button>
-          ) : (
-            <Button
-              className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-              onClick={handleNext}
-            >
-              {currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next Question"}
-              {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
-            </Button>
-          )}
-        </CardFooter>
+                {showExplanation && question.explanation && (
+                  <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
+                    <AlertDescription className="text-blue-800 dark:text-blue-300">
+                      <strong className="block mb-1">Explanation:</strong>
+                      {question.explanation}
+                    </AlertDescription>
+                  </Alert>
+                )}
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-between mt-auto">
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentQuestion === 0 || isLoading}
+                className="dark:border-green-700 dark:text-green-400"
+              >
+                <ChevronLeft className="mr-1 h-4 w-4" /> Previous
+              </Button>
+
+              {!showExplanation ? (
+                <Button
+                  className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                  onClick={handleSubmitAnswer}
+                  disabled={!selectedAnswer || isLoading}
+                >
+                  Submit Answer
+                </Button>
+              ) : (
+                <Button
+                  className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                  onClick={handleNext}
+                  disabled={isLoading}
+                >
+                  {currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next Question"}
+                  {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
+                </Button>
+              )}
+            </CardFooter>
+          </>
+        )}
       </Card>
     </div>
   )

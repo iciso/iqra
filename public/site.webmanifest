@@ -1,7 +1,12 @@
 {
-  "name": "IQRA Demo App",
+  "name": "IQRA Islamic Quiz App",
   "short_name": "IQRA",
   "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -13,7 +18,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#1E3A8A",
+  "theme_color": "#15803D",
   "background_color": "#FFFFFF",
   "display": "standalone"
 }

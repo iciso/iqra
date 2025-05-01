@@ -1,8 +1,9 @@
+import { LoadingAnimation } from "@/components/loading-animation"
+
 export default function ChallengeLoading() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <div className="w-16 h-16 border-4 border-green-200 border-t-green-600 rounded-full animate-spin"></div>
-      <p className="mt-4 text-gray-600">Loading challenge...</p>
+      <LoadingAnimation size="lg" text="Preparing Challenge..." />
     </div>
   )
 }
