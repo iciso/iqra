@@ -3,7 +3,22 @@
 import { useState } from "react"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
-import { User, Users, HandHeart, Heart, Landmark, MessageCircle } from "lucide-react"
+import {
+  User,
+  Users,
+  HandHeart,
+  Heart,
+  Landmark,
+  MessageCircle,
+  BookOpen,
+  BookText,
+  History,
+  BookMarked,
+  Scroll,
+  FileText,
+  GraduationCap,
+  Scale,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -74,7 +89,10 @@ export default function ChallengesPage() {
         {/* Daily Quiz Challenge */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Daily Quiz Challenge</h2>
+            <div className="flex items-center">
+              <BookText className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Daily Quiz Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -113,7 +131,10 @@ export default function ChallengesPage() {
         {/* Quran Knowledge Challenge */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Quran Knowledge Challenge</h2>
+            <div className="flex items-center">
+              <BookOpen className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Quran Knowledge Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -152,7 +173,10 @@ export default function ChallengesPage() {
         {/* Seerah Special Challenge */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Seerah Special Challenge</h2>
+            <div className="flex items-center">
+              <History className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Seerah Special Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -191,7 +215,10 @@ export default function ChallengesPage() {
         {/* Fiqh Fundamentals */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Fiqh Fundamentals</h2>
+            <div className="flex items-center">
+              <Scale className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Fiqh Fundamentals</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -230,7 +257,10 @@ export default function ChallengesPage() {
         {/* Hadeeth Knowledge Challenge */}
         <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Hadeeth Knowledge Challenge</h2>
+            <div className="flex items-center">
+              <Scroll className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Hadeeth Knowledge Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -274,7 +304,10 @@ export default function ChallengesPage() {
           </div>
 
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Tafsir Exploration Challenge</h2>
+            <div className="flex items-center">
+              <BookMarked className="h-6 w-6 text-yellow-600 mr-2 dark:text-yellow-400" />
+              <h2 className="text-xl font-bold dark:text-white">Tafsir Exploration Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -323,7 +356,10 @@ export default function ChallengesPage() {
           </div>
 
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Aqeedah Fundamentals Challenge</h2>
+            <div className="flex items-center">
+              <GraduationCap className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Aqeedah Fundamentals Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -368,7 +404,10 @@ export default function ChallengesPage() {
           </div>
 
           <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Comparative Religion Challenge</h2>
+            <div className="flex items-center">
+              <FileText className="h-6 w-6 text-purple-600 mr-2 dark:text-purple-400" />
+              <h2 className="text-xl font-bold dark:text-white">Comparative Religion Challenge</h2>
+            </div>
             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
               Active
             </span>
@@ -612,7 +651,10 @@ export default function ChallengesPage() {
       {/* Islamic Medical Ethics - Coming Soon */}
       <div className="border rounded-lg p-6 bg-white shadow-sm mb-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="text-xl font-bold dark:text-white">Islamic Medical Ethics</h2>
+          <div className="flex items-center">
+            <User className="h-6 w-6 text-purple-600 mr-2 dark:text-purple-400" />
+            <h2 className="text-xl font-bold dark:text-white">Islamic Medical Ethics</h2>
+          </div>
           <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full dark:bg-purple-900 dark:text-purple-100">
             Advanced Study
           </span>
