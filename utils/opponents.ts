@@ -66,7 +66,7 @@ export function getOpponentById(id: string): Opponent | undefined {
   return opponentsList.find((o) => o.id === id)
 }
 
-// Get the next challenge based on current category/difficulty
+// Update the getNextChallenge function to include the new Comparative Religion challenge
 export function getNextChallenge(
   currentCategory?: string,
   currentDifficulty?: string,
@@ -76,7 +76,10 @@ export function getNextChallenge(
     { category: "quran", difficulty: "advanced", challenge: "quran" },
     { category: "seerah", difficulty: "advanced", challenge: "seerah" },
     { category: "fiqh", difficulty: "easy", challenge: "fiqh" },
-    { category: "comparative", difficulty: "easy", challenge: "comparative" },
+    { category: "hadeeth", difficulty: "easy", challenge: "hadeeth" },
+    { category: "tafsir", difficulty: "advanced", challenge: "tafsir" },
+    { category: "aqeedah", difficulty: "intermediate", challenge: "aqeedah" },
+    { category: "comparative", difficulty: "advanced", challenge: "comparative" },
   ]
 
   if (!currentCategory || !currentDifficulty) {
