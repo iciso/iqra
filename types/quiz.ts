@@ -1,8 +1,12 @@
 export interface QuizQuestion {
+  id?: string // Add ID field for identifying specific questions
   question: string
   options: string[]
   correctAnswer: string
   explanation?: string
+  hasInfographic?: boolean
+  infographicType?: "timeline" | "comparison" | "process" | "map" | "chart"
+  infographicData?: any
 }
 
 export interface QuizCategory {

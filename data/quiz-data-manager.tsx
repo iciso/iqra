@@ -6,6 +6,9 @@ import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
 
+// Import the infographics enhancement function
+import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
+
 // Define all quiz categories directly in this file
 const quizData: QuizCategory[] = [
   {
@@ -1025,8 +1028,7 @@ console.log(
   quizData.map((cat) => cat.id),
 )
 
-// Update the getQuizQuestions function to handle intermediate difficulty
-
+// Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
 export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
   console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`)
   const category = quizData.find((cat) => cat.id === categoryId)
@@ -1041,9 +1043,30 @@ export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel
     difficulty = "easy"
   }
 
-  const questions = category.levels[difficulty] || []
+  // Get the questions for the specified category and difficulty
+  let questions = category.levels[difficulty] || []
+
+  // Assign IDs to questions if they don't have them
+  questions = questions.map((question, index) => {
+    if (!question.id) {
+      return {
+        ...question,
+        id: `${categoryId}-${index + 1}`,
+      }
+    }
+    return question
+  })
+
   console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`)
-  return questions
+
+  // Before returning the questions, enhance them with infographics if available
+  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions)
+
+  // Log which questions have infographics
+  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length
+  console.log(`Enhanced ${withInfographics} questions with infographics`)
+
+  return enhancedQuestions
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {

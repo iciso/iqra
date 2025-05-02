@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock } from "lucide-react"
+import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock, Info } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
@@ -16,6 +16,7 @@ import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { LoadingAnimation } from "@/components/loading-animation"
 import { getAllCategories, getCategory } from "@/data/categories"
+import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -347,13 +348,32 @@ export default function QuizContainer({ questions, category, difficulty, challen
                   ))}
                 </RadioGroup>
 
-                {showExplanation && question.explanation && (
-                  <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-                    <AlertDescription className="text-blue-800 dark:text-blue-300">
-                      <strong className="block mb-1">Explanation:</strong>
-                      {question.explanation}
-                    </AlertDescription>
-                  </Alert>
+                {showExplanation && (
+                  <>
+                    {question.explanation && (
+                      <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
+                        <AlertDescription className="text-blue-800 dark:text-blue-300">
+                          <div className="flex items-start">
+                            <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
+                            <div>
+                              <strong className="block mb-1">Explanation:</strong>
+                              {question.explanation}
+                            </div>
+                          </div>
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    {question.hasInfographic && question.infographicType && question.infographicData && (
+                      <div className="mt-4">
+                        <InteractiveInfographic
+                          type={question.infographicType}
+                          data={question.infographicData}
+                          title={`${category.title} - Visual Explanation`}
+                        />
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </CardContent>
