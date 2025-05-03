@@ -1,4 +1,4 @@
-import { BookOpen, Trophy } from "lucide-react"
+import { BookOpen } from "lucide-react"
 
 interface LoadingAnimationProps {
   size?: "sm" | "md" | "lg"
@@ -31,13 +31,9 @@ export function LoadingAnimation({ size = "md", text }: LoadingAnimationProps) {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-20"></div>
         <div className="relative flex items-center justify-center w-full h-full">
-          {/* Book icon with animation */}
-          <div className="absolute animate-book-loading">
+          {/* Single Book icon with animation */}
+          <div className="animate-pulse">
             <BookOpen className={`${dimensions[size].icons} text-green-700 opacity-90`} strokeWidth={1.5} />
-          </div>
-          {/* Trophy icon with animation */}
-          <div className="absolute animate-trophy-loading">
-            <Trophy className={`${dimensions[size].icons} text-green-700 opacity-90`} strokeWidth={1.5} />
           </div>
         </div>
       </div>

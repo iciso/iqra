@@ -178,7 +178,7 @@ export const quranInfographics = {
         step: 1,
         title: "Praise of Allah (Verses 1-3)",
         description:
-          "The first three verses praise Allah: 'In the name of Allah, Most Gracious, Most Merciful. Praise be to Allah, the Lord of the worlds. The Most Gracious, the Most Merciful. Master of the Day of Judgment.' Ibn Kathir explains these verses establish Allah's perfect attributes and sovereignty.",
+          "The first three verses of Al-Fatiha praise Allah: 'Praise be to Allah, the Lord of the worlds. The Most Gracious, the Most Merciful. Master of the Day of Judgment.' Ibn Kathir explains these verses establish Allah's perfect attributes and sovereignty. Note: Bismillah (بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ) precedes the surah but is not universally counted as its first verse in all Quranic numbering traditions.",
       },
       {
         step: 2,
@@ -243,6 +243,61 @@ export const quranInfographics = {
       },
     ],
   },
+
+  // Al-Moududi's Tafsir of Al-Fatiha
+  moududiFatiha: {
+    type: "process" as const,
+    data: [
+      {
+        step: 1,
+        title: "Introduction to Al-Fatiha",
+        description:
+          "Moududi explains that Al-Fatiha serves as the perfect opening to the Quran, containing the essence of the entire Quranic message. It is called 'The Opening' because it opens the Book and also because it is the first surah recited in every prayer.",
+      },
+      {
+        step: 2,
+        title: "Bismillah",
+        description:
+          "Moududi explains that Bismillah (بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ) precedes Al-Fatiha as it does most surahs. While not universally counted as the first verse in all traditions, it signifies that the reciter is seeking Allah's help and blessing. The attributes 'Al-Rahman' and 'Al-Raheem' highlight Allah's all-encompassing mercy and special mercy for believers.",
+      },
+      {
+        step: 3,
+        title: "Praise and Lordship (Verse 1)",
+        description:
+          "In 'Alhamdulillahi Rabbil Alameen' (الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ), Moududi explains that all praise belongs exclusively to Allah who is the sustainer, nourisher, and developer of all creation. This establishes the fundamental relationship between Creator and creation.",
+      },
+      {
+        step: 4,
+        title: "Divine Mercy (Verse 3)",
+        description:
+          "Moududi notes that repeating 'Al-Rahman Al-Raheem' after mentioning Allah's lordship emphasizes that His authority is not oppressive but based on mercy and compassion, encouraging believers to turn to Him with hope.",
+      },
+      {
+        step: 5,
+        title: "Day of Judgment (Verse 4)",
+        description:
+          "In 'Maliki Yawmid-Deen', Moududi highlights that Allah's sovereignty over the Day of Judgment reminds believers of accountability, encouraging righteous conduct and establishing the concept of divine justice.",
+      },
+      {
+        step: 6,
+        title: "Worship and Assistance (Verse 5)",
+        description:
+          "Moududi explains that 'Iyyaka na'budu wa iyyaka nasta'een' (You alone we worship and You alone we ask for help) establishes the core of Islamic monotheism - exclusive worship and reliance on Allah alone.",
+      },
+      {
+        step: 7,
+        title: "Prayer for Guidance (Verses 6-7)",
+        description:
+          "In the final verses, Moududi elaborates that asking for guidance to the straight path is the most important prayer, as it encompasses all aspects of life. The straight path is defined as the path of those who have received Allah's favor, not those who have earned His anger or gone astray.",
+      },
+      {
+        step: 8,
+        title: "Significance in Prayer",
+        description:
+          "Moududi emphasizes that Al-Fatiha's recitation in every rak'ah of prayer is essential because it represents the covenant between Allah and His servants - the servant praises Allah, acknowledges His sovereignty, and asks for guidance, while Allah promises to respond to this sincere request.",
+      },
+    ],
+  },
 }
 
 // Helper function to get infographic data for a specific question
@@ -269,9 +324,9 @@ export function getQuranInfographic(questionId: string) {
     },
     // Question: Which Surah is recited in every raka'ah of the prayer?
     "quran-4": {
-      type: "comparison",
-      data: quranInfographics.fatihaAndLordsPrayer.data,
-      title: "Al-Fatiha and The Lord's Prayer: A Comparison",
+      type: "process",
+      data: quranInfographics.moududiFatiha.data,
+      title: "Al-Moududi's Tafsir of Al-Fatiha and Its Significance in Prayer",
     },
     "quran-5": {
       type: "process",
