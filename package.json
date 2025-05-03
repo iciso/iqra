@@ -58,8 +58,10 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "zod": "^3.24.1",
+    "@emotion/is-prop-valid": "latest",
     "@headlessui/react": "latest",
-    "canvas-confetti": "latest"
+    "canvas-confetti": "latest",
+    "framer-motion": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",

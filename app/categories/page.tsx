@@ -20,9 +20,12 @@ import {
   Home,
   ArrowRight,
   HandHeart,
+  AlertCircle,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { motion, AnimatePresence } from "framer-motion"
 
 const categories = [
   {
@@ -104,15 +107,29 @@ export default function CategoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const [showDifficultyAlert, setShowDifficultyAlert] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
+  useEffect(() => {
+    if (selectedCategory) {
+      setShowDifficultyAlert(true)
+      // Reset difficulty when changing category
+      setSelectedDifficulty(null)
+    }
+  }, [selectedCategory])
+
   const handleStartQuiz = () => {
     if (selectedCategory && selectedDifficulty) {
       router.push(`/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}`)
     }
+  }
+
+  const getCategoryTitle = (id: string) => {
+    const category = categories.find((cat) => cat.id === id)
+    return category ? category.title : id
   }
 
   // If we're not on the client yet, show a simple loading state
@@ -175,41 +192,70 @@ export default function CategoriesPage() {
             ))}
           </div>
 
-          {selectedCategory && (
-            <div className="mt-8 border-t pt-6 border-gray-200 dark:border-gray-700">
-              <h3 className="text-lg font-medium mb-4 dark:text-white">Select Difficulty Level</h3>
-              <RadioGroup value={selectedDifficulty || ""} onValueChange={setSelectedDifficulty}>
-                <div className="flex flex-col space-y-3">
-                  <div className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700">
-                    <RadioGroupItem value="easy" id="easy" />
-                    <Label htmlFor="easy" className="flex flex-col cursor-pointer">
-                      <span className="font-medium dark:text-white">Easy</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Basic questions for beginners</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700">
-                    <RadioGroupItem value="advanced" id="advanced" />
-                    <Label htmlFor="advanced" className="flex flex-col cursor-pointer">
-                      <span className="font-medium dark:text-white">Advanced</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        Challenging questions for those with deeper knowledge
-                      </span>
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
-          )}
+          <AnimatePresence>
+            {showDifficultyAlert && selectedCategory && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="mt-6"
+              >
+                <Alert className="border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-700">
+                  <AlertCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  <AlertTitle className="text-green-800 dark:text-green-400 font-medium">
+                    Select Difficulty for {getCategoryTitle(selectedCategory)}
+                  </AlertTitle>
+                  <AlertDescription>
+                    <RadioGroup value={selectedDifficulty || ""} onValueChange={setSelectedDifficulty} className="mt-3">
+                      <div className="flex flex-col space-y-3">
+                        <div className="flex items-center space-x-2 rounded-md border border-green-200 dark:border-green-700 p-3 cursor-pointer hover:bg-green-100 dark:hover:bg-green-800/50">
+                          <RadioGroupItem value="easy" id="easy" />
+                          <Label htmlFor="easy" className="flex flex-col cursor-pointer">
+                            <span className="font-medium dark:text-white">Easy</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-300">
+                              Basic questions for beginners
+                            </span>
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2 rounded-md border border-green-200 dark:border-green-700 p-3 cursor-pointer hover:bg-green-100 dark:hover:bg-green-800/50">
+                          <RadioGroupItem value="advanced" id="advanced" />
+                          <Label htmlFor="advanced" className="flex flex-col cursor-pointer">
+                            <span className="font-medium dark:text-white">Advanced</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-300">
+                              Challenging questions for those with deeper knowledge
+                            </span>
+                          </Label>
+                        </div>
+                      </div>
+                    </RadioGroup>
+
+                    {selectedDifficulty && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 flex justify-center"
+                      >
+                        <Button
+                          className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
+                          onClick={handleStartQuiz}
+                        >
+                          Start Quiz
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </motion.div>
+                    )}
+                  </AlertDescription>
+                </Alert>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Remove the old difficulty section that was at the bottom */}
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Button
-            className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
-            onClick={handleStartQuiz}
-            disabled={!selectedCategory || !selectedDifficulty}
-          >
-            Start Quiz
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          {!selectedCategory && (
+            <p className="text-sm text-gray-500 dark:text-gray-400">Please select a category to continue</p>
+          )}
         </CardFooter>
       </Card>
     </main>

@@ -1,47 +1,63 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { IqraLogo } from "@/components/iqra-logo"
+import { Home } from "lucide-react"
+import Link from "next/link"
+import { Card } from "@/components/ui/card"
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="flex flex-col items-center mb-8">
-        <IqraLogo size="lg" showText={true} isLink={false} />
+    <main className="min-h-screen p-4 md:p-8 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+      <nav className="mb-8">
+        <ul className="flex items-center gap-4">
+          <li>
+            <Link href="/" className="flex items-center gap-1 text-green-700 hover:text-green-500">
+              <Home className="h-4 w-4" />
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="text-green-700 hover:text-green-500">
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="container mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-green-800 dark:text-green-400">About IQRA</h1>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-500">Our Mission</h2>
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <p className="text-gray-700 dark:text-gray-300">
+              Our mission is to provide accessible and high-quality Islamic education to learners of all ages and
+              backgrounds. We strive to foster a deep understanding of Islamic principles and values, empowering
+              individuals to lead fulfilling and meaningful lives.
+            </p>
+          </Card>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-500">Our Vision</h2>
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <p className="text-gray-700 dark:text-gray-300">
+              We envision a world where Islamic knowledge is readily available and easily accessible, fostering a global
+              community of informed and engaged Muslims who contribute positively to society.
+            </p>
+          </Card>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-500">Our Values</h2>
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+              <li>Integrity: We uphold the highest ethical standards in all our endeavors.</li>
+              <li>Excellence: We are committed to providing the best possible learning experience.</li>
+              <li>Accessibility: We strive to make Islamic education available to everyone.</li>
+              <li>Community: We foster a supportive and inclusive learning environment.</li>
+              <li>Innovation: We embrace new technologies and approaches to enhance learning.</li>
+            </ul>
+          </Card>
+        </section>
       </div>
-
-      <Card className="max-w-3xl mx-auto">
-        <CardHeader>
-          <CardTitle className="text-3xl text-center">About IQRA</CardTitle>
-          <CardDescription className="text-center text-lg">
-            Islamic Knowledge Quiz & Resource Application
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p>
-            IQRA is an educational platform designed to help users learn about Islam through interactive quizzes,
-            challenges, and informative resources. Our mission is to make Islamic knowledge accessible, engaging, and
-            enjoyable for everyone.
-          </p>
-
-          <h3 className="text-xl font-semibold mt-6">Features</h3>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Comprehensive quizzes across 11 Islamic knowledge categories</li>
-            <li>Learning mode with detailed explanations</li>
-            <li>Challenge mode with competitive elements</li>
-            <li>Interactive infographics on key Islamic concepts</li>
-            <li>Achievement badges to track your progress</li>
-            <li>Leaderboards to compare your knowledge with others</li>
-          </ul>
-
-          <h3 className="text-xl font-semibold mt-6">Our Approach</h3>
-          <p>
-            IQRA promotes understanding over rote memorization. We believe that true knowledge comes from comprehension
-            and application, not just memorizing facts. Our platform is designed to encourage critical thinking and deep
-            understanding of Islamic principles.
-          </p>
-
-          <p className="text-center text-muted-foreground mt-8">Version 1.0 • © 2023-2024 IQRA</p>
-        </CardContent>
-      </Card>
-    </div>
+    </main>
   )
 }
