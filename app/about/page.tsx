@@ -22,7 +22,7 @@ export default function AboutPage() {
       </nav>
 
       <div className="container mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-green-800 dark:text-green-400">About IQRA</h1>
+        <h1 className="text-3xl font-bold mb-6 text-green-800 dark:text-green-400">About IQRA Demo App</h1>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-500">Our Mission</h2>
@@ -30,7 +30,7 @@ export default function AboutPage() {
             <p className="text-gray-700 dark:text-gray-300">
               Our mission is to provide accessible and high-quality Islamic education to learners of all ages and
               backgrounds. We strive to foster a deep understanding of Islamic principles and values, empowering
-              individuals to lead fulfilling and meaningful lives.
+              individuals to lead fulfilling and meaningful lives, which brings reward from Allah both in this world and the hereafter.
             </p>
           </Card>
         </section>
@@ -49,11 +49,11 @@ export default function AboutPage() {
           <h2 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-500">Our Values</h2>
           <Card className="mb-6 border-green-200 dark:border-green-800">
             <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-              <li>Integrity: We uphold the highest ethical standards in all our endeavors.</li>
-              <li>Excellence: We are committed to providing the best possible learning experience.</li>
-              <li>Accessibility: We strive to make Islamic education available to everyone.</li>
-              <li>Community: We foster a supportive and inclusive learning environment.</li>
-              <li>Innovation: We embrace new technologies and approaches to enhance learning.</li>
+              <li>Integrity: We uphold the highest ethical standards in all our endeavors to provide free Islamic software as open source.</li>
+              <li>Excellence: We are committed to providing the best possible learning through a gaming, and fun-filled experience.</li>
+              <li>Accessibility: We strive to make Islamic education available to everyone free of cost.</li>
+              <li>Community: We foster a supportive and inclusive learning environment for all human beings.</li>
+              <li>Innovation: We embrace new technologies and approaches to enhance learning especially through interactive games filled with fun that makes  easier memory building and retention.</li>
             </ul>
           </Card>
         </section>

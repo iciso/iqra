@@ -15,9 +15,9 @@ export default function Home() {
           <IqraLogo size="lg" showText={false} />
         </div>
         <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-2">IQRA</h1>
-        <p className="text-xl text-green-600 dark:text-green-500">Islamic Quiz Rivalry App</p>
+        <p className="text-xl text-green-600 dark:text-green-500">Islamic Quiz Rivalry App (Demo)</p>
         <p className="mt-2 text-gray-700 dark:text-gray-300 max-w-md mx-auto">
-          ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge of Islam through learning or challenges.
+          ما شاء الله (Masha Allah!) Welcome to IQRA Demo App. Test your knowledge of Islam through learning or challenges.
         </p>
       </div>
 

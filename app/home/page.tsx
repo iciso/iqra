@@ -5,9 +5,9 @@ export default function HomePage() {
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Welcome to the Islamic Knowledge Hub</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">Welcome to Islamic Learning by Gaming</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Explore and enhance your understanding of Islam through our interactive learning platforms
+          Explore and enhance your understanding of Islam through our interactive learning through gaming platforms
         </p>
       </div>
 
