@@ -66,20 +66,6 @@ export default function HomePage() {
           </CardFooter>
         </Card>
       </div>
-
-      <div className="mt-12 text-center">
-        <div className="flex justify-center space-x-6">
-          <a href="/about" className="text-primary hover:text-primary/80 transition-colors">
-            About IQRA
-          </a>
-          <a href="/badges" className="text-primary hover:text-primary/80 transition-colors">
-            Badges
-          </a>
-          <a href="/leaderboard" className="text-primary hover:text-primary/80 transition-colors">
-            Leaderboard
-          </a>
-        </div>
-      </div>
     </div>
   )
 }

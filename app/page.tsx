@@ -5,8 +5,22 @@ import { IqraLogo } from "@/components/iqra-logo"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="absolute top-4 right-4">
+    <main className="flex min-h-screen flex-col items-center justify-center pt-16 p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+      <div className="w-full flex justify-between items-center p-4 absolute top-0 left-0">
+        <nav className="flex space-x-4">
+          <a
+            href="/"
+            className="text-green-700 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 font-medium"
+          >
+            Home
+          </a>
+          <a
+            href="/about"
+            className="text-green-700 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 font-medium"
+          >
+            About
+          </a>
+        </nav>
         <ThemeToggle />
       </div>
       <div className="text-center mb-8">
