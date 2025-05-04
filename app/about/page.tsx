@@ -28,7 +28,7 @@ export default function AboutPage() {
           <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
           <p className="text-xl text-green-600 dark:text-green-500 mb-4">Islamic Quiz Rivalry App</p>
           <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            IQRA is an educational platform designed to make learning about Islam engaging, interactive, and accessible
+            IQRA is a free educational platform designed to make learning about Islam engaging, interactive, and accessible
             to everyone.
           </p>
         </div>
@@ -82,7 +82,7 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              IQRA covers eleven comprehensive categories of Islamic knowledge:
+              IQRA covers twelve comprehensive categories of Islamic knowledge:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
@@ -103,8 +103,17 @@ export default function AboutPage() {
               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
                 Seerah
               </span>
+               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
+              Spiritual Purification
+              </span>
               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
                 Islamic History
+              </span>
+              <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
+                Dawah 
+              </span>
+               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
+              New Muslims
               </span>
               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
                 Comparative Religion
@@ -112,12 +121,7 @@ export default function AboutPage() {
               <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
                 Islamic Finance
               </span>
-              <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
-                Dawah
-              </span>
-              <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 text-sm rounded-full text-center">
-                Contemporary Issues
-              </span>
+             
             </div>
             <p className="text-gray-700 dark:text-gray-300">
               Each category offers quizzes at different difficulty levels, allowing users to progress at their own pace.
