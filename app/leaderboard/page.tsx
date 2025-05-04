@@ -187,7 +187,7 @@ export default function LeaderboardPage() {
             <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
           </div>
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
-            Demo IQRA Quiz Hall of Fame
+            IQRA Quiz Hall of Fame
           </CardTitle>
         </CardHeader>
 
