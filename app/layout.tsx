@@ -3,11 +3,11 @@ import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
-  title: "IQRA Islamic Quiz App",
+  title: "IQRA Islamic Quiz Rivalry App",
   description:
     "Learn Islam through fun and interactive quizzes across eleven categories. IQRA promotes enjoyable learning rather than rote memorization, covering Quran, Hadith, Fiqh, Tafsir, Aqeedah, Seerah, Islamic History, Comparative Religion, and more.",
   openGraph: {
-    title: "IQRA Islamic Quiz App",
+    title: "IQRA Islamic Quiz Rivalry App",
     description:
       "Learn Islam through fun and interactive quizzes across eleven categories. IQRA promotes enjoyable learning rather than rote memorization.",
     images: [
@@ -15,13 +15,13 @@ export const metadata = {
         url: "/iqra-preview.png",
         width: 1200,
         height: 630,
-        alt: "IQRA Islamic Quiz App",
+        alt: "IQRA Islamic Quiz Rivalry App",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IQRA Islamic Quiz App",
+    title: "IQRA Islamic Quiz Rivalry App",
     description:
       "Learn Islam through fun and interactive quizzes across eleven categories. IQRA promotes enjoyable learning rather than rote memorization.",
     images: ["/iqra-preview.png"],

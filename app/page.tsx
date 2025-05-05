@@ -44,7 +44,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-gray-600 mb-4">
-                Browse through 11 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
+                Browse through 12 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
                 learn at your own pace.
               </p>
               <div className="flex flex-wrap justify-center gap-2 mb-4">
@@ -151,7 +151,7 @@ export default function HomePage() {
           <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.</p>
           <p className="mb-2">
             So, do send your suggestions to Rafique by WhatsApp on +91 7588845528 and May Allah reward Joy whose mail is
-            joy_ahmed_007@yahoo.com for his guidance and help.
+            joy_ahmed_007@yahoo.com for his teaching, guidance and help.
           </p>
           {/* About link removed as requested */}
         </div>
