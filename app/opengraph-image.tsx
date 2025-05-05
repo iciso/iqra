@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og"
 export const runtime = "edge"
 
 // Image metadata
-export const alt = "IQRA Islamic Quiz App"
+export const alt = "IQRA Islamic Quiz Rivalry App"
 export const size = {
   width: 1200,
   height: 630,
@@ -51,7 +51,7 @@ export default async function Image() {
           color: "#15803D",
         }}
       >
-        IQRA Islamic Quiz App
+        IQRA Islamic Quiz Rivalry App
       </div>
     </div>,
     // ImageResponse options
