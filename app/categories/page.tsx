@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -104,10 +104,24 @@ export default function CategoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const difficultyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Add effect to scroll to difficulty section when category is selected
+  useEffect(() => {
+    if (selectedCategory && difficultyRef.current) {
+      // Add a small delay to ensure the section is rendered
+      setTimeout(() => {
+        difficultyRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })
+      }, 100)
+    }
+  }, [selectedCategory])
 
   const handleStartQuiz = () => {
     if (selectedCategory && selectedDifficulty) {
@@ -176,7 +190,7 @@ export default function CategoriesPage() {
           </div>
 
           {selectedCategory && (
-            <div className="mt-8 border-t pt-6 border-gray-200 dark:border-gray-700">
+            <div ref={difficultyRef} className="mt-8 border-t pt-6 border-gray-200 dark:border-gray-700">
               <h3 className="text-lg font-medium mb-4 dark:text-white">Select Difficulty Level</h3>
               <RadioGroup value={selectedDifficulty || ""} onValueChange={setSelectedDifficulty}>
                 <div className="flex flex-col space-y-3">
