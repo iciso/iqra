@@ -257,28 +257,6 @@ const seerahCategory: QuizCategory = {
         explanation:
           "After the conquest of Makkah in 630 CE, despite having power over those who had persecuted him and his followers for years, Prophet Muhammad (peace be upon him) granted a general amnesty, telling the people of Makkah: 'Go, for you are free.' This remarkable act of forgiveness demonstrates the Prophet's character and the nature of his mission.",
       },
-        {
-    question: "What was the Prophet Muhammad's (peace be upon him) profession before he received revelation?",
-    options: [
-      "Merchant",
-      "Shepherd",
-      "Carpenter",
-      "Farmer"
-    ],
-    correctAnswer: "Merchant",
-    explanation: "Prophet Muhammad (peace be upon him) was known for his honesty and trustworthiness in his trade dealings. He worked as a merchant, traveling for business, primarily for Khadija bint Khuwaylid (may Allah be pleased with her).",
-  },
-  {
-    question: "Which event is considered the turning point in the Prophet Muhammad's (peace be upon him) mission, marking the beginning of the Islamic calendar?",
-    options: [
-      "The Battle of Badr",
-      "The Hijra (migration to Medina)",
-      "The Treaty of Hudaybiyyah",
-      "The Conquest of Makkah"
-    ],
-    correctAnswer: "The Hijra (migration to Medina)",
-    explanation: "The Hijra, the Prophet Muhammad's (peace be upon him) migration from Makkah to Medina in 622 CE, is considered the turning point. It established the first Muslim community and marks the beginning of the Islamic calendar (AH).",
-  },
       {
         question: "What was the economic system established by the Prophet in Madinah?",
         options: [
