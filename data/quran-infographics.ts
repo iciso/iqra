@@ -612,43 +612,25 @@ export function getQuranInfographic(questionId: string) {
       title: "Preservation of the Quran",
     },
     "quran-9": {
-      type: "comparison",
+      type: "process",
       data: [
-        {
-          concept: "The Greatest Surah",
-          description: "Highlighting the Prophet's ﷺ description of Al-Fatiha as the greatest Surah in the Qur'an, based on the hadith from Sahih Al-Bukhari, which says: Narrated Abu Sa'id bin Al-Mu'alla: While I was praying in the mosque, Allah's Messenger (ﷺ) called me but I did not respond to him. Later I said, \"O Allah's Messenger, I was praying.\" He said, \"Didn't Allah say, \'Answer Allah (by obeying Him) and His Messenger when he (ﷺ) calls you.' \" (V.8:24).He then said to me, \"I will teach you a Surah which is the greatest Surah in the Qur'an, before you leave the mosque.\" Then he got hold of my hand, and when he intended to leave (the mosque), I said to him, \"Didn't you say to me, 'I will teach you a Surah which is the greatest Surah in the Qur'an.'?\" He said, \"Al-Hamdu lillahi Rabbil-'alamin [i.e. all praise and thanks are Allah's, the Lord of the 'Alamin (mankind, jinn and all that exists)], Surat Al-Fatihah which is As-Sab' Al-Mathani (i.e. the seven repeatedly recited Verses) and the Grand Qur'an which has been given to me.\" -Sahih Al-Bukhari, 6/4474 (O.P.1)",
-          category: "Importance",
-        },
-        {
-          concept: "As-Sab' Al-Mathani",
-          description: "Explaining the Prophet's ﷺ reference to Al-Fatiha as the seven repeatedly recited Verses",
-          category: "Reference",
-        },
-        {
-          concept: "Mandatory in Prayer",
-          description: "Mentioning the Prophet's ﷺ statement that prayer is invalid without reciting Al-Fatiha",
-          category: "Background",
-        },
-        {
-          concept: "Divine Dialogue",
-          description: "Describing how reciting Al-Fatiha creates a dialogue between the worshipper and Allah",
-          category: "Meaning",
-        },
-        {
-          concept: "Complete Message",
-          description: "Explaining how Al-Fatiha contains the complete message of the Quran in condensed form",
-          category: "Significance",
-        },
-        {
-          concept: "Recitation Frequency",
-          description: "Highlighting that Muslims recite Al-Fatiha dozens of times daily in prayers",
-          category: "Importance",
-        },
-        {
-          concept: "Healing Properties",
-          description: "Noting Al-Fatiha's role as a healing and cure, in Arabic is Ruqyah",
-          category: "Medicine",
-        },
+      {
+        step: 1,
+        title: "Hadith of Muslim, Abu Dawud and An-Nasa'i",
+        description:"Muslim, Abu Dawud and An-Nasa'i, all recorded from Anas that he said,\"While we were with the Messenger of Allah in the Masjid, he dozed off into a slumber. Then he lifted his head smiling. We said, O Messenger of Allah! What has caused you to laugh' He said, Verily, a Surah was just revealed to me. Then he recited, Verily, We have granted you Al-Kawthar. Therefore turn in prayer to your Lord and sacrifice. For he who hates you, he will be cut off. Then he said, Do you all know what is Al-Kawthar? We said, Allah and His Messenger know best.' He said,Verily, it is a river that my Lord, the Mighty and Majestic, has promised me and it has abundant goodness. It is a pond where my Ummah will be brought to on the Day of Judgement. Its containers are as numerous as the stars in the sky.Then a servant of Allah from among them will be (prevented from it) and I will say: \"O Lord! Verily, he is from my Ummah (followers).\" Then He (Allah) will say:\"Verily, you do not know what he introduced (or innovated) after you.\"This is the wording of Muslim.",
+      },
+      {
+        step: 2,
+        title: "Hadith of Imam Ahmad",
+        description:
+          "Ahmad recorded this Hadith from Muhammad bin Fudayl, who reported from Al-Mukhtar bin Fulful, who reported it from Anas bin Malik.Imam Ahmad also recorded from Anas that the Messenger of Allah said, \"I entered Paradise and I came to a river whose banks had tents made of pearls. So I thrust my hand into its flowing water and found that it was the strongest (smell) of musk. So I asked, \"O Jibril! What is this\" He replied, \"This is Al-Kawthar which Allah, the Mighty and Majestic has given you.\"",
+      },
+      {
+        step: 3,
+        title: "Hadith from Al-Bukhari",
+        description:
+          "Al-Bukhari recorded this in his Sahih, and so did Muslim, on the authority of Anas bin Malik. In their version Anas said, \"When the Prophet was taken up to the heaven, he said,I came to a river whose banks had domes of hollowed pearl. I said:\"O Jibril! What is this?\"  He replied: \"This is Al-Kawthar.\" This is the wording of Al-Bukhari.",
+      },
       ],
       title: "Surah Al-Fatihah recited in every Prayer",
     },
