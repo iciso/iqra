@@ -298,6 +298,110 @@ export const quranInfographics = {
       },
     ],
   },
+
+  // Al-Fatiha as a Dialogue (Hadith from Imam Muslim)
+  fatihaDialogue: {
+    type: "process" as const,
+    data: [
+      {
+        step: 1,
+        title: "Introduction to the Hadith",
+        description:
+          "Imam Muslim in his Sahih (Book of Prayer, Hadith 395) narrates from Abu Hurairah (رضي الله عنه) that the Prophet (ﷺ) said: \"Allah the Exalted said: 'I have divided the prayer (Salah, referring to Surah Al-Fatiha) between Myself and My servant into two halves, and My servant shall have what he has asked for.'\"",
+      },
+      {
+        step: 2,
+        title: "First Part: Verses 1-3 (Praise of Allah)",
+        description:
+          'When the servant recites: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ" (All praise is due to Allah, Lord of the worlds), "الرَّحْمَٰنِ الرَّحِيمِ" (The Most Gracious, the Most Merciful), "مَالِكِ يَوْمِ الدِّينِ" (Master of the Day of Judgment), Allah says: "My servant has praised Me."',
+      },
+      {
+        step: 3,
+        title: "Middle Part: Verse 4 (Worship & Help)",
+        description:
+          'When the servant recites: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ" (You alone we worship, and You alone we ask for help), Allah says: "This is between Me and My servant, and My servant shall have what he has asked for."',
+      },
+      {
+        step: 4,
+        title: "Final Part: Verses 5-7 (Guidance)",
+        description:
+          'When the servant recites: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ" (Guide us to the straight path), "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ" (The path of those upon whom You have bestowed favor, not of those who have earned [Your] anger nor of those who are astray), Allah says: "This is for My servant, and My servant shall have what he has asked for."',
+      },
+      {
+        step: 5,
+        title: "The Seven Verses Structure",
+        description:
+          "This hadith confirms that Al-Fatiha consists of seven verses and illustrates how they are divided: the first three verses are praise of Allah, the middle verse establishes the relationship between the servant and Allah, and the final three verses are the servant's supplication for guidance.",
+      },
+      {
+        step: 6,
+        title: "Spiritual Significance",
+        description:
+          "This hadith reveals that reciting Al-Fatiha is not merely reading words, but engaging in a direct dialogue with Allah. Each part of the surah receives a divine response, making it a profound spiritual conversation between the worshipper and the Creator.",
+      },
+      {
+        step: 7,
+        title: "Importance in Prayer",
+        description:
+          'The Prophet (ﷺ) said: "There is no prayer for the one who does not recite the Opening of the Book (Al-Fatiha)." This hadith explains why - because Al-Fatiha establishes the essential dialogue between the worshipper and Allah that forms the foundation of prayer.',
+      },
+    ],
+  },
+
+  // The Meaning and Virtues of Al-Hamd in Al-Fatiha
+  alHamdMeaning: {
+    type: "process" as const,
+    data: [
+      {
+        step: 1,
+        title: "Meaning of Al-Hamd",
+        description:
+          "Abu Jafar bin Jarir said: \"The meaning of 'Al-Hamdu Lillah' is: all thanks are due purely to Allah alone, not any of the objects that are being worshipped instead of Him, nor any of His creation. These thanks are due to Allah's innumerable favors and bounties that only He knows the amount of.\"",
+      },
+      {
+        step: 2,
+        title: "Difference Between Praise and Thanks",
+        description:
+          "Hamd (praise) is more general than Shukr (thanks). Hamd is a statement of praise for one's characteristics or for what one has done, while thanks are given specifically for what was done, not merely for characteristics.",
+      },
+      {
+        step: 3,
+        title: "Statements of the Salaf",
+        description:
+          "When Umar asked Ali about the meaning of 'Al-Hamdu Lillah', Ali replied: \"It is a statement that Allah liked for Himself, was pleased with for Himself, and He likes that it be repeated.\" Ibn Abbas said: \"Al-Hamdu Lillah is the statement of appreciation. When the servant says Al-Hamdu Lillah, Allah says, 'My servant has praised Me.'\"",
+      },
+      {
+        step: 4,
+        title: "Allah Loves Al-Hamd",
+        description:
+          'The Prophet (ﷺ) said to Al-Aswad bin Sari who wanted to recite words of praise: "Verily, your Lord likes Al-Hamd." This confirms that praising Allah is beloved to Him.',
+      },
+      {
+        step: 5,
+        title: "Best Dhikr and Supplication",
+        description:
+          'The Prophet (ﷺ) said: "The best Dhikr (remembering Allah) is La ilaha illallah and the best supplication is Al-Hamdu Lillah." This elevates the status of praising Allah above all other forms of supplication.',
+      },
+      {
+        step: 6,
+        title: "Blessing of Saying Al-Hamd",
+        description:
+          "The Prophet (ﷺ) said: \"No servant is blessed by Allah and says, 'Al-Hamdu Lillah', except that what he was given is better than that which he has himself acquired.\" This shows that the act of praising Allah for His blessings increases their value.",
+      },
+      {
+        step: 7,
+        title: "Al-Fatiha as the Greatest Surah",
+        description:
+          "The Prophet (ﷺ) told Abu Sa'id bin Al-Mu'alla: \"I will teach you a Surah which is the greatest Surah in the Qur'an... Al-Hamdu lillahi Rabbil-'alamin [Surat Al-Fatihah] which is As-Sab' Al-Mathani (the seven repeatedly recited Verses) and the Grand Qur'an which has been given to me.\"",
+      },
+      {
+        step: 8,
+        title: "Meaning of 'Rabb' (Lord)",
+        description:
+          "The term 'Rabb' in 'Rabbil-'alamin' has no proper equivalent in English. It means the One and Only Lord for all the universe - its Creator, Owner, Organizer, Provider, Master, Planner, Sustainer, Cherisher, and Giver of security.",
+      },
+    ],
+  },
 }
 
 // Helper function to get infographic data for a specific question
@@ -306,9 +410,9 @@ export function getQuranInfographic(questionId: string) {
   const easyInfographicMap: Record<string, any> = {
     // Question: What is the first Surah (chapter) of the Quran?
     "quran-1": {
-      type: "comparison",
-      data: quranInfographics.ibnKathirAlFatiha.data,
-      title: "Ibn Kathir's Tafsir of Surah Al-Fatiha",
+      type: "process",
+      data: quranInfographics.alHamdMeaning.data,
+      title: "The Meaning and Virtues of Al-Hamd in Surah Al-Fatiha",
     },
     // Question: How many Surahs (chapters) are there in the Quran?
     "quran-2": {
@@ -325,8 +429,57 @@ export function getQuranInfographic(questionId: string) {
     // Question: Which Surah is recited in every raka'ah of the prayer?
     "quran-4": {
       type: "process",
-      data: quranInfographics.moududiFatiha.data,
-      title: "Al-Moududi's Tafsir of Al-Fatiha and Its Significance in Prayer",
+      data: [
+        {
+          step: 1,
+          title: "The Greatest Surah",
+          description:
+            "The Prophet Muhammad ﷺ described Al-Fatiha as \"the greatest Surah in the Qur'an\" according to the hadith narrated by Abu Sa'id bin Al-Mu'alla in Sahih Al-Bukhari.",
+        },
+        {
+          step: 2,
+          title: "As-Sab' Al-Mathani",
+          description:
+            'The Prophet ﷺ referred to Al-Fatiha as "As-Sab\' Al-Mathani" meaning "the seven repeatedly recited Verses" - highlighting its importance in Islamic worship.',
+        },
+        {
+          step: 3,
+          title: "Mandatory in Prayer",
+          description:
+            'The Prophet ﷺ said: "There is no prayer for the one who does not recite the Opening of the Book (Al-Fatiha)." This makes it an essential component of every raka\'ah of the prayer.',
+        },
+        {
+          step: 4,
+          title: "Divine Dialogue",
+          description:
+            "When reciting Al-Fatiha in prayer, a dialogue occurs between the worshipper and Allah. For each part the servant recites, Allah responds, as mentioned in a hadith in Sahih Muslim.",
+        },
+        {
+          step: 5,
+          title: "Complete Message",
+          description:
+            "Despite its brevity, Al-Fatiha contains the complete message of the Quran: praise of Allah, acknowledgment of His sovereignty, exclusive worship, and seeking guidance.",
+        },
+        {
+          step: 6,
+          title: "Healing Properties",
+          description:
+            'The Prophet ﷺ referred to Al-Fatiha as "Ruqyah" (a healing cure). Companions used it to treat ailments, as mentioned in authentic hadith.',
+        },
+        {
+          step: 7,
+          title: "Recitation Frequency",
+          description:
+            "A Muslim who performs all obligatory and sunnah prayers recites Al-Fatiha at least 48 times daily, making it the most frequently recited passage from the Quran.",
+        },
+      ],
+      title: "The Importance of Al-Fatiha in Prayer",
+    },
+    // Question: How many verses (ayat) are there in Surah Al-Fatiha?
+    "quran-7": {
+      type: "process",
+      data: quranInfographics.fatihaDialogue.data,
+      title: "The Seven Verses of Al-Fatiha: A Divine Dialogue",
     },
     "quran-5": {
       type: "process",
@@ -463,32 +616,42 @@ export function getQuranInfographic(questionId: string) {
       type: "comparison",
       data: [
         {
-          concept: "La ikraha fid-din",
-          description: "There is no compulsion in religion",
-          category: "Translation",
+          concept: "The Greatest Surah",
+          description: "Highlighting the Prophet's ﷺ description of Al-Fatiha as the greatest Surah in the Qur'an, based on the hadith from Sahih Al-Bukhari, which says: Narrated Abu Sa'id bin Al-Mu'alla: While I was praying in the mosque, Allah's Messenger (ﷺ) called me but I did not respond to him. Later I said, \"O Allah's Messenger, I was praying.\" He said, \"Didn't Allah say, \'Answer Allah (by obeying Him) and His Messenger when he (ﷺ) calls you.' \" (V.8:24).He then said to me, \"I will teach you a Surah which is the greatest Surah in the Qur'an, before you leave the mosque.\" Then he got hold of my hand, and when he intended to leave (the mosque), I said to him, \"Didn't you say to me, 'I will teach you a Surah which is the greatest Surah in the Qur'an.'?\" He said, \"Al-Hamdu lillahi Rabbil-'alamin [i.e. all praise and thanks are Allah's, the Lord of the 'Alamin (mankind, jinn and all that exists)], Surat Al-Fatihah which is As-Sab' Al-Mathani (i.e. the seven repeatedly recited Verses) and the Grand Qur'an which has been given to me.\" -Sahih Al-Bukhari, 6/4474 (O.P.1)",
+          category: "Importance",
         },
         {
-          concept: "Location",
-          description: "Surah Al-Baqarah, verse 256",
+          concept: "As-Sab' Al-Mathani",
+          description: "Explaining the Prophet's ﷺ reference to Al-Fatiha as the seven repeatedly recited Verses",
           category: "Reference",
         },
         {
-          concept: "Context",
-          description: "Revealed in Madinah when some Muslims wanted to force their children to accept Islam",
+          concept: "Mandatory in Prayer",
+          description: "Mentioning the Prophet's ﷺ statement that prayer is invalid without reciting Al-Fatiha",
           category: "Background",
         },
         {
-          concept: "Principle",
-          description: "Faith must come from conviction, not coercion",
+          concept: "Divine Dialogue",
+          description: "Describing how reciting Al-Fatiha creates a dialogue between the worshipper and Allah",
           category: "Meaning",
         },
         {
-          concept: "Application",
-          description: "Establishes religious freedom as a fundamental Islamic principle",
+          concept: "Complete Message",
+          description: "Explaining how Al-Fatiha contains the complete message of the Quran in condensed form",
           category: "Significance",
         },
+        {
+          concept: "Recitation Frequency",
+          description: "Highlighting that Muslims recite Al-Fatiha dozens of times daily in prayers",
+          category: "Importance",
+        },
+        {
+          concept: "Healing Properties",
+          description: "Noting Al-Fatiha's role as a healing and cure, in Arabic is Ruqyah",
+          category: "Medicine",
+        },
       ],
-      title: "No Compulsion in Religion",
+      title: "Surah Al-Fatihah recited in every Prayer",
     },
   }
 

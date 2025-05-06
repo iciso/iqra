@@ -34,6 +34,18 @@ export function enhanceQuestionsWithInfographics(categoryId: string, questions: 
         }
       }
 
+      // Special case for question about Al-Fatiha verses
+      if (question.text === "How many verses (ayat) are there in Surah Al-Fatiha?") {
+        return {
+          ...question,
+          id: "quran-7",
+          hasInfographic: true,
+          infographicType: "process",
+          infographicData: getQuranInfographic("quran-7")?.data,
+          infographicTitle: getQuranInfographic("quran-7")?.title,
+        }
+      }
+
       // For other questions, check if they have an infographic
       const infographic = getQuranInfographic(question.id || "")
       if (infographic) {
