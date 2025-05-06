@@ -170,27 +170,26 @@ export const quranInfographics = {
     },
   },
 
-  // Ibn Kathir's Tafsir of Al-Fatiha
+  // Ibn Kathir's Tafsir of Al-Kawthar
   ibnKathirAlFatiha: {
     type: "process" as const,
     data: [
       {
         step: 1,
-        title: "Praise of Allah (Verses 1-3)",
-        description:
-          "After the Bismillah, the first three verses praise Allah: 'Praise be to Allah, the Lord of the worlds. The Most Gracious, the Most Merciful. Master of the Day of Judgment.' Ibn Kathir explains these verses establish Allah's perfect attributes and sovereignty. Note: In most Sunni traditions, Bismillah is not counted as verse 1 of Al-Fatiha, though it is recited before it.",
+        title: "Hadith of Muslim, Abu Dawud and An-Nasa'i",
+        description:"Muslim, Abu Dawud and An-Nasa'i, all recorded from Anas that he said,\"While we were with the Messenger of Allah in the Masjid, he dozed off into a slumber. Then he lifted his head smiling. We said, O Messenger of Allah! What has caused you to laugh' He said, Verily, a Surah was just revealed to me. Then he recited, Verily, We have granted you Al-Kawthar. Therefore turn in prayer to your Lord and sacrifice. For he who hates you, he will be cut off. Then he said, Do you all know what is Al-Kawthar? We said, Allah and His Messenger know best.' He said,Verily, it is a river that my Lord, the Mighty and Majestic, has promised me and it has abundant goodness. It is a pond where my Ummah will be brought to on the Day of Judgement. Its containers are as numerous as the stars in the sky.Then a servant of Allah from among them will be (prevented from it) and I will say: \"O Lord! Verily, he is from my Ummah (followers).\" Then He (Allah) will say:\"Verily, you do not know what he introduced (or innovated) after you.\"This is the wording of Muslim.",
       },
       {
         step: 2,
-        title: "Supplication (Verse 4)",
+        title: "Hadith of Imam Ahmad",
         description:
-          "'You alone we worship, and You alone we ask for help.' Ibn Kathir notes this verse establishes the relationship between the servant and Allah - worship and seeking help belong exclusively to Him.",
+          "Ahmad recorded this Hadith from Muhammad bin Fudayl, who reported from Al-Mukhtar bin Fulful, who reported it from Anas bin Malik.Imam Ahmad also recorded from Anas that the Messenger of Allah said, \"I entered Paradise and I came to a river whose banks had tents made of pearls. So I thrust my hand into its flowing water and found that it was the strongest (smell) of musk. So I asked, \"O Jibril! What is this\" He replied, \"This is Al-Kawthar which Allah, the Mighty and Majestic has given you.\"",
       },
       {
         step: 3,
-        title: "Prayer for Guidance (Verses 5-7)",
+        title: "Hadith from Al-Bukhari",
         description:
-          "'Guide us to the straight path. The path of those upon whom You have bestowed favor, not of those who have earned Your anger or of those who are astray.' Ibn Kathir explains this is a request for guidance to the path of the righteous, avoiding the path of those who earned Allah's anger (like the Jews who knew the truth but abandoned it) and those who went astray (like the Christians who worship without knowledge).",
+          "Al-Bukhari recorded this in his Sahih, and so did Muslim, on the authority of Anas bin Malik. In their version Anas said, \"When the Prophet was taken up to the heaven, he said,I came to a river whose banks had domes of hollowed pearl. I said:\"O Jibril! What is this?\"  He replied: \"This is Al-Kawthar.\" This is the wording of Al-Bukhari.",
       },
     ],
   },
