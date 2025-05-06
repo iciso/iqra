@@ -606,36 +606,30 @@ export function getQuranInfographic(questionId: string) {
       ],
       title: "Makki and Madani Surahs",
     },
-    "quran-6": {
-      type: "process",
-      data: quranInfographics.quranPreservation.data,
-      title: "Preservation of the Quran",
-    },
-    "quran-9": {
+      "quran-9": {
       type: "process",
       data: [
       {
         step: 1,
-        title: "Hadith of Muslim, Abu Dawud and An-Nasa'i",
-        description:"Muslim, Abu Dawud and An-Nasa'i, all recorded from Anas that he said,\"While we were with the Messenger of Allah in the Masjid, he dozed off into a slumber. Then he lifted his head smiling. We said, O Messenger of Allah! What has caused you to laugh' He said, Verily, a Surah was just revealed to me. Then he recited, Verily, We have granted you Al-Kawthar. Therefore turn in prayer to your Lord and sacrifice. For he who hates you, he will be cut off. Then he said, Do you all know what is Al-Kawthar? We said, Allah and His Messenger know best.' He said,Verily, it is a river that my Lord, the Mighty and Majestic, has promised me and it has abundant goodness. It is a pond where my Ummah will be brought to on the Day of Judgement. Its containers are as numerous as the stars in the sky.Then a servant of Allah from among them will be (prevented from it) and I will say: \"O Lord! Verily, he is from my Ummah (followers).\" Then He (Allah) will say:\"Verily, you do not know what he introduced (or innovated) after you.\"This is the wording of Muslim.",
+        title: "Hadith of Al-Bukhari",
+        description:"AAbu Said ibn al-Mualla reported: I was praying in the mosque when the Messenger of Allah, peace and blessings be upon him, called out to me but I did not respond. I said later, “O Messenger of Allah, I was praying.” The Prophet said, “Did not Allah say: Respond to Allah and the Messenger when he calls you?” (8:24) Then, the Prophet said, “Shall I not teach you the greatest chapter in the Quran before you leave the mosque?” The Prophet took me by the hand and when he intended to leave, I said to him, “Did you not say that you would teach me the greatest chapter in the Quran?” The Prophet said, “All praise is due to Allah, the Lord of the worlds (1:1), which are the seven oft-repeated verses and the great Quran given to me.”Source: Ṣaḥīḥ al-Bukhārī 5006",
       },
       {
         step: 2,
-        title: "Hadith of Imam Ahmad",
+        title: "Three Fundamentals",
         description:
-          "Ahmad recorded this Hadith from Muhammad bin Fudayl, who reported from Al-Mukhtar bin Fulful, who reported it from Anas bin Malik.Imam Ahmad also recorded from Anas that the Messenger of Allah said, \"I entered Paradise and I came to a river whose banks had tents made of pearls. So I thrust my hand into its flowing water and found that it was the strongest (smell) of musk. So I asked, \"O Jibril! What is this\" He replied, \"This is Al-Kawthar which Allah, the Mighty and Majestic has given you.\"",
+          "Sūrah al-Fātiḥah was revealed in Makkah. In keeping with the other Makkan sūrahs it focuses on the three fundamental principles: 1. Establishing the Oneness of Allah (ʿazza wa jall).2. Establishing Prophethood.3. Belief in the Hereafter.",
       },
       {
         step: 3,
-        title: "Hadith from Al-Bukhari",
+        title: "Virtues of Surah Al-Fatiha",
         description:
-          "Al-Bukhari recorded this in his Sahih, and so did Muslim, on the authority of Anas bin Malik. In their version Anas said, \"When the Prophet was taken up to the heaven, he said,I came to a river whose banks had domes of hollowed pearl. I said:\"O Jibril! What is this?\"  He replied: \"This is Al-Kawthar.\" This is the wording of Al-Bukhari.",
+          "Surat Al-Fatihah is one of the pillars or essential parts of the prayer, and no prayer is valid without it. Al-Bukhari (756) and Muslim (394) narrated from `Ubadah ibn As-Samit (may Allah be pleased with him) that the Messenger of Allah (blessings and peace of Allah be upon him) said: \“There is no prayer for the one who does not recite the Opening of the Book (i.e., Surat Al-Fatihah).\”",
       },
       ],
       title: "Surah Al-Fatihah recited in every Prayer",
     },
   }
-
   // Check both maps for the question ID
   return easyInfographicMap[questionId] || advancedInfographicMap[questionId] || null
 }
