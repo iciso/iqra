@@ -81,19 +81,6 @@ const seerahCategory: QuizCategory = {
     advanced: [
       {
         question:
-          "What was the significance of the Treaty of Hudaybiyyah in the Prophet's (peace be upon him) mission?",
-        options: [
-          "It marked the conquest of Makkah",
-          "It established the first Islamic state",
-          "It was a strategic victory that allowed Islam to spread peacefully and led to many conversions",
-          "It ended all hostilities between Muslims and non-Muslims permanently",
-        ],
-        correctAnswer: "It was a strategic victory that allowed Islam to spread peacefully and led to many conversions",
-        explanation:
-          "Although initially appearing as a setback to the Muslims, the Treaty of Hudaybiyyah (628 CE) proved to be a strategic victory. It established a 10-year peace that allowed Muslims to freely preach Islam, resulting in many conversions. The Quran refers to it as 'a clear victory' (48:1).",
-      },
-      {
-        question:
           "What was the 'Hilf al-Fudul' (League of the Virtuous) and what was Prophet Muhammad's (peace be upon him) involvement in it?",
         options: [
           "A military alliance that the Prophet formed after becoming a prophet",
@@ -117,19 +104,6 @@ const seerahCategory: QuizCategory = {
         correctAnswer: "It was the year when both the Prophet's uncle Abu Talib and his wife Khadijah died",
         explanation:
           "The 'Year of Grief' (Am al-Huzn) refers to the 10th year of prophethood (619-620 CE) when Prophet Muhammad (peace be upon him) lost both his beloved wife Khadijah and his protective uncle Abu Talib within a short period. These losses were deeply personal and also had significant implications for the Prophet's security and emotional support.",
-      },
-      {
-        question: "What was the 'Constitution of Madinah' (Sahifat al-Madinah) and its historical significance?",
-        options: [
-          "It was merely a peace treaty between Muslims and Jews",
-          "It was the first written constitution establishing a multi-religious, multi-tribal state with common citizenship",
-          "It was a document outlining the rules of trade in Madinah",
-          "It was a military alliance against the Quraysh of Makkah",
-        ],
-        correctAnswer:
-          "It was the first written constitution establishing a multi-religious, multi-tribal state with common citizenship",
-        explanation:
-          "The Constitution of Madinah, established shortly after the Prophet's migration, is considered by many historians as the first written constitution in the world. It established a pluralistic state where different religious communities (Muslims, Jews, and pagans) and tribes were recognized as one community (ummah) with equal rights and responsibilities, while maintaining their religious autonomy.",
       },
       {
         question: "What was the Prophet's approach to leadership and governance in Madinah?",
@@ -197,19 +171,6 @@ const seerahCategory: QuizCategory = {
           "Prophet Muhammad (peace be upon him) explicitly rejected racial superiority. In his farewell sermon, he stated: 'O people! Your Lord is one, and your father [Adam] is one. An Arab has no superiority over a non-Arab, nor does a non-Arab have superiority over an Arab. A white person has no superiority over a black person, nor does a black person have superiority over a white person. Superiority is only by piety and good action.' His close companions included people of various racial backgrounds, including Bilal (an Abyssinian), Salman (a Persian), and Suhayb (a Roman).",
       },
       {
-        question: "What was the economic system established by the Prophet in Madinah?",
-        options: [
-          "A purely capitalist free market with no regulations",
-          "A communist system with no private property",
-          "A balanced economic system with ethical guidelines, prohibitions against exploitation, and mechanisms for wealth redistribution",
-          "A barter system with no monetary exchange",
-        ],
-        correctAnswer:
-          "A balanced economic system with ethical guidelines, prohibitions against exploitation, and mechanisms for wealth redistribution",
-        explanation:
-          "Prophet Muhammad (peace be upon him) established a balanced economic system in Madinah that respected private ownership while implementing ethical guidelines to prevent exploitation. He prohibited usury (riba), monopolistic practices (ihtikar), and fraudulent transactions (gharar). He established mechanisms for wealth redistribution through zakat (obligatory charity), encouraged voluntary charity (sadaqah), and instituted inheritance laws that distributed wealth among multiple heirs. The marketplace of Madinah was regulated to ensure fair dealing but allowed for legitimate profit.",
-      },
-      {
         question: "What was the significance of the Treaty of Hudaybiyyah in Islamic history?",
         options: [
           "It marked the conquest of Makkah",
@@ -232,30 +193,6 @@ const seerahCategory: QuizCategory = {
         correctAnswer: "The first written constitution establishing a multi-religious state with common citizenship",
         explanation:
           "The Constitution of Madinah, established shortly after the Prophet's migration, is considered by many historians as the first written constitution in the world. It established a pluralistic state where different religious communities (Muslims, Jews, and pagans) were recognized as one community (ummah) with equal rights and responsibilities.",
-      },
-      {
-        question: "What was the Prophet's approach to leadership and governance in Madinah?",
-        options: [
-          "He ruled as an absolute monarch",
-          "He established a consultative leadership style, regularly seeking advice from companions",
-          "He delegated all governance to appointed officials",
-          "He focused only on spiritual matters, not governance",
-        ],
-        correctAnswer: "He established a consultative leadership style, regularly seeking advice from companions",
-        explanation:
-          "Prophet Muhammad (peace be upon him) established a consultative (shura) style of leadership in Madinah. Despite receiving divine revelation, he regularly consulted his companions on matters not explicitly addressed in revelation, demonstrating the importance of collective wisdom in governance.",
-      },
-      {
-        question: "How did the Prophet Muhammad (peace be upon him) treat his enemies after the conquest of Makkah?",
-        options: [
-          "He executed those who had persecuted Muslims",
-          "He forced them to accept Islam or face exile",
-          "He granted a general amnesty, saying 'Go, for you are free'",
-          "He imprisoned the leaders and pardoned the common people",
-        ],
-        correctAnswer: "He granted a general amnesty, saying 'Go, for you are free'",
-        explanation:
-          "After the conquest of Makkah in 630 CE, despite having power over those who had persecuted him and his followers for years, Prophet Muhammad (peace be upon him) granted a general amnesty, telling the people of Makkah: 'Go, for you are free.' This remarkable act of forgiveness demonstrates the Prophet's character and the nature of his mission.",
       },
       {
         question: "What was the economic system established by the Prophet in Madinah?",
