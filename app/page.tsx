@@ -146,14 +146,13 @@ export default function HomePage() {
 
         <div className="mt-auto pt-12 text-center text-gray-600 text-sm">
           <p className="mb-2">
-            بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah Almighty.
+            بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely Generous.
           </p>
           <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.</p>
           <p className="mb-2">
-            So, do send your suggestions to Rafique by WhatsApp on +91 7588845528 and May Allah reward Joy whose mail is
-            joy_ahmed_007@yahoo.com for his teaching, guidance and help.
+            So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is joy_ahmed_007@yahoo.com for his teaching, guidance and help.
           </p>
-          {/* About link removed as requested */}
+          {/* About link removed as this is Demo app only */}
         </div>
       </div>
     </div>
