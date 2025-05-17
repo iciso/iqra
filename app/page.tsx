@@ -150,7 +150,16 @@ export default function HomePage() {
           </p>
           <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.</p>
           <p className="mb-2">
-            So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is joy_ahmed_007@yahoo.com for his teaching, guidance and help.
+          For suggestions WhatsApp Rafique
+              at +91 7558845528, and May Allah reward Joy whose mail is joy_ahmed_007@yahoo.com for teaching and <span>guiding{" "} 
+             <a
+                href="https://cvemrafi.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                 Rafique
+              </a>{" "}</span> .
           </p>
           {/* About link removed as this is Demo app only */}
         </div>
