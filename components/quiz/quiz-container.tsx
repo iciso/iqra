@@ -364,15 +364,19 @@ export default function QuizContainer({ questions, category, difficulty, challen
                       </Alert>
                     )}
 
-                    {question.hasInfographic && question.infographicType && question.infographicData && (
-                      <div className="mt-4">
-                        <InteractiveInfographic
-                          type={question.infographicType}
-                          data={question.infographicData}
-                          title={`${category.title} - Visual Explanation`}
-                        />
-                      </div>
-                    )}
+                    {/* Only show infographics if NOT in challenge mode */}
+                    {!challengeMode &&
+                      question.hasInfographic &&
+                      question.infographicType &&
+                      question.infographicData && (
+                        <div className="mt-4">
+                          <InteractiveInfographic
+                            type={question.infographicType}
+                            data={question.infographicData}
+                            title={`${category.title} - Visual Explanation`}
+                          />
+                        </div>
+                      )}
                   </>
                 )}
               </div>

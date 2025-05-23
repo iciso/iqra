@@ -23,8 +23,11 @@ export function enhanceQuestionsWithInfographics(categoryId: string, questions: 
   // Then enhance with infographics
   return questionsWithIds.map((question) => {
     if (categoryId === "quran") {
-      // Special case for question 1 (What is the first Surah)
-      if (question.id === "quran-1") {
+      // Special case for question about the first Surah
+      if (
+        question.question.includes("first Surah") ||
+        (question.correctAnswer.includes("Al-Fatiha") && question.question.includes("first"))
+      ) {
         return {
           ...question,
           hasInfographic: true,
@@ -34,11 +37,55 @@ export function enhanceQuestionsWithInfographics(categoryId: string, questions: 
         }
       }
 
+      // Special case for question about the meaning of the word 'Quran'
+      if (question.question.includes("meaning") && question.question.includes("Quran")) {
+        const infographic = getQuranInfographic("quran-meaning")
+        if (infographic) {
+          return {
+            ...question,
+            hasInfographic: true,
+            infographicType: infographic.type,
+            infographicData: infographic.data,
+            infographicTitle: infographic.title,
+          }
+        }
+      }
+
+      // Special case for question about names of the Quran
+      if (question.question.includes("names") && question.question.includes("Quran")) {
+        const infographic = getQuranInfographic("quran-names")
+        if (infographic) {
+          return {
+            ...question,
+            hasInfographic: true,
+            infographicType: infographic.type,
+            infographicData: infographic.data,
+            infographicTitle: infographic.title,
+          }
+        }
+      }
+
+      // Special case for question about Surah recited in every raka'ah
+      if (
+        question.question.includes("recited in every raka") ||
+        (question.correctAnswer.includes("Al-Fatiha") && question.question.includes("prayer"))
+      ) {
+        const infographic = getQuranInfographic("quran-9")
+        if (infographic) {
+          return {
+            ...question,
+            hasInfographic: true,
+            infographicType: infographic.type,
+            infographicData: infographic.data,
+            infographicTitle: infographic.title,
+          }
+        }
+      }
+
       // Special case for question about Al-Fatiha verses
-      if (question.text === "How many verses (ayat) are there in Surah Al-Fatiha?") {
+      if (question.question.includes("verses") && question.question.includes("Al-Fatiha")) {
         return {
           ...question,
-          id: "quran-7",
           hasInfographic: true,
           infographicType: "process",
           infographicData: getQuranInfographic("quran-7")?.data,
@@ -46,7 +93,21 @@ export function enhanceQuestionsWithInfographics(categoryId: string, questions: 
         }
       }
 
-      // For other questions, check if they have an infographic
+      // Special case for question about Surah Yasin
+      if (question.question.includes("Yasin") || question.correctAnswer.includes("Yasin")) {
+        const infographic = getQuranInfographic("quran-5")
+        if (infographic) {
+          return {
+            ...question,
+            hasInfographic: true,
+            infographicType: infographic.type,
+            infographicData: infographic.data,
+            infographicTitle: infographic.title,
+          }
+        }
+      }
+
+      // For other questions, check if they have a matching infographic by ID
       const infographic = getQuranInfographic(question.id || "")
       if (infographic) {
         return {
