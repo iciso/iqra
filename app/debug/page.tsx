@@ -19,47 +19,17 @@ export default function DebugPage() {
 
     addResult(`NEXT_PUBLIC_SUPABASE_URL: ${url ? "✅ Set" : "❌ Missing"}`)
     addResult(`URL Value: ${url || "undefined"}`)
+    addResult(`Expected: https://kwarcagywmvwszkdrtxq.supabase.co`)
+    addResult(`Match: ${url === "https://kwarcagywmvwszkdrtxq.supabase.co" ? "✅ Yes" : "❌ No"}`)
+
     addResult(`NEXT_PUBLIC_SUPABASE_ANON_KEY: ${key ? "✅ Set" : "❌ Missing"}`)
     addResult(`Key Length: ${key ? key.length : 0} characters`)
+    addResult(`Key Preview: ${key ? key.substring(0, 20) + "..." : "undefined"}`)
   }
 
-  const testBasicFetch = async () => {
+  const testCORS = async () => {
     setLoading(true)
-    addResult("=== Basic Fetch Test ===")
-
-    try {
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-      if (!url) {
-        addResult("❌ No Supabase URL found")
-        return
-      }
-
-      const response = await fetch(`${url}/rest/v1/`, {
-        method: "GET",
-        headers: {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""}`,
-        },
-      })
-
-      addResult(`Response Status: ${response.status}`)
-      addResult(`Response OK: ${response.ok}`)
-
-      if (response.ok) {
-        addResult("✅ Basic connection to Supabase successful")
-      } else {
-        addResult(`❌ Connection failed: ${response.statusText}`)
-      }
-    } catch (error) {
-      addResult(`❌ Network error: ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const testSupabaseAuth = async () => {
-    setLoading(true)
-    addResult("=== Supabase Auth Test ===")
+    addResult("=== CORS and Headers Test ===")
 
     try {
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -70,73 +40,123 @@ export default function DebugPage() {
         return
       }
 
-      // Test auth endpoint directly
-      const response = await fetch(`${url}/auth/v1/signup`, {
-        method: "POST",
+      // Test with minimal headers first
+      addResult("Testing with minimal headers...")
+      const response1 = await fetch(`${url}/rest/v1/`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          apikey: key,
+        },
+      })
+
+      addResult(`Minimal headers response: ${response1.status}`)
+
+      // Test with full headers
+      addResult("Testing with full headers...")
+      const response2 = await fetch(`${url}/rest/v1/`, {
+        method: "GET",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           apikey: key,
           Authorization: `Bearer ${key}`,
         },
-        body: JSON.stringify({
-          email: "test@example.com",
-          password: "testpassword123",
-        }),
       })
 
-      addResult(`Auth Response Status: ${response.status}`)
-      const responseText = await response.text()
-      addResult(`Auth Response: ${responseText.substring(0, 200)}...`)
+      addResult(`Full headers response: ${response2.status}`)
 
-      if (response.status === 200 || response.status === 400) {
-        addResult("✅ Auth endpoint is reachable")
-      } else {
-        addResult(`❌ Auth endpoint error: ${response.status}`)
+      // Test auth endpoint specifically
+      addResult("Testing auth endpoint...")
+      const response3 = await fetch(`${url}/auth/v1/settings`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          apikey: key,
+        },
+      })
+
+      addResult(`Auth endpoint response: ${response3.status}`)
+
+      if (response3.ok) {
+        const settings = await response3.json()
+        addResult(`Auth settings: ${JSON.stringify(settings, null, 2)}`)
       }
     } catch (error) {
-      addResult(`❌ Auth test error: ${error}`)
+      addResult(`❌ CORS test error: ${error}`)
+      addResult(`Error type: ${error instanceof TypeError ? "TypeError" : typeof error}`)
+      addResult(`Error message: ${error.message || "Unknown error"}`)
     } finally {
       setLoading(false)
     }
   }
 
-  const testSupabaseClient = async () => {
+  const testSupabaseSettings = async () => {
     setLoading(true)
-    addResult("=== Supabase Client Test ===")
+    addResult("=== Supabase Settings Test ===")
 
     try {
-      // Dynamic import to avoid SSR issues
-      const { createClient } = await import("@supabase/supabase-js")
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
-      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-
-      const supabase = createClient(url, key)
-
-      addResult("✅ Supabase client created successfully")
-
-      // Test a simple query
-      const { data, error } = await supabase.from("profiles").select("count").limit(1)
-
-      if (error) {
-        addResult(`Database query error: ${error.message}`)
-      } else {
-        addResult("✅ Database connection successful")
+      if (!url || !key) {
+        addResult("❌ Missing environment variables")
+        return
       }
 
-      // Test auth signup
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: "debug-test@example.com",
-        password: "debugtest123",
+      // Test if the project is accessible
+      addResult(`Testing project accessibility: ${url}`)
+
+      const response = await fetch(`${url}/rest/v1/`, {
+        method: "OPTIONS",
+        mode: "cors",
       })
 
-      if (authError) {
-        addResult(`Auth signup error: ${authError.message}`)
+      addResult(`OPTIONS request status: ${response.status}`)
+      addResult(`CORS headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()))}`)
+    } catch (error) {
+      addResult(`❌ Settings test error: ${error}`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const testAlternativeAuth = async () => {
+    setLoading(true)
+    addResult("=== Alternative Auth Test ===")
+
+    try {
+      // Test with a completely different approach
+      const url = "https://kwarcagywmvwszkdrtxq.supabase.co"
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+      if (!key) {
+        addResult("❌ No API key available")
+        return
+      }
+
+      // Try to access the auth settings endpoint
+      const settingsResponse = await fetch(`${url}/auth/v1/settings`, {
+        headers: {
+          apikey: key,
+          "Content-Type": "application/json",
+        },
+      })
+
+      addResult(`Auth settings status: ${settingsResponse.status}`)
+
+      if (settingsResponse.ok) {
+        const settings = await settingsResponse.json()
+        addResult(`✅ Auth is accessible`)
+        addResult(`External URL: ${settings.external_url || "Not set"}`)
+        addResult(`Site URL: ${settings.site_url || "Not set"}`)
+        addResult(`Email enabled: ${settings.external_email_enabled || "Unknown"}`)
       } else {
-        addResult("✅ Auth signup endpoint working")
+        const errorText = await settingsResponse.text()
+        addResult(`❌ Auth settings error: ${errorText}`)
       }
     } catch (error) {
-      addResult(`❌ Supabase client error: ${error}`)
+      addResult(`❌ Alternative auth error: ${error}`)
     } finally {
       setLoading(false)
     }
@@ -148,25 +168,25 @@ export default function DebugPage() {
 
   return (
     <div className="container mx-auto p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-6">IQRA Debug Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6">IQRA Advanced Debug</h1>
 
       <div className="grid gap-4 mb-6">
         <Card>
           <CardHeader>
-            <CardTitle>Debug Tests</CardTitle>
+            <CardTitle>Advanced Debug Tests</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             <Button onClick={testEnvironmentVariables} className="w-full">
-              1. Test Environment Variables
+              1. Check Environment Variables
             </Button>
-            <Button onClick={testBasicFetch} disabled={loading} className="w-full">
-              2. Test Basic Network Connection
+            <Button onClick={testCORS} disabled={loading} className="w-full">
+              2. Test CORS and Headers
             </Button>
-            <Button onClick={testSupabaseAuth} disabled={loading} className="w-full">
-              3. Test Auth Endpoint Directly
+            <Button onClick={testSupabaseSettings} disabled={loading} className="w-full">
+              3. Test Supabase Project Access
             </Button>
-            <Button onClick={testSupabaseClient} disabled={loading} className="w-full">
-              4. Test Supabase Client
+            <Button onClick={testAlternativeAuth} disabled={loading} className="w-full">
+              4. Test Auth Settings
             </Button>
             <Button onClick={clearResults} variant="outline" className="w-full">
               Clear Results
@@ -182,7 +202,7 @@ export default function DebugPage() {
         <CardContent>
           <div className="bg-gray-100 p-4 rounded-lg h-96 overflow-y-auto">
             {results.length === 0 ? (
-              <p className="text-gray-500">Run tests above to see results...</p>
+              <p className="text-gray-500">Run tests above to see detailed results...</p>
             ) : (
               <pre className="text-sm whitespace-pre-wrap">{results.join("\n")}</pre>
             )}
@@ -192,20 +212,46 @@ export default function DebugPage() {
 
       <Card className="mt-4">
         <CardHeader>
-          <CardTitle>Quick Info</CardTitle>
+          <CardTitle>Current Status</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2 text-sm">
             <p>
-              <strong>Expected Supabase URL:</strong> https://chyplogbjlusldmztwqd.supabase.co
+              <strong>Expected URL:</strong> https://kwarcagywmvwszkdrtxq.supabase.co
             </p>
             <p>
-              <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "Not set"}
+              <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "❌ NOT SET"}
             </p>
             <p>
-              <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "Yes" : "No"}
+              <strong>URL Match:</strong>{" "}
+              {process.env.NEXT_PUBLIC_SUPABASE_URL === "https://kwarcagywmvwszkdrtxq.supabase.co" ? "✅ Yes" : "❌ No"}
+            </p>
+            <p>
+              <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "✅ Yes" : "❌ No"}
             </p>
           </div>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-4">
+        <CardHeader>
+          <CardTitle>🔍 What We're Testing</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            <li>
+              <strong>Test 1:</strong> Verify environment variables are correct
+            </li>
+            <li>
+              <strong>Test 2:</strong> Check CORS policies and header requirements
+            </li>
+            <li>
+              <strong>Test 3:</strong> Test if Supabase project is accessible
+            </li>
+            <li>
+              <strong>Test 4:</strong> Check authentication configuration
+            </li>
+          </ul>
         </CardContent>
       </Card>
     </div>
