@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { createContext, useContext, useEffect, useState } from "react"
 import type { User } from "@supabase/supabase-js"
 import { supabase } from "@/lib/supabase"
@@ -23,15 +22,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-      setLoading(false)
-    })
+    const getSession = async () => {
+      try {
+        const {
+          data: { session },
+          error,
+        } = await supabase.auth.getSession()
+        if (error) {
+          console.error("Error getting session:", error)
+        }
+        setUser(session?.user ?? null)
+      } catch (error) {
+        console.error("Session error:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    getSession()
 
     // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("Auth state changed:", event, session?.user?.email)
       setUser(session?.user ?? null)
       setLoading(false)
     })
@@ -40,38 +54,64 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    return { error }
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      console.log("Sign in result:", { data, error })
+      return { error }
+    } catch (error) {
+      console.error("Sign in error:", error)
+      return { error }
+    }
   }
 
   const signUp = async (email: string, password: string, fullName?: string) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: fullName,
+    try {
+      console.log("Attempting sign up for:", email)
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName || "",
+          },
         },
-      },
-    })
-    return { error }
+      })
+      console.log("Sign up result:", { data, error })
+      return { error }
+    } catch (error) {
+      console.error("Sign up error:", error)
+      return { error: { message: "Network error. Please check your connection and try again." } }
+    }
   }
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error("Sign out error:", error)
+      }
+    } catch (error) {
+      console.error("Sign out error:", error)
+    }
   }
 
   const signInWithProvider = async (provider: "google" | "github") => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    })
-    return { error }
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+      console.log("OAuth result:", { data, error })
+      return { error }
+    } catch (error) {
+      console.error("OAuth error:", error)
+      return { error }
+    }
   }
 
   return (

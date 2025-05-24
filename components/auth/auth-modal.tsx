@@ -1,14 +1,13 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/contexts/auth-context"
-import { Github, Mail } from "lucide-react"
+import { Github, Mail, AlertCircle } from "lucide-react"
 
 interface AuthModalProps {
   isOpen: boolean
@@ -22,6 +21,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [fullName, setFullName] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
   const { signIn, signUp, signInWithProvider } = useAuth()
 
@@ -29,20 +29,43 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     e.preventDefault()
     setLoading(true)
     setError("")
+    setSuccess("")
+
+    // Basic validation
+    if (!email || !password) {
+      setError("Please fill in all required fields")
+      setLoading(false)
+      return
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long")
+      setLoading(false)
+      return
+    }
 
     try {
+      console.log(`Attempting ${isSignUp ? "sign up" : "sign in"} for:`, email)
+
       const { error } = isSignUp ? await signUp(email, password, fullName) : await signIn(email, password)
 
       if (error) {
-        setError(error.message)
+        console.error("Auth error:", error)
+        setError(error.message || "Authentication failed. Please try again.")
       } else {
-        onClose()
+        if (isSignUp) {
+          setSuccess("Account created! Please check your email for verification.")
+        } else {
+          setSuccess("Successfully signed in!")
+          onClose()
+        }
         setEmail("")
         setPassword("")
         setFullName("")
       }
     } catch (err) {
-      setError("An unexpected error occurred")
+      console.error("Unexpected error:", err)
+      setError("An unexpected error occurred. Please try again.")
     } finally {
       setLoading(false)
     }
@@ -50,11 +73,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   const handleProviderSignIn = async (provider: "google" | "github") => {
     setLoading(true)
-    const { error } = await signInWithProvider(provider)
-    if (error) {
-      setError(error.message)
+    setError("")
+
+    try {
+      const { error } = await signInWithProvider(provider)
+      if (error) {
+        setError(error.message || `Failed to sign in with ${provider}`)
+      }
+    } catch (err) {
+      setError(`Failed to sign in with ${provider}`)
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (
@@ -128,14 +158,21 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  required={isSignUp}
+                  placeholder="Enter your full name"
                 />
               </div>
             )}
 
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
             </div>
 
             <div className="space-y-2">
@@ -145,11 +182,19 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
                 required
               />
             </div>
 
-            {error && <div className="text-sm text-red-600 bg-red-50 p-2 rounded">{error}</div>}
+            {error && (
+              <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                <AlertCircle className="w-4 h-4" />
+                {error}
+              </div>
+            )}
+
+            {success && <div className="text-sm text-green-600 bg-green-50 p-3 rounded-md">{success}</div>}
 
             <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={loading}>
               <Mail className="w-4 h-4 mr-2" />
@@ -160,7 +205,11 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <div className="text-center text-sm">
             <button
               type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={() => {
+                setIsSignUp(!isSignUp)
+                setError("")
+                setSuccess("")
+              }}
               className="text-green-600 hover:text-green-700 underline"
             >
               {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
