@@ -19,35 +19,20 @@ export default function DebugPage() {
 
     addResult(`NEXT_PUBLIC_SUPABASE_URL: ${url ? "✅ Set" : "❌ Missing"}`)
     addResult(`URL Value: ${url || "undefined"}`)
-    addResult(`Expected: https://chyplogbjlusldmztwqd.supabase.co`)
-    addResult(`Match: ${url === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}`)
-
     addResult(`NEXT_PUBLIC_SUPABASE_ANON_KEY: ${key ? "✅ Set" : "❌ Missing"}`)
     addResult(`Key Length: ${key ? key.length : 0} characters`)
-    addResult(`Key Preview: ${key ? key.substring(0, 20) + "..." : "undefined"}`)
-
-    if (!url || !key) {
-      addResult("❌ CRITICAL: Environment variables are missing!")
-      addResult("💡 Solution: Check your Vercel environment variables")
-    }
   }
 
   const testBasicFetch = async () => {
     setLoading(true)
-    addResult("=== Basic Network Test ===")
+    addResult("=== Basic Fetch Test ===")
 
     try {
-      // Test a simple external API first
-      const testResponse = await fetch("https://httpbin.org/get")
-      addResult(`External API test: ${testResponse.ok ? "✅ Working" : "❌ Failed"}`)
-
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL
       if (!url) {
-        addResult("❌ Cannot test - No Supabase URL")
+        addResult("❌ No Supabase URL found")
         return
       }
-
-      addResult(`Testing connection to: ${url}`)
 
       const response = await fetch(`${url}/rest/v1/`, {
         method: "GET",
@@ -57,72 +42,35 @@ export default function DebugPage() {
         },
       })
 
-      addResult(`Supabase Response Status: ${response.status}`)
+      addResult(`Response Status: ${response.status}`)
       addResult(`Response OK: ${response.ok}`)
 
       if (response.ok) {
         addResult("✅ Basic connection to Supabase successful")
       } else {
-        const errorText = await response.text()
         addResult(`❌ Connection failed: ${response.statusText}`)
-        addResult(`Error details: ${errorText.substring(0, 200)}`)
       }
     } catch (error) {
       addResult(`❌ Network error: ${error}`)
-      addResult("💡 This suggests environment variables are missing or incorrect")
     } finally {
       setLoading(false)
     }
   }
 
-  const testSupabaseDirectly = async () => {
+  const testSupabaseAuth = async () => {
     setLoading(true)
-    addResult("=== Direct Supabase Test ===")
-
-    try {
-      // Test the exact URL we expect
-      const expectedUrl = "https://chyplogbjlusldmztwqd.supabase.co"
-      const expectedKey =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoeXBsb2diamx1c2xkbXp0d3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxNTEzNTksImV4cCI6MjA2MjcyNzM1OX0.OaovgK1HsO0qvl0XhyZYAJhmp4ja9MWW97r84hRcJFc"
-
-      addResult(`Testing with hardcoded values...`)
-
-      const response = await fetch(`${expectedUrl}/rest/v1/profiles?select=count`, {
-        method: "GET",
-        headers: {
-          apikey: expectedKey,
-          Authorization: `Bearer ${expectedKey}`,
-        },
-      })
-
-      addResult(`Direct test status: ${response.status}`)
-
-      if (response.ok) {
-        addResult("✅ Direct connection works - Environment variable issue!")
-      } else {
-        const errorText = await response.text()
-        addResult(`❌ Direct connection failed: ${errorText.substring(0, 200)}`)
-      }
-    } catch (error) {
-      addResult(`❌ Direct test error: ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const testAuthSignup = async () => {
-    setLoading(true)
-    addResult("=== Auth Signup Test ===")
+    addResult("=== Supabase Auth Test ===")
 
     try {
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL
       const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
       if (!url || !key) {
-        addResult("❌ Missing environment variables for auth test")
+        addResult("❌ Missing environment variables")
         return
       }
 
+      // Test auth endpoint directly
       const response = await fetch(`${url}/auth/v1/signup`, {
         method: "POST",
         headers: {
@@ -136,11 +84,59 @@ export default function DebugPage() {
         }),
       })
 
-      addResult(`Auth signup status: ${response.status}`)
+      addResult(`Auth Response Status: ${response.status}`)
       const responseText = await response.text()
-      addResult(`Auth response: ${responseText.substring(0, 300)}`)
+      addResult(`Auth Response: ${responseText.substring(0, 200)}...`)
+
+      if (response.status === 200 || response.status === 400) {
+        addResult("✅ Auth endpoint is reachable")
+      } else {
+        addResult(`❌ Auth endpoint error: ${response.status}`)
+      }
     } catch (error) {
-      addResult(`❌ Auth signup error: ${error}`)
+      addResult(`❌ Auth test error: ${error}`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const testSupabaseClient = async () => {
+    setLoading(true)
+    addResult("=== Supabase Client Test ===")
+
+    try {
+      // Dynamic import to avoid SSR issues
+      const { createClient } = await import("@supabase/supabase-js")
+
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+      const supabase = createClient(url, key)
+
+      addResult("✅ Supabase client created successfully")
+
+      // Test a simple query
+      const { data, error } = await supabase.from("profiles").select("count").limit(1)
+
+      if (error) {
+        addResult(`Database query error: ${error.message}`)
+      } else {
+        addResult("✅ Database connection successful")
+      }
+
+      // Test auth signup
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: "debug-test@example.com",
+        password: "debugtest123",
+      })
+
+      if (authError) {
+        addResult(`Auth signup error: ${authError.message}`)
+      } else {
+        addResult("✅ Auth signup endpoint working")
+      }
+    } catch (error) {
+      addResult(`❌ Supabase client error: ${error}`)
     } finally {
       setLoading(false)
     }
@@ -161,16 +157,16 @@ export default function DebugPage() {
           </CardHeader>
           <CardContent className="space-y-2">
             <Button onClick={testEnvironmentVariables} className="w-full">
-              1. Check Environment Variables
+              1. Test Environment Variables
             </Button>
             <Button onClick={testBasicFetch} disabled={loading} className="w-full">
-              2. Test Network Connection
+              2. Test Basic Network Connection
             </Button>
-            <Button onClick={testSupabaseDirectly} disabled={loading} className="w-full">
-              3. Test with Hardcoded Values
+            <Button onClick={testSupabaseAuth} disabled={loading} className="w-full">
+              3. Test Auth Endpoint Directly
             </Button>
-            <Button onClick={testAuthSignup} disabled={loading} className="w-full">
-              4. Test Auth Signup
+            <Button onClick={testSupabaseClient} disabled={loading} className="w-full">
+              4. Test Supabase Client
             </Button>
             <Button onClick={clearResults} variant="outline" className="w-full">
               Clear Results
@@ -196,39 +192,20 @@ export default function DebugPage() {
 
       <Card className="mt-4">
         <CardHeader>
-          <CardTitle>Environment Check</CardTitle>
+          <CardTitle>Quick Info</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2 text-sm">
             <p>
-              <strong>Expected URL:</strong> https://chyplogbjlusldmztwqd.supabase.co
+              <strong>Expected Supabase URL:</strong> https://chyplogbjlusldmztwqd.supabase.co
             </p>
             <p>
-              <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "❌ NOT SET"}
+              <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "Not set"}
             </p>
             <p>
-              <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "✅ Yes" : "❌ No"}
-            </p>
-            <p>
-              <strong>URL Match:</strong>{" "}
-              {process.env.NEXT_PUBLIC_SUPABASE_URL === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}
+              <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "Yes" : "No"}
             </p>
           </div>
-        </CardContent>
-      </Card>
-
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>💡 Troubleshooting Steps</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ol className="list-decimal list-inside space-y-2 text-sm">
-            <li>Run test 1 to check if environment variables are set</li>
-            <li>If variables are missing, check your Vercel project settings</li>
-            <li>Go to Vercel Dashboard → Your Project → Settings → Environment Variables</li>
-            <li>Make sure both NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set</li>
-            <li>Redeploy your project after adding environment variables</li>
-          </ol>
         </CardContent>
       </Card>
     </div>
