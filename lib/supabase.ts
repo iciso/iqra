@@ -5,11 +5,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-export type User = {
-  id: string
-  email: string
-  user_metadata: {
-    full_name?: string
-    avatar_url?: string
-  }
+// Server-side client for server actions
+export const createServerClient = () => {
+  return createClient(supabaseUrl, supabaseAnonKey)
 }
