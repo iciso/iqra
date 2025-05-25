@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/contexts/auth-context"
 import { Github, Mail, AlertCircle } from "lucide-react"
-import { PhoneAuth } from "./phone-auth"
 
 interface AuthModalProps {
   isOpen: boolean
@@ -23,7 +22,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-  const [authMode, setAuthMode] = useState<"email" | "phone">("email")
 
   const { signIn, signUp, signInWithProvider } = useAuth()
 
@@ -150,85 +148,59 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
           </div>
 
-          {/* Auth Mode Tabs */}
-          <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-            <button
-              type="button"
-              onClick={() => setAuthMode("email")}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
-                authMode === "email" ? "bg-white text-gray-900 shadow-sm" : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Email
-            </button>
-            <button
-              type="button"
-              onClick={() => setAuthMode("phone")}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
-                authMode === "phone" ? "bg-white text-gray-900 shadow-sm" : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Phone
-            </button>
-          </div>
-
-          {/* Conditional rendering based on auth mode */}
-          {authMode === "email" ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {isSignUp && (
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
-                  <Input
-                    id="fullName"
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Enter your full name"
-                  />
-                </div>
-              )}
-
+          {/* Email Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {isSignUp && (
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="fullName">Full Name</Label>
                 <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
+                  id="fullName"
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Enter your full name"
                 />
               </div>
+            )}
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  required
-                />
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {error && (
+              <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                <AlertCircle className="w-4 h-4" />
+                {error}
               </div>
+            )}
 
-              {error && (
-                <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded-md">
-                  <AlertCircle className="w-4 h-4" />
-                  {error}
-                </div>
-              )}
+            {success && <div className="text-sm text-green-600 bg-green-50 p-3 rounded-md">{success}</div>}
 
-              {success && <div className="text-sm text-green-600 bg-green-50 p-3 rounded-md">{success}</div>}
-
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={loading}>
-                <Mail className="w-4 h-4 mr-2" />
-                {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
-              </Button>
-            </form>
-          ) : (
-            <PhoneAuth onSuccess={onClose} />
-          )}
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={loading}>
+              <Mail className="w-4 h-4 mr-2" />
+              {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+            </Button>
+          </form>
 
           <div className="text-center text-sm">
             <button

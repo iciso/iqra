@@ -19,8 +19,8 @@ export default function DebugPage() {
 
     addResult(`NEXT_PUBLIC_SUPABASE_URL: ${url ? "✅ Set" : "❌ Missing"}`)
     addResult(`URL Value: ${url || "undefined"}`)
-    addResult(`Expected: https://kwarcagywmvwszkdrtxq.supabase.co`)
-    addResult(`Match: ${url === "https://kwarcagywmvwszkdrtxq.supabase.co" ? "✅ Yes" : "❌ No"}`)
+    addResult(`Expected: https://chyplogbjlusldmztwqd.supabase.co`)
+    addResult(`Match: ${url === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}`)
 
     addResult(`NEXT_PUBLIC_SUPABASE_ANON_KEY: ${key ? "✅ Set" : "❌ Missing"}`)
     addResult(`Key Length: ${key ? key.length : 0} characters`)
@@ -127,11 +127,11 @@ export default function DebugPage() {
 
     try {
       // Test with a completely different approach
-      const url = "https://kwarcagywmvwszkdrtxq.supabase.co"
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
       const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-      if (!key) {
-        addResult("❌ No API key available")
+      if (!key || !url) {
+        addResult("❌ No API key or URL available")
         return
       }
 
@@ -217,14 +217,14 @@ export default function DebugPage() {
         <CardContent>
           <div className="space-y-2 text-sm">
             <p>
-              <strong>Expected URL:</strong> https://kwarcagywmvwszkdrtxq.supabase.co
+              <strong>Expected URL:</strong> https://chyplogbjlusldmztwqd.supabase.co
             </p>
             <p>
               <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "❌ NOT SET"}
             </p>
             <p>
               <strong>URL Match:</strong>{" "}
-              {process.env.NEXT_PUBLIC_SUPABASE_URL === "https://kwarcagywmvwszkdrtxq.supabase.co" ? "✅ Yes" : "❌ No"}
+              {process.env.NEXT_PUBLIC_SUPABASE_URL === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}
             </p>
             <p>
               <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "✅ Yes" : "❌ No"}
