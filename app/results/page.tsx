@@ -19,10 +19,9 @@ import { submitQuizResult } from "@/lib/supabase-queries"
 
 export default function ResultsPage() {
   const router = useRouter()
-  const { user, profile } = useAuth()
+  const { user, profile, loading } = useAuth()
   const [score, setScore] = useState<number | null>(null)
   const [totalQuestions, setTotalQuestions] = useState<number | null>(null)
-  const [userName, setUserName] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [isClient, setIsClient] = useState(false)
   const [categoryId, setCategoryId] = useState<string | null>(null)
@@ -38,7 +37,7 @@ export default function ResultsPage() {
     difficulty: string
     challenge: string
   } | null>(null)
-  const [autoSaved, setAutoSaved] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -60,26 +59,6 @@ export default function ResultsPage() {
 
         setScore(parsedScore)
         setTotalQuestions(parsedTotal)
-
-        // Auto-save to database if user is authenticated
-        if (user && profile && !autoSaved) {
-          submitQuizResult(
-            parsedScore,
-            parsedTotal,
-            savedCategory || "quran",
-            savedDifficulty || "easy",
-            savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
-            undefined, // answers - can be added later
-            savedChallenge ? undefined : undefined, // challenge_id for regular challenges
-          )
-            .then(() => {
-              setAutoSaved(true)
-              setSubmitted(true)
-            })
-            .catch((error) => {
-              console.error("Error saving to database:", error)
-            })
-        }
 
         // Generate opponent for challenges
         if (savedChallenge) {
@@ -132,7 +111,35 @@ export default function ResultsPage() {
     } catch (error) {
       console.error("Error accessing localStorage:", error)
     }
-  }, [user, profile, autoSaved])
+  }, [])
+
+  // Auto-save when user and profile are available
+  useEffect(() => {
+    const autoSave = async () => {
+      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving) {
+        setSaving(true)
+        try {
+          await submitQuizResult(
+            score,
+            totalQuestions,
+            categoryId || "quran",
+            difficulty || "easy",
+            timeLeft || undefined,
+            undefined, // answers - can be added later
+            challenge ? undefined : undefined, // challenge_id for regular challenges
+          )
+          setSubmitted(true)
+          console.log("Quiz result saved successfully!")
+        } catch (error) {
+          console.error("Error saving to database:", error)
+        } finally {
+          setSaving(false)
+        }
+      }
+    }
+
+    autoSave()
+  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
 
   // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
@@ -169,8 +176,8 @@ export default function ResultsPage() {
     }
   }
 
-  // If we're not on the client yet, show a simple loading state
-  if (!isClient) {
+  // Show loading state while auth is loading
+  if (!isClient || loading) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
@@ -184,8 +191,6 @@ export default function ResultsPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="absolute top-4 right-4"></div>
-
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
       {challenge && opponent && (
@@ -254,9 +259,15 @@ export default function ResultsPage() {
                         Welcome, {profile.full_name || profile.username}!
                       </span>
                     </div>
-                    <p className="text-green-700 dark:text-green-400 mb-4">
-                      Your score has been automatically saved to your profile!
-                    </p>
+                    {saving ? (
+                      <p className="text-blue-600 dark:text-blue-400 mb-4">Saving your score...</p>
+                    ) : submitted ? (
+                      <p className="text-green-700 dark:text-green-400 mb-4">
+                        ✅ Your score has been saved to your profile!
+                      </p>
+                    ) : (
+                      <p className="text-yellow-600 dark:text-yellow-400 mb-4">Preparing to save your score...</p>
+                    )}
                     <Button
                       onClick={viewLeaderboard}
                       className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
@@ -268,16 +279,16 @@ export default function ResultsPage() {
                   // Non-authenticated user - require sign in
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-center mb-2">
-                      <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
-                      <span className="text-lg font-medium dark:text-white">Join the Hall of Fame</span>
+                      <Award className="mr-2 h-5 w-5 text-red-500" />
+                      <span className="text-lg font-medium dark:text-white">Authentication Required</span>
                     </div>
-                    <p className="text-center text-gray-600 dark:text-gray-400 mb-4">
-                      Sign in to save your scores and compete on the leaderboard!
+                    <p className="text-center text-red-600 dark:text-red-400 mb-4">
+                      You must be signed in to save scores and compete on the leaderboard.
                     </p>
                     <div className="flex flex-col gap-3">
                       <Link href="/auth" className="w-full">
-                        <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                          Sign In to Save Score
+                        <Button className="w-full bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600">
+                          Sign In Required
                         </Button>
                       </Link>
                       <Button
@@ -292,7 +303,15 @@ export default function ResultsPage() {
                 )}
               </>
             ) : (
-              <p className="dark:text-white">No results found. Try taking the quiz first!</p>
+              <div className="text-center py-8">
+                <p className="dark:text-white mb-4">No quiz results found.</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Complete a quiz to see your results here!</p>
+                <Link href="/categories">
+                  <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                    Start a Quiz
+                  </Button>
+                </Link>
+              </div>
             )}
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
