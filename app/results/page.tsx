@@ -18,9 +18,12 @@ import BadgesProfile from "@/components/badges/badges-profile"
 import { getRandomOpponent, generateBotScore, getNextChallenge } from "@/utils/opponents"
 import type { Opponent } from "@/components/challenge/opponent-profile"
 import ChallengeResultsComparison from "@/components/challenge/challenge-results-comparison"
+import { useAuth } from "@/contexts/auth-context"
+import { submitQuizResult } from "@/lib/supabase-queries"
 
 export default function ResultsPage() {
   const router = useRouter()
+  const { user, profile } = useAuth()
   const [score, setScore] = useState<number | null>(null)
   const [totalQuestions, setTotalQuestions] = useState<number | null>(null)
   const [userName, setUserName] = useState("")
@@ -39,9 +42,9 @@ export default function ResultsPage() {
     difficulty: string
     challenge: string
   } | null>(null)
+  const [autoSaved, setAutoSaved] = useState(false)
 
   useEffect(() => {
-    // Mark that we're on the client
     setIsClient(true)
 
     // Get score from localStorage
@@ -62,28 +65,44 @@ export default function ResultsPage() {
         setScore(parsedScore)
         setTotalQuestions(parsedTotal)
 
-        // Generate an opponent if this was a challenge
+        // Auto-save to database if user is authenticated
+        if (user && profile && !autoSaved) {
+          submitQuizResult(
+            parsedScore,
+            parsedTotal,
+            savedCategory || "quran",
+            savedDifficulty || "easy",
+            savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
+            undefined, // answers - can be added later
+            savedChallenge ? undefined : undefined, // challenge_id for regular challenges
+          )
+            .then(() => {
+              setAutoSaved(true)
+              setSubmitted(true)
+            })
+            .catch((error) => {
+              console.error("Error saving to database:", error)
+            })
+        }
+
+        // Generate opponent for challenges
         if (savedChallenge) {
-          // Get or create an opponent
           const newOpponent = savedOpponentId
             ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
             : getRandomOpponent()
 
           if (newOpponent) {
-            // Generate a score for the bot
             newOpponent.score = generateBotScore(parsedScore, parsedTotal)
             setOpponent(newOpponent)
-
-            // Store the opponent for reference
             localStorage.setItem("quizOpponentId", newOpponent.id)
             localStorage.setItem("quizOpponent", JSON.stringify(newOpponent))
           }
 
-          // Set up the next challenge
           setNextChallenge(getNextChallenge(savedCategory || undefined, savedDifficulty || undefined))
         }
       }
 
+      // Set other data
       if (savedCategory) {
         setCategoryId(savedCategory)
         const category = getCategory(savedCategory)
@@ -92,21 +111,10 @@ export default function ResultsPage() {
         }
       }
 
-      if (savedDifficulty) {
-        setDifficulty(savedDifficulty)
-      }
-
-      if (savedChallenge) {
-        setChallenge(savedChallenge)
-      }
-
-      if (savedTimeLeft) {
-        setTimeLeft(Number.parseInt(savedTimeLeft))
-      }
-
-      if (savedTimeTotal) {
-        setTimeTotal(Number.parseInt(savedTimeTotal))
-      }
+      if (savedDifficulty) setDifficulty(savedDifficulty)
+      if (savedChallenge) setChallenge(savedChallenge)
+      if (savedTimeLeft) setTimeLeft(Number.parseInt(savedTimeLeft))
+      if (savedTimeTotal) setTimeTotal(Number.parseInt(savedTimeTotal))
 
       // Check for new badges
       if (savedScore && savedTotal) {
@@ -120,7 +128,6 @@ export default function ResultsPage() {
           timeTotal: savedTimeTotal ? Number.parseInt(savedTimeTotal) : undefined,
         })
 
-        // Find badge details for the awarded badge IDs
         if (awardedBadgeIds.length > 0) {
           const newBadgeDetails = badgesData.filter((badge) => awardedBadgeIds.includes(badge.id))
           setNewBadges(newBadgeDetails)
@@ -129,7 +136,7 @@ export default function ResultsPage() {
     } catch (error) {
       console.error("Error accessing localStorage:", error)
     }
-  }, [])
+  }, [user, profile, autoSaved])
 
   // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
@@ -153,7 +160,7 @@ export default function ResultsPage() {
       day: "numeric",
     })
 
-    // Add to leaderboard
+    // Add to localStorage leaderboard (for backward compatibility)
     addToLeaderboard({
       name: userName.trim(),
       score,
@@ -233,7 +240,7 @@ export default function ResultsPage() {
         <div className="w-full max-w-md mx-auto mb-6">
           <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
           <ChallengeResultsComparison
-            userName={userName || "You"}
+            userName={user ? profile?.full_name || profile?.username || "You" : "You"}
             userScore={score || 0}
             opponent={opponent}
             totalQuestions={totalQuestions || 10}
@@ -286,12 +293,35 @@ export default function ResultsPage() {
                 </p>
                 <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
-                {!submitted ? (
+                {user && profile ? (
+                  // Authenticated user - auto-saved
+                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center justify-center mb-2">
+                      <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
+                      <span className="text-lg font-medium dark:text-white">
+                        Welcome, {profile.full_name || profile.username}!
+                      </span>
+                    </div>
+                    <p className="text-green-700 dark:text-green-400 mb-4">
+                      Your score has been automatically saved to your profile!
+                    </p>
+                    <Button
+                      onClick={viewLeaderboard}
+                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                    >
+                      View Leaderboard
+                    </Button>
+                  </div>
+                ) : // Non-authenticated user - manual entry
+                !submitted ? (
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                     <h3 className="text-lg font-medium mb-2 flex items-center justify-center dark:text-white">
                       <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
                       Join the Hall of Fame
                     </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                      Sign in to automatically save your scores, or enter a name for this session:
+                    </p>
                     <div className="mb-4">
                       <Label htmlFor="user-name" className="text-left block mb-1 dark:text-gray-300">
                         Enter your name:
@@ -304,13 +334,20 @@ export default function ResultsPage() {
                         className="dark:bg-gray-800 dark:border-gray-700"
                       />
                     </div>
-                    <Button
-                      onClick={handleSubmitScore}
-                      disabled={!userName.trim()}
-                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                    >
-                      Submit to Leaderboard
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={handleSubmitScore}
+                        disabled={!userName.trim()}
+                        className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                      >
+                        Submit to Leaderboard
+                      </Button>
+                      <Link href="/auth">
+                        <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+                          Sign In
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
