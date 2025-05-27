@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trophy, Award, ArrowLeft, ArrowRight } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
@@ -185,9 +184,7 @@ export default function ResultsPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
+      <div className="absolute top-4 right-4"></div>
 
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
