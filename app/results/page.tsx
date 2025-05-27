@@ -116,6 +116,9 @@ export default function ResultsPage() {
   // Auto-save when user and profile are available
   useEffect(() => {
     const autoSave = async () => {
+      // Add debugging
+      console.log("Auth state:", { user: !!user, profile: !!profile, score, totalQuestions, submitted, saving })
+
       if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving) {
         setSaving(true)
         try {
@@ -138,8 +141,11 @@ export default function ResultsPage() {
       }
     }
 
-    autoSave()
-  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
+    // Only run auto-save if we have quiz data and user is authenticated
+    if (!loading && user && profile && score !== null) {
+      autoSave()
+    }
+  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge, loading])
 
   // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
@@ -275,8 +281,8 @@ export default function ResultsPage() {
                       View Leaderboard
                     </Button>
                   </div>
-                ) : (
-                  // Non-authenticated user - require sign in
+                ) : !loading ? (
+                  // Only show sign-in requirement if not loading and definitely not authenticated
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-center mb-2">
                       <Award className="mr-2 h-5 w-5 text-red-500" />
@@ -299,6 +305,11 @@ export default function ResultsPage() {
                         View Leaderboard
                       </Button>
                     </div>
+                  </div>
+                ) : (
+                  // Loading state
+                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                    <p className="text-center text-gray-600 dark:text-gray-400">Loading authentication...</p>
                   </div>
                 )}
               </>
