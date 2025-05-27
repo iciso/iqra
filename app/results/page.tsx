@@ -7,9 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trophy, Award, ArrowLeft, ArrowRight } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { addToLeaderboard } from "@/utils/leaderboard"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
@@ -149,48 +146,6 @@ export default function ResultsPage() {
     return "Keep studying. You can improve! Astaghufiruallah!"
   }
 
-  const handleSubmitScore = () => {
-    if (!userName.trim() || score === null || totalQuestions === null || percentage === null) return
-
-    // Format current date
-    const today = new Date()
-    const formattedDate = today.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    })
-
-    // Add to localStorage leaderboard (for backward compatibility)
-    addToLeaderboard({
-      name: userName.trim(),
-      score,
-      totalQuestions,
-      percentage,
-      date: formattedDate,
-      category: categoryTitle || "Unknown",
-      difficulty: difficulty ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1) : "Unknown",
-      challenge: challenge || undefined,
-    })
-
-    // If there's an opponent, add them to the leaderboard too
-    if (opponent && opponent.score !== undefined) {
-      const opponentPercentage = Math.round((opponent.score / totalQuestions) * 100)
-
-      addToLeaderboard({
-        name: opponent.name,
-        score: opponent.score,
-        totalQuestions,
-        percentage: opponentPercentage,
-        date: formattedDate,
-        category: categoryTitle || "Unknown",
-        difficulty: difficulty ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1) : "Unknown",
-        challenge: challenge || undefined,
-      })
-    }
-
-    setSubmitted(true)
-  }
-
   const viewLeaderboard = () => {
     router.push("/leaderboard")
   }
@@ -312,54 +267,30 @@ export default function ResultsPage() {
                       View Leaderboard
                     </Button>
                   </div>
-                ) : // Non-authenticated user - manual entry
-                !submitted ? (
+                ) : (
+                  // Non-authenticated user - require sign in
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                    <h3 className="text-lg font-medium mb-2 flex items-center justify-center dark:text-white">
+                    <div className="flex items-center justify-center mb-2">
                       <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
-                      Join the Hall of Fame
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                      Sign in to automatically save your scores, or enter a name for this session:
-                    </p>
-                    <div className="mb-4">
-                      <Label htmlFor="user-name" className="text-left block mb-1 dark:text-gray-300">
-                        Enter your name:
-                      </Label>
-                      <Input
-                        id="user-name"
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
-                        placeholder="Your name"
-                        className="dark:bg-gray-800 dark:border-gray-700"
-                      />
+                      <span className="text-lg font-medium dark:text-white">Join the Hall of Fame</span>
                     </div>
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={handleSubmitScore}
-                        disabled={!userName.trim()}
-                        className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                      >
-                        Submit to Leaderboard
-                      </Button>
-                      <Link href="/auth">
-                        <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
-                          Sign In
+                    <p className="text-center text-gray-600 dark:text-gray-400 mb-4">
+                      Sign in to save your scores and compete on the leaderboard!
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      <Link href="/auth" className="w-full">
+                        <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                          Sign In to Save Score
                         </Button>
                       </Link>
+                      <Button
+                        onClick={viewLeaderboard}
+                        variant="outline"
+                        className="w-full dark:border-green-700 dark:text-green-400"
+                      >
+                        View Leaderboard
+                      </Button>
                     </div>
-                  </div>
-                ) : (
-                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                    <p className="text-green-700 dark:text-green-400 mb-4">
-                      Your score has been added to the Hall of Fame!
-                    </p>
-                    <Button
-                      onClick={viewLeaderboard}
-                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                    >
-                      View Leaderboard
-                    </Button>
                   </div>
                 )}
               </>
