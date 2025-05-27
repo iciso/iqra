@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OpponentProfile from "@/components/challenge/opponent-profile"
+import { supabase } from "@/lib/supabase"
 
 interface LeaderboardEntry {
   name: string
@@ -64,45 +65,40 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     setIsClient(true)
+    loadLeaderboardFromDatabase()
+  }, [])
 
-    // Get leaderboard from localStorage
+  const loadLeaderboardFromDatabase = async () => {
     try {
-      const storedLeaderboard = localStorage.getItem("quranQuizLeaderboard")
-      let parsedLeaderboard = storedLeaderboard ? JSON.parse(storedLeaderboard) : []
+      // Get quiz results with user profiles
+      const { data: results, error } = await supabase
+        .from("quiz_results")
+        .select(`
+        *,
+        user_profiles!inner(username, full_name, avatar_url)
+      `)
+        .order("percentage", { ascending: false })
+        .order("created_at", { ascending: false })
+        .limit(50)
 
-      // Add placeholder data if the leaderboard is empty
-      if (parsedLeaderboard.length === 0) {
+      if (error) throw error
+
+      // Transform to leaderboard format
+      const leaderboardData =
+        results?.map((result) => ({
+          name: result.user_profiles.full_name || result.user_profiles.username,
+          score: result.score,
+          totalQuestions: result.total_questions,
+          percentage: result.percentage,
+          date: new Date(result.created_at).toLocaleDateString(),
+          category: result.category,
+          difficulty: result.difficulty,
+          challenge: result.challenge_id ? "challenge" : "quiz",
+        })) || []
+
+      // Add some placeholder data if empty (for demo purposes)
+      if (leaderboardData.length === 0) {
         const placeholderData = [
-          {
-            name: "Ahmed",
-            score: 9,
-            totalQuestions: 10,
-            percentage: 90,
-            date: "Jan 15, 2023",
-            category: "Quran",
-            difficulty: "Advanced",
-            challenge: "quran",
-          },
-          {
-            name: "Fatima",
-            score: 8,
-            totalQuestions: 10,
-            percentage: 80,
-            date: "Jan 20, 2023",
-            category: "Seerah",
-            difficulty: "Advanced",
-            challenge: "seerah",
-          },
-          {
-            name: "Omar",
-            score: 7,
-            totalQuestions: 10,
-            percentage: 70,
-            date: "Feb 5, 2023",
-            category: "Fiqh",
-            difficulty: "Easy",
-            challenge: "fiqh",
-          },
           {
             name: "IQRA Bot",
             score: 10,
@@ -113,31 +109,20 @@ export default function LeaderboardPage() {
             difficulty: "Easy",
             challenge: "daily",
           },
-          {
-            name: "Aisha",
-            score: 8,
-            totalQuestions: 10,
-            percentage: 80,
-            date: "Feb 12, 2023",
-            category: "Comparative",
-            difficulty: "Easy",
-            challenge: "comparative",
-          },
         ]
-
-        // Merge with any existing data
-        parsedLeaderboard = [...parsedLeaderboard, ...placeholderData]
-
-        // Sort and save back to localStorage
-        parsedLeaderboard.sort((a, b) => b.percentage - a.percentage)
-        localStorage.setItem("quranQuizLeaderboard", JSON.stringify(parsedLeaderboard))
+        setLeaderboard(placeholderData)
+      } else {
+        setLeaderboard(leaderboardData)
       }
-
-      setLeaderboard(parsedLeaderboard)
     } catch (error) {
-      console.error("Error getting leaderboard:", error)
+      console.error("Error loading leaderboard:", error)
+      // Fallback to localStorage if database fails
+      const storedLeaderboard = localStorage.getItem("quranQuizLeaderboard")
+      if (storedLeaderboard) {
+        setLeaderboard(JSON.parse(storedLeaderboard))
+      }
     }
-  }, [])
+  }
 
   // Function to get medal icon based on position
   const getMedalIcon = (position: number) => {
