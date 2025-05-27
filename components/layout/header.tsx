@@ -6,9 +6,16 @@ import { UserMenu } from "@/components/auth/user-menu"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { IqraLogo } from "@/components/iqra-logo"
+import { usePathname } from "next/navigation"
 
 export function Header() {
   const { user, loading } = useAuth()
+  const pathname = usePathname()
+
+  // Don't show header on home page as it has its own layout
+  if (pathname === "/") {
+    return null
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
