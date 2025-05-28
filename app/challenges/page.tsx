@@ -7,7 +7,7 @@ import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import ChallengeSenderV3 from "@/components/challenge/challenge-sender-v3"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
-import { User, Users, BookOpen, BookText, Bot, Shuffle } from "lucide-react"
+import { User, Users, BookOpen, BookText, Bot, Shuffle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -16,7 +16,6 @@ import type { UserProfile } from "@/lib/supabase-queries"
 export default function ChallengesPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
-  const [pendingChallenges, setPendingChallenges] = useState<any[]>([])
   const router = useRouter()
 
   // Define a consistent number of questions for all challenges
@@ -69,46 +68,6 @@ export default function ChallengesPage() {
     window.location.href = challengeUrl
   }
 
-  // Load pending challenges for this user
-  const loadPendingChallenges = async () => {
-    if (!user) return
-
-    try {
-      const { data, error } = await supabase
-        .from("user_challenges")
-        .select(`
-          id,
-          challenger_id,
-          challenged_id,
-          category,
-          difficulty,
-          question_count,
-          status,
-          created_at,
-          expires_at,
-          challenger:user_profiles!user_challenges_challenger_id_fkey (
-            username,
-            full_name,
-            avatar_url
-          )
-        `)
-        .eq("challenged_id", user.id)
-        .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
-        .order("created_at", { ascending: false })
-
-      if (error) {
-        console.error("Error loading pending challenges:", error)
-        return
-      }
-
-      console.log("📧 CHALLENGES PAGE: Loaded pending challenges:", data)
-      setPendingChallenges(data || [])
-    } catch (error) {
-      console.error("Error in loadPendingChallenges:", error)
-    }
-  }
-
   useEffect(() => {
     console.log("🏠 CHALLENGES PAGE V3: Component loaded - using V3 component")
     const checkAuth = async () => {
@@ -131,53 +90,7 @@ export default function ChallengesPage() {
     }
 
     checkAuth()
-
-    // Listen for auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!session?.user) {
-        router.push("/")
-      } else {
-        setUser(session.user)
-        // Load challenges when user is set
-        if (session.user) {
-          loadPendingChallenges()
-        }
-      }
-    })
-
-    return () => {
-      authListener.subscription.unsubscribe()
-    }
   }, [router])
-
-  // Load challenges when user changes
-  useEffect(() => {
-    if (user) {
-      loadPendingChallenges()
-
-      // Set up real-time subscription for new challenges
-      const subscription = supabase
-        .channel(`challenges-page-${user.id}`)
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "user_challenges",
-            filter: `challenged_id=eq.${user.id}`,
-          },
-          (payload) => {
-            console.log("📧 REAL-TIME: Challenge update on challenges page:", payload)
-            loadPendingChallenges()
-          },
-        )
-        .subscribe()
-
-      return () => {
-        subscription.unsubscribe()
-      }
-    }
-  }, [user])
 
   if (loading) {
     return (
@@ -220,61 +133,9 @@ export default function ChallengesPage() {
       </div>
 
       {/* Pending Challenges Section - Show this instead of bot challenger */}
-      {pendingChallenges.length > 0 ? (
-        <div className="mb-8">
-          <ProfileChallengeNotifications />
-        </div>
-      ) : (
-        /* Fallback Bot Challenger Section - Only show if no pending challenges */
-        <div className="mb-8 p-6 bg-white border rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold dark:text-white">Practice with IQRA Bot</h2>
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">
-              <Bot className="mr-1 h-3 w-3" />
-              IQRA Bot
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <OpponentProfile opponent={selectedOpponent} size="lg" />
-              <div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                  No pending challenges from friends. Practice with our IQRA Bot to sharpen your skills!
-                </p>
-                <div className="flex gap-2">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
-                    <Users className="mr-1 h-3 w-3" />
-                    {Math.floor(Math.random() * 300) + 100} Challenges Won
-                  </span>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                    <User className="mr-1 h-3 w-3" />
-                    Level {selectedOpponent.level || "Advanced"}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <Button
-                onClick={handleAcceptChallenge}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600 font-medium"
-              >
-                Practice Now
-              </Button>
-
-              <Button
-                variant="outline"
-                className="dark:border-green-700 dark:text-green-400"
-                onClick={getNewBotOpponent}
-              >
-                <Shuffle className="h-4 w-4 mr-2" />
-                Random Bot
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="mb-8">
+        <ProfileChallengeNotifications />
+      </div>
 
       {/* Challenge Sender - Always show this for finding and challenging users */}
       <div className="mb-8">

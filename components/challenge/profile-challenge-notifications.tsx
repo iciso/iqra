@@ -1,17 +1,18 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { Bell, Clock, X, Check } from "lucide-react"
+import { Bell, Clock, X, Check } from 'lucide-react'
 import { useAuth } from "@/contexts/auth-context"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
+import type { Challenge } from "@/lib/supabase-queries"
 
-interface Challenge {
+interface ChallengeProps {
   id: string
   challenger_id: string
   challenged_id: string
@@ -36,9 +37,69 @@ export default function ProfileChallengeNotifications() {
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string>("")
 
-  useEffect(() => {
-    console.log("🔔 CHALLENGE NOTIFICATIONS: Component mounted, user:", user?.id)
+  const loadPendingChallenges = useCallback(async () => {
+    if (!user) {
+      console.log("🔔 LOAD CHALLENGES: No user found")
+      return
+    }
 
+    console.log("🔔 LOAD CHALLENGES: Starting load for user:", user.id)
+    setLoading(true)
+
+    try {
+      const { data, error } = await supabase
+        .from("user_challenges")
+        .select(`
+          id,
+          challenger_id,
+          challenged_id,
+          category,
+          difficulty,
+          question_count,
+          status,
+          created_at,
+          expires_at,
+          challenger:user_profiles!user_challenges_challenger_id_fkey (
+            username,
+            full_name,
+            avatar_url
+          )
+        `)
+        .eq("challenged_id", user.id)
+        .eq("status", "pending")
+        .gt("expires_at", new Date().toISOString())
+        .order("created_at", { ascending: false });
+
+      console.log("🔔 PENDING CHALLENGES query result:", { data, error })
+
+      if (error) {
+        console.error("🔔 ERROR loading pending challenges:", error)
+        setDebugInfo(`Error: ${error.message}`);
+        return
+      }
+
+      // Filter out expired challenges
+      const now = new Date();
+      const validChallenges = (data || []).filter((challenge) => {
+        const expiryDate = new Date(challenge.expires_at);
+        const isValid = expiryDate > now;
+        console.log(`🔔 Challenge ${challenge.id}: expires ${challenge.expires_at}, valid: ${isValid}`);
+        return isValid;
+      });
+
+      console.log("🔔 VALID CHALLENGES after filtering:", validChallenges);
+      setPendingChallenges(validChallenges);
+      setDebugInfo(`Found ${validChallenges.length} pending challenges`);
+
+    } catch (error) {
+      console.error("🔔 CATCH ERROR in loadPendingChallenges:", error)
+      setDebugInfo(`Catch error: ${error}`)
+    } finally {
+      setLoading(false)
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (user) {
       loadPendingChallenges()
 
@@ -70,92 +131,11 @@ export default function ProfileChallengeNotifications() {
         })
 
       return () => {
-        console.log("🔔 CHALLENGE NOTIFICATIONS: Cleaning up subscription")
+        console.log("🔔 REAL-TIME: Cleaning up subscription")
         subscription.unsubscribe()
       }
     }
-  }, [user])
-
-  const loadPendingChallenges = async () => {
-    if (!user) {
-      console.log("🔔 LOAD CHALLENGES: No user found")
-      return
-    }
-
-    console.log("🔔 LOAD CHALLENGES: Starting load for user:", user.id)
-    setLoading(true)
-
-    try {
-      // First, let's check all challenges for this user (for debugging)
-      const { data: allChallenges, error: allError } = await supabase
-        .from("user_challenges")
-        .select("*")
-        .eq("challenged_id", user.id)
-
-      console.log("🔔 ALL CHALLENGES for user:", allChallenges)
-
-      if (allError) {
-        console.error("🔔 ERROR fetching all challenges:", allError)
-      }
-
-      // Now get pending challenges with full data
-      const { data, error } = await supabase
-        .from("user_challenges")
-        .select(`
-          id,
-          challenger_id,
-          challenged_id,
-          category,
-          difficulty,
-          question_count,
-          status,
-          created_at,
-          expires_at,
-          challenger:user_profiles!user_challenges_challenger_id_fkey (
-            username,
-            full_name,
-            avatar_url
-          )
-        `)
-        .eq("challenged_id", user.id)
-        .eq("status", "pending")
-        .order("created_at", { ascending: false })
-
-      console.log("🔔 PENDING CHALLENGES query result:", { data, error })
-
-      if (error) {
-        console.error("🔔 ERROR loading pending challenges:", error)
-        setDebugInfo(`Error: ${error.message}`)
-        return
-      }
-
-      // Filter out expired challenges
-      const now = new Date()
-      const validChallenges = (data || []).filter((challenge) => {
-        const expiryDate = new Date(challenge.expires_at)
-        const isValid = expiryDate > now
-        console.log(`🔔 Challenge ${challenge.id}: expires ${challenge.expires_at}, valid: ${isValid}`)
-        return isValid
-      })
-
-      console.log("🔔 VALID CHALLENGES after filtering:", validChallenges)
-      setPendingChallenges(validChallenges)
-      setDebugInfo(`Found ${validChallenges.length} pending challenges`)
-
-      // Show toast if new challenges found
-      if (validChallenges.length > 0) {
-        toast({
-          title: "🎯 New Challenge!",
-          description: `You have ${validChallenges.length} pending challenge${validChallenges.length > 1 ? "s" : ""}`,
-        })
-      }
-    } catch (error) {
-      console.error("🔔 CATCH ERROR in loadPendingChallenges:", error)
-      setDebugInfo(`Catch error: ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
+  }, [user, loadPendingChallenges])
 
   const handleAcceptChallenge = async (challengeId: string, category: string) => {
     console.log("🔔 ACCEPT: Starting accept for challenge:", challengeId)
@@ -183,7 +163,7 @@ export default function ProfileChallengeNotifications() {
       console.error("🔔 ERROR accepting challenge:", error)
       toast({
         title: "Error",
-        description: "Failed to accept challenge. Please try again.",
+        description: error.message || "Failed to accept challenge. Please try again.",
         variant: "destructive",
       })
     } finally {
@@ -213,7 +193,7 @@ export default function ProfileChallengeNotifications() {
       console.error("🔔 ERROR declining challenge:", error)
       toast({
         title: "Error",
-        description: "Failed to decline challenge. Please try again.",
+        description: error.message || "Failed to decline challenge. Please try again.",
         variant: "destructive",
       })
     } finally {
@@ -237,7 +217,7 @@ export default function ProfileChallengeNotifications() {
     return `${minutes}m left`
   }
 
-  const getUserInitials = (challenger: Challenge["challenger"]) => {
+  const getUserInitials = (challenger: ChallengeProps["challenger"]) => {
     if (challenger.full_name) {
       return challenger.full_name
         .split(" ")
@@ -274,35 +254,6 @@ export default function ProfileChallengeNotifications() {
     </div>
   )
 
-  if (loading) {
-    return (
-      <Card>
-        <CardContent className="p-4">
-          <div className="flex items-center justify-center py-4">
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
-            <span className="ml-2 text-sm text-gray-500">Loading notifications...</span>
-          </div>
-          {debugSection}
-        </CardContent>
-      </Card>
-    )
-  }
-
-  if (pendingChallenges.length === 0) {
-    return (
-      <Card>
-        <CardContent className="p-4">
-          <div className="text-center py-4 text-gray-500">
-            <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
-            <p>No pending challenges</p>
-            <p className="text-sm">When someone challenges you, it will appear here</p>
-          </div>
-          {debugSection}
-        </CardContent>
-      </Card>
-    )
-  }
-
   return (
     <Card className="border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950">
       <CardHeader className="pb-3">
@@ -324,7 +275,7 @@ export default function ProfileChallengeNotifications() {
                 </Avatar>
                 <div className="flex-1">
                   <p className="font-medium">
-                    <span className="text-green-600">
+                    <span className="text-green-600 dark:text-green-400 !important">
                       {challenge.challenger.full_name || challenge.challenger.username}
                     </span>{" "}
                     challenged you!
