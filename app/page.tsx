@@ -1,23 +1,34 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IqraLogo } from "@/components/iqra-logo"
-import { useAuth } from "@/contexts/auth-context"
 import { AuthModal } from "@/components/auth/auth-modal"
-import Link from "next/link"
 
 export default function HomePage() {
-  const { user, loading } = useAuth()
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [showAuthModal, setShowAuthModal] = useState(false)
+
+  useEffect(() => {
+    // Simple timeout to prevent infinite loading
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
         <div className="text-center">
           <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
-          <p className="text-green-700 text-sm sm:text-base">Loading...</p>
+          <p className="text-green-700 text-sm sm:text-base">Loading IQRA...</p>
+          <div className="mt-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto"></div>
+          </div>
         </div>
       </div>
     )
@@ -83,20 +94,12 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              {user ? (
-                <Link href="/categories">
-                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                    Start Learning
-                  </Button>
-                </Link>
-              ) : (
-                <Button
-                  onClick={() => setShowAuthModal(true)}
-                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-                >
-                  Sign In to Start Learning
-                </Button>
-              )}
+              <Button
+                onClick={() => setShowAuthModal(true)}
+                className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+              >
+                Sign In to Start Learning
+              </Button>
             </CardFooter>
           </Card>
 
@@ -175,20 +178,12 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              {user ? (
-                <Link href="/challenges">
-                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                    Start Challenges
-                  </Button>
-                </Link>
-              ) : (
-                <Button
-                  onClick={() => setShowAuthModal(true)}
-                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-                >
-                  Sign In to Challenge
-                </Button>
-              )}
+              <Button
+                onClick={() => setShowAuthModal(true)}
+                className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+              >
+                Sign In to Challenge
+              </Button>
             </CardFooter>
           </Card>
         </div>
