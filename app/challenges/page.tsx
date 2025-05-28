@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
-import SocialChallengerSelector from "@/components/challenge/social-challenger-selector"
+import FindChallengersDialog from "@/components/challenge/find-challengers-dialog"
 import { User, Users, BookOpen, BookText, Bot, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -16,6 +16,7 @@ export default function ChallengesPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Define a consistent number of questions for all challenges
   const standardQuestionCount = 10
@@ -192,10 +193,17 @@ export default function ChallengesPage() {
             >
               Accept Challenge
             </Button>
-            <SocialChallengerSelector
-              onChallengerSelect={handleRealUserSelect}
-              currentChallenger={isRealUser ? selectedOpponent : null}
-            />
+
+            {/* Use our new button to open the dialog */}
+            <Button
+              variant="outline"
+              className="dark:border-green-700 dark:text-green-400"
+              onClick={() => setIsDialogOpen(true)}
+            >
+              <Users className="h-4 w-4 mr-2" />
+              Find Challengers
+            </Button>
+
             <Button variant="outline" className="dark:border-green-700 dark:text-green-400" onClick={getNewBotOpponent}>
               <Shuffle className="h-4 w-4 mr-2" />
               Random Bot
@@ -203,6 +211,13 @@ export default function ChallengesPage() {
           </div>
         </div>
       </div>
+
+      {/* Find Challengers Dialog */}
+      <FindChallengersDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        onSelectChallenger={handleRealUserSelect}
+      />
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         {/* Daily Quiz Challenge */}
@@ -300,9 +315,6 @@ export default function ChallengesPage() {
             Start Challenge
           </Button>
         </div>
-
-        {/* Continue with other challenges... */}
-        {/* I'll add the rest of the challenges with the same pattern */}
       </div>
 
       <div className="flex justify-center">

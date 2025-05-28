@@ -11,8 +11,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target, Clock } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
-import { searchUsers, getFriends, sendFriendRequest, createChallenge, type UserProfile } from "@/lib/supabase-queries"
+import { searchUsers, getFriends, sendFriendRequest, type UserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/hooks/use-toast"
+import { supabase } from "@/lib/supabase"
 
 interface SocialChallengerSelectorProps {
   onChallengerSelect: (challenger: UserProfile) => void
@@ -137,7 +138,36 @@ export default function SocialChallengerSelector({
     setIsSubmitting(true)
 
     try {
-      const result = await createChallenge(selectedUser.id, challengeCategory, challengeDifficulty, 10, 300)
+      // Get the current session token
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
+      if (!session?.access_token) {
+        throw new Error("No valid session found")
+      }
+
+      // Call the API route
+      const response = await fetch("/api/challenge", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({
+          challengedId: selectedUser.id,
+          category: challengeCategory,
+          difficulty: challengeDifficulty,
+          questionCount: 10,
+          timeLimit: 300,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to create challenge")
+      }
 
       console.log("Challenge creation result:", result)
 
