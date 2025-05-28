@@ -177,33 +177,61 @@ export async function getPendingFriendRequests(userId: string) {
 }
 
 // Challenge functions
-export async function createChallenge(challengedId: string, category: string, difficulty: string, questionCount = 10) {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-  if (!session?.user) {
-    throw new Error("No authenticated user")
-  }
+export async function createChallenge(
+  challengedId: string,
+  category: string,
+  difficulty: string,
+  questionCount = 10,
+  timeLimit = 300,
+) {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
 
-  const { data, error } = await supabase
-    .from("user_challenges")
-    .insert({
+    if (!session?.user) {
+      throw new Error("No authenticated user")
+    }
+
+    console.log("Creating challenge with params:", {
       challenger_id: session.user.id,
       challenged_id: challengedId,
       category,
       difficulty,
       question_count: questionCount,
-      status: "pending",
+      time_limit: timeLimit,
     })
-    .select()
-    .single()
 
-  if (error) {
-    console.error("Error creating challenge:", error)
+    // Calculate expiry date (24 hours from now)
+    const expiresAt = new Date()
+    expiresAt.setHours(expiresAt.getHours() + 24)
+
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .insert({
+        challenger_id: session.user.id,
+        challenged_id: challengedId,
+        category,
+        difficulty,
+        question_count: questionCount,
+        time_limit: timeLimit,
+        status: "pending",
+        expires_at: expiresAt.toISOString(),
+      })
+      .select()
+      .single()
+
+    if (error) {
+      console.error("Error creating challenge:", error)
+      throw new Error(`Failed to create challenge: ${error.message}`)
+    }
+
+    console.log("Challenge created successfully:", data)
+    return data
+  } catch (error) {
+    console.error("Error in createChallenge:", error)
     throw error
   }
-
-  return data
 }
 
 export async function acceptChallenge(challengeId: string) {

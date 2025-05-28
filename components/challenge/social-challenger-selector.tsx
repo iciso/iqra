@@ -117,12 +117,29 @@ export default function SocialChallengerSelector({
   }
 
   const handleCreateChallenge = async () => {
-    if (!selectedUser || !user) return
+    if (!selectedUser || !user) {
+      console.error("Missing selectedUser or user:", { selectedUser, user })
+      toast({
+        title: "Error",
+        description: "Missing user information",
+        variant: "destructive",
+      })
+      return
+    }
+
+    console.log("Starting challenge creation:", {
+      selectedUser: selectedUser.id,
+      category: challengeCategory,
+      difficulty: challengeDifficulty,
+      user: user.id,
+    })
 
     setIsSubmitting(true)
 
     try {
-      await createChallenge(selectedUser.id, challengeCategory, challengeDifficulty, 10)
+      const result = await createChallenge(selectedUser.id, challengeCategory, challengeDifficulty, 10, 300)
+
+      console.log("Challenge creation result:", result)
 
       setChallengeSent(true)
 
@@ -139,6 +156,7 @@ export default function SocialChallengerSelector({
         } quiz!`,
       })
     } catch (error: any) {
+      console.error("Challenge creation error:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
