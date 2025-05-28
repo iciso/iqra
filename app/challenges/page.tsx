@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
-import { User, Users, BookOpen, BookText, History, Scale } from "lucide-react"
+import { User, Users, BookOpen, BookText, History, Scale, Scroll, BookMarked, GraduationCap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -297,6 +297,147 @@ export default function ChallengesPage() {
 
           <a
             href={`/quiz?category=fiqh&difficulty=easy&challenge=fiqh&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Hadeeth Knowledge Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <Scroll className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Hadeeth Knowledge Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Test your knowledge of the sayings and actions of Prophet Muhammad (PBUH)
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">157</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=hadeeth&difficulty=easy&challenge=hadeeth&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Tafsir Exploration Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+          {/* New badge ribbon */}
+          <div className="absolute -right-12 top-7 bg-yellow-500 text-white px-10 py-1 transform rotate-45 shadow-md">
+            NEW
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <BookMarked className="h-6 w-6 text-yellow-600 mr-2 dark:text-yellow-400" />
+              <h2 className="text-xl font-bold dark:text-white">Tafsir Exploration Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Dive deep into the interpretation and explanation of the Holy Quran
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">7 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Advanced</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">124</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=tafsir&difficulty=advanced&challenge=tafsir&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
+            className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+          >
+            Start Challenge
+          </a>
+        </div>
+
+        {/* Aqeedah Fundamentals Challenge */}
+        <div className="border rounded-lg p-6 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 relative">
+          {/* Pulsing new badge */}
+          <div className="absolute -top-3 -right-3">
+            <span className="relative flex h-6 w-6">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-6 w-6 bg-green-500 items-center justify-center text-white text-xs font-bold">
+                NEW
+              </span>
+            </span>
+          </div>
+
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
+              <GraduationCap className="h-6 w-6 text-green-600 mr-2 dark:text-green-400" />
+              <h2 className="text-xl font-bold dark:text-white">Aqeedah Fundamentals Challenge</h2>
+            </div>
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-100">
+              Active
+            </span>
+          </div>
+          <p className="text-gray-600 mb-4 dark:text-gray-300">
+            Test your knowledge of Islamic creed and core beliefs of the faith
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Questions</h3>
+              <p className="font-medium dark:text-white">{standardQuestionCount}</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Time Limit</h3>
+              <p className="font-medium dark:text-white">6 minutes</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Difficulty</h3>
+              <p className="font-medium dark:text-white">Intermediate</p>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-500 dark:text-gray-400">Participants</h3>
+              <p className="font-medium dark:text-white">112</p>
+            </div>
+          </div>
+
+          <a
+            href={`/quiz?category=aqeedah&difficulty=easy&challenge=aqeedah&questions=${standardQuestionCount}&opponent=${selectedOpponent.id}`}
             className="block w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white text-center rounded-md transition-colors dark:bg-green-700 dark:hover:bg-green-600"
           >
             Start Challenge
