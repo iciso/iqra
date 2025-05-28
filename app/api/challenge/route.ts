@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
-import { supabase } from "@/lib/supabase"
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
 
 export async function POST(request: Request) {
   try {
@@ -9,24 +10,18 @@ export async function POST(request: Request) {
 
     console.log("Challenge API called with:", { challengedId, category, difficulty, questionCount, timeLimit })
 
-    // Get the current user from the request headers
-    const authHeader = request.headers.get("authorization")
-    if (!authHeader) {
-      return NextResponse.json({ error: "No authorization header" }, { status: 401 })
-    }
+    // Create Supabase client with cookies for server-side auth
+    const supabase = createRouteHandlerClient({ cookies })
 
-    // Extract the token from the Bearer header
-    const token = authHeader.replace("Bearer ", "")
-
-    // Set the session for this request
+    // Get the current user
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser(token)
+    } = await supabase.auth.getUser()
 
     if (authError || !user) {
       console.error("Auth error:", authError)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json({ error: "Unauthorized - Please sign in again" }, { status: 401 })
     }
 
     console.log("Authenticated user:", user.id)

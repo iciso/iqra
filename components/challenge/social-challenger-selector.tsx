@@ -7,13 +7,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription,
+} from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target, Clock } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { searchUsers, getFriends, sendFriendRequest, type UserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/hooks/use-toast"
-import { supabase } from "@/lib/supabase"
 
 interface SocialChallengerSelectorProps {
   onChallengerSelect: (challenger: UserProfile) => void
@@ -138,22 +144,14 @@ export default function SocialChallengerSelector({
     setIsSubmitting(true)
 
     try {
-      // Get the current session token
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
-
-      if (!session?.access_token) {
-        throw new Error("No valid session found")
-      }
-
-      // Call the API route
+      // Call the API route without manual authorization headers
+      // The cookies will be sent automatically
       const response = await fetch("/api/challenge", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${session.access_token}`,
         },
+        credentials: "include", // This ensures cookies are sent
         body: JSON.stringify({
           challengedId: selectedUser.id,
           category: challengeCategory,
@@ -180,7 +178,7 @@ export default function SocialChallengerSelector({
       }, 2000)
 
       toast({
-        title: "Challenge Sent!",
+        title: "Challenge Sent! 🎯",
         description: `You've challenged ${selectedUser.full_name || selectedUser.username} to a ${
           categoryOptions.find((c) => c.value === challengeCategory)?.label
         } quiz!`,
@@ -310,6 +308,7 @@ export default function SocialChallengerSelector({
               <Users className="h-5 w-5" />
               Find Your Next Challenger
             </DialogTitle>
+            <DialogDescription>Search for users to challenge or select from your friends list.</DialogDescription>
           </DialogHeader>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -384,6 +383,7 @@ export default function SocialChallengerSelector({
               <Gamepad2 className="h-5 w-5" />
               Challenge {selectedUser?.full_name || selectedUser?.username}
             </DialogTitle>
+            <DialogDescription>Select the category and difficulty for your challenge.</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
@@ -392,7 +392,7 @@ export default function SocialChallengerSelector({
                 <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
                   <Zap className="h-6 w-6 text-green-600" />
                 </div>
-                <h3 className="text-lg font-medium mb-2">Challenge Sent!</h3>
+                <h3 className="text-lg font-medium mb-2">Challenge Sent! 🎯</h3>
                 <p className="text-gray-500 mb-4">
                   {selectedUser?.full_name || selectedUser?.username} will be notified of your challenge.
                 </p>
