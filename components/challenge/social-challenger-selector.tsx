@@ -20,6 +20,7 @@ import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target, Clock } f
 import { useAuth } from "@/contexts/auth-context"
 import { searchUsers, getFriends, sendFriendRequest, type UserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/hooks/use-toast"
+import { supabase } from "@/lib/supabase"
 
 interface SocialChallengerSelectorProps {
   onChallengerSelect: (challenger: UserProfile) => void
@@ -30,7 +31,7 @@ export default function SocialChallengerSelector({
   onChallengerSelect,
   currentChallenger,
 }: SocialChallengerSelectorProps) {
-  const { user } = useAuth()
+  const { user, refreshProfile } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<UserProfile[]>([])
@@ -128,7 +129,7 @@ export default function SocialChallengerSelector({
       console.error("Missing selectedUser or user:", { selectedUser, user })
       toast({
         title: "Error",
-        description: "Missing user information",
+        description: "Missing user information. Please try signing in again.",
         variant: "destructive",
       })
       return
@@ -144,30 +145,45 @@ export default function SocialChallengerSelector({
     setIsSubmitting(true)
 
     try {
-      // Call the API route without manual authorization headers
-      // The cookies will be sent automatically
-      const response = await fetch("/api/challenge", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // This ensures cookies are sent
-        body: JSON.stringify({
-          challengedId: selectedUser.id,
-          category: challengeCategory,
-          difficulty: challengeDifficulty,
-          questionCount: 10,
-          timeLimit: 300,
-        }),
-      })
+      // First, verify we have a valid session
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession()
 
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to create challenge")
+      if (sessionError || !session?.user) {
+        console.error("Session error:", sessionError)
+        throw new Error("Please sign in again to send challenges")
       }
 
-      console.log("Challenge creation result:", result)
+      console.log("Valid session found for user:", session.user.id)
+
+      // Calculate expiry date (24 hours from now)
+      const expiresAt = new Date()
+      expiresAt.setHours(expiresAt.getHours() + 24)
+
+      // Create the challenge directly with Supabase
+      const { data, error } = await supabase
+        .from("user_challenges")
+        .insert({
+          challenger_id: session.user.id,
+          challenged_id: selectedUser.id,
+          category: challengeCategory,
+          difficulty: challengeDifficulty,
+          question_count: 10,
+          time_limit: 300,
+          status: "pending",
+          expires_at: expiresAt.toISOString(),
+        })
+        .select()
+        .single()
+
+      if (error) {
+        console.error("Database error creating challenge:", error)
+        throw new Error(`Failed to create challenge: ${error.message}`)
+      }
+
+      console.log("Challenge created successfully:", data)
 
       setChallengeSent(true)
 
@@ -183,11 +199,14 @@ export default function SocialChallengerSelector({
           categoryOptions.find((c) => c.value === challengeCategory)?.label
         } quiz!`,
       })
+
+      // Refresh user profile to update any stats
+      await refreshProfile()
     } catch (error: any) {
       console.error("Challenge creation error:", error)
       toast({
         title: "Error",
-        description: error.message || "Failed to send challenge",
+        description: error.message || "Failed to send challenge. Please try again.",
         variant: "destructive",
       })
     } finally {
