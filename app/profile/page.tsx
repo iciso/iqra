@@ -23,6 +23,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 import UserSearch from "@/components/profile/user-search"
+import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import { toast } from "@/hooks/use-toast"
 
 export default function ProfilePage() {
@@ -260,6 +261,11 @@ export default function ProfilePage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Challenge Notifications - NEW SECTION */}
+        <div className="mb-6">
+          <ProfileChallengeNotifications />
+        </div>
 
         {/* Tabs */}
         <Tabs defaultValue="challenges" className="w-full">
