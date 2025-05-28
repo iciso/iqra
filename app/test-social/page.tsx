@@ -15,16 +15,52 @@ import {
   getTopPlayers,
 } from "@/lib/supabase-queries"
 import { toast } from "@/hooks/use-toast"
-import { CheckCircle, XCircle, Clock, Gamepad2, Search, Trophy } from "lucide-react"
+import { CheckCircle, XCircle, Clock, Gamepad2, Search, Trophy, LogIn } from "lucide-react"
 import { supabase } from "@/lib/supabase"
-import { AuthModal } from "@/components/auth/auth-modal"
+import { IqraLogo } from "@/components/iqra-logo"
 
 export default function TestSocialPage() {
-  const { user } = useAuth()
+  const { user, profile, loading } = useAuth()
   const [testResults, setTestResults] = useState<Record<string, boolean>>({})
   const [testOutput, setTestOutput] = useState<string[]>([])
-  const [loading, setLoading] = useState(false)
-  const [authChecked, setAuthChecked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [sessionChecked, setSessionChecked] = useState(false)
+  const [sessionUser, setSessionUser] = useState<any>(null)
+  const [debugInfo, setDebugInfo] = useState<string>("")
+
+  useEffect(() => {
+    // Direct session check
+    const checkSession = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession()
+        if (error) {
+          console.error("Session check error:", error)
+          setDebugInfo((prev) => prev + `\nSession error: ${error.message}`)
+        }
+
+        if (data?.session) {
+          console.log("Session found:", data.session.user.id)
+          setSessionUser(data.session.user)
+          setDebugInfo((prev) => prev + `\nSession found: ${data.session.user.email}`)
+        } else {
+          console.log("No session found")
+          setDebugInfo((prev) => prev + "\nNo session found")
+        }
+
+        setSessionChecked(true)
+      } catch (e) {
+        console.error("Session check exception:", e)
+        setDebugInfo((prev) => prev + `\nException: ${e}`)
+        setSessionChecked(true)
+      }
+    }
+
+    checkSession()
+
+    // Log auth context state
+    console.log("Auth context state:", { user: !!user, profile: !!profile, loading })
+    setDebugInfo((prev) => prev + `\nAuth context: user=${!!user}, profile=${!!profile}, loading=${loading}`)
+  }, [user, profile, loading])
 
   const addOutput = (message: string) => {
     setTestOutput((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
@@ -35,15 +71,18 @@ export default function TestSocialPage() {
   }
 
   const runAllTests = async () => {
-    if (!user) {
+    const effectiveUser = user || sessionUser
+
+    if (!effectiveUser) {
       addOutput("❌ User not authenticated")
       return
     }
 
-    setLoading(true)
+    setIsLoading(true)
     setTestResults({})
     setTestOutput([])
     addOutput("🚀 Starting Social Challenge System Tests...")
+    addOutput(`👤 Testing as user: ${effectiveUser.email}`)
 
     // Test 1: User Search
     try {
@@ -59,7 +98,7 @@ export default function TestSocialPage() {
     // Test 2: Get Friends
     try {
       addOutput("👥 Testing get friends...")
-      const friends = await getFriends(user.id)
+      const friends = await getFriends(effectiveUser.id)
       setTestResult("getFriends", true)
       addOutput(`✅ Get friends successful - Found ${friends.length} friends`)
     } catch (error) {
@@ -70,7 +109,7 @@ export default function TestSocialPage() {
     // Test 3: Get Pending Friend Requests
     try {
       addOutput("📨 Testing pending friend requests...")
-      const requests = await getPendingFriendRequests(user.id)
+      const requests = await getPendingFriendRequests(effectiveUser.id)
       setTestResult("pendingRequests", true)
       addOutput(`✅ Pending requests successful - Found ${requests.length} requests`)
     } catch (error) {
@@ -81,7 +120,7 @@ export default function TestSocialPage() {
     // Test 4: Get Pending Challenges
     try {
       addOutput("⏳ Testing pending challenges...")
-      const challenges = await getPendingChallenges(user.id)
+      const challenges = await getPendingChallenges(effectiveUser.id)
       setTestResult("pendingChallenges", true)
       addOutput(`✅ Pending challenges successful - Found ${challenges.length} challenges`)
     } catch (error) {
@@ -92,7 +131,7 @@ export default function TestSocialPage() {
     // Test 5: Get Active Challenges
     try {
       addOutput("🎮 Testing active challenges...")
-      const active = await getActiveChallenges(user.id)
+      const active = await getActiveChallenges(effectiveUser.id)
       setTestResult("activeChallenges", true)
       addOutput(`✅ Active challenges successful - Found ${active.length} challenges`)
     } catch (error) {
@@ -103,7 +142,7 @@ export default function TestSocialPage() {
     // Test 6: Get Challenge History
     try {
       addOutput("📚 Testing challenge history...")
-      const history = await getChallengeHistory(user.id)
+      const history = await getChallengeHistory(effectiveUser.id)
       setTestResult("challengeHistory", true)
       addOutput(`✅ Challenge history successful - Found ${history.length} completed challenges`)
     } catch (error) {
@@ -146,7 +185,7 @@ export default function TestSocialPage() {
       addOutput(`❌ Database functions failed: ${error}`)
     }
 
-    setLoading(false)
+    setIsLoading(false)
     addOutput("🎉 All tests completed!")
 
     // Show summary
@@ -174,28 +213,12 @@ export default function TestSocialPage() {
     return result ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4 text-red-500" />
   }
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const {
-          data: { session },
-        } = await supabase.auth.getSession()
-        setAuthChecked(true)
-        if (session?.user) {
-          addOutput(`✅ User authenticated: ${session.user.email}`)
-        } else {
-          addOutput("❌ No authentication detected")
-        }
-      } catch (error) {
-        console.error("Auth check error:", error)
-        setAuthChecked(true)
-      }
-    }
+  const handleSignIn = () => {
+    window.location.href = "/auth"
+  }
 
-    checkAuth()
-  }, [])
-
-  if (!authChecked) {
+  // Show loading state while checking session
+  if (!sessionChecked || loading) {
     return (
       <div className="container mx-auto py-12 px-4 max-w-4xl">
         <Card>
@@ -208,22 +231,32 @@ export default function TestSocialPage() {
     )
   }
 
-  if (!user) {
+  // Use either context user or session user
+  const effectiveUser = user || sessionUser
+
+  if (!effectiveUser) {
     return (
       <div className="container mx-auto py-12 px-4 max-w-4xl">
         <Card>
           <CardContent className="text-center py-8 space-y-4">
+            <IqraLogo className="w-12 h-12 mx-auto text-green-700" />
             <h2 className="text-xl font-semibold">🔐 Authentication Required</h2>
             <p className="text-gray-600">Please sign in to run social system tests</p>
-            <AuthModal>
-              <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Sign In to Test
-              </Button>
-            </AuthModal>
+            <Button size="lg" className="bg-green-600 hover:bg-green-700" onClick={handleSignIn}>
+              <LogIn className="mr-2 h-4 w-4" /> Sign In to Test
+            </Button>
             <div className="mt-4 text-sm text-gray-500">
               <p>Need to test the social challenge system?</p>
               <p>Sign in with Google or create an account to continue.</p>
             </div>
+
+            {/* Debug information - only in development */}
+            {process.env.NODE_ENV !== "production" && debugInfo && (
+              <div className="mt-6 p-4 bg-gray-100 rounded-md text-left">
+                <p className="font-semibold mb-2">Debug Information:</p>
+                <pre className="text-xs whitespace-pre-wrap">{debugInfo}</pre>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -235,6 +268,7 @@ export default function TestSocialPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">🧪 Social Challenge System Tests</h1>
         <p className="text-gray-600">Comprehensive testing of all social features</p>
+        <p className="text-sm text-green-600 mt-2">Signed in as: {effectiveUser.email || "Unknown user"}</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -247,8 +281,8 @@ export default function TestSocialPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Button onClick={runAllTests} disabled={loading} className="w-full mb-4">
-              {loading ? "Running Tests..." : "🚀 Run All Tests"}
+            <Button onClick={runAllTests} disabled={isLoading} className="w-full mb-4">
+              {isLoading ? "Running Tests..." : "🚀 Run All Tests"}
             </Button>
 
             <div className="space-y-2">
