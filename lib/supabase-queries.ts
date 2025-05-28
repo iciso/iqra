@@ -1,4 +1,5 @@
 import { supabase } from "./supabase"
+import { calculateChallengeScore, determineChallengeOutcome } from "@/utils/challenge-scoring"
 
 // User profile functions
 export async function getUserProfile(userId: string) {
@@ -469,18 +470,54 @@ export async function submitQuizResult(
     }
 
     const percentage = Math.round((score / totalQuestions) * 100)
+    let finalScore = score
+    let bonusPoints = 0
+    let badgeEarned: string | undefined
 
-    // Insert quiz result
+    // If this is a challenge, calculate special scoring
+    if (challengeId) {
+      const challenge = await getChallenge(challengeId)
+
+      if (challenge) {
+        const isChallenger = challenge.challenger_id === user.id
+        const challengerCompleted = challenge.challenger_completed_at !== null
+        const challengedCompleted = challenge.challenged_completed_at !== null
+        const isExpired = new Date(challenge.expires_at) < new Date()
+
+        // Determine the outcome
+        const outcome = determineChallengeOutcome(
+          isChallenger ? true : challengerCompleted, // Current completion
+          isChallenger ? challengedCompleted : true, // Opponent completion
+          challenge.status,
+          isExpired,
+        )
+
+        // Calculate time bonus (faster completion = more bonus)
+        const timeBonus = timeLeft ? Math.floor(timeLeft / 30) : 0 // 1 point per 30 seconds remaining
+
+        const scoreResult = calculateChallengeScore(score, totalQuestions, outcome, timeBonus)
+        finalScore = scoreResult.totalScore
+        bonusPoints = scoreResult.bonusPoints
+        badgeEarned = scoreResult.badgeEarned
+
+        console.log("🏆 Challenge scoring result:", scoreResult)
+      }
+    }
+
+    // Insert quiz result with enhanced scoring
     const { error: resultError } = await supabase.from("quiz_results").insert({
       user_id: user.id,
       challenge_id: challengeId,
       category,
       difficulty,
-      score,
+      score: finalScore, // Use calculated final score
+      original_score: score, // Keep track of original score
+      bonus_points: bonusPoints,
       total_questions: totalQuestions,
       percentage,
-      time_taken: timeLeft ? 300 - timeLeft : null, // Convert time left to time taken
+      time_taken: timeLeft ? 300 - timeLeft : null,
       answers,
+      badge_earned: badgeEarned,
     })
 
     if (resultError) {
@@ -488,22 +525,96 @@ export async function submitQuizResult(
       throw resultError
     }
 
-    // Update user profile stats
+    // Update challenge completion status
+    if (challengeId) {
+      const isChallenger = await isUserChallenger(challengeId, user.id)
+      const updateField = isChallenger ? "challenger_completed_at" : "challenged_completed_at"
+      const scoreField = isChallenger ? "challenger_score" : "challenged_score"
+
+      await supabase
+        .from("user_challenges")
+        .update({
+          [updateField]: new Date().toISOString(),
+          [scoreField]: finalScore,
+        })
+        .eq("id", challengeId)
+    }
+
+    // Update user profile stats with final score
     const { error: updateError } = await supabase.rpc("update_user_stats", {
       user_id: user.id,
-      new_score: score,
+      new_score: finalScore,
       new_total: totalQuestions,
       new_percentage: percentage,
     })
 
     if (updateError) {
       console.error("Error updating user stats:", updateError)
-      // Don't throw here, as the quiz result was saved successfully
     }
 
-    return { success: true }
+    return {
+      success: true,
+      finalScore,
+      bonusPoints,
+      badgeEarned,
+      originalScore: score,
+    }
   } catch (error) {
     console.error("Error in submitQuizResult:", error)
+    throw error
+  }
+}
+
+// Helper function to check if user is challenger
+async function isUserChallenger(challengeId: string, userId: string): Promise<boolean> {
+  const { data } = await supabase.from("user_challenges").select("challenger_id").eq("id", challengeId).single()
+
+  return data?.challenger_id === userId
+}
+
+// Function to handle challenge decline with partial scoring
+export async function declineChallengeWithScoring(challengeId: string) {
+  try {
+    const challenge = await getChallenge(challengeId)
+    if (!challenge) throw new Error("Challenge not found")
+
+    // Check if challenger has already completed the quiz
+    if (challenge.challenger_completed_at && challenge.challenger_score) {
+      // Give challenger partial credit for the declined challenge
+      const scoreResult = calculateChallengeScore(challenge.challenger_score, challenge.question_count, "declined")
+
+      // Update the challenge record
+      await supabase
+        .from("user_challenges")
+        .update({
+          status: "declined",
+          challenger_final_score: scoreResult.totalScore,
+          decline_bonus_awarded: true,
+        })
+        .eq("id", challengeId)
+
+      // Award the partial score to challenger's profile
+      await supabase.rpc("update_user_stats", {
+        user_id: challenge.challenger_id,
+        new_score: scoreResult.bonusPoints, // Add bonus points
+        new_total: 0, // Don't count questions since it was declined
+        new_percentage: 0,
+      })
+
+      return {
+        success: true,
+        challengerBonusAwarded: scoreResult.totalScore,
+        badgeEarned: scoreResult.badgeEarned,
+        message: scoreResult.reason,
+      }
+    } else {
+      // Standard decline - no bonus since challenger didn't complete
+      await supabase.from("user_challenges").update({ status: "declined" }).eq("id", challengeId)
+
+      return { success: true, challengerBonusAwarded: 0 }
+    }
+  } catch (error) {
+    console.error("Error in declineChallengeWithScoring:", error)
     throw error
   }
 }

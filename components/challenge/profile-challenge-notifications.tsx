@@ -34,39 +34,71 @@ export default function ProfileChallengeNotifications() {
   const [pendingChallenges, setPendingChallenges] = useState<Challenge[]>([])
   const [loading, setLoading] = useState(true)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string>("")
 
   useEffect(() => {
+    console.log("🔔 CHALLENGE NOTIFICATIONS: Component mounted, user:", user?.id)
+
     if (user) {
       loadPendingChallenges()
 
-      // Subscribe to real-time updates
+      // Subscribe to real-time updates with more specific filtering
       const subscription = supabase
-        .channel("challenge-notifications")
+        .channel(`challenge-notifications-${user.id}`)
         .on(
           "postgres_changes",
           {
             event: "*",
             schema: "public",
             table: "user_challenges",
-            filter: `challenged_id=eq.${user.id}`,
           },
           (payload) => {
-            console.log("Challenge notification update:", payload)
-            loadPendingChallenges()
+            console.log("🔔 REAL-TIME: Challenge update received:", payload)
+
+            // Check if this update is relevant to current user
+            const newRecord = payload.new as any
+            const oldRecord = payload.old as any
+
+            if (newRecord?.challenged_id === user.id || oldRecord?.challenged_id === user.id) {
+              console.log("🔔 REAL-TIME: Update is for current user, reloading...")
+              loadPendingChallenges()
+            }
           },
         )
-        .subscribe()
+        .subscribe((status) => {
+          console.log("🔔 REAL-TIME: Subscription status:", status)
+        })
 
       return () => {
+        console.log("🔔 CHALLENGE NOTIFICATIONS: Cleaning up subscription")
         subscription.unsubscribe()
       }
     }
   }, [user])
 
   const loadPendingChallenges = async () => {
-    if (!user) return
+    if (!user) {
+      console.log("🔔 LOAD CHALLENGES: No user found")
+      return
+    }
+
+    console.log("🔔 LOAD CHALLENGES: Starting load for user:", user.id)
+    setLoading(true)
 
     try {
+      // First, let's check all challenges for this user (for debugging)
+      const { data: allChallenges, error: allError } = await supabase
+        .from("user_challenges")
+        .select("*")
+        .eq("challenged_id", user.id)
+
+      console.log("🔔 ALL CHALLENGES for user:", allChallenges)
+
+      if (allError) {
+        console.error("🔔 ERROR fetching all challenges:", allError)
+      }
+
+      // Now get pending challenges with full data
       const { data, error } = await supabase
         .from("user_challenges")
         .select(`
@@ -87,23 +119,46 @@ export default function ProfileChallengeNotifications() {
         `)
         .eq("challenged_id", user.id)
         .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
         .order("created_at", { ascending: false })
 
+      console.log("🔔 PENDING CHALLENGES query result:", { data, error })
+
       if (error) {
-        console.error("Error loading pending challenges:", error)
+        console.error("🔔 ERROR loading pending challenges:", error)
+        setDebugInfo(`Error: ${error.message}`)
         return
       }
 
-      setPendingChallenges(data || [])
+      // Filter out expired challenges
+      const now = new Date()
+      const validChallenges = (data || []).filter((challenge) => {
+        const expiryDate = new Date(challenge.expires_at)
+        const isValid = expiryDate > now
+        console.log(`🔔 Challenge ${challenge.id}: expires ${challenge.expires_at}, valid: ${isValid}`)
+        return isValid
+      })
+
+      console.log("🔔 VALID CHALLENGES after filtering:", validChallenges)
+      setPendingChallenges(validChallenges)
+      setDebugInfo(`Found ${validChallenges.length} pending challenges`)
+
+      // Show toast if new challenges found
+      if (validChallenges.length > 0) {
+        toast({
+          title: "🎯 New Challenge!",
+          description: `You have ${validChallenges.length} pending challenge${validChallenges.length > 1 ? "s" : ""}`,
+        })
+      }
     } catch (error) {
-      console.error("Error in loadPendingChallenges:", error)
+      console.error("🔔 CATCH ERROR in loadPendingChallenges:", error)
+      setDebugInfo(`Catch error: ${error}`)
     } finally {
       setLoading(false)
     }
   }
 
   const handleAcceptChallenge = async (challengeId: string, category: string) => {
+    console.log("🔔 ACCEPT: Starting accept for challenge:", challengeId)
     setActionLoading(challengeId)
 
     try {
@@ -119,10 +174,13 @@ export default function ProfileChallengeNotifications() {
         description: "Redirecting you to the quiz...",
       })
 
+      // Remove from local state
+      setPendingChallenges((prev) => prev.filter((c) => c.id !== challengeId))
+
       // Redirect to quiz with challenge parameters
       router.push(`/quiz?category=${category}&difficulty=mixed&challenge=${challengeId}&questions=10`)
     } catch (error: any) {
-      console.error("Error accepting challenge:", error)
+      console.error("🔔 ERROR accepting challenge:", error)
       toast({
         title: "Error",
         description: "Failed to accept challenge. Please try again.",
@@ -134,6 +192,7 @@ export default function ProfileChallengeNotifications() {
   }
 
   const handleDeclineChallenge = async (challengeId: string) => {
+    console.log("🔔 DECLINE: Starting decline for challenge:", challengeId)
     setActionLoading(challengeId)
 
     try {
@@ -151,7 +210,7 @@ export default function ProfileChallengeNotifications() {
       // Remove from local state
       setPendingChallenges((prev) => prev.filter((c) => c.id !== challengeId))
     } catch (error: any) {
-      console.error("Error declining challenge:", error)
+      console.error("🔔 ERROR declining challenge:", error)
       toast({
         title: "Error",
         description: "Failed to decline challenge. Please try again.",
@@ -203,6 +262,18 @@ export default function ProfileChallengeNotifications() {
     dawah: "Dawah",
   }
 
+  // Debug section - remove in production
+  const debugSection = (
+    <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded">
+      <p>Debug: User ID: {user?.id}</p>
+      <p>Debug Info: {debugInfo}</p>
+      <p>Challenges Count: {pendingChallenges.length}</p>
+      <Button size="sm" variant="outline" onClick={loadPendingChallenges} className="mt-1">
+        🔄 Refresh Challenges
+      </Button>
+    </div>
+  )
+
   if (loading) {
     return (
       <Card>
@@ -211,13 +282,25 @@ export default function ProfileChallengeNotifications() {
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
             <span className="ml-2 text-sm text-gray-500">Loading notifications...</span>
           </div>
+          {debugSection}
         </CardContent>
       </Card>
     )
   }
 
   if (pendingChallenges.length === 0) {
-    return null // Don't show the component if there are no pending challenges
+    return (
+      <Card>
+        <CardContent className="p-4">
+          <div className="text-center py-4 text-gray-500">
+            <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p>No pending challenges</p>
+            <p className="text-sm">When someone challenges you, it will appear here</p>
+          </div>
+          {debugSection}
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
@@ -292,6 +375,7 @@ export default function ProfileChallengeNotifications() {
             </div>
           </div>
         ))}
+        {debugSection}
       </CardContent>
     </Card>
   )
