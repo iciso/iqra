@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/contexts/auth-context"
@@ -17,12 +17,14 @@ import {
 import { toast } from "@/hooks/use-toast"
 import { CheckCircle, XCircle, Clock, Gamepad2, Search, Trophy } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import { AuthModal } from "@/components/auth/auth-modal"
 
 export default function TestSocialPage() {
   const { user } = useAuth()
   const [testResults, setTestResults] = useState<Record<string, boolean>>({})
   const [testOutput, setTestOutput] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
+  const [authChecked, setAuthChecked] = useState(false)
 
   const addOutput = (message: string) => {
     setTestOutput((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
@@ -172,12 +174,56 @@ export default function TestSocialPage() {
     return result ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4 text-red-500" />
   }
 
-  if (!user) {
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
+        setAuthChecked(true)
+        if (session?.user) {
+          addOutput(`✅ User authenticated: ${session.user.email}`)
+        } else {
+          addOutput("❌ No authentication detected")
+        }
+      } catch (error) {
+        console.error("Auth check error:", error)
+        setAuthChecked(true)
+      }
+    }
+
+    checkAuth()
+  }, [])
+
+  if (!authChecked) {
     return (
       <div className="container mx-auto py-12 px-4 max-w-4xl">
         <Card>
           <CardContent className="text-center py-8">
-            <p>Please sign in to run social system tests</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto mb-4"></div>
+            <p>Checking authentication...</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return (
+      <div className="container mx-auto py-12 px-4 max-w-4xl">
+        <Card>
+          <CardContent className="text-center py-8 space-y-4">
+            <h2 className="text-xl font-semibold">🔐 Authentication Required</h2>
+            <p className="text-gray-600">Please sign in to run social system tests</p>
+            <AuthModal>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700">
+                Sign In to Test
+              </Button>
+            </AuthModal>
+            <div className="mt-4 text-sm text-gray-500">
+              <p>Need to test the social challenge system?</p>
+              <p>Sign in with Google or create an account to continue.</p>
+            </div>
           </CardContent>
         </Card>
       </div>
