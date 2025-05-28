@@ -126,45 +126,48 @@ export default function ChallengeSenderV3({ onChallengerSelect, currentChallenge
     console.log("🚀🚀🚀 V3 COMPONENT - DIRECT SUPABASE CHALLENGE CREATION STARTING!")
     console.log("🔥🔥🔥 NO API ROUTES - PURE SUPABASE CLIENT!")
 
-    if (!selectedUser || !user) {
-      console.error("❌ V3: Missing selectedUser or user:", { selectedUser, user })
+    if (!selectedUser) {
+      console.error("❌ V3: Missing selectedUser:", { selectedUser })
       toast({
         title: "Error",
-        description: "Missing user information. Please try signing in again.",
+        description: "No user selected for challenge.",
         variant: "destructive",
       })
       return
     }
 
+    // Get current user session directly from Supabase
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+
+    if (sessionError || !sessionData?.session?.user) {
+      console.error("❌ V3: Session error:", sessionError)
+      toast({
+        title: "Authentication Error",
+        description: "Please sign in again to send challenges",
+        variant: "destructive",
+      })
+      return
+    }
+
+    const currentUser = sessionData.session.user
+    console.log("✅ V3: Got current user from session:", currentUser.id)
+
     console.log("✅ V3: Starting challenge creation:", {
       selectedUser: selectedUser.id,
       category: challengeCategory,
       difficulty: challengeDifficulty,
-      user: user.id,
+      currentUser: currentUser.id,
     })
 
     setIsSubmitting(true)
 
     try {
-      // First, verify we have a valid session
-      const {
-        data: { session },
-        error: sessionError,
-      } = await supabase.auth.getSession()
-
-      if (sessionError || !session?.user) {
-        console.error("❌ V3: Session error:", sessionError)
-        throw new Error("Please sign in again to send challenges")
-      }
-
-      console.log("✅ V3: Valid session found for user:", session.user.id)
-
       // Calculate expiry date (24 hours from now)
       const expiresAt = new Date()
       expiresAt.setHours(expiresAt.getHours() + 24)
 
       const challengeData = {
-        challenger_id: session.user.id,
+        challenger_id: currentUser.id,
         challenged_id: selectedUser.id,
         category: challengeCategory,
         difficulty: challengeDifficulty,
