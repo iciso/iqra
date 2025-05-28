@@ -46,22 +46,31 @@ export async function updateUserOnlineStatus(isOnline: boolean) {
 
 // User search and discovery
 export async function searchUsers(query: string, limit = 10) {
+  console.log("🔍 SEARCH USERS FUNCTION: Called with query:", query)
+
   if (!query || query.length < 2) {
+    console.log("🔍 SEARCH USERS FUNCTION: Query too short, returning empty array")
     return []
   }
 
-  const { data, error } = await supabase
-    .from("user_profiles")
-    .select("*")
-    .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
-    .limit(limit)
+  try {
+    const { data, error } = await supabase
+      .from("user_profiles")
+      .select("*")
+      .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
+      .limit(limit)
 
-  if (error) {
-    console.error("Error searching users:", error)
+    if (error) {
+      console.error("🔍 SEARCH USERS FUNCTION: Database error:", error)
+      throw error
+    }
+
+    console.log("🔍 SEARCH USERS FUNCTION: Database returned:", data)
+    return data || []
+  } catch (error) {
+    console.error("🔍 SEARCH USERS FUNCTION: Caught error:", error)
     throw error
   }
-
-  return data || []
 }
 
 export async function getTopPlayers(limit = 10) {

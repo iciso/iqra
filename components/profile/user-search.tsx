@@ -20,15 +20,23 @@ export default function UserSearch() {
   const [creatingChallenge, setCreatingChallenge] = useState<string | null>(null)
 
   useEffect(() => {
+    console.log("🔍 USER SEARCH COMPONENT: Mounted with user:", user?.id)
+  }, [user])
+
+  useEffect(() => {
     const searchTimeout = setTimeout(async () => {
       if (query.trim().length > 2) {
+        console.log("🔍 USER SEARCH: Starting search for:", query)
         setLoading(true)
         try {
           const users = await searchUsers(query)
+          console.log("🔍 USER SEARCH: Search results:", users)
           // Filter out current user
-          setResults(users.filter((u) => u.id !== user?.id))
+          const filteredUsers = users.filter((u) => u.id !== user?.id)
+          console.log("🔍 USER SEARCH: Filtered results:", filteredUsers)
+          setResults(filteredUsers)
         } catch (error) {
-          console.error("Search error:", error)
+          console.error("🔍 USER SEARCH: Search error:", error)
           toast({
             title: "Search Error",
             description: "Failed to search users. Please try again.",
