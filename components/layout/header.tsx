@@ -1,46 +1,36 @@
 "use client"
 
 import Link from "next/link"
-import { useAuth } from "@/contexts/auth-context"
-import { UserMenu } from "@/components/auth/user-menu"
 import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { IqraLogo } from "@/components/iqra-logo"
-import { usePathname } from "next/navigation"
+import { useAuth } from "@/contexts/auth-context"
 
 export function Header() {
-  const { user, loading } = useAuth()
-  const pathname = usePathname()
-
-  // Don't show header on home page as it has its own layout
-  if (pathname === "/") {
-    return null
-  }
+  const { user, signInWithProvider, signOut } = useAuth()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between px-4">
-        <div className="flex items-center space-x-4">
-          <Link href="/" className="flex items-center space-x-2">
-            <IqraLogo size="sm" showText={false} isLink={false} />
-            <span className="font-bold text-xl text-green-700 dark:text-green-400">IQRA</span>
+    <header className="bg-white shadow-sm border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="text-2xl font-bold text-green-600">
+            IQRA
           </Link>
-        </div>
 
-        <div className="flex items-center space-x-4">
-          <ThemeToggle />
-
-          {loading ? (
-            <div className="h-8 w-8 animate-pulse bg-gray-200 rounded-full" />
-          ) : user ? (
-            <UserMenu />
-          ) : (
-            <Link href="/auth">
-              <Button variant="outline" size="sm">
-                Sign In
-              </Button>
+          <nav className="flex items-center space-x-4">
+            <Link href="/categories">
+              <Button variant="ghost">Quiz</Button>
             </Link>
-          )}
+            <Link href="/leaderboard">
+              <Button variant="ghost">Leaderboard</Button>
+            </Link>
+
+            {user ? (
+              <Button onClick={signOut} variant="outline">
+                Sign Out
+              </Button>
+            ) : (
+              <Button onClick={() => signInWithProvider("google")}>Sign In</Button>
+            )}
+          </nav>
         </div>
       </div>
     </header>

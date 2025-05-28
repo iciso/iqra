@@ -39,6 +39,17 @@ export default function ResultsPage() {
   } | null>(null)
   const [saving, setSaving] = useState(false)
 
+  // Debug authentication state
+  useEffect(() => {
+    console.log("🔍 Results page auth state:", {
+      user: !!user,
+      profile: !!profile,
+      loading,
+      userEmail: user?.email,
+      profileUsername: profile?.username,
+    })
+  }, [user, profile, loading])
+
   useEffect(() => {
     setIsClient(true)
 
@@ -52,6 +63,14 @@ export default function ResultsPage() {
       const savedTimeLeft = localStorage.getItem("quizTimeLeft")
       const savedTimeTotal = localStorage.getItem("quizTimeTotal")
       const savedOpponentId = localStorage.getItem("quizOpponentId")
+
+      console.log("📊 Quiz data from localStorage:", {
+        savedScore,
+        savedTotal,
+        savedCategory,
+        savedDifficulty,
+        savedChallenge,
+      })
 
       if (savedScore && savedTotal) {
         const parsedScore = Number.parseInt(savedScore)
@@ -109,17 +128,25 @@ export default function ResultsPage() {
         }
       }
     } catch (error) {
-      console.error("Error accessing localStorage:", error)
+      console.error("❌ Error accessing localStorage:", error)
     }
   }, [])
 
   // Auto-save when user and profile are available
   useEffect(() => {
     const autoSave = async () => {
-      // Add debugging
-      console.log("Auth state:", { user: !!user, profile: !!profile, score, totalQuestions, submitted, saving })
+      console.log("💾 Auto-save check:", {
+        hasUser: !!user,
+        hasProfile: !!profile,
+        hasScore: score !== null,
+        hasTotalQuestions: totalQuestions !== null,
+        submitted,
+        saving,
+        loading,
+      })
 
-      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving) {
+      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
+        console.log("🚀 Starting auto-save...")
         setSaving(true)
         try {
           await submitQuizResult(
@@ -132,19 +159,16 @@ export default function ResultsPage() {
             challenge ? undefined : undefined, // challenge_id for regular challenges
           )
           setSubmitted(true)
-          console.log("Quiz result saved successfully!")
+          console.log("✅ Quiz result saved successfully!")
         } catch (error) {
-          console.error("Error saving to database:", error)
+          console.error("❌ Error saving to database:", error)
         } finally {
           setSaving(false)
         }
       }
     }
 
-    // Only run auto-save if we have quiz data and user is authenticated
-    if (!loading && user && profile && score !== null) {
-      autoSave()
-    }
+    autoSave()
   }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge, loading])
 
   // Calculate percentage
@@ -195,6 +219,11 @@ export default function ResultsPage() {
     )
   }
 
+  // Determine if user is authenticated
+  const isAuthenticated = user && profile && !loading
+
+  console.log("🎯 Render decision:", { isAuthenticated, loading, user: !!user, profile: !!profile })
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
@@ -203,7 +232,7 @@ export default function ResultsPage() {
         <div className="w-full max-w-md mx-auto mb-6">
           <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
           <ChallengeResultsComparison
-            userName={user ? profile?.full_name || profile?.username || "You" : "You"}
+            userName={isAuthenticated ? profile.full_name || profile.username || "You" : "You"}
             userScore={score || 0}
             opponent={opponent}
             totalQuestions={totalQuestions || 10}
@@ -256,60 +285,44 @@ export default function ResultsPage() {
                 </p>
                 <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
-                {user && profile ? (
-                  // Authenticated user - auto-saved
+                {isAuthenticated ? (
+                  // 🎉 Authenticated user - SUCCESS CASE!
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-center mb-2">
                       <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
                       <span className="text-lg font-medium dark:text-white">
-                        Welcome, {profile.full_name || profile.username}!
+                        Welcome, {profile?.full_name || profile?.username}! 🎉
                       </span>
                     </div>
                     {saving ? (
-                      <p className="text-blue-600 dark:text-blue-400 mb-4">Saving your score...</p>
+                      <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
                     ) : submitted ? (
                       <p className="text-green-700 dark:text-green-400 mb-4">
                         ✅ Your score has been saved to your profile!
                       </p>
                     ) : (
-                      <p className="text-yellow-600 dark:text-yellow-400 mb-4">Preparing to save your score...</p>
+                      <p className="text-yellow-600 dark:text-yellow-400 mb-4">🔄 Preparing to save your score...</p>
                     )}
                     <Button
                       onClick={viewLeaderboard}
                       className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
                     >
-                      View Leaderboard
+                      🏆 View Leaderboard
                     </Button>
                   </div>
-                ) : !loading ? (
-                  // Only show sign-in requirement if not loading and definitely not authenticated
+                ) : (
+                  // This should now rarely appear since users must be authenticated
                   <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-center mb-2">
                       <Award className="mr-2 h-5 w-5 text-red-500" />
-                      <span className="text-lg font-medium dark:text-white">Authentication Required</span>
+                      <span className="text-lg font-medium dark:text-white">Authentication Issue</span>
                     </div>
                     <p className="text-center text-red-600 dark:text-red-400 mb-4">
-                      You must be signed in to save scores and compete on the leaderboard.
+                      Please refresh the page to restore your session.
                     </p>
-                    <div className="flex flex-col gap-3">
-                      <Link href="/auth" className="w-full">
-                        <Button className="w-full bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600">
-                          Sign In Required
-                        </Button>
-                      </Link>
-                      <Button
-                        onClick={viewLeaderboard}
-                        variant="outline"
-                        className="w-full dark:border-green-700 dark:text-green-400"
-                      >
-                        View Leaderboard
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  // Loading state
-                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                    <p className="text-center text-gray-600 dark:text-gray-400">Loading authentication...</p>
+                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-600 hover:bg-blue-700">
+                      🔄 Refresh Page
+                    </Button>
                   </div>
                 )}
               </>

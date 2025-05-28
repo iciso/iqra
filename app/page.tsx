@@ -14,10 +14,10 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb]">
+      <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
         <div className="text-center">
-          <IqraLogo className="w-16 h-16 mx-auto mb-4 text-green-700" />
-          <p className="text-green-700">Loading...</p>
+          <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
+          <p className="text-green-700 text-sm sm:text-base">Loading...</p>
         </div>
       </div>
     )
@@ -25,54 +25,56 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#e6f7eb]">
-      <div className="container mx-auto py-12 px-4 flex-grow flex flex-col">
-        <div className="text-center mb-8">
-          <div className="mx-auto w-24 h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
-            <IqraLogo className="w-12 h-12 text-green-700" />
+      <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
+            <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
           </div>
-          <h1 className="text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
-          <p className="text-xl text-green-700">Islamic Quiz Rivalry App</p>
-          <p className="mt-4 text-gray-600">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
+          <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
+          <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
             ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
-            <br />
-            of Islam through learning or challenges.
+            <br className="hidden sm:block" />
+            <span className="block sm:inline"> of Islam through learning or challenges.</span>
           </p>
           {user && (
-            <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-              <p className="text-green-800 font-medium">🎉 You're signed in and ready to learn!</p>
-              <p className="text-green-600 text-sm">Your progress will be saved across IQRA and KALAM apps.</p>
+            <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
+              <p className="text-green-800 font-medium text-sm sm:text-base">🎉 You're signed in and ready to learn!</p>
+              <p className="text-green-600 text-xs sm:text-sm">
+                Your progress will be saved across IQRA and KALAM apps.
+              </p>
             </div>
           )}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto w-full">
           <Card className="bg-white border-0 shadow-sm">
             <CardHeader className="text-center pb-2">
-              <div className="mx-auto w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
+              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-green-600"
+                  className="text-green-600 sm:w-6 sm:h-6"
                 >
                   <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
                 </svg>
               </div>
-              <CardTitle className="text-2xl text-green-800">IQRA Learn</CardTitle>
-              <CardDescription>Learn at your own pace</CardDescription>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Learn</CardTitle>
+              <CardDescription className="text-sm sm:text-base">Learn at your own pace</CardDescription>
             </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-gray-600 mb-4">
+            <CardContent className="text-center px-4 sm:px-6">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
                 Browse through 12 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
                 learn at your own pace.
               </p>
-              <div className="flex flex-wrap justify-center gap-2 mb-4">
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Quran</span>
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Fiqh</span>
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Tafsir</span>
@@ -83,10 +85,15 @@ export default function HomePage() {
             <CardFooter className="pt-0 flex justify-center">
               {user ? (
                 <Link href="/categories">
-                  <Button className="bg-green-600 hover:bg-green-700">Start Learning</Button>
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start Learning
+                  </Button>
                 </Link>
               ) : (
-                <Button onClick={() => setShowAuthModal(true)} className="bg-green-600 hover:bg-green-700">
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
                   Sign In to Start Learning
                 </Button>
               )}
@@ -95,18 +102,18 @@ export default function HomePage() {
 
           <Card className="bg-white border-0 shadow-sm">
             <CardHeader className="text-center pb-2">
-              <div className="mx-auto w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
+              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-green-600"
+                  className="text-green-600 sm:w-6 sm:h-6"
                 >
                   <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
                   <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
@@ -116,27 +123,27 @@ export default function HomePage() {
                   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
                 </svg>
               </div>
-              <CardTitle className="text-2xl text-green-800">IQRA Challenge</CardTitle>
-              <CardDescription>Compete with others</CardDescription>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Challenge</CardTitle>
+              <CardDescription className="text-sm sm:text-base">Compete with others</CardDescription>
             </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-gray-600 mb-4">
+            <CardContent className="text-center px-4 sm:px-6">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
                 Challenge your friends or join the daily challenge. Compete with others and test your Islamic knowledge
                 in a fun and engaging way.
               </p>
-              <div className="flex flex-wrap justify-center gap-2 mb-4">
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
+                    width="10"
+                    height="10"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="mr-1"
+                    className="mr-1 sm:w-3 sm:h-3"
                   >
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
@@ -148,15 +155,15 @@ export default function HomePage() {
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
+                    width="10"
+                    height="10"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="mr-1"
+                    className="mr-1 sm:w-3 sm:h-3"
                   >
                     <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
                     <line x1="16" x2="16" y1="2" y2="6" />
@@ -170,10 +177,15 @@ export default function HomePage() {
             <CardFooter className="pt-0 flex justify-center">
               {user ? (
                 <Link href="/challenges">
-                  <Button className="bg-green-600 hover:bg-green-700">Start Challenges</Button>
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start Challenges
+                  </Button>
                 </Link>
               ) : (
-                <Button onClick={() => setShowAuthModal(true)} className="bg-green-600 hover:bg-green-700">
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
                   Sign In to Challenge
                 </Button>
               )}
@@ -181,7 +193,7 @@ export default function HomePage() {
           </Card>
         </div>
 
-        <div className="mt-auto pt-12 text-center text-gray-600 text-sm">
+        <div className="mt-auto pt-8 sm:pt-12 text-center text-gray-600 text-xs sm:text-sm px-4">
           <p className="mb-2">
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely
             Generous.
