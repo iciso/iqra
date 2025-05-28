@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useAuth } from "@/contexts/auth-context"
+import { supabase } from "@/lib/supabase"
 import { Github, Mail, AlertCircle } from "lucide-react"
 
 interface AuthModalProps {
@@ -23,49 +23,39 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
 
-  const { signIn, signUp, signInWithProvider } = useAuth()
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError("")
     setSuccess("")
 
-    // Basic validation
-    if (!email || !password) {
-      setError("Please fill in all required fields")
-      setLoading(false)
-      return
-    }
-
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters long")
-      setLoading(false)
-      return
-    }
-
     try {
-      console.log(`Attempting ${isSignUp ? "sign up" : "sign in"} for:`, email)
-
-      const { error } = isSignUp ? await signUp(email, password, fullName) : await signIn(email, password)
-
-      if (error) {
-        console.error("Auth error:", error)
-        setError(error.message || "Authentication failed. Please try again.")
+      if (isSignUp) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+            },
+          },
+        })
+        if (error) throw error
+        setSuccess("Check your email for verification link!")
       } else {
-        if (isSignUp) {
-          setSuccess("Account created! Please check your email for verification.")
-        } else {
-          setSuccess("Successfully signed in!")
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
+        if (error) throw error
+        setSuccess("Signed in successfully!")
+        setTimeout(() => {
           onClose()
-        }
-        setEmail("")
-        setPassword("")
-        setFullName("")
+          window.location.reload()
+        }, 1000)
       }
-    } catch (err) {
-      console.error("Unexpected error:", err)
-      setError("An unexpected error occurred. Please try again.")
+    } catch (err: any) {
+      setError(err.message || "Authentication failed")
     } finally {
       setLoading(false)
     }
@@ -76,13 +66,15 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setError("")
 
     try {
-      const { error } = await signInWithProvider(provider)
-      if (error) {
-        setError(error.message || `Failed to sign in with ${provider}`)
-      }
-    } catch (err) {
-      setError(`Failed to sign in with ${provider}`)
-    } finally {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+      if (error) throw error
+    } catch (err: any) {
+      setError(err.message || `Failed to sign in with ${provider}`)
       setLoading(false)
     }
   }
