@@ -31,7 +31,7 @@ export default function SocialChallengerSelector({
   onChallengerSelect,
   currentChallenger,
 }: SocialChallengerSelectorProps) {
-  const { user, refreshProfile } = useAuth()
+  const { user } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<UserProfile[]>([])
@@ -135,7 +135,7 @@ export default function SocialChallengerSelector({
       return
     }
 
-    console.log("Starting challenge creation:", {
+    console.log("🎯 Starting challenge creation with direct Supabase:", {
       selectedUser: selectedUser.id,
       category: challengeCategory,
       difficulty: challengeDifficulty,
@@ -152,15 +152,26 @@ export default function SocialChallengerSelector({
       } = await supabase.auth.getSession()
 
       if (sessionError || !session?.user) {
-        console.error("Session error:", sessionError)
+        console.error("❌ Session error:", sessionError)
         throw new Error("Please sign in again to send challenges")
       }
 
-      console.log("Valid session found for user:", session.user.id)
+      console.log("✅ Valid session found for user:", session.user.id)
 
       // Calculate expiry date (24 hours from now)
       const expiresAt = new Date()
       expiresAt.setHours(expiresAt.getHours() + 24)
+
+      console.log("📝 Creating challenge with data:", {
+        challenger_id: session.user.id,
+        challenged_id: selectedUser.id,
+        category: challengeCategory,
+        difficulty: challengeDifficulty,
+        question_count: 10,
+        time_limit: 300,
+        status: "pending",
+        expires_at: expiresAt.toISOString(),
+      })
 
       // Create the challenge directly with Supabase
       const { data, error } = await supabase
@@ -179,11 +190,11 @@ export default function SocialChallengerSelector({
         .single()
 
       if (error) {
-        console.error("Database error creating challenge:", error)
+        console.error("❌ Database error creating challenge:", error)
         throw new Error(`Failed to create challenge: ${error.message}`)
       }
 
-      console.log("Challenge created successfully:", data)
+      console.log("🎉 Challenge created successfully:", data)
 
       setChallengeSent(true)
 
@@ -199,11 +210,8 @@ export default function SocialChallengerSelector({
           categoryOptions.find((c) => c.value === challengeCategory)?.label
         } quiz!`,
       })
-
-      // Refresh user profile to update any stats
-      await refreshProfile()
     } catch (error: any) {
-      console.error("Challenge creation error:", error)
+      console.error("❌ Challenge creation error:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge. Please try again.",
