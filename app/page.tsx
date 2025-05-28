@@ -5,19 +5,45 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IqraLogo } from "@/components/iqra-logo"
 import { AuthModal } from "@/components/auth/auth-modal"
+import Link from "next/link"
+import { supabase } from "@/lib/supabase"
 
 export default function HomePage() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [showAuthModal, setShowAuthModal] = useState(false)
 
   useEffect(() => {
-    // Simple timeout to prevent infinite loading
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 2000)
+    // Check for session
+    const checkSession = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession()
+        if (data?.session?.user) {
+          console.log("User found:", data.session.user)
+          setUser(data.session.user)
+        } else {
+          console.log("No user session found")
+        }
+      } catch (err) {
+        console.error("Error checking session:", err)
+      } finally {
+        // Always stop loading after 3 seconds max
+        setTimeout(() => setLoading(false), 3000)
+      }
+    }
 
-    return () => clearTimeout(timer)
+    checkSession()
+
+    // Listen for auth changes
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state changed:", event, !!session)
+      setUser(session?.user || null)
+      setLoading(false)
+    })
+
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
   }, [])
 
   if (loading) {
@@ -50,7 +76,9 @@ export default function HomePage() {
           </p>
           {user && (
             <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
-              <p className="text-green-800 font-medium text-sm sm:text-base">🎉 You're signed in and ready to learn!</p>
+              <p className="text-green-800 font-medium text-sm sm:text-base">
+                🎉 You're signed in as {user.email || user.user_metadata?.full_name || "a believer"}!
+              </p>
               <p className="text-green-600 text-xs sm:text-sm">
                 Your progress will be saved across IQRA and KALAM apps.
               </p>
@@ -94,12 +122,20 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              <Button
-                onClick={() => setShowAuthModal(true)}
-                className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-              >
-                Sign In to Start Learning
-              </Button>
+              {user ? (
+                <Link href="/categories">
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start Learning
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
+                  Sign In to Start Learning
+                </Button>
+              )}
             </CardFooter>
           </Card>
 
@@ -178,12 +214,20 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              <Button
-                onClick={() => setShowAuthModal(true)}
-                className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-              >
-                Sign In to Challenge
-              </Button>
+              {user ? (
+                <Link href="/challenges">
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start Challenges
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
+                  Sign In to Challenge
+                </Button>
+              )}
             </CardFooter>
           </Card>
         </div>
