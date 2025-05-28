@@ -22,15 +22,12 @@ import { searchUsers, getFriends, sendFriendRequest, type UserProfile } from "@/
 import { toast } from "@/hooks/use-toast"
 import { supabase } from "@/lib/supabase"
 
-interface SocialChallengerSelectorProps {
+interface ChallengeSenderV2Props {
   onChallengerSelect: (challenger: UserProfile) => void
   currentChallenger?: UserProfile | null
 }
 
-export default function SocialChallengerSelector({
-  onChallengerSelect,
-  currentChallenger,
-}: SocialChallengerSelectorProps) {
+export default function ChallengeSenderV2({ onChallengerSelect, currentChallenger }: ChallengeSenderV2Props) {
   const { user } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -71,6 +68,7 @@ export default function SocialChallengerSelector({
   ]
 
   useEffect(() => {
+    console.log("🆕 CHALLENGE SENDER V2 COMPONENT LOADED - FRESH CODE!")
     if (isOpen && user) {
       loadFriends()
     }
@@ -125,10 +123,11 @@ export default function SocialChallengerSelector({
   }
 
   const handleCreateChallenge = async () => {
-    console.log("🚨 NEW COMPONENT CODE RUNNING - NO API CALLS!")
+    console.log("🚀 V2 COMPONENT - DIRECT SUPABASE CHALLENGE CREATION STARTING!")
+    console.log("🔥 NO API ROUTES - PURE SUPABASE CLIENT!")
 
     if (!selectedUser || !user) {
-      console.error("Missing selectedUser or user:", { selectedUser, user })
+      console.error("❌ Missing selectedUser or user:", { selectedUser, user })
       toast({
         title: "Error",
         description: "Missing user information. Please try signing in again.",
@@ -137,7 +136,7 @@ export default function SocialChallengerSelector({
       return
     }
 
-    console.log("🎯 Starting DIRECT SUPABASE challenge creation:", {
+    console.log("✅ V2: Starting challenge creation:", {
       selectedUser: selectedUser.id,
       category: challengeCategory,
       difficulty: challengeDifficulty,
@@ -154,17 +153,17 @@ export default function SocialChallengerSelector({
       } = await supabase.auth.getSession()
 
       if (sessionError || !session?.user) {
-        console.error("❌ Session error:", sessionError)
+        console.error("❌ V2: Session error:", sessionError)
         throw new Error("Please sign in again to send challenges")
       }
 
-      console.log("✅ Valid session found for user:", session.user.id)
+      console.log("✅ V2: Valid session found for user:", session.user.id)
 
       // Calculate expiry date (24 hours from now)
       const expiresAt = new Date()
       expiresAt.setHours(expiresAt.getHours() + 24)
 
-      console.log("📝 Creating challenge with DIRECT SUPABASE:", {
+      const challengeData = {
         challenger_id: session.user.id,
         challenged_id: selectedUser.id,
         category: challengeCategory,
@@ -173,30 +172,19 @@ export default function SocialChallengerSelector({
         time_limit: 300,
         status: "pending",
         expires_at: expiresAt.toISOString(),
-      })
+      }
 
-      // Create the challenge directly with Supabase - NO API CALLS
-      const { data, error } = await supabase
-        .from("user_challenges")
-        .insert({
-          challenger_id: session.user.id,
-          challenged_id: selectedUser.id,
-          category: challengeCategory,
-          difficulty: challengeDifficulty,
-          question_count: 10,
-          time_limit: 300,
-          status: "pending",
-          expires_at: expiresAt.toISOString(),
-        })
-        .select()
-        .single()
+      console.log("📝 V2: Creating challenge with data:", challengeData)
+
+      // Create the challenge directly with Supabase - ABSOLUTELY NO API CALLS
+      const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
       if (error) {
-        console.error("❌ Database error creating challenge:", error)
+        console.error("❌ V2: Database error creating challenge:", error)
         throw new Error(`Failed to create challenge: ${error.message}`)
       }
 
-      console.log("🎉 Challenge created successfully with DIRECT SUPABASE:", data)
+      console.log("🎉 V2: Challenge created successfully:", data)
 
       setChallengeSent(true)
 
@@ -213,7 +201,7 @@ export default function SocialChallengerSelector({
         } quiz!`,
       })
     } catch (error: any) {
-      console.error("❌ Challenge creation error:", error)
+      console.error("❌ V2: Challenge creation error:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge. Please try again.",
@@ -296,6 +284,7 @@ export default function SocialChallengerSelector({
             <Button
               size="sm"
               onClick={() => {
+                console.log("🎯 V2: Challenge button clicked for:", profile.username)
                 setSelectedUser(profile)
                 setChallengeDialog(true)
               }}
@@ -328,14 +317,14 @@ export default function SocialChallengerSelector({
         <DialogTrigger asChild>
           <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
             <Users className="h-4 w-4 mr-2" />
-            Find Challengers
+            Find Challengers (V2)
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Users className="h-5 w-5" />
-              Find Your Next Challenger
+              Find Your Next Challenger (V2)
             </DialogTitle>
             <DialogDescription>Search for users to challenge or select from your friends list.</DialogDescription>
           </DialogHeader>
@@ -410,7 +399,7 @@ export default function SocialChallengerSelector({
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Gamepad2 className="h-5 w-5" />
-              Challenge {selectedUser?.full_name || selectedUser?.username}
+              Challenge {selectedUser?.full_name || selectedUser?.username} (V2)
             </DialogTitle>
             <DialogDescription>Select the category and difficulty for your challenge.</DialogDescription>
           </DialogHeader>
@@ -472,12 +461,12 @@ export default function SocialChallengerSelector({
                     {isSubmitting ? (
                       <>
                         <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                        Sending...
+                        Sending V2...
                       </>
                     ) : (
                       <>
                         <Zap className="h-4 w-4 mr-2" />
-                        Send Challenge
+                        Send Challenge V2
                       </>
                     )}
                   </Button>
