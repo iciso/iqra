@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { getRandomOpponent } from "@/utils/opponents"
 import OpponentProfile from "@/components/challenge/opponent-profile"
-import FindChallengersDialog from "@/components/challenge/find-challengers-dialog"
+import ChallengeSenderV2 from "@/components/challenge/challenge-sender-v2"
 import { User, Users, BookOpen, BookText, Bot, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -16,7 +16,6 @@ export default function ChallengesPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Define a consistent number of questions for all challenges
   const standardQuestionCount = 10
@@ -50,6 +49,7 @@ export default function ChallengesPage() {
 
   // Handle real user selection
   const handleRealUserSelect = (challenger: UserProfile) => {
+    console.log("🎯 CHALLENGES PAGE: Real user selected:", challenger.username)
     setSelectedOpponent({
       id: challenger.id,
       name: challenger.full_name || challenger.username,
@@ -68,6 +68,7 @@ export default function ChallengesPage() {
   }
 
   useEffect(() => {
+    console.log("🏠 CHALLENGES PAGE: Component loaded - using V2 component")
     const checkAuth = async () => {
       try {
         const { data, error } = await supabase.auth.getSession()
@@ -136,7 +137,7 @@ export default function ChallengesPage() {
 
       {/* User Welcome */}
       <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold text-green-800 mb-2">IQRA Challenge Mode</h1>
+        <h1 className="text-3xl font-bold text-green-800 mb-2">IQRA Challenge Mode (V2)</h1>
         <p className="text-gray-600 mb-2">Welcome back, {user.email || user.user_metadata?.full_name || "believer"}!</p>
         <p className="text-gray-600">
           Test your Islamic knowledge against time and compete with others on our leaderboards
@@ -146,7 +147,7 @@ export default function ChallengesPage() {
       {/* Enhanced Challenger Info Section */}
       <div className="mb-8 p-6 bg-white border rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold dark:text-white">Your Challenger</h2>
+          <h2 className="text-xl font-bold dark:text-white">Your Challenger (V2)</h2>
           <div className="flex items-center gap-2">
             {isRealUser ? (
               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
@@ -194,15 +195,11 @@ export default function ChallengesPage() {
               Accept Challenge
             </Button>
 
-            {/* Use our new button to open the dialog */}
-            <Button
-              variant="outline"
-              className="dark:border-green-700 dark:text-green-400"
-              onClick={() => setIsDialogOpen(true)}
-            >
-              <Users className="h-4 w-4 mr-2" />
-              Find Challengers
-            </Button>
+            {/* Use the V2 component */}
+            <ChallengeSenderV2
+              onChallengerSelect={handleRealUserSelect}
+              currentChallenger={isRealUser ? selectedOpponent : null}
+            />
 
             <Button variant="outline" className="dark:border-green-700 dark:text-green-400" onClick={getNewBotOpponent}>
               <Shuffle className="h-4 w-4 mr-2" />
@@ -211,13 +208,6 @@ export default function ChallengesPage() {
           </div>
         </div>
       </div>
-
-      {/* Find Challengers Dialog */}
-      <FindChallengersDialog
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
-        onSelectChallenger={handleRealUserSelect}
-      />
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         {/* Daily Quiz Challenge */}
