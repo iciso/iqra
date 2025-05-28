@@ -301,3 +301,273 @@ export async function sendFriendRequest(addresseeId: string) {
     throw error
   }
 }
+
+// Enhanced user profile type
+export interface UserProfile {
+  id: string
+  username: string
+  full_name?: string
+  avatar_url?: string
+  total_score: number
+  total_questions: number
+  best_percentage: number
+  is_online?: boolean
+  last_seen?: string
+  created_at: string
+  updated_at: string
+}
+
+// Challenge management functions
+export async function acceptChallenge(challengeId: string) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      throw new Error("User not authenticated")
+    }
+
+    const { data, error } = await supabase.rpc("accept_challenge", {
+      challenge_id: challengeId,
+      user_id: user.id,
+    })
+
+    if (error) {
+      console.error("Error accepting challenge:", error)
+      throw error
+    }
+
+    return { success: data }
+  } catch (error) {
+    console.error("Error in acceptChallenge:", error)
+    throw error
+  }
+}
+
+export async function completeChallenge(challengeId: string, score: number) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      throw new Error("User not authenticated")
+    }
+
+    const { data, error } = await supabase.rpc("complete_challenge", {
+      challenge_id: challengeId,
+      user_id: user.id,
+      score: score,
+    })
+
+    if (error) {
+      console.error("Error completing challenge:", error)
+      throw error
+    }
+
+    return { success: data }
+  } catch (error) {
+    console.error("Error in completeChallenge:", error)
+    throw error
+  }
+}
+
+export async function getPendingChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name, avatar_url, is_online, last_seen),
+        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name, avatar_url, is_online, last_seen)
+      `)
+      .eq("challenged_id", userId)
+      .eq("status", "pending")
+      .gt("expires_at", new Date().toISOString())
+      .order("created_at", { ascending: false })
+
+    if (error) {
+      console.error("Error fetching pending challenges:", error)
+      throw error
+    }
+
+    return data || []
+  } catch (error) {
+    console.error("Error in getPendingChallenges:", error)
+    throw error
+  }
+}
+
+export async function getActiveChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name, avatar_url, is_online, last_seen),
+        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name, avatar_url, is_online, last_seen)
+      `)
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .eq("status", "accepted")
+      .order("created_at", { ascending: false })
+
+    if (error) {
+      console.error("Error fetching active challenges:", error)
+      throw error
+    }
+
+    return data || []
+  } catch (error) {
+    console.error("Error in getActiveChallenges:", error)
+    throw error
+  }
+}
+
+export async function getChallengeHistory(userId: string, limit = 20) {
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name, avatar_url),
+        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name, avatar_url)
+      `)
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .eq("status", "completed")
+      .order("updated_at", { ascending: false })
+      .limit(limit)
+
+    if (error) {
+      console.error("Error fetching challenge history:", error)
+      throw error
+    }
+
+    return data || []
+  } catch (error) {
+    console.error("Error in getChallengeHistory:", error)
+    throw error
+  }
+}
+
+// Friend management functions
+export async function acceptFriendRequest(requestId: string) {
+  try {
+    const { data, error } = await supabase.rpc("accept_friend_request", {
+      request_id: requestId,
+    })
+
+    if (error) {
+      console.error("Error accepting friend request:", error)
+      throw error
+    }
+
+    return { success: data }
+  } catch (error) {
+    console.error("Error in acceptFriendRequest:", error)
+    throw error
+  }
+}
+
+export async function declineFriendRequest(requestId: string) {
+  try {
+    const { error } = await supabase.from("friendships").update({ status: "declined" }).eq("id", requestId)
+
+    if (error) {
+      console.error("Error declining friend request:", error)
+      throw error
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error("Error in declineFriendRequest:", error)
+    throw error
+  }
+}
+
+export async function updateUserOnlineStatus(isOnline: boolean) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      throw new Error("User not authenticated")
+    }
+
+    const { error } = await supabase.rpc("update_user_online_status", {
+      user_id: user.id,
+      is_online: isOnline,
+    })
+
+    if (error) {
+      console.error("Error updating online status:", error)
+      throw error
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error("Error in updateUserOnlineStatus:", error)
+    throw error
+  }
+}
+
+export async function getTopPlayers(limit = 50) {
+  try {
+    const { data, error } = await supabase
+      .from("user_profiles")
+      .select("id, username, full_name, avatar_url, total_score, best_percentage, is_online, last_seen")
+      .order("best_percentage", { ascending: false })
+      .order("total_score", { ascending: false })
+      .limit(limit)
+
+    if (error) {
+      console.error("Error fetching top players:", error)
+      throw error
+    }
+
+    return data || []
+  } catch (error) {
+    console.error("Error in getTopPlayers:", error)
+    throw error
+  }
+}
+
+// Enhanced createChallenge function with time limit
+// export async function createChallenge(
+//   challengedId: string,
+//   category: string,
+//   difficulty: string,
+//   questionCount = 10,
+//   timeLimit = 300
+// ) {
+//   try {
+//     const {
+//       data: { user },
+//     } = await supabase.auth.getUser()
+
+//     if (!user) {
+//       throw new Error("User not authenticated")
+//     }
+
+//     const { error } = await supabase.from("user_challenges").insert({
+//       challenger_id: user.id,
+//       challenged_id: challengedId,
+//       category,
+//       difficulty,
+//       question_count: questionCount,
+//       time_limit: timeLimit,
+//       status: "pending",
+//     })
+
+//     if (error) {
+//       console.error("Error creating challenge:", error)
+//       throw error
+//     }
+
+//     return { success: true }
+//   } catch (error) {
+//     console.error("Error in createChallenge:", error)
+//     throw error
+//   }
+// }
