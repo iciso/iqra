@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target } from "lucide-react"
+import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target, Clock } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { searchUsers, getFriends, sendFriendRequest, createChallenge, type UserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/hooks/use-toast"
@@ -36,6 +36,31 @@ export default function SocialChallengerSelector({
   const [selectedUser, setSelectedUser] = useState<UserProfile | null>(null)
   const [challengeCategory, setChallengeCategory] = useState("quran")
   const [challengeDifficulty, setChallengeDifficulty] = useState("mixed")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [challengeSent, setChallengeSent] = useState(false)
+
+  // Category options
+  const categoryOptions = [
+    { value: "quran", label: "Quran Knowledge" },
+    { value: "seerah", label: "Seerah (Prophet's Biography)" },
+    { value: "fiqh", label: "Fiqh (Islamic Jurisprudence)" },
+    { value: "hadeeth", label: "Hadeeth" },
+    { value: "aqeedah", label: "Aqeedah (Islamic Creed)" },
+    { value: "tafsir", label: "Tafsir (Quran Commentary)" },
+    { value: "comparative", label: "Comparative Religion" },
+    { value: "islamic-finance", label: "Islamic Finance" },
+    { value: "tazkiyah", label: "Tazkiyah (Spiritual Purification)" },
+    { value: "history", label: "Islamic History & Civilization" },
+    { value: "dawah", label: "Dawah (Islamic Outreach)" },
+  ]
+
+  // Difficulty options
+  const difficultyOptions = [
+    { value: "easy", label: "Easy" },
+    { value: "intermediate", label: "Intermediate" },
+    { value: "advanced", label: "Advanced" },
+    { value: "mixed", label: "Mixed" },
+  ]
 
   useEffect(() => {
     if (isOpen && user) {
@@ -94,23 +119,33 @@ export default function SocialChallengerSelector({
   const handleCreateChallenge = async () => {
     if (!selectedUser || !user) return
 
+    setIsSubmitting(true)
+
     try {
-      await createChallenge(selectedUser.id, challengeCategory, challengeDifficulty, 10, 300)
+      await createChallenge(selectedUser.id, challengeCategory, challengeDifficulty, 10)
+
+      setChallengeSent(true)
+
+      setTimeout(() => {
+        setChallengeDialog(false)
+        setSelectedUser(null)
+        setChallengeSent(false)
+      }, 2000)
 
       toast({
         title: "Challenge Sent!",
-        description: `You've challenged ${selectedUser.full_name || selectedUser.username} to a ${challengeCategory} quiz!`,
+        description: `You've challenged ${selectedUser.full_name || selectedUser.username} to a ${
+          categoryOptions.find((c) => c.value === challengeCategory)?.label
+        } quiz!`,
       })
-
-      setChallengeDialog(false)
-      setSelectedUser(null)
-      setIsOpen(false)
     } catch (error: any) {
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
         variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -127,7 +162,9 @@ export default function SocialChallengerSelector({
 
   const getOnlineStatus = (profile: UserProfile) => {
     if (profile.is_online) return "online"
-    const lastSeen = new Date(profile.last_seen)
+    const lastSeen = profile.last_seen ? new Date(profile.last_seen) : null
+    if (!lastSeen) return "unknown"
+
     const now = new Date()
     const diffMinutes = Math.floor((now.getTime() - lastSeen.getTime()) / (1000 * 60))
 
@@ -157,7 +194,10 @@ export default function SocialChallengerSelector({
                 {profile.best_percentage > 80 && <Star className="h-4 w-4 text-yellow-500" />}
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-500">
-                <span>{getOnlineStatus(profile)}</span>
+                <span className="flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {getOnlineStatus(profile)}
+                </span>
                 {profile.best_percentage > 0 && (
                   <Badge variant="secondary" className="text-xs">
                     Best: {profile.best_percentage}%
@@ -299,47 +339,77 @@ export default function SocialChallengerSelector({
           </DialogHeader>
 
           <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium">Category</label>
-              <Select value={challengeCategory} onValueChange={setChallengeCategory}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="quran">Quran Knowledge</SelectItem>
-                  <SelectItem value="seerah">Seerah</SelectItem>
-                  <SelectItem value="fiqh">Fiqh</SelectItem>
-                  <SelectItem value="hadeeth">Hadeeth</SelectItem>
-                  <SelectItem value="aqeedah">Aqeedah</SelectItem>
-                  <SelectItem value="tafsir">Tafsir</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            {challengeSent ? (
+              <div className="text-center py-6">
+                <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-medium mb-2">Challenge Sent!</h3>
+                <p className="text-gray-500 mb-4">
+                  {selectedUser?.full_name || selectedUser?.username} will be notified of your challenge.
+                </p>
+                <p className="text-sm text-gray-500">
+                  They can accept your challenge even when offline and you'll be notified when they complete it.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div>
+                  <label className="text-sm font-medium">Category</label>
+                  <Select value={challengeCategory} onValueChange={setChallengeCategory}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categoryOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-            <div>
-              <label className="text-sm font-medium">Difficulty</label>
-              <Select value={challengeDifficulty} onValueChange={setChallengeDifficulty}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="easy">Easy</SelectItem>
-                  <SelectItem value="intermediate">Intermediate</SelectItem>
-                  <SelectItem value="advanced">Advanced</SelectItem>
-                  <SelectItem value="mixed">Mixed</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                <div>
+                  <label className="text-sm font-medium">Difficulty</label>
+                  <Select value={challengeDifficulty} onValueChange={setChallengeDifficulty}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {difficultyOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-            <div className="flex gap-2">
-              <Button onClick={handleCreateChallenge} className="flex-1 bg-green-600 hover:bg-green-700">
-                <Zap className="h-4 w-4 mr-2" />
-                Send Challenge
-              </Button>
-              <Button variant="outline" onClick={() => setChallengeDialog(false)} className="flex-1">
-                Cancel
-              </Button>
-            </div>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={handleCreateChallenge}
+                    className="flex-1 bg-green-600 hover:bg-green-700"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 mr-2" />
+                        Send Challenge
+                      </>
+                    )}
+                  </Button>
+                  <Button variant="outline" onClick={() => setChallengeDialog(false)} className="flex-1">
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </DialogContent>
       </Dialog>
