@@ -31,9 +31,6 @@ export default function ChallengeSenderV3() {
   const [loading, setLoading] = useState(false)
   const [topPlayersLoading, setTopPlayersLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
-  const [debugInfo, setDebugInfo] = useState("")
-
-  console.log("🆕🆕🆕 CHALLENGE SENDER V3 COMPONENT LOADED - DEBUGGING VERSION!")
 
   useEffect(() => {
     if (user) {
@@ -42,71 +39,61 @@ export default function ChallengeSenderV3() {
   }, [user])
 
   const loadTopPlayers = async () => {
+    if (!user) return
+
     console.log("🔥 Loading top players...")
     setTopPlayersLoading(true)
-    setDebugInfo("Loading top players...")
 
     try {
-      // First try to get all users to see what's available
-      const { data: allUsers, error: allUsersError } = await supabase
-        .from("user_profiles")
-        .select("id, username, full_name")
-        .limit(20)
-
-      if (allUsersError) {
-        console.error("❌ Error loading all users:", allUsersError)
-        setDebugInfo(`Error loading all users: ${allUsersError.message}`)
-      } else {
-        console.log("✅ All users available:", allUsers)
-        setDebugInfo(`Found ${allUsers?.length || 0} total users`)
-      }
-
-      // Now try to get top players
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
+        .neq("id", user.id) // Exclude current user
         .order("total_score", { ascending: false })
         .limit(8)
 
       if (error) {
         console.error("❌ Error loading top players:", error)
-        setDebugInfo(`Error loading top players: ${error.message}`)
+        toast({
+          title: "Error",
+          description: "Failed to load top players",
+          variant: "destructive",
+        })
         return
       }
 
       console.log("✅ Top players loaded:", data)
       setTopPlayers(data || [])
-      setDebugInfo(`Loaded ${data?.length || 0} top players`)
     } catch (error: any) {
       console.error("❌ Error in loadTopPlayers:", error)
-      setDebugInfo(`Caught error: ${error.message}`)
+      toast({
+        title: "Error",
+        description: "Failed to load top players",
+        variant: "destructive",
+      })
     } finally {
       setTopPlayersLoading(false)
     }
   }
 
   const searchUsers = async (query: string) => {
-    console.log("🔍 Searching for users with query:", query)
-    setDebugInfo(`Searching for: ${query}`)
-
     if (!query || query.length < 2) {
-      console.log("🔍 Query too short, clearing results")
       setSearchResults([])
       return
     }
 
     setLoading(true)
     try {
-      console.log("🔍 Making database query...")
+      console.log("🔍 Searching for users with query:", query)
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
+        .neq("id", user?.id || "") // Exclude current user
         .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
         .limit(10)
 
       if (error) {
         console.error("❌ Error searching users:", error)
-        setDebugInfo(`Search error: ${error.message}`)
         toast({
           title: "Search Error",
           description: "Failed to search for users",
@@ -117,60 +104,58 @@ export default function ChallengeSenderV3() {
 
       console.log("✅ Search results:", data)
       setSearchResults(data || [])
-      setDebugInfo(`Found ${data?.length || 0} users matching "${query}"`)
     } catch (error: any) {
       console.error("❌ Error in searchUsers:", error)
-      setDebugInfo(`Caught error: ${error.message}`)
+      toast({
+        title: "Search Error",
+        description: "Failed to search for users",
+        variant: "destructive",
+      })
     } finally {
       setLoading(false)
     }
   }
 
   const handleSearchChange = (value: string) => {
-    console.log("🔍 Search input changed:", value)
     setSearchQuery(value)
     searchUsers(value)
   }
 
   const sendChallenge = async (challengedUser: User) => {
-    console.log("🎯 V3: Challenge button clicked for:", challengedUser.username)
-    console.log("🚀🚀🚀 V3 COMPONENT - DIRECT SUPABASE CHALLENGE CREATION STARTING!")
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "You must be signed in to send challenges",
+        variant: "destructive",
+      })
+      return
+    }
 
+    console.log("🎯 Sending challenge to:", challengedUser.username)
     setSendingChallenge(challengedUser.id)
 
     try {
-      // Get current user from session
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
-
-      if (!session?.user) {
-        throw new Error("No authenticated user found")
-      }
-
-      console.log("✅ V3: Got current user from session:", session.user.id)
-
       const challengeData = {
-        challenger_id: session.user.id,
+        challenger_id: user.id,
         challenged_id: challengedUser.id,
         category: selectedCategory,
         difficulty: selectedDifficulty,
         question_count: 10,
         time_limit: 300,
         status: "pending",
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours from now
+        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      console.log("✅ V3: Starting challenge creation:", challengeData)
+      console.log("✅ Creating challenge:", challengeData)
 
       const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
       if (error) {
-        console.error("❌ V3: Challenge creation failed:", error)
+        console.error("❌ Challenge creation failed:", error)
         throw error
       }
 
-      console.log("🎉 V3: Challenge created successfully:", data)
+      console.log("🎉 Challenge created successfully:", data)
 
       toast({
         title: "Challenge Sent! 🎯",
@@ -181,7 +166,7 @@ export default function ChallengeSenderV3() {
       setSearchQuery("")
       setSearchResults([])
     } catch (error: any) {
-      console.error("❌ V3: Error in sendChallenge:", error)
+      console.error("❌ Error in sendChallenge:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
@@ -223,14 +208,6 @@ export default function ChallengeSenderV3() {
     { value: "advanced", label: "Advanced" },
     { value: "mixed", label: "Mixed" },
   ]
-
-  // Debug section
-  const debugSection = (
-    <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded mt-2">
-      <p>Debug: User ID: {user?.id}</p>
-      <p>Debug Info: {debugInfo}</p>
-    </div>
-  )
 
   return (
     <div className="space-y-6">
@@ -324,32 +301,34 @@ export default function ChallengeSenderV3() {
             {searchResults.length > 0 && (
               <div className="space-y-2">
                 <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300">Search Results</h4>
-                {searchResults.map((user) => (
+                {searchResults.map((searchUser) => (
                   <div
-                    key={user.id}
+                    key={searchUser.id}
                     className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
                   >
                     <div className="flex items-center space-x-3">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage src={user.avatar_url || "/placeholder.svg"} />
-                        <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(user)}</AvatarFallback>
+                        <AvatarImage src={searchUser.avatar_url || "/placeholder.svg"} />
+                        <AvatarFallback className="bg-green-100 text-green-700">
+                          {getUserInitials(searchUser)}
+                        </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium dark:text-white">{user.full_name || user.username}</p>
-                        <p className="text-sm text-gray-500">@{user.username}</p>
-                        {user.best_percentage && (
+                        <p className="font-medium dark:text-white">{searchUser.full_name || searchUser.username}</p>
+                        <p className="text-sm text-gray-500">@{searchUser.username}</p>
+                        {searchUser.best_percentage && (
                           <Badge variant="secondary" className="text-xs">
-                            Best: {user.best_percentage}%
+                            Best: {searchUser.best_percentage}%
                           </Badge>
                         )}
                       </div>
                     </div>
                     <Button
-                      onClick={() => sendChallenge(user)}
-                      disabled={sendingChallenge === user.id}
+                      onClick={() => sendChallenge(searchUser)}
+                      disabled={sendingChallenge === searchUser.id}
                       className="bg-green-600 hover:bg-green-700"
                     >
-                      {sendingChallenge === user.id ? (
+                      {sendingChallenge === searchUser.id ? (
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
                       ) : (
                         <>
@@ -366,8 +345,6 @@ export default function ChallengeSenderV3() {
             {searchQuery && searchQuery.length >= 2 && searchResults.length === 0 && !loading && (
               <div className="text-center py-4 text-gray-500">No users found matching "{searchQuery}"</div>
             )}
-
-            {debugSection}
           </div>
         </CardContent>
       </Card>
@@ -398,23 +375,25 @@ export default function ChallengeSenderV3() {
             </div>
           ) : topPlayers.length === 0 ? (
             <div className="text-center py-4 text-gray-500">
-              <p>No top players found</p>
+              <p>No other players found</p>
               <Button onClick={loadTopPlayers} variant="outline" className="mt-2">
                 Refresh
               </Button>
             </div>
           ) : (
             <div className="grid gap-3">
-              {topPlayers.map((user, index) => (
+              {topPlayers.map((player, index) => (
                 <div
-                  key={user.id}
+                  key={player.id}
                   className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
                 >
                   <div className="flex items-center space-x-3">
                     <div className="relative">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage src={user.avatar_url || "/placeholder.svg"} />
-                        <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(user)}</AvatarFallback>
+                        <AvatarImage src={player.avatar_url || "/placeholder.svg"} />
+                        <AvatarFallback className="bg-green-100 text-green-700">
+                          {getUserInitials(player)}
+                        </AvatarFallback>
                       </Avatar>
                       {index < 3 && (
                         <div className="absolute -top-1 -right-1 h-5 w-5 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-white">
@@ -423,24 +402,24 @@ export default function ChallengeSenderV3() {
                       )}
                     </div>
                     <div>
-                      <p className="font-medium dark:text-white">{user.full_name || user.username}</p>
+                      <p className="font-medium dark:text-white">{player.full_name || player.username}</p>
                       <div className="flex items-center gap-2">
                         <Badge variant="secondary" className="text-xs">
-                          {user.best_percentage || 0}%
+                          {player.best_percentage || 0}%
                         </Badge>
                         <Badge variant="outline" className="text-xs">
-                          {user.total_score || 0} pts
+                          {player.total_score || 0} pts
                         </Badge>
                       </div>
                     </div>
                   </div>
                   <Button
-                    onClick={() => sendChallenge(user)}
-                    disabled={sendingChallenge === user.id}
+                    onClick={() => sendChallenge(player)}
+                    disabled={sendingChallenge === player.id}
                     size="sm"
                     className="bg-green-600 hover:bg-green-700"
                   >
-                    {sendingChallenge === user.id ? (
+                    {sendingChallenge === player.id ? (
                       <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
                     ) : (
                       <>
@@ -453,8 +432,6 @@ export default function ChallengeSenderV3() {
               ))}
             </div>
           )}
-
-          {debugSection}
         </CardContent>
       </Card>
     </div>
