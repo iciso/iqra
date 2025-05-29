@@ -52,10 +52,17 @@ export default function ProfileChallengeNotifications() {
     setLoading(true)
     setError(null)
 
+    // Set a timeout to prevent hanging
+    const timeout = setTimeout(() => {
+      addDebug("Query timeout after 10 seconds")
+      setLoading(false)
+      setError("Query timed out after 10 seconds. Please try again.")
+    }, 10000)
+
     try {
       addDebug(`Querying challenges for user: ${user.id}`)
 
-      // Use a more direct approach with explicit RLS bypass
+      // Use the exact same approach as the working test
       const { data: session } = await supabase.auth.getSession()
       addDebug(`Session check: ${!!session.session}`)
 
@@ -63,30 +70,17 @@ export default function ProfileChallengeNotifications() {
         throw new Error("No active session")
       }
 
-      // Try a very simple query first to test connectivity
-      addDebug("Testing basic connectivity...")
-      const testResult = await supabase.from("user_challenges").select("count", { count: "exact", head: true })
-      addDebug(`Basic connectivity test: ${JSON.stringify({ error: testResult.error, count: testResult.count })}`)
-
-      if (testResult.error) {
-        throw new Error(`Connectivity test failed: ${testResult.error.message}`)
-      }
-
-      // Now try the actual query with a very simple structure
-      addDebug("Executing main query...")
+      // First, get the raw challenges data - using the exact query that worked in the test
       const challengesResult = await supabase
         .from("user_challenges")
         .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
         .eq("challenged_id", user.id)
         .eq("status", "pending")
 
+      clearTimeout(timeout) // Clear the timeout since the query completed
+
       addDebug(
-        `Main query result: ${JSON.stringify({
-          error: challengesResult.error,
-          count: challengesResult.data?.length,
-          errorCode: challengesResult.error?.code,
-          errorMessage: challengesResult.error?.message,
-        })}`,
+        `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
       )
 
       if (challengesResult.error) {
@@ -146,6 +140,7 @@ export default function ProfileChallengeNotifications() {
       addDebug(`Successfully processed ${challengesWithProfiles.length} challenges`)
       setChallenges(challengesWithProfiles)
     } catch (error: any) {
+      clearTimeout(timeout) // Clear the timeout if there's an error
       addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {

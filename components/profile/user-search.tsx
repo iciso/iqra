@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -32,6 +32,7 @@ export default function UserSearch({
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string[]>([])
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const addDebug = (message: string) => {
     console.log("🔍 DEBUG:", message)
@@ -39,11 +40,26 @@ export default function UserSearch({
   }
 
   useEffect(() => {
+    // Clear previous timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
     if (query.length >= 2) {
-      searchUsers(query)
+      // Set a new timeout for the search
+      timeoutRef.current = setTimeout(() => {
+        searchUsers(query)
+      }, 300)
     } else {
       setResults([])
       setError(null)
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
     }
   }, [query])
 
@@ -57,12 +73,23 @@ export default function UserSearch({
     setLoading(true)
     setError(null)
 
+    // Set a timeout to prevent hanging
+    const timeout = setTimeout(() => {
+      addDebug("⚠️ Search timeout after 10 seconds")
+      setLoading(false)
+      setError("Search timed out after 10 seconds. Please try again.")
+    }, 10000)
+
     try {
       addDebug("Checking session...")
 
-      // Use the exact same approach as the working database test
+      // Use the exact same approach as the working test
       const { data: session } = await supabase.auth.getSession()
       addDebug(`Session check: ${!!session.session}`)
+
+      if (!session.session) {
+        throw new Error("No active session")
+      }
 
       addDebug("Executing search query...")
 
@@ -71,6 +98,8 @@ export default function UserSearch({
         .select("id, username, full_name, avatar_url")
         .or(`username.ilike.%${searchQuery}%,full_name.ilike.%${searchQuery}%`)
         .limit(10)
+
+      clearTimeout(timeout) // Clear the timeout since the query completed
 
       addDebug(`Search result: ${JSON.stringify({ error: result.error, count: result.data?.length })}`)
 
@@ -87,6 +116,7 @@ export default function UserSearch({
       addDebug(`Filtered to ${filteredResults.length} users`)
       setResults(filteredResults)
     } catch (error: any) {
+      clearTimeout(timeout) // Clear the timeout if there's an error
       addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {

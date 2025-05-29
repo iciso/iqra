@@ -40,12 +40,23 @@ export default function TopPlayers() {
     setLoading(true)
     setError(null)
 
+    // Set a timeout to prevent hanging
+    const timeout = setTimeout(() => {
+      addDebug("⚠️ Query timeout after 10 seconds")
+      setLoading(false)
+      setError("Query timed out after 10 seconds. Please try again.")
+    }, 10000)
+
     try {
       addDebug("Checking session...")
 
-      // Use the exact same approach as the working database test
+      // Use the exact same approach as the working test
       const { data: session } = await supabase.auth.getSession()
       addDebug(`Session check: ${!!session.session}`)
+
+      if (!session.session) {
+        throw new Error("No active session")
+      }
 
       addDebug("Querying top players...")
 
@@ -54,6 +65,8 @@ export default function TopPlayers() {
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .order("total_score", { ascending: false })
         .limit(10)
+
+      clearTimeout(timeout) // Clear the timeout since the query completed
 
       addDebug(`Query result: ${JSON.stringify({ error: result.error, count: result.data?.length })}`)
 
@@ -70,6 +83,7 @@ export default function TopPlayers() {
       addDebug(`Filtered to ${filteredPlayers.length} players`)
       setPlayers(filteredPlayers)
     } catch (error: any) {
+      clearTimeout(timeout) // Clear the timeout if there's an error
       addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {
