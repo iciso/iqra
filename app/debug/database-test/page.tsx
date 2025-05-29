@@ -7,107 +7,193 @@ import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function DatabaseTestPage() {
-  const { user } = useAuth()
+  const { user, profile, loading: authLoading } = useAuth()
   const [results, setResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+  const [currentTest, setCurrentTest] = useState<string | null>(null)
+
+  const addResult = (testName: string, status: "success" | "error", data: any, duration: number) => {
+    setResults((prev) => [
+      ...prev,
+      {
+        test: testName,
+        status,
+        result: status === "success" ? data : null,
+        error: status === "error" ? data : null,
+        duration,
+        timestamp: new Date().toISOString(),
+      },
+    ])
+  }
 
   const runTest = async (testName: string, testFunction: () => Promise<any>) => {
     setLoading(true)
+    setCurrentTest(testName)
     const startTime = Date.now()
 
     try {
-      const result = await testFunction()
+      console.log(`🧪 Starting test: ${testName}`)
+
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Test timeout after 10 seconds")), 10000)
+      })
+
+      const result = await Promise.race([testFunction(), timeoutPromise])
       const endTime = Date.now()
 
-      setResults((prev) => [
-        ...prev,
-        {
-          test: testName,
-          status: "success",
-          result,
-          duration: endTime - startTime,
-          timestamp: new Date().toISOString(),
-        },
-      ])
+      console.log(`✅ Test ${testName} completed:`, result)
+      addResult(testName, "success", result, endTime - startTime)
     } catch (error: any) {
       const endTime = Date.now()
-
-      setResults((prev) => [
-        ...prev,
-        {
-          test: testName,
-          status: "error",
-          error: error.message,
-          duration: endTime - startTime,
-          timestamp: new Date().toISOString(),
-        },
-      ])
+      console.error(`❌ Test ${testName} failed:`, error)
+      addResult(testName, "error", error.message || String(error), endTime - startTime)
     } finally {
       setLoading(false)
+      setCurrentTest(null)
     }
   }
 
   const testDatabaseConnection = async () => {
     await runTest("Database Connection", async () => {
+      console.log("🔌 Testing database connection...")
       const { data, error } = await supabase.from("user_profiles").select("count").limit(1)
-      if (error) throw error
-      return `Connection successful`
+
+      if (error) {
+        console.error("Database connection error:", error)
+        throw new Error(`Database error: ${error.message}`)
+      }
+
+      return "Database connection successful"
     })
   }
 
   const testUserProfiles = async () => {
     await runTest("User Profiles Query", async () => {
+      console.log("👥 Testing user profiles query...")
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, total_score, best_percentage")
         .limit(10)
 
-      if (error) throw error
-      return `Found ${data?.length || 0} user profiles`
+      if (error) {
+        console.error("User profiles query error:", error)
+        throw new Error(`Query error: ${error.message}`)
+      }
+
+      return {
+        message: `Found ${data?.length || 0} user profiles`,
+        profiles: data?.map((p) => ({ id: p.id, username: p.username, score: p.total_score })) || [],
+      }
     })
   }
 
   const testCurrentUser = async () => {
     await runTest("Current User Profile", async () => {
-      if (!user) throw new Error("No authenticated user")
+      console.log("👤 Testing current user profile...")
 
-      const { data, error } = await supabase.from("user_profiles").select("*").eq("id", user.id).single()
+      // First check auth state
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession()
 
-      if (error) throw error
-      return data
+      if (sessionError) {
+        throw new Error(`Session error: ${sessionError.message}`)
+      }
+
+      if (!session?.user) {
+        throw new Error("No authenticated session found")
+      }
+
+      console.log("Session user:", session.user.id)
+
+      // Then check profile
+      const { data, error } = await supabase.from("user_profiles").select("*").eq("id", session.user.id).single()
+
+      if (error) {
+        console.error("Current user profile error:", error)
+        throw new Error(`Profile query error: ${error.message}`)
+      }
+
+      return {
+        session_user_id: session.user.id,
+        profile_exists: !!data,
+        profile: data,
+      }
     })
   }
 
   const testChallenges = async () => {
     await runTest("User Challenges Query", async () => {
-      if (!user) throw new Error("No authenticated user")
+      console.log("🏆 Testing challenges query...")
+
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      if (!session?.user) {
+        throw new Error("No authenticated user for challenges test")
+      }
 
       const { data, error } = await supabase
         .from("user_challenges")
         .select("*")
-        .eq("challenged_id", user.id)
+        .eq("challenged_id", session.user.id)
         .eq("status", "pending")
 
-      if (error) throw error
-      return `Found ${data?.length || 0} pending challenges`
+      if (error) {
+        console.error("Challenges query error:", error)
+        throw new Error(`Challenges query error: ${error.message}`)
+      }
+
+      return {
+        message: `Found ${data?.length || 0} pending challenges`,
+        challenges: data || [],
+      }
     })
   }
 
   const testSearch = async () => {
     await runTest("User Search", async () => {
+      console.log("🔍 Testing user search...")
+
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name")
         .or("username.ilike.%test%,full_name.ilike.%test%")
         .limit(5)
 
-      if (error) throw error
-      return `Search returned ${data?.length || 0} results`
+      if (error) {
+        console.error("Search query error:", error)
+        throw new Error(`Search error: ${error.message}`)
+      }
+
+      return {
+        message: `Search returned ${data?.length || 0} results`,
+        results: data || [],
+      }
+    })
+  }
+
+  const testSupabaseConfig = async () => {
+    await runTest("Supabase Configuration", async () => {
+      console.log("⚙️ Testing Supabase configuration...")
+
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+      return {
+        url_configured: !!supabaseUrl,
+        key_configured: !!supabaseKey,
+        url_preview: supabaseUrl ? `${supabaseUrl.substring(0, 20)}...` : "Not set",
+        client_initialized: !!supabase,
+      }
     })
   }
 
   const runAllTests = async () => {
     setResults([])
+    await testSupabaseConfig()
     await testDatabaseConnection()
     await testUserProfiles()
     await testCurrentUser()
@@ -115,14 +201,24 @@ export default function DatabaseTestPage() {
     await testSearch()
   }
 
+  const clearResults = () => {
+    setResults([])
+  }
+
   return (
     <div className="container mx-auto py-8 px-4 max-w-4xl">
       <Card>
         <CardHeader>
           <CardTitle>Database Connectivity Test</CardTitle>
+          <p className="text-sm text-gray-600">
+            This page helps diagnose database connectivity and authentication issues.
+          </p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex gap-2 flex-wrap">
+            <Button onClick={testSupabaseConfig} disabled={loading}>
+              Test Config
+            </Button>
             <Button onClick={testDatabaseConnection} disabled={loading}>
               Test Connection
             </Button>
@@ -141,16 +237,33 @@ export default function DatabaseTestPage() {
             <Button onClick={runAllTests} disabled={loading} variant="outline">
               Run All Tests
             </Button>
+            <Button onClick={clearResults} disabled={loading} variant="secondary">
+              Clear Results
+            </Button>
           </div>
 
+          {loading && (
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded">
+              <p className="text-blue-800">
+                Running test: <strong>{currentTest}</strong>
+              </p>
+              <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
+                <div className="bg-blue-600 h-2 rounded-full animate-pulse w-1/3"></div>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-2">
-            <h3 className="font-semibold">Current User Info:</h3>
+            <h3 className="font-semibold">Authentication State:</h3>
             <pre className="bg-gray-100 p-2 rounded text-sm">
               {JSON.stringify(
                 {
-                  id: user?.id,
-                  email: user?.email,
-                  authenticated: !!user,
+                  auth_loading: authLoading,
+                  user_exists: !!user,
+                  user_id: user?.id,
+                  user_email: user?.email,
+                  profile_exists: !!profile,
+                  profile_username: profile?.username,
                 },
                 null,
                 2,
@@ -159,7 +272,7 @@ export default function DatabaseTestPage() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-semibold">Test Results:</h3>
+            <h3 className="font-semibold">Test Results ({results.length}):</h3>
             {results.length === 0 && <p className="text-gray-500">No tests run yet</p>}
             {results.map((result, index) => (
               <div
@@ -178,7 +291,7 @@ export default function DatabaseTestPage() {
                     {result.status} ({result.duration}ms)
                   </span>
                 </div>
-                <pre className="text-xs mt-2 overflow-auto">
+                <pre className="text-xs mt-2 overflow-auto max-h-40">
                   {result.status === "success" ? JSON.stringify(result.result, null, 2) : result.error}
                 </pre>
               </div>
