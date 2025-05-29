@@ -64,7 +64,11 @@ export function UserMenu() {
           <span>Settings</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut} disabled={loading}>
+        <DropdownMenuItem
+          onClick={handleSignOut}
+          disabled={loading}
+          className="text-red-600 focus:text-red-600 focus:bg-red-50"
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>{loading ? "Signing out..." : "Sign out"}</span>
         </DropdownMenuItem>
