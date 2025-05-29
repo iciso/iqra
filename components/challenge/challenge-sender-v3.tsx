@@ -6,10 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Gamepad2, Users, Search, Trophy, Zap } from "lucide-react"
+import { Gamepad2, Users, Search, Trophy, Zap, RefreshCw } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
+import { useAuth } from "@/contexts/auth-context"
 
 interface User {
   id: string
@@ -21,43 +22,72 @@ interface User {
 }
 
 export default function ChallengeSenderV3() {
+  const { user } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<User[]>([])
   const [topPlayers, setTopPlayers] = useState<User[]>([])
   const [selectedCategory, setSelectedCategory] = useState("quran")
   const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
   const [loading, setLoading] = useState(false)
+  const [topPlayersLoading, setTopPlayersLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState("")
 
   console.log("🆕🆕🆕 CHALLENGE SENDER V3 COMPONENT LOADED - DEBUGGING VERSION!")
 
   useEffect(() => {
-    loadTopPlayers()
-  }, [])
+    if (user) {
+      loadTopPlayers()
+    }
+  }, [user])
 
   const loadTopPlayers = async () => {
     console.log("🔥 Loading top players...")
+    setTopPlayersLoading(true)
+    setDebugInfo("Loading top players...")
+
     try {
+      // First try to get all users to see what's available
+      const { data: allUsers, error: allUsersError } = await supabase
+        .from("user_profiles")
+        .select("id, username, full_name")
+        .limit(20)
+
+      if (allUsersError) {
+        console.error("❌ Error loading all users:", allUsersError)
+        setDebugInfo(`Error loading all users: ${allUsersError.message}`)
+      } else {
+        console.log("✅ All users available:", allUsers)
+        setDebugInfo(`Found ${allUsers?.length || 0} total users`)
+      }
+
+      // Now try to get top players
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .order("best_percentage", { ascending: false })
+        .order("total_score", { ascending: false })
         .limit(8)
 
       if (error) {
         console.error("❌ Error loading top players:", error)
+        setDebugInfo(`Error loading top players: ${error.message}`)
         return
       }
 
       console.log("✅ Top players loaded:", data)
       setTopPlayers(data || [])
-    } catch (error) {
+      setDebugInfo(`Loaded ${data?.length || 0} top players`)
+    } catch (error: any) {
       console.error("❌ Error in loadTopPlayers:", error)
+      setDebugInfo(`Caught error: ${error.message}`)
+    } finally {
+      setTopPlayersLoading(false)
     }
   }
 
   const searchUsers = async (query: string) => {
     console.log("🔍 Searching for users with query:", query)
+    setDebugInfo(`Searching for: ${query}`)
 
     if (!query || query.length < 2) {
       console.log("🔍 Query too short, clearing results")
@@ -76,6 +106,7 @@ export default function ChallengeSenderV3() {
 
       if (error) {
         console.error("❌ Error searching users:", error)
+        setDebugInfo(`Search error: ${error.message}`)
         toast({
           title: "Search Error",
           description: "Failed to search for users",
@@ -86,8 +117,10 @@ export default function ChallengeSenderV3() {
 
       console.log("✅ Search results:", data)
       setSearchResults(data || [])
-    } catch (error) {
+      setDebugInfo(`Found ${data?.length || 0} users matching "${query}"`)
+    } catch (error: any) {
       console.error("❌ Error in searchUsers:", error)
+      setDebugInfo(`Caught error: ${error.message}`)
     } finally {
       setLoading(false)
     }
@@ -190,6 +223,14 @@ export default function ChallengeSenderV3() {
     { value: "advanced", label: "Advanced" },
     { value: "mixed", label: "Mixed" },
   ]
+
+  // Debug section
+  const debugSection = (
+    <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded mt-2">
+      <p>Debug: User ID: {user?.id}</p>
+      <p>Debug Info: {debugInfo}</p>
+    </div>
+  )
 
   return (
     <div className="space-y-6">
@@ -325,6 +366,8 @@ export default function ChallengeSenderV3() {
             {searchQuery && searchQuery.length >= 2 && searchResults.length === 0 && !loading && (
               <div className="text-center py-4 text-gray-500">No users found matching "{searchQuery}"</div>
             )}
+
+            {debugSection}
           </div>
         </CardContent>
       </Card>
@@ -332,13 +375,28 @@ export default function ChallengeSenderV3() {
       {/* Top Players */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
-            Top Players ({topPlayers.length})
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              Top Players ({topPlayers.length})
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={loadTopPlayers}
+              disabled={topPlayersLoading}
+              className="h-8 w-8 p-0"
+            >
+              <RefreshCw className={`h-4 w-4 ${topPlayersLoading ? "animate-spin" : ""}`} />
+            </Button>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {topPlayers.length === 0 ? (
+          {topPlayersLoading ? (
+            <div className="flex justify-center py-8">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
+            </div>
+          ) : topPlayers.length === 0 ? (
             <div className="text-center py-4 text-gray-500">
               <p>No top players found</p>
               <Button onClick={loadTopPlayers} variant="outline" className="mt-2">
@@ -395,6 +453,8 @@ export default function ChallengeSenderV3() {
               ))}
             </div>
           )}
+
+          {debugSection}
         </CardContent>
       </Card>
     </div>

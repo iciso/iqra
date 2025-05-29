@@ -7,8 +7,6 @@ import ChallengeSenderV3 from "@/components/challenge/challenge-sender-v3"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import { BookOpen, BookText } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { IqraLogo } from "@/components/iqra-logo"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function ChallengesPage() {
@@ -76,11 +74,8 @@ export default function ChallengesPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
         <div className="text-center">
-          <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
+          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700 animate-spin rounded-full border-4 border-green-200 border-t-green-700"></div>
           <p className="text-green-700 text-sm sm:text-base">Loading Challenges...</p>
-          <div className="mt-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto"></div>
-          </div>
         </div>
       </div>
     )
@@ -93,22 +88,13 @@ export default function ChallengesPage() {
 
   return (
     <div className="container mx-auto py-12 px-4 max-w-6xl">
-      {/* Add Back to Home link with logo */}
-      <div className="absolute top-4 left-4">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
-        >
-          <IqraLogo size="sm" isLink={false} />
-          <span className="font-medium">Back to Home</span>
-        </Link>
-      </div>
-
       {/* User Welcome */}
       <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold text-green-800 mb-2">IQRA Challenge Mode</h1>
-        <p className="text-gray-600 mb-2">Welcome back, {user.email || user.user_metadata?.full_name || "believer"}!</p>
-        <p className="text-gray-600">
+        <h1 className="text-3xl font-bold text-green-800 mb-2 dark:text-green-400">IQRA Challenge Mode</h1>
+        <p className="text-gray-600 mb-2 dark:text-gray-400">
+          Welcome back, {user.email || user.user_metadata?.full_name || "believer"}!
+        </p>
+        <p className="text-gray-600 dark:text-gray-400">
           Test your Islamic knowledge against time and compete with others on our leaderboards
         </p>
       </div>
@@ -120,10 +106,7 @@ export default function ChallengesPage() {
 
       {/* Challenge Sender */}
       <div className="mb-8">
-        <ChallengeSenderV3
-          onChallengerSelect={handleRealUserSelect}
-          currentChallenger={isRealUser ? selectedOpponent : null}
-        />
+        <ChallengeSenderV3 />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">

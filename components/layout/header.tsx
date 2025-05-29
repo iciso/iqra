@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/auth-context"
-import { IqraLogo } from "@/components/iqra-logo"
-import { LogOut } from "lucide-react"
+import { LogOut, Home } from "lucide-react"
 import { useState } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
@@ -23,12 +23,10 @@ export function Header() {
     <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <IqraLogo size="sm" showText={false} isLink={true} />
-            <Link href="/" className="text-2xl font-bold text-green-600 dark:text-green-400">
-              IQRA
-            </Link>
-          </div>
+          <Link href="/" className="flex items-center space-x-2">
+            <Home className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
+          </Link>
 
           <nav className="flex items-center space-x-4">
             {user && (
@@ -48,7 +46,7 @@ export function Header() {
                 {/* Direct sign out button */}
                 <Button
                   variant="outline"
-                  className="flex items-center space-x-1 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700"
+                  className="flex items-center space-x-1 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
                   onClick={handleSignOut}
                   disabled={signOutLoading}
                 >
@@ -59,6 +57,8 @@ export function Header() {
             )}
 
             {!user && <Button onClick={() => signInWithProvider("google")}>Sign In</Button>}
+
+            <ThemeToggle />
           </nav>
         </div>
       </div>
