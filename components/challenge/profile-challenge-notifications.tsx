@@ -67,54 +67,92 @@ export default function ProfileChallengeNotifications() {
     setLoading(true)
     setError(null)
 
+    // Create a timeout to prevent hanging
+    const timeout = setTimeout(() => {
+      addDebug("⚠️ Query timeout after 10 seconds")
+      setLoading(false)
+      setError("Query timeout after 10 seconds. Please try again.")
+    }, 10000)
+
     try {
       addDebug(`Querying challenges for user: ${user.id}`)
 
-      // Simple query first
-      const { data, error, count } = await supabase
+      // Use a simpler query with a timeout
+      const { data, error } = await supabase
         .from("user_challenges")
-        .select("*", { count: "exact" })
+        .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at")
         .eq("challenged_id", user.id)
         .eq("status", "pending")
+        .gt("expires_at", new Date().toISOString())
+        .limit(10)
 
-      addDebug(`Query completed - error: ${!!error}, count: ${count}, data length: ${data?.length || 0}`)
+      // Clear the timeout since the query completed
+      clearTimeout(timeout)
+
+      addDebug(`Query completed - error: ${!!error}, data: ${data ? data.length : "null"}`)
 
       if (error) {
         addDebug(`Database error: ${error.message}`)
         setError(error.message)
+        setLoading(false)
         return
       }
 
       if (!data || data.length === 0) {
         addDebug("No challenges found")
         setChallenges([])
+        setLoading(false)
         return
       }
 
       addDebug(`Found ${data.length} challenges, now getting challenger info...`)
 
-      // Get challenger info separately
-      const challengesWithChallengers = await Promise.all(
-        data.map(async (challenge) => {
-          const { data: challenger } = await supabase
+      // Use a simpler approach to get challenger info
+      const challengesWithChallengers = []
+
+      for (const challenge of data) {
+        try {
+          const { data: challenger, error: challengerError } = await supabase
             .from("user_profiles")
             .select("username, full_name, avatar_url")
             .eq("id", challenge.challenger_id)
             .single()
 
-          return {
-            ...challenge,
-            challenger: challenger || { username: "Unknown", full_name: "Unknown User" },
+          if (challengerError) {
+            addDebug(`Error getting challenger ${challenge.challenger_id}: ${challengerError.message}`)
+            // Continue with default values
+            challengesWithChallengers.push({
+              ...challenge,
+              challenger: { username: "Unknown", full_name: "Unknown User" },
+            })
+          } else {
+            challengesWithChallengers.push({
+              ...challenge,
+              challenger: challenger || { username: "Unknown", full_name: "Unknown User" },
+            })
           }
-        }),
-      )
+        } catch (e) {
+          addDebug(`Exception getting challenger ${challenge.challenger_id}: ${e}`)
+          // Continue with default values
+          challengesWithChallengers.push({
+            ...challenge,
+            challenger: { username: "Unknown", full_name: "Unknown User" },
+          })
+        }
+      }
 
       addDebug(`Successfully loaded ${challengesWithChallengers.length} challenges with challenger info`)
       setChallenges(challengesWithChallengers)
     } catch (error: any) {
+      // Clear the timeout since we caught an error
+      clearTimeout(timeout)
+
       addDebug(`Caught error: ${error.message}`)
       setError(error.message)
     } finally {
+      // Clear the timeout in case it hasn't fired yet
+      clearTimeout(timeout)
+
       addDebug("loadChallenges completed, setting loading to false")
       setLoading(false)
     }
