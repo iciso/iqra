@@ -88,26 +88,48 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     console.log("AuthProvider: Initializing...")
+    let mounted = true
 
     // Get initial session
     const getInitialSession = async () => {
       try {
+        console.log("Getting initial session...")
         const {
           data: { session },
           error,
         } = await supabase.auth.getSession()
-        console.log("Initial session:", { session: !!session, error })
+
+        console.log("Initial session result:", {
+          hasSession: !!session,
+          userId: session?.user?.id,
+          error: error?.message,
+        })
+
+        if (!mounted) return
 
         if (session?.user) {
+          console.log("Setting user from session:", session.user.id)
           setUser(session.user)
           const profileData = await fetchProfile(session.user.id)
-          setProfile(profileData)
+          if (mounted) {
+            setProfile(profileData)
+          }
+        } else {
+          console.log("No session found")
+          setUser(null)
+          setProfile(null)
         }
       } catch (error) {
         console.error("Error getting initial session:", error)
+        if (mounted) {
+          setUser(null)
+          setProfile(null)
+        }
       } finally {
-        setLoading(false)
-        setAuthInitialized(true)
+        if (mounted) {
+          setLoading(false)
+          setAuthInitialized(true)
+        }
       }
     }
 
@@ -117,21 +139,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("Auth state changed:", { event, session: !!session })
+      console.log("Auth state changed:", {
+        event,
+        hasSession: !!session,
+        userId: session?.user?.id,
+      })
+
+      if (!mounted) return
 
       if (session?.user) {
         setUser(session.user)
         const profileData = await fetchProfile(session.user.id)
-        setProfile(profileData)
+        if (mounted) {
+          setProfile(profileData)
+        }
       } else {
         setUser(null)
         setProfile(null)
       }
 
-      setLoading(false)
+      if (mounted) {
+        setLoading(false)
+      }
     })
 
     return () => {
+      mounted = false
       subscription.unsubscribe()
     }
   }, [])
