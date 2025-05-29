@@ -30,12 +30,6 @@ export default function WorkingChallengeSender() {
   const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
   const [loading, setLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
-  const [debugInfo, setDebugInfo] = useState<string[]>([])
-
-  const addDebug = (message: string) => {
-    console.log("🎯 WORKING SENDER DEBUG:", message)
-    setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
-  }
 
   useEffect(() => {
     if (user) {
@@ -46,7 +40,7 @@ export default function WorkingChallengeSender() {
   const loadAllUsers = async () => {
     if (!user) return
 
-    addDebug("Loading all users...")
+    console.log("🎯 Loading all users...")
     setLoading(true)
 
     try {
@@ -59,14 +53,14 @@ export default function WorkingChallengeSender() {
         .limit(20)
 
       if (error) {
-        addDebug(`Error: ${error.message}`)
+        console.error("🎯 Error loading users:", error.message)
         throw error
       }
 
-      addDebug(`Loaded ${data?.length || 0} users`)
+      console.log(`🎯 Loaded ${data?.length || 0} users`)
       setAllUsers(data || [])
     } catch (error: any) {
-      addDebug(`Failed to load users: ${error.message}`)
+      console.error("🎯 Failed to load users:", error.message)
       toast({
         title: "Error",
         description: "Failed to load users",
@@ -85,7 +79,7 @@ export default function WorkingChallengeSender() {
       return
     }
 
-    addDebug(`Searching for: "${query}"`)
+    console.log(`🎯 Searching for: "${query}"`)
 
     // Filter from already loaded users
     const filtered = allUsers.filter(
@@ -94,7 +88,7 @@ export default function WorkingChallengeSender() {
         (user.full_name && user.full_name.toLowerCase().includes(query.toLowerCase())),
     )
 
-    addDebug(`Found ${filtered.length} matches`)
+    console.log(`🎯 Found ${filtered.length} matches`)
     setSearchResults(filtered)
   }
 
@@ -108,7 +102,7 @@ export default function WorkingChallengeSender() {
       return
     }
 
-    addDebug(`Sending challenge to: ${challengedUser.username}`)
+    console.log(`🎯 Sending challenge to: ${challengedUser.username}`)
     setSendingChallenge(challengedUser.id)
 
     try {
@@ -123,16 +117,16 @@ export default function WorkingChallengeSender() {
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      addDebug(`Creating challenge: ${JSON.stringify(challengeData)}`)
+      console.log(`🎯 Creating challenge:`, challengeData)
 
       const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
       if (error) {
-        addDebug(`Challenge creation failed: ${error.message}`)
+        console.error(`🎯 Challenge creation failed:`, error.message)
         throw error
       }
 
-      addDebug(`Challenge created: ${data.id}`)
+      console.log(`🎯 Challenge created: ${data.id}`)
 
       toast({
         title: "Challenge Sent! 🎯",
@@ -142,7 +136,7 @@ export default function WorkingChallengeSender() {
       setSearchQuery("")
       setSearchResults([])
     } catch (error: any) {
-      addDebug(`Challenge error: ${error.message}`)
+      console.error(`🎯 Challenge error:`, error.message)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
@@ -210,29 +204,6 @@ export default function WorkingChallengeSender() {
 
   return (
     <div className="space-y-6">
-      {/* Debug Info */}
-      <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
-        <CardHeader>
-          <CardTitle className="text-sm text-blue-800 dark:text-blue-200">Working Challenge Sender - Debug</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-xs text-blue-600 dark:text-blue-300 space-y-1">
-            <p>User ID: {user.id}</p>
-            <p>All Users Loaded: {allUsers.length}</p>
-            <p>Search Results: {searchResults.length}</p>
-            <p>Loading: {loading.toString()}</p>
-            <div className="mt-2">
-              <p className="font-medium">Debug Log:</p>
-              {debugInfo.map((info, index) => (
-                <p key={index} className="text-xs">
-                  {info}
-                </p>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Challenge Settings */}
       <Card>
         <CardHeader>
