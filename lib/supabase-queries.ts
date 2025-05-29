@@ -116,17 +116,90 @@ export async function sendFriendRequest(addresseeId: string) {
   return data
 }
 
-export async function acceptFriendRequest(requestId: string) {
-  const { data, error } = await supabase.rpc("accept_friend_request", {
-    request_id: requestId,
-  })
+// Update the acceptChallenge function to include additional logging
+export async function acceptChallenge(challengeId: string) {
+  console.log(`🏆 Accepting challenge: ${challengeId}`)
 
-  if (error) {
-    console.error("Error accepting friend request:", error)
-    throw error
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session?.user) {
+    console.error("❌ No authenticated user found")
+    throw new Error("No authenticated user")
   }
 
-  return data
+  console.log(`👤 User ID: ${session.user.id}`)
+
+  try {
+    // First get the challenge details to check the category
+    const { data: challenge, error: fetchError } = await supabase
+      .from("user_challenges")
+      .select("category, difficulty")
+      .eq("id", challengeId)
+      .single()
+
+    if (fetchError) {
+      console.error("❌ Error fetching challenge:", fetchError)
+      throw fetchError
+    }
+
+    console.log(`📋 Challenge details: ${JSON.stringify(challenge)}`)
+
+    // Map category to ensure it matches available quiz categories
+    const mappedCategory = mapChallengeCategoryToQuiz(challenge.category)
+    console.log(`🗂️ Mapped category: ${mappedCategory} (from ${challenge.category})`)
+
+    // Now update the challenge with the correct category
+    const { data, error } = await supabase.rpc("accept_challenge", {
+      challenge_id: challengeId,
+      user_id: session.user.id,
+    })
+
+    if (error) {
+      console.error("❌ Error accepting challenge:", error)
+      throw error
+    }
+
+    console.log(`✅ Challenge accepted successfully: ${JSON.stringify(data)}`)
+    return {
+      ...data,
+      category: mappedCategory,
+      original_category: challenge.category,
+    }
+  } catch (error) {
+    console.error("❌ General error in acceptChallenge:", error)
+    throw error
+  }
+}
+
+// Helper function to map challenge categories to available quiz categories
+function mapChallengeCategoryToQuiz(category) {
+  // Lowercase and remove spaces for consistent matching
+  const normalizedCategory = category.toLowerCase().replace(/\s+/g, "")
+
+  // Map of normalized categories to actual quiz categories
+  const categoryMap = {
+    quranknowledge: "quran",
+    quran: "quran",
+    fiqh: "fiqh",
+    tafsir: "tafsir",
+    hadeeth: "hadeeth",
+    islamichistory: "history",
+    history: "history",
+    aqeedah: "aqeedah",
+    seerah: "seerah",
+    islamicfinance: "islamic-finance",
+    finance: "islamic-finance",
+    comparativereligion: "comparative",
+    comparative: "comparative",
+    dawah: "dawah",
+    newmuslims: "new-muslims",
+    tazkiyah: "tazkiyah",
+  }
+
+  // Return mapped category or default to 'quran' if not found
+  return categoryMap[normalizedCategory] || "quran"
 }
 
 export async function declineFriendRequest(requestId: string) {
@@ -242,27 +315,6 @@ export async function createChallenge(
     console.error("Error in createChallenge:", error)
     throw error
   }
-}
-
-export async function acceptChallenge(challengeId: string) {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-  if (!session?.user) {
-    throw new Error("No authenticated user")
-  }
-
-  const { data, error } = await supabase.rpc("accept_challenge", {
-    challenge_id: challengeId,
-    user_id: session.user.id,
-  })
-
-  if (error) {
-    console.error("Error accepting challenge:", error)
-    throw error
-  }
-
-  return data
 }
 
 export async function declineChallenge(challengeId: string) {
