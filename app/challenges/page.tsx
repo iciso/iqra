@@ -2,19 +2,17 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
 import { getRandomOpponent } from "@/utils/opponents"
-import OpponentProfile from "@/components/challenge/opponent-profile"
 import ChallengeSenderV3 from "@/components/challenge/challenge-sender-v3"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
-import { User, Users, BookOpen, BookText, Bot, Shuffle } from 'lucide-react'
+import { BookOpen, BookText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { IqraLogo } from "@/components/iqra-logo"
-import type { UserProfile } from "@/lib/supabase-queries"
+import { useAuth } from "@/contexts/auth-context"
 
 export default function ChallengesPage() {
-  const [user, setUser] = useState<any>(null)
+  const { user, loading: authLoading } = useAuth()
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
@@ -26,21 +24,6 @@ export default function ChallengesPage() {
   const [isRealUser, setIsRealUser] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("quran")
 
-  // Category mapping for better descriptions
-  const categoryDescriptions = {
-    quran: "Quran",
-    seerah: "Seerah (Prophet's Biography)",
-    fiqh: "Fiqh (Islamic Jurisprudence)",
-    hadeeth: "Hadeeth",
-    aqeedah: "Aqeedah (Islamic Creed)",
-    tafsir: "Tafsir (Quran Commentary)",
-    comparative: "Comparative Religion",
-    "islamic-finance": "Islamic Finance",
-    tazkiyah: "Tazkiyah (Spiritual Purification)",
-    history: "Islamic History & Civilization",
-    dawah: "Dawah (Islamic Outreach)",
-  }
-
   // Add a function to get a new random bot opponent
   const getNewBotOpponent = () => {
     const newOpponent = getRandomOpponent()
@@ -49,7 +32,7 @@ export default function ChallengesPage() {
   }
 
   // Handle real user selection
-  const handleRealUserSelect = (challenger: UserProfile) => {
+  const handleRealUserSelect = (challenger: any) => {
     console.log("🎯 CHALLENGES PAGE V3: Real user selected:", challenger.username)
     setSelectedOpponent({
       id: challenger.id,
@@ -69,30 +52,27 @@ export default function ChallengesPage() {
   }
 
   useEffect(() => {
-    console.log("🏠 CHALLENGES PAGE V3: Component loaded - using V3 component")
-    const checkAuth = async () => {
-      try {
-        const { data, error } = await supabase.auth.getSession()
-        if (data?.session?.user) {
-          setUser(data.session.user)
-        } else {
-          // Redirect to home if not authenticated
-          router.push("/")
-          return
-        }
-      } catch (err) {
-        console.error("Error checking auth:", err)
-        router.push("/")
-        return
-      } finally {
-        setLoading(false)
-      }
+    console.log("🏠 CHALLENGES PAGE: Auth state changed", { user: !!user, authLoading })
+
+    // Wait for auth to finish loading
+    if (authLoading) {
+      return
     }
 
-    checkAuth()
-  }, [router])
+    // If no user after auth loading is complete, redirect to home
+    if (!user) {
+      console.log("🏠 CHALLENGES PAGE: No user found, redirecting to home")
+      router.push("/")
+      return
+    }
 
-  if (loading) {
+    // User is authenticated, stop loading
+    console.log("🏠 CHALLENGES PAGE: User authenticated, stopping loading")
+    setLoading(false)
+  }, [user, authLoading, router])
+
+  // Show loading while auth is loading or while we're processing
+  if (authLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
         <div className="text-center">
@@ -106,8 +86,9 @@ export default function ChallengesPage() {
     )
   }
 
+  // If no user after loading is complete, don't render anything (will redirect)
   if (!user) {
-    return null // Will redirect to home
+    return null
   }
 
   return (
@@ -132,12 +113,12 @@ export default function ChallengesPage() {
         </p>
       </div>
 
-      {/* Pending Challenges Section - Show this instead of bot challenger */}
+      {/* Pending Challenges Section */}
       <div className="mb-8">
         <ProfileChallengeNotifications />
       </div>
 
-      {/* Challenge Sender - Always show this for finding and challenging users */}
+      {/* Challenge Sender */}
       <div className="mb-8">
         <ChallengeSenderV3
           onChallengerSelect={handleRealUserSelect}
