@@ -43,6 +43,7 @@ export default function UserSearch({
       searchUsers(query)
     } else {
       setResults([])
+      setError(null)
     }
   }, [query])
 
@@ -56,56 +57,40 @@ export default function UserSearch({
     setLoading(true)
     setError(null)
 
-    // Create a timeout to prevent hanging
-    const timeout = setTimeout(() => {
-      addDebug("⚠️ Search timeout after 10 seconds")
-      setLoading(false)
-      setError("Search timeout after 10 seconds. Please try again.")
-    }, 10000)
-
     try {
+      addDebug("Checking session...")
+
+      // Use the exact same approach as the working database test
+      const { data: session } = await supabase.auth.getSession()
+      addDebug(`Session check: ${!!session.session}`)
+
       addDebug("Executing search query...")
 
-      // Use a simpler query with a timeout
-      const { data, error } = await supabase
+      const result = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url")
         .or(`username.ilike.%${searchQuery}%,full_name.ilike.%${searchQuery}%`)
         .limit(10)
 
-      // Clear the timeout since the query completed
-      clearTimeout(timeout)
+      addDebug(`Search result: ${JSON.stringify({ error: result.error, count: result.data?.length })}`)
 
-      addDebug(`Search completed - error: ${!!error}, data: ${data ? data.length : "null"}`)
-
-      if (error) {
-        addDebug(`Database error: ${error.message}`)
-        setError(error.message)
-        return
+      if (result.error) {
+        throw result.error
       }
 
-      if (!data || data.length === 0) {
-        addDebug("No users found")
-        setResults([])
-        return
-      }
+      const data = result.data || []
+      addDebug(`Found ${data.length} users`)
 
       // Filter out current user
       const filteredResults = currentUser ? data.filter((user) => user.id !== currentUser.id) : data
 
-      addDebug(`Found ${filteredResults.length} users (filtered from ${data.length})`)
+      addDebug(`Filtered to ${filteredResults.length} users`)
       setResults(filteredResults)
     } catch (error: any) {
-      // Clear the timeout since we caught an error
-      clearTimeout(timeout)
-
-      addDebug(`Caught error: ${error.message}`)
+      addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {
-      // Clear the timeout in case it hasn't fired yet
-      clearTimeout(timeout)
-
-      addDebug("Search completed, setting loading to false")
+      addDebug("Search completed")
       setLoading(false)
     }
   }

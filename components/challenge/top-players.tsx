@@ -30,15 +30,9 @@ export default function TopPlayers() {
   }
 
   useEffect(() => {
-    addDebug(`useEffect triggered - authLoading: ${authLoading}, user: ${!!user}`)
-
-    if (authLoading) {
-      addDebug("Auth still loading, waiting...")
-      return
+    if (!authLoading) {
+      loadTopPlayers()
     }
-
-    addDebug("Auth loaded, loading top players...")
-    loadTopPlayers()
   }, [authLoading])
 
   const loadTopPlayers = async () => {
@@ -46,56 +40,40 @@ export default function TopPlayers() {
     setLoading(true)
     setError(null)
 
-    // Create a timeout to prevent hanging
-    const timeout = setTimeout(() => {
-      addDebug("⚠️ Query timeout after 10 seconds")
-      setLoading(false)
-      setError("Query timeout after 10 seconds. Please try again.")
-    }, 10000)
-
     try {
+      addDebug("Checking session...")
+
+      // Use the exact same approach as the working database test
+      const { data: session } = await supabase.auth.getSession()
+      addDebug(`Session check: ${!!session.session}`)
+
       addDebug("Querying top players...")
 
-      // Use a simpler query with a timeout
-      const { data, error } = await supabase
+      const result = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .order("total_score", { ascending: false })
         .limit(10)
 
-      // Clear the timeout since the query completed
-      clearTimeout(timeout)
+      addDebug(`Query result: ${JSON.stringify({ error: result.error, count: result.data?.length })}`)
 
-      addDebug(`Query completed - error: ${!!error}, data: ${data ? data.length : "null"}`)
-
-      if (error) {
-        addDebug(`Database error: ${error.message}`)
-        setError(error.message)
-        return
+      if (result.error) {
+        throw result.error
       }
 
-      if (!data || data.length === 0) {
-        addDebug("No players found")
-        setPlayers([])
-        return
-      }
+      const data = result.data || []
+      addDebug(`Found ${data.length} players`)
 
       // Filter out current user if needed
       const filteredPlayers = user ? data.filter((player) => player.id !== user.id) : data
 
-      addDebug(`Found ${filteredPlayers.length} players (filtered from ${data.length})`)
+      addDebug(`Filtered to ${filteredPlayers.length} players`)
       setPlayers(filteredPlayers)
     } catch (error: any) {
-      // Clear the timeout since we caught an error
-      clearTimeout(timeout)
-
-      addDebug(`Caught error: ${error.message}`)
+      addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {
-      // Clear the timeout in case it hasn't fired yet
-      clearTimeout(timeout)
-
-      addDebug("loadTopPlayers completed, setting loading to false")
+      addDebug("loadTopPlayers completed")
       setLoading(false)
     }
   }

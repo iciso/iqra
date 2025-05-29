@@ -32,7 +32,6 @@ export default function ProfileChallengeNotifications() {
   const [challenges, setChallenges] = useState<Challenge[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string[]>([])
 
   const addDebug = (message: string) => {
@@ -41,127 +40,93 @@ export default function ProfileChallengeNotifications() {
   }
 
   useEffect(() => {
-    addDebug(`useEffect triggered - authLoading: ${authLoading}, user: ${!!user}`)
-
-    if (authLoading) {
-      addDebug("Auth still loading, waiting...")
-      return
+    if (!authLoading && user) {
+      loadChallenges()
     }
-
-    if (!user) {
-      addDebug("No user found after auth loading completed")
-      return
-    }
-
-    addDebug(`User found: ${user.id}, loading challenges...`)
-    loadChallenges()
   }, [user, authLoading])
 
   const loadChallenges = async () => {
-    if (!user) {
-      addDebug("loadChallenges called but no user")
-      return
-    }
+    if (!user) return
 
     addDebug("Starting loadChallenges...")
     setLoading(true)
     setError(null)
 
-    // Create a timeout to prevent hanging
-    const timeout = setTimeout(() => {
-      addDebug("⚠️ Query timeout after 10 seconds")
-      setLoading(false)
-      setError("Query timeout after 10 seconds. Please try again.")
-    }, 10000)
-
     try {
       addDebug(`Querying challenges for user: ${user.id}`)
 
-      // Use a simpler query with a timeout
-      const { data, error } = await supabase
+      // Use the exact same approach as the working database test
+      const { data: session } = await supabase.auth.getSession()
+      addDebug(`Session check: ${!!session.session}`)
+
+      if (!session.session) {
+        throw new Error("No active session")
+      }
+
+      // First, get the raw challenges data
+      const challengesResult = await supabase
         .from("user_challenges")
-        .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at")
+        .select("*")
         .eq("challenged_id", user.id)
         .eq("status", "pending")
         .gt("expires_at", new Date().toISOString())
-        .limit(10)
 
-      // Clear the timeout since the query completed
-      clearTimeout(timeout)
+      addDebug(
+        `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
+      )
 
-      addDebug(`Query completed - error: ${!!error}, data: ${data ? data.length : "null"}`)
-
-      if (error) {
-        addDebug(`Database error: ${error.message}`)
-        setError(error.message)
-        setLoading(false)
-        return
+      if (challengesResult.error) {
+        throw challengesResult.error
       }
 
-      if (!data || data.length === 0) {
-        addDebug("No challenges found")
+      const challengesData = challengesResult.data || []
+      addDebug(`Found ${challengesData.length} raw challenges`)
+
+      if (challengesData.length === 0) {
         setChallenges([])
-        setLoading(false)
+        addDebug("No challenges found")
         return
       }
 
-      addDebug(`Found ${data.length} challenges, now getting challenger info...`)
-
-      // Use a simpler approach to get challenger info
-      const challengesWithChallengers = []
-
-      for (const challenge of data) {
+      // Get challenger profiles for each challenge
+      const challengesWithProfiles = []
+      for (const challenge of challengesData) {
         try {
-          const { data: challenger, error: challengerError } = await supabase
+          const profileResult = await supabase
             .from("user_profiles")
             .select("username, full_name, avatar_url")
             .eq("id", challenge.challenger_id)
             .single()
 
-          if (challengerError) {
-            addDebug(`Error getting challenger ${challenge.challenger_id}: ${challengerError.message}`)
-            // Continue with default values
-            challengesWithChallengers.push({
-              ...challenge,
-              challenger: { username: "Unknown", full_name: "Unknown User" },
-            })
-          } else {
-            challengesWithChallengers.push({
-              ...challenge,
-              challenger: challenger || { username: "Unknown", full_name: "Unknown User" },
-            })
-          }
-        } catch (e) {
-          addDebug(`Exception getting challenger ${challenge.challenger_id}: ${e}`)
-          // Continue with default values
-          challengesWithChallengers.push({
+          addDebug(
+            `Profile query for ${challenge.challenger_id}: ${JSON.stringify({ error: profileResult.error, hasData: !!profileResult.data })}`,
+          )
+
+          challengesWithProfiles.push({
+            ...challenge,
+            challenger: profileResult.data || { username: "Unknown", full_name: "Unknown User" },
+          })
+        } catch (profileError) {
+          addDebug(`Profile error for ${challenge.challenger_id}: ${profileError}`)
+          challengesWithProfiles.push({
             ...challenge,
             challenger: { username: "Unknown", full_name: "Unknown User" },
           })
         }
       }
 
-      addDebug(`Successfully loaded ${challengesWithChallengers.length} challenges with challenger info`)
-      setChallenges(challengesWithChallengers)
+      addDebug(`Successfully processed ${challengesWithProfiles.length} challenges`)
+      setChallenges(challengesWithProfiles)
     } catch (error: any) {
-      // Clear the timeout since we caught an error
-      clearTimeout(timeout)
-
-      addDebug(`Caught error: ${error.message}`)
+      addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {
-      // Clear the timeout in case it hasn't fired yet
-      clearTimeout(timeout)
-
-      addDebug("loadChallenges completed, setting loading to false")
+      addDebug("loadChallenges completed")
       setLoading(false)
     }
   }
 
   const acceptChallenge = async (challengeId: string, category: string) => {
-    addDebug(`Accepting challenge: ${challengeId}`)
-    setActionLoading(challengeId)
-
     try {
       const { error } = await supabase.from("user_challenges").update({ status: "accepted" }).eq("id", challengeId)
 
@@ -175,21 +140,15 @@ export default function ProfileChallengeNotifications() {
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
       router.push(`/quiz?category=${category}&difficulty=mixed&challenge=${challengeId}&questions=10`)
     } catch (error: any) {
-      addDebug(`Error accepting challenge: ${error.message}`)
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
       })
-    } finally {
-      setActionLoading(null)
     }
   }
 
   const declineChallenge = async (challengeId: string) => {
-    addDebug(`Declining challenge: ${challengeId}`)
-    setActionLoading(challengeId)
-
     try {
       const { error } = await supabase.from("user_challenges").update({ status: "declined" }).eq("id", challengeId)
 
@@ -202,14 +161,11 @@ export default function ProfileChallengeNotifications() {
 
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
     } catch (error: any) {
-      addDebug(`Error declining challenge: ${error.message}`)
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
       })
-    } finally {
-      setActionLoading(null)
     }
   }
 
@@ -254,7 +210,6 @@ export default function ProfileChallengeNotifications() {
     dawah: "Dawah",
   }
 
-  // Show auth loading state
   if (authLoading) {
     return (
       <Card>
@@ -274,7 +229,6 @@ export default function ProfileChallengeNotifications() {
     )
   }
 
-  // Show not authenticated state
   if (!user) {
     return (
       <Card>
@@ -382,26 +336,16 @@ export default function ProfileChallengeNotifications() {
                       size="sm"
                       variant="outline"
                       onClick={() => declineChallenge(challenge.id)}
-                      disabled={actionLoading === challenge.id}
                       className="h-8 w-8 p-0"
                     >
-                      {actionLoading === challenge.id ? (
-                        <div className="h-3 w-3 animate-spin rounded-full border-2 border-gray-300 border-t-gray-600"></div>
-                      ) : (
-                        <X className="h-3 w-3" />
-                      )}
+                      <X className="h-3 w-3" />
                     </Button>
                     <Button
                       size="sm"
                       onClick={() => acceptChallenge(challenge.id, challenge.category)}
-                      disabled={actionLoading === challenge.id}
                       className="h-8 px-3 bg-green-600 hover:bg-green-700"
                     >
-                      {actionLoading === challenge.id ? (
-                        <div className="h-3 w-3 animate-spin rounded-full border-2 border-white border-t-transparent mr-1"></div>
-                      ) : (
-                        <Check className="h-3 w-3 mr-1" />
-                      )}
+                      <Check className="h-3 w-3 mr-1" />
                       Accept
                     </Button>
                   </div>
