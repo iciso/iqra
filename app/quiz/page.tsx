@@ -23,6 +23,7 @@ export default function QuizPage({
   const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy"
   const challengeMode = searchParams.challenge as string | undefined
   const questionCount = searchParams.questions ? Number.parseInt(searchParams.questions as string, 10) : undefined
+  const opponentId = searchParams.opponent as string | undefined
 
   if (!categoryId) {
     redirect("/categories")
@@ -78,7 +79,13 @@ export default function QuizPage({
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <QuizContainer questions={questions} category={category} difficulty={difficulty} challengeMode={challengeMode} />
+      <QuizContainer
+        questions={questions}
+        category={category}
+        difficulty={difficulty}
+        challengeMode={challengeMode}
+        opponentId={opponentId}
+      />
     </div>
   )
 }

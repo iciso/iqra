@@ -162,6 +162,30 @@ export async function acceptChallenge(challengeId: string) {
     }
 
     console.log(`✅ Challenge accepted successfully: ${JSON.stringify(data)}`)
+
+    // Fetch the selected challenge with challenger information
+    const { data: selectedChallenge, error: selectError } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey (
+          username,
+          full_name
+        )
+      `)
+      .eq("id", challengeId)
+      .single()
+
+    if (selectError) {
+      console.error("❌ Error fetching selected challenge:", selectError)
+      throw selectError
+    }
+
+    if (selectedChallenge) {
+      const challengeUrl = `/quiz?category=${selectedChallenge.category}&difficulty=${selectedChallenge.difficulty}&challenge=${challengeId}&questions=${selectedChallenge.question_count}&opponent=${selectedChallenge.challenger_id}&opponentName=${encodeURIComponent(selectedChallenge.challenger?.full_name || selectedChallenge.challenger?.username || "Challenger")}`
+      window.location.href = challengeUrl
+    }
+
     return {
       ...data,
       category: mappedCategory,
