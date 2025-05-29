@@ -11,10 +11,25 @@ import { toast } from "@/hooks/use-toast"
 import { CheckCircle, XCircle, Users, Send } from "lucide-react"
 
 export default function ChallengeTestPage() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const [testResults, setTestResults] = useState<any[]>([])
-  const [loading, setLoading] = useState(false)
+  const [internalLoading, setInternalLoading] = useState(false)
   const [ayeshaProfile, setAyeshaProfile] = useState<any>(null)
+
+  if (loading) {
+    return (
+      <div className="container mx-auto py-8">
+        <Card>
+          <CardContent className="text-center py-8">
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+              <p>Loading authentication...</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   const tests = [
     {
@@ -102,7 +117,7 @@ export default function ChallengeTestPage() {
   ]
 
   const runAllTests = async () => {
-    setLoading(true)
+    setInternalLoading(true)
     setTestResults([])
 
     for (const test of tests) {
@@ -131,7 +146,7 @@ export default function ChallengeTestPage() {
       await new Promise((resolve) => setTimeout(resolve, 500))
     }
 
-    setLoading(false)
+    setInternalLoading(false)
   }
 
   const runSingleTest = async (testIndex: number) => {
@@ -175,6 +190,12 @@ export default function ChallengeTestPage() {
         <Card>
           <CardContent className="text-center py-8">
             <p>Please sign in to run challenge tests</p>
+            <p className="text-sm text-gray-500 mt-2">
+              Current user state: {user ? "Authenticated" : "Not authenticated"}
+            </p>
+            <Button onClick={() => (window.location.href = "/auth")} className="mt-4">
+              Go to Sign In
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -192,8 +213,8 @@ export default function ChallengeTestPage() {
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 mb-6">
-            <Button onClick={runAllTests} disabled={loading} className="flex items-center gap-2">
-              {loading ? (
+            <Button onClick={runAllTests} disabled={internalLoading} className="flex items-center gap-2">
+              {internalLoading ? (
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
               ) : (
                 <Send className="h-4 w-4" />
@@ -226,7 +247,7 @@ export default function ChallengeTestPage() {
                       )}
                     </div>
 
-                    <Button size="sm" variant="outline" onClick={() => runSingleTest(index)} disabled={loading}>
+                    <Button size="sm" variant="outline" onClick={() => runSingleTest(index)} disabled={internalLoading}>
                       Test
                     </Button>
                   </div>
