@@ -23,10 +23,12 @@ export function Header() {
     <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <IqraLogo className="h-8 w-8" />
-            <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
-          </Link>
+          <div className="flex items-center space-x-2">
+            <IqraLogo size="sm" showText={false} isLink={true} />
+            <Link href="/" className="text-2xl font-bold text-green-600 dark:text-green-400">
+              IQRA
+            </Link>
+          </div>
 
           <nav className="flex items-center space-x-4">
             {user && (

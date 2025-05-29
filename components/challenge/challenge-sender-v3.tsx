@@ -29,13 +29,14 @@ export default function ChallengeSenderV3() {
   const [loading, setLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
 
-  console.log("🆕🆕🆕 CHALLENGE SENDER V3 COMPONENT LOADED - COMPLETELY FRESH CODE!")
+  console.log("🆕🆕🆕 CHALLENGE SENDER V3 COMPONENT LOADED - DEBUGGING VERSION!")
 
   useEffect(() => {
     loadTopPlayers()
   }, [])
 
   const loadTopPlayers = async () => {
+    console.log("🔥 Loading top players...")
     try {
       const { data, error } = await supabase
         .from("user_profiles")
@@ -44,23 +45,29 @@ export default function ChallengeSenderV3() {
         .limit(8)
 
       if (error) {
-        console.error("Error loading top players:", error)
+        console.error("❌ Error loading top players:", error)
         return
       }
 
+      console.log("✅ Top players loaded:", data)
       setTopPlayers(data || [])
     } catch (error) {
-      console.error("Error in loadTopPlayers:", error)
+      console.error("❌ Error in loadTopPlayers:", error)
     }
   }
 
   const searchUsers = async (query: string) => {
+    console.log("🔍 Searching for users with query:", query)
+
     if (!query || query.length < 2) {
+      console.log("🔍 Query too short, clearing results")
       setSearchResults([])
       return
     }
 
+    setLoading(true)
     try {
+      console.log("🔍 Making database query...")
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
@@ -68,17 +75,26 @@ export default function ChallengeSenderV3() {
         .limit(10)
 
       if (error) {
-        console.error("Error searching users:", error)
+        console.error("❌ Error searching users:", error)
+        toast({
+          title: "Search Error",
+          description: "Failed to search for users",
+          variant: "destructive",
+        })
         return
       }
 
+      console.log("✅ Search results:", data)
       setSearchResults(data || [])
     } catch (error) {
-      console.error("Error in searchUsers:", error)
+      console.error("❌ Error in searchUsers:", error)
+    } finally {
+      setLoading(false)
     }
   }
 
   const handleSearchChange = (value: string) => {
+    console.log("🔍 Search input changed:", value)
     setSearchQuery(value)
     searchUsers(value)
   }
@@ -86,7 +102,6 @@ export default function ChallengeSenderV3() {
   const sendChallenge = async (challengedUser: User) => {
     console.log("🎯 V3: Challenge button clicked for:", challengedUser.username)
     console.log("🚀🚀🚀 V3 COMPONENT - DIRECT SUPABASE CHALLENGE CREATION STARTING!")
-    console.log("🔥🔥🔥 NO API ROUTES - PURE SUPABASE CLIENT!")
 
     setSendingChallenge(challengedUser.id)
 
@@ -114,7 +129,6 @@ export default function ChallengeSenderV3() {
       }
 
       console.log("✅ V3: Starting challenge creation:", challengeData)
-      console.log("📝 V3: Creating challenge with data:", challengeData)
 
       const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
@@ -251,22 +265,36 @@ export default function ChallengeSenderV3() {
                 placeholder="Search by username or name..."
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
+              {loading && (
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
+                </div>
+              )}
             </div>
+
+            {searchQuery && searchQuery.length >= 2 && (
+              <div className="text-sm text-gray-500">
+                {loading ? "Searching..." : `Found ${searchResults.length} result(s) for "${searchQuery}"`}
+              </div>
+            )}
 
             {searchResults.length > 0 && (
               <div className="space-y-2">
                 <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300">Search Results</h4>
                 {searchResults.map((user) => (
-                  <div key={user.id} className="flex items-center justify-between p-3 border rounded-lg">
+                  <div
+                    key={user.id}
+                    className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
+                  >
                     <div className="flex items-center space-x-3">
                       <Avatar className="h-10 w-10">
                         <AvatarImage src={user.avatar_url || "/placeholder.svg"} />
                         <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(user)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium">{user.full_name || user.username}</p>
+                        <p className="font-medium dark:text-white">{user.full_name || user.username}</p>
                         <p className="text-sm text-gray-500">@{user.username}</p>
                         {user.best_percentage && (
                           <Badge variant="secondary" className="text-xs">
@@ -293,6 +321,10 @@ export default function ChallengeSenderV3() {
                 ))}
               </div>
             )}
+
+            {searchQuery && searchQuery.length >= 2 && searchResults.length === 0 && !loading && (
+              <div className="text-center py-4 text-gray-500">No users found matching "{searchQuery}"</div>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -302,55 +334,67 @@ export default function ChallengeSenderV3() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Users className="h-5 w-5" />
-            Top Players
+            Top Players ({topPlayers.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-3">
-            {topPlayers.map((user, index) => (
-              <div key={user.id} className="flex items-center justify-between p-3 border rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="relative">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage src={user.avatar_url || "/placeholder.svg"} />
-                      <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(user)}</AvatarFallback>
-                    </Avatar>
-                    {index < 3 && (
-                      <div className="absolute -top-1 -right-1 h-5 w-5 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-white">
-                        {index + 1}
+          {topPlayers.length === 0 ? (
+            <div className="text-center py-4 text-gray-500">
+              <p>No top players found</p>
+              <Button onClick={loadTopPlayers} variant="outline" className="mt-2">
+                Refresh
+              </Button>
+            </div>
+          ) : (
+            <div className="grid gap-3">
+              {topPlayers.map((user, index) => (
+                <div
+                  key={user.id}
+                  className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="relative">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage src={user.avatar_url || "/placeholder.svg"} />
+                        <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(user)}</AvatarFallback>
+                      </Avatar>
+                      {index < 3 && (
+                        <div className="absolute -top-1 -right-1 h-5 w-5 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-white">
+                          {index + 1}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-medium dark:text-white">{user.full_name || user.username}</p>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="secondary" className="text-xs">
+                          {user.best_percentage || 0}%
+                        </Badge>
+                        <Badge variant="outline" className="text-xs">
+                          {user.total_score || 0} pts
+                        </Badge>
                       </div>
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-medium">{user.full_name || user.username}</p>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs">
-                        {user.best_percentage || 0}%
-                      </Badge>
-                      <Badge variant="outline" className="text-xs">
-                        {user.total_score || 0} pts
-                      </Badge>
                     </div>
                   </div>
+                  <Button
+                    onClick={() => sendChallenge(user)}
+                    disabled={sendingChallenge === user.id}
+                    size="sm"
+                    className="bg-green-600 hover:bg-green-700"
+                  >
+                    {sendingChallenge === user.id ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 mr-1" />
+                        Challenge
+                      </>
+                    )}
+                  </Button>
                 </div>
-                <Button
-                  onClick={() => sendChallenge(user)}
-                  disabled={sendingChallenge === user.id}
-                  size="sm"
-                  className="bg-green-600 hover:bg-green-700"
-                >
-                  {sendingChallenge === user.id ? (
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                  ) : (
-                    <>
-                      <Zap className="h-4 w-4 mr-1" />
-                      Challenge
-                    </>
-                  )}
-                </Button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
