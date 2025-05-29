@@ -1,19 +1,12 @@
 "use client"
-
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Search, Trophy, Users } from "lucide-react"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
-import UserSearch from "@/components/profile/user-search"
-import TopPlayers from "@/components/challenge/top-players"
+import WorkingChallengeSender from "@/components/challenge/working-challenge-sender"
 import SimpleDbTest from "@/components/debug/simple-db-test"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function ChallengesPage() {
   const { user, loading: authLoading } = useAuth()
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   if (authLoading) {
     return (
@@ -55,43 +48,8 @@ export default function ChallengesPage() {
 
         <ProfileChallengeNotifications />
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              Find Challengers
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="search">
-              <TabsList className="mb-4">
-                <TabsTrigger value="search">
-                  <Search className="h-4 w-4 mr-2" />
-                  Search
-                </TabsTrigger>
-                <TabsTrigger value="top">
-                  <Trophy className="h-4 w-4 mr-2" />
-                  Top Players
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="search">
-                <UserSearch
-                  placeholder="Search for users to challenge..."
-                  buttonText="Challenge"
-                  onSelectUser={(user) => {
-                    console.log("Selected user to challenge:", user)
-                    setIsDialogOpen(true)
-                  }}
-                />
-              </TabsContent>
-
-              <TabsContent value="top">
-                <TopPlayers />
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
+        {/* Use the new working challenge sender */}
+        <WorkingChallengeSender />
       </div>
     </div>
   )
