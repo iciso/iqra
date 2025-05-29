@@ -27,69 +27,101 @@ interface Challenge {
 }
 
 export default function ProfileChallengeNotifications() {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const router = useRouter()
   const [challenges, setChallenges] = useState<Challenge[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string[]>([])
+
+  const addDebug = (message: string) => {
+    console.log("🔔 DEBUG:", message)
+    setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
+  }
 
   useEffect(() => {
-    if (user) {
-      loadChallenges()
-    }
-  }, [user])
+    addDebug(`useEffect triggered - authLoading: ${authLoading}, user: ${!!user}`)
 
-  const loadChallenges = async () => {
-    if (!user) {
-      setLoading(false)
+    if (authLoading) {
+      addDebug("Auth still loading, waiting...")
       return
     }
 
+    if (!user) {
+      addDebug("No user found after auth loading completed")
+      return
+    }
+
+    addDebug(`User found: ${user.id}, loading challenges...`)
+    loadChallenges()
+  }, [user, authLoading])
+
+  const loadChallenges = async () => {
+    if (!user) {
+      addDebug("loadChallenges called but no user")
+      return
+    }
+
+    addDebug("Starting loadChallenges...")
     setLoading(true)
     setError(null)
 
     try {
-      console.log("🔔 Loading challenges for user:", user.id)
+      addDebug(`Querying challenges for user: ${user.id}`)
 
-      const { data, error } = await supabase
+      // Simple query first
+      const { data, error, count } = await supabase
         .from("user_challenges")
-        .select(`
-          id,
-          challenger_id,
-          category,
-          difficulty,
-          question_count,
-          created_at,
-          expires_at,
-          challenger:user_profiles!user_challenges_challenger_id_fkey (
-            username,
-            full_name,
-            avatar_url
-          )
-        `)
+        .select("*", { count: "exact" })
         .eq("challenged_id", user.id)
         .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
-        .order("created_at", { ascending: false })
+
+      addDebug(`Query completed - error: ${!!error}, count: ${count}, data length: ${data?.length || 0}`)
 
       if (error) {
-        console.error("❌ Error loading challenges:", error)
+        addDebug(`Database error: ${error.message}`)
         setError(error.message)
         return
       }
 
-      console.log("✅ Challenges loaded:", data)
-      setChallenges(data || [])
+      if (!data || data.length === 0) {
+        addDebug("No challenges found")
+        setChallenges([])
+        return
+      }
+
+      addDebug(`Found ${data.length} challenges, now getting challenger info...`)
+
+      // Get challenger info separately
+      const challengesWithChallengers = await Promise.all(
+        data.map(async (challenge) => {
+          const { data: challenger } = await supabase
+            .from("user_profiles")
+            .select("username, full_name, avatar_url")
+            .eq("id", challenge.challenger_id)
+            .single()
+
+          return {
+            ...challenge,
+            challenger: challenger || { username: "Unknown", full_name: "Unknown User" },
+          }
+        }),
+      )
+
+      addDebug(`Successfully loaded ${challengesWithChallengers.length} challenges with challenger info`)
+      setChallenges(challengesWithChallengers)
     } catch (error: any) {
-      console.error("❌ Error in loadChallenges:", error)
+      addDebug(`Caught error: ${error.message}`)
       setError(error.message)
     } finally {
+      addDebug("loadChallenges completed, setting loading to false")
       setLoading(false)
     }
   }
 
   const acceptChallenge = async (challengeId: string, category: string) => {
+    addDebug(`Accepting challenge: ${challengeId}`)
     setActionLoading(challengeId)
 
     try {
@@ -102,13 +134,10 @@ export default function ProfileChallengeNotifications() {
         description: "Redirecting to quiz...",
       })
 
-      // Remove from local state
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
-
-      // Redirect to quiz
       router.push(`/quiz?category=${category}&difficulty=mixed&challenge=${challengeId}&questions=10`)
     } catch (error: any) {
-      console.error("Error accepting challenge:", error)
+      addDebug(`Error accepting challenge: ${error.message}`)
       toast({
         title: "Error",
         description: error.message,
@@ -120,6 +149,7 @@ export default function ProfileChallengeNotifications() {
   }
 
   const declineChallenge = async (challengeId: string) => {
+    addDebug(`Declining challenge: ${challengeId}`)
     setActionLoading(challengeId)
 
     try {
@@ -132,10 +162,9 @@ export default function ProfileChallengeNotifications() {
         description: "Challenge has been declined",
       })
 
-      // Remove from local state
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
     } catch (error: any) {
-      console.error("Error declining challenge:", error)
+      addDebug(`Error declining challenge: ${error.message}`)
       toast({
         title: "Error",
         description: error.message,
@@ -187,6 +216,27 @@ export default function ProfileChallengeNotifications() {
     dawah: "Dawah",
   }
 
+  // Show auth loading state
+  if (authLoading) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Bell className="h-5 w-5" />
+            Challenge Notifications
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-center py-4">
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
+            <span className="ml-2 text-sm text-gray-500">Loading authentication...</span>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  // Show not authenticated state
   if (!user) {
     return (
       <Card>
@@ -217,9 +267,26 @@ export default function ProfileChallengeNotifications() {
         </CardTitle>
       </CardHeader>
       <CardContent>
+        {/* Debug Info */}
+        <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded mb-4">
+          <p>User ID: {user.id}</p>
+          <p>Auth Loading: {authLoading.toString()}</p>
+          <p>Component Loading: {loading.toString()}</p>
+          <p>Challenges: {challenges.length}</p>
+          <div className="mt-2">
+            <p className="font-medium">Debug Log:</p>
+            {debugInfo.map((info, index) => (
+              <p key={index} className="text-xs">
+                {info}
+              </p>
+            ))}
+          </div>
+        </div>
+
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
+            <span className="ml-2 text-sm text-gray-500">Loading challenges...</span>
           </div>
         ) : error ? (
           <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded">
@@ -227,6 +294,9 @@ export default function ProfileChallengeNotifications() {
             <div>
               <p className="text-red-800 font-medium">Error loading challenges</p>
               <p className="text-red-600 text-sm">{error}</p>
+              <Button variant="outline" size="sm" onClick={loadChallenges} className="mt-2">
+                Try Again
+              </Button>
             </div>
           </div>
         ) : challenges.length === 0 ? (

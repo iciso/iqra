@@ -22,38 +22,62 @@ interface User {
 }
 
 export default function ChallengeSenderV3() {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<User[]>([])
   const [topPlayers, setTopPlayers] = useState<User[]>([])
   const [selectedCategory, setSelectedCategory] = useState("quran")
   const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
-  const [loading, setLoading] = useState(false)
+  const [searchLoading, setSearchLoading] = useState(false)
   const [topPlayersLoading, setTopPlayersLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string[]>([])
+
+  const addDebug = (message: string) => {
+    console.log("🎯 SENDER DEBUG:", message)
+    setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
+  }
 
   useEffect(() => {
-    if (user) {
-      loadTopPlayers()
+    addDebug(`useEffect - authLoading: ${authLoading}, user: ${!!user}`)
+
+    if (authLoading) {
+      addDebug("Auth loading, waiting...")
+      return
     }
-  }, [user])
+
+    if (!user) {
+      addDebug("No user after auth loading")
+      return
+    }
+
+    addDebug(`User found: ${user.id}, loading top players...`)
+    loadTopPlayers()
+  }, [user, authLoading])
 
   const loadTopPlayers = async () => {
-    if (!user) return
+    if (!user) {
+      addDebug("loadTopPlayers called but no user")
+      return
+    }
 
-    console.log("🔥 Loading top players...")
+    addDebug("Starting loadTopPlayers...")
     setTopPlayersLoading(true)
 
     try {
-      const { data, error } = await supabase
+      addDebug(`Querying user_profiles, excluding user: ${user.id}`)
+
+      const { data, error, count } = await supabase
         .from("user_profiles")
-        .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .neq("id", user.id) // Exclude current user
+        .select("id, username, full_name, avatar_url, total_score, best_percentage", { count: "exact" })
+        .neq("id", user.id)
         .order("total_score", { ascending: false })
         .limit(8)
 
+      addDebug(`Top players query completed - error: ${!!error}, count: ${count}, data length: ${data?.length || 0}`)
+
       if (error) {
-        console.error("❌ Error loading top players:", error)
+        addDebug(`Database error: ${error.message}`)
         toast({
           title: "Error",
           description: "Failed to load top players",
@@ -62,38 +86,48 @@ export default function ChallengeSenderV3() {
         return
       }
 
-      console.log("✅ Top players loaded:", data)
+      addDebug(`Successfully loaded ${data?.length || 0} top players`)
       setTopPlayers(data || [])
     } catch (error: any) {
-      console.error("❌ Error in loadTopPlayers:", error)
+      addDebug(`Caught error: ${error.message}`)
       toast({
         title: "Error",
         description: "Failed to load top players",
         variant: "destructive",
       })
     } finally {
+      addDebug("loadTopPlayers completed")
       setTopPlayersLoading(false)
     }
   }
 
   const searchUsers = async (query: string) => {
     if (!query || query.length < 2) {
+      addDebug("Search query too short, clearing results")
       setSearchResults([])
       return
     }
 
-    setLoading(true)
+    if (!user) {
+      addDebug("Search called but no user")
+      return
+    }
+
+    addDebug(`Starting search for: "${query}"`)
+    setSearchLoading(true)
+
     try {
-      console.log("🔍 Searching for users with query:", query)
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .neq("id", user?.id || "") // Exclude current user
+        .neq("id", user.id)
         .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
         .limit(10)
 
+      addDebug(`Search completed - error: ${!!error}, results: ${data?.length || 0}`)
+
       if (error) {
-        console.error("❌ Error searching users:", error)
+        addDebug(`Search error: ${error.message}`)
         toast({
           title: "Search Error",
           description: "Failed to search for users",
@@ -102,17 +136,17 @@ export default function ChallengeSenderV3() {
         return
       }
 
-      console.log("✅ Search results:", data)
       setSearchResults(data || [])
     } catch (error: any) {
-      console.error("❌ Error in searchUsers:", error)
+      addDebug(`Search caught error: ${error.message}`)
       toast({
         title: "Search Error",
         description: "Failed to search for users",
         variant: "destructive",
       })
     } finally {
-      setLoading(false)
+      addDebug("Search completed")
+      setSearchLoading(false)
     }
   }
 
@@ -131,7 +165,7 @@ export default function ChallengeSenderV3() {
       return
     }
 
-    console.log("🎯 Sending challenge to:", challengedUser.username)
+    addDebug(`Sending challenge to: ${challengedUser.username}`)
     setSendingChallenge(challengedUser.id)
 
     try {
@@ -146,27 +180,26 @@ export default function ChallengeSenderV3() {
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      console.log("✅ Creating challenge:", challengeData)
+      addDebug(`Creating challenge with data: ${JSON.stringify(challengeData)}`)
 
       const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
       if (error) {
-        console.error("❌ Challenge creation failed:", error)
+        addDebug(`Challenge creation failed: ${error.message}`)
         throw error
       }
 
-      console.log("🎉 Challenge created successfully:", data)
+      addDebug(`Challenge created successfully: ${data.id}`)
 
       toast({
         title: "Challenge Sent! 🎯",
         description: `Challenge sent to ${challengedUser.full_name || challengedUser.username}`,
       })
 
-      // Clear search after successful challenge
       setSearchQuery("")
       setSearchResults([])
     } catch (error: any) {
-      console.error("❌ Error in sendChallenge:", error)
+      addDebug(`Challenge error: ${error.message}`)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
@@ -209,8 +242,62 @@ export default function ChallengeSenderV3() {
     { value: "mixed", label: "Mixed" },
   ]
 
+  // Show loading if auth is still loading
+  if (authLoading) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardContent className="py-8">
+            <div className="flex justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
+              <span className="ml-2 text-sm text-gray-500">Loading authentication...</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  // Show not authenticated if no user
+  if (!user) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardContent className="py-8">
+            <p className="text-center text-gray-500">Please sign in to use challenge features</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
+      {/* Debug Info */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm">Debug Information</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-xs text-gray-500 space-y-1">
+            <p>User ID: {user.id}</p>
+            <p>Auth Loading: {authLoading.toString()}</p>
+            <p>Top Players Loading: {topPlayersLoading.toString()}</p>
+            <p>Search Loading: {searchLoading.toString()}</p>
+            <p>Top Players Count: {topPlayers.length}</p>
+            <p>Search Results Count: {searchResults.length}</p>
+            <div className="mt-2">
+              <p className="font-medium">Debug Log:</p>
+              {debugInfo.map((info, index) => (
+                <p key={index} className="text-xs">
+                  {info}
+                </p>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Challenge Settings */}
       <Card>
         <CardHeader>
@@ -259,8 +346,7 @@ export default function ChallengeSenderV3() {
           <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-lg">
             <p className="text-sm text-blue-800 dark:text-blue-200">
               <Trophy className="h-4 w-4 inline mr-1" />
-              <strong>Fair Scoring:</strong> You'll get points even if your challenge is declined! Click the info button
-              above to learn more.
+              <strong>Fair Scoring:</strong> You'll get points even if your challenge is declined!
             </p>
           </div>
         </CardContent>
@@ -285,7 +371,7 @@ export default function ChallengeSenderV3() {
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
-              {loading && (
+              {searchLoading && (
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
                 </div>
@@ -294,7 +380,7 @@ export default function ChallengeSenderV3() {
 
             {searchQuery && searchQuery.length >= 2 && (
               <div className="text-sm text-gray-500">
-                {loading ? "Searching..." : `Found ${searchResults.length} result(s) for "${searchQuery}"`}
+                {searchLoading ? "Searching..." : `Found ${searchResults.length} result(s) for "${searchQuery}"`}
               </div>
             )}
 
@@ -342,7 +428,7 @@ export default function ChallengeSenderV3() {
               </div>
             )}
 
-            {searchQuery && searchQuery.length >= 2 && searchResults.length === 0 && !loading && (
+            {searchQuery && searchQuery.length >= 2 && searchResults.length === 0 && !searchLoading && (
               <div className="text-center py-4 text-gray-500">No users found matching "{searchQuery}"</div>
             )}
           </div>
@@ -372,6 +458,7 @@ export default function ChallengeSenderV3() {
           {topPlayersLoading ? (
             <div className="flex justify-center py-8">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
+              <span className="ml-2 text-sm text-gray-500">Loading top players...</span>
             </div>
           ) : topPlayers.length === 0 ? (
             <div className="text-center py-4 text-gray-500">
