@@ -46,7 +46,7 @@ export default function ProfileChallengeNotifications() {
   }, [user, authLoading])
 
   // Use the EXACT same function structure as the working test
-  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 5000) => {
+  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 15000) => {
     addDebug(`Testing ${testName}...`)
 
     try {
@@ -69,29 +69,35 @@ export default function ProfileChallengeNotifications() {
     setError(null)
 
     try {
-      // Use the EXACT same approach as the working test page
-      const result = await testWithTimeout("challenge query", async () => {
-        addDebug("Executing challenge query with exact test structure...")
-        const { data, error } = await supabase
-          .from("user_challenges")
-          .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
-          .eq("challenged_id", user.id)
-          .eq("status", "pending")
+      // Use the EXACT same approach as the working test
+      const { data: session } = await supabase.auth.getSession()
+      addDebug(`Session check: ${!!session.session}`)
 
-        if (error) throw error
-        return data
-      })
-
-      addDebug(`Success: Found ${result?.length || 0} challenges`)
-
-      if (!result || result.length === 0) {
-        setChallenges([])
-        return
+      if (!session.session) {
+        throw new Error("No active session")
       }
 
-      // Filter by expiry date in JavaScript
+      // First, get the raw challenges data - using the exact query that worked in the test
+      const challengesResult = await supabase
+        .from("user_challenges")
+        .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
+        .eq("challenged_id", user.id)
+        .eq("status", "pending")
+
+      addDebug(
+        `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
+      )
+
+      if (challengesResult.error) {
+        throw challengesResult.error
+      }
+
+      const challengesData = challengesResult.data || []
+      addDebug(`Found ${challengesData.length} raw challenges`)
+
+      // Filter by expiry date in JavaScript instead of SQL
       const now = new Date()
-      const validChallenges = result.filter((challenge: any) => {
+      const validChallenges = challengesData.filter((challenge) => {
         const expiryDate = new Date(challenge.expires_at)
         return expiryDate > now
       })
@@ -103,27 +109,31 @@ export default function ProfileChallengeNotifications() {
         return
       }
 
-      // Get challenger profiles with the same test structure
+      // Get challenger profiles with individual queries
       const challengesWithProfiles = []
       for (const challenge of validChallenges) {
         try {
-          const profileResult = await testWithTimeout("profile query", async () => {
-            const { data, error } = await supabase
-              .from("user_profiles")
-              .select("username, full_name, avatar_url")
-              .eq("id", challenge.challenger_id)
-              .maybeSingle()
+          addDebug(`Getting profile for challenger: ${challenge.challenger_id}`)
 
-            if (error) throw error
-            return data
-          })
+          const profileResult = await supabase
+            .from("user_profiles")
+            .select("username, full_name, avatar_url")
+            .eq("id", challenge.challenger_id)
+            .maybeSingle()
+
+          addDebug(
+            `Profile result for ${challenge.challenger_id}: ${JSON.stringify({
+              error: profileResult.error,
+              hasData: !!profileResult.data,
+            })}`,
+          )
 
           challengesWithProfiles.push({
             ...challenge,
-            challenger: profileResult || { username: "Unknown", full_name: "Unknown User" },
+            challenger: profileResult.data || { username: "Unknown", full_name: "Unknown User" },
           })
         } catch (profileError: any) {
-          addDebug(`Profile error: ${profileError.message}`)
+          addDebug(`Profile error for ${challenge.challenger_id}: ${profileError.message}`)
           challengesWithProfiles.push({
             ...challenge,
             challenger: { username: "Unknown", full_name: "Unknown User" },

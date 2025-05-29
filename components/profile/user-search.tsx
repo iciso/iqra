@@ -64,7 +64,7 @@ export default function UserSearch({
   }, [query])
 
   // Use the EXACT same function structure as the working test
-  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 5000) => {
+  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 15000) => {
     addDebug(`Testing ${testName}...`)
 
     try {
