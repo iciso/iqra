@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import { getQuizQuestions, getCategory } from "@/data/quiz-data-manager"
 import QuizContainer from "@/components/quiz/quiz-container"
 import type { DifficultyLevel } from "@/types/quiz"
+import type { QuizQuestion } from "@/types/quiz"
 
 // Helper function to shuffle an array using Fisher-Yates algorithm
 function shuffleArray<T>(array: T[]): T[] {
@@ -33,7 +34,20 @@ export default function QuizPage({
   }
 
   // Get all available questions for this category and difficulty
-  let questions = getQuizQuestions(categoryId, difficulty)
+  let questions: QuizQuestion[] = []
+
+  if (difficulty === "mixed") {
+    // For mixed difficulty, combine questions from all difficulty levels
+    const easyQuestions = getQuizQuestions(categoryId, "easy")
+    const mediumQuestions = getQuizQuestions(categoryId, "medium")
+    const hardQuestions = getQuizQuestions(categoryId, "hard")
+
+    // Combine all questions
+    questions = [...easyQuestions, ...mediumQuestions, ...hardQuestions]
+  } else {
+    // For specific difficulty, get questions normally
+    questions = getQuizQuestions(categoryId, difficulty)
+  }
 
   // Always shuffle the questions to randomize the order
   questions = shuffleArray(questions)
@@ -46,14 +60,17 @@ export default function QuizPage({
   }
 
   if (questions.length === 0) {
+    const redirectPath = challengeMode ? "/challenges" : "/categories"
+    const redirectText = challengeMode ? "Back to Challenges" : "Browse Categories"
+
     return (
       <div className="container mx-auto py-12 px-4 text-center">
         <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
         <p className="mb-6">
           Sorry, there are no questions available for {category.title} in {difficulty} mode at this time.
         </p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Categories
+        <a href={redirectPath} className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          {redirectText}
         </a>
       </div>
     )
