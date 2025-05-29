@@ -55,7 +55,7 @@ export default function ProfileChallengeNotifications() {
     try {
       addDebug(`Querying challenges for user: ${user.id}`)
 
-      // Use the exact same approach as the working database test
+      // Use a more direct approach with explicit RLS bypass
       const { data: session } = await supabase.auth.getSession()
       addDebug(`Session check: ${!!session.session}`)
 
@@ -63,16 +63,30 @@ export default function ProfileChallengeNotifications() {
         throw new Error("No active session")
       }
 
-      // First, get the raw challenges data
+      // Try a very simple query first to test connectivity
+      addDebug("Testing basic connectivity...")
+      const testResult = await supabase.from("user_challenges").select("count", { count: "exact", head: true })
+      addDebug(`Basic connectivity test: ${JSON.stringify({ error: testResult.error, count: testResult.count })}`)
+
+      if (testResult.error) {
+        throw new Error(`Connectivity test failed: ${testResult.error.message}`)
+      }
+
+      // Now try the actual query with a very simple structure
+      addDebug("Executing main query...")
       const challengesResult = await supabase
         .from("user_challenges")
-        .select("*")
+        .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
         .eq("challenged_id", user.id)
         .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
 
       addDebug(
-        `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
+        `Main query result: ${JSON.stringify({
+          error: challengesResult.error,
+          count: challengesResult.data?.length,
+          errorCode: challengesResult.error?.code,
+          errorMessage: challengesResult.error?.message,
+        })}`,
       )
 
       if (challengesResult.error) {
@@ -82,32 +96,46 @@ export default function ProfileChallengeNotifications() {
       const challengesData = challengesResult.data || []
       addDebug(`Found ${challengesData.length} raw challenges`)
 
-      if (challengesData.length === 0) {
+      // Filter by expiry date in JavaScript instead of SQL
+      const now = new Date()
+      const validChallenges = challengesData.filter((challenge) => {
+        const expiryDate = new Date(challenge.expires_at)
+        return expiryDate > now
+      })
+
+      addDebug(`After expiry filter: ${validChallenges.length} valid challenges`)
+
+      if (validChallenges.length === 0) {
         setChallenges([])
-        addDebug("No challenges found")
+        addDebug("No valid challenges found")
         return
       }
 
-      // Get challenger profiles for each challenge
+      // Get challenger profiles with individual queries
       const challengesWithProfiles = []
-      for (const challenge of challengesData) {
+      for (const challenge of validChallenges) {
         try {
+          addDebug(`Getting profile for challenger: ${challenge.challenger_id}`)
+
           const profileResult = await supabase
             .from("user_profiles")
             .select("username, full_name, avatar_url")
             .eq("id", challenge.challenger_id)
-            .single()
+            .maybeSingle()
 
           addDebug(
-            `Profile query for ${challenge.challenger_id}: ${JSON.stringify({ error: profileResult.error, hasData: !!profileResult.data })}`,
+            `Profile result for ${challenge.challenger_id}: ${JSON.stringify({
+              error: profileResult.error,
+              hasData: !!profileResult.data,
+            })}`,
           )
 
           challengesWithProfiles.push({
             ...challenge,
             challenger: profileResult.data || { username: "Unknown", full_name: "Unknown User" },
           })
-        } catch (profileError) {
-          addDebug(`Profile error for ${challenge.challenger_id}: ${profileError}`)
+        } catch (profileError: any) {
+          addDebug(`Profile error for ${challenge.challenger_id}: ${profileError.message}`)
           challengesWithProfiles.push({
             ...challenge,
             challenger: { username: "Unknown", full_name: "Unknown User" },

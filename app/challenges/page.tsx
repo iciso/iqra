@@ -8,6 +8,7 @@ import { Search, Trophy, Users } from "lucide-react"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import UserSearch from "@/components/profile/user-search"
 import TopPlayers from "@/components/challenge/top-players"
+import SimpleDbTest from "@/components/debug/simple-db-test"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function ChallengesPage() {
@@ -49,6 +50,9 @@ export default function ChallengesPage() {
       </div>
 
       <div className="grid gap-6">
+        {/* Add debug test component */}
+        <SimpleDbTest />
+
         <ProfileChallengeNotifications />
 
         <Card>
@@ -77,7 +81,6 @@ export default function ChallengesPage() {
                   buttonText="Challenge"
                   onSelectUser={(user) => {
                     console.log("Selected user to challenge:", user)
-                    // Open challenge dialog
                     setIsDialogOpen(true)
                   }}
                 />
