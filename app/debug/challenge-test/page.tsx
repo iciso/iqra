@@ -36,7 +36,7 @@ export default function ChallengeTestPage() {
       name: "Search for Ayesha",
       description: "Test if we can find Ayesha in user search",
       test: async () => {
-        const results = await searchUsers("ayesha")
+        const results = await searchUsers("aiesha") // Changed from "ayesha" to "aiesha"
         const found = results.find((u) => u.id === "e299ae2c-9581-47eb-bb0e-daabf686b469")
         if (found) {
           setAyeshaProfile(found)
