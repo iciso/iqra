@@ -45,6 +45,22 @@ export default function ProfileChallengeNotifications() {
     }
   }, [user, authLoading])
 
+  // Use the EXACT same function structure as the working test
+  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 5000) => {
+    addDebug(`Testing ${testName}...`)
+
+    try {
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
+      )
+
+      const result = await Promise.race([testFunction(), timeoutPromise])
+      return result
+    } catch (error: any) {
+      throw error
+    }
+  }
+
   const loadChallenges = async () => {
     if (!user) return
 
@@ -52,47 +68,30 @@ export default function ProfileChallengeNotifications() {
     setLoading(true)
     setError(null)
 
-    // Set a timeout to prevent hanging
-    const timeout = setTimeout(() => {
-      addDebug("Query timeout after 10 seconds")
-      setLoading(false)
-      setError("Query timed out after 10 seconds. Please try again.")
-    }, 10000)
-
     try {
-      addDebug(`Querying challenges for user: ${user.id}`)
+      // Use the EXACT same approach as the working test page
+      const result = await testWithTimeout("challenge query", async () => {
+        addDebug("Executing challenge query with exact test structure...")
+        const { data, error } = await supabase
+          .from("user_challenges")
+          .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
+          .eq("challenged_id", user.id)
+          .eq("status", "pending")
 
-      // Use the exact same approach as the working test
-      const { data: session } = await supabase.auth.getSession()
-      addDebug(`Session check: ${!!session.session}`)
+        if (error) throw error
+        return data
+      })
 
-      if (!session.session) {
-        throw new Error("No active session")
+      addDebug(`Success: Found ${result?.length || 0} challenges`)
+
+      if (!result || result.length === 0) {
+        setChallenges([])
+        return
       }
 
-      // First, get the raw challenges data - using the exact query that worked in the test
-      const challengesResult = await supabase
-        .from("user_challenges")
-        .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
-        .eq("challenged_id", user.id)
-        .eq("status", "pending")
-
-      clearTimeout(timeout) // Clear the timeout since the query completed
-
-      addDebug(
-        `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
-      )
-
-      if (challengesResult.error) {
-        throw challengesResult.error
-      }
-
-      const challengesData = challengesResult.data || []
-      addDebug(`Found ${challengesData.length} raw challenges`)
-
-      // Filter by expiry date in JavaScript instead of SQL
+      // Filter by expiry date in JavaScript
       const now = new Date()
-      const validChallenges = challengesData.filter((challenge) => {
+      const validChallenges = result.filter((challenge: any) => {
         const expiryDate = new Date(challenge.expires_at)
         return expiryDate > now
       })
@@ -101,35 +100,30 @@ export default function ProfileChallengeNotifications() {
 
       if (validChallenges.length === 0) {
         setChallenges([])
-        addDebug("No valid challenges found")
         return
       }
 
-      // Get challenger profiles with individual queries
+      // Get challenger profiles with the same test structure
       const challengesWithProfiles = []
       for (const challenge of validChallenges) {
         try {
-          addDebug(`Getting profile for challenger: ${challenge.challenger_id}`)
+          const profileResult = await testWithTimeout("profile query", async () => {
+            const { data, error } = await supabase
+              .from("user_profiles")
+              .select("username, full_name, avatar_url")
+              .eq("id", challenge.challenger_id)
+              .maybeSingle()
 
-          const profileResult = await supabase
-            .from("user_profiles")
-            .select("username, full_name, avatar_url")
-            .eq("id", challenge.challenger_id)
-            .maybeSingle()
-
-          addDebug(
-            `Profile result for ${challenge.challenger_id}: ${JSON.stringify({
-              error: profileResult.error,
-              hasData: !!profileResult.data,
-            })}`,
-          )
+            if (error) throw error
+            return data
+          })
 
           challengesWithProfiles.push({
             ...challenge,
-            challenger: profileResult.data || { username: "Unknown", full_name: "Unknown User" },
+            challenger: profileResult || { username: "Unknown", full_name: "Unknown User" },
           })
         } catch (profileError: any) {
-          addDebug(`Profile error for ${challenge.challenger_id}: ${profileError.message}`)
+          addDebug(`Profile error: ${profileError.message}`)
           challengesWithProfiles.push({
             ...challenge,
             challenger: { username: "Unknown", full_name: "Unknown User" },
@@ -140,7 +134,6 @@ export default function ProfileChallengeNotifications() {
       addDebug(`Successfully processed ${challengesWithProfiles.length} challenges`)
       setChallenges(challengesWithProfiles)
     } catch (error: any) {
-      clearTimeout(timeout) // Clear the timeout if there's an error
       addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {

@@ -35,55 +35,51 @@ export default function TopPlayers() {
     }
   }, [authLoading])
 
+  // Use the EXACT same function structure as the working test
+  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 5000) => {
+    addDebug(`Testing ${testName}...`)
+
+    try {
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
+      )
+
+      const result = await Promise.race([testFunction(), timeoutPromise])
+      return result
+    } catch (error: any) {
+      throw error
+    }
+  }
+
   const loadTopPlayers = async () => {
     addDebug("Starting loadTopPlayers...")
     setLoading(true)
     setError(null)
 
-    // Set a timeout to prevent hanging
-    const timeout = setTimeout(() => {
-      addDebug("⚠️ Query timeout after 10 seconds")
-      setLoading(false)
-      setError("Query timed out after 10 seconds. Please try again.")
-    }, 10000)
-
     try {
-      addDebug("Checking session...")
+      // Use the EXACT same approach as the working test page
+      const result = await testWithTimeout("top players query", async () => {
+        addDebug("Executing top players query with exact test structure...")
+        const { data, error } = await supabase
+          .from("user_profiles")
+          .select("id, username, full_name, avatar_url, total_score, best_percentage")
+          .order("total_score", { ascending: false })
+          .limit(10)
 
-      // Use the exact same approach as the working test
-      const { data: session } = await supabase.auth.getSession()
-      addDebug(`Session check: ${!!session.session}`)
+        if (error) throw error
+        return data
+      })
 
-      if (!session.session) {
-        throw new Error("No active session")
-      }
+      addDebug(`Success: Found ${result?.length || 0} players`)
 
-      addDebug("Querying top players...")
-
-      const result = await supabase
-        .from("user_profiles")
-        .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .order("total_score", { ascending: false })
-        .limit(10)
-
-      clearTimeout(timeout) // Clear the timeout since the query completed
-
-      addDebug(`Query result: ${JSON.stringify({ error: result.error, count: result.data?.length })}`)
-
-      if (result.error) {
-        throw result.error
-      }
-
-      const data = result.data || []
-      addDebug(`Found ${data.length} players`)
+      const data = result || []
 
       // Filter out current user if needed
-      const filteredPlayers = user ? data.filter((player) => player.id !== user.id) : data
+      const filteredPlayers = user ? data.filter((player: Player) => player.id !== user.id) : data
 
       addDebug(`Filtered to ${filteredPlayers.length} players`)
       setPlayers(filteredPlayers)
     } catch (error: any) {
-      clearTimeout(timeout) // Clear the timeout if there's an error
       addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {

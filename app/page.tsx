@@ -233,27 +233,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-auto pt-8 sm:pt-12 text-center text-gray-600 text-xs sm:text-sm px-4">
-          <p className="mb-2">
-            بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely
-            Generous.
-          </p>
-          <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.</p>
-          <p className="mb-2">
-            For suggestions WhatsApp Rafique at +91 7558845528, and May Allah reward Joy whose mail is
-            joy_ahmed_007@yahoo.com for teaching and{" "}
-            <span>
-              guiding{" "}
-              <a
-                href="https://cvemrafi.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 underline"
-              >
-                Rafique
-              </a>{" "}
-            </span>
-            .
-          </p>
+         
         </div>
       </div>
 
