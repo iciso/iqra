@@ -441,8 +441,7 @@ export async function getChallenge(challengeId: string) {
   return data
 }
 
-// Note: Quiz results will still be stored in Vercel PostgreSQL
-// This function would need to be updated to work with Vercel's database
+// Enhanced quiz result submission with proper challenge completion
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
@@ -461,28 +460,86 @@ export async function submitQuizResult(
       throw new Error("User not authenticated")
     }
 
+    console.log("💾 SUBMIT QUIZ RESULT: Starting submission", {
+      userId: user.id,
+      score,
+      totalQuestions,
+      challengeId,
+    })
+
     // If this is a challenge, update the challenge completion status in Supabase
     if (challengeId) {
-      const challenge = await getChallenge(challengeId)
+      console.log("🏆 SUBMIT QUIZ RESULT: Processing challenge completion")
+
+      // Get fresh challenge data
+      const { data: challenge, error: fetchError } = await supabase
+        .from("user_challenges")
+        .select("*")
+        .eq("id", challengeId)
+        .single()
+
+      if (fetchError) {
+        console.error("❌ SUBMIT QUIZ RESULT: Error fetching challenge:", fetchError)
+        throw fetchError
+      }
+
+      console.log("📋 SUBMIT QUIZ RESULT: Fresh challenge data:", challenge)
 
       if (challenge) {
         const isChallenger = challenge.challenger_id === user.id
-        const updateField = isChallenger ? "challenger_completed_at" : "challenged_completed_at"
-        const scoreField = isChallenger ? "challenger_score" : "challenged_score"
+        const isChallenged = challenge.challenged_id === user.id
 
-        await supabase
+        console.log("👤 SUBMIT QUIZ RESULT: User role analysis:", {
+          isChallenger,
+          isChallenged,
+          challengerId: challenge.challenger_id,
+          challengedId: challenge.challenged_id,
+          currentUserId: user.id,
+        })
+
+        let updateData: any = {}
+        let statusUpdate = challenge.status
+
+        if (isChallenger) {
+          // Challenger completing their quiz
+          console.log("🎯 SUBMIT QUIZ RESULT: User is the challenger")
+          updateData = {
+            challenger_score: score,
+            challenger_completed_at: new Date().toISOString(),
+          }
+        } else if (isChallenged) {
+          // Challenged user completing their quiz
+          console.log("🎯 SUBMIT QUIZ RESULT: User is the challenged")
+          updateData = {
+            challenged_score: score,
+            challenged_completed_at: new Date().toISOString(),
+          }
+          // If challenger has already completed, mark as completed
+          if (challenge.challenger_completed_at) {
+            statusUpdate = "completed"
+            updateData.status = "completed"
+          }
+        }
+
+        console.log("📝 SUBMIT QUIZ RESULT: Update data:", updateData)
+
+        const { data: updatedChallenge, error: updateError } = await supabase
           .from("user_challenges")
-          .update({
-            [updateField]: new Date().toISOString(),
-            [scoreField]: score,
-          })
+          .update(updateData)
           .eq("id", challengeId)
+          .select()
+          .single()
+
+        if (updateError) {
+          console.error("❌ SUBMIT QUIZ RESULT: Error updating challenge:", updateError)
+          throw updateError
+        }
+
+        console.log("✅ SUBMIT QUIZ RESULT: Challenge updated successfully:", updatedChallenge)
       }
     }
 
-    // Note: Quiz results storage would need to be implemented for Vercel PostgreSQL
-    // For now, we'll just handle the challenge completion
-
+    console.log("✅ SUBMIT QUIZ RESULT: Submission completed successfully")
     return {
       success: true,
       finalScore: score,
@@ -490,7 +547,7 @@ export async function submitQuizResult(
       originalScore: score,
     }
   } catch (error) {
-    console.error("Error in submitQuizResult:", error)
+    console.error("❌ SUBMIT QUIZ RESULT: Error in submission:", error)
     throw error
   }
 }

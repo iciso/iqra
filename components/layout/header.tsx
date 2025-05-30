@@ -1,11 +1,11 @@
 "use client"
 
 import Link from "next/link"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import { useAuth } from "@/contexts/auth-context"
 import { LogOut, Home } from "lucide-react"
 import { useState } from "react"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useAuth } from "@/contexts/auth-context"
 
 export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
@@ -42,6 +42,9 @@ export function Header() {
                 </Link>
                 <Link href="/profile">
                   <Button variant="ghost">Profile</Button>
+                </Link>
+                <Link href="/about">
+                  <Button variant="ghost">About</Button>
                 </Link>
                 {/* Direct sign out button */}
                 <Button
