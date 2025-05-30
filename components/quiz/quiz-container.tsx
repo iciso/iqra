@@ -53,7 +53,6 @@ export default function QuizContainer({
   const [opponent, setOpponent] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
-  const [realOpponent, setRealOpponent] = useState<any>(null)
 
   // Generate a unique quiz ID when the component mounts
   useEffect(() => {
@@ -64,57 +63,87 @@ export default function QuizContainer({
     // Initialize answers array
     setAnswers(Array(questions.length).fill(""))
 
-    // Set up an opponent for challenge mode
+    // Set up opponent for challenge mode
     if (challengeMode) {
-      console.log("Challenge mode active with opponent ID:", opponentId)
-      console.log("Opponent name from URL:", opponentName)
-      console.log("Challenger turn:", challengerTurn)
+      console.log("🎯 QUIZ CONTAINER: Challenge mode active")
+      console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId)
+      console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName)
+      console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
 
-      if (opponentId) {
-        // Try to fetch the real opponent data if we have an ID
+      if (opponentId && opponentName) {
+        // We have opponent information from the URL - use it directly
+        console.log("🎯 QUIZ CONTAINER: Using opponent info from URL")
+        setOpponent({
+          id: opponentId,
+          name: opponentName,
+          avatar_url: null,
+          level: challengerTurn ? "Waiting for your quiz" : "Challenger",
+        })
+
+        // Store for results page
+        localStorage.setItem("quizOpponentId", opponentId)
+        localStorage.setItem(
+          "quizOpponent",
+          JSON.stringify({
+            id: opponentId,
+            name: opponentName,
+            avatar_url: null,
+            level: challengerTurn ? "Waiting for your quiz" : "Challenger",
+          }),
+        )
+      } else if (opponentId) {
+        // We have opponent ID but no name - fetch from database
+        console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
         const fetchOpponent = async () => {
           try {
-            console.log("Fetching opponent profile for ID:", opponentId)
             const opponentData = await getUserProfile(opponentId)
-            console.log("Fetched opponent data:", opponentData)
+            console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData)
 
             if (opponentData) {
-              setRealOpponent({
+              const opponentInfo = {
                 id: opponentData.id,
-                name: opponentData.full_name || opponentData.username || opponentName || "Challenger",
+                name: opponentData.full_name || opponentData.username || "Challenger",
                 avatar_url: opponentData.avatar_url,
                 level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              })
+              }
+              setOpponent(opponentInfo)
+              localStorage.setItem("quizOpponentId", opponentData.id)
+              localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
             } else {
-              // Fallback to name from URL if profile fetch fails
-              setRealOpponent({
+              console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback")
+              const fallbackOpponent = {
                 id: opponentId,
                 name: opponentName || "Challenger",
                 avatar_url: null,
                 level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              })
+              }
+              setOpponent(fallbackOpponent)
+              localStorage.setItem("quizOpponentId", opponentId)
+              localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
             }
           } catch (error) {
-            console.error("Error fetching opponent:", error)
-            // Fallback to name from URL if profile fetch fails
-            setRealOpponent({
+            console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error)
+            const fallbackOpponent = {
               id: opponentId,
               name: opponentName || "Challenger",
               avatar_url: null,
               level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-            })
+            }
+            setOpponent(fallbackOpponent)
+            localStorage.setItem("quizOpponentId", opponentId)
+            localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
           }
         }
 
         fetchOpponent()
       } else {
-        // Fallback to random opponent if no ID provided
-        const newOpponent = getRandomOpponent()
-        setOpponent(newOpponent)
-
-        // Store the opponent for results page
-        localStorage.setItem("quizOpponentId", newOpponent.id)
-        localStorage.setItem("quizOpponent", JSON.stringify(newOpponent))
+        // No opponent information - this shouldn't happen in challenge mode
+        console.warn("🎯 QUIZ CONTAINER: No opponent information provided for challenge mode!")
+        console.log("🎯 QUIZ CONTAINER: Using random opponent as fallback")
+        const randomOpponent = getRandomOpponent()
+        setOpponent(randomOpponent)
+        localStorage.setItem("quizOpponentId", randomOpponent.id)
+        localStorage.setItem("quizOpponent", JSON.stringify(randomOpponent))
       }
 
       // Set up timer for challenge mode
@@ -131,12 +160,8 @@ export default function QuizContainer({
       setIsTimerRunning(true)
     }
 
-    const categoryId = category.id
-
-    console.log("Quiz Container - Category ID:", categoryId)
-    console.log("Quiz Container - Difficulty:", difficulty)
-    console.log("Quiz Container - Questions loaded:", questions.length)
-    console.log("Quiz Container - Challenger turn:", challengerTurn)
+    console.log("🎯 QUIZ CONTAINER: Setup complete")
+    console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length)
   }, [questions.length, challengeMode, category.id, difficulty, category, opponentId, opponentName, challengerTurn])
 
   // Timer effect
@@ -229,18 +254,15 @@ export default function QuizContainer({
       localStorage.setItem("quizTimeLeft", timeLeft.toString())
       localStorage.setItem("quizId", quizId) // Store the unique quiz ID
 
-      // Store opponent info - prefer real opponent if available
-      if (realOpponent) {
-        localStorage.setItem("quizOpponentId", realOpponent.id || "")
-        localStorage.setItem("quizOpponent", JSON.stringify(realOpponent))
-      } else if (opponent) {
+      // Store opponent info
+      if (opponent) {
         localStorage.setItem("quizOpponentId", opponent.id || "")
         localStorage.setItem("quizOpponent", JSON.stringify(opponent))
       }
 
       // If this is the challenger's turn, update the challenge status
       if (challengerTurn && challengeMode) {
-        console.log("🎯 Challenger finished quiz, updating challenge status...")
+        console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
 
         try {
           // Update challenge status to "pending" so the challenged user can now accept it
@@ -255,16 +277,16 @@ export default function QuizContainer({
             .eq("id", challengeMode)
 
           if (error) {
-            console.error("Error updating challenge status:", error)
+            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
           } else {
-            console.log("🎯 Challenge status updated to pending")
+            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending")
           }
         } catch (error) {
-          console.error("Error updating challenge:", error)
+          console.error("🎯 QUIZ CONTAINER: Error updating challenge:", error)
         }
       }
     } catch (error) {
-      console.error("Error saving to localStorage:", error)
+      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
     }
 
     if (transitionType === "finish") {
@@ -308,9 +330,6 @@ export default function QuizContainer({
 
   // If no questions are available
   if (questions.length === 0) {
-    const categoryId = category.id
-    console.error(`No questions found for category: ${categoryId}, difficulty: ${difficulty}`)
-
     return (
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">
@@ -334,9 +353,6 @@ export default function QuizContainer({
     if (transitionType === "finish") return "Calculating results..."
     return "Loading..."
   }
-
-  // Determine which opponent to display
-  const displayOpponent = realOpponent || opponent
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -389,18 +405,18 @@ export default function QuizContainer({
               <CardTitle className="text-xl text-green-800 dark:text-green-400">
                 Question {currentQuestion + 1}
               </CardTitle>
-              {challengeMode && displayOpponent && (
+              {challengeMode && opponent && (
                 <div className="flex justify-center mt-2">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
                     <span className="text-xs text-gray-600 dark:text-gray-300">
                       {challengerTurn ? "Challenging:" : "Opponent:"}
                     </span>
-                    {displayOpponent && (
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-sm">{displayOpponent.name || "Challenger"}</span>
-                        {challengerTurn && <span className="text-xs text-gray-500">({displayOpponent.level})</span>}
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1">
+                      <span className="font-medium text-sm">{opponent.name || "Challenger"}</span>
+                      {opponent.level && !opponent.name.includes("bot") && (
+                        <span className="text-xs text-gray-500">({opponent.level})</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}
