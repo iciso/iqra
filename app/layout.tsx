@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/auth-context"
 import { Header } from "@/components/layout/header"
 import { Toaster } from "@/components/ui/toaster"
 import { MessageSquare } from "lucide-react"
+import ChallengeNotification from "@/components/challenge/challenge-notification"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -84,6 +85,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
+            <ChallengeNotification />
             <Toaster />
           </AuthProvider>
         </ThemeProvider>
