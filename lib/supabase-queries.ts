@@ -183,7 +183,9 @@ export async function acceptChallenge(challengeId: string) {
     // Redirect to quiz with proper challenger information
     const challengeUrl = `/quiz?category=${mappedCategory}&difficulty=${challenge.difficulty}&challenge=${challengeId}&questions=${challenge.question_count}&opponent=${challenger?.id}&opponentName=${encodeURIComponent(challengerName)}&challengerTurn=false`
 
-    console.log(`🔗 Redirecting to:`, challengeUrl)
+    console.log(`🔗 Full challenge URL:`, challengeUrl)
+    console.log(`🔗 Challenger ID being passed:`, challenger?.id)
+    console.log(`🔗 Challenger name being passed:`, challengerName)
     window.location.href = challengeUrl
 
     return {
