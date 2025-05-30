@@ -41,7 +41,17 @@ export default function ResultsPage() {
   const [challengeData, setChallengeData] = useState<any>(null)
   const [isChallenger, setIsChallenger] = useState(false)
   const [challengerTurn, setChallengerTurn] = useState(false)
-  const [savedScore, setSavedScore] = useState<string | null>(null)
+
+  // Get localStorage values directly for render decision
+  const getLocalStorageValues = () => {
+    if (typeof window === "undefined") return { challenge: null, challengerTurn: false, score: null }
+
+    return {
+      challenge: localStorage.getItem("quizChallenge"),
+      challengerTurn: localStorage.getItem("challengerTurn") === "true",
+      score: localStorage.getItem("quizScore"),
+    }
+  }
 
   // Debug authentication state
   useEffect(() => {
@@ -72,19 +82,10 @@ export default function ResultsPage() {
       console.log("🎯 RESULTS: Challenge detection values:", {
         savedChallenge,
         savedChallengerTurn,
-        challenge,
-        challengerTurn,
-        isChallenger,
-        showChallengeSubmitted: savedChallenge && savedChallengerTurn,
-      })
-
-      console.log("📊 Quiz data from localStorage:", {
-        savedScore,
-        savedTotal,
-        savedCategory,
-        savedDifficulty,
-        savedChallenge,
-        savedChallengerTurn,
+        hasChallenge: !!savedChallenge,
+        isChallengerTurn: savedChallengerTurn,
+        hasScore: !!savedScore,
+        showChallengeSubmitted: !!savedChallenge && savedChallengerTurn && !!savedScore,
       })
 
       setChallengerTurn(savedChallengerTurn)
@@ -272,7 +273,17 @@ export default function ResultsPage() {
   // Determine if user is authenticated
   const isAuthenticated = user && profile && !loading
 
-  console.log("🎯 Render decision:", {
+  // Get current localStorage values for render decision
+  const {
+    challenge: currentChallenge,
+    challengerTurn: currentChallengerTurn,
+    score: currentScore,
+  } = getLocalStorageValues()
+
+  // Special case for challenger who just completed their turn
+  const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
+
+  console.log("🎯 FINAL Render decision:", {
     isAuthenticated,
     loading,
     user: !!user,
@@ -280,10 +291,12 @@ export default function ResultsPage() {
     isChallenger,
     challengerTurn,
     challenge: !!challenge,
+    score,
+    currentChallenge,
+    currentChallengerTurn,
+    currentScore,
+    showChallengeSubmitted,
   })
-
-  // Special case for challenger who just completed their turn
-  const showChallengeSubmitted = challenge && challengerTurn && savedScore !== null
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
