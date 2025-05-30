@@ -56,10 +56,6 @@ export default function AboutPage() {
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
         </p>
-
-        <h2>Contact</h2>
-        <p>For feedback, suggestions, or inquiries, please reach out to us at [contact information].</p>
-
         <div className="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
           <p className="mb-2">
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely
