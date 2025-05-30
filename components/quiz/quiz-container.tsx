@@ -257,6 +257,7 @@ export default function QuizContainer({
       // Store challenger turn status for results page
       if (challengerTurn) {
         localStorage.setItem("challengerTurn", "true")
+        console.log("🎯 QUIZ CONTAINER: Stored challengerTurn=true in localStorage")
       } else {
         localStorage.setItem("challengerTurn", "false")
       }
@@ -292,17 +293,12 @@ export default function QuizContainer({
           console.error("🎯 QUIZ CONTAINER: Error updating challenge:", error)
         }
       }
+
+      // Force navigation to results page (which will show "Challenge Sent" screen)
+      console.log("🎯 QUIZ CONTAINER: All data saved, navigating to results...")
+      router.push("/results")
     } catch (error) {
       console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
-    }
-
-    if (transitionType === "finish") {
-      // Simulate a brief loading period before redirecting
-      setTimeout(() => {
-        router.push("/results")
-      }, 1200) // Slightly longer for final transition
-    } else {
-      router.push("/results")
     }
   }
 
@@ -419,8 +415,8 @@ export default function QuizContainer({
                       {challengerTurn ? "Challenging:" : "Opponent:"}
                     </span>
                     <div className="flex items-center gap-1">
-                      <span className="font-medium text-sm">{opponent.name || "Challenger"}</span>
-                      {opponent.level && !opponent.name.includes("bot") && (
+                      <span className="font-medium text-sm">{opponentName || opponent.name || "Challenger"}</span>
+                      {!opponentName && opponent.level && !opponent.name.includes("bot") && (
                         <span className="text-xs text-gray-500">({opponent.level})</span>
                       )}
                     </div>
