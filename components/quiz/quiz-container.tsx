@@ -254,6 +254,13 @@ export default function QuizContainer({
       localStorage.setItem("quizTimeLeft", timeLeft.toString())
       localStorage.setItem("quizId", quizId) // Store the unique quiz ID
 
+      // Store challenger turn status for results page
+      if (challengerTurn) {
+        localStorage.setItem("challengerTurn", "true")
+      } else {
+        localStorage.setItem("challengerTurn", "false")
+      }
+
       // Store opponent info
       if (opponent) {
         localStorage.setItem("quizOpponentId", opponent.id || "")

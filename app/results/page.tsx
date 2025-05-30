@@ -41,6 +41,7 @@ export default function ResultsPage() {
   const [challengeData, setChallengeData] = useState<any>(null)
   const [isChallenger, setIsChallenger] = useState(false)
   const [challengerTurn, setChallengerTurn] = useState(false)
+  const [savedScore, setSavedScore] = useState<string | null>(null)
 
   // Debug authentication state
   useEffect(() => {
@@ -67,6 +68,15 @@ export default function ResultsPage() {
       const savedTimeTotal = localStorage.getItem("quizTimeTotal")
       const savedOpponentId = localStorage.getItem("quizOpponentId")
       const savedChallengerTurn = localStorage.getItem("challengerTurn") === "true"
+
+      console.log("🎯 RESULTS: Challenge detection values:", {
+        savedChallenge,
+        savedChallengerTurn,
+        challenge,
+        challengerTurn,
+        isChallenger,
+        showChallengeSubmitted: savedChallenge && savedChallengerTurn,
+      })
 
       console.log("📊 Quiz data from localStorage:", {
         savedScore,
@@ -273,7 +283,7 @@ export default function ResultsPage() {
   })
 
   // Special case for challenger who just completed their turn
-  const showChallengeSubmitted = challenge && challengerTurn && isChallenger
+  const showChallengeSubmitted = challenge && challengerTurn && savedScore !== null
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
