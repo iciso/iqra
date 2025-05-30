@@ -241,10 +241,12 @@ export default function QuizContainer({
   }
 
   const handleFinishQuiz = async () => {
+    console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
+
     // Stop the timer
     setIsTimerRunning(false)
 
-    // Save score and time to localStorage
+    // Save score and time to localStorage FIRST
     try {
       localStorage.setItem("quizScore", score.toString())
       localStorage.setItem("totalQuestions", questions.length.toString())
@@ -268,13 +270,22 @@ export default function QuizContainer({
         localStorage.setItem("quizOpponent", JSON.stringify(opponent))
       }
 
-      // If this is the challenger's turn, update the challenge status
-      if (challengerTurn && challengeMode) {
-        console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
+      console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully")
+    } catch (error) {
+      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
+    }
 
+    // If this is the challenger's turn, update the challenge status (but don't block navigation)
+    if (challengerTurn && challengeMode) {
+      console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
+
+      // Use a promise that won't block navigation
+      const updateChallenge = async () => {
         try {
-          // Update challenge status to "pending" so the challenged user can now accept it
-          const { error } = await supabase
+          console.log("🎯 QUIZ CONTAINER: Attempting challenge update...")
+
+          // Set a timeout for the update
+          const updatePromise = supabase
             .from("user_challenges")
             .update({
               status: "pending",
@@ -284,22 +295,28 @@ export default function QuizContainer({
             })
             .eq("id", challengeMode)
 
+          // Race the update against a 3-second timeout
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Update timeout")), 3000))
+
+          const { error } = await Promise.race([updatePromise, timeoutPromise])
+
           if (error) {
             console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
           } else {
-            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending")
+            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
           }
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error updating challenge:", error)
+          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
         }
       }
 
-      // Force navigation to results page (which will show "Challenge Sent" screen)
-      console.log("🎯 QUIZ CONTAINER: All data saved, navigating to results...")
-      router.push("/results")
-    } catch (error) {
-      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
+      // Start the update but don't wait for it
+      updateChallenge()
     }
+
+    // Navigate to results immediately (don't wait for challenge update)
+    console.log("🎯 QUIZ CONTAINER: Navigating to results page...")
+    router.push("/results")
   }
 
   const handlePrevious = () => {
@@ -353,7 +370,7 @@ export default function QuizContainer({
   const getLoadingText = () => {
     if (transitionType === "submit") return "Checking answer..."
     if (transitionType === "next") return "Loading next question..."
-    if (transitionType === "finish") return "Calculating results..."
+    if (transitionType === "finish") return "Saving results..."
     return "Loading..."
   }
 

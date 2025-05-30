@@ -441,7 +441,7 @@ export async function getChallenge(challengeId: string) {
   return data
 }
 
-// Enhanced quiz result submission with proper challenge completion
+// Enhanced quiz result submission with proper challenge completion AND leaderboard storage
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
@@ -467,7 +467,40 @@ export async function submitQuizResult(
       challengeId,
     })
 
-    // If this is a challenge, update the challenge completion status in Supabase
+    // Calculate percentage
+    const percentage = Math.round((score / totalQuestions) * 100)
+
+    // 1. Save quiz result to Supabase quiz_results table for leaderboard
+    console.log("📊 SUBMIT QUIZ RESULT: Saving to quiz_results table")
+    try {
+      const { data: quizResult, error: quizError } = await supabase
+        .from("quiz_results")
+        .insert({
+          user_id: user.id,
+          score: score,
+          total_questions: totalQuestions,
+          percentage: percentage,
+          category: category,
+          difficulty: difficulty,
+          time_left: timeLeft || 0,
+          answers: answers ? JSON.stringify(answers) : null,
+          challenge_id: challengeId || null,
+        })
+        .select()
+        .single()
+
+      if (quizError) {
+        console.error("❌ SUBMIT QUIZ RESULT: Error saving quiz result:", quizError)
+        // Don't throw here - continue with challenge updates
+      } else {
+        console.log("✅ SUBMIT QUIZ RESULT: Quiz result saved to leaderboard:", quizResult)
+      }
+    } catch (error) {
+      console.error("❌ SUBMIT QUIZ RESULT: Exception saving quiz result:", error)
+      // Continue with challenge updates even if this fails
+    }
+
+    // 2. If this is a challenge, update the challenge completion status
     if (challengeId) {
       console.log("🏆 SUBMIT QUIZ RESULT: Processing challenge completion")
 
