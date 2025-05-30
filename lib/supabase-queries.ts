@@ -116,7 +116,7 @@ export async function sendFriendRequest(addresseeId: string) {
   return data
 }
 
-// Update the acceptChallenge function to include additional logging
+// Update the acceptChallenge function to properly pass challenger information
 export async function acceptChallenge(challengeId: string) {
   console.log(`🏆 Accepting challenge: ${challengeId}`)
 
@@ -132,10 +132,18 @@ export async function acceptChallenge(challengeId: string) {
   console.log(`👤 User ID: ${session.user.id}`)
 
   try {
-    // First get the challenge details to check the category
+    // First get the full challenge details including challenger information
     const { data: challenge, error: fetchError } = await supabase
       .from("user_challenges")
-      .select("category, difficulty")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey (
+          id,
+          username,
+          full_name,
+          avatar_url
+        )
+      `)
       .eq("id", challengeId)
       .single()
 
@@ -144,13 +152,13 @@ export async function acceptChallenge(challengeId: string) {
       throw fetchError
     }
 
-    console.log(`📋 Challenge details: ${JSON.stringify(challenge)}`)
+    console.log(`📋 Full challenge details:`, challenge)
 
     // Map category to ensure it matches available quiz categories
     const mappedCategory = mapChallengeCategoryToQuiz(challenge.category)
     console.log(`🗂️ Mapped category: ${mappedCategory} (from ${challenge.category})`)
 
-    // Now update the challenge with the correct category
+    // Update challenge status to accepted
     const { data, error } = await supabase.rpc("accept_challenge", {
       challenge_id: challengeId,
       user_id: session.user.id,
@@ -161,35 +169,28 @@ export async function acceptChallenge(challengeId: string) {
       throw error
     }
 
-    console.log(`✅ Challenge accepted successfully: ${JSON.stringify(data)}`)
+    console.log(`✅ Challenge accepted successfully`)
 
-    // Fetch the selected challenge with challenger information
-    const { data: selectedChallenge, error: selectError } = await supabase
-      .from("user_challenges")
-      .select(`
-        *,
-        challenger:user_profiles!user_challenges_challenger_id_fkey (
-          username,
-          full_name
-        )
-      `)
-      .eq("id", challengeId)
-      .single()
+    // Get challenger information
+    const challenger = challenge.challenger
+    const challengerName = challenger?.full_name || challenger?.username || "Challenger"
 
-    if (selectError) {
-      console.error("❌ Error fetching selected challenge:", selectError)
-      throw selectError
-    }
+    console.log(`👤 Challenger info:`, {
+      id: challenger?.id,
+      name: challengerName,
+    })
 
-    if (selectedChallenge) {
-      const challengeUrl = `/quiz?category=${selectedChallenge.category}&difficulty=${selectedChallenge.difficulty}&challenge=${challengeId}&questions=${selectedChallenge.question_count}&opponent=${selectedChallenge.challenger_id}&opponentName=${encodeURIComponent(selectedChallenge.challenger?.full_name || selectedChallenge.challenger?.username || "Challenger")}`
-      window.location.href = challengeUrl
-    }
+    // Redirect to quiz with proper challenger information
+    const challengeUrl = `/quiz?category=${mappedCategory}&difficulty=${challenge.difficulty}&challenge=${challengeId}&questions=${challenge.question_count}&opponent=${challenger?.id}&opponentName=${encodeURIComponent(challengerName)}&challengerTurn=false`
+
+    console.log(`🔗 Redirecting to:`, challengeUrl)
+    window.location.href = challengeUrl
 
     return {
       ...data,
       category: mappedCategory,
       original_category: challenge.category,
+      challenger: challenger,
     }
   } catch (error) {
     console.error("❌ General error in acceptChallenge:", error)
