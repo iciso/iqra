@@ -32,21 +32,34 @@ export default function WorkingChallengeSender() {
   const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
   const [loading, setLoading] = useState(false)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string[]>([])
+
+  const addDebug = (message: string) => {
+    console.log("🎯 CHALLENGE SENDER:", message)
+    setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
+  }
 
   useEffect(() => {
     if (user) {
+      addDebug(`User authenticated: ${user.email}`)
       loadAllUsers()
+    } else {
+      addDebug("No user found, waiting for authentication...")
     }
   }, [user])
 
   const loadAllUsers = async () => {
-    if (!user) return
+    if (!user) {
+      addDebug("Cannot load users - no authenticated user")
+      return
+    }
 
-    console.log("🎯 Loading all users...")
+    addDebug("Starting to load all users...")
     setLoading(true)
 
     try {
-      // Use the exact same query that works in the test page
+      // Use the exact same query that works in the database test
+      addDebug("Executing user profiles query...")
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
@@ -55,21 +68,38 @@ export default function WorkingChallengeSender() {
         .limit(20)
 
       if (error) {
-        console.error("🎯 Error loading users:", error.message)
+        addDebug(`Database error: ${error.message}`)
+        console.error("🎯 Error loading users:", error)
         throw error
       }
 
-      console.log(`🎯 Loaded ${data?.length || 0} users`)
-      setAllUsers(data || [])
+      addDebug(`Query successful - received ${data?.length || 0} users`)
+      console.log("🎯 Raw user data:", data)
+
+      if (data && data.length > 0) {
+        setAllUsers(data)
+        addDebug(`Successfully loaded ${data.length} users`)
+
+        // Log first few users for debugging
+        data.slice(0, 3).forEach((user, index) => {
+          addDebug(`User ${index + 1}: ${user.username} (${user.full_name || "No name"})`)
+        })
+      } else {
+        addDebug("No users returned from query")
+        setAllUsers([])
+      }
     } catch (error: any) {
-      console.error("🎯 Failed to load users:", error.message)
+      addDebug(`Failed to load users: ${error.message}`)
+      console.error("🎯 Failed to load users:", error)
       toast({
         title: "Error",
-        description: "Failed to load users",
+        description: "Failed to load users. Please try again.",
         variant: "destructive",
       })
+      setAllUsers([])
     } finally {
       setLoading(false)
+      addDebug("User loading completed")
     }
   }
 
@@ -78,10 +108,11 @@ export default function WorkingChallengeSender() {
 
     if (!query || query.length < 2) {
       setSearchResults([])
+      addDebug("Search query too short, clearing results")
       return
     }
 
-    console.log(`🎯 Searching for: "${query}"`)
+    addDebug(`Searching for: "${query}" in ${allUsers.length} users`)
 
     // Filter from already loaded users
     const filtered = allUsers.filter(
@@ -90,7 +121,7 @@ export default function WorkingChallengeSender() {
         (user.full_name && user.full_name.toLowerCase().includes(query.toLowerCase())),
     )
 
-    console.log(`🎯 Found ${filtered.length} matches`)
+    addDebug(`Found ${filtered.length} matches for "${query}"`)
     setSearchResults(filtered)
   }
 
@@ -104,7 +135,7 @@ export default function WorkingChallengeSender() {
       return
     }
 
-    console.log(`🎯 Sending challenge to: ${challengedUser.username}`)
+    addDebug(`Sending challenge to: ${challengedUser.username}`)
     setSendingChallenge(challengedUser.id)
 
     try {
@@ -119,16 +150,16 @@ export default function WorkingChallengeSender() {
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      console.log(`🎯 Creating challenge:`, challengeData)
+      addDebug(`Creating challenge with data: ${JSON.stringify(challengeData)}`)
 
       const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
       if (error) {
-        console.error(`🎯 Challenge creation failed:`, error.message)
+        addDebug(`Challenge creation failed: ${error.message}`)
         throw error
       }
 
-      console.log(`🎯 Challenge created: ${data.id}`)
+      addDebug(`Challenge created successfully: ${data.id}`)
 
       // Store challenge info for the quiz
       localStorage.setItem("currentChallengeId", data.id)
@@ -142,10 +173,10 @@ export default function WorkingChallengeSender() {
       // Redirect challenger to take the quiz first
       const quizUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${data.id}&questions=10&challengerTurn=true&opponent=${challengedUser.id}&opponentName=${encodeURIComponent(challengedUser.full_name || challengedUser.username)}`
 
-      console.log(`🎯 Redirecting challenger to: ${quizUrl}`)
+      addDebug(`Redirecting to quiz: ${quizUrl}`)
       router.push(quizUrl)
     } catch (error: any) {
-      console.error(`🎯 Challenge error:`, error.message)
+      addDebug(`Challenge error: ${error.message}`)
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
@@ -194,7 +225,7 @@ export default function WorkingChallengeSender() {
         <CardContent className="py-8">
           <div className="flex justify-center">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
-            <span className="ml-2 text-sm text-gray-500">Loading...</span>
+            <span className="ml-2 text-sm text-gray-500">Loading authentication...</span>
           </div>
         </CardContent>
       </Card>
@@ -213,6 +244,30 @@ export default function WorkingChallengeSender() {
 
   return (
     <div className="space-y-6">
+      {/* Debug Info */}
+      <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
+        <CardHeader>
+          <CardTitle className="text-sm text-blue-800 dark:text-blue-200">Challenge Sender Debug</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-xs text-blue-600 dark:text-blue-300 space-y-1">
+            <p>User: {user.email}</p>
+            <p>Auth Loading: {authLoading.toString()}</p>
+            <p>Users Loading: {loading.toString()}</p>
+            <p>All Users Count: {allUsers.length}</p>
+            <p>Search Results: {searchResults.length}</p>
+            <div className="mt-2">
+              <p className="font-medium">Debug Log:</p>
+              {debugInfo.map((info, index) => (
+                <p key={index} className="text-xs">
+                  {info}
+                </p>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Challenge Settings */}
       <Card>
         <CardHeader>
@@ -274,6 +329,7 @@ export default function WorkingChallengeSender() {
             </div>
             <Button variant="outline" size="sm" onClick={loadAllUsers} disabled={loading}>
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+              Reload
             </Button>
           </CardTitle>
         </CardHeader>
@@ -296,8 +352,9 @@ export default function WorkingChallengeSender() {
               <div className="text-center py-4 text-gray-500">
                 <AlertCircle className="h-8 w-8 mx-auto mb-2" />
                 <p>No other users found</p>
+                <p className="text-xs mt-1">Database shows users exist but none loaded here</p>
                 <Button onClick={loadAllUsers} variant="outline" className="mt-2">
-                  Retry
+                  Try Again
                 </Button>
               </div>
             ) : (
