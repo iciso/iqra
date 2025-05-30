@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw } from "lucide-react"
+import { Trophy, RefreshCw, AlertCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
 interface Player {
@@ -20,29 +20,74 @@ export default function SimpleTopPlayers() {
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [retryCount, setRetryCount] = useState(0)
 
   const loadPlayers = async () => {
     try {
       setLoading(true)
       setError(null)
-      console.log("🏆 Loading top players...")
+      console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
+      // Check if we have a valid session first
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession()
+
+      console.log("🔐 Session check:", {
+        hasSession: !!session,
+        userId: session?.user?.id,
+        sessionError: sessionError?.message,
+      })
+
+      if (sessionError) {
+        console.error("❌ Session error:", sessionError)
+        throw new Error(`Session error: ${sessionError.message}`)
+      }
+
+      if (!session) {
+        console.warn("⚠️ No session found, but continuing with query...")
+      }
+
+      // Try the query with detailed logging
+      console.log("📊 Executing Supabase query...")
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, total_score, best_percentage")
         .order("total_score", { ascending: false })
         .limit(5)
 
+      console.log("📊 Query result:", {
+        data: data,
+        error: error,
+        dataLength: data?.length,
+      })
+
       if (error) {
-        console.error("❌ Error loading players:", error)
-        throw error
+        console.error("❌ Supabase query error:", error)
+        throw new Error(`Database error: ${error.message}`)
       }
 
-      console.log("✅ Players loaded:", data)
-      setPlayers(data || [])
+      if (!data) {
+        console.warn("⚠️ No data returned from query")
+        setPlayers([])
+      } else {
+        console.log("✅ Players loaded successfully:", data)
+        setPlayers(data)
+      }
     } catch (err: any) {
-      console.error("❌ Caught error:", err)
-      setError(err.message)
+      console.error("❌ Caught error in loadPlayers:", err)
+      setError(err.message || "Failed to load players")
+
+      // Auto-retry up to 3 times with exponential backoff
+      if (retryCount < 3) {
+        const delay = Math.pow(2, retryCount) * 1000 // 1s, 2s, 4s
+        console.log(`🔄 Retrying in ${delay}ms...`)
+        setTimeout(() => {
+          setRetryCount(retryCount + 1)
+          loadPlayers()
+        }, delay)
+      }
     } finally {
       setLoading(false)
     }
@@ -50,13 +95,25 @@ export default function SimpleTopPlayers() {
 
   const loadUser = async () => {
     try {
+      console.log("👤 Loading current user...")
       const {
         data: { session },
+        error,
       } = await supabase.auth.getSession()
-      console.log("👤 Current user session:", !!session)
+
+      console.log("👤 User session result:", {
+        hasSession: !!session,
+        userId: session?.user?.id,
+        error: error?.message,
+      })
+
+      if (error) {
+        console.error("❌ Error loading user:", error)
+      }
+
       setUser(session?.user || null)
     } catch (err) {
-      console.error("❌ Error loading user:", err)
+      console.error("❌ Exception loading user:", err)
     }
   }
 
@@ -106,6 +163,11 @@ export default function SimpleTopPlayers() {
     }
   }
 
+  const handleRetry = () => {
+    setRetryCount(0)
+    loadPlayers()
+  }
+
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     loadPlayers()
@@ -117,6 +179,15 @@ export default function SimpleTopPlayers() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       console.log("🔄 Auth state changed in SimpleTopPlayers:", event, !!session)
       setUser(session?.user || null)
+
+      // Reload players when auth state changes to a valid session
+      if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+        console.log("🔄 Auth event triggered player reload")
+        setTimeout(() => {
+          setRetryCount(0)
+          loadPlayers()
+        }, 1000) // Small delay to ensure session is fully established
+      }
     })
 
     return () => {
@@ -124,7 +195,7 @@ export default function SimpleTopPlayers() {
     }
   }, [])
 
-  if (loading) {
+  if (loading && retryCount === 0) {
     return (
       <Card>
         <CardHeader>
@@ -154,9 +225,13 @@ export default function SimpleTopPlayers() {
         </CardHeader>
         <CardContent>
           <div className="text-center py-4">
-            <p className="text-red-600 text-sm mb-2">Error: {error}</p>
-            <Button size="sm" onClick={loadPlayers}>
-              Try Again
+            <AlertCircle className="h-8 w-8 text-red-500 mx-auto mb-2" />
+            <p className="text-red-600 text-sm mb-2">
+              {error}
+              {retryCount > 0 && ` (Attempt ${retryCount + 1}/4)`}
+            </p>
+            <Button size="sm" onClick={handleRetry} disabled={loading}>
+              {loading ? "Retrying..." : "Try Again"}
             </Button>
           </div>
         </CardContent>
@@ -172,8 +247,8 @@ export default function SimpleTopPlayers() {
             <Trophy className="h-5 w-5 text-yellow-500" />
             Top Players
           </div>
-          <Button variant="outline" size="sm" onClick={loadPlayers}>
-            <RefreshCw className="h-4 w-4" />
+          <Button variant="outline" size="sm" onClick={handleRetry} disabled={loading}>
+            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
           </Button>
         </CardTitle>
       </CardHeader>
