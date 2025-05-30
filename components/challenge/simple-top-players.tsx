@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw } from "lucide-react"
 import { supabase } from "@/lib/supabase"
-import VercelChallengeButton from "./vercel-challenge-button"
+import SupabaseChallengeButton from "./supabase-challenge-button"
 import { useAuth } from "@/contexts/auth-context"
 
 interface Player {
@@ -125,7 +125,7 @@ export default function SimpleTopPlayers() {
                   </div>
 
                   {user && user.id !== player.id && (
-                    <VercelChallengeButton
+                    <SupabaseChallengeButton
                       userId={player.id}
                       userName={player.full_name || player.username}
                       className="h-8 py-0 px-2 text-xs"

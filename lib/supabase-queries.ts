@@ -1,7 +1,6 @@
 import { supabase } from "./supabase"
-import { calculateChallengeScore, determineChallengeOutcome } from "@/utils/challenge-scoring"
 
-// User profile functions
+// User profile functions (these are in Supabase)
 export async function getUserProfile(userId: string) {
   const { data, error } = await supabase.from("user_profiles").select("*").eq("id", userId).single()
 
@@ -45,7 +44,7 @@ export async function updateUserOnlineStatus(isOnline: boolean) {
   return true
 }
 
-// User search and discovery
+// User search and discovery (these are in Supabase)
 export async function searchUsers(query: string, limit = 10) {
   console.log("🔍 SEARCH USERS FUNCTION: Called with query:", query)
 
@@ -89,7 +88,7 @@ export async function getTopPlayers(limit = 10) {
   return data || []
 }
 
-// Friendship functions
+// Friendship functions (these would be in Supabase)
 export async function sendFriendRequest(addresseeId: string) {
   const {
     data: { session },
@@ -116,138 +115,9 @@ export async function sendFriendRequest(addresseeId: string) {
   return data
 }
 
-// Update the acceptChallenge function to properly pass challenger information
-export async function acceptChallenge(challengeId: string) {
-  console.log(`🏆 Accepting challenge: ${challengeId}`)
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session?.user) {
-    console.error("❌ No authenticated user found")
-    throw new Error("No authenticated user")
-  }
-
-  console.log(`👤 User ID: ${session.user.id}`)
-
-  try {
-    // First get the full challenge details including challenger information
-    const { data: challenge, error: fetchError } = await supabase
-      .from("user_challenges")
-      .select(`
-        *,
-        challenger:user_profiles!user_challenges_challenger_id_fkey (
-          id,
-          username,
-          full_name,
-          avatar_url
-        )
-      `)
-      .eq("id", challengeId)
-      .single()
-
-    if (fetchError) {
-      console.error("❌ Error fetching challenge:", fetchError)
-      throw fetchError
-    }
-
-    console.log(`📋 Full challenge details:`, challenge)
-
-    // Map category to ensure it matches available quiz categories
-    const mappedCategory = mapChallengeCategoryToQuiz(challenge.category)
-    console.log(`🗂️ Mapped category: ${mappedCategory} (from ${challenge.category})`)
-
-    // Update challenge status to accepted
-    const { data, error } = await supabase.rpc("accept_challenge", {
-      challenge_id: challengeId,
-      user_id: session.user.id,
-    })
-
-    if (error) {
-      console.error("❌ Error accepting challenge:", error)
-      throw error
-    }
-
-    console.log(`✅ Challenge accepted successfully`)
-
-    // Get challenger information
-    const challenger = challenge.challenger
-    const challengerName = challenger?.full_name || challenger?.username || "Challenger"
-
-    console.log(`👤 Challenger info:`, {
-      id: challenger?.id,
-      name: challengerName,
-    })
-
-    // Redirect to quiz with proper challenger information
-    const challengeUrl = `/quiz?category=${mappedCategory}&difficulty=${challenge.difficulty}&challenge=${challengeId}&questions=${challenge.question_count}&opponent=${challenger?.id}&opponentName=${encodeURIComponent(challengerName)}&challengerTurn=false`
-
-    console.log(`🔗 Full challenge URL:`, challengeUrl)
-    console.log(`🔗 Challenger ID being passed:`, challenger?.id)
-    console.log(`🔗 Challenger name being passed:`, challengerName)
-    window.location.href = challengeUrl
-
-    return {
-      ...data,
-      category: mappedCategory,
-      original_category: challenge.category,
-      challenger: challenger,
-    }
-  } catch (error) {
-    console.error("❌ General error in acceptChallenge:", error)
-    throw error
-  }
-}
-
-// Helper function to map challenge categories to available quiz categories
-function mapChallengeCategoryToQuiz(category) {
-  // Lowercase and remove spaces for consistent matching
-  const normalizedCategory = category.toLowerCase().replace(/\s+/g, "")
-
-  // Map of normalized categories to actual quiz categories
-  const categoryMap = {
-    quranknowledge: "quran",
-    quran: "quran",
-    fiqh: "fiqh",
-    tafsir: "tafsir",
-    hadeeth: "hadeeth",
-    islamichistory: "history",
-    history: "history",
-    aqeedah: "aqeedah",
-    seerah: "seerah",
-    islamicfinance: "islamic-finance",
-    finance: "islamic-finance",
-    comparativereligion: "comparative",
-    comparative: "comparative",
-    dawah: "dawah",
-    newmuslims: "new-muslims",
-    tazkiyah: "tazkiyah",
-  }
-
-  // Return mapped category or default to 'quran' if not found
-  return categoryMap[normalizedCategory] || "quran"
-}
-
-export async function declineFriendRequest(requestId: string) {
-  const { data, error } = await supabase
-    .from("friendships")
-    .update({ status: "declined" })
-    .eq("id", requestId)
-    .select()
-    .single()
-
-  if (error) {
-    console.error("Error declining friend request:", error)
-    throw error
-  }
-
-  return data
-}
-
 export async function getFriends(userId: string) {
   const { data, error } = await supabase
-    .from("user_friends")
+    .from("friendships")
     .select("*")
     .eq("requester_id", userId)
     .eq("status", "accepted")
@@ -286,7 +156,7 @@ export async function getPendingFriendRequests(userId: string) {
   return data || []
 }
 
-// Challenge functions
+// Challenge functions (these are in Supabase user_challenges table)
 export async function createChallenge(
   challengedId: string,
   category: string,
@@ -354,28 +224,6 @@ export async function declineChallenge(challengeId: string) {
 
   if (error) {
     console.error("Error declining challenge:", error)
-    throw error
-  }
-
-  return data
-}
-
-export async function completeChallenge(challengeId: string, score: number) {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-  if (!session?.user) {
-    throw new Error("No authenticated user")
-  }
-
-  const { data, error } = await supabase.rpc("complete_challenge", {
-    challenge_id: challengeId,
-    user_id: session.user.id,
-    score,
-  })
-
-  if (error) {
-    console.error("Error completing challenge:", error)
     throw error
   }
 
@@ -451,46 +299,110 @@ export async function getActiveChallenges(userId: string) {
   return data || []
 }
 
-export async function getChallengeHistory(userId: string, limit = 10) {
-  const { data, error } = await supabase
-    .from("user_challenges")
-    .select(`
-      id,
-      challenger_id,
-      challenged_id,
-      category,
-      difficulty,
-      question_count,
-      status,
-      challenger_score,
-      challenged_score,
-      challenger_completed_at,
-      challenged_completed_at,
-      created_at,
-      challenger:user_profiles!user_challenges_challenger_id_fkey (
-        username,
-        full_name,
-        avatar_url
-      ),
-      challenged:user_profiles!user_challenges_challenged_id_fkey (
-        username,
-        full_name,
-        avatar_url
-      )
-    `)
-    .eq("status", "completed")
-    .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
-    .order("updated_at", { ascending: false })
-    .limit(limit)
+export async function getUserChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name),
+        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name)
+      `)
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .order("created_at", { ascending: false })
 
-  if (error) {
-    console.error("Error fetching challenge history:", error)
+    if (error) {
+      console.error("Error fetching user challenges:", error)
+      throw error
+    }
+
+    return data || []
+  } catch (error) {
+    console.error("Error in getUserChallenges:", error)
     throw error
   }
-
-  return data || []
 }
 
+export async function acceptChallenge(challengeId: string) {
+  console.log(`🏆 Accepting challenge: ${challengeId}`)
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session?.user) {
+    console.error("❌ No authenticated user found")
+    throw new Error("No authenticated user")
+  }
+
+  console.log(`👤 User ID: ${session.user.id}`)
+
+  try {
+    // First get the full challenge details including challenger information
+    const { data: challenge, error: fetchError } = await supabase
+      .from("user_challenges")
+      .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey (
+          id,
+          username,
+          full_name,
+          avatar_url
+        )
+      `)
+      .eq("id", challengeId)
+      .single()
+
+    if (fetchError) {
+      console.error("❌ Error fetching challenge:", fetchError)
+      throw fetchError
+    }
+
+    console.log(`📋 Full challenge details:`, challenge)
+
+    // Update challenge status to accepted
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .update({ status: "accepted" })
+      .eq("id", challengeId)
+      .select()
+      .single()
+
+    if (error) {
+      console.error("❌ Error accepting challenge:", error)
+      throw error
+    }
+
+    console.log(`✅ Challenge accepted successfully`)
+
+    // Get challenger information
+    const challenger = challenge.challenger
+    const challengerName = challenger?.full_name || challenger?.username || "Challenger"
+
+    console.log(`👤 Challenger info:`, {
+      id: challenger?.id,
+      name: challengerName,
+    })
+
+    // Redirect to quiz with proper challenger information
+    const challengeUrl = `/quiz?category=${challenge.category}&difficulty=${challenge.difficulty}&challenge=${challengeId}&questions=${challenge.question_count}&opponent=${challenger?.id}&opponentName=${encodeURIComponent(challengerName)}&challengerTurn=false`
+
+    console.log(`🔗 Full challenge URL:`, challengeUrl)
+    console.log(`🔗 Challenger ID being passed:`, challenger?.id)
+    console.log(`🔗 Challenger name being passed:`, challengerName)
+    window.location.href = challengeUrl
+
+    return {
+      ...data,
+      challenger: challenger,
+    }
+  } catch (error) {
+    console.error("❌ General error in acceptChallenge:", error)
+    throw error
+  }
+}
+
+// Additional challenge functions
 export async function getChallenge(challengeId: string) {
   const { data, error } = await supabase
     .from("user_challenges")
@@ -529,7 +441,8 @@ export async function getChallenge(challengeId: string) {
   return data
 }
 
-// Missing exports - Quiz Results
+// Note: Quiz results will still be stored in Vercel PostgreSQL
+// This function would need to be updated to work with Vercel's database
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
@@ -548,227 +461,36 @@ export async function submitQuizResult(
       throw new Error("User not authenticated")
     }
 
-    const percentage = Math.round((score / totalQuestions) * 100)
-    let finalScore = score
-    let bonusPoints = 0
-    let badgeEarned: string | undefined
-
-    // If this is a challenge, calculate special scoring
+    // If this is a challenge, update the challenge completion status in Supabase
     if (challengeId) {
       const challenge = await getChallenge(challengeId)
 
       if (challenge) {
         const isChallenger = challenge.challenger_id === user.id
-        const challengerCompleted = challenge.challenger_completed_at !== null
-        const challengedCompleted = challenge.challenged_completed_at !== null
-        const isExpired = new Date(challenge.expires_at) < new Date()
+        const updateField = isChallenger ? "challenger_completed_at" : "challenged_completed_at"
+        const scoreField = isChallenger ? "challenger_score" : "challenged_score"
 
-        // Determine the outcome
-        const outcome = determineChallengeOutcome(
-          isChallenger ? true : challengerCompleted, // Current completion
-          isChallenger ? challengedCompleted : true, // Opponent completion
-          challenge.status,
-          isExpired,
-        )
-
-        // Calculate time bonus (faster completion = more bonus)
-        const timeBonus = timeLeft ? Math.floor(timeLeft / 30) : 0 // 1 point per 30 seconds remaining
-
-        const scoreResult = calculateChallengeScore(score, totalQuestions, outcome, timeBonus)
-        finalScore = scoreResult.totalScore
-        bonusPoints = scoreResult.bonusPoints
-        badgeEarned = scoreResult.badgeEarned
-
-        console.log("🏆 Challenge scoring result:", scoreResult)
+        await supabase
+          .from("user_challenges")
+          .update({
+            [updateField]: new Date().toISOString(),
+            [scoreField]: score,
+          })
+          .eq("id", challengeId)
       }
     }
 
-    // Insert quiz result with enhanced scoring
-    const { error: resultError } = await supabase.from("quiz_results").insert({
-      user_id: user.id,
-      challenge_id: challengeId,
-      category,
-      difficulty,
-      score: finalScore, // Use calculated final score
-      original_score: score, // Keep track of original score
-      bonus_points: bonusPoints,
-      total_questions: totalQuestions,
-      percentage,
-      time_taken: timeLeft ? 300 - timeLeft : null,
-      answers,
-      badge_earned: badgeEarned,
-    })
-
-    if (resultError) {
-      console.error("Error inserting quiz result:", resultError)
-      throw resultError
-    }
-
-    // Update challenge completion status
-    if (challengeId) {
-      const isChallenger = await isUserChallenger(challengeId, user.id)
-      const updateField = isChallenger ? "challenger_completed_at" : "challenged_completed_at"
-      const scoreField = isChallenger ? "challenger_score" : "challenged_score"
-
-      await supabase
-        .from("user_challenges")
-        .update({
-          [updateField]: new Date().toISOString(),
-          [scoreField]: finalScore,
-        })
-        .eq("id", challengeId)
-    }
-
-    // Update user profile stats with final score
-    const { error: updateError } = await supabase.rpc("update_user_stats", {
-      user_id: user.id,
-      new_score: finalScore,
-      new_total: totalQuestions,
-      new_percentage: percentage,
-    })
-
-    if (updateError) {
-      console.error("Error updating user stats:", updateError)
-    }
+    // Note: Quiz results storage would need to be implemented for Vercel PostgreSQL
+    // For now, we'll just handle the challenge completion
 
     return {
       success: true,
-      finalScore,
-      bonusPoints,
-      badgeEarned,
+      finalScore: score,
+      bonusPoints: 0,
       originalScore: score,
     }
   } catch (error) {
     console.error("Error in submitQuizResult:", error)
-    throw error
-  }
-}
-
-// Helper function to check if user is challenger
-async function isUserChallenger(challengeId: string, userId: string): Promise<boolean> {
-  const { data } = await supabase.from("user_challenges").select("challenger_id").eq("id", challengeId).single()
-
-  return data?.challenger_id === userId
-}
-
-// Function to handle challenge decline with partial scoring
-export async function declineChallengeWithScoring(challengeId: string) {
-  try {
-    const challenge = await getChallenge(challengeId)
-    if (!challenge) throw new Error("Challenge not found")
-
-    // Check if challenger has already completed the quiz
-    if (challenge.challenger_completed_at && challenge.challenger_score) {
-      // Give challenger partial credit for the declined challenge
-      const scoreResult = calculateChallengeScore(challenge.challenger_score, challenge.question_count, "declined")
-
-      // Update the challenge record
-      await supabase
-        .from("user_challenges")
-        .update({
-          status: "declined",
-          challenger_final_score: scoreResult.totalScore,
-          decline_bonus_awarded: true,
-        })
-        .eq("id", challengeId)
-
-      // Award the partial score to challenger's profile
-      await supabase.rpc("update_user_stats", {
-        user_id: challenge.challenger_id,
-        new_score: scoreResult.bonusPoints, // Add bonus points
-        new_total: 0, // Don't count questions since it was declined
-        new_percentage: 0,
-      })
-
-      return {
-        success: true,
-        challengerBonusAwarded: scoreResult.totalScore,
-        badgeEarned: scoreResult.badgeEarned,
-        message: scoreResult.reason,
-      }
-    } else {
-      // Standard decline - no bonus since challenger didn't complete
-      await supabase.from("user_challenges").update({ status: "declined" }).eq("id", challengeId)
-
-      return { success: true, challengerBonusAwarded: 0 }
-    }
-  } catch (error) {
-    console.error("Error in declineChallengeWithScoring:", error)
-    throw error
-  }
-}
-
-// Missing exports - User Challenges
-export async function getUserChallenges(userId: string) {
-  try {
-    const { data, error } = await supabase
-      .from("user_challenges")
-      .select(`
-        *,
-        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name),
-        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name)
-      `)
-      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
-      .order("created_at", { ascending: false })
-
-    if (error) {
-      console.error("Error fetching user challenges:", error)
-      throw error
-    }
-
-    return data || []
-  } catch (error) {
-    console.error("Error in getUserChallenges:", error)
-    throw error
-  }
-}
-
-// Additional missing exports that might be needed
-export async function getLeaderboard(limit = 50) {
-  try {
-    const { data, error } = await supabase
-      .from("user_profiles")
-      .select("username, full_name, total_score, total_questions, best_percentage, updated_at")
-      .order("best_percentage", { ascending: false })
-      .order("total_score", { ascending: false })
-      .limit(limit)
-
-    if (error) {
-      console.error("Error fetching leaderboard:", error)
-      throw error
-    }
-
-    return data
-  } catch (error) {
-    console.error("Error in getLeaderboard:", error)
-    throw error
-  }
-}
-
-export async function createFriendRequest(addresseeId: string) {
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      throw new Error("User not authenticated")
-    }
-
-    const { error } = await supabase.from("friendships").insert({
-      requester_id: user.id,
-      addressee_id: addresseeId,
-      status: "pending",
-    })
-
-    if (error) {
-      console.error("Error creating friend request:", error)
-      throw error
-    }
-
-    return { success: true }
-  } catch (error) {
-    console.error("Error in createFriendRequest:", error)
     throw error
   }
 }
