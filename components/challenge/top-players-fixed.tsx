@@ -18,60 +18,41 @@ interface Player {
 }
 
 export default function TopPlayersFixed() {
-  const { user, loading: authLoading } = useAuth()
+  const { user } = useAuth()
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [debugInfo, setDebugInfo] = useState<string[]>([])
-
-  const addDebug = (message: string) => {
-    console.log("🏆 DEBUG:", message)
-    setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
-  }
-
-  useEffect(() => {
-    if (!authLoading) {
-      loadTopPlayers()
-    }
-  }, [authLoading])
 
   const loadTopPlayers = async () => {
-    addDebug("Starting loadTopPlayers...")
+    if (loading) return // Prevent multiple simultaneous calls
+
     setLoading(true)
     setError(null)
 
     try {
-      addDebug("Querying user profiles (known to work)...")
-
-      // Since we know user_profiles works, let's use that
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .order("total_score", { ascending: false })
         .limit(10)
 
-      addDebug(`Query result: ${JSON.stringify({ error: !!error, count: data?.length })}`)
-
-      if (error) {
-        throw error
-      }
+      if (error) throw error
 
       const allPlayers = data || []
-      addDebug(`Found ${allPlayers.length} total players`)
-
       // Filter out current user if needed
       const filteredPlayers = user ? allPlayers.filter((player) => player.id !== user.id) : allPlayers
-
-      addDebug(`Filtered to ${filteredPlayers.length} players (excluding current user)`)
       setPlayers(filteredPlayers)
     } catch (error: any) {
-      addDebug(`Error: ${error.message}`)
       setError(error.message)
     } finally {
-      addDebug("loadTopPlayers completed")
       setLoading(false)
     }
   }
+
+  // Load players only once when component mounts
+  useEffect(() => {
+    loadTopPlayers()
+  }, []) // Remove user dependency to prevent infinite loops
 
   const getUserInitials = (player: Player) => {
     if (player.full_name) {
@@ -98,21 +79,6 @@ export default function TopPlayersFixed() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {/* Debug Info */}
-        <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded mb-4">
-          <p>Auth Loading: {authLoading.toString()}</p>
-          <p>Component Loading: {loading.toString()}</p>
-          <p>Players: {players.length}</p>
-          <div className="mt-2">
-            <p className="font-medium">Debug Log:</p>
-            {debugInfo.map((info, index) => (
-              <p key={index} className="text-xs">
-                {info}
-              </p>
-            ))}
-          </div>
-        </div>
-
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
