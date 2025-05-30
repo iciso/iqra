@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import DirectChallengeButton from "./direct-challenge-button"
+import { useAuth } from "@/contexts/auth-context"
 
 interface Player {
   id: string
@@ -16,6 +18,7 @@ interface Player {
 }
 
 export default function SimpleTopPlayers() {
+  const { user } = useAuth()
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -115,9 +118,19 @@ export default function SimpleTopPlayers() {
                     <p className="font-medium text-sm">{player.full_name || player.username}</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="font-medium text-sm">{player.total_score} pts</p>
-                  <p className="text-xs text-gray-500">{player.best_percentage}%</p>
+                <div className="flex items-center gap-2">
+                  <div className="text-right mr-2">
+                    <p className="font-medium text-sm">{player.total_score} pts</p>
+                    <p className="text-xs text-gray-500">{player.best_percentage}%</p>
+                  </div>
+
+                  {user && user.id !== player.id && (
+                    <DirectChallengeButton
+                      userId={player.id}
+                      userName={player.full_name || player.username}
+                      className="h-8 py-0 px-2 text-xs"
+                    />
+                  )}
                 </div>
               </div>
             ))}
