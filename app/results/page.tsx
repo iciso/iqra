@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Award, ArrowLeft, ArrowRight } from "lucide-react"
+import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle } from "lucide-react"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
@@ -15,7 +15,7 @@ import { getRandomOpponent, generateBotScore, getNextChallenge } from "@/utils/o
 import type { Opponent } from "@/components/challenge/opponent-profile"
 import ChallengeResultsComparison from "@/components/challenge/challenge-results-comparison"
 import { useAuth } from "@/contexts/auth-context"
-import { submitQuizResult } from "@/lib/supabase-queries"
+import { submitQuizResult, getChallenge } from "@/lib/supabase-queries"
 
 export default function ResultsPage() {
   const router = useRouter()
@@ -38,6 +38,9 @@ export default function ResultsPage() {
     challenge: string
   } | null>(null)
   const [saving, setSaving] = useState(false)
+  const [challengeData, setChallengeData] = useState<any>(null)
+  const [isChallenger, setIsChallenger] = useState(false)
+  const [challengerTurn, setChallengerTurn] = useState(false)
 
   // Debug authentication state
   useEffect(() => {
@@ -63,6 +66,7 @@ export default function ResultsPage() {
       const savedTimeLeft = localStorage.getItem("quizTimeLeft")
       const savedTimeTotal = localStorage.getItem("quizTimeTotal")
       const savedOpponentId = localStorage.getItem("quizOpponentId")
+      const savedChallengerTurn = localStorage.getItem("challengerTurn") === "true"
 
       console.log("📊 Quiz data from localStorage:", {
         savedScore,
@@ -70,7 +74,10 @@ export default function ResultsPage() {
         savedCategory,
         savedDifficulty,
         savedChallenge,
+        savedChallengerTurn,
       })
+
+      setChallengerTurn(savedChallengerTurn)
 
       if (savedScore && savedTotal) {
         const parsedScore = Number.parseInt(savedScore)
@@ -81,17 +88,50 @@ export default function ResultsPage() {
 
         // Generate opponent for challenges
         if (savedChallenge) {
-          const newOpponent = savedOpponentId
-            ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
-            : getRandomOpponent()
+          setChallenge(savedChallenge)
 
-          if (newOpponent) {
-            newOpponent.score = generateBotScore(parsedScore, parsedTotal)
-            setOpponent(newOpponent)
-            localStorage.setItem("quizOpponentId", newOpponent.id)
-            localStorage.setItem("quizOpponent", JSON.stringify(newOpponent))
+          // Fetch challenge data from Supabase
+          const fetchChallengeData = async () => {
+            try {
+              if (!user) return
+
+              const challengeData = await getChallenge(savedChallenge)
+              console.log("📋 Challenge data:", challengeData)
+
+              if (challengeData) {
+                setChallengeData(challengeData)
+                const isUserChallenger = challengeData.challenger_id === user.id
+                setIsChallenger(isUserChallenger)
+
+                // Set opponent based on challenge data
+                const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
+                if (opponentData) {
+                  const opponentInfo = {
+                    id: opponentData.id,
+                    name: opponentData.full_name || opponentData.username || "Opponent",
+                    avatar_url: opponentData.avatar_url,
+                    level: savedChallengerTurn ? "Waiting for response" : "Challenger",
+                    score: isUserChallenger ? null : challengeData.challenger_score,
+                  }
+                  setOpponent(opponentInfo)
+                }
+              }
+            } catch (error) {
+              console.error("Error fetching challenge data:", error)
+
+              // Fallback to localStorage opponent
+              const newOpponent = savedOpponentId
+                ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+                : getRandomOpponent()
+
+              if (newOpponent) {
+                newOpponent.score = generateBotScore(parsedScore, parsedTotal)
+                setOpponent(newOpponent)
+              }
+            }
           }
 
+          fetchChallengeData()
           setNextChallenge(getNextChallenge(savedCategory || undefined, savedDifficulty || undefined))
         }
       }
@@ -106,7 +146,6 @@ export default function ResultsPage() {
       }
 
       if (savedDifficulty) setDifficulty(savedDifficulty)
-      if (savedChallenge) setChallenge(savedChallenge)
       if (savedTimeLeft) setTimeLeft(Number.parseInt(savedTimeLeft))
       if (savedTimeTotal) setTimeTotal(Number.parseInt(savedTimeTotal))
 
@@ -130,7 +169,7 @@ export default function ResultsPage() {
     } catch (error) {
       console.error("❌ Error accessing localStorage:", error)
     }
-  }, [])
+  }, [user])
 
   // Auto-save when user and profile are available
   useEffect(() => {
@@ -143,6 +182,7 @@ export default function ResultsPage() {
         submitted,
         saving,
         loading,
+        challenge,
       })
 
       if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
@@ -156,7 +196,7 @@ export default function ResultsPage() {
             difficulty || "easy",
             timeLeft || undefined,
             undefined, // answers - can be added later
-            challenge ? undefined : undefined, // challenge_id for regular challenges
+            challenge || undefined, // challenge_id for challenges
           )
           setSubmitted(true)
           console.log("✅ Quiz result saved successfully!")
@@ -222,151 +262,249 @@ export default function ResultsPage() {
   // Determine if user is authenticated
   const isAuthenticated = user && profile && !loading
 
-  console.log("🎯 Render decision:", { isAuthenticated, loading, user: !!user, profile: !!profile })
+  console.log("🎯 Render decision:", {
+    isAuthenticated,
+    loading,
+    user: !!user,
+    profile: !!profile,
+    isChallenger,
+    challengerTurn,
+    challenge: !!challenge,
+  })
+
+  // Special case for challenger who just completed their turn
+  const showChallengeSubmitted = challenge && challengerTurn && isChallenger
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
-      {challenge && opponent && (
-        <div className="w-full max-w-md mx-auto mb-6">
-          <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
-          <ChallengeResultsComparison
-            userName={isAuthenticated ? profile.full_name || profile.username || "You" : "You"}
-            userScore={score || 0}
-            opponent={opponent}
-            totalQuestions={totalQuestions || 10}
-          />
-        </div>
-      )}
-
-      <div className="w-full max-w-3xl flex flex-col md:flex-row gap-6">
+      {showChallengeSubmitted ? (
+        // Challenge submitted view - show when challenger has just completed their turn
         <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-2">
-              <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
+              <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400" />
             </div>
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Quiz Results</CardTitle>
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Challenge Sent!</CardTitle>
             {categoryTitle && difficulty && (
               <p className="text-green-600 dark:text-green-500 mt-1">
-                {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-                {challenge && " Challenge"}
+                {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Challenge
               </p>
             )}
           </CardHeader>
           <CardContent className="text-center">
-            {score !== null && totalQuestions !== null ? (
-              <>
-                <div className="mb-6">
-                  <div className="relative w-32 h-32 mx-auto">
-                    <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                    <div
-                      className="absolute top-0 left-0 w-full h-full rounded-full border-8 border-green-500 dark:border-green-600"
-                      style={{
-                        clipPath: `polygon(50% 50%, 50% 0%, ${
-                          percentage! >= 25
-                            ? "100% 0%"
-                            : `${50 + 50 * Math.sin(((percentage! / 100) * Math.PI) / 2)}% ${
-                                50 - 50 * Math.cos(((percentage! / 100) * Math.PI) / 2)
-                              }%`
-                        }${percentage! >= 50 ? ", 100% 100%" : ""}${percentage! >= 75 ? ", 0% 100%" : ""}${
-                          percentage! >= 100 ? ", 0% 0%" : ""
-                        })`,
-                      }}
-                    ></div>
-                    <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                      <span className="text-2xl font-bold dark:text-white">{percentage}%</span>
-                    </div>
-                  </div>
+            <div className="mb-6">
+              <div className="relative w-32 h-32 mx-auto">
+                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                <div
+                  className="absolute top-0 left-0 w-full h-full rounded-full border-8 border-green-500 dark:border-green-600"
+                  style={{
+                    clipPath: `polygon(50% 50%, 50% 0%, ${
+                      percentage! >= 25
+                        ? "100% 0%"
+                        : `${50 + 50 * Math.sin(((percentage! / 100) * Math.PI) / 2)}% ${
+                            50 - 50 * Math.cos(((percentage! / 100) * Math.PI) / 2)
+                          }%`
+                    }${percentage! >= 50 ? ", 100% 100%" : ""}${percentage! >= 75 ? ", 0% 100%" : ""}${
+                      percentage! >= 100 ? ", 0% 0%" : ""
+                    })`,
+                  }}
+                ></div>
+                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                  <span className="text-2xl font-bold dark:text-white">{percentage}%</span>
                 </div>
-                <p className="text-xl mb-2 dark:text-white">
-                  You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
-                  <span className="font-bold">{totalQuestions}</span>
-                </p>
-                <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
-
-                {isAuthenticated ? (
-                  // 🎉 Authenticated user - SUCCESS CASE!
-                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center justify-center mb-2">
-                      <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
-                      <span className="text-lg font-medium dark:text-white">
-                        Welcome, {profile?.full_name || profile?.username}! 🎉
-                      </span>
-                    </div>
-                    {saving ? (
-                      <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
-                    ) : submitted ? (
-                      <p className="text-green-700 dark:text-green-400 mb-4">
-                        ✅ Your score has been saved to your profile!
-                      </p>
-                    ) : (
-                      <p className="text-yellow-600 dark:text-yellow-400 mb-4">🔄 Preparing to save your score...</p>
-                    )}
-                    <Button
-                      onClick={viewLeaderboard}
-                      className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                    >
-                      🏆 View Leaderboard
-                    </Button>
-                  </div>
-                ) : (
-                  // This should now rarely appear since users must be authenticated
-                  <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center justify-center mb-2">
-                      <Award className="mr-2 h-5 w-5 text-red-500" />
-                      <span className="text-lg font-medium dark:text-white">Authentication Issue</span>
-                    </div>
-                    <p className="text-center text-red-600 dark:text-red-400 mb-4">
-                      Please refresh the page to restore your session.
-                    </p>
-                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-600 hover:bg-blue-700">
-                      🔄 Refresh Page
-                    </Button>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="text-center py-8">
-                <p className="dark:text-white mb-4">No quiz results found.</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">Complete a quiz to see your results here!</p>
-                <Link href="/categories">
-                  <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                    Start a Quiz
-                  </Button>
-                </Link>
               </div>
-            )}
+            </div>
+            <p className="text-xl mb-2 dark:text-white">
+              You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
+              <span className="font-bold">{totalQuestions}</span>
+            </p>
+            <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
+
+            <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-center mb-2">
+                <Clock className="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400" />
+                <span className="text-lg font-medium dark:text-white">Waiting for opponent</span>
+              </div>
+              <p className="text-blue-600 dark:text-blue-400 mb-4">
+                Your challenge has been sent to {opponent?.name || "your opponent"}. You'll be notified when they
+                respond.
+              </p>
+              <Button
+                onClick={() => router.push("/challenges")}
+                className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+              >
+                View Challenges
+              </Button>
+            </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
-            <Link href={challenge ? "/challenges" : "/categories"}>
+            <Link href="/categories">
               <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                {challenge ? "Challenges" : "Categories"}
+                Categories
               </Button>
             </Link>
             <Button
               className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-              onClick={tryAgain}
+              onClick={() => router.push("/")}
             >
-              Try Again
+              Home
             </Button>
-            {challenge && nextChallenge && (
-              <Button
-                className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 ml-2"
-                onClick={goToNextChallenge}
-              >
-                Next Challenge
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            )}
           </CardFooter>
         </Card>
+      ) : (
+        // Regular results view
+        <>
+          {challenge && opponent && (
+            <div className="w-full max-w-md mx-auto mb-6">
+              <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
+              <ChallengeResultsComparison
+                userName={isAuthenticated ? profile.full_name || profile.username || "You" : "You"}
+                userScore={score || 0}
+                opponent={opponent}
+                totalQuestions={totalQuestions || 10}
+              />
+            </div>
+          )}
 
-        <div className="flex flex-col gap-4">
-          <BadgesProfile />
-        </div>
-      </div>
+          <div className="w-full max-w-3xl flex flex-col md:flex-row gap-6">
+            <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
+                </div>
+                <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Quiz Results</CardTitle>
+                {categoryTitle && difficulty && (
+                  <p className="text-green-600 dark:text-green-500 mt-1">
+                    {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                    {challenge && " Challenge"}
+                  </p>
+                )}
+              </CardHeader>
+              <CardContent className="text-center">
+                {score !== null && totalQuestions !== null ? (
+                  <>
+                    <div className="mb-6">
+                      <div className="relative w-32 h-32 mx-auto">
+                        <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                        <div
+                          className="absolute top-0 left-0 w-full h-full rounded-full border-8 border-green-500 dark:border-green-600"
+                          style={{
+                            clipPath: `polygon(50% 50%, 50% 0%, ${
+                              percentage! >= 25
+                                ? "100% 0%"
+                                : `${50 + 50 * Math.sin(((percentage! / 100) * Math.PI) / 2)}% ${
+                                    50 - 50 * Math.cos(((percentage! / 100) * Math.PI) / 2)
+                                  }%`
+                            }${percentage! >= 50 ? ", 100% 100%" : ""}${percentage! >= 75 ? ", 0% 100%" : ""}${
+                              percentage! >= 100 ? ", 0% 0%" : ""
+                            })`,
+                          }}
+                        ></div>
+                        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                          <span className="text-2xl font-bold dark:text-white">{percentage}%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xl mb-2 dark:text-white">
+                      You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
+                      <span className="font-bold">{totalQuestions}</span>
+                    </p>
+                    <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
+
+                    {isAuthenticated ? (
+                      // 🎉 Authenticated user - SUCCESS CASE!
+                      <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-center mb-2">
+                          <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
+                          <span className="text-lg font-medium dark:text-white">
+                            Welcome, {profile?.full_name || profile?.username}! 🎉
+                          </span>
+                        </div>
+                        {saving ? (
+                          <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
+                        ) : submitted ? (
+                          <p className="text-green-700 dark:text-green-400 mb-4">
+                            ✅ Your score has been saved to your profile!
+                          </p>
+                        ) : (
+                          <p className="text-yellow-600 dark:text-yellow-400 mb-4">
+                            🔄 Preparing to save your score...
+                          </p>
+                        )}
+                        <Button
+                          onClick={viewLeaderboard}
+                          className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                        >
+                          🏆 View Leaderboard
+                        </Button>
+                      </div>
+                    ) : (
+                      // This should now rarely appear since users must be authenticated
+                      <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-center mb-2">
+                          <Award className="mr-2 h-5 w-5 text-red-500" />
+                          <span className="text-lg font-medium dark:text-white">Authentication Issue</span>
+                        </div>
+                        <p className="text-center text-red-600 dark:text-red-400 mb-4">
+                          Please refresh the page to restore your session.
+                        </p>
+                        <Button
+                          onClick={() => window.location.reload()}
+                          className="w-full bg-blue-600 hover:bg-blue-700"
+                        >
+                          🔄 Refresh Page
+                        </Button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="dark:text-white mb-4">No quiz results found.</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      Complete a quiz to see your results here!
+                    </p>
+                    <Link href="/categories">
+                      <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                        Start a Quiz
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </CardContent>
+              <CardFooter className="flex justify-center gap-4">
+                <Link href={challenge ? "/challenges" : "/categories"}>
+                  <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {challenge ? "Challenges" : "Categories"}
+                  </Button>
+                </Link>
+                <Button
+                  className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                  onClick={tryAgain}
+                >
+                  Try Again
+                </Button>
+                {challenge && nextChallenge && (
+                  <Button
+                    className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 ml-2"
+                    onClick={goToNextChallenge}
+                  >
+                    Next Challenge
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
+
+            <div className="flex flex-col gap-4">
+              <BadgesProfile />
+            </div>
+          </div>
+        </>
+      )}
     </main>
   )
 }
