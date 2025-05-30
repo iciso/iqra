@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw } from "lucide-react"
 import { supabase } from "@/lib/supabase"
-import SupabaseChallengeButton from "./supabase-challenge-button"
-import { useAuth } from "@/contexts/auth-context"
 
 interface Player {
   id: string
@@ -18,7 +16,7 @@ interface Player {
 }
 
 export default function SimpleTopPlayers() {
-  const { user } = useAuth()
+  const [user, setUser] = useState<any>(null)
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -27,6 +25,7 @@ export default function SimpleTopPlayers() {
     try {
       setLoading(true)
       setError(null)
+      console.log("🏆 Loading top players...")
 
       const { data, error } = await supabase
         .from("user_profiles")
@@ -34,17 +33,95 @@ export default function SimpleTopPlayers() {
         .order("total_score", { ascending: false })
         .limit(5)
 
-      if (error) throw error
+      if (error) {
+        console.error("❌ Error loading players:", error)
+        throw error
+      }
+
+      console.log("✅ Players loaded:", data)
       setPlayers(data || [])
     } catch (err: any) {
+      console.error("❌ Caught error:", err)
       setError(err.message)
     } finally {
       setLoading(false)
     }
   }
 
+  const loadUser = async () => {
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      console.log("👤 Current user session:", !!session)
+      setUser(session?.user || null)
+    } catch (err) {
+      console.error("❌ Error loading user:", err)
+    }
+  }
+
+  const handleChallenge = async (playerId: string, playerName: string) => {
+    try {
+      console.log(`🎯 Challenging ${playerName} (${playerId})`)
+
+      if (!user) {
+        alert("Please sign in to send challenges")
+        return
+      }
+
+      // Calculate expiry date (24 hours from now)
+      const expiresAt = new Date()
+      expiresAt.setHours(expiresAt.getHours() + 24)
+
+      const { data, error } = await supabase
+        .from("user_challenges")
+        .insert({
+          challenger_id: user.id,
+          challenged_id: playerId,
+          category: "quran",
+          difficulty: "mixed",
+          question_count: 10,
+          time_limit: 300,
+          status: "pending",
+          expires_at: expiresAt.toISOString(),
+        })
+        .select()
+        .single()
+
+      if (error) {
+        console.error("❌ Error creating challenge:", error)
+        alert(`Error creating challenge: ${error.message}`)
+        return
+      }
+
+      console.log("✅ Challenge created:", data)
+
+      // Redirect to quiz as challenger
+      const challengeUrl = `/quiz?category=quran&difficulty=mixed&challenge=${data.id}&questions=10&opponent=${playerId}&opponentName=${encodeURIComponent(playerName)}&challengerTurn=true`
+      console.log("🔗 Redirecting to:", challengeUrl)
+      window.location.href = challengeUrl
+    } catch (err: any) {
+      console.error("❌ Challenge error:", err)
+      alert(`Error: ${err.message}`)
+    }
+  }
+
   useEffect(() => {
+    console.log("🚀 SimpleTopPlayers component mounted")
     loadPlayers()
+    loadUser()
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("🔄 Auth state changed in SimpleTopPlayers:", event, !!session)
+      setUser(session?.user || null)
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [])
 
   if (loading) {
@@ -59,7 +136,7 @@ export default function SimpleTopPlayers() {
         <CardContent>
           <div className="flex justify-center py-4">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
-            <span className="ml-2 text-sm">Loading...</span>
+            <span className="ml-2 text-sm">Loading top players...</span>
           </div>
         </CardContent>
       </Card>
@@ -125,11 +202,13 @@ export default function SimpleTopPlayers() {
                   </div>
 
                   {user && user.id !== player.id && (
-                    <SupabaseChallengeButton
-                      userId={player.id}
-                      userName={player.full_name || player.username}
-                      className="h-8 py-0 px-2 text-xs"
-                    />
+                    <Button
+                      size="sm"
+                      onClick={() => handleChallenge(player.id, player.full_name || player.username)}
+                      className="h-8 py-0 px-2 text-xs bg-green-600 hover:bg-green-700"
+                    >
+                      Challenge
+                    </Button>
                   )}
                 </div>
               </div>
