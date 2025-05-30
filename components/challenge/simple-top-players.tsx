@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, AlertCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import { useAuth } from "@/contexts/auth-context"
 
 interface Player {
   id: string
@@ -16,7 +17,7 @@ interface Player {
 }
 
 export default function SimpleTopPlayers() {
-  const [user, setUser] = useState<any>(null)
+  const { user, loading: authLoading } = useAuth()
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -27,6 +28,13 @@ export default function SimpleTopPlayers() {
       setLoading(true)
       setError(null)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
+      console.log("🔐 Auth state:", { authLoading, hasUser: !!user })
+
+      // Wait for auth to be ready
+      if (authLoading) {
+        console.log("⏳ Waiting for auth to complete...")
+        return
+      }
 
       // Check if we have a valid session first
       const {
@@ -43,10 +51,6 @@ export default function SimpleTopPlayers() {
       if (sessionError) {
         console.error("❌ Session error:", sessionError)
         throw new Error(`Session error: ${sessionError.message}`)
-      }
-
-      if (!session) {
-        console.warn("⚠️ No session found, but continuing with query...")
       }
 
       // Try the query with detailed logging
@@ -90,30 +94,6 @@ export default function SimpleTopPlayers() {
       }
     } finally {
       setLoading(false)
-    }
-  }
-
-  const loadUser = async () => {
-    try {
-      console.log("👤 Loading current user...")
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession()
-
-      console.log("👤 User session result:", {
-        hasSession: !!session,
-        userId: session?.user?.id,
-        error: error?.message,
-      })
-
-      if (error) {
-        console.error("❌ Error loading user:", error)
-      }
-
-      setUser(session?.user || null)
-    } catch (err) {
-      console.error("❌ Exception loading user:", err)
     }
   }
 
@@ -168,32 +148,46 @@ export default function SimpleTopPlayers() {
     loadPlayers()
   }
 
+  // Load players when auth is ready
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
-    loadPlayers()
-    loadUser()
+    console.log("🔐 Initial auth state:", { authLoading, hasUser: !!user })
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("🔄 Auth state changed in SimpleTopPlayers:", event, !!session)
-      setUser(session?.user || null)
-
-      // Reload players when auth state changes to a valid session
-      if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
-        console.log("🔄 Auth event triggered player reload")
-        setTimeout(() => {
-          setRetryCount(0)
-          loadPlayers()
-        }, 1000) // Small delay to ensure session is fully established
-      }
-    })
-
-    return () => {
-      subscription.unsubscribe()
+    if (!authLoading) {
+      console.log("✅ Auth is ready, loading players...")
+      loadPlayers()
+    } else {
+      console.log("⏳ Auth still loading, waiting...")
     }
-  }, [])
+  }, [authLoading]) // Depend on authLoading
+
+  // Also listen for auth state changes
+  useEffect(() => {
+    if (!authLoading && retryCount === 0) {
+      console.log("🔄 Auth state changed, reloading players...")
+      loadPlayers()
+    }
+  }, [user]) // Depend on user changes
+
+  // Show loading while auth is initializing
+  if (authLoading) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-yellow-500" />
+            Top Players
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-center py-4">
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
+            <span className="ml-2 text-sm">Initializing...</span>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
 
   if (loading && retryCount === 0) {
     return (
