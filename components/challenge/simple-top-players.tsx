@@ -36,13 +36,23 @@ export default function SimpleTopPlayers() {
         return
       }
 
-      // Check if we have a valid session first
+      console.log("🔍 Step 1: Starting session check...")
+
+      // Add timeout to session check
+      const sessionPromise = supabase.auth.getSession()
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Session check timeout")), 5000),
+      )
+
+      const sessionResult = await Promise.race([sessionPromise, timeoutPromise])
+      console.log("🔍 Step 2: Session check completed")
+
       const {
         data: { session },
         error: sessionError,
-      } = await supabase.auth.getSession()
+      } = sessionResult as any
 
-      console.log("🔐 Session check:", {
+      console.log("🔐 Session check result:", {
         hasSession: !!session,
         userId: session?.user?.id,
         sessionError: sessionError?.message,
@@ -53,13 +63,23 @@ export default function SimpleTopPlayers() {
         throw new Error(`Session error: ${sessionError.message}`)
       }
 
-      // Try the query with detailed logging
-      console.log("📊 Executing Supabase query...")
-      const { data, error } = await supabase
+      console.log("🔍 Step 3: Starting database query...")
+
+      // Add timeout to database query
+      const queryPromise = supabase
         .from("user_profiles")
         .select("id, username, full_name, total_score, best_percentage")
         .order("total_score", { ascending: false })
         .limit(5)
+
+      const queryTimeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Database query timeout")), 10000),
+      )
+
+      const queryResult = await Promise.race([queryPromise, queryTimeoutPromise])
+      console.log("🔍 Step 4: Database query completed")
+
+      const { data, error } = queryResult as any
 
       console.log("📊 Query result:", {
         data: data,
@@ -79,8 +99,11 @@ export default function SimpleTopPlayers() {
         console.log("✅ Players loaded successfully:", data)
         setPlayers(data)
       }
+
+      console.log("🔍 Step 5: Load complete!")
     } catch (err: any) {
       console.error("❌ Caught error in loadPlayers:", err)
+      console.error("❌ Error stack:", err.stack)
       setError(err.message || "Failed to load players")
 
       // Auto-retry up to 3 times with exponential backoff
@@ -93,6 +116,7 @@ export default function SimpleTopPlayers() {
         }, delay)
       }
     } finally {
+      console.log("🔍 Step 6: Setting loading to false")
       setLoading(false)
     }
   }
@@ -144,6 +168,7 @@ export default function SimpleTopPlayers() {
   }
 
   const handleRetry = () => {
+    console.log("🔄 Manual retry triggered")
     setRetryCount(0)
     loadPlayers()
   }
