@@ -24,6 +24,8 @@ export default function QuizPage({
   const challengeMode = searchParams.challenge as string | undefined
   const questionCount = searchParams.questions ? Number.parseInt(searchParams.questions as string, 10) : undefined
   const opponentId = searchParams.opponent as string | undefined
+  const opponentName = searchParams.opponentName as string | undefined
+  const challengerTurn = searchParams.challengerTurn === "true"
 
   if (!categoryId) {
     redirect("/categories")
@@ -85,6 +87,8 @@ export default function QuizPage({
         difficulty={difficulty}
         challengeMode={challengeMode}
         opponentId={opponentId}
+        opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
+        challengerTurn={challengerTurn}
       />
     </div>
   )

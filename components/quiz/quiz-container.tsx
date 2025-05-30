@@ -14,10 +14,10 @@ import Link from "next/link"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
-import { getAllCategories, getCategory } from "@/data/categories"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
+import { supabase } from "@/lib/supabase"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -26,6 +26,7 @@ interface QuizContainerProps {
   challengeMode?: string
   opponentId?: string
   opponentName?: string
+  challengerTurn?: boolean
 }
 
 export default function QuizContainer({
@@ -35,6 +36,7 @@ export default function QuizContainer({
   challengeMode,
   opponentId,
   opponentName,
+  challengerTurn,
 }: QuizContainerProps) {
   const router = useRouter()
   const { user } = useAuth()
@@ -66,6 +68,7 @@ export default function QuizContainer({
     if (challengeMode) {
       console.log("Challenge mode active with opponent ID:", opponentId)
       console.log("Opponent name from URL:", opponentName)
+      console.log("Challenger turn:", challengerTurn)
 
       if (opponentId) {
         // Try to fetch the real opponent data if we have an ID
@@ -80,7 +83,7 @@ export default function QuizContainer({
                 id: opponentData.id,
                 name: opponentData.full_name || opponentData.username || opponentName || "Challenger",
                 avatar_url: opponentData.avatar_url,
-                level: "Challenger",
+                level: challengerTurn ? "Waiting for your quiz" : "Challenger",
               })
             } else {
               // Fallback to name from URL if profile fetch fails
@@ -88,7 +91,7 @@ export default function QuizContainer({
                 id: opponentId,
                 name: opponentName || "Challenger",
                 avatar_url: null,
-                level: "Challenger",
+                level: challengerTurn ? "Waiting for your quiz" : "Challenger",
               })
             }
           } catch (error) {
@@ -98,7 +101,7 @@ export default function QuizContainer({
               id: opponentId,
               name: opponentName || "Challenger",
               avatar_url: null,
-              level: "Challenger",
+              level: challengerTurn ? "Waiting for your quiz" : "Challenger",
             })
           }
         }
@@ -132,12 +135,9 @@ export default function QuizContainer({
 
     console.log("Quiz Container - Category ID:", categoryId)
     console.log("Quiz Container - Difficulty:", difficulty)
-    console.log(
-      "Quiz Container - Available Categories:",
-      getAllCategories().map((c) => c.id),
-    )
     console.log("Quiz Container - Questions loaded:", questions.length)
-  }, [questions.length, challengeMode, category.id, difficulty, category, opponentId, opponentName])
+    console.log("Quiz Container - Challenger turn:", challengerTurn)
+  }, [questions.length, challengeMode, category.id, difficulty, category, opponentId, opponentName, challengerTurn])
 
   // Timer effect
   useEffect(() => {
@@ -215,7 +215,7 @@ export default function QuizContainer({
     }, 800) // Brief loading animation
   }
 
-  const handleFinishQuiz = () => {
+  const handleFinishQuiz = async () => {
     // Stop the timer
     setIsTimerRunning(false)
 
@@ -236,6 +236,32 @@ export default function QuizContainer({
       } else if (opponent) {
         localStorage.setItem("quizOpponentId", opponent.id || "")
         localStorage.setItem("quizOpponent", JSON.stringify(opponent))
+      }
+
+      // If this is the challenger's turn, update the challenge status
+      if (challengerTurn && challengeMode) {
+        console.log("🎯 Challenger finished quiz, updating challenge status...")
+
+        try {
+          // Update challenge status to "pending" so the challenged user can now accept it
+          const { error } = await supabase
+            .from("user_challenges")
+            .update({
+              status: "pending",
+              challenger_score: score,
+              challenger_completed_at: new Date().toISOString(),
+              challenge_questions: JSON.stringify(questions), // Store the exact questions
+            })
+            .eq("id", challengeMode)
+
+          if (error) {
+            console.error("Error updating challenge status:", error)
+          } else {
+            console.log("🎯 Challenge status updated to pending")
+          }
+        } catch (error) {
+          console.error("Error updating challenge:", error)
+        }
       }
     } catch (error) {
       console.error("Error saving to localStorage:", error)
@@ -284,17 +310,7 @@ export default function QuizContainer({
   if (questions.length === 0) {
     const categoryId = category.id
     console.error(`No questions found for category: ${categoryId}, difficulty: ${difficulty}`)
-    // Check if the category exists
-    const categoryExists = getAllCategories().some((c) => c.id === categoryId)
-    console.log(`Category ${categoryId} exists: ${categoryExists}`)
 
-    // If it exists, check if it has questions for the specified difficulty
-    if (categoryExists) {
-      const categoryData = getCategory(categoryId)
-      console.log(
-        `Category ${categoryId} has ${categoryData?.levels[difficulty]?.length || 0} questions for ${difficulty} difficulty`,
-      )
-    }
     return (
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">
@@ -340,7 +356,8 @@ export default function QuizContainer({
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-green-700 dark:text-green-400">
             {category.title} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-            {challengeMode && ` Challenge`}
+            {challengeMode && challengerTurn && ` Challenge (Your Turn)`}
+            {challengeMode && !challengerTurn && ` Challenge`}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
             Question {currentQuestion + 1} of {questions.length}
@@ -375,10 +392,13 @@ export default function QuizContainer({
               {challengeMode && displayOpponent && (
                 <div className="flex justify-center mt-2">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
-                    <span className="text-xs text-gray-600 dark:text-gray-300">Opponent:</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-300">
+                      {challengerTurn ? "Challenging:" : "Opponent:"}
+                    </span>
                     {displayOpponent && (
                       <div className="flex items-center gap-1">
                         <span className="font-medium text-sm">{displayOpponent.name || "Challenger"}</span>
+                        {challengerTurn && <span className="text-xs text-gray-500">({displayOpponent.level})</span>}
                       </div>
                     )}
                   </div>
@@ -472,7 +492,11 @@ export default function QuizContainer({
                   onClick={handleNext}
                   disabled={isLoading}
                 >
-                  {currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next Question"}
+                  {currentQuestion === questions.length - 1
+                    ? challengerTurn
+                      ? "Send Challenge"
+                      : "Finish Quiz"
+                    : "Next Question"}
                   {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>
               )}

@@ -11,6 +11,7 @@ import { Gamepad2, Search, Zap, RefreshCw, AlertCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
 
 interface User {
   id: string
@@ -23,6 +24,7 @@ interface User {
 
 export default function WorkingChallengeSender() {
   const { user, loading: authLoading } = useAuth()
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<User[]>([])
   const [allUsers, setAllUsers] = useState<User[]>([])
@@ -113,7 +115,7 @@ export default function WorkingChallengeSender() {
         difficulty: selectedDifficulty,
         question_count: 10,
         time_limit: 300,
-        status: "pending",
+        status: "challenger_turn", // New status: challenger needs to take quiz first
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
@@ -128,13 +130,20 @@ export default function WorkingChallengeSender() {
 
       console.log(`🎯 Challenge created: ${data.id}`)
 
+      // Store challenge info for the quiz
+      localStorage.setItem("currentChallengeId", data.id)
+      localStorage.setItem("challengedUserName", challengedUser.full_name || challengedUser.username)
+
       toast({
-        title: "Challenge Sent! 🎯",
-        description: `Challenge sent to ${challengedUser.full_name || challengedUser.username}`,
+        title: "Challenge Created! 🎯",
+        description: `Now take your quiz first, then ${challengedUser.full_name || challengedUser.username} will get the same questions`,
       })
 
-      setSearchQuery("")
-      setSearchResults([])
+      // Redirect challenger to take the quiz first
+      const quizUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${data.id}&questions=10&challengerTurn=true&opponent=${challengedUser.id}&opponentName=${encodeURIComponent(challengedUser.full_name || challengedUser.username)}`
+
+      console.log(`🎯 Redirecting challenger to: ${quizUrl}`)
+      router.push(quizUrl)
     } catch (error: any) {
       console.error(`🎯 Challenge error:`, error.message)
       toast({
@@ -244,6 +253,13 @@ export default function WorkingChallengeSender() {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
+              <strong>How it works:</strong> When you challenge someone, you'll take the quiz first. After you complete
+              it, they'll get the same questions to answer.
+            </p>
           </div>
         </CardContent>
       </Card>
