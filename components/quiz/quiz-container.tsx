@@ -17,7 +17,7 @@ import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
-import { toast } from "@/components/ui/use-toast"
+import { supabase } from "@/lib/supabase"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -275,32 +275,17 @@ export default function QuizContainer({
       console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
     }
 
-    // Show a loading toast while saving
-    toast({
-      title: "Saving your score...",
-      description: "Please wait while we update the leaderboard.",
-      duration: 3000,
-    })
+    // If this is the challenger's turn, update the challenge status (but don't block navigation)
+    if (challengerTurn && challengeMode) {
+      console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
 
-    try {
-      // Import the submitQuizResult function
-      const { submitQuizResult } = await import("@/lib/supabase-queries")
-
-      // If this is the challenger's turn, update the challenge status
-      if (challengerTurn && challengeMode) {
-        console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
-
+      // Use a promise that won't block navigation
+      const updateChallenge = async () => {
         try {
           console.log("🎯 QUIZ CONTAINER: Attempting challenge update...")
 
-          // Submit the quiz result to database FIRST
-          console.log("💾 QUIZ CONTAINER: Submitting quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
-
-          // Then update challenge status
-          const { supabase } = await import("@/lib/supabase")
-          const { error } = await supabase
+          // Set a timeout for the update
+          const updatePromise = supabase
             .from("user_challenges")
             .update({
               status: "pending",
@@ -310,125 +295,28 @@ export default function QuizContainer({
             })
             .eq("id", challengeMode)
 
+          // Race the update against a 3-second timeout
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Update timeout")), 3000))
+
+          const { error } = await Promise.race([updatePromise, timeoutPromise])
+
           if (error) {
             console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
-            toast({
-              title: "Challenge Sent",
-              description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
-              duration: 5000,
-            })
           } else {
             console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
-            toast({
-              title: "Challenge Sent Successfully!",
-              description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
-              duration: 5000,
-            })
           }
-
-          // Navigate directly to challenges page for challenger
-          router.push("/challenges")
-          return
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Challenge update failed:", error)
-          toast({
-            title: "Error Sending Challenge",
-            description: "There was a problem sending your challenge. Please try again.",
-            variant: "destructive",
-            duration: 5000,
-          })
-          router.push("/challenges")
-          return
-        }
-      } else if (challengeMode) {
-        // This is the challenged user completing their turn
-        console.log("🎯 QUIZ CONTAINER: Challenged user completing their turn...")
-
-        try {
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting challenged user quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Challenged user quiz result submitted successfully")
-
-          // Update challenge status to completed
-          const { supabase } = await import("@/lib/supabase")
-          const { error } = await supabase
-            .from("user_challenges")
-            .update({
-              status: "completed",
-              challenged_score: score,
-              challenged_completed_at: new Date().toISOString(),
-            })
-            .eq("id", challengeMode)
-
-          if (error) {
-            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
-          } else {
-            console.log("🎯 QUIZ CONTAINER: Challenge status updated to completed successfully")
-            toast({
-              title: "Challenge Completed!",
-              description: `Your score (${score}/${questions.length}) has been recorded. View the leaderboard to see results.`,
-              duration: 5000,
-            })
-          }
-
-          // Navigate directly to leaderboard for challenged user
-          router.push("/leaderboard")
-          return
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting challenged user result:", error)
-          toast({
-            title: "Error Saving Score",
-            description: "There was a problem saving your score. Please try again.",
-            variant: "destructive",
-            duration: 5000,
-          })
-          router.push("/leaderboard")
-          return
-        }
-      } else {
-        // Regular quiz completion
-        console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
-
-        try {
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting regular quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
-          console.log("✅ QUIZ CONTAINER: Regular quiz result submitted successfully")
-
-          toast({
-            title: "Quiz Completed!",
-            description: `Your score (${score}/${questions.length}) has been saved.`,
-            duration: 5000,
-          })
-
-          // For regular quizzes, still go to results page
-          router.push("/results")
-          return
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting regular quiz result:", error)
-          toast({
-            title: "Error Saving Score",
-            description: "There was a problem saving your score. Please try again.",
-            variant: "destructive",
-            duration: 5000,
-          })
-          router.push("/results")
-          return
+          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
         }
       }
-    } catch (error) {
-      console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error)
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-        duration: 5000,
-      })
 
-      // Navigate to results as fallback
-      router.push("/results")
+      // Start the update but don't wait for it
+      updateChallenge()
     }
+
+    // Navigate to results immediately (don't wait for challenge update)
+    console.log("🎯 QUIZ CONTAINER: Navigating to results page...")
+    router.push("/results")
   }
 
   const handlePrevious = () => {

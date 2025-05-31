@@ -23,8 +23,8 @@ const getSqlClient = () => {
     }
   }
 
-  // Use the correct environment variable from Neon with iqra prefix
-  const connectionString = process.env.iqra_DATABASE_URL || process.env.iqra_POSTGRES_URL || process.env.DATABASE_URL
+  // Use the correct environment variable from Neon
+  const connectionString = process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL
 
   if (!connectionString) {
     throw new Error("DATABASE_URL or POSTGRES_URL environment variable is not set")
