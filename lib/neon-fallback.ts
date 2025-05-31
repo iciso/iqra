@@ -1,52 +1,43 @@
-import { neon, neonConfig } from "@neondatabase/serverless"
+import { neon } from "@neondatabase/serverless"
+import { isBuildTime } from "./env-config"
 
-// Configure neon to work in edge and non-edge environments
-neonConfig.fetchConnectionCache = true
-
-// Simplified build time detection
-const isBuildTime = process.env.NODE_ENV === "production" && !process.env.VERCEL_ENV
-
-// Safe SQL client factory that won't run during build
-const getSqlClient = () => {
-  // Skip during build time
-  if (isBuildTime) {
-    console.log("🏗️ Build time detected, skipping Neon initialization")
-    return null
-  }
-
-  // Use the correct environment variable from Neon with iqra prefix
-  const connectionString = process.env.iqra_DATABASE_URL || process.env.iqra_POSTGRES_URL || process.env.DATABASE_URL
-
-  if (!connectionString) {
-    console.warn("No database connection string found")
-    return null
-  }
-
-  console.log("🔗 Connecting to Neon with URL:", connectionString.substring(0, 20) + "...")
-
-  // Create the real client
-  return neon(connectionString)
-}
-
-// Export a safe function for build time
+// Initialize tables if they don't exist
 export async function initializeFallbackTables() {
-  if (isBuildTime) {
-    console.log("🏗️ Build time detected, skipping table initialization")
-    return false
+  console.log("🔄 Initializing fallback tables...")
+
+  // Safety check - don't run during build
+  if (typeof window !== "undefined") {
+    console.log("🔄 Running in browser, skipping table initialization")
+    return true
   }
 
-  const sql = getSqlClient()
-  if (!sql) {
-    console.log("⚠️ No SQL client available, skipping initialization")
+  // IMPORTANT: Force runtime detection - don't rely on env-config
+  const forcedBuildTimeCheck =
+    process.env.NODE_ENV === "production" &&
+    !process.env.VERCEL_ENV &&
+    !process.env.VERCEL_URL &&
+    typeof window === "undefined" &&
+    !process.env.iqra_DATABASE_URL
+
+  if (forcedBuildTimeCheck) {
+    console.log("🏗️ Build time detected in initializeFallbackTables, skipping")
     return false
   }
 
   try {
-    console.log("🔄 Initializing Neon fallback tables...")
+    // Check if we have a database URL
+    const dbUrl = process.env.iqra_DATABASE_URL || process.env.DATABASE_URL
+    if (!dbUrl) {
+      console.error("❌ No database URL found for fallback")
+      return false
+    }
 
-    // Create quiz_results table
+    console.log("🔌 Connecting to Neon database...")
+    const sql = neon(dbUrl)
+
+    // Create quiz_results table if it doesn't exist
     await sql`
-      CREATE TABLE IF NOT EXISTS quiz_results_fallback (
+      CREATE TABLE IF NOT EXISTS quiz_results (
         id SERIAL PRIMARY KEY,
         user_id TEXT NOT NULL,
         score INTEGER NOT NULL,
@@ -54,30 +45,27 @@ export async function initializeFallbackTables() {
         percentage INTEGER NOT NULL,
         category TEXT NOT NULL,
         difficulty TEXT NOT NULL,
-        time_left INTEGER DEFAULT 0,
-        answers TEXT,
+        time_left INTEGER,
         challenge_id TEXT,
-        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       )
     `
 
-    // Create user_profiles table
+    // Create user_profiles table if it doesn't exist
     await sql`
-      CREATE TABLE IF NOT EXISTS user_profiles_fallback (
+      CREATE TABLE IF NOT EXISTS user_profiles (
         id TEXT PRIMARY KEY,
-        username TEXT NOT NULL,
+        username TEXT,
         full_name TEXT,
         email TEXT,
+        avatar_url TEXT,
         total_score INTEGER DEFAULT 0,
+        total_questions INTEGER DEFAULT 0,
         best_percentage INTEGER DEFAULT 0,
-        quiz_count INTEGER DEFAULT 0,
-        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       )
     `
-
-    // Create indexes
-    await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_percentage ON quiz_results_fallback(percentage DESC)`
-    await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_created_at ON quiz_results_fallback(created_at DESC)`
 
     console.log("✅ Fallback tables initialized successfully")
     return true
@@ -87,6 +75,7 @@ export async function initializeFallbackTables() {
   }
 }
 
+// Save quiz result to fallback database
 export async function saveQuizResultToFallback(
   userId: string,
   score: number,
@@ -94,60 +83,205 @@ export async function saveQuizResultToFallback(
   percentage: number,
   category: string,
   difficulty: string,
-  timeLeft = 0,
-  answers: any = null,
-  challengeId: string | null = null,
+  timeLeft: number,
+  answers: any,
+  challengeId: string | null,
 ) {
-  if (isBuildTime) {
-    console.log("🏗️ Build time detected, skipping save to fallback")
+  console.log("💾 Saving quiz result to fallback database...")
+
+  // IMPORTANT: Force runtime detection - don't rely on env-config
+  const forcedBuildTimeCheck =
+    process.env.NODE_ENV === "production" &&
+    !process.env.VERCEL_ENV &&
+    !process.env.VERCEL_URL &&
+    typeof window === "undefined" &&
+    !process.env.iqra_DATABASE_URL
+
+  if (forcedBuildTimeCheck) {
+    console.log("🏗️ Build time detected in saveQuizResultToFallback, skipping")
     return null
   }
 
-  const sql = getSqlClient()
-  if (!sql) {
-    throw new Error("No database connection available")
-  }
-
   try {
-    console.log("💾 Saving quiz result to Neon fallback...")
+    // Check if we have a database URL
+    const dbUrl = process.env.iqra_DATABASE_URL || process.env.DATABASE_URL
+    if (!dbUrl) {
+      console.error("❌ No database URL found for fallback")
+      return null
+    }
 
-    // First, ensure the user exists in the fallback database
-    await sql`
-      INSERT INTO user_profiles_fallback (id, username, full_name)
-      VALUES (${userId}, ${userId.substring(0, 8)}, 'IQRA User')
-      ON CONFLICT (id) DO NOTHING
-    `
+    const sql = neon(dbUrl)
 
-    // Then save the quiz result
+    // Insert quiz result
     const result = await sql`
-      INSERT INTO quiz_results_fallback 
-      (user_id, score, total_questions, percentage, category, difficulty, time_left, answers, challenge_id)
-      VALUES (${userId}, ${score}, ${totalQuestions}, ${percentage}, ${category}, ${difficulty}, ${timeLeft}, ${JSON.stringify(answers)}, ${challengeId})
+      INSERT INTO quiz_results (
+        user_id, score, total_questions, percentage, category, difficulty, time_left, challenge_id
+      ) VALUES (
+        ${userId}, ${score}, ${totalQuestions}, ${percentage}, ${category}, ${difficulty}, ${timeLeft}, ${challengeId}
+      )
       RETURNING *
     `
 
-    console.log("✅ Quiz result saved to Neon fallback:", result[0])
+    // Update user profile total score
+    await updateUserTotalScoreInFallback(userId, score, totalQuestions, percentage)
+
+    console.log("✅ Quiz result saved to fallback database:", result[0])
     return result[0]
   } catch (error) {
-    console.error("❌ Error saving to Neon fallback:", error)
-    throw error
+    console.error("❌ Error saving quiz result to fallback:", error)
+    return null
   }
 }
 
-export async function getLeaderboardFromFallback(limit = 50) {
-  if (isBuildTime) {
-    console.log("🏗️ Build time detected, returning empty leaderboard")
-    return []
-  }
+// Update user's total score in fallback database
+export async function updateUserTotalScoreInFallback(
+  userId: string,
+  newScore: number,
+  totalQuestions: number,
+  percentage: number,
+) {
+  console.log(`🏆 Updating total score for user ${userId} in fallback: +${newScore} points`)
 
-  const sql = getSqlClient()
-  if (!sql) {
-    throw new Error("No database connection available")
+  // IMPORTANT: Force runtime detection - don't rely on env-config
+  const forcedBuildTimeCheck =
+    process.env.NODE_ENV === "production" &&
+    !process.env.VERCEL_ENV &&
+    !process.env.VERCEL_URL &&
+    typeof window === "undefined" &&
+    !process.env.iqra_DATABASE_URL
+
+  if (forcedBuildTimeCheck) {
+    console.log("🏗️ Build time detected in updateUserTotalScoreInFallback, skipping")
+    return false
   }
 
   try {
-    console.log("🔍 Getting leaderboard from Neon fallback...")
+    // Check if we have a database URL
+    const dbUrl = process.env.iqra_DATABASE_URL || process.env.DATABASE_URL
+    if (!dbUrl) {
+      console.error("❌ No database URL found for fallback")
+      return false
+    }
 
+    const sql = neon(dbUrl)
+
+    // First check if user exists
+    const existingUser = await sql`
+      SELECT total_score, total_questions, best_percentage
+      FROM user_profiles
+      WHERE id = ${userId}
+    `
+
+    if (existingUser.length === 0) {
+      // Create new user profile
+      await sql`
+        INSERT INTO user_profiles (
+          id, total_score, total_questions, best_percentage
+        ) VALUES (
+          ${userId}, ${newScore}, ${totalQuestions}, ${percentage}
+        )
+      `
+      console.log(`✅ Created new user profile for ${userId} with initial score ${newScore}`)
+    } else {
+      // Update existing user profile
+      const currentTotalScore = existingUser[0].total_score || 0
+      const currentTotalQuestions = existingUser[0].total_questions || 0
+      const currentBestPercentage = existingUser[0].best_percentage || 0
+
+      const newTotalScore = currentTotalScore + newScore
+      const newTotalQuestions = currentTotalQuestions + totalQuestions
+      const newBestPercentage = Math.max(currentBestPercentage, percentage)
+
+      await sql`
+        UPDATE user_profiles
+        SET 
+          total_score = ${newTotalScore},
+          total_questions = ${newTotalQuestions},
+          best_percentage = ${newBestPercentage},
+          updated_at = CURRENT_TIMESTAMP
+        WHERE id = ${userId}
+      `
+      console.log(`✅ Updated user ${userId} total score: ${currentTotalScore} → ${newTotalScore}`)
+    }
+
+    return true
+  } catch (error) {
+    console.error("❌ Error updating user total score in fallback:", error)
+    return false
+  }
+}
+
+// Get top players from fallback database
+export async function getTopPlayersFromFallback(limit = 10) {
+  console.log(`🏆 Getting top ${limit} players from fallback database...`)
+
+  // IMPORTANT: Force runtime detection - don't rely on env-config
+  const forcedBuildTimeCheck =
+    process.env.NODE_ENV === "production" &&
+    !process.env.VERCEL_ENV &&
+    !process.env.VERCEL_URL &&
+    typeof window === "undefined" &&
+    !process.env.iqra_DATABASE_URL
+
+  if (forcedBuildTimeCheck) {
+    console.log("🏗️ Build time detected, returning empty players")
+    return []
+  }
+
+  try {
+    // Check if we have a database URL
+    const dbUrl = process.env.iqra_DATABASE_URL || process.env.DATABASE_URL
+    if (!dbUrl) {
+      console.error("❌ No database URL found for fallback")
+      return []
+    }
+
+    const sql = neon(dbUrl)
+
+    // Get top players by total score
+    const players = await sql`
+      SELECT id, username, full_name, total_score, best_percentage
+      FROM user_profiles
+      ORDER BY total_score DESC
+      LIMIT ${limit}
+    `
+
+    console.log(`✅ Retrieved ${players.length} top players from fallback`)
+    return players
+  } catch (error) {
+    console.error("❌ Error getting top players from fallback:", error)
+    return []
+  }
+}
+
+// Get leaderboard from fallback database
+export async function getLeaderboardFromFallback() {
+  console.log("📊 Getting leaderboard from fallback database...")
+
+  // IMPORTANT: Force runtime detection - don't rely on env-config
+  const forcedBuildTimeCheck =
+    process.env.NODE_ENV === "production" &&
+    !process.env.VERCEL_ENV &&
+    !process.env.VERCEL_URL &&
+    typeof window === "undefined" &&
+    !process.env.iqra_DATABASE_URL
+
+  if (forcedBuildTimeCheck) {
+    console.log("🏗️ Build time detected, returning empty leaderboard")
+    return { data: [], source: "Build Time Mock" }
+  }
+
+  try {
+    // Check if we have a database URL
+    const dbUrl = process.env.iqra_DATABASE_URL || process.env.DATABASE_URL
+    if (!dbUrl) {
+      console.error("❌ No database URL found for fallback")
+      return { data: [], source: "No Database URL" }
+    }
+
+    const sql = neon(dbUrl)
+
+    // Get top quiz results
     const results = await sql`
       SELECT 
         qr.id,
@@ -161,52 +295,30 @@ export async function getLeaderboardFromFallback(limit = 50) {
         qr.created_at,
         up.username,
         up.full_name
-      FROM quiz_results_fallback qr
-      LEFT JOIN user_profiles_fallback up ON qr.user_id = up.id
+      FROM quiz_results qr
+      LEFT JOIN user_profiles up ON qr.user_id = up.id
       ORDER BY qr.percentage DESC, qr.created_at DESC
-      LIMIT ${limit}
+      LIMIT 20
     `
 
-    console.log("✅ Leaderboard loaded from Neon fallback:", results.length, "entries")
-    return results
+    // Format results for leaderboard
+    const leaderboard = results.map((result) => ({
+      name: result.full_name || result.username || "Unknown User",
+      score: result.score,
+      totalQuestions: result.total_questions,
+      percentage: result.percentage,
+      date: new Date(result.created_at).toLocaleDateString(),
+      category: result.category,
+      difficulty: result.difficulty,
+      challenge: result.challenge_id ? "challenge" : "quiz",
+      user_id: result.user_id,
+    }))
+
+    console.log(`✅ Retrieved ${leaderboard.length} leaderboard entries from fallback`)
+    return { data: leaderboard, source: "Neon Database" }
   } catch (error) {
-    console.error("❌ Error loading from Neon fallback:", error)
-    throw error
-  }
-}
-
-export async function getTopPlayersFromFallback(limit = 10) {
-  if (isBuildTime) {
-    console.log("🏗️ Build time detected, returning empty players")
-    return []
-  }
-
-  const sql = getSqlClient()
-  if (!sql) {
-    throw new Error("No database connection available")
-  }
-
-  try {
-    console.log("🔍 Getting top players from Neon fallback...")
-
-    const results = await sql`
-      SELECT 
-        id,
-        username,
-        full_name,
-        total_score,
-        best_percentage,
-        quiz_count
-      FROM user_profiles_fallback
-      ORDER BY total_score DESC, best_percentage DESC
-      LIMIT ${limit}
-    `
-
-    console.log("✅ Top players loaded from Neon fallback:", results.length, "players")
-    return results
-  } catch (error) {
-    console.error("❌ Error loading top players from Neon fallback:", error)
-    throw error
+    console.error("❌ Error getting leaderboard from fallback:", error)
+    return { data: [], source: "Error" }
   }
 }
 
