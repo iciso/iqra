@@ -124,47 +124,69 @@ export default function SimpleTopPlayers() {
       console.log("🔍 Step 1: Using auth context user:", !!user)
       console.log("🔍 Step 2: Starting database query...")
 
-      // Get all users or top users based on showAll state
-      const limit = showAll ? 50 : 10
+      // Create a more aggressive timeout for the database query
+      const queryPromise = async () => {
+        console.log("🔍 Step 2a: Creating Supabase query...")
 
-      // First, let's get ALL users to see who's in the database
-      const { data: allUsers, error: allUsersError } = await supabase
-        .from("user_profiles")
-        .select("id, username, full_name, total_score, best_percentage")
-        .order("total_score", { ascending: false })
+        // Get all users first with a shorter timeout
+        const allUsersPromise = supabase
+          .from("user_profiles")
+          .select("id, username, full_name, total_score, best_percentage")
+          .order("total_score", { ascending: false })
 
-      console.log("👥 ALL USERS in database:", allUsers)
-      console.log("👥 Total users found:", allUsers?.length)
+        console.log("🔍 Step 2b: Executing all users query...")
+        const allUsersResult = await Promise.race([
+          allUsersPromise,
+          new Promise((_, reject) => setTimeout(() => reject(new Error("All users query timeout")), 5000)),
+        ])
 
-      if (allUsersError) {
-        console.error("❌ Error fetching all users:", allUsersError)
+        const { data: allUsers, error: allUsersError } = allUsersResult as any
+
+        console.log("👥 ALL USERS in database:", allUsers?.length || 0)
+        if (allUsersError) {
+          console.error("❌ Error fetching all users:", allUsersError)
+        }
+
+        // Now get limited users for display
+        const limit = showAll ? 50 : 10
+        console.log("🔍 Step 2c: Getting top", limit, "players...")
+
+        const topPlayersPromise = supabase
+          .from("user_profiles")
+          .select("id, username, full_name, total_score, best_percentage")
+          .order("total_score", { ascending: false })
+          .limit(limit)
+
+        console.log("🔍 Step 2d: Executing top players query...")
+        const topPlayersResult = await Promise.race([
+          topPlayersPromise,
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Top players query timeout")), 5000)),
+        ])
+
+        console.log("🔍 Step 2e: Query completed")
+        return topPlayersResult
       }
 
-      // Now get limited users for display
-      const queryPromise = supabase
-        .from("user_profiles")
-        .select("id, username, full_name, total_score, best_percentage")
-        .order("total_score", { ascending: false })
-        .limit(limit)
+      console.log("🔍 Step 2f: Starting query with timeout...")
+      const queryResult = await Promise.race([
+        queryPromise(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Overall database timeout")), 8000)),
+      ])
 
-      const queryTimeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Database query timeout")), 10000),
-      )
-
-      const queryResult = await Promise.race([queryPromise, queryTimeoutPromise])
-      console.log("🔍 Step 3: Database query completed")
+      console.log("🔍 Step 3: Database query completed successfully")
 
       const { data, error } = queryResult as any
 
       console.log("📊 Query result:", {
-        data: data,
-        error: error,
+        hasData: !!data,
         dataLength: data?.length,
+        hasError: !!error,
+        errorMessage: error?.message,
       })
 
       // Log each player for debugging
-      if (data) {
-        console.log(`👥 TOP ${limit} PLAYERS:`)
+      if (data && data.length > 0) {
+        console.log(`👥 TOP ${data.length} PLAYERS:`)
         data.forEach((player: Player, index: number) => {
           console.log(
             `${index + 1}. ${player.full_name || player.username} - Score: ${player.total_score}, Best: ${player.best_percentage}%`,
@@ -183,7 +205,7 @@ export default function SimpleTopPlayers() {
           setPlayers([])
         }
       } else {
-        console.log("✅ Players loaded successfully:", data)
+        console.log("✅ Players loaded successfully:", data.length, "players")
         if (mountedRef.current) {
           setPlayers(data)
         }
@@ -192,7 +214,8 @@ export default function SimpleTopPlayers() {
       console.log("🔍 Step 4: Load complete!")
     } catch (err: any) {
       console.error("❌ Caught error in loadPlayers:", err)
-      console.error("❌ Error stack:", err.stack)
+      console.error("❌ Error type:", typeof err)
+      console.error("❌ Error message:", err.message)
 
       if (mountedRef.current) {
         setError(err.message || "Failed to load players")
@@ -201,10 +224,12 @@ export default function SimpleTopPlayers() {
       // Auto-retry up to 3 times with exponential backoff
       if (retryCount < 3 && mountedRef.current) {
         const delay = Math.pow(2, retryCount) * 1000 // 1s, 2s, 4s
-        console.log(`🔄 Retrying in ${delay}ms...`)
+        console.log(`🔄 Retrying in ${delay}ms... (attempt ${retryCount + 1}/3)`)
         setTimeout(() => {
           if (mountedRef.current) {
             setRetryCount(retryCount + 1)
+            // Reset loading state before retry
+            loadingRef.current = false
             loadPlayers()
           }
         }, delay)
@@ -216,6 +241,13 @@ export default function SimpleTopPlayers() {
       }
       loadingRef.current = false
     }
+  }
+
+  const resetLoadingState = () => {
+    console.log("🔄 Resetting loading state...")
+    loadingRef.current = false
+    setLoading(false)
+    setRetryCount(0)
   }
 
   const handleChallenge = async (playerId: string, playerName: string) => {
@@ -266,7 +298,7 @@ export default function SimpleTopPlayers() {
 
   const handleRetry = () => {
     console.log("🔄 Manual retry triggered by user")
-    setRetryCount(0)
+    resetLoadingState()
     loadPlayers()
   }
 
