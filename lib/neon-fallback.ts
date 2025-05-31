@@ -3,15 +3,28 @@ import { neon, neonConfig } from "@neondatabase/serverless"
 // Configure neon to work in edge and non-edge environments
 neonConfig.fetchConnectionCache = true
 
-// Initialize the SQL client
-const sql = neon(process.env.NEON_NEON_DATABASE_URL!)
+// Lazy initialization of SQL client
+let sql: any = null
+
+function getSqlClient() {
+  if (!sql) {
+    const connectionString = process.env.NEON_NEON_DATABASE_URL
+    if (!connectionString) {
+      throw new Error("NEON_DATABASE_URL environment variable is not set")
+    }
+    sql = neon(connectionString)
+  }
+  return sql
+}
 
 export async function initializeFallbackTables() {
   try {
     console.log("🔄 Initializing Neon fallback tables...")
 
+    const sqlClient = getSqlClient()
+
     // Create quiz_results table
-    await sql`
+    await sqlClient`
       CREATE TABLE IF NOT EXISTS quiz_results_fallback (
         id SERIAL PRIMARY KEY,
         user_id TEXT NOT NULL,
@@ -28,7 +41,7 @@ export async function initializeFallbackTables() {
     `
 
     // Create user_profiles table
-    await sql`
+    await sqlClient`
       CREATE TABLE IF NOT EXISTS user_profiles_fallback (
         id TEXT PRIMARY KEY,
         username TEXT NOT NULL,
@@ -42,11 +55,11 @@ export async function initializeFallbackTables() {
     `
 
     // Create indexes
-    await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_percentage ON quiz_results_fallback(percentage DESC)`
-    await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_created_at ON quiz_results_fallback(created_at DESC)`
+    await sqlClient`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_percentage ON quiz_results_fallback(percentage DESC)`
+    await sqlClient`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_created_at ON quiz_results_fallback(created_at DESC)`
 
     // Insert initial data for Dr. Muhammad Murtaza Ikram
-    await sql`
+    await sqlClient`
       INSERT INTO user_profiles_fallback (id, username, full_name, total_score, best_percentage, quiz_count) 
       VALUES 
         ('ddd8b850-1b56-4781-bd03-1be615f9e3ec', 'drmurtazaa50', 'Dr. Muhammad Murtaza Ikram', 200, 95, 5)
@@ -75,15 +88,17 @@ export async function saveQuizResultToFallback(
   try {
     console.log("💾 Saving quiz result to Neon fallback...")
 
+    const sqlClient = getSqlClient()
+
     // First, ensure the user exists in the fallback database
-    await sql`
+    await sqlClient`
       INSERT INTO user_profiles_fallback (id, username, full_name)
       VALUES (${userId}, ${userId.substring(0, 8)}, 'IQRA User')
       ON CONFLICT (id) DO NOTHING
     `
 
     // Then save the quiz result
-    const result = await sql`
+    const result = await sqlClient`
       INSERT INTO quiz_results_fallback 
       (user_id, score, total_questions, percentage, category, difficulty, time_left, answers, challenge_id)
       VALUES (${userId}, ${score}, ${totalQuestions}, ${percentage}, ${category}, ${difficulty}, ${timeLeft}, ${JSON.stringify(answers)}, ${challengeId})
@@ -102,7 +117,9 @@ export async function getLeaderboardFromFallback(limit = 50) {
   try {
     console.log("🔍 Getting leaderboard from Neon fallback...")
 
-    const results = await sql`
+    const sqlClient = getSqlClient()
+
+    const results = await sqlClient`
       SELECT 
         qr.id,
         qr.user_id,
@@ -127,4 +144,9 @@ export async function getLeaderboardFromFallback(limit = 50) {
     console.error("❌ Error loading from Neon fallback:", error)
     throw error
   }
+}
+
+// Helper function to check if Neon is available
+export function isNeonAvailable(): boolean {
+  return !!process.env.NEON_DATABASE_URL
 }
