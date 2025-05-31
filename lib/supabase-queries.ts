@@ -1,4 +1,14 @@
 import { supabase } from "./supabase"
+import { saveQuizResultToFallback, initializeFallbackTables } from "./neon-fallback"
+
+// Initialize fallback tables
+let fallbackInitialized = false
+async function ensureFallbackInitialized() {
+  if (!fallbackInitialized) {
+    fallbackInitialized = await initializeFallbackTables()
+  }
+  return fallbackInitialized
+}
 
 // User profile functions (these are in Supabase)
 export async function getUserProfile(userId: string) {
@@ -472,6 +482,8 @@ export async function submitQuizResult(
 
     // 1. Save quiz result to Supabase quiz_results table for leaderboard
     console.log("📊 SUBMIT QUIZ RESULT: Saving to quiz_results table")
+    let quizResultSaved = false
+
     try {
       const insertData = {
         user_id: user.id,
@@ -500,13 +512,38 @@ export async function submitQuizResult(
           hint: quizError.hint,
           code: quizError.code,
         })
-        // Don't throw here - continue with challenge updates
+        // Don't throw here - try fallback
       } else {
         console.log("✅ SUBMIT QUIZ RESULT: Quiz result saved to leaderboard:", quizResult)
+        quizResultSaved = true
       }
     } catch (error) {
       console.error("❌ SUBMIT QUIZ RESULT: Exception saving quiz result:", error)
-      // Continue with challenge updates even if this fails
+      // Try fallback
+    }
+
+    // If Supabase failed, try Neon fallback
+    if (!quizResultSaved) {
+      try {
+        console.log("🔄 SUBMIT QUIZ RESULT: Trying Neon fallback...")
+        await ensureFallbackInitialized()
+        await saveQuizResultToFallback(
+          user.id,
+          score,
+          totalQuestions,
+          percentage,
+          category,
+          difficulty,
+          timeLeft || 0,
+          answers,
+          challengeId || null,
+        )
+        console.log("✅ SUBMIT QUIZ RESULT: Saved to Neon fallback successfully")
+        quizResultSaved = true
+      } catch (fallbackError) {
+        console.error("❌ SUBMIT QUIZ RESULT: Fallback also failed:", fallbackError)
+        // Continue with challenge updates even if this fails
+      }
     }
 
     // 2. If this is a challenge, update the challenge completion status

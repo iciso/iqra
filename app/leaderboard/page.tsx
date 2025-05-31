@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { supabase } from "@/lib/supabase"
+import { getLeaderboardFromFallback, initializeFallbackTables } from "@/lib/neon-fallback"
 
 interface LeaderboardEntry {
   name: string
@@ -31,6 +32,7 @@ export default function LeaderboardPage() {
   const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
   const [loading, setLoading] = useState(false)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
+  const [dataSource, setDataSource] = useState<"supabase" | "neon" | "demo">("demo")
 
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
@@ -76,76 +78,130 @@ export default function LeaderboardPage() {
       setLoading(true)
       console.log("🏆 Loading leaderboard data...")
 
-      // Get quiz results with user profiles
-      const { data: results, error } = await supabase
-        .from("quiz_results")
-        .select(`
-          *,
-          user_profiles!inner(username, full_name, avatar_url)
-        `)
-        .order("percentage", { ascending: false })
-        .order("created_at", { ascending: false })
-        .limit(50)
+      // Try Supabase first
+      try {
+        const { data: results, error } = await supabase
+          .from("quiz_results")
+          .select(`
+            *,
+            user_profiles!inner(username, full_name, avatar_url)
+          `)
+          .order("percentage", { ascending: false })
+          .order("created_at", { ascending: false })
+          .limit(50)
 
-      if (error) {
-        console.error("❌ Error loading leaderboard:", error)
-        throw error
+        if (error) throw error
+
+        console.log("✅ Leaderboard data loaded from Supabase:", results?.length || 0, "entries")
+
+        // Transform to leaderboard format
+        const leaderboardData =
+          results?.map((result) => ({
+            name: result.user_profiles.full_name || result.user_profiles.username,
+            score: result.score,
+            totalQuestions: result.total_questions,
+            percentage: result.percentage,
+            date: new Date(result.created_at).toLocaleDateString(),
+            category: result.category,
+            difficulty: result.difficulty,
+            challenge: result.challenge_id ? "challenge" : "quiz",
+            user_id: result.user_id,
+          })) || []
+
+        if (leaderboardData.length > 0) {
+          setLeaderboard(leaderboardData)
+          setDataSource("supabase")
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (supabaseError) {
+        console.error("❌ Supabase leaderboard error:", supabaseError)
       }
 
-      console.log("✅ Leaderboard data loaded:", results?.length || 0, "entries")
+      // If Supabase failed, try Neon fallback
+      try {
+        console.log("🔄 Trying Neon fallback...")
+        await initializeFallbackTables()
+        const results = await getLeaderboardFromFallback()
 
-      // Transform to leaderboard format
-      const leaderboardData =
-        results?.map((result) => ({
-          name: result.user_profiles.full_name || result.user_profiles.username,
-          score: result.score,
-          totalQuestions: result.total_questions,
-          percentage: result.percentage,
-          date: new Date(result.created_at).toLocaleDateString(),
-          category: result.category,
-          difficulty: result.difficulty,
-          challenge: result.challenge_id ? "challenge" : "quiz",
-          user_id: result.user_id,
-        })) || []
+        if (results && results.length > 0) {
+          const leaderboardData = results.map((result) => ({
+            name: result.full_name || result.username || "Unknown User",
+            score: result.score,
+            totalQuestions: result.total_questions,
+            percentage: result.percentage,
+            date: new Date(result.created_at).toLocaleDateString(),
+            category: result.category,
+            difficulty: result.difficulty,
+            challenge: result.challenge_id ? "challenge" : "quiz",
+            user_id: result.user_id,
+          }))
 
-      // Add some placeholder data if empty (for demo purposes)
-      if (leaderboardData.length === 0) {
-        console.log("⚠️ No leaderboard data found, using placeholder data")
-        const placeholderData = [
-          {
-            name: "Dr. Muhammad Murtaza Ikram",
-            score: 10,
-            totalQuestions: 10,
-            percentage: 100,
-            date: new Date().toLocaleDateString(),
-            category: "Quran",
-            difficulty: "Easy",
-            challenge: "daily",
-            user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
-          },
-          {
-            name: "IQRA Bot",
-            score: 9,
-            totalQuestions: 10,
-            percentage: 90,
-            date: new Date().toLocaleDateString(),
-            category: "Quran",
-            difficulty: "Easy",
-            challenge: "daily",
-          },
-        ]
-        setLeaderboard(placeholderData)
-      } else {
-        setLeaderboard(leaderboardData)
+          setLeaderboard(leaderboardData)
+          setDataSource("neon")
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (neonError) {
+        console.error("❌ Neon fallback error:", neonError)
       }
 
+      // If both failed, use demo data
+      console.log("⚠️ Both databases failed, using demo data")
+      const placeholderData = [
+        {
+          name: "Dr. Muhammad Murtaza Ikram",
+          score: 10,
+          totalQuestions: 10,
+          percentage: 95,
+          date: new Date().toLocaleDateString(),
+          category: "Quran",
+          difficulty: "Easy",
+          challenge: "quiz",
+          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+        },
+        {
+          name: "Francis Raj",
+          score: 0,
+          totalQuestions: 10,
+          percentage: 0,
+          date: new Date().toLocaleDateString(),
+          category: "Quran",
+          difficulty: "Easy",
+          challenge: "challenge",
+          user_id: "d3e5eba5-f706-4065-8639-797bd180f40d",
+        },
+        {
+          name: "Emrafi",
+          score: 8,
+          totalQuestions: 10,
+          percentage: 80,
+          date: new Date().toLocaleDateString(),
+          category: "Quran",
+          difficulty: "Easy",
+          challenge: "quiz",
+        },
+        {
+          name: "Aiesha",
+          score: 7,
+          totalQuestions: 10,
+          percentage: 70,
+          date: new Date().toLocaleDateString(),
+          category: "Seerah",
+          difficulty: "Easy",
+          challenge: "quiz",
+        },
+      ]
+      setLeaderboard(placeholderData)
+      setDataSource("demo")
       setLastRefresh(new Date())
     } catch (error) {
       console.error("Error loading leaderboard:", error)
-      // Fallback to localStorage if database fails
+      // Final fallback to localStorage if everything else fails
       const storedLeaderboard = localStorage.getItem("quranQuizLeaderboard")
       if (storedLeaderboard) {
         setLeaderboard(JSON.parse(storedLeaderboard))
+        setDataSource("demo")
       }
     } finally {
       setLoading(false)
@@ -203,7 +259,17 @@ export default function LeaderboardPage() {
             IQRA Quiz Hall of Fame
           </CardTitle>
           {lastRefresh && (
-            <p className="text-sm text-gray-500 dark:text-gray-400">Last updated: {lastRefresh.toLocaleTimeString()}</p>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              <p>Last updated: {lastRefresh.toLocaleTimeString()}</p>
+              <p>
+                Data source:{" "}
+                {dataSource === "supabase"
+                  ? "Primary Database"
+                  : dataSource === "neon"
+                    ? "Backup Database"
+                    : "Demo Data"}
+              </p>
+            </div>
           )}
         </CardHeader>
 

@@ -1,9 +1,15 @@
-import { neon } from "@neondatabase/serverless"
+import { neon, neonConfig } from "@neondatabase/serverless"
 
-const sql = neon(process.env.NEON_DATABASE_URL!)
+// Configure neon to work in edge and non-edge environments
+neonConfig.fetchConnectionCache = true
+
+// Initialize the SQL client
+const sql = neon(process.env.NEON_NEON_DATABASE_URL!)
 
 export async function initializeFallbackTables() {
   try {
+    console.log("🔄 Initializing Neon fallback tables...")
+
     // Create quiz_results table
     await sql`
       CREATE TABLE IF NOT EXISTS quiz_results_fallback (
@@ -39,19 +45,19 @@ export async function initializeFallbackTables() {
     await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_percentage ON quiz_results_fallback(percentage DESC)`
     await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_created_at ON quiz_results_fallback(created_at DESC)`
 
-    // Insert initial data
+    // Insert initial data for Dr. Muhammad Murtaza Ikram
     await sql`
       INSERT INTO user_profiles_fallback (id, username, full_name, total_score, best_percentage, quiz_count) 
       VALUES 
-        ('ddd8b850-1b56-4781-bd03-1be615f9e3ec', 'drmurtazaa50', 'Dr. Muhammad Murtaza Ikram', 200, 95, 5),
-        ('fallback-1', 'emrafi', 'Emrafi', 150, 85, 3),
-        ('fallback-2', 'aiesha', 'Aiesha', 120, 80, 2)
+        ('ddd8b850-1b56-4781-bd03-1be615f9e3ec', 'drmurtazaa50', 'Dr. Muhammad Murtaza Ikram', 200, 95, 5)
       ON CONFLICT (id) DO NOTHING
     `
 
     console.log("✅ Fallback tables initialized successfully")
+    return true
   } catch (error) {
     console.error("❌ Error initializing fallback tables:", error)
+    return false
   }
 }
 
@@ -67,6 +73,16 @@ export async function saveQuizResultToFallback(
   challengeId: string | null = null,
 ) {
   try {
+    console.log("💾 Saving quiz result to Neon fallback...")
+
+    // First, ensure the user exists in the fallback database
+    await sql`
+      INSERT INTO user_profiles_fallback (id, username, full_name)
+      VALUES (${userId}, ${userId.substring(0, 8)}, 'IQRA User')
+      ON CONFLICT (id) DO NOTHING
+    `
+
+    // Then save the quiz result
     const result = await sql`
       INSERT INTO quiz_results_fallback 
       (user_id, score, total_questions, percentage, category, difficulty, time_left, answers, challenge_id)
@@ -84,9 +100,19 @@ export async function saveQuizResultToFallback(
 
 export async function getLeaderboardFromFallback(limit = 50) {
   try {
+    console.log("🔍 Getting leaderboard from Neon fallback...")
+
     const results = await sql`
       SELECT 
-        qr.*,
+        qr.id,
+        qr.user_id,
+        qr.score,
+        qr.total_questions,
+        qr.percentage,
+        qr.category,
+        qr.difficulty,
+        qr.challenge_id,
+        qr.created_at,
         up.username,
         up.full_name
       FROM quiz_results_fallback qr
