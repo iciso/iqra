@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Trophy, Medal, Home, Filter, Search } from "lucide-react"
+import { Trophy, Medal, Home, Filter, Search, RefreshCw } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -20,6 +20,7 @@ interface LeaderboardEntry {
   category?: string
   difficulty?: string
   challenge?: string
+  user_id?: string
 }
 
 export default function LeaderboardPage() {
@@ -28,6 +29,8 @@ export default function LeaderboardPage() {
   const [filter, setFilter] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState<string>("")
   const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
+  const [loading, setLoading] = useState(false)
+  const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
 
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
@@ -70,18 +73,26 @@ export default function LeaderboardPage() {
 
   const loadLeaderboardFromDatabase = async () => {
     try {
+      setLoading(true)
+      console.log("🏆 Loading leaderboard data...")
+
       // Get quiz results with user profiles
       const { data: results, error } = await supabase
         .from("quiz_results")
         .select(`
-        *,
-        user_profiles!inner(username, full_name, avatar_url)
-      `)
+          *,
+          user_profiles!inner(username, full_name, avatar_url)
+        `)
         .order("percentage", { ascending: false })
         .order("created_at", { ascending: false })
         .limit(50)
 
-      if (error) throw error
+      if (error) {
+        console.error("❌ Error loading leaderboard:", error)
+        throw error
+      }
+
+      console.log("✅ Leaderboard data loaded:", results?.length || 0, "entries")
 
       // Transform to leaderboard format
       const leaderboardData =
@@ -94,17 +105,30 @@ export default function LeaderboardPage() {
           category: result.category,
           difficulty: result.difficulty,
           challenge: result.challenge_id ? "challenge" : "quiz",
+          user_id: result.user_id,
         })) || []
 
       // Add some placeholder data if empty (for demo purposes)
       if (leaderboardData.length === 0) {
+        console.log("⚠️ No leaderboard data found, using placeholder data")
         const placeholderData = [
           {
-            name: "IQRA Bot",
+            name: "Dr. Muhammad Murtaza Ikram",
             score: 10,
             totalQuestions: 10,
             percentage: 100,
-            date: "Feb 10, 2023",
+            date: new Date().toLocaleDateString(),
+            category: "Quran",
+            difficulty: "Easy",
+            challenge: "daily",
+            user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+          },
+          {
+            name: "IQRA Bot",
+            score: 9,
+            totalQuestions: 10,
+            percentage: 90,
+            date: new Date().toLocaleDateString(),
             category: "Quran",
             difficulty: "Easy",
             challenge: "daily",
@@ -114,6 +138,8 @@ export default function LeaderboardPage() {
       } else {
         setLeaderboard(leaderboardData)
       }
+
+      setLastRefresh(new Date())
     } catch (error) {
       console.error("Error loading leaderboard:", error)
       // Fallback to localStorage if database fails
@@ -121,6 +147,8 @@ export default function LeaderboardPage() {
       if (storedLeaderboard) {
         setLeaderboard(JSON.parse(storedLeaderboard))
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -174,6 +202,9 @@ export default function LeaderboardPage() {
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
             IQRA Quiz Hall of Fame
           </CardTitle>
+          {lastRefresh && (
+            <p className="text-sm text-gray-500 dark:text-gray-400">Last updated: {lastRefresh.toLocaleTimeString()}</p>
+          )}
         </CardHeader>
 
         <CardContent>
@@ -182,9 +213,9 @@ export default function LeaderboardPage() {
               <TabsList className="grid grid-cols-5 mb-4">
                 <TabsTrigger value="all">All</TabsTrigger>
                 <TabsTrigger value="daily">Daily</TabsTrigger>
+                <TabsTrigger value="quiz">Quiz</TabsTrigger>
+                <TabsTrigger value="challenge">Challenge</TabsTrigger>
                 <TabsTrigger value="quran">Quran</TabsTrigger>
-                <TabsTrigger value="seerah">Seerah</TabsTrigger>
-                <TabsTrigger value="fiqh">Fiqh</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -205,6 +236,15 @@ export default function LeaderboardPage() {
               >
                 <Filter className="h-4 w-4" />
                 {filter || "All Categories"}
+              </Button>
+              <Button
+                variant="outline"
+                className="flex gap-2 dark:border-green-700 dark:text-green-400"
+                onClick={loadLeaderboardFromDatabase}
+                disabled={loading}
+              >
+                <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+                {loading ? "Loading..." : "Refresh"}
               </Button>
             </div>
           </div>
