@@ -30,6 +30,13 @@ export default function SimpleTopPlayers() {
   // Fallback mock data in case database fails
   const fallbackPlayers: Player[] = [
     {
+      id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+      username: "drmurtazaa50",
+      full_name: "Dr. Muhammad Murtaza Ikram",
+      total_score: 200,
+      best_percentage: 95,
+    },
+    {
       id: "mock-1",
       username: "emrafi",
       full_name: "Emrafi",
@@ -45,24 +52,17 @@ export default function SimpleTopPlayers() {
     },
     {
       id: "mock-3",
-      username: "dr_murtuza",
-      full_name: "Dr. Murtuza",
+      username: "feroza",
+      full_name: "Feroza Rafique",
       total_score: 100,
       best_percentage: 75,
     },
     {
       id: "mock-4",
-      username: "feroza",
-      full_name: "Feroza Rafique",
-      total_score: 90,
-      best_percentage: 70,
-    },
-    {
-      id: "mock-5",
       username: "student1",
       full_name: "Quiz Student",
-      total_score: 80,
-      best_percentage: 65,
+      total_score: 90,
+      best_percentage: 70,
     },
   ]
 
