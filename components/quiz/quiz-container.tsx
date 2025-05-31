@@ -17,6 +17,7 @@ import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
+import { supabase } from "@/lib/supabase"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -283,75 +284,34 @@ export default function QuizContainer({
         try {
           console.log("🎯 QUIZ CONTAINER: Attempting challenge update...")
 
-          // Import the submitQuizResult function
-          const { submitQuizResult } = await import("@/lib/supabase-queries")
-
-          // Submit the quiz result to database FIRST
-          console.log("💾 QUIZ CONTAINER: Submitting quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
-
-          // Then update challenge status
-          const { supabase } = await import("@/lib/supabase")
-          const { error } = await supabase
+          // Set a timeout for the update
+          const updatePromise = supabase
             .from("user_challenges")
             .update({
-              status: "completed", // Mark as completed since challenged user finished
-              challenged_score: score,
-              challenged_completed_at: new Date().toISOString(),
+              status: "pending",
+              challenger_score: score,
+              challenger_completed_at: new Date().toISOString(),
+              challenge_questions: JSON.stringify(questions), // Store the exact questions
             })
             .eq("id", challengeMode)
+
+          // Race the update against a 3-second timeout
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Update timeout")), 3000))
+
+          const { error } = await Promise.race([updatePromise, timeoutPromise])
 
           if (error) {
             console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
           } else {
-            console.log("🎯 QUIZ CONTAINER: Challenge status updated to completed successfully")
+            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
           }
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Challenge update failed:", error)
+          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
         }
       }
 
       // Start the update but don't wait for it
       updateChallenge()
-    } else if (challengeMode) {
-      // This is the challenger completing their turn
-      console.log("🎯 QUIZ CONTAINER: Challenger completing their turn...")
-
-      const updateChallengerScore = async () => {
-        try {
-          // Import the submitQuizResult function
-          const { submitQuizResult } = await import("@/lib/supabase-queries")
-
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting challenger quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Challenger quiz result submitted successfully")
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting challenger result:", error)
-        }
-      }
-
-      updateChallengerScore()
-    } else {
-      // Regular quiz completion
-      console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
-
-      const saveRegularQuiz = async () => {
-        try {
-          // Import the submitQuizResult function
-          const { submitQuizResult } = await import("@/lib/supabase-queries")
-
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting regular quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
-          console.log("✅ QUIZ CONTAINER: Regular quiz result submitted successfully")
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting regular quiz result:", error)
-        }
-      }
-
-      saveRegularQuiz()
     }
 
     // Navigate to results immediately (don't wait for challenge update)
