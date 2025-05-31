@@ -194,7 +194,7 @@ export async function getLeaderboardWithFallback() {
       }
     }
 
-    // Return demo data as final fallback
+    // Return demo data as final fallback with realistic UUIDs
     console.log("⚠️ Using demo data as final fallback")
     return {
       source: "Demo",
@@ -208,7 +208,7 @@ export async function getLeaderboardWithFallback() {
           category: "Quran",
           difficulty: "Hard",
           challenge: "quiz",
-          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec", // Real user ID
         },
         {
           name: "Emrafi",
@@ -219,18 +219,40 @@ export async function getLeaderboardWithFallback() {
           category: "Islamic History",
           difficulty: "Medium",
           challenge: "challenge",
-          user_id: "demo-user-2",
+          user_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890", // Realistic UUID
         },
         {
-          name: "Francis Raj",
-          score: 0,
+          name: "Aiesha Rahman",
+          score: 16,
           totalQuestions: 20,
-          percentage: 0,
+          percentage: 80,
           date: "12/28/2024",
+          category: "Seerah",
+          difficulty: "Medium",
+          challenge: "quiz",
+          user_id: "b2c3d4e5-f6g7-8901-bcde-f23456789012", // Realistic UUID
+        },
+        {
+          name: "Ahmed Hassan",
+          score: 15,
+          totalQuestions: 20,
+          percentage: 75,
+          date: "12/27/2024",
+          category: "Fiqh",
+          difficulty: "Easy",
+          challenge: "challenge",
+          user_id: "c3d4e5f6-g7h8-9012-cdef-345678901234", // Realistic UUID
+        },
+        {
+          name: "Fatima Ali",
+          score: 14,
+          totalQuestions: 20,
+          percentage: 70,
+          date: "12/26/2024",
           category: "Quran",
           difficulty: "Easy",
           challenge: "quiz",
-          user_id: "demo-user-3",
+          user_id: "d4e5f6g7-h8i9-0123-defg-456789012345", // Realistic UUID
         },
       ],
     }

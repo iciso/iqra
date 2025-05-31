@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw, Users, Database } from "lucide-react"
+import { Trophy, RefreshCw, Users, Database, Cloud, HardDrive } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 
@@ -24,10 +24,11 @@ export default function SimpleTopPlayers() {
   const [retryCount, setRetryCount] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [syncing, setSyncing] = useState(false)
+  const [dataSource, setDataSource] = useState<string>("Loading...")
   const mountedRef = useRef(true)
   const loadingRef = useRef(false)
 
-  // Fallback mock data in case database fails
+  // Enhanced fallback players with realistic UUIDs
   const fallbackPlayers: Player[] = [
     {
       id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
@@ -37,31 +38,31 @@ export default function SimpleTopPlayers() {
       best_percentage: 95,
     },
     {
-      id: "mock-1",
+      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       username: "emrafi",
       full_name: "Emrafi",
       total_score: 150,
       best_percentage: 85,
     },
     {
-      id: "mock-2",
+      id: "b2c3d4e5-f6g7-8901-bcde-f23456789012",
       username: "aiesha",
-      full_name: "Aiesha",
-      total_score: 120,
+      full_name: "Aiesha Rahman",
+      total_score: 140,
       best_percentage: 80,
     },
     {
-      id: "mock-3",
-      username: "feroza",
-      full_name: "Feroza Rafique",
-      total_score: 100,
+      id: "c3d4e5f6-g7h8-9012-cdef-345678901234",
+      username: "ahmed",
+      full_name: "Ahmed Hassan",
+      total_score: 130,
       best_percentage: 75,
     },
     {
-      id: "mock-4",
-      username: "student1",
-      full_name: "Quiz Student",
-      total_score: 90,
+      id: "d4e5f6g7-h8i9-0123-defg-456789012345",
+      username: "fatima",
+      full_name: "Fatima Ali",
+      total_score: 120,
       best_percentage: 70,
     },
   ]
@@ -185,42 +186,63 @@ export default function SimpleTopPlayers() {
         return
       }
 
-      console.log("🔍 Step 1: Auth ready, starting simple query...")
+      console.log("🔍 Step 1: Auth ready, trying Supabase...")
 
-      // Try a very simple query first with aggressive timeout
       const limit = showAll ? 50 : 10
 
-      const queryResult = await Promise.race([
-        supabase
-          .from("user_profiles")
-          .select("id, username, full_name, total_score, best_percentage")
-          .order("total_score", { ascending: false })
-          .limit(limit),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Database query timeout")), 3000)),
-      ])
+      // Try Supabase first
+      try {
+        const queryResult = await Promise.race([
+          supabase
+            .from("user_profiles")
+            .select("id, username, full_name, total_score, best_percentage")
+            .order("total_score", { ascending: false })
+            .limit(limit),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
+        ])
 
-      console.log("🔍 Step 2: Query completed")
+        const { data, error } = queryResult as any
 
-      const { data, error } = queryResult as any
+        if (error) throw error
 
-      if (error) {
-        console.error("❌ Database error:", error)
-        throw new Error(`Database error: ${error.message}`)
+        if (data && data.length > 0) {
+          console.log("✅ Players loaded from Supabase:", data.length, "players")
+          if (mountedRef.current) {
+            setPlayers(data)
+            setDataSource("Supabase")
+          }
+          return
+        }
+      } catch (supabaseError) {
+        console.error("❌ Supabase error:", supabaseError)
       }
 
-      if (!data || data.length === 0) {
-        console.warn("⚠️ No data returned, using fallback players")
-        if (mountedRef.current) {
-          setPlayers(fallbackPlayers.slice(0, limit))
+      // Try Neon fallback
+      console.log("🔍 Step 2: Trying Neon fallback...")
+      try {
+        const { getTopPlayersFromFallback } = await import("@/lib/neon-fallback")
+        const neonPlayers = await getTopPlayersFromFallback(limit)
+
+        if (neonPlayers && neonPlayers.length > 0) {
+          console.log("✅ Players loaded from Neon:", neonPlayers.length, "players")
+          if (mountedRef.current) {
+            setPlayers(neonPlayers)
+            setDataSource("Neon")
+          }
+          return
         }
-      } else {
-        console.log("✅ Players loaded successfully:", data.length, "players")
-        if (mountedRef.current) {
-          setPlayers(data)
-        }
+      } catch (neonError) {
+        console.error("❌ Neon error:", neonError)
       }
 
-      console.log("🔍 Step 3: Load complete!")
+      // Use demo data as final fallback
+      console.log("🔍 Step 3: Using demo data...")
+      if (mountedRef.current) {
+        setPlayers(fallbackPlayers.slice(0, limit))
+        setDataSource("Demo")
+      }
+
+      console.log("🔍 Step 4: Load complete!")
     } catch (err: any) {
       console.error("❌ Load error:", err.message)
 
@@ -229,6 +251,7 @@ export default function SimpleTopPlayers() {
         console.log("🔄 Using fallback player data due to database issues")
         const limit = showAll ? fallbackPlayers.length : 5
         setPlayers(fallbackPlayers.slice(0, limit))
+        setDataSource("Demo (Error)")
         setError(null) // Don't show error, just use fallback
       }
 
@@ -268,10 +291,17 @@ export default function SimpleTopPlayers() {
         return
       }
 
-      // Don't challenge mock users
-      if (playerId.startsWith("mock-")) {
-        alert("This is a demo player. Try challenging a real user!")
+      // Don't challenge yourself
+      if (playerId === user.id) {
+        alert("You can't challenge yourself!")
         return
+      }
+
+      // For demo users, show a special message but still allow the challenge
+      const isDemoUser = dataSource.includes("Demo")
+      if (isDemoUser && playerId !== "ddd8b850-1b56-4781-bd03-1be615f9e3ec") {
+        const proceed = confirm(`${playerName} is a demo user. This will create a practice challenge. Continue?`)
+        if (!proceed) return
       }
 
       // Calculate expiry date (24 hours from now)
@@ -321,6 +351,18 @@ export default function SimpleTopPlayers() {
     setShowAll(!showAll)
     // Reload with new limit
     setTimeout(() => loadPlayers(), 100)
+  }
+
+  const getSourceIcon = () => {
+    if (dataSource.includes("Supabase")) return <Cloud className="h-4 w-4" />
+    if (dataSource.includes("Neon")) return <Database className="h-4 w-4" />
+    return <HardDrive className="h-4 w-4" />
+  }
+
+  const getSourceColor = () => {
+    if (dataSource.includes("Supabase")) return "bg-green-100 text-green-800"
+    if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
+    return "bg-gray-100 text-gray-800"
   }
 
   // Load players when auth is ready
@@ -409,9 +451,10 @@ export default function SimpleTopPlayers() {
           <div className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-yellow-500" />
             {showAll ? `All Players (${players.length})` : `Top Players (${players.length})`}
-            {players.some((p) => p.id.startsWith("mock-")) && (
-              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Demo Data</span>
-            )}
+            <span className={`text-xs px-2 py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
+              {getSourceIcon()}
+              {dataSource}
+            </span>
           </div>
           <div className="flex gap-2">
             <Button
@@ -459,7 +502,7 @@ export default function SimpleTopPlayers() {
                   <div>
                     <p className="font-medium text-sm">{player.full_name || player.username}</p>
                     <p className="text-xs text-gray-500">
-                      {player.id.startsWith("mock-") ? "Demo User" : `ID: ${player.id.slice(0, 8)}...`}
+                      {dataSource.includes("Demo") ? "Demo User" : `ID: ${player.id.slice(0, 8)}...`}
                     </p>
                   </div>
                 </div>
@@ -473,14 +516,9 @@ export default function SimpleTopPlayers() {
                     <Button
                       size="sm"
                       onClick={() => handleChallenge(player.id, player.full_name || player.username)}
-                      className={`h-8 py-0 px-3 text-xs ${
-                        player.id.startsWith("mock-")
-                          ? "bg-gray-400 hover:bg-gray-500 cursor-not-allowed"
-                          : "bg-green-600 hover:bg-green-700"
-                      }`}
-                      disabled={player.id.startsWith("mock-")}
+                      className="h-8 py-0 px-3 text-xs bg-green-600 hover:bg-green-700"
                     >
-                      {player.id.startsWith("mock-") ? "Demo" : "Challenge"}
+                      Challenge
                     </Button>
                   )}
                 </div>

@@ -44,7 +44,7 @@ export default function AboutPage() {
         <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
         <ul>
           <li>
-            <strong>Concept, Design and Demo Version:</strong> Mohamed Rafique Essa, and May Allah reward Joy whose mail is
+            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward Joy whose mail is
             joy_ahmed_007@yahoo.com for teaching and{" "}
             <span>
               guiding{" "}
