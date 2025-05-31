@@ -333,6 +333,13 @@ export default function SimpleTopPlayers() {
       loadPlayers()
     } else {
       console.log("⏳ Auth still loading, waiting...")
+      // Force auth completion after 3 seconds to prevent hanging
+      const timeout = setTimeout(() => {
+        console.log("Auth loading timeout - forcing completion")
+        loadPlayers()
+      }, 3000)
+
+      return () => clearTimeout(timeout)
     }
 
     return () => {
@@ -466,7 +473,11 @@ export default function SimpleTopPlayers() {
                     <Button
                       size="sm"
                       onClick={() => handleChallenge(player.id, player.full_name || player.username)}
-                      className="h-8 py-0 px-2 text-xs bg-green-600 hover:bg-green-700"
+                      className={`h-8 py-0 px-3 text-xs ${
+                        player.id.startsWith("mock-")
+                          ? "bg-gray-400 hover:bg-gray-500 cursor-not-allowed"
+                          : "bg-green-600 hover:bg-green-700"
+                      }`}
                       disabled={player.id.startsWith("mock-")}
                     >
                       {player.id.startsWith("mock-") ? "Demo" : "Challenge"}
