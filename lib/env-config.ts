@@ -1,27 +1,40 @@
-// Simplified build time detection - avoid complex logic during build
-export const isBuildTime = process.env.NODE_ENV === "production" && !process.env.VERCEL_ENV
+// Fixed environment detection - more accurate runtime detection
+export const isBuildTime =
+  process.env.NODE_ENV === "production" &&
+  !process.env.VERCEL_ENV &&
+  !process.env.VERCEL_URL &&
+  typeof window === "undefined"
 
 // Check if we're in the browser (client-side)
 export const isBrowser = typeof window !== "undefined"
 
-// Simplified Neon fallback check - only check if we have the URL
-export const useNeonFallback = !isBuildTime && !!process.env.iqra_DATABASE_URL
+// Better runtime detection for Vercel deployments
+export const isVercelRuntime = !!(process.env.VERCEL_ENV || process.env.VERCEL_URL)
 
-// Simplified client config - avoid complex checks during build
+// Improved Neon fallback check - should work in production
+export const useNeonFallback = !isBuildTime && !!process.env.iqra_DATABASE_URL && isVercelRuntime
+
+// Enhanced client config
 export const clientConfig = {
   hasNeonAuth: !isBuildTime && !!process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
   projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
+  isProduction: process.env.NODE_ENV === "production",
+  isVercel: isVercelRuntime,
 }
 
-// Only log in development or runtime
+// Enhanced logging for debugging
 if (!isBuildTime) {
   console.log("🔧 Environment Config:", {
     isBuildTime,
     isBrowser,
     useNeonFallback,
+    isVercelRuntime,
     hasNeonAuth: clientConfig.hasNeonAuth,
     nodeEnv: process.env.NODE_ENV,
     vercelEnv: process.env.VERCEL_ENV,
+    vercelUrl: !!process.env.VERCEL_URL,
+    hasNeonUrl: !!process.env.iqra_DATABASE_URL,
+    hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
   })
 }
 

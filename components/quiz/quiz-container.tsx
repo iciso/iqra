@@ -341,45 +341,110 @@ export default function QuizContainer({
           return
         }
       } else if (challengeMode) {
-        // This is the challenged user completing their turn
-        console.log("🎯 QUIZ CONTAINER: Challenged user completing their turn...")
+        // Challenge completion - save both users' scores to leaderboard
+        console.log("🏆 QUIZ CONTAINER: Challenge completion - updating leaderboard with both scores...")
 
         try {
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting challenged user quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Challenged user quiz result submitted successfully")
-
-          // Update challenge status to completed
+          // Get challenge details to find both users
           const { supabase } = await import("@/lib/supabase")
-          const { error } = await supabase
+          const { data: challenge, error: challengeError } = await supabase
             .from("user_challenges")
-            .update({
-              status: "completed",
-              challenged_score: score,
-              challenged_completed_at: new Date().toISOString(),
-            })
+            .select(`
+        *,
+        challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name),
+        challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name)
+      `)
             .eq("id", challengeMode)
+            .single()
 
-          if (error) {
-            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
-          } else {
-            console.log("🎯 QUIZ CONTAINER: Challenge status updated to completed successfully")
-            toast({
-              title: "Challenge Completed!",
-              description: `Your score (${score}/${questions.length}) has been recorded. View the leaderboard to see results.`,
-              duration: 5000,
-            })
+          if (challengeError) {
+            console.error("🏆 Error fetching challenge:", challengeError)
+            throw challengeError
           }
 
-          // Navigate directly to leaderboard for challenged user
+          console.log("🏆 Challenge data:", challenge)
+
+          // Determine if current user is challenger or challenged
+          const isChallenger = challenge.challenger_id === user?.id
+          const currentUserScore = score
+          const opponentScore = isChallenger ? challenge.challenged_score : challenge.challenger_score
+
+          console.log("🏆 Score details:", {
+            isChallenger,
+            currentUserScore,
+            opponentScore,
+            challengerId: challenge.challenger_id,
+            challengedId: challenge.challenged_id,
+          })
+
+          // Save current user's score to leaderboard
+          console.log("💾 Saving current user score to leaderboard...")
+          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
+
+          // If opponent has completed, save their score too (if not already saved)
+          if (opponentScore !== null && opponentScore !== undefined) {
+            console.log("💾 Saving opponent score to leaderboard...")
+
+            const opponentId = isChallenger ? challenge.challenged_id : challenge.challenger_id
+            const opponentName = isChallenger
+              ? challenge.challenged?.full_name || challenge.challenged?.username
+              : challenge.challenger?.full_name || challenge.challenger?.username
+
+            // Save opponent's score to leaderboard
+            try {
+              const { data: opponentResult, error: opponentError } = await supabase.from("quiz_results").insert({
+                user_id: opponentId,
+                score: opponentScore,
+                total_questions: questions.length,
+                percentage: Math.round((opponentScore / questions.length) * 100),
+                category: category.id,
+                difficulty: difficulty,
+                challenge_id: challengeMode,
+                created_at: new Date().toISOString(),
+              })
+
+              if (opponentError) {
+                console.error("❌ Error saving opponent score:", opponentError)
+              } else {
+                console.log("✅ Opponent score saved to leaderboard")
+              }
+            } catch (error) {
+              console.error("❌ Exception saving opponent score:", error)
+            }
+          }
+
+          // Update challenge status to completed
+          const updateData = isChallenger
+            ? {
+                challenger_score: score,
+                challenger_completed_at: new Date().toISOString(),
+                status: opponentScore !== null ? "completed" : "pending",
+              }
+            : {
+                challenged_score: score,
+                challenged_completed_at: new Date().toISOString(),
+                status: "completed",
+              }
+
+          await supabase.from("user_challenges").update(updateData).eq("id", challengeMode)
+
+          console.log("✅ Challenge updated successfully")
+
+          toast({
+            title: "Challenge Completed!",
+            description: `Both scores updated in leaderboard. Check your ranking!`,
+            duration: 5000,
+          })
+
+          // Navigate directly to leaderboard
+          console.log("🏆 Navigating directly to leaderboard...")
           router.push("/leaderboard")
           return
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting challenged user result:", error)
+          console.error("❌ Error in challenge completion:", error)
           toast({
-            title: "Error Saving Score",
-            description: "There was a problem saving your score. Please try again.",
+            title: "Error Updating Leaderboard",
+            description: "There was a problem updating the leaderboard. Please try again.",
             variant: "destructive",
             duration: 5000,
           })
@@ -394,7 +459,7 @@ export default function QuizContainer({
           // Submit the quiz result to database
           console.log("💾 QUIZ CONTAINER: Submitting regular quiz result to database...")
           await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
-          console.log("✅ QUIZ CONTAINER: Regular quiz result submitted successfully")
+          console.log("✅ Regular quiz result submitted successfully")
 
           toast({
             title: "Quiz Completed!",
