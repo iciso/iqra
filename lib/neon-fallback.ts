@@ -1,33 +1,25 @@
 import { neon, neonConfig } from "@neondatabase/serverless"
-import { isBuildTime, useNeonFallback } from "./env-config"
 
 // Configure neon to work in edge and non-edge environments
 neonConfig.fetchConnectionCache = true
+
+// Simplified build time detection
+const isBuildTime = process.env.NODE_ENV === "production" && !process.env.VERCEL_ENV
 
 // Safe SQL client factory that won't run during build
 const getSqlClient = () => {
   // Skip during build time
   if (isBuildTime) {
     console.log("🏗️ Build time detected, skipping Neon initialization")
-    return {
-      // Return dummy functions that do nothing during build
-      async query() {
-        return []
-      },
-      async raw() {
-        return []
-      },
-      // Add a tag method for template literals
-      // @ts-ignore - this is intentional for build time
-      [Symbol.asyncTag]: async () => [],
-    }
+    return null
   }
 
   // Use the correct environment variable from Neon with iqra prefix
   const connectionString = process.env.iqra_DATABASE_URL || process.env.iqra_POSTGRES_URL || process.env.DATABASE_URL
 
   if (!connectionString) {
-    throw new Error("DATABASE_URL or POSTGRES_URL environment variable is not set")
+    console.warn("No database connection string found")
+    return null
   }
 
   console.log("🔗 Connecting to Neon with URL:", connectionString.substring(0, 20) + "...")
@@ -36,21 +28,21 @@ const getSqlClient = () => {
   return neon(connectionString)
 }
 
-// Export a dummy function for build time
+// Export a safe function for build time
 export async function initializeFallbackTables() {
   if (isBuildTime) {
     console.log("🏗️ Build time detected, skipping table initialization")
     return false
   }
 
-  if (!useNeonFallback) {
-    console.log("⚠️ Neon fallback not configured, skipping initialization")
+  const sql = getSqlClient()
+  if (!sql) {
+    console.log("⚠️ No SQL client available, skipping initialization")
     return false
   }
 
   try {
     console.log("🔄 Initializing Neon fallback tables...")
-    const sql = getSqlClient()
 
     // Create quiz_results table
     await sql`
@@ -87,31 +79,7 @@ export async function initializeFallbackTables() {
     await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_percentage ON quiz_results_fallback(percentage DESC)`
     await sql`CREATE INDEX IF NOT EXISTS idx_quiz_results_fallback_created_at ON quiz_results_fallback(created_at DESC)`
 
-    // Insert initial data for Dr. Muhammad Murtaza Ikram and other demo users
-    await sql`
-      INSERT INTO user_profiles_fallback (id, username, full_name, total_score, best_percentage, quiz_count) 
-      VALUES 
-        ('ddd8b850-1b56-4781-bd03-1be615f9e3ec', 'drmurtazaa50', 'Dr. Muhammad Murtaza Ikram', 200, 95, 5),
-        ('a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'emrafi', 'Emrafi', 150, 85, 3),
-        ('b2c3d4e5-f6g7-8901-bcde-f23456789012', 'aiesha', 'Aiesha Rahman', 140, 80, 2),
-        ('c3d4e5f6-g7h8-9012-cdef-345678901234', 'ahmed', 'Ahmed Hassan', 130, 75, 2),
-        ('d4e5f6g7-h8i9-0123-defg-456789012345', 'fatima', 'Fatima Ali', 120, 70, 1)
-      ON CONFLICT (id) DO NOTHING
-    `
-
-    // Insert some sample quiz results
-    await sql`
-      INSERT INTO quiz_results_fallback (user_id, score, total_questions, percentage, category, difficulty, time_left, challenge_id) 
-      VALUES 
-        ('ddd8b850-1b56-4781-bd03-1be615f9e3ec', 19, 20, 95, 'Quran', 'Hard', 120, NULL),
-        ('a1b2c3d4-e5f6-7890-abcd-ef1234567890', 17, 20, 85, 'Islamic History', 'Medium', 180, NULL),
-        ('b2c3d4e5-f6g7-8901-bcde-f23456789012', 16, 20, 80, 'Seerah', 'Medium', 200, NULL),
-        ('c3d4e5f6-g7h8-9012-cdef-345678901234', 15, 20, 75, 'Fiqh', 'Easy', 240, NULL),
-        ('d4e5f6g7-h8i9-0123-defg-456789012345', 14, 20, 70, 'Quran', 'Easy', 260, NULL)
-      ON CONFLICT DO NOTHING
-    `
-
-    console.log("✅ Fallback tables initialized successfully with sample data")
+    console.log("✅ Fallback tables initialized successfully")
     return true
   } catch (error) {
     console.error("❌ Error initializing fallback tables:", error)
@@ -135,13 +103,13 @@ export async function saveQuizResultToFallback(
     return null
   }
 
-  if (!useNeonFallback) {
-    throw new Error("Neon fallback not configured")
+  const sql = getSqlClient()
+  if (!sql) {
+    throw new Error("No database connection available")
   }
 
   try {
     console.log("💾 Saving quiz result to Neon fallback...")
-    const sql = getSqlClient()
 
     // First, ensure the user exists in the fallback database
     await sql`
@@ -172,13 +140,13 @@ export async function getLeaderboardFromFallback(limit = 50) {
     return []
   }
 
-  if (!useNeonFallback) {
-    throw new Error("Neon fallback not configured")
+  const sql = getSqlClient()
+  if (!sql) {
+    throw new Error("No database connection available")
   }
 
   try {
     console.log("🔍 Getting leaderboard from Neon fallback...")
-    const sql = getSqlClient()
 
     const results = await sql`
       SELECT 
@@ -213,13 +181,13 @@ export async function getTopPlayersFromFallback(limit = 10) {
     return []
   }
 
-  if (!useNeonFallback) {
-    throw new Error("Neon fallback not configured")
+  const sql = getSqlClient()
+  if (!sql) {
+    throw new Error("No database connection available")
   }
 
   try {
     console.log("🔍 Getting top players from Neon fallback...")
-    const sql = getSqlClient()
 
     const results = await sql`
       SELECT 
@@ -244,5 +212,5 @@ export async function getTopPlayersFromFallback(limit = 10) {
 
 // Helper function to check if Neon is available
 export function isNeonAvailable(): boolean {
-  return !isBuildTime && useNeonFallback
+  return !isBuildTime && !!process.env.iqra_DATABASE_URL
 }

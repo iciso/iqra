@@ -1,6 +1,6 @@
 "use server"
 
-import { isNeonAuthAvailable } from "@/lib/neon-auth-server"
+import { isStackAuthAvailable } from "@/lib/stack-auth-helpers"
 
 interface ConnectionResult {
   name: string
@@ -62,30 +62,31 @@ export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
     })
   }
 
-  // Test Neon Auth (server-side only)
+  // Test Stack Auth (server-side only)
   try {
-    if (!isNeonAuthAvailable()) {
+    const authAvailable = await isStackAuthAvailable()
+
+    if (!authAvailable) {
       results.push({
-        name: "Neon Auth",
+        name: "Stack Auth",
         status: "warning",
-        message: "Neon Auth not configured",
+        message: "Stack Auth not configured",
       })
     } else {
       results.push({
-        name: "Neon Auth",
+        name: "Stack Auth",
         status: "success",
-        message: "Neon Auth configured",
+        message: "Stack Auth configured",
         details: {
           projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
-          // Don't include sensitive keys in the response
-          hasPublishableKey: !!process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY, // Renamed
+          hasPublishableKey: !!process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY,
           hasSecretKey: !!process.env.iqra_STACK_SECRET_SERVER_KEY,
         },
       })
     }
   } catch (error) {
     results.push({
-      name: "Neon Auth",
+      name: "Stack Auth",
       status: "error",
       message: `Auth config failed: ${error}`,
     })
@@ -97,7 +98,7 @@ export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
     "iqra_POSTGRES_URL",
     "iqra_NEXT_PUBLIC_STACK_PROJECT_ID",
     "iqra_STACK_SECRET_SERVER_KEY",
-    "iqra_STACK_PUBLISHABLE_CLIENT_KEY", // Renamed
+    "iqra_STACK_PUBLISHABLE_CLIENT_KEY",
     "SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",

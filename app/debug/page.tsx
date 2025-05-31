@@ -66,6 +66,25 @@ export default function DebugPage() {
           </CardContent>
         </Card>
 
+        {/* Challenge Flow Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="h-5 w-5" />
+              Challenge Flow Test
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test the complete challenge flow for challenged users</p>
+            <Link href="/debug/challenge-flow-test">
+              <Button className="w-full">
+                <Zap className="h-4 w-4 mr-2" />
+                Test Challenge Flow
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
         {/* Simple Components */}
         <Card>
           <CardHeader>
