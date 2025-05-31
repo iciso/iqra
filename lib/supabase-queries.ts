@@ -473,24 +473,33 @@ export async function submitQuizResult(
     // 1. Save quiz result to Supabase quiz_results table for leaderboard
     console.log("📊 SUBMIT QUIZ RESULT: Saving to quiz_results table")
     try {
+      const insertData = {
+        user_id: user.id,
+        score: score,
+        total_questions: totalQuestions,
+        percentage: percentage,
+        category: category,
+        difficulty: difficulty,
+        time_left: timeLeft || 0,
+        answers: answers ? JSON.stringify(answers) : null,
+        challenge_id: challengeId || null,
+      }
+
+      console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData)
+
       const { data: quizResult, error: quizError } = await supabase
         .from("quiz_results")
-        .insert({
-          user_id: user.id,
-          score: score,
-          total_questions: totalQuestions,
-          percentage: percentage,
-          category: category,
-          difficulty: difficulty,
-          time_left: timeLeft || 0,
-          answers: answers ? JSON.stringify(answers) : null,
-          challenge_id: challengeId || null,
-        })
+        .insert(insertData)
         .select()
         .single()
 
       if (quizError) {
-        console.error("❌ SUBMIT QUIZ RESULT: Error saving quiz result:", quizError)
+        console.error("❌ SUBMIT QUIZ RESULT: Detailed quiz result error:", {
+          message: quizError.message,
+          details: quizError.details,
+          hint: quizError.hint,
+          code: quizError.code,
+        })
         // Don't throw here - continue with challenge updates
       } else {
         console.log("✅ SUBMIT QUIZ RESULT: Quiz result saved to leaderboard:", quizResult)
