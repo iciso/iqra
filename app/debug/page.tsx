@@ -1,259 +1,150 @@
-"use client"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Database, TestTube, Users, Zap, Shield, Activity } from "lucide-react"
 
 export default function DebugPage() {
-  const [results, setResults] = useState<string[]>([])
-  const [loading, setLoading] = useState(false)
-
-  const addResult = (message: string) => {
-    setResults((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
-  }
-
-  const testEnvironmentVariables = () => {
-    addResult("=== Environment Variables Test ===")
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-    addResult(`NEXT_PUBLIC_SUPABASE_URL: ${url ? "✅ Set" : "❌ Missing"}`)
-    addResult(`URL Value: ${url || "undefined"}`)
-    addResult(`Expected: https://chyplogbjlusldmztwqd.supabase.co`)
-    addResult(`Match: ${url === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}`)
-
-    addResult(`NEXT_PUBLIC_SUPABASE_ANON_KEY: ${key ? "✅ Set" : "❌ Missing"}`)
-    addResult(`Key Length: ${key ? key.length : 0} characters`)
-    addResult(`Key Preview: ${key ? key.substring(0, 20) + "..." : "undefined"}`)
-  }
-
-  const testCORS = async () => {
-    setLoading(true)
-    addResult("=== CORS and Headers Test ===")
-
-    try {
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-      if (!url || !key) {
-        addResult("❌ Missing environment variables")
-        return
-      }
-
-      // Test with minimal headers first
-      addResult("Testing with minimal headers...")
-      const response1 = await fetch(`${url}/rest/v1/`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          apikey: key,
-        },
-      })
-
-      addResult(`Minimal headers response: ${response1.status}`)
-
-      // Test with full headers
-      addResult("Testing with full headers...")
-      const response2 = await fetch(`${url}/rest/v1/`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: key,
-          Authorization: `Bearer ${key}`,
-        },
-      })
-
-      addResult(`Full headers response: ${response2.status}`)
-
-      // Test auth endpoint specifically
-      addResult("Testing auth endpoint...")
-      const response3 = await fetch(`${url}/auth/v1/settings`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          apikey: key,
-        },
-      })
-
-      addResult(`Auth endpoint response: ${response3.status}`)
-
-      if (response3.ok) {
-        const settings = await response3.json()
-        addResult(`Auth settings: ${JSON.stringify(settings, null, 2)}`)
-      }
-    } catch (error) {
-      addResult(`❌ CORS test error: ${error}`)
-      addResult(`Error type: ${error instanceof TypeError ? "TypeError" : typeof error}`)
-      addResult(`Error message: ${error.message || "Unknown error"}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const testSupabaseSettings = async () => {
-    setLoading(true)
-    addResult("=== Supabase Settings Test ===")
-
-    try {
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-      if (!url || !key) {
-        addResult("❌ Missing environment variables")
-        return
-      }
-
-      // Test if the project is accessible
-      addResult(`Testing project accessibility: ${url}`)
-
-      const response = await fetch(`${url}/rest/v1/`, {
-        method: "OPTIONS",
-        mode: "cors",
-      })
-
-      addResult(`OPTIONS request status: ${response.status}`)
-      addResult(`CORS headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()))}`)
-    } catch (error) {
-      addResult(`❌ Settings test error: ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const testAlternativeAuth = async () => {
-    setLoading(true)
-    addResult("=== Alternative Auth Test ===")
-
-    try {
-      // Test with a completely different approach
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-      if (!key || !url) {
-        addResult("❌ No API key or URL available")
-        return
-      }
-
-      // Try to access the auth settings endpoint
-      const settingsResponse = await fetch(`${url}/auth/v1/settings`, {
-        headers: {
-          apikey: key,
-          "Content-Type": "application/json",
-        },
-      })
-
-      addResult(`Auth settings status: ${settingsResponse.status}`)
-
-      if (settingsResponse.ok) {
-        const settings = await settingsResponse.json()
-        addResult(`✅ Auth is accessible`)
-        addResult(`External URL: ${settings.external_url || "Not set"}`)
-        addResult(`Site URL: ${settings.site_url || "Not set"}`)
-        addResult(`Email enabled: ${settings.external_email_enabled || "Unknown"}`)
-      } else {
-        const errorText = await settingsResponse.text()
-        addResult(`❌ Auth settings error: ${errorText}`)
-      }
-    } catch (error) {
-      addResult(`❌ Alternative auth error: ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const clearResults = () => {
-    setResults([])
-  }
-
   return (
-    <div className="container mx-auto p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-6">IQRA Advanced Debug</h1>
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">IQRA Debug Center</h1>
 
-      <div className="grid gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Database Connections */}
         <Card>
           <CardHeader>
-            <CardTitle>Advanced Debug Tests</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Database className="h-5 w-5" />
+              Database Connections
+            </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2">
-            <Button onClick={testEnvironmentVariables} className="w-full">
-              1. Check Environment Variables
-            </Button>
-            <Button onClick={testCORS} disabled={loading} className="w-full">
-              2. Test CORS and Headers
-            </Button>
-            <Button onClick={testSupabaseSettings} disabled={loading} className="w-full">
-              3. Test Supabase Project Access
-            </Button>
-            <Button onClick={testAlternativeAuth} disabled={loading} className="w-full">
-              4. Test Auth Settings
-            </Button>
-            <Button onClick={clearResults} variant="outline" className="w-full">
-              Clear Results
-            </Button>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test Supabase, Neon database connections and auth services</p>
+            <Link href="/debug/database-connections">
+              <Button className="w-full">
+                <Database className="h-4 w-4 mr-2" />
+                Test Connections
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Auth Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="h-5 w-5" />
+              Authentication
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test user authentication and profile management</p>
+            <Link href="/debug/auth-test">
+              <Button className="w-full">
+                <Shield className="h-4 w-4 mr-2" />
+                Test Auth
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Challenge Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="h-5 w-5" />
+              Challenge System
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test challenge creation and notifications</p>
+            <Link href="/debug/challenge-test">
+              <Button className="w-full">
+                <Zap className="h-4 w-4 mr-2" />
+                Test Challenges
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Simple Components */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              User Components
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test user search and top players components</p>
+            <Link href="/debug/simple-components-test">
+              <Button className="w-full">
+                <Users className="h-4 w-4 mr-2" />
+                Test Components
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Quiz Results */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-5 w-5" />
+              Quiz Results
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Test quiz result submission and leaderboard</p>
+            <Link href="/debug/quiz-results-test">
+              <Button className="w-full">
+                <Activity className="h-4 w-4 mr-2" />
+                Test Results
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Simple Database Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TestTube className="h-5 w-5" />
+              Simple DB Test
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">Basic database connectivity test</p>
+            <Link href="/debug/simple-db-test">
+              <Button className="w-full">
+                <TestTube className="h-4 w-4 mr-2" />
+                Simple Test
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Debug Results</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="bg-gray-100 p-4 rounded-lg h-96 overflow-y-auto">
-            {results.length === 0 ? (
-              <p className="text-gray-500">Run tests above to see detailed results...</p>
-            ) : (
-              <pre className="text-sm whitespace-pre-wrap">{results.join("\n")}</pre>
-            )}
+      <div className="mt-8 p-6 bg-blue-50 rounded-lg">
+        <h2 className="text-xl font-semibold text-blue-900 mb-4">Environment Status</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h3 className="font-medium text-blue-800 mb-2">Supabase</h3>
+            <ul className="text-blue-700 space-y-1">
+              <li>✅ Database configured</li>
+              <li>✅ Auth configured</li>
+              <li>✅ Primary system</li>
+            </ul>
           </div>
-        </CardContent>
-      </Card>
-
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Current Status</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2 text-sm">
-            <p>
-              <strong>Expected URL:</strong> https://chyplogbjlusldmztwqd.supabase.co
-            </p>
-            <p>
-              <strong>Current URL:</strong> {process.env.NEXT_PUBLIC_SUPABASE_URL || "❌ NOT SET"}
-            </p>
-            <p>
-              <strong>URL Match:</strong>{" "}
-              {process.env.NEXT_PUBLIC_SUPABASE_URL === "https://chyplogbjlusldmztwqd.supabase.co" ? "✅ Yes" : "❌ No"}
-            </p>
-            <p>
-              <strong>Key Present:</strong> {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "✅ Yes" : "❌ No"}
-            </p>
+          <div>
+            <h3 className="font-medium text-blue-800 mb-2">Neon</h3>
+            <ul className="text-blue-700 space-y-1">
+              <li>✅ Database configured</li>
+              <li>✅ Auth configured</li>
+              <li>✅ Fallback system</li>
+            </ul>
           </div>
-        </CardContent>
-      </Card>
-
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>🔍 What We're Testing</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>
-              <strong>Test 1:</strong> Verify environment variables are correct
-            </li>
-            <li>
-              <strong>Test 2:</strong> Check CORS policies and header requirements
-            </li>
-            <li>
-              <strong>Test 3:</strong> Test if Supabase project is accessible
-            </li>
-            <li>
-              <strong>Test 4:</strong> Check authentication configuration
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

@@ -14,9 +14,10 @@ if (!isBuildTime && useNeonFallback) {
   import("./neon-fallback")
     .then((module) => {
       neonFunctions = module
+      console.log("✅ Neon fallback module loaded successfully")
     })
     .catch((err) => {
-      console.error("Failed to load Neon fallback:", err)
+      console.error("❌ Failed to load Neon fallback:", err)
     })
 }
 
@@ -25,10 +26,12 @@ let initialized = false
 async function ensureInitialized() {
   if (!initialized && !isBuildTime && useNeonFallback) {
     try {
+      console.log("🔄 Initializing Neon fallback tables...")
       await neonFunctions.initializeFallbackTables()
       initialized = true
+      console.log("✅ Neon fallback tables initialized")
     } catch (error) {
-      console.warn("Could not initialize Neon fallback:", error)
+      console.warn("⚠️ Could not initialize Neon fallback:", error)
     }
   }
 }
@@ -44,6 +47,7 @@ export async function submitQuizResultWithFallback(
 ) {
   // During build time, just return a mock result
   if (isBuildTime) {
+    console.log("🏗️ Build time detected, returning mock result")
     return { id: "build-time-mock", score }
   }
 
@@ -59,7 +63,7 @@ export async function submitQuizResultWithFallback(
 
   // Try Supabase first
   try {
-    console.log("📊 Trying Supabase first...")
+    console.log("📊 Attempting to save to Supabase...")
     const { data, error } = await supabase
       .from("quiz_results")
       .insert({
@@ -78,16 +82,17 @@ export async function submitQuizResultWithFallback(
 
     if (error) throw error
 
-    console.log("✅ Saved to Supabase successfully")
+    console.log("✅ Successfully saved to Supabase")
     return data
   } catch (error) {
-    console.log("⚠️ Supabase failed, trying Neon fallback...")
+    console.log("⚠️ Supabase failed, trying Neon fallback...", error)
 
     // Try Neon fallback if available
-    if (useNeonFallback) {
+    if (useNeonFallback && neonFunctions.isNeonAvailable()) {
       try {
+        console.log("🔄 Attempting to save to Neon...")
         await ensureInitialized()
-        return await neonFunctions.saveQuizResultToFallback(
+        const result = await neonFunctions.saveQuizResultToFallback(
           user.id,
           score,
           totalQuestions,
@@ -98,6 +103,8 @@ export async function submitQuizResultWithFallback(
           answers,
           challengeId,
         )
+        console.log("✅ Successfully saved to Neon")
+        return result
       } catch (neonError) {
         console.error("❌ Neon fallback also failed:", neonError)
         throw new Error("Both Supabase and Neon failed to save quiz result")
@@ -112,6 +119,7 @@ export async function submitQuizResultWithFallback(
 export async function getLeaderboardWithFallback() {
   // During build time, return mock data
   if (isBuildTime) {
+    console.log("🏗️ Build time detected, returning mock data")
     return {
       source: "Build Time Mock",
       data: [
@@ -132,7 +140,7 @@ export async function getLeaderboardWithFallback() {
 
   // Try Supabase first
   try {
-    console.log("📊 Loading leaderboard from Supabase...")
+    console.log("📊 Attempting to load leaderboard from Supabase...")
     const { data, error } = await supabase
       .from("quiz_results")
       .select(`
@@ -146,7 +154,7 @@ export async function getLeaderboardWithFallback() {
     if (error) throw error
 
     if (data && data.length > 0) {
-      console.log("✅ Loaded from Supabase:", data.length, "entries")
+      console.log("✅ Successfully loaded from Supabase:", data.length, "entries")
       return {
         source: "Supabase",
         data: data.map((result) => ({
@@ -165,15 +173,17 @@ export async function getLeaderboardWithFallback() {
 
     throw new Error("No data from Supabase")
   } catch (error) {
-    console.log("⚠️ Supabase failed, trying Neon fallback...")
+    console.log("⚠️ Supabase failed, trying Neon fallback...", error)
 
     // Try Neon fallback if available
-    if (useNeonFallback) {
+    if (useNeonFallback && neonFunctions.isNeonAvailable()) {
       try {
+        console.log("🔄 Attempting to load leaderboard from Neon...")
         await ensureInitialized()
         const results = await neonFunctions.getLeaderboardFromFallback()
 
         if (results && results.length > 0) {
+          console.log("✅ Successfully loaded from Neon:", results.length, "entries")
           return {
             source: "Neon",
             data: results.map((result: any) => ({
