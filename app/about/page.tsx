@@ -60,7 +60,7 @@ export default function AboutPage() {
             .
           </li>
           <li>
-            <strong>Buiding Alpha & Beta Versions, Maintenance:</strong> v0 by Vercel
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel
           </li>
         </ul>
 
