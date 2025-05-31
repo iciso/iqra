@@ -185,7 +185,7 @@ export default function ResultsPage() {
   // Auto-save when user and profile are available
   useEffect(() => {
     const autoSave = async () => {
-      console.log("💾 Auto-save check:", {
+      console.log("💾 RESULTS AUTO-SAVE: Starting check...", {
         hasUser: !!user,
         hasProfile: !!profile,
         hasScore: score !== null,
@@ -194,13 +194,14 @@ export default function ResultsPage() {
         saving,
         loading,
         challenge,
+        challengerTurn,
       })
 
       if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
-        console.log("🚀 Starting auto-save...")
+        console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
-          await submitQuizResult(
+          const result = await submitQuizResult(
             score,
             totalQuestions,
             categoryId || "quran",
@@ -210,9 +211,10 @@ export default function ResultsPage() {
             challenge || undefined, // challenge_id for challenges
           )
           setSubmitted(true)
-          console.log("✅ Quiz result saved successfully!")
+          console.log("✅ RESULTS AUTO-SAVE: Quiz result saved successfully!", result)
         } catch (error) {
-          console.error("❌ Error saving to database:", error)
+          console.error("❌ RESULTS AUTO-SAVE: Error saving to database:", error)
+          // Don't set submitted to true if there was an error
         } finally {
           setSaving(false)
         }

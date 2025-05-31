@@ -27,10 +27,22 @@ console.log("🔧 Environment Config:", {
   vercelEnv: process.env.VERCEL_ENV,
 })
 
-// Neon Auth configuration - use prefixed variables
+// Neon Auth configuration - ONLY INCLUDE IN SERVER-SIDE CODE
+// Remove reference to sensitive key from this file
 export const neonAuthConfig = {
   projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
-  publishableClientKey: process.env.iqra_NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY,
-  secretServerKey: process.env.iqra_STACK_SECRET_SERVER_KEY,
-  baseUrl: process.env.NEXT_PUBLIC_STACK_BASE_URL || "https://api.stack-auth.com",
+  baseUrl: "https://api.stack-auth.com",
+}
+
+// Server-side only auth config - this will only be included in server components
+export const getServerAuthConfig = () => {
+  if (typeof window !== "undefined") {
+    throw new Error("Server auth config accessed in client code")
+  }
+
+  return {
+    projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
+    publishableClientKey: process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY, // Renamed to remove NEXT_PUBLIC_
+    secretServerKey: process.env.iqra_STACK_SECRET_SERVER_KEY,
+  }
 }

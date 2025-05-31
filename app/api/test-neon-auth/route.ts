@@ -24,7 +24,8 @@ export async function GET(request: NextRequest) {
       configured: true,
       hasHeaders: !!headers.Authorization,
       projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
-      hasPublishableKey: !!process.env.iqra_NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY,
+      // Don't include sensitive keys in the response
+      hasPublishableKey: !!process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY, // Renamed
       hasSecretKey: !!process.env.iqra_STACK_SECRET_SERVER_KEY,
     })
   } catch (error) {

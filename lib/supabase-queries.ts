@@ -475,6 +475,8 @@ export async function submitQuizResult(
       score,
       totalQuestions,
       challengeId,
+      category,
+      difficulty,
     })
 
     // Calculate percentage
@@ -512,7 +514,7 @@ export async function submitQuizResult(
           hint: quizError.hint,
           code: quizError.code,
         })
-        // Don't throw here - try fallback
+        // Try fallback
       } else {
         console.log("✅ SUBMIT QUIZ RESULT: Quiz result saved to leaderboard:", quizResult)
         quizResultSaved = true
@@ -624,6 +626,7 @@ export async function submitQuizResult(
       finalScore: score,
       bonusPoints: 0,
       originalScore: score,
+      saved: quizResultSaved,
     }
   } catch (error) {
     console.error("❌ SUBMIT QUIZ RESULT: Error in submission:", error)

@@ -76,9 +76,10 @@ export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
         status: "success",
         message: "Neon Auth configured",
         details: {
-          projectId: process.env.NEXT_PUBLIC_STACK_PROJECT_ID,
-          hasPublishableKey: !!process.env.NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY,
-          hasSecretKey: !!process.env.STACK_SECRET_SERVER_KEY,
+          projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
+          // Don't include sensitive keys in the response
+          hasPublishableKey: !!process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY, // Renamed
+          hasSecretKey: !!process.env.iqra_STACK_SECRET_SERVER_KEY,
         },
       })
     }
@@ -96,7 +97,7 @@ export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
     "iqra_POSTGRES_URL",
     "iqra_NEXT_PUBLIC_STACK_PROJECT_ID",
     "iqra_STACK_SECRET_SERVER_KEY",
-    "iqra_NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY",
+    "iqra_STACK_PUBLISHABLE_CLIENT_KEY", // Renamed
     "SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
