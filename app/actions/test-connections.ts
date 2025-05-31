@@ -92,10 +92,11 @@ export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
 
   // Test Environment Variables
   const envVars = [
-    "NEON_NEON_NEON_DATABASE_URL",
-    "POSTGRES_URL",
-    "DATABASE_URL",
-    "NEXT_PUBLIC_STACK_PROJECT_ID",
+    "iqra_DATABASE_URL",
+    "iqra_POSTGRES_URL",
+    "iqra_NEXT_PUBLIC_STACK_PROJECT_ID",
+    "iqra_STACK_SECRET_SERVER_KEY",
+    "iqra_NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY",
     "SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
