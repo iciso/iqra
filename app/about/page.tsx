@@ -74,7 +74,18 @@ export default function AboutPage() {
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely
             Generous.
           </p>
-          <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.</p>
+          <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware,  <span>
+              and{" "}
+              <a
+                href="https://github.com/iciso/iqra/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                open source
+              </a>{" "}
+            </span>
+            .</p>
           <p className="mb-2">
             For suggestions WhatsApp Rafique at +91 7558845528.
           </p>
