@@ -377,39 +377,32 @@ export default function QuizContainer({
             challengedId: challenge.challenged_id,
           })
 
-          // Save current user's score to leaderboard
+          // Save BOTH users' scores to leaderboard immediately
           console.log("💾 Saving current user score to leaderboard...")
           await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
 
-          // If opponent has completed, save their score too (if not already saved)
+          // Save opponent's score if they have completed
           if (opponentScore !== null && opponentScore !== undefined) {
             console.log("💾 Saving opponent score to leaderboard...")
 
             const opponentId = isChallenger ? challenge.challenged_id : challenge.challenger_id
-            const opponentName = isChallenger
-              ? challenge.challenged?.full_name || challenge.challenged?.username
-              : challenge.challenger?.full_name || challenge.challenger?.username
 
-            // Save opponent's score to leaderboard
-            try {
-              const { data: opponentResult, error: opponentError } = await supabase.from("quiz_results").insert({
-                user_id: opponentId,
-                score: opponentScore,
-                total_questions: questions.length,
-                percentage: Math.round((opponentScore / questions.length) * 100),
-                category: category.id,
-                difficulty: difficulty,
-                challenge_id: challengeMode,
-                created_at: new Date().toISOString(),
-              })
+            // Create a separate leaderboard entry for opponent
+            const { error: opponentError } = await supabase.from("quiz_results").insert({
+              user_id: opponentId,
+              score: opponentScore,
+              total_questions: questions.length,
+              percentage: Math.round((opponentScore / questions.length) * 100),
+              category: category.id,
+              difficulty: difficulty,
+              challenge_id: challengeMode,
+              created_at: new Date().toISOString(),
+            })
 
-              if (opponentError) {
-                console.error("❌ Error saving opponent score:", opponentError)
-              } else {
-                console.log("✅ Opponent score saved to leaderboard")
-              }
-            } catch (error) {
-              console.error("❌ Exception saving opponent score:", error)
+            if (opponentError) {
+              console.error("❌ Error saving opponent score:", opponentError)
+            } else {
+              console.log("✅ Opponent score saved to leaderboard")
             }
           }
 
@@ -429,6 +422,7 @@ export default function QuizContainer({
           await supabase.from("user_challenges").update(updateData).eq("id", challengeMode)
 
           console.log("✅ Challenge updated successfully")
+          console.log("🏆 Both scores should now be in leaderboard")
 
           toast({
             title: "Challenge Completed!",
@@ -713,7 +707,7 @@ export default function QuizContainer({
                     ? challengerTurn
                       ? "Send Challenge"
                       : "Finish Quiz"
-                    : "Next Question"}
+                    : "Next"}
                   {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>
               )}

@@ -33,6 +33,64 @@ export async function updateUserProfile(userId: string, updates: any) {
   return data
 }
 
+// New function to update user's total score
+export async function updateUserTotalScore(
+  userId: string,
+  newScore: number,
+  totalQuestions: number,
+  percentage: number,
+) {
+  console.log(`🏆 Updating total score for user ${userId}: +${newScore} points`)
+
+  try {
+    // First get current user profile
+    const { data: profile, error: profileError } = await supabase
+      .from("user_profiles")
+      .select("total_score, total_questions, best_percentage")
+      .eq("id", userId)
+      .single()
+
+    if (profileError) {
+      console.error("❌ Error fetching user profile for score update:", profileError)
+      return false
+    }
+
+    // Calculate new totals
+    const currentTotalScore = profile?.total_score || 0
+    const currentTotalQuestions = profile?.total_questions || 0
+    const currentBestPercentage = profile?.best_percentage || 0
+
+    const newTotalScore = currentTotalScore + newScore
+    const newTotalQuestions = currentTotalQuestions + totalQuestions
+    const newBestPercentage = Math.max(currentBestPercentage, percentage)
+
+    console.log(
+      `🏆 User stats: Current=${currentTotalScore}/${currentTotalQuestions} (${currentBestPercentage}%) → New=${newTotalScore}/${newTotalQuestions} (Best: ${newBestPercentage}%)`,
+    )
+
+    // Update user profile with new totals
+    const { error: updateError } = await supabase
+      .from("user_profiles")
+      .update({
+        total_score: newTotalScore,
+        total_questions: newTotalQuestions,
+        best_percentage: newBestPercentage,
+      })
+      .eq("id", userId)
+
+    if (updateError) {
+      console.error("❌ Error updating user total score:", updateError)
+      return false
+    }
+
+    console.log(`✅ Successfully updated total score for user ${userId}`)
+    return true
+  } catch (error) {
+    console.error("❌ Exception in updateUserTotalScore:", error)
+    return false
+  }
+}
+
 export async function updateUserOnlineStatus(isOnline: boolean) {
   const {
     data: { session },
@@ -548,7 +606,11 @@ export async function submitQuizResult(
       }
     }
 
-    // 2. If this is a challenge, update the challenge completion status
+    // 2. Update user's total score in user_profiles
+    console.log("🏆 SUBMIT QUIZ RESULT: Updating user's total score")
+    await updateUserTotalScore(user.id, score, totalQuestions, percentage)
+
+    // 3. If this is a challenge, update the challenge completion status
     if (challengeId) {
       console.log("🏆 SUBMIT QUIZ RESULT: Processing challenge completion")
 
@@ -617,6 +679,26 @@ export async function submitQuizResult(
         }
 
         console.log("✅ SUBMIT QUIZ RESULT: Challenge updated successfully:", updatedChallenge)
+
+        // If this completes the challenge, update the opponent's score too
+        if (statusUpdate === "completed" && !isChallenger) {
+          // This is the challenged user completing the challenge
+          // Update the challenger's total score too
+          const opponentId = challenge.challenger_id
+          const opponentScore = challenge.challenger_score
+
+          if (opponentScore !== null && opponentId) {
+            console.log(
+              `🏆 SUBMIT QUIZ RESULT: Updating challenger's total score: ${opponentId} +${opponentScore} points`,
+            )
+            await updateUserTotalScore(
+              opponentId,
+              opponentScore,
+              totalQuestions,
+              Math.round((opponentScore / totalQuestions) * 100),
+            )
+          }
+        }
       }
     }
 

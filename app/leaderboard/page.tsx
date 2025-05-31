@@ -77,13 +77,31 @@ export default function LeaderboardPage() {
       setLoading(true)
       console.log("🏆 Loading leaderboard data...")
 
-      // Dynamic import to prevent build-time errors
-      const { getLeaderboardWithFallback } = await import("@/lib/database-with-fallback")
-      const result = await getLeaderboardWithFallback()
+      // Get top players from user_profiles table (total scores)
+      const { getTopPlayers } = await import("@/lib/supabase-queries")
+      const topPlayers = await getTopPlayers(20)
 
-      setLeaderboard(result.data)
-      setDataSource(result.source)
-      setLastRefresh(new Date())
+      console.log("🏆 Top players data:", topPlayers)
+
+      if (topPlayers && topPlayers.length > 0) {
+        // Format the data for the leaderboard
+        const formattedData = topPlayers.map((player) => ({
+          name: player.full_name || player.username || "Unknown User",
+          score: player.total_score || 0,
+          totalQuestions: player.total_questions || 0,
+          percentage: player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+          date: new Date().toLocaleDateString(),
+          category: "All Categories",
+          challenge: "all",
+          user_id: player.id,
+        }))
+
+        setLeaderboard(formattedData)
+        setDataSource("Supabase User Profiles")
+        setLastRefresh(new Date())
+      } else {
+        throw new Error("No leaderboard data found")
+      }
     } catch (error) {
       console.error("Error loading leaderboard:", error)
 
@@ -244,10 +262,10 @@ export default function LeaderboardPage() {
                   <TableHead className="w-12">Rank</TableHead>
                   <TableHead>Player</TableHead>
                   <TableHead>Category</TableHead>
-                  <TableHead>Challenge</TableHead>
+                  <TableHead>Type</TableHead>
                   <TableHead className="text-right">Score</TableHead>
                   <TableHead className="text-right">%</TableHead>
-                  <TableHead className="text-right">Date</TableHead>
+                  <TableHead className="text-right">Last Active</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -278,9 +296,9 @@ export default function LeaderboardPage() {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell>{entry.category || "Quran"}</TableCell>
+                    <TableCell>{entry.category || "All Categories"}</TableCell>
                     <TableCell>
-                      {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "Quiz"}
+                      {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
                     </TableCell>
                     <TableCell className="text-right">
                       {entry.score}/{entry.totalQuestions}
