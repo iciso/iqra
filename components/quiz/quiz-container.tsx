@@ -413,7 +413,7 @@ export default function QuizContainer({
         )}
       </div>
 
-      <Card className="border-green-200 shadow-lg dark:border-green-800 min-h-[400px] flex flex-col">
+      <Card className="border-green-200 shadow-lg dark:border-green-800 h-[600px] flex flex-col">
         {isLoading ? (
           <div className="flex-1 flex items-center justify-center p-6">
             <LoadingAnimation size="md" text={getLoadingText()} />
@@ -441,14 +441,16 @@ export default function QuizContainer({
                 </div>
               )}
             </CardHeader>
-            <CardContent>
-              <div className="mb-6">
-                <h2 className="text-lg font-medium mb-4 dark:text-white">{question.question}</h2>
-                <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
-                  {question.options.map((option, index) => (
-                    <div
-                      key={index}
-                      className={`flex items-center space-x-2 mb-2 p-2 rounded 
+            <CardContent className="flex-1 overflow-y-auto">
+              <div className="h-full flex flex-col justify-between">
+                <div className="mb-6 flex-1">
+                  <h2 className="text-lg font-medium mb-4 dark:text-white min-h-[3rem]">{question.question}</h2>
+                  <div className="min-h-[200px]">
+                    <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
+                      {question.options.map((option, index) => (
+                        <div
+                          key={index}
+                          className={`flex items-center space-x-2 mb-2 p-2 rounded 
                         ${
                           showExplanation && option === question.correctAnswer
                             ? "bg-green-100 dark:bg-green-900"
@@ -456,52 +458,54 @@ export default function QuizContainer({
                               ? "bg-red-100 dark:bg-red-900"
                               : "hover:bg-green-50 dark:hover:bg-green-900/50"
                         }`}
-                    >
-                      <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
-                      <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
-                        {option}
-                        {showExplanation && option === question.correctAnswer && (
-                          <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />
-                        )}
-                        {showExplanation && option === selectedAnswer && option !== question.correctAnswer && (
-                          <XCircle className="inline-block ml-2 h-4 w-4 text-red-600 dark:text-red-400" />
-                        )}
-                      </Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-
-                {showExplanation && (
-                  <>
-                    {question.explanation && (
-                      <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-                        <AlertDescription className="text-blue-800 dark:text-blue-300">
-                          <div className="flex items-start">
-                            <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
-                            <div>
-                              <strong className="block mb-1">Explanation:</strong>
-                              {question.explanation}
-                            </div>
-                          </div>
-                        </AlertDescription>
-                      </Alert>
-                    )}
-
-                    {/* Only show infographics if NOT in challenge mode */}
-                    {!challengeMode &&
-                      question.hasInfographic &&
-                      question.infographicType &&
-                      question.infographicData && (
-                        <div className="mt-4">
-                          <InteractiveInfographic
-                            type={question.infographicType}
-                            data={question.infographicData}
-                            title={`${category.title} - Visual Explanation`}
-                          />
+                        >
+                          <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
+                          <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
+                            {option}
+                            {showExplanation && option === question.correctAnswer && (
+                              <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />
+                            )}
+                            {showExplanation && option === selectedAnswer && option !== question.correctAnswer && (
+                              <XCircle className="inline-block ml-2 h-4 w-4 text-red-600 dark:text-red-400" />
+                            )}
+                          </Label>
                         </div>
+                      ))}
+                    </RadioGroup>
+                  </div>
+
+                  {showExplanation && (
+                    <div className="mt-4 max-h-[150px] overflow-y-auto">
+                      {question.explanation && (
+                        <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
+                          <AlertDescription className="text-blue-800 dark:text-blue-300">
+                            <div className="flex items-start">
+                              <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
+                              <div>
+                                <strong className="block mb-1">Explanation:</strong>
+                                {question.explanation}
+                              </div>
+                            </div>
+                          </AlertDescription>
+                        </Alert>
                       )}
-                  </>
-                )}
+
+                      {/* Only show infographics if NOT in challenge mode */}
+                      {!challengeMode &&
+                        question.hasInfographic &&
+                        question.infographicType &&
+                        question.infographicData && (
+                          <div className="mt-4">
+                            <InteractiveInfographic
+                              type={question.infographicType}
+                              data={question.infographicData}
+                              title={`${category.title} - Visual Explanation`}
+                            />
+                          </div>
+                        )}
+                    </div>
+                  )}
+                </div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-between mt-auto">
