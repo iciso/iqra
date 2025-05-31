@@ -1,17 +1,31 @@
 import { supabase } from "./supabase"
-import {
-  saveQuizResultToFallback,
-  getLeaderboardFromFallback,
-  initializeFallbackTables,
-  isNeonAvailable,
-} from "./neon-fallback"
+import { isBuildTime, useNeonFallback } from "./env-config"
+
+// Only import Neon functions if we're not in build time
+let neonFunctions: any = {
+  saveQuizResultToFallback: async () => null,
+  getLeaderboardFromFallback: async () => [],
+  initializeFallbackTables: async () => false,
+  isNeonAvailable: () => false,
+}
+
+// Dynamic import to prevent build-time errors
+if (!isBuildTime && useNeonFallback) {
+  import("./neon-fallback")
+    .then((module) => {
+      neonFunctions = module
+    })
+    .catch((err) => {
+      console.error("Failed to load Neon fallback:", err)
+    })
+}
 
 // Initialize fallback tables on first load
 let initialized = false
 async function ensureInitialized() {
-  if (!initialized && isNeonAvailable()) {
+  if (!initialized && !isBuildTime && useNeonFallback) {
     try {
-      await initializeFallbackTables()
+      await neonFunctions.initializeFallbackTables()
       initialized = true
     } catch (error) {
       console.warn("Could not initialize Neon fallback:", error)
@@ -28,6 +42,11 @@ export async function submitQuizResultWithFallback(
   answers?: any,
   challengeId?: string,
 ) {
+  // During build time, just return a mock result
+  if (isBuildTime) {
+    return { id: "build-time-mock", score }
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -65,10 +84,10 @@ export async function submitQuizResultWithFallback(
     console.log("⚠️ Supabase failed, trying Neon fallback...")
 
     // Try Neon fallback if available
-    if (isNeonAvailable()) {
+    if (useNeonFallback) {
       try {
         await ensureInitialized()
-        return await saveQuizResultToFallback(
+        return await neonFunctions.saveQuizResultToFallback(
           user.id,
           score,
           totalQuestions,
@@ -91,6 +110,26 @@ export async function submitQuizResultWithFallback(
 }
 
 export async function getLeaderboardWithFallback() {
+  // During build time, return mock data
+  if (isBuildTime) {
+    return {
+      source: "Build Time Mock",
+      data: [
+        {
+          name: "Build Time User",
+          score: 10,
+          totalQuestions: 10,
+          percentage: 100,
+          date: new Date().toLocaleDateString(),
+          category: "Quran",
+          difficulty: "Easy",
+          challenge: "quiz",
+          user_id: "build-time-user",
+        },
+      ],
+    }
+  }
+
   // Try Supabase first
   try {
     console.log("📊 Loading leaderboard from Supabase...")
@@ -129,23 +168,26 @@ export async function getLeaderboardWithFallback() {
     console.log("⚠️ Supabase failed, trying Neon fallback...")
 
     // Try Neon fallback if available
-    if (isNeonAvailable()) {
+    if (useNeonFallback) {
       try {
         await ensureInitialized()
-        const results = await getLeaderboardFromFallback()
-        return {
-          source: "Neon",
-          data: results.map((result) => ({
-            name: result.full_name || result.username || "Unknown User",
-            score: result.score,
-            totalQuestions: result.total_questions,
-            percentage: result.percentage,
-            date: new Date(result.created_at).toLocaleDateString(),
-            category: result.category,
-            difficulty: result.difficulty,
-            challenge: result.challenge_id ? "challenge" : "quiz",
-            user_id: result.user_id,
-          })),
+        const results = await neonFunctions.getLeaderboardFromFallback()
+
+        if (results && results.length > 0) {
+          return {
+            source: "Neon",
+            data: results.map((result: any) => ({
+              name: result.full_name || result.username || "Unknown User",
+              score: result.score,
+              totalQuestions: result.total_questions,
+              percentage: result.percentage,
+              date: new Date(result.created_at).toLocaleDateString(),
+              category: result.category,
+              difficulty: result.difficulty,
+              challenge: result.challenge_id ? "challenge" : "quiz",
+              user_id: result.user_id,
+            })),
+          }
         }
       } catch (neonError) {
         console.error("❌ Neon fallback also failed:", neonError)

@@ -44,10 +44,23 @@ export default function AboutPage() {
         <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
         <ul>
           <li>
-            <strong>Concept and Vision:</strong> Mohamed Essa Rafique
+            <strong>Concept, Design and Demo Version:</strong> Mohamed Rafique Essa, and May Allah reward Joy whose mail is
+            joy_ahmed_007@yahoo.com for teaching and{" "}
+            <span>
+              guiding{" "}
+              <a
+                href="https://cvemrafi.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Rafique
+              </a>{" "}
+            </span>
+            .
           </li>
           <li>
-            <strong>Technical Implementation:</strong> v0 by Vercel
+            <strong>Buiding &Alpha; and &betweena; Versions, Maintenance:</strong> v0 by Vercel
           </li>
         </ul>
 
