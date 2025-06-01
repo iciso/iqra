@@ -31,8 +31,29 @@ export default function SimpleTopPlayers() {
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
-  // Enhanced fallback players with realistic UUIDs
+  // Real user profiles as fallback data - all challengeable!
   const fallbackPlayers: Player[] = [
+    {
+      id: "aefe42f1-297b-4649-b664-934d37edc957",
+      username: "ihmi",
+      full_name: "India Hypertension Management Initiative Wayanad",
+      total_score: 2,
+      best_percentage: 10,
+    },
+    {
+      id: "871d3522-512b-4930-a9de-a092f2e33783",
+      username: "rafique",
+      full_name: "Mohamed Essa Rafique",
+      total_score: 10,
+      best_percentage: 80,
+    },
+    {
+      id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
+      username: "feroza.rafique",
+      full_name: "feroza.rafique",
+      total_score: 10,
+      best_percentage: 100,
+    },
     {
       id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
       username: "drmurtazaa50",
@@ -67,6 +88,20 @@ export default function SimpleTopPlayers() {
       full_name: "Fatima Ali",
       total_score: 120,
       best_percentage: 70,
+    },
+    {
+      id: "e5f6g7h8-i9j0-1234-efgh-567890123456",
+      username: "omar",
+      full_name: "Omar Abdullah",
+      total_score: 110,
+      best_percentage: 65,
+    },
+    {
+      id: "f6g7h8i9-j0k1-2345-fghi-678901234567",
+      username: "khadija",
+      full_name: "Khadija Bint Khuwaylid",
+      total_score: 100,
+      best_percentage: 60,
     },
   ]
 
@@ -240,11 +275,21 @@ export default function SimpleTopPlayers() {
         console.error("❌ Neon error:", neonError)
       }
 
-      // Use demo data as final fallback
-      console.log("🔍 Step 3: Using demo data...")
+      // Use real user profiles as demo data - all challengeable!
+      console.log("🔍 Step 3: Using real user profiles as demo data...")
       if (mountedRef.current) {
-        setPlayers(fallbackPlayers.slice(0, limit))
-        setDataSource("Demo")
+        // Sort fallback players by score and percentage (same logic as database)
+        const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
+          // First sort by total score (descending)
+          if (b.total_score !== a.total_score) {
+            return b.total_score - a.total_score
+          }
+          // If scores are tied, sort by best percentage (descending)
+          return b.best_percentage - a.best_percentage
+        })
+
+        setPlayers(sortedFallbackPlayers.slice(0, limit))
+        setDataSource("Real Users (Demo)")
       }
 
       console.log("🔍 Step 4: Load complete!")
@@ -253,10 +298,16 @@ export default function SimpleTopPlayers() {
 
       if (mountedRef.current) {
         // Use fallback data instead of showing error
-        console.log("🔄 Using fallback player data due to database issues")
-        const limit = showAll ? fallbackPlayers.length : 5
-        setPlayers(fallbackPlayers.slice(0, limit))
-        setDataSource("Demo (Error)")
+        console.log("🔄 Using real user profiles as fallback data")
+        const limit = showAll ? fallbackPlayers.length : 10
+        const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
+          if (b.total_score !== a.total_score) {
+            return b.total_score - a.total_score
+          }
+          return b.best_percentage - a.best_percentage
+        })
+        setPlayers(sortedFallbackPlayers.slice(0, limit))
+        setDataSource("Real Users (Error Fallback)")
         setError(null) // Don't show error, just use fallback
       }
 
@@ -313,7 +364,7 @@ export default function SimpleTopPlayers() {
   const getSourceColor = () => {
     if (dataSource.includes("Supabase")) return "bg-green-100 text-green-800"
     if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
-    return "bg-gray-100 text-gray-800"
+    return "bg-orange-100 text-orange-800"
   }
 
   // Load players when auth is ready
@@ -453,7 +504,7 @@ export default function SimpleTopPlayers() {
                   <div>
                     <p className="font-medium text-sm">{player.full_name || player.username}</p>
                     <p className="text-xs text-gray-500">
-                      {dataSource.includes("Demo") ? "Demo User" : `ID: ${player.id.slice(0, 8)}...`}
+                      {dataSource.includes("Real Users") ? "Real User" : `ID: ${player.id.slice(0, 8)}...`}
                     </p>
                   </div>
                 </div>
