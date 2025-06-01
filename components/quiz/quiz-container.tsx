@@ -54,6 +54,11 @@ export default function QuizContainer({
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
+  // Helper function to detect demo challenges
+  const isDemoChallenge = () => {
+    return challengeMode?.startsWith("demo-") || opponentId?.startsWith("demo-")
+  }
+
   // Generate a unique quiz ID when the component mounts
   useEffect(() => {
     setQuizId(`quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`)
@@ -69,6 +74,7 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId)
       console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName)
       console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
+      console.log("🎯 QUIZ CONTAINER: Is demo challenge:", isDemoChallenge())
 
       if (opponentId && opponentName) {
         // We have opponent information from the URL - use it directly
@@ -84,8 +90,8 @@ export default function QuizContainer({
         // Store for results page
         localStorage.setItem("quizOpponentId", opponentId)
         localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
-      } else if (opponentId) {
-        // We have opponent ID but no name - fetch from database
+      } else if (opponentId && !isDemoChallenge()) {
+        // We have opponent ID but no name - fetch from database (only for real challenges)
         console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
         const fetchOpponent = async () => {
           try {
@@ -130,9 +136,8 @@ export default function QuizContainer({
 
         fetchOpponent()
       } else {
-        // No opponent information - this shouldn't happen in challenge mode
-        console.warn("🎯 QUIZ CONTAINER: No opponent information provided for challenge mode!")
-        console.log("🎯 QUIZ CONTAINER: Using random opponent as fallback")
+        // No opponent information or demo challenge - use fallback
+        console.log("🎯 QUIZ CONTAINER: Using fallback opponent")
         const randomOpponent = getRandomOpponent()
         setOpponent(randomOpponent)
         localStorage.setItem("quizOpponentId", randomOpponent.id)
@@ -235,6 +240,7 @@ export default function QuizContainer({
 
   const handleFinishQuiz = async () => {
     console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
+    console.log("🎯 QUIZ CONTAINER: Is demo challenge:", isDemoChallenge())
 
     // Stop the timer
     setIsTimerRunning(false)
@@ -278,6 +284,39 @@ export default function QuizContainer({
     try {
       // Import the submitQuizResult function
       const { submitQuizResult } = await import("@/lib/supabase-queries")
+
+      // Check if this is a demo challenge
+      if (isDemoChallenge()) {
+        console.log("🎯 QUIZ CONTAINER: Demo challenge detected - treating as regular quiz")
+
+        try {
+          // Submit as regular quiz result (no challenge processing)
+          console.log("💾 QUIZ CONTAINER: Submitting demo challenge as regular quiz...")
+          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
+          console.log("✅ Demo challenge result submitted successfully")
+
+          toast({
+            title: "Demo Challenge Completed!",
+            description: `Your score (${score}/${questions.length}) has been saved to the leaderboard!`,
+            duration: 5000,
+          })
+
+          // Navigate to results page
+          router.push("/results")
+          return
+        } catch (error) {
+          console.error("🎯 QUIZ CONTAINER: Error submitting demo challenge result:", error)
+          toast({
+            title: "Demo Challenge Completed!",
+            description: `Your score: ${score}/${questions.length}. Great job!`,
+            duration: 5000,
+          })
+          router.push("/results")
+          return
+        }
+      }
+
+      // Real challenge processing continues below...
 
       // If this is the challenger's turn, update the challenge status
       if (challengerTurn && challengeMode) {
@@ -558,6 +597,7 @@ export default function QuizContainer({
             {category.title} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
             {challengeMode && challengerTurn && ` Challenge (Your Turn)`}
             {challengeMode && !challengerTurn && ` Challenge`}
+            {isDemoChallenge() && " (Demo)"}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
             Question {currentQuestion + 1} of {questions.length}
@@ -600,6 +640,7 @@ export default function QuizContainer({
                       {!opponentName && opponent.level && !opponent.name.includes("bot") && (
                         <span className="text-xs text-gray-500">({opponent.level})</span>
                       )}
+                      {isDemoChallenge() && <span className="text-xs text-blue-500 font-medium">(Demo)</span>}
                     </div>
                   </div>
                 </div>
@@ -697,9 +738,11 @@ export default function QuizContainer({
                   disabled={isLoading}
                 >
                   {currentQuestion === questions.length - 1
-                    ? challengerTurn
-                      ? "Send Challenge"
-                      : "Finish Quiz"
+                    ? isDemoChallenge()
+                      ? "Finish Demo"
+                      : challengerTurn
+                        ? "Send Challenge"
+                        : "Finish Quiz"
                     : "Next"}
                   {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>
