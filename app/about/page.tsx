@@ -5,7 +5,7 @@ export default function AboutPage() {
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <div className="flex flex-col items-center mb-10">
         <div className="mb-6">
-          <IqraLogo size="lg" showText={true} />
+          <IqraLogo size="lg" showText={false} />
         </div>
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
@@ -74,7 +74,9 @@ export default function AboutPage() {
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى or This is an ongoing charity for the sake of Allah, The Entirely
             Generous.
           </p>
-          <p className="mb-2">Thus, all apps by IQRA codes team of Rafique and Joy are freeware,  <span>
+          <p className="mb-2">
+            Thus, all apps by IQRA codes team of Rafique and Joy are freeware,{" "}
+            <span>
               and{" "}
               <a
                 href="https://github.com/iciso/iqra/"
@@ -85,11 +87,9 @@ export default function AboutPage() {
                 open source
               </a>{" "}
             </span>
-            .</p>
-          <p className="mb-2">
-            For suggestions WhatsApp Rafique at +91 7558845528.
+            .
           </p>
-
+          <p className="mb-2">For suggestions WhatsApp Rafique at +91 7558845528.</p>
         </div>
       </div>
     </div>
