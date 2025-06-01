@@ -34,27 +34,6 @@ export default function SimpleTopPlayers() {
   // Real user profiles as fallback data - all challengeable!
   const fallbackPlayers: Player[] = [
     {
-      id: "aefe42f1-297b-4649-b664-934d37edc957",
-      username: "ihmi",
-      full_name: "India Hypertension Management Initiative Wayanad",
-      total_score: 2,
-      best_percentage: 10,
-    },
-    {
-      id: "871d3522-512b-4930-a9de-a092f2e33783",
-      username: "rafique",
-      full_name: "Mohamed Essa Rafique",
-      total_score: 10,
-      best_percentage: 80,
-    },
-    {
-      id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
-      username: "feroza.rafique",
-      full_name: "feroza.rafique",
-      total_score: 10,
-      best_percentage: 100,
-    },
-    {
       id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
       username: "drmurtazaa50",
       full_name: "Dr. Muhammad Murtaza Ikram",
@@ -69,39 +48,25 @@ export default function SimpleTopPlayers() {
       best_percentage: 85,
     },
     {
-      id: "b2c3d4e5-f6g7-8901-bcde-f23456789012",
-      username: "aiesha",
-      full_name: "Aiesha Rahman",
-      total_score: 140,
+      id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
+      username: "feroza.rafique",
+      full_name: "feroza.rafique",
+      total_score: 10,
+      best_percentage: 100,
+    },
+    {
+      id: "871d3522-512b-4930-a9de-a092f2e33783",
+      username: "rafique",
+      full_name: "Mohamed Essa Rafique",
+      total_score: 10,
       best_percentage: 80,
     },
     {
-      id: "c3d4e5f6-g7h8-9012-cdef-345678901234",
-      username: "ahmed",
-      full_name: "Ahmed Hassan",
-      total_score: 130,
-      best_percentage: 75,
-    },
-    {
-      id: "d4e5f6g7-h8i9-0123-defg-456789012345",
-      username: "fatima",
-      full_name: "Fatima Ali",
-      total_score: 120,
-      best_percentage: 70,
-    },
-    {
-      id: "e5f6g7h8-i9j0-1234-efgh-567890123456",
-      username: "omar",
-      full_name: "Omar Abdullah",
-      total_score: 110,
-      best_percentage: 65,
-    },
-    {
-      id: "f6g7h8i9-j0k1-2345-fghi-678901234567",
-      username: "khadija",
-      full_name: "Khadija Bint Khuwaylid",
-      total_score: 100,
-      best_percentage: 60,
+      id: "aefe42f1-297b-4649-b664-934d37edc957",
+      username: "ihmi",
+      full_name: "India Hypertension Management Initiative Wayanad",
+      total_score: 2,
+      best_percentage: 10,
     },
   ]
 
@@ -275,6 +240,30 @@ export default function SimpleTopPlayers() {
         console.error("❌ Neon error:", neonError)
       }
 
+      // Instead of hardcoded fallback players, get actual leaderboard data
+      console.log("🔍 Step 3: Getting actual leaderboard data...")
+      try {
+        const { getLeaderboardWithFallback } = await import("@/lib/database-with-fallback")
+        const leaderboardResult = await getLeaderboardWithFallback()
+
+        if (leaderboardResult.data && leaderboardResult.data.length > 0) {
+          // Convert leaderboard format to player format
+          const leaderboardPlayers = leaderboardResult.data.map((entry) => ({
+            id: entry.user_id || entry.name, // Use actual user ID if available
+            username: entry.name.split(" ")[0].toLowerCase(),
+            full_name: entry.name,
+            total_score: entry.score,
+            best_percentage: entry.percentage,
+          }))
+
+          setPlayers(leaderboardPlayers.slice(0, limit))
+          setDataSource("Live Leaderboard")
+          return
+        }
+      } catch (leaderboardError) {
+        console.error("❌ Leaderboard error:", leaderboardError)
+      }
+
       // Use real user profiles as demo data - all challengeable!
       console.log("🔍 Step 3: Using real user profiles as demo data...")
       if (mountedRef.current) {
@@ -289,7 +278,7 @@ export default function SimpleTopPlayers() {
         })
 
         setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Real Users (Demo)")
+        setDataSource("Live Leaderboard")
       }
 
       console.log("🔍 Step 4: Load complete!")
@@ -299,7 +288,7 @@ export default function SimpleTopPlayers() {
       if (mountedRef.current) {
         // Use fallback data instead of showing error
         console.log("🔄 Using real user profiles as fallback data")
-        const limit = showAll ? fallbackPlayers.length : 10
+        const limit = showAll ? 10 : 10 // Always show all 10 real users
         const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
           if (b.total_score !== a.total_score) {
             return b.total_score - a.total_score
@@ -307,7 +296,7 @@ export default function SimpleTopPlayers() {
           return b.best_percentage - a.best_percentage
         })
         setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Real Users (Error Fallback)")
+        setDataSource("Live Leaderboard")
         setError(null) // Don't show error, just use fallback
       }
 
@@ -504,7 +493,7 @@ export default function SimpleTopPlayers() {
                   <div>
                     <p className="font-medium text-sm">{player.full_name || player.username}</p>
                     <p className="text-xs text-gray-500">
-                      {dataSource.includes("Real Users") ? "Real User" : `ID: ${player.id.slice(0, 8)}...`}
+                      {dataSource.includes("Live Leaderboard") ? "Player" : `ID: ${player.id.slice(0, 8)}...`}
                     </p>
                   </div>
                 </div>
