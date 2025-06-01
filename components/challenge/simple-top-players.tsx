@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw, Users, Database, Cloud, HardDrive } from "lucide-react"
+import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
@@ -26,84 +26,48 @@ export default function SimpleTopPlayers() {
   const [showAll, setShowAll] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [dataSource, setDataSource] = useState<string>("Loading...")
+  const [isUsingFallback, setIsUsingFallback] = useState(false)
   const mountedRef = useRef(true)
   const loadingRef = useRef(false)
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
-  // Real user profiles as fallback data - all challengeable!
+  // ONLY real users from the actual leaderboard - NO POINTS to avoid ranking issues
   const fallbackPlayers: Player[] = [
-    // Original 5 real users
     {
       id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
       username: "drmurtazaa50",
       full_name: "Dr. Muhammad Murtaza Ikram",
-      total_score: 200,
-      best_percentage: 95,
+      total_score: 0, // No hardcoded points
+      best_percentage: 0, // No hardcoded percentage
     },
     {
       id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       username: "emrafi",
       full_name: "Emrafi",
-      total_score: 150,
-      best_percentage: 85,
+      total_score: 0,
+      best_percentage: 0,
     },
     {
       id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
       username: "feroza.rafique",
       full_name: "feroza.rafique",
-      total_score: 10,
-      best_percentage: 100,
+      total_score: 0,
+      best_percentage: 0,
     },
     {
       id: "871d3522-512b-4930-a9de-a092f2e33783",
       username: "rafique",
       full_name: "Mohamed Essa Rafique",
-      total_score: 10,
-      best_percentage: 80,
+      total_score: 0,
+      best_percentage: 0,
     },
     {
       id: "aefe42f1-297b-4649-b664-934d37edc957",
       username: "ihmi",
       full_name: "India Hypertension Management Initiative Wayanad",
-      total_score: 2,
-      best_percentage: 10,
-    },
-    // Additional 5 players with authentic names
-    {
-      id: "user-6",
-      username: "yasmin",
-      full_name: "Yasmin Rahman",
-      total_score: 95,
-      best_percentage: 75,
-    },
-    {
-      id: "user-7",
-      username: "hamza",
-      full_name: "Hamza Abdullah",
-      total_score: 90,
-      best_percentage: 70,
-    },
-    {
-      id: "user-8",
-      username: "zahra",
-      full_name: "Zahra Mahmood",
-      total_score: 85,
-      best_percentage: 65,
-    },
-    {
-      id: "user-9",
-      username: "ibrahim",
-      full_name: "Ibrahim Khan",
-      total_score: 80,
-      best_percentage: 60,
-    },
-    {
-      id: "user-10",
-      username: "amina",
-      full_name: "Amina Patel",
-      total_score: 75,
-      best_percentage: 55,
+      total_score: 0,
+      best_percentage: 0,
     },
   ]
 
@@ -218,6 +182,7 @@ export default function SimpleTopPlayers() {
       loadingRef.current = true
       setLoading(true)
       setError(null)
+      setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
       // Wait for auth to be ready
@@ -252,6 +217,7 @@ export default function SimpleTopPlayers() {
           if (mountedRef.current) {
             setPlayers(data)
             setDataSource("Supabase")
+            setIsUsingFallback(false)
           }
           return
         }
@@ -274,6 +240,7 @@ export default function SimpleTopPlayers() {
           if (mountedRef.current) {
             setPlayers(neonPlayers)
             setDataSource("Neon")
+            setIsUsingFallback(false)
           }
           return
         }
@@ -295,18 +262,21 @@ export default function SimpleTopPlayers() {
 
         if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
           // Convert leaderboard format to player format
-          const leaderboardPlayers = leaderboardResult.data.map((entry) => ({
-            id: entry.user_id || `leaderboard-${entry.name}`,
-            username: entry.name.split(" ")[0].toLowerCase(),
-            full_name: entry.name,
-            total_score: entry.score,
-            best_percentage: entry.percentage,
-          }))
+          const leaderboardPlayers = leaderboardResult.data
+            .filter((entry) => entry.user_id) // Only include entries with real user IDs
+            .map((entry) => ({
+              id: entry.user_id,
+              username: entry.name.split(" ")[0].toLowerCase(),
+              full_name: entry.name,
+              total_score: entry.score,
+              best_percentage: entry.percentage,
+            }))
 
           console.log("✅ Players loaded from leaderboard:", leaderboardPlayers.length, "players")
           if (mountedRef.current) {
             setPlayers(leaderboardPlayers.slice(0, limit))
             setDataSource("Live Leaderboard")
+            setIsUsingFallback(false)
           }
           return
         }
@@ -314,22 +284,13 @@ export default function SimpleTopPlayers() {
         console.error("❌ Leaderboard error:", leaderboardError)
       }
 
-      // FINAL FALLBACK: Use hardcoded real user profiles
-      console.log("🔍 Step 4: Using hardcoded real user profiles as final fallback...")
+      // FINAL FALLBACK: Use ONLY real users (no ranking, no points)
+      console.log("🔍 Step 4: Using registered users as final fallback...")
       if (mountedRef.current) {
-        // Sort fallback players by score and percentage (same logic as database)
-        const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
-          // First sort by total score (descending)
-          if (b.total_score !== a.total_score) {
-            return b.total_score - a.total_score
-          }
-          // If scores are tied, sort by best percentage (descending)
-          return b.best_percentage - a.best_percentage
-        })
-
-        console.log("✅ Using hardcoded fallback players:", sortedFallbackPlayers.length, "players")
-        setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Live Leaderboard")
+        console.log("✅ Using registered users as fallback:", fallbackPlayers.length, "users")
+        setPlayers(fallbackPlayers) // No sorting needed since no points
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
       }
 
       console.log("🔍 Load complete!")
@@ -338,16 +299,10 @@ export default function SimpleTopPlayers() {
 
       if (mountedRef.current) {
         // Use fallback data instead of showing error
-        console.log("🔄 Using real user profiles as fallback data")
-        const limit = showAll ? fallbackPlayers.length : 10
-        const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
-          if (b.total_score !== a.total_score) {
-            return b.total_score - a.total_score
-          }
-          return b.best_percentage - a.best_percentage
-        })
-        setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Live Leaderboard")
+        console.log("🔄 Using registered users as fallback data")
+        setPlayers(fallbackPlayers)
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
         setError(null) // Don't show error, just use fallback
       }
 
@@ -398,13 +353,13 @@ export default function SimpleTopPlayers() {
   const getSourceIcon = () => {
     if (dataSource.includes("Supabase")) return <Cloud className="h-4 w-4" />
     if (dataSource.includes("Neon")) return <Database className="h-4 w-4" />
-    return <HardDrive className="h-4 w-4" />
+    return <Users className="h-4 w-4" />
   }
 
   const getSourceColor = () => {
     if (dataSource.includes("Supabase")) return "bg-green-100 text-green-800"
     if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
-    return "bg-orange-100 text-orange-800"
+    return "bg-purple-100 text-purple-800"
   }
 
   // Load players when auth is ready
@@ -452,14 +407,9 @@ export default function SimpleTopPlayers() {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        const sortedFallbackPlayers = [...fallbackPlayers].sort((a, b) => {
-          if (b.total_score !== a.total_score) {
-            return b.total_score - a.total_score
-          }
-          return b.best_percentage - a.best_percentage
-        })
-        setPlayers(sortedFallbackPlayers.slice(0, 10))
-        setDataSource("Live Leaderboard")
+        setPlayers(fallbackPlayers)
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
         setLoading(false)
         loadingRef.current = false
       }
@@ -507,13 +457,19 @@ export default function SimpleTopPlayers() {
     )
   }
 
+  const cardTitle = isUsingFallback
+    ? `Registered Users (${players.length})`
+    : showAll
+      ? `All Players (${players.length})`
+      : `Top Players (${players.length})`
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-yellow-500" />
-            {showAll ? `All Players (${players.length})` : `Top Players (${players.length})`}
+            {cardTitle}
             <span className={`text-xs px-2 py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
               {getSourceIcon()}
               {dataSource}
@@ -556,7 +512,7 @@ export default function SimpleTopPlayers() {
             {players.map((player, index) => (
               <div key={player.id} className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <span className="w-6 text-sm font-medium text-gray-500">{index + 1}</span>
+                  {!isUsingFallback && <span className="w-6 text-sm font-medium text-gray-500">{index + 1}</span>}
                   <Avatar className="h-8 w-8">
                     <AvatarFallback className="bg-blue-100 text-blue-700">
                       {(player.full_name || player.username).charAt(0).toUpperCase()}
@@ -564,14 +520,16 @@ export default function SimpleTopPlayers() {
                   </Avatar>
                   <div>
                     <p className="font-medium text-sm">{player.full_name || player.username}</p>
-                    <p className="text-xs text-gray-500">Player</p>
+                    <p className="text-xs text-gray-500">{isUsingFallback ? "Registered User" : "Player"}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="text-right mr-2">
-                    <p className="font-medium text-sm">{player.total_score} pts</p>
-                    <p className="text-xs text-gray-500">{player.best_percentage}%</p>
-                  </div>
+                  {!isUsingFallback && (
+                    <div className="text-right mr-2">
+                      <p className="font-medium text-sm">{player.total_score} pts</p>
+                      <p className="text-xs text-gray-500">{player.best_percentage}%</p>
+                    </div>
+                  )}
 
                   {user && user.id !== player.id && (
                     <Button
