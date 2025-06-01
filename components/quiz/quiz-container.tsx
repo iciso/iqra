@@ -56,7 +56,9 @@ export default function QuizContainer({
 
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
-    return challengeMode?.startsWith("demo-") || opponentId?.startsWith("demo-")
+    return (
+      challengeMode?.startsWith("demo-") || challengeMode?.startsWith("fallback-") || opponentId?.startsWith("demo-")
+    )
   }
 
   // Generate a unique quiz ID when the component mounts
@@ -296,8 +298,8 @@ export default function QuizContainer({
           console.log("✅ Fallback challenge result submitted successfully")
 
           toast({
-            title: "Challenge Completed!",
-            description: `Your score (${score}/${questions.length}) has been saved to the leaderboard!`,
+            title: "Challenge Sent!",
+            description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
             duration: 5000,
           })
 
@@ -322,54 +324,109 @@ export default function QuizContainer({
       if (challengerTurn && challengeMode) {
         console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
 
-        try {
-          console.log("🎯 QUIZ CONTAINER: Attempting challenge update...")
+        // Check if this is a fallback challenge
+        if (isFallbackChallenge()) {
+          console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - treating as regular quiz")
 
-          // Submit the quiz result to database FIRST
-          console.log("💾 QUIZ CONTAINER: Submitting quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
-          console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
+          try {
+            // Submit as regular quiz result (no challenge processing)
+            console.log("💾 QUIZ CONTAINER: Submitting fallback challenge as regular quiz...")
+            await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
+            console.log("✅ Fallback challenge result submitted successfully")
 
-          // Then update challenge status
-          const { supabase } = await import("@/lib/supabase")
-          const { error } = await supabase
-            .from("user_challenges")
-            .update({
-              status: "pending",
-              challenger_score: score,
-              challenger_completed_at: new Date().toISOString(),
-              challenge_questions: JSON.stringify(questions), // Store the exact questions
-            })
-            .eq("id", challengeMode)
-
-          if (error) {
-            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
             toast({
-              title: "Challenge Sent",
+              title: "Challenge Sent!",
               description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
               duration: 5000,
             })
-          } else {
-            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
+
+            // Navigate to results page for fallback challenges
+            router.push("/results")
+            return
+          } catch (error) {
+            console.error("🎯 QUIZ CONTAINER: Error submitting fallback challenge result:", error)
             toast({
-              title: "Challenge Sent Successfully!",
-              description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+              title: "Challenge Completed!",
+              description: `Your score: ${score}/${questions.length}. Great job!`,
+              duration: 5000,
+            })
+            router.push("/results")
+            return
+          }
+        }
+
+        // Real challenge processing with timeout
+        try {
+          console.log("🎯 QUIZ CONTAINER: Attempting real challenge update with timeout...")
+
+          // Create a timeout promise
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error("Challenge update timeout")), 8000)
+          })
+
+          // Create the actual update promise
+          const updatePromise = async () => {
+            console.log("💾 QUIZ CONTAINER: Submitting quiz result to database...")
+            await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers, challengeMode)
+            console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
+
+            // Then update challenge status
+            const { supabase } = await import("@/lib/supabase")
+            const { error } = await supabase
+              .from("user_challenges")
+              .update({
+                status: "pending",
+                challenger_score: score,
+                challenger_completed_at: new Date().toISOString(),
+                challenge_questions: JSON.stringify(questions), // Store the exact questions
+              })
+              .eq("id", challengeMode)
+
+            if (error) {
+              console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
+              throw error
+            }
+
+            console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
+            return true
+          }
+
+          // Race between timeout and actual update
+          await Promise.race([updatePromise(), timeoutPromise])
+
+          toast({
+            title: "Challenge Sent Successfully!",
+            description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+            duration: 5000,
+          })
+
+          // Navigate to challenges page for real challenges
+          router.push("/challenges")
+          return
+        } catch (error) {
+          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
+
+          // Fallback: treat as regular quiz
+          try {
+            console.log("🔄 QUIZ CONTAINER: Falling back to regular quiz submission...")
+            await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
+
+            toast({
+              title: "Challenge Sent (Fallback)",
+              description: `Your score (${score}/${questions.length}) has been saved. Your opponent will be notified.`,
+              duration: 5000,
+            })
+          } catch (fallbackError) {
+            console.error("🎯 QUIZ CONTAINER: Fallback submission also failed:", fallbackError)
+
+            toast({
+              title: "Challenge Completed!",
+              description: `Your score: ${score}/${questions.length}. Great job!`,
               duration: 5000,
             })
           }
 
-          // Navigate directly to challenges page for challenger
-          router.push("/challenges")
-          return
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Challenge update failed:", error)
-          toast({
-            title: "Error Sending Challenge",
-            description: "There was a problem sending your challenge. Please try again.",
-            variant: "destructive",
-            duration: 5000,
-          })
-          router.push("/challenges")
+          router.push("/results")
           return
         }
       } else if (challengeMode) {
