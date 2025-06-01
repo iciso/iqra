@@ -534,35 +534,18 @@ export default function QuizContainer({
           return
         }
       } else {
-        // Regular quiz completion
-        console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
+        // Regular quiz completion - just save to localStorage and navigate
+        console.log("🎯 QUIZ CONTAINER: Regular quiz completion - saving to localStorage only...")
 
-        try {
-          // Submit the quiz result to database
-          console.log("💾 QUIZ CONTAINER: Submitting regular quiz result to database...")
-          await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
-          console.log("✅ Regular quiz result submitted successfully")
+        toast({
+          title: "Quiz Completed!",
+          description: `Saving your score (${score}/${questions.length}) to the leaderboard...`,
+          duration: 3000,
+        })
 
-          toast({
-            title: "Quiz Completed!",
-            description: `Your score (${score}/${questions.length}) has been saved.`,
-            duration: 5000,
-          })
-
-          // For regular quizzes, still go to results page
-          router.push("/results")
-          return
-        } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting regular quiz result:", error)
-          toast({
-            title: "Error Saving Score",
-            description: "There was a problem saving your score. Please try again.",
-            variant: "destructive",
-            duration: 5000,
-          })
-          router.push("/results")
-          return
-        }
+        // For regular quizzes, let the results page handle database saving
+        router.push("/results")
+        return
       }
     } catch (error) {
       console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error)
