@@ -46,7 +46,7 @@ const DEMO_CHALLENGES: Challenge[] = [
     id: "demo-2",
     challenger_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec", // Dr. Muhammad Murtaza Ikram
     category: "aqeedah",
-    difficulty: "hard",
+    difficulty: "advanced",
     question_count: 10,
     created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(), // 4 hours ago
     expires_at: new Date(Date.now() + 20 * 60 * 60 * 1000).toISOString(), // 20 hours left
@@ -265,15 +265,15 @@ export default function ProfileChallengeNotifications() {
     }
   }
 
-  const formatTimeLeft = (expiresAt: string) => {
+  const formatTimeLeft = (dateString: string) => {
+    const date = new Date(dateString)
     const now = new Date()
-    const expires = new Date(expiresAt)
-    const diff = expires.getTime() - now.getTime()
+    const diffMs = date.getTime() - now.getTime()
 
-    if (diff <= 0) return "Expired"
+    if (diffMs <= 0) return "Expired"
 
-    const hours = Math.floor(diff / (1000 * 60 * 60))
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    const hours = Math.floor(diffMs / (1000 * 60 * 60))
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))
 
     if (hours > 0) {
       return `${hours}h ${minutes}m left`
@@ -381,7 +381,7 @@ export default function ProfileChallengeNotifications() {
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
             <span className="ml-2 text-sm text-gray-500">Loading challenges...</span>
           </div>
-        ) : error && !usingFallback ? (
+        ) : error ? (
           <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded">
             <AlertCircle className="h-5 w-5 text-red-500" />
             <div>
@@ -391,12 +391,6 @@ export default function ProfileChallengeNotifications() {
                 Try Again
               </Button>
             </div>
-          </div>
-        ) : challenges.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            <Bell className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-lg font-medium mb-2">No pending challenges</p>
-            <p className="text-sm">Challenge someone to get started!</p>
           </div>
         ) : (
           <div className="space-y-4">
