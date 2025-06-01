@@ -12,15 +12,14 @@ export default function AboutPage() {
           The first Islamic knowledge quiz app with a competitive challenge system
         </p>
       </div>
-
       <div className="prose dark:prose-invert max-w-none">
         <h2>Our Mission</h2>
         <p>
           IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
           Through gamification and social learning, we hope to inspire a deeper connection with Islamic teachings and
-          foster a community of continuous learning.\n
+          foster a community of continuous learning.
         </p>
-
+        <p></p>
         <h2>Features</h2>
         <ul>
           <li>
@@ -36,10 +35,10 @@ export default function AboutPage() {
             <strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics
           </li>
           <li>
-            <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas\n
+            <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
           </li>
         </ul>
-
+        <p></p>
         <h2>Credits</h2>
         <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
         <ul>
@@ -57,17 +56,17 @@ export default function AboutPage() {
                 Rafique
               </a>{" "}
             </span>
-            .\n
+            .
           </li>
           <li>
-            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel\n
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel.
           </li>
         </ul>
-
+        <p></p>
         <h2>Islamic Knowledge Categories</h2>
         <p>
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.\n
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
         </p>
         <div className="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
           <p className="mb-2">
