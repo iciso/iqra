@@ -146,6 +146,8 @@ export async function getTopPlayers(limit = 10) {
     .from("user_profiles")
     .select("*")
     .order("total_score", { ascending: false })
+    .order("best_percentage", { ascending: false })
+    .order("total_questions", { ascending: false })
     .limit(limit)
 
   if (error) {

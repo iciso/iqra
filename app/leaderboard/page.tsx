@@ -54,7 +54,20 @@ export default function LeaderboardPage() {
 
         return true
       })
-      .sort((a, b) => b.percentage - a.percentage)
+      .sort((a, b) => {
+        // First sort by score (descending)
+        if (b.score !== a.score) {
+          return b.score - a.score
+        }
+
+        // If scores are tied, sort by percentage (descending)
+        if (b.percentage !== a.percentage) {
+          return b.percentage - a.percentage
+        }
+
+        // If both are tied, sort by total questions (more questions = higher rank)
+        return b.totalQuestions - a.totalQuestions
+      })
   }
 
   // Get the user's best rank
