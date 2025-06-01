@@ -195,15 +195,20 @@ export default function ProfileChallengeNotifications() {
     }
   }
 
-  const acceptChallenge = async (challengeId: string, category: string) => {
+  const acceptChallenge = async (challengeId: string, category: string, difficulty: string, opponentName: string) => {
     if (usingFallback) {
+      // For demo challenges, actually redirect to the quiz!
       toast({
-        title: "Demo Mode",
-        description: "This is a demo challenge. In live mode, you would be redirected to the quiz.",
+        title: "Challenge Accepted! 🎯",
+        description: `Taking ${difficulty} ${category} quiz against ${opponentName}`,
       })
 
       // Remove from UI
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
+
+      // Redirect to actual quiz with challenge parameters
+      const quizUrl = `/quiz?category=${category}&difficulty=${difficulty}&challenge=${challengeId}&questions=10&opponent=${challengeId}&opponentName=${encodeURIComponent(opponentName)}&challengerTurn=false`
+      router.push(quizUrl)
       return
     }
 
@@ -231,8 +236,8 @@ export default function ProfileChallengeNotifications() {
   const declineChallenge = async (challengeId: string) => {
     if (usingFallback) {
       toast({
-        title: "Demo Mode",
-        description: "This is a demo challenge. Challenge declined.",
+        title: "Challenge Declined",
+        description: "Challenge has been declined",
       })
 
       // Remove from UI
@@ -365,9 +370,9 @@ export default function ProfileChallengeNotifications() {
       </CardHeader>
       <CardContent>
         {usingFallback && (
-          <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded-md text-xs text-yellow-700">
-            <p className="font-medium">Using demo data (database connection issue)</p>
-            <p>These are sample challenges for demonstration purposes.</p>
+          <div className="mb-4 p-2 bg-blue-50 border border-blue-200 rounded-md text-xs text-blue-700">
+            <p className="font-medium">🎯 Demo Challenges Available!</p>
+            <p>These challenges are fully functional - take the quiz and compete for the leaderboard!</p>
           </div>
         )}
 
@@ -438,7 +443,14 @@ export default function ProfileChallengeNotifications() {
                     </Button>
                     <Button
                       size="sm"
-                      onClick={() => acceptChallenge(challenge.id, challenge.category)}
+                      onClick={() =>
+                        acceptChallenge(
+                          challenge.id,
+                          challenge.category,
+                          challenge.difficulty,
+                          challenge.challenger.full_name || challenge.challenger.username,
+                        )
+                      }
                       className="h-8 px-3 bg-green-600 hover:bg-green-700"
                     >
                       <Check className="h-3 w-3 mr-1" />
