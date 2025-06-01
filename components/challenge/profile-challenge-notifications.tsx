@@ -45,22 +45,6 @@ export default function ProfileChallengeNotifications() {
     }
   }, [user, authLoading])
 
-  // Use the EXACT same function structure as the working test
-  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 15000) => {
-    addDebug(`Testing ${testName}...`)
-
-    try {
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
-      )
-
-      const result = await Promise.race([testFunction(), timeoutPromise])
-      return result
-    } catch (error: any) {
-      throw error
-    }
-  }
-
   const loadChallenges = async () => {
     if (!user) return
 
@@ -69,20 +53,18 @@ export default function ProfileChallengeNotifications() {
     setError(null)
 
     try {
-      // Use the EXACT same approach as the working test
-      const { data: session } = await supabase.auth.getSession()
-      addDebug(`Session check: ${!!session.session}`)
+      // Add timeout to prevent infinite loading
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Challenge loading timeout after 10 seconds")), 10000),
+      )
 
-      if (!session.session) {
-        throw new Error("No active session")
-      }
-
-      // First, get the raw challenges data - using the exact query that worked in the test
-      const challengesResult = await supabase
+      const challengesPromise = supabase
         .from("user_challenges")
         .select("id, challenger_id, category, difficulty, question_count, created_at, expires_at, status")
         .eq("challenged_id", user.id)
         .eq("status", "pending")
+
+      const challengesResult = await Promise.race([challengesPromise, timeoutPromise])
 
       addDebug(
         `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
@@ -109,17 +91,23 @@ export default function ProfileChallengeNotifications() {
         return
       }
 
-      // Get challenger profiles with individual queries
+      // Get challenger profiles with individual queries and timeout
       const challengesWithProfiles = []
       for (const challenge of validChallenges) {
         try {
           addDebug(`Getting profile for challenger: ${challenge.challenger_id}`)
 
-          const profileResult = await supabase
+          const profilePromise = supabase
             .from("user_profiles")
             .select("username, full_name, avatar_url")
             .eq("id", challenge.challenger_id)
             .maybeSingle()
+
+          const profileTimeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Profile query timeout")), 3000),
+          )
+
+          const profileResult = await Promise.race([profilePromise, profileTimeoutPromise])
 
           addDebug(
             `Profile result for ${challenge.challenger_id}: ${JSON.stringify({
@@ -146,6 +134,8 @@ export default function ProfileChallengeNotifications() {
     } catch (error: any) {
       addDebug(`Error: ${error.message}`)
       setError(error.message)
+      // Don't leave in infinite loading state
+      setChallenges([])
     } finally {
       addDebug("loadChallenges completed")
       setLoading(false)
