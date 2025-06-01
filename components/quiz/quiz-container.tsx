@@ -54,8 +54,8 @@ export default function QuizContainer({
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
-  // Helper function to detect demo challenges
-  const isDemoChallenge = () => {
+  // Helper function to detect fallback challenges
+  const isFallbackChallenge = () => {
     return challengeMode?.startsWith("demo-") || opponentId?.startsWith("demo-")
   }
 
@@ -74,7 +74,7 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId)
       console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName)
       console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
-      console.log("🎯 QUIZ CONTAINER: Is demo challenge:", isDemoChallenge())
+      console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
 
       if (opponentId && opponentName) {
         // We have opponent information from the URL - use it directly
@@ -90,7 +90,7 @@ export default function QuizContainer({
         // Store for results page
         localStorage.setItem("quizOpponentId", opponentId)
         localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
-      } else if (opponentId && !isDemoChallenge()) {
+      } else if (opponentId && !isFallbackChallenge()) {
         // We have opponent ID but no name - fetch from database (only for real challenges)
         console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
         const fetchOpponent = async () => {
@@ -136,7 +136,7 @@ export default function QuizContainer({
 
         fetchOpponent()
       } else {
-        // No opponent information or demo challenge - use fallback
+        // No opponent information or fallback challenge - use fallback
         console.log("🎯 QUIZ CONTAINER: Using fallback opponent")
         const randomOpponent = getRandomOpponent()
         setOpponent(randomOpponent)
@@ -240,7 +240,7 @@ export default function QuizContainer({
 
   const handleFinishQuiz = async () => {
     console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
-    console.log("🎯 QUIZ CONTAINER: Is demo challenge:", isDemoChallenge())
+    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
 
     // Stop the timer
     setIsTimerRunning(false)
@@ -285,18 +285,18 @@ export default function QuizContainer({
       // Import the submitQuizResult function
       const { submitQuizResult } = await import("@/lib/supabase-queries")
 
-      // Check if this is a demo challenge
-      if (isDemoChallenge()) {
-        console.log("🎯 QUIZ CONTAINER: Demo challenge detected - treating as regular quiz")
+      // Check if this is a fallback challenge
+      if (isFallbackChallenge()) {
+        console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - treating as regular quiz")
 
         try {
           // Submit as regular quiz result (no challenge processing)
-          console.log("💾 QUIZ CONTAINER: Submitting demo challenge as regular quiz...")
+          console.log("💾 QUIZ CONTAINER: Submitting fallback challenge as regular quiz...")
           await submitQuizResult(score, questions.length, category.id, difficulty, timeLeft, answers)
-          console.log("✅ Demo challenge result submitted successfully")
+          console.log("✅ Fallback challenge result submitted successfully")
 
           toast({
-            title: "Demo Challenge Completed!",
+            title: "Challenge Completed!",
             description: `Your score (${score}/${questions.length}) has been saved to the leaderboard!`,
             duration: 5000,
           })
@@ -305,9 +305,9 @@ export default function QuizContainer({
           router.push("/results")
           return
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Error submitting demo challenge result:", error)
+          console.error("🎯 QUIZ CONTAINER: Error submitting fallback challenge result:", error)
           toast({
-            title: "Demo Challenge Completed!",
+            title: "Challenge Completed!",
             description: `Your score: ${score}/${questions.length}. Great job!`,
             duration: 5000,
           })
@@ -471,8 +471,7 @@ export default function QuizContainer({
           toast({
             title: "Error Updating Leaderboard",
             description: "There was a problem updating the leaderboard. Please try again.",
-            variant: "destructive",
-            duration: 5000,
+            variant: 5000,
           })
           router.push("/leaderboard")
           return
@@ -597,7 +596,6 @@ export default function QuizContainer({
             {category.title} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
             {challengeMode && challengerTurn && ` Challenge (Your Turn)`}
             {challengeMode && !challengerTurn && ` Challenge`}
-            {isDemoChallenge() && " (Demo)"}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
             Question {currentQuestion + 1} of {questions.length}
@@ -640,7 +638,6 @@ export default function QuizContainer({
                       {!opponentName && opponent.level && !opponent.name.includes("bot") && (
                         <span className="text-xs text-gray-500">({opponent.level})</span>
                       )}
-                      {isDemoChallenge() && <span className="text-xs text-blue-500 font-medium">(Demo)</span>}
                     </div>
                   </div>
                 </div>
@@ -738,11 +735,9 @@ export default function QuizContainer({
                   disabled={isLoading}
                 >
                   {currentQuestion === questions.length - 1
-                    ? isDemoChallenge()
-                      ? "Finish Demo"
-                      : challengerTurn
-                        ? "Send Challenge"
-                        : "Finish Quiz"
+                    ? challengerTurn
+                      ? "Send Challenge"
+                      : "Finish Quiz"
                     : "Next"}
                   {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>

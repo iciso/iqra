@@ -26,8 +26,8 @@ interface Challenge {
   }
 }
 
-// Demo data for fallback when database times out
-const DEMO_CHALLENGES: Challenge[] = [
+// Fallback challenges when database is unavailable
+const FALLBACK_CHALLENGES: Challenge[] = [
   {
     id: "demo-1",
     challenger_id: "871d3522-512b-4930-a9de-a092f2e33783", // Mohamed Essa Rafique
@@ -183,10 +183,9 @@ export default function ProfileChallengeNotifications() {
       addDebug(`Successfully processed ${challengesWithProfiles.length} challenges`)
       setChallenges(challengesWithProfiles)
     } catch (error: any) {
-      addDebug(`Error: ${error.message}. Using fallback demo data.`)
-      // Don't set error when using fallback demo data
+      addDebug(`Error: ${error.message}. Using fallback challenges.`)
       setUsingFallback(true)
-      setChallenges(DEMO_CHALLENGES)
+      setChallenges(FALLBACK_CHALLENGES)
     } finally {
       addDebug("loadChallenges completed")
       setLoading(false)
@@ -195,7 +194,7 @@ export default function ProfileChallengeNotifications() {
 
   const acceptChallenge = async (challengeId: string, category: string, difficulty: string, opponentName: string) => {
     if (usingFallback) {
-      // For demo challenges, actually redirect to the quiz!
+      // For fallback challenges, redirect to quiz
       toast({
         title: "Challenge Accepted! 🎯",
         description: `Taking ${difficulty} ${category} quiz against ${opponentName}`,
@@ -204,7 +203,7 @@ export default function ProfileChallengeNotifications() {
       // Remove from UI
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
-      // Redirect to actual quiz with challenge parameters
+      // Redirect to quiz with challenge parameters
       const quizUrl = `/quiz?category=${category}&difficulty=${difficulty}&challenge=${challengeId}&questions=10&opponent=${challengeId}&opponentName=${encodeURIComponent(opponentName)}&challengerTurn=false`
       router.push(quizUrl)
       return
@@ -367,18 +366,6 @@ export default function ProfileChallengeNotifications() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {usingFallback && (
-          <div className="mb-4 p-3 bg-blue-100 border border-blue-300 rounded-md text-sm text-blue-800">
-            <p className="font-medium flex items-center gap-1">
-              <Bell className="h-4 w-4" /> Demo Challenges Available!
-            </p>
-            <p className="mt-1">
-              These challenges are fully functional - accept any challenge to take a real quiz and compete for the
-              leaderboard!
-            </p>
-          </div>
-        )}
-
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
