@@ -73,24 +73,17 @@ export default function QuizContainer({
       if (opponentId && opponentName) {
         // We have opponent information from the URL - use it directly
         console.log("🎯 QUIZ CONTAINER: Using opponent info from URL")
-        setOpponent({
+        const opponentInfo = {
           id: opponentId,
           name: opponentName,
           avatar_url: null,
           level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-        })
+        }
+        setOpponent(opponentInfo)
 
         // Store for results page
         localStorage.setItem("quizOpponentId", opponentId)
-        localStorage.setItem(
-          "quizOpponent",
-          JSON.stringify({
-            id: opponentId,
-            name: opponentName,
-            avatar_url: null,
-            level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-          }),
-        )
+        localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
       } else if (opponentId) {
         // We have opponent ID but no name - fetch from database
         console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
