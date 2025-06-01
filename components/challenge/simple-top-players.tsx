@@ -32,19 +32,19 @@ export default function SimpleTopPlayers() {
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
-  // ONLY real users from the actual leaderboard - NO POINTS to avoid ranking issues
+  // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
   const fallbackPlayers: Player[] = [
     {
-      id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
-      username: "drmurtazaa50",
-      full_name: "Dr. Muhammad Murtaza Ikram",
+      id: "aefe42f1-297b-4649-b664-934d37edc957",
+      username: "ihmi",
+      full_name: "India Hypertension Management Initiative Wayanad",
       total_score: 0, // No hardcoded points
       best_percentage: 0, // No hardcoded percentage
     },
     {
-      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      username: "emrafi",
-      full_name: "Emrafi",
+      id: "871d3522-512b-4930-a9de-a092f2e33783",
+      username: "rafique",
+      full_name: "Mohamed Essa Rafique",
       total_score: 0,
       best_percentage: 0,
     },
@@ -56,16 +56,51 @@ export default function SimpleTopPlayers() {
       best_percentage: 0,
     },
     {
-      id: "871d3522-512b-4930-a9de-a092f2e33783",
-      username: "rafique",
-      full_name: "Mohamed Essa Rafique",
+      id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+      username: "drmurtazaa50",
+      full_name: "Dr.Muhammad Murtaza Ikram",
       total_score: 0,
       best_percentage: 0,
     },
     {
-      id: "aefe42f1-297b-4649-b664-934d37edc957",
-      username: "ihmi",
-      full_name: "India Hypertension Management Initiative Wayanad",
+      id: "user-aiesha-waseem",
+      username: "aiesha",
+      full_name: "aiesha waseem",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-test-1748153442262",
+      username: "test-1748153442262",
+      full_name: "test-1748153442262",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-joy-ahmed",
+      username: "joy",
+      full_name: "Joy Ahmed",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-francis-raj",
+      username: "francis",
+      full_name: "francis raj",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-hashim-mohammed",
+      username: "hashim",
+      full_name: "Hashim Mohammed",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-essa-nilu",
+      username: "essa",
+      full_name: "essa nilu",
       total_score: 0,
       best_percentage: 0,
     },
