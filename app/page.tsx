@@ -8,6 +8,7 @@ import { AuthModal } from "@/components/auth/auth-modal"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
+import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 
 export default function HomePage() {
   const [user, setUser] = useState<any>(null)
@@ -64,6 +65,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#e6f7eb]">
       <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col">
+        {/* Challenge Notifications - Prominent at top */}
+        {user && (
+          <div className="mb-6 sm:mb-8">
+            <ProfileChallengeNotifications />
+          </div>
+        )}
+
         <div className="text-center mb-6 sm:mb-8">
           <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
             <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />

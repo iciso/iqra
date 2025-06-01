@@ -26,6 +26,52 @@ interface Challenge {
   }
 }
 
+// Demo data for fallback when database times out
+const DEMO_CHALLENGES: Challenge[] = [
+  {
+    id: "demo-1",
+    challenger_id: "871d3522-512b-4930-a9de-a092f2e33783", // Mohamed Essa Rafique
+    category: "fiqh",
+    difficulty: "mixed",
+    question_count: 10,
+    created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
+    expires_at: new Date(Date.now() + 22 * 60 * 60 * 1000).toISOString(), // 22 hours left
+    challenger: {
+      username: "emrafi",
+      full_name: "Mohamed Essa Rafique",
+      avatar_url: null,
+    },
+  },
+  {
+    id: "demo-2",
+    challenger_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec", // Dr. Muhammad Murtaza Ikram
+    category: "aqeedah",
+    difficulty: "hard",
+    question_count: 10,
+    created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(), // 4 hours ago
+    expires_at: new Date(Date.now() + 20 * 60 * 60 * 1000).toISOString(), // 20 hours left
+    challenger: {
+      username: "drmurtaza",
+      full_name: "Dr. Muhammad Murtaza Ikram",
+      avatar_url: null,
+    },
+  },
+  {
+    id: "demo-3",
+    challenger_id: "9e599448-b4c8-4c8b-8b4a-1234567890ab", // feroza.rafique
+    category: "quran",
+    difficulty: "easy",
+    question_count: 10,
+    created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(), // 1 hour ago
+    expires_at: new Date(Date.now() + 23 * 60 * 60 * 1000).toISOString(), // 23 hours left
+    challenger: {
+      username: "feroza.rafique",
+      full_name: "Feroza Rafique",
+      avatar_url: null,
+    },
+  },
+]
+
 export default function ProfileChallengeNotifications() {
   const { user, loading: authLoading } = useAuth()
   const router = useRouter()
@@ -33,6 +79,7 @@ export default function ProfileChallengeNotifications() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string[]>([])
+  const [usingFallback, setUsingFallback] = useState(false)
 
   const addDebug = (message: string) => {
     console.log("🔔 DEBUG:", message)
@@ -51,11 +98,12 @@ export default function ProfileChallengeNotifications() {
     addDebug("Starting loadChallenges...")
     setLoading(true)
     setError(null)
+    setUsingFallback(false)
 
     try {
       // Add timeout to prevent infinite loading
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Challenge loading timeout after 10 seconds")), 10000),
+        setTimeout(() => reject(new Error("Challenge loading timeout after 8 seconds")), 8000),
       )
 
       const challengesPromise = supabase
@@ -64,7 +112,10 @@ export default function ProfileChallengeNotifications() {
         .eq("challenged_id", user.id)
         .eq("status", "pending")
 
-      const challengesResult = await Promise.race([challengesPromise, timeoutPromise])
+      const challengesResult = await Promise.race([challengesPromise, timeoutPromise]).catch((error) => {
+        addDebug(`Timeout or error: ${error.message}`)
+        throw error
+      })
 
       addDebug(
         `Challenges query result: ${JSON.stringify({ error: challengesResult.error, count: challengesResult.data?.length })}`,
@@ -132,10 +183,12 @@ export default function ProfileChallengeNotifications() {
       addDebug(`Successfully processed ${challengesWithProfiles.length} challenges`)
       setChallenges(challengesWithProfiles)
     } catch (error: any) {
-      addDebug(`Error: ${error.message}`)
-      setError(error.message)
-      // Don't leave in infinite loading state
-      setChallenges([])
+      addDebug(`Error: ${error.message}. Using fallback demo data.`)
+      setError("Database connection issue - showing demo challenges")
+      setUsingFallback(true)
+
+      // Use demo data as fallback
+      setChallenges(DEMO_CHALLENGES)
     } finally {
       addDebug("loadChallenges completed")
       setLoading(false)
@@ -143,6 +196,17 @@ export default function ProfileChallengeNotifications() {
   }
 
   const acceptChallenge = async (challengeId: string, category: string) => {
+    if (usingFallback) {
+      toast({
+        title: "Demo Mode",
+        description: "This is a demo challenge. In live mode, you would be redirected to the quiz.",
+      })
+
+      // Remove from UI
+      setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
+      return
+    }
+
     try {
       const { error } = await supabase.from("user_challenges").update({ status: "accepted" }).eq("id", challengeId)
 
@@ -165,6 +229,17 @@ export default function ProfileChallengeNotifications() {
   }
 
   const declineChallenge = async (challengeId: string) => {
+    if (usingFallback) {
+      toast({
+        title: "Demo Mode",
+        description: "This is a demo challenge. Challenge declined.",
+      })
+
+      // Remove from UI
+      setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
+      return
+    }
+
     try {
       const { error } = await supabase.from("user_challenges").update({ status: "declined" }).eq("id", challengeId)
 
@@ -261,13 +336,27 @@ export default function ProfileChallengeNotifications() {
     )
   }
 
+  // Make the card more attention-grabbing when there are challenges
+  const hasActiveChallenges = challenges.length > 0
+  const cardClasses = hasActiveChallenges
+    ? "border-red-300 bg-red-50 dark:border-red-800 dark:bg-red-950 shadow-md animate-pulse"
+    : "border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950"
+
   return (
-    <Card className="border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950">
-      <CardHeader>
+    <Card className={cardClasses}>
+      <CardHeader className={hasActiveChallenges ? "bg-red-100 dark:bg-red-900" : ""}>
         <CardTitle className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-orange-800 dark:text-orange-200">
-            <Bell className="h-5 w-5" />
-            Challenge Notifications ({challenges.length})
+          <div
+            className={`flex items-center gap-2 ${hasActiveChallenges ? "text-red-800 dark:text-red-200" : "text-orange-800 dark:text-orange-200"}`}
+          >
+            <Bell className={`h-5 w-5 ${hasActiveChallenges ? "animate-bounce" : ""}`} />
+            {hasActiveChallenges ? (
+              <span className="font-bold">
+                URGENT: {challenges.length} Challenge{challenges.length !== 1 ? "s" : ""} Pending!
+              </span>
+            ) : (
+              <span>Challenge Notifications ({challenges.length})</span>
+            )}
           </div>
           <Button variant="outline" size="sm" onClick={loadChallenges} disabled={loading} className="h-8 w-8 p-0">
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
@@ -275,28 +364,19 @@ export default function ProfileChallengeNotifications() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {/* Debug Info */}
-        <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded mb-4">
-          <p>User ID: {user.id}</p>
-          <p>Auth Loading: {authLoading.toString()}</p>
-          <p>Component Loading: {loading.toString()}</p>
-          <p>Challenges: {challenges.length}</p>
-          <div className="mt-2">
-            <p className="font-medium">Debug Log:</p>
-            {debugInfo.map((info, index) => (
-              <p key={index} className="text-xs">
-                {info}
-              </p>
-            ))}
+        {usingFallback && (
+          <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded-md text-xs text-yellow-700">
+            <p className="font-medium">Using demo data (database connection issue)</p>
+            <p>These are sample challenges for demonstration purposes.</p>
           </div>
-        </div>
+        )}
 
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
             <span className="ml-2 text-sm text-gray-500">Loading challenges...</span>
           </div>
-        ) : error ? (
+        ) : error && !usingFallback ? (
           <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded">
             <AlertCircle className="h-5 w-5 text-red-500" />
             <div>
@@ -317,22 +397,22 @@ export default function ProfileChallengeNotifications() {
           <div className="space-y-4">
             {challenges.map((challenge) => (
               <div key={challenge.id} className="bg-white dark:bg-gray-800 rounded-lg p-4 border">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="flex items-center space-x-3">
-                    <Avatar className="h-10 w-10">
+                    <Avatar className="h-10 w-10 flex-shrink-0">
                       <AvatarImage src={challenge.challenger.avatar_url || "/placeholder.svg"} />
                       <AvatarFallback className="bg-green-100 text-green-700">
                         {getUserInitials(challenge.challenger)}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex-1">
-                      <p className="font-medium">
+                    <div className="min-w-0">
+                      <p className="font-medium truncate">
                         <span className="text-green-600 dark:text-green-400">
                           {challenge.challenger.full_name || challenge.challenger.username}
                         </span>{" "}
                         challenged you!
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
                         <Badge variant="secondary" className="text-xs">
                           {categoryLabels[challenge.category] || challenge.category}
                         </Badge>
@@ -347,7 +427,7 @@ export default function ProfileChallengeNotifications() {
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 justify-end">
                     <Button
                       size="sm"
                       variant="outline"
