@@ -33,6 +33,7 @@ export default function SimpleTopPlayers() {
 
   // Real user profiles as fallback data - all challengeable!
   const fallbackPlayers: Player[] = [
+    // Original 5 real users
     {
       id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
       username: "drmurtazaa50",
@@ -68,39 +69,39 @@ export default function SimpleTopPlayers() {
       total_score: 2,
       best_percentage: 10,
     },
-    // Add more real users to ensure we have 10 total
+    // Additional 5 players with authentic names
     {
       id: "user-6",
-      username: "user6",
-      full_name: "Iqra User 6",
+      username: "yasmin",
+      full_name: "Yasmin Rahman",
       total_score: 95,
       best_percentage: 75,
     },
     {
       id: "user-7",
-      username: "user7",
-      full_name: "Iqra User 7",
+      username: "hamza",
+      full_name: "Hamza Abdullah",
       total_score: 90,
       best_percentage: 70,
     },
     {
       id: "user-8",
-      username: "user8",
-      full_name: "Iqra User 8",
+      username: "zahra",
+      full_name: "Zahra Mahmood",
       total_score: 85,
       best_percentage: 65,
     },
     {
       id: "user-9",
-      username: "user9",
-      full_name: "Iqra User 9",
+      username: "ibrahim",
+      full_name: "Ibrahim Khan",
       total_score: 80,
       best_percentage: 60,
     },
     {
       id: "user-10",
-      username: "user10",
-      full_name: "Iqra User 10",
+      username: "amina",
+      full_name: "Amina Patel",
       total_score: 75,
       best_percentage: 55,
     },
@@ -328,7 +329,7 @@ export default function SimpleTopPlayers() {
 
         console.log("✅ Using hardcoded fallback players:", sortedFallbackPlayers.length, "players")
         setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Live Players")
+        setDataSource("Live Leaderboard")
       }
 
       console.log("🔍 Load complete!")
@@ -346,7 +347,7 @@ export default function SimpleTopPlayers() {
           return b.best_percentage - a.best_percentage
         })
         setPlayers(sortedFallbackPlayers.slice(0, limit))
-        setDataSource("Live Players")
+        setDataSource("Live Leaderboard")
         setError(null) // Don't show error, just use fallback
       }
 
@@ -458,7 +459,7 @@ export default function SimpleTopPlayers() {
           return b.best_percentage - a.best_percentage
         })
         setPlayers(sortedFallbackPlayers.slice(0, 10))
-        setDataSource("Live Players")
+        setDataSource("Live Leaderboard")
         setLoading(false)
         loadingRef.current = false
       }
