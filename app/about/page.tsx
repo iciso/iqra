@@ -18,7 +18,7 @@ export default function AboutPage() {
         <p>
           IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
           Through gamification and social learning, we hope to inspire a deeper connection with Islamic teachings and
-          foster a community of continuous learning.
+          foster a community of continuous learning.\n
         </p>
 
         <h2>Features</h2>
@@ -36,7 +36,7 @@ export default function AboutPage() {
             <strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics
           </li>
           <li>
-            <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
+            <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas\n
           </li>
         </ul>
 
@@ -57,17 +57,17 @@ export default function AboutPage() {
                 Rafique
               </a>{" "}
             </span>
-            .
+            .\n
           </li>
           <li>
-            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel\n
           </li>
         </ul>
 
         <h2>Islamic Knowledge Categories</h2>
         <p>
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.\n
         </p>
         <div className="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
           <p className="mb-2">
