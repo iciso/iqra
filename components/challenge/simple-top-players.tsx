@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users, Database, Cloud, HardDrive } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
+import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
 
 interface Player {
   id: string
@@ -27,6 +28,8 @@ export default function SimpleTopPlayers() {
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const mountedRef = useRef(true)
   const loadingRef = useRef(false)
+  const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
+  const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
   // Enhanced fallback players with realistic UUIDs
   const fallbackPlayers: Player[] = [
@@ -284,63 +287,9 @@ export default function SimpleTopPlayers() {
     setRetryCount(0)
   }
 
-  const handleChallenge = async (playerId: string, playerName: string) => {
-    try {
-      console.log(`🎯 Challenging ${playerName} (${playerId})`)
-
-      if (!user) {
-        alert("Please sign in to send challenges")
-        return
-      }
-
-      // Don't challenge yourself
-      if (playerId === user.id) {
-        alert("You can't challenge yourself!")
-        return
-      }
-
-      // For demo users, show a special message but still allow the challenge
-      const isDemoUser = dataSource.includes("Demo")
-      if (isDemoUser && playerId !== "ddd8b850-1b56-4781-bd03-1be615f9e3ec") {
-        const proceed = confirm(`${playerName} is a demo user. This will create a practice challenge. Continue?`)
-        if (!proceed) return
-      }
-
-      // Calculate expiry date (24 hours from now)
-      const expiresAt = new Date()
-      expiresAt.setHours(expiresAt.getHours() + 24)
-
-      const { data, error } = await supabase
-        .from("user_challenges")
-        .insert({
-          challenger_id: user.id,
-          challenged_id: playerId,
-          category: "quran",
-          difficulty: "mixed",
-          question_count: 10,
-          time_limit: 300,
-          status: "pending",
-          expires_at: expiresAt.toISOString(),
-        })
-        .select()
-        .single()
-
-      if (error) {
-        console.error("❌ Error creating challenge:", error)
-        alert(`Error creating challenge: ${error.message}`)
-        return
-      }
-
-      console.log("✅ Challenge created:", data)
-
-      // Redirect to quiz as challenger
-      const challengeUrl = `/quiz?category=quran&difficulty=mixed&challenge=${data.id}&questions=10&opponent=${playerId}&opponentName=${encodeURIComponent(playerName)}&challengerTurn=true`
-      console.log("🔗 Redirecting to:", challengeUrl)
-      window.location.href = challengeUrl
-    } catch (err: any) {
-      console.error("❌ Challenge error:", err)
-      alert(`Error: ${err.message}`)
-    }
+  const handleChallenge = (player: Player) => {
+    setSelectedOpponent(player)
+    setChallengeDialogOpen(true)
   }
 
   const handleRetry = () => {
@@ -517,7 +466,15 @@ export default function SimpleTopPlayers() {
                   {user && user.id !== player.id && (
                     <Button
                       size="sm"
-                      onClick={() => handleChallenge(player.id, player.full_name || player.username)}
+                      onClick={() =>
+                        handleChallenge({
+                          id: player.id,
+                          username: player.username,
+                          full_name: player.full_name,
+                          total_score: player.total_score,
+                          best_percentage: player.best_percentage,
+                        })
+                      }
                       className="h-8 py-0 px-3 text-xs bg-green-600 hover:bg-green-700"
                     >
                       Challenge
@@ -529,6 +486,16 @@ export default function SimpleTopPlayers() {
           </div>
         )}
       </CardContent>
+      {selectedOpponent && (
+        <CategoryFirstChallengeDialog
+          isOpen={challengeDialogOpen}
+          onClose={() => {
+            setChallengeDialogOpen(false)
+            setSelectedOpponent(null)
+          }}
+          opponent={selectedOpponent}
+        />
+      )}
     </Card>
   )
 }
