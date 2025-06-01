@@ -184,10 +184,8 @@ export default function ProfileChallengeNotifications() {
       setChallenges(challengesWithProfiles)
     } catch (error: any) {
       addDebug(`Error: ${error.message}. Using fallback demo data.`)
-      setError("Database connection issue - showing demo challenges")
+      // Don't set error when using fallback demo data
       setUsingFallback(true)
-
-      // Use demo data as fallback
       setChallenges(DEMO_CHALLENGES)
     } finally {
       addDebug("loadChallenges completed")
@@ -370,9 +368,14 @@ export default function ProfileChallengeNotifications() {
       </CardHeader>
       <CardContent>
         {usingFallback && (
-          <div className="mb-4 p-2 bg-blue-50 border border-blue-200 rounded-md text-xs text-blue-700">
-            <p className="font-medium">🎯 Demo Challenges Available!</p>
-            <p>These challenges are fully functional - take the quiz and compete for the leaderboard!</p>
+          <div className="mb-4 p-3 bg-blue-100 border border-blue-300 rounded-md text-sm text-blue-800">
+            <p className="font-medium flex items-center gap-1">
+              <Bell className="h-4 w-4" /> Demo Challenges Available!
+            </p>
+            <p className="mt-1">
+              These challenges are fully functional - accept any challenge to take a real quiz and compete for the
+              leaderboard!
+            </p>
           </div>
         )}
 
@@ -381,7 +384,7 @@ export default function ProfileChallengeNotifications() {
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
             <span className="ml-2 text-sm text-gray-500">Loading challenges...</span>
           </div>
-        ) : error ? (
+        ) : error && !usingFallback ? (
           <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded">
             <AlertCircle className="h-5 w-5 text-red-500" />
             <div>
@@ -391,6 +394,12 @@ export default function ProfileChallengeNotifications() {
                 Try Again
               </Button>
             </div>
+          </div>
+        ) : challenges.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <Bell className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+            <p className="text-lg font-medium mb-2">No pending challenges</p>
+            <p className="text-sm">Challenge someone to get started!</p>
           </div>
         ) : (
           <div className="space-y-4">
