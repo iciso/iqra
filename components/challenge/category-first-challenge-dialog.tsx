@@ -18,6 +18,11 @@ import {
   Trophy,
   Clock,
   Target,
+  History,
+  Sparkles,
+  Users,
+  Globe,
+  Landmark,
   AlertCircle,
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
@@ -40,7 +45,7 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Category-first design with prominent visual categories
+// Category-first design with prominent visual categories - now with all 12 categories
 const challengeCategories = [
   {
     id: "fiqh",
@@ -101,6 +106,67 @@ const challengeCategories = [
     textColor: "text-indigo-700",
     bgLight: "bg-indigo-50",
     borderColor: "border-indigo-300",
+  },
+  // Adding the 6 missing categories
+  {
+    id: "tazkiyah",
+    label: "Tazkiyah",
+    description: "Spiritual Purification",
+    icon: Sparkles,
+    color: "bg-teal-500 hover:bg-teal-600",
+    textColor: "text-teal-700",
+    bgLight: "bg-teal-50",
+    borderColor: "border-teal-300",
+  },
+  {
+    id: "history",
+    label: "Islamic History",
+    description: "History of Islam and Muslims",
+    icon: History,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
+    borderColor: "border-orange-300",
+  },
+  {
+    id: "dawah",
+    label: "Dawah",
+    description: "Inviting to Islam",
+    icon: Users,
+    color: "bg-cyan-500 hover:bg-cyan-600",
+    textColor: "text-cyan-700",
+    bgLight: "bg-cyan-50",
+    borderColor: "border-cyan-300",
+  },
+  {
+    id: "new-muslims",
+    label: "New Muslims",
+    description: "Essentials for New Muslims",
+    icon: Globe,
+    color: "bg-emerald-500 hover:bg-emerald-600",
+    textColor: "text-emerald-700",
+    bgLight: "bg-emerald-50",
+    borderColor: "border-emerald-300",
+  },
+  {
+    id: "comparative",
+    label: "Comparative Religion",
+    description: "Atheism, Science and Islamic Thought",
+    icon: Globe,
+    color: "bg-violet-500 hover:bg-violet-600",
+    textColor: "text-violet-700",
+    bgLight: "bg-violet-50",
+    borderColor: "border-violet-300",
+  },
+  {
+    id: "islamic-finance",
+    label: "Islamic Finance",
+    description: "Principles of Islamic economics",
+    icon: Landmark,
+    color: "bg-rose-500 hover:bg-rose-600",
+    textColor: "text-rose-700",
+    bgLight: "bg-rose-50",
+    borderColor: "border-rose-300",
   },
 ]
 
