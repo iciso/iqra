@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
+import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
+import { useToast } from "@/components/ui/use-toast"
 
 interface LeaderboardEntry {
   name: string
@@ -29,9 +31,10 @@ export default function LeaderboardPage() {
   const [filter, setFilter] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState<string>("")
   const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true) // Start with loading true
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
+  const { toast } = useToast()
 
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
@@ -80,45 +83,56 @@ export default function LeaderboardPage() {
     return userEntry !== -1 ? userEntry + 1 : null
   }
 
-  useEffect(() => {
-    setIsClient(true)
-    loadLeaderboardFromDatabase()
-  }, [])
-
-  const loadLeaderboardFromDatabase = async () => {
+  // Load leaderboard data with fallback mechanisms
+  const loadLeaderboardData = async () => {
     try {
       setLoading(true)
-      console.log("🏆 Loading leaderboard data...")
+      console.log("🏆 Loading leaderboard data directly...")
 
-      // Get top players from user_profiles table (total scores)
-      const { getTopPlayers } = await import("@/lib/supabase-queries")
-      const topPlayers = await getTopPlayers(20)
-
-      console.log("🏆 Top players data:", topPlayers)
-
-      if (topPlayers && topPlayers.length > 0) {
-        // Format the data for the leaderboard
-        const formattedData = topPlayers.map((player) => ({
-          name: player.full_name || player.username || "Unknown User",
-          score: player.total_score || 0,
-          totalQuestions: player.total_questions || 0,
-          percentage: player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-          date: new Date().toLocaleDateString(),
-          category: "All Categories",
-          challenge: "all",
-          user_id: player.id,
-        }))
-
-        setLeaderboard(formattedData)
-        setDataSource("Supabase User Profiles")
-        setLastRefresh(new Date())
-      } else {
-        throw new Error("No leaderboard data found")
+      // First try the database-with-fallback system
+      try {
+        const result = await getLeaderboardWithFallback()
+        if (result && result.data && result.data.length > 0) {
+          console.log(`✅ Retrieved ${result.data.length} entries from ${result.source}`)
+          setLeaderboard(result.data)
+          setDataSource(result.source)
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (fallbackError) {
+        console.error("❌ Fallback system error:", fallbackError)
       }
-    } catch (error) {
-      console.error("Error loading leaderboard:", error)
+
+      // If that fails, try Supabase directly
+      try {
+        const { getTopPlayers } = await import("@/lib/supabase-queries")
+        const topPlayers = await getTopPlayers(20)
+
+        if (topPlayers && topPlayers.length > 0) {
+          // Format the data for the leaderboard
+          const formattedData = topPlayers.map((player) => ({
+            name: player.full_name || player.username || "Unknown User",
+            score: player.total_score || 0,
+            totalQuestions: player.total_questions || 0,
+            percentage:
+              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+            date: new Date().toLocaleDateString(),
+            category: "All Categories",
+            challenge: "all",
+            user_id: player.id,
+          }))
+
+          setLeaderboard(formattedData)
+          setDataSource("Supabase User Profiles")
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (supabaseError) {
+        console.error("❌ Supabase direct error:", supabaseError)
+      }
 
       // Final fallback to demo data
+      console.log("⚠️ All data sources failed, using demo data")
       setLeaderboard([
         {
           name: "Dr. Muhammad Murtaza Ikram",
@@ -141,12 +155,47 @@ export default function LeaderboardPage() {
           difficulty: "Easy",
           challenge: "daily",
         },
+        {
+          name: "QuizMaster",
+          score: 8,
+          totalQuestions: 10,
+          percentage: 80,
+          date: new Date().toLocaleDateString(),
+          category: "Islamic History",
+          difficulty: "Medium",
+          challenge: "quiz",
+        },
       ])
-      setDataSource("Demo (Error)")
+      setDataSource("Demo Data (All Sources Failed)")
+    } catch (error) {
+      console.error("❌ Critical error loading leaderboard:", error)
+      toast({
+        title: "Error loading leaderboard",
+        description: "Please try refreshing the page",
+        variant: "destructive",
+      })
+      setLeaderboard([])
+      setDataSource("Error")
     } finally {
       setLoading(false)
     }
   }
+
+  // Initialize on component mount
+  useEffect(() => {
+    setIsClient(true)
+    loadLeaderboardData() // Load data immediately on mount
+
+    // Set up a refresh interval (every 5 minutes)
+    const refreshInterval = setInterval(
+      () => {
+        loadLeaderboardData()
+      },
+      5 * 60 * 1000,
+    )
+
+    return () => clearInterval(refreshInterval)
+  }, [])
 
   // Function to get medal icon based on position
   const getMedalIcon = (position: number) => {
@@ -173,6 +222,7 @@ export default function LeaderboardPage() {
   const getSourceColor = (source: string) => {
     if (source.includes("Supabase")) return "bg-green-100 text-green-800"
     if (source.includes("Neon")) return "bg-blue-100 text-blue-800"
+    if (source.includes("Demo")) return "bg-yellow-100 text-yellow-800"
     return "bg-gray-100 text-gray-800"
   }
 
@@ -258,7 +308,7 @@ export default function LeaderboardPage() {
               <Button
                 variant="outline"
                 className="flex gap-2 dark:border-green-700 dark:text-green-400"
-                onClick={loadLeaderboardFromDatabase}
+                onClick={loadLeaderboardData}
                 disabled={loading}
               >
                 <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
@@ -267,7 +317,12 @@ export default function LeaderboardPage() {
             </div>
           </div>
 
-          {getFilteredLeaderboard().length > 0 ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-green-600" />
+              <p className="text-gray-600 dark:text-gray-300">Loading leaderboard data...</p>
+            </div>
+          ) : getFilteredLeaderboard().length > 0 ? (
             <Table>
               <TableCaption>Top scores from IQRA Quiz participants</TableCaption>
               <TableHeader>
