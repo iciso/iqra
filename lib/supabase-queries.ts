@@ -717,3 +717,291 @@ export async function submitQuizResult(
     throw error
   }
 }
+
+// NEW: User Statistics Functions
+export interface UserStatistics {
+  // Basic stats
+  totalScore: number
+  totalQuestions: number
+  bestPercentage: number
+  overallAccuracy: number
+  currentStreak: number
+  longestStreak: number
+
+  // Challenge stats
+  challengesWon: number
+  challengesLost: number
+  challengesTotal: number
+
+  // Achievement stats
+  perfectScores: number
+  badgesEarned: number
+  globalRank: number
+
+  // Time stats
+  totalTimeMinutes: number
+  averageSessionLength: number
+  activeDays: number
+  bestTimeOfDay: string
+
+  // Category performance
+  categoryPerformance: Array<{
+    name: string
+    score: number
+    total: number
+    percentage: number
+  }>
+
+  // Recent trends
+  recentTrends: Array<{
+    period: string
+    score: number
+    questions: number
+    percentage: number
+  }>
+
+  // Difficulty breakdown
+  difficultyBreakdown: Array<{
+    level: string
+    percentage: number
+  }>
+
+  // Insights
+  strongestCategory: string
+  weakestCategory: string
+  nextMilestone: string
+}
+
+export async function getUserStatistics(userId: string): Promise<UserStatistics> {
+  try {
+    console.log("📊 Getting user statistics for:", userId)
+
+    // Get user profile for basic stats
+    const { data: profile, error: profileError } = await supabase
+      .from("user_profiles")
+      .select("*")
+      .eq("id", userId)
+      .single()
+
+    if (profileError) {
+      console.error("Error fetching user profile:", profileError)
+      throw profileError
+    }
+
+    // Get quiz results for detailed analysis
+    const { data: quizResults, error: quizError } = await supabase
+      .from("quiz_results")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+
+    if (quizError) {
+      console.error("Error fetching quiz results:", quizError)
+      // Continue with basic stats if quiz results fail
+    }
+
+    // Get challenge statistics
+    const { data: challenges, error: challengeError } = await supabase
+      .from("user_challenges")
+      .select("*")
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .eq("status", "completed")
+
+    if (challengeError) {
+      console.error("Error fetching challenges:", challengeError)
+      // Continue without challenge stats
+    }
+
+    // Calculate basic statistics
+    const totalScore = profile?.total_score || 0
+    const totalQuestions = profile?.total_questions || 0
+    const bestPercentage = profile?.best_percentage || 0
+    const overallAccuracy = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+
+    // Calculate challenge statistics
+    let challengesWon = 0
+    let challengesLost = 0
+    const challengesTotal = challenges?.length || 0
+
+    if (challenges) {
+      challenges.forEach((challenge: any) => {
+        const isChallenger = challenge.challenger_id === userId
+        const userScore = isChallenger ? challenge.challenger_score : challenge.challenged_score
+        const opponentScore = isChallenger ? challenge.challenged_score : challenge.challenger_score
+
+        if (userScore > opponentScore) {
+          challengesWon++
+        } else if (userScore < opponentScore) {
+          challengesLost++
+        }
+      })
+    }
+
+    // Calculate category performance
+    const categoryPerformance = calculateCategoryPerformance(quizResults || [])
+
+    // Calculate recent trends
+    const recentTrends = calculateRecentTrends(quizResults || [])
+
+    // Calculate difficulty breakdown
+    const difficultyBreakdown = calculateDifficultyBreakdown(quizResults || [])
+
+    // Calculate perfect scores
+    const perfectScores = quizResults?.filter((result: any) => result.percentage === 100).length || 0
+
+    // Get global rank (simplified)
+    const { data: rankData } = await supabase
+      .from("user_profiles")
+      .select("id")
+      .gt("total_score", totalScore)
+      .order("total_score", { ascending: false })
+
+    const globalRank = (rankData?.length || 0) + 1
+
+    // Calculate insights
+    const strongestCategory =
+      categoryPerformance.length > 0
+        ? categoryPerformance.reduce((prev, current) => (prev.percentage > current.percentage ? prev : current)).name
+        : "None yet"
+
+    const weakestCategory =
+      categoryPerformance.length > 0
+        ? categoryPerformance.reduce((prev, current) => (prev.percentage < current.percentage ? prev : current)).name
+        : "None yet"
+
+    const nextMilestone = calculateNextMilestone(totalScore, totalQuestions, challengesWon)
+
+    return {
+      totalScore,
+      totalQuestions,
+      bestPercentage,
+      overallAccuracy,
+      currentStreak: 0, // TODO: Implement streak calculation
+      longestStreak: 0, // TODO: Implement streak calculation
+      challengesWon,
+      challengesLost,
+      challengesTotal,
+      perfectScores,
+      badgesEarned: 0, // TODO: Implement badge calculation
+      globalRank,
+      totalTimeMinutes: 0, // TODO: Implement time tracking
+      averageSessionLength: 0, // TODO: Implement session tracking
+      activeDays: 0, // TODO: Implement activity tracking
+      bestTimeOfDay: "Morning", // TODO: Implement time analysis
+      categoryPerformance,
+      recentTrends,
+      difficultyBreakdown,
+      strongestCategory,
+      weakestCategory,
+      nextMilestone,
+    }
+  } catch (error) {
+    console.error("Error getting user statistics:", error)
+    throw error
+  }
+}
+
+function calculateCategoryPerformance(
+  quizResults: any[],
+): Array<{ name: string; score: number; total: number; percentage: number }> {
+  const categories = [
+    "quran",
+    "hadith",
+    "fiqh",
+    "aqeedah",
+    "seerah",
+    "islamic-history",
+    "comparative",
+    "dawah",
+    "islamic-finance",
+    "arabic",
+    "tafseer",
+    "duas",
+  ]
+
+  return categories
+    .map((category) => {
+      const categoryResults = quizResults.filter((result) => result.category === category)
+      const totalScore = categoryResults.reduce((sum, result) => sum + result.score, 0)
+      const totalQuestions = categoryResults.reduce((sum, result) => sum + result.total_questions, 0)
+      const percentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+
+      return {
+        name: category.charAt(0).toUpperCase() + category.slice(1).replace("-", " "),
+        score: totalScore,
+        total: totalQuestions,
+        percentage,
+      }
+    })
+    .filter((cat) => cat.total > 0)
+}
+
+function calculateRecentTrends(
+  quizResults: any[],
+): Array<{ period: string; score: number; questions: number; percentage: number }> {
+  const now = new Date()
+  const periods = [
+    { name: "Today", days: 1 },
+    { name: "This Week", days: 7 },
+    { name: "This Month", days: 30 },
+  ]
+
+  return periods
+    .map((period) => {
+      const cutoff = new Date(now.getTime() - period.days * 24 * 60 * 60 * 1000)
+      const periodResults = quizResults.filter((result) => new Date(result.created_at) >= cutoff)
+
+      const totalScore = periodResults.reduce((sum, result) => sum + result.score, 0)
+      const totalQuestions = periodResults.reduce((sum, result) => sum + result.total_questions, 0)
+      const percentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+
+      return {
+        period: period.name,
+        score: totalScore,
+        questions: totalQuestions,
+        percentage,
+      }
+    })
+    .filter((trend) => trend.questions > 0)
+}
+
+function calculateDifficultyBreakdown(quizResults: any[]): Array<{ level: string; percentage: number }> {
+  const difficulties = ["easy", "medium", "hard", "mixed"]
+
+  return difficulties
+    .map((difficulty) => {
+      const difficultyResults = quizResults.filter((result) => result.difficulty === difficulty)
+      const totalScore = difficultyResults.reduce((sum, result) => sum + result.score, 0)
+      const totalQuestions = difficultyResults.reduce((sum, result) => sum + result.total_questions, 0)
+      const percentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+
+      return {
+        level: difficulty,
+        percentage,
+      }
+    })
+    .filter((diff) => diff.percentage > 0)
+}
+
+function calculateNextMilestone(totalScore: number, totalQuestions: number, challengesWon: number): string {
+  const scoreMilestones = [100, 500, 1000, 2500, 5000, 10000]
+  const questionMilestones = [50, 100, 500, 1000, 2500, 5000]
+  const challengeMilestones = [1, 5, 10, 25, 50, 100]
+
+  const nextScoreMilestone = scoreMilestones.find((milestone) => milestone > totalScore)
+  const nextQuestionMilestone = questionMilestones.find((milestone) => milestone > totalQuestions)
+  const nextChallengeMilestone = challengeMilestones.find((milestone) => milestone > challengesWon)
+
+  if (
+    nextScoreMilestone &&
+    (!nextQuestionMilestone || nextScoreMilestone - totalScore < nextQuestionMilestone - totalQuestions)
+  ) {
+    return `${nextScoreMilestone} points`
+  } else if (nextQuestionMilestone) {
+    return `${nextQuestionMilestone} questions`
+  } else if (nextChallengeMilestone) {
+    return `${nextChallengeMilestone} challenge wins`
+  }
+
+  return "Master level!"
+}

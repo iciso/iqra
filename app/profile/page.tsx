@@ -25,6 +25,7 @@ import Link from "next/link"
 import UserSearch from "@/components/profile/user-search"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import { toast } from "@/hooks/use-toast"
+import StatisticsDashboard from "@/components/profile/statistics-dashboard"
 
 export default function ProfilePage() {
   const { user } = useAuth()
@@ -268,8 +269,9 @@ export default function ProfilePage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="challenges" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
+        <Tabs defaultValue="statistics" className="w-full">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="statistics">Statistics</TabsTrigger>
             <TabsTrigger value="challenges">Challenges</TabsTrigger>
             <TabsTrigger value="friends">Friends</TabsTrigger>
             <TabsTrigger value="requests">
@@ -277,6 +279,10 @@ export default function ProfilePage() {
             </TabsTrigger>
             <TabsTrigger value="search">Find Users</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="statistics" className="space-y-4">
+            <StatisticsDashboard />
+          </TabsContent>
 
           <TabsContent value="challenges" className="space-y-4">
             <Card>
