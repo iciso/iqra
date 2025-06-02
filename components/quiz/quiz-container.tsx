@@ -359,8 +359,8 @@ export default function QuizContainer({
             duration: 5000,
           })
 
-          // Navigate to challenges page for real challenges
-          router.push("/challenges")
+          // IMPROVED: Navigate to results page first to show score
+          router.push("/results")
           return
         } catch (error) {
           console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
@@ -465,9 +465,8 @@ export default function QuizContainer({
             duration: 5000,
           })
 
-          // Navigate directly to leaderboard
-          console.log("🏆 Navigating directly to leaderboard...")
-          router.push("/leaderboard")
+          // IMPROVED: First show results, then let user navigate to leaderboard
+          router.push("/results")
           return
         } catch (error) {
           console.error("❌ Error in challenge completion:", error)

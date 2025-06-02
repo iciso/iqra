@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle } from "lucide-react"
+import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle, Users } from "lucide-react"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
@@ -239,6 +239,10 @@ export default function ResultsPage() {
     router.push("/leaderboard")
   }
 
+  const viewChallenges = () => {
+    router.push("/challenges")
+  }
+
   const tryAgain = () => {
     if (challenge) {
       router.push(`/challenges`)
@@ -356,12 +360,22 @@ export default function ResultsPage() {
                 Your challenge has been sent to {opponent?.name || "your opponent"}. You'll be notified when they
                 respond.
               </p>
-              <Button
-                onClick={() => router.push("/challenges")}
-                className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-              >
-                View Challenges
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 w-full">
+                <Button
+                  onClick={viewLeaderboard}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
+                >
+                  <Trophy className="mr-2 h-4 w-4" />
+                  View Leaderboard
+                </Button>
+                <Button
+                  onClick={viewChallenges}
+                  className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                >
+                  <Users className="mr-2 h-4 w-4" />
+                  View Challenges
+                </Button>
+              </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
@@ -459,12 +473,24 @@ export default function ResultsPage() {
                             🔄 Preparing to save your score...
                           </p>
                         )}
-                        <Button
-                          onClick={viewLeaderboard}
-                          className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                        >
-                          🏆 View Leaderboard
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-3 w-full">
+                          <Button
+                            onClick={viewLeaderboard}
+                            className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
+                          >
+                            <Trophy className="mr-2 h-4 w-4" />
+                            View Leaderboard
+                          </Button>
+                          {challenge && (
+                            <Button
+                              onClick={viewChallenges}
+                              className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                            >
+                              <Users className="mr-2 h-4 w-4" />
+                              View Challenges
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     ) : (
                       // This should now rarely appear since users must be authenticated
