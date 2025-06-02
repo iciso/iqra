@@ -207,8 +207,8 @@ export default function StatisticsDashboard() {
                   : overallAccuracy >= 80
                     ? "Excellent work! You're mastering Islamic knowledge."
                     : overallAccuracy >= 60
-                      ? "Good progress! Keep practicing to improve your accuracy."
-                      : "Every question brings you closer to mastery. Keep going!"}
+                      ? "ما شاء الله Good progress! Keep practicing to improve your accuracy."
+                      : "My Lord! Enrich me with knowledge. -Quran 20:114"}
               </p>
             </CardContent>
           </Card>
