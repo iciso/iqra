@@ -10,17 +10,20 @@ export default function AboutPage() {
         </div>
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
-          The first freeware open-source Islamic knowledge quiz app with a competitive challenge system
+          The first freeware open-source Islamic knowledge quiz app with competitive challenges
         </p>
-      </div>
+        </div>
       <div className="prose dark:prose-invert max-w-none">
         <h2>Our Mission</h2>
         <p>
-          IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
-          Through gamification and social learning, we hope to inspire a deeper connection with Islamic teachings and
+بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
+</p><p>or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
+<p>So, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
+          Through gaming and social learning, we inspire a deeper connection with Islamic teachings and
           foster a community of continuous learning.
         </p>
-        <p></p>
+        </div>
+        <div className="prose dark:prose-invert max-w-none">
         <h2>Features</h2>
         <ul>
           <li>
@@ -39,7 +42,7 @@ export default function AboutPage() {
             <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
           </li>
         </ul>
-        <p></p>
+         </div><div className="prose dark:prose-invert max-w-none">
         <h2>Credits</h2>
         <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
         <ul>
@@ -63,7 +66,7 @@ export default function AboutPage() {
             <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel.
           </li>
         </ul>
-        <p></p>
+         </div><div className="prose dark:prose-invert max-w-none">
         <h2>Islamic Knowledge Categories</h2>
         <p>
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
