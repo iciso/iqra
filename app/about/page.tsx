@@ -66,10 +66,7 @@ export default function AboutPage() {
               >Joy</a>
                {" "}
             </span>whose mail is
-            joy_ahmed_007@yahoo.com for teaching and{" "}
-            <span>
-              guiding Rafique
-            </span>.
+            joy_ahmed_007@yahoo.com for teaching and guiding Rafique.
           </li>
           <li>
             <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
