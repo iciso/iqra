@@ -68,17 +68,8 @@ export default function AboutPage() {
             </span>whose mail is
             joy_ahmed_007@yahoo.com for teaching and{" "}
             <span>
-              guiding{" "}
-              <a
-                href="https://cvemrafi.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 underline"
-              >
-                Rafique
-              </a>{" "}
-            </span>
-            .
+              guiding Rafique
+            </span>.
           </li>
           <li>
             <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
