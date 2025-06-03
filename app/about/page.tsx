@@ -14,7 +14,7 @@ export default function AboutPage() {
         </p>
         </div>
       <div className="prose dark:prose-invert max-w-none">
-        <h2>Our Mission</h2>
+        <h2><strong>Our Mission</strong></h2>
         <p>
 بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
 </p><p>or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
@@ -24,7 +24,7 @@ export default function AboutPage() {
         </p>
         </div>
         <div className="prose dark:prose-invert max-w-none">
-        <h2>Features</h2>
+        <h2><strong>Features</strong></h2>
         <ul>
           <li>
             <strong>Comprehensive Quiz System</strong> - Test your knowledge across multiple Islamic topics
@@ -43,8 +43,7 @@ export default function AboutPage() {
           </li>
         </ul>
          </div><div className="prose dark:prose-invert max-w-none">
-        <h2>Credits</h2>
-        <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
+        <h2><bold>Credits</bold></h2>
         <ul>
           <li>
             <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward Joy whose mail is
@@ -63,7 +62,7 @@ export default function AboutPage() {
             .
           </li>
           <li>
-            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel.
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
           </li>
         </ul>
          </div><div className="prose dark:prose-invert max-w-none">
@@ -73,7 +72,6 @@ export default function AboutPage() {
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
         </p>
       </div>
-
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
         <div className="flex items-center justify-center mb-1">
           <MessageSquare className="h-4 w-4 mr-1 text-gray-500 dark:text-gray-400" />
