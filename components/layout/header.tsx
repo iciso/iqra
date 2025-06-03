@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { LogOut, Home, Menu } from "lucide-react"
 import { useState } from "react"
