@@ -10,13 +10,15 @@ export default function AboutPage() {
         </div>
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
-          The first freeware open-source Islamic knowledge quiz app with a competitive challenge system
+          The first freeware open-source Islamic knowledge quiz app with competitive challenges
         </p>
       </div>
       <div className="prose dark:prose-invert max-w-none">
         <h2>Our Mission</h2>
         <p>
-          IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
+بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
+or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
+<p>IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
           Through gamification and social learning, we hope to inspire a deeper connection with Islamic teachings and
           foster a community of continuous learning.
         </p>
