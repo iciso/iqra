@@ -18,9 +18,7 @@ export default function AboutPage() {
         <p>
 بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
 </p><p>or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
-<p>So, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
-          Through gaming and social learning, we inspire a deeper connection with Islamic teachings and
-          foster a community of continuous learning.
+<p>So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
         </p>
         </div>
         <div className="prose dark:prose-invert max-w-none">
@@ -43,10 +41,14 @@ export default function AboutPage() {
           </li>
         </ul>
          </div><div className="prose dark:prose-invert max-w-none">
-        <h2><cite>Credits</cite></h2>
+        <h2><cite><strong>Credits</strong></cite></h2>
         <ul>
           <li>
-            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward Joy whose mail is
+            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward <span>
+              guiding{" "}
+              <a href="mailto:example@example.com">Joy</a>
+               {" "}
+            </span>whose mail is
             joy_ahmed_007@yahoo.com for teaching and{" "}
             <span>
               guiding{" "}
