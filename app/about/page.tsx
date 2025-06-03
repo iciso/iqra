@@ -102,7 +102,7 @@ export default function AboutPage() {
               >
                 License 4.0
               </a>{" "}
-              • Iqra 💡 Codes Team
+              • Iqra 💡 Coding Team
             </span>
           </div>
         </div>
