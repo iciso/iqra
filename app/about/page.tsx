@@ -67,8 +67,6 @@ export default function AboutPage() {
               </a>{" "}; and May Allah <span>
               reward{" "}
               <a href="mailto:joy_ahmed_007@yahoo.com"
-              rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 underline"
               >Joy</a>
                {" "}
             </span>whose mail is
