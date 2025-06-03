@@ -12,6 +12,7 @@ import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
+import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
   name: string
@@ -241,10 +242,11 @@ export default function LeaderboardPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="absolute top-4 right-4">
+      {/* Only show these buttons on larger screens where the header might not be visible */}
+      <div className="hidden sm:block absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <div className="absolute top-4 left-4">
+      <div className="hidden sm:block absolute top-4 left-4">
         <a
           href="/"
           className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
@@ -254,7 +256,12 @@ export default function LeaderboardPage() {
         </a>
       </div>
 
-      <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden">
+      {/* Show header only on small screens */}
+      <div className="sm:hidden w-full">
+        <Header />
+      </div>
+
+      <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
           <div className="flex justify-center mb-2">
             <Trophy className="w-8 h-8 md:w-12 md:h-12 text-green-600 dark:text-green-400" />
