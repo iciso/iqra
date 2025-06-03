@@ -44,9 +44,13 @@ export default function AboutPage() {
         <h2><cite><strong>Credits</strong></cite></h2>
         <ul>
           <li>
-            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward <span>
-              guiding{" "}
-              <a href="mailto:example@example.com">Joy</a>
+            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah <span>
+              reward{" "}
+              <a href="joy_ahmed_007@yahoo.com"
+               target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >Joy</a>
                {" "}
             </span>whose mail is
             joy_ahmed_007@yahoo.com for teaching and{" "}
