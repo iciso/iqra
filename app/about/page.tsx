@@ -16,8 +16,10 @@ export default function AboutPage() {
       <div className="prose dark:prose-invert max-w-none">
         <h2><strong>Our Mission:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
-بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
-</p><p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
+          بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
+<br className="hidden sm:block" />            
+            <span className="block sm:inline">{" "}</span> 
+or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
 <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
             <br className="hidden sm:block" />                   
             <span className="block sm:inline">{" "}</span> 
