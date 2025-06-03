@@ -14,23 +14,26 @@ export default function AboutPage() {
         </p>
         </div>
       <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Our Mission</strong></h2>
+        <h2><strong>Our Mission:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
 بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
 </p><p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
-<p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.<br className="hidden sm:block" />                   
+<p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
+            <br className="hidden sm:block" />                   
             <span className="block sm:inline">{" "}</span> 
         </p>
         </div>
         <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Islamic Knowledge Categories</strong></h2>
+        <h2><strong>Islamic Knowledge Categories:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+            <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
         </p>
       </div>
         <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Features</strong></h2>
+        <h2><strong>Features:</strong></h2>
         <ul>
           <li>
             <strong>Comprehensive Quiz System</strong> - Test your knowledge across multiple Islamic topics
@@ -48,7 +51,10 @@ export default function AboutPage() {
             <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
           </li>
         </ul>
-         </div><div className="prose dark:prose-invert max-w-none">
+        <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
+         </div>
+         <div className="prose dark:prose-invert max-w-none">
         <h2><cite><strong>Credits</strong></cite></h2>
         <ul>
           <li>
@@ -73,6 +79,8 @@ export default function AboutPage() {
             <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
           </li>
         </ul>
+        <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
          </div>
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
         <div className="flex items-center justify-center mb-1">
