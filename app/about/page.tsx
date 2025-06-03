@@ -68,6 +68,7 @@ export default function AboutPage() {
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
         </p>
+      </div>
              {/* Contact footer */}
         <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
           <div className="flex items-center justify-center mb-1">
@@ -101,7 +102,7 @@ export default function AboutPage() {
               >
                 License 4.0
               </a>{" "}
-              • EthikFin 💡 Idea Team
+              • Iqra 💡 Codes Team
             </span>
           </div>
         </div>
