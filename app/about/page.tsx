@@ -25,15 +25,7 @@ or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
             <span className="block sm:inline">{" "}</span> 
         </p>
         </div>
-        <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Islamic Knowledge Categories:</strong></h2>
-        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
-          IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
-            <br className="hidden sm:block" />                   
-            <span className="block sm:inline">{" "}</span>
-        </p>
-      </div>
+        
         <div className="prose dark:prose-invert max-w-none">
         <h2><strong>Features:</strong></h2>
         <ul>
@@ -84,6 +76,16 @@ or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
         <br className="hidden sm:block" />                   
             <span className="block sm:inline">{" "}</span>
          </div>
+          <div className="prose dark:prose-invert max-w-none">
+        <h2><strong>Islamic Knowledge Categories:</strong></h2>
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+          IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+            <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
+        </p>
+      </div>
+
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
         <div className="flex items-center justify-center mb-1">
           <MessageSquare className="h-4 w-4 mr-1 text-gray-500 dark:text-gray-400" />
