@@ -47,8 +47,6 @@ export default function AboutPage() {
             <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah <span>
               reward{" "}
               <a href="joy_ahmed_007@yahoo.com"
-               target="_blank"
-                rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 underline"
               >Joy</a>
                {" "}
