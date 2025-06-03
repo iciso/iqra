@@ -79,7 +79,7 @@ export default function HomePage() {
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
           <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
           <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
-            ما شاء الله (Mā shāʾA-llāh!) Welcome to IQRA, The first freeware open-source Islamic knowledge quiz app. 
+            ما شاء الله (Mā shāʾ A-llāh!) Welcome to IQRA, The first freeware open-source Islamic knowledge quiz app. 
             <br className="hidden sm:block" />                   
             <span className="block sm:inline"> Increase your knowledge of Islam through learning or test it with challenges.</span>
           </p>
