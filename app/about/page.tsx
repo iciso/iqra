@@ -44,7 +44,15 @@ export default function AboutPage() {
         <h2><cite><strong>Credits</strong></cite></h2>
         <ul>
           <li>
-            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah <span>
+            <strong>Concept, Design & Demo Version:</strong> by {" "}
+              <a
+                href="https://cvemrafi.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Rafique
+              </a>{" "}; and May Allah <span>
               reward{" "}
               <a href="joy_ahmed_007@yahoo.com"
                 className="text-blue-600 hover:text-blue-800 underline"
