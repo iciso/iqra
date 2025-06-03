@@ -43,7 +43,7 @@ export default function AboutPage() {
           </li>
         </ul>
          </div><div className="prose dark:prose-invert max-w-none">
-        <h2><bold>Credits</bold></h2>
+        <h2><cite>Credits</cite></h2>
         <ul>
           <li>
             <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward Joy whose mail is
