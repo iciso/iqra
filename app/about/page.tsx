@@ -70,7 +70,7 @@ export default function AboutPage() {
         </p>
       </div>
              {/* Contact footer */}
-        <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
+      <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
           <div className="flex items-center justify-center mb-1">
             <MessageSquare className="h-4 w-4 mr-1 text-gray-500 dark:text-gray-400" />
             <span>
@@ -106,7 +106,6 @@ export default function AboutPage() {
             </span>
           </div>
         </div>
-      </div>
     </div>
   )
 }
