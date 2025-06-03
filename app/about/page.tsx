@@ -22,6 +22,13 @@ export default function AboutPage() {
         </p>
         </div>
         <div className="prose dark:prose-invert max-w-none">
+        <h2><strong>Islamic Knowledge Categories</strong></h2>
+        <p>
+          IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+        </p>
+      </div>
+        <div className="prose dark:prose-invert max-w-none">
         <h2><strong>Features</strong></h2>
         <ul>
           <li>
@@ -77,13 +84,7 @@ export default function AboutPage() {
             <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
           </li>
         </ul>
-         </div><div className="prose dark:prose-invert max-w-none">
-        <h2>Islamic Knowledge Categories</h2>
-        <p>
-          IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
-        </p>
-      </div>
+         </div>
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 w-full mt-8 rounded-lg">
         <div className="flex items-center justify-center mb-1">
           <MessageSquare className="h-4 w-4 mr-1 text-gray-500 dark:text-gray-400" />
