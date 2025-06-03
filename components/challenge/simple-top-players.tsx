@@ -500,68 +500,126 @@ export default function SimpleTopPlayers() {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-yellow-500" />
-            {cardTitle}
-            <span className={`text-xs px-2 py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
+      <CardHeader className="px-3 md:px-6 py-4">
+        <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-1 md:gap-2">
+              <Trophy className="h-4 w-4 md:h-5 md:w-5 text-yellow-500" />
+              <span className="text-sm md:text-base">{cardTitle}</span>
+            </div>
+            <span className={`text-xs px-1 md:px-2 py-0.5 md:py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
               {getSourceIcon()}
-              {dataSource}
+              <span className="hidden xs:inline">{dataSource}</span>
             </span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={syncMissingProfiles}
               disabled={syncing}
               title="Sync missing user profiles from auth"
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
             >
-              <Database className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} />
+              <Database className={`h-3 w-3 md:h-4 md:w-4 ${syncing ? "animate-spin" : ""}`} />
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={toggleShowAll}
               title={showAll ? "Show top players only" : "Show all players"}
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
             >
-              <Users className="h-4 w-4" />
+              <Users className="h-3 w-3 md:h-4 md:w-4" />
             </Button>
-            <Button variant="outline" size="sm" onClick={handleRetry} disabled={loading}>
-              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRetry}
+              disabled={loading}
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
+            >
+              <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-3 md:px-6 py-2 md:py-4">
         {players.length === 0 ? (
           <div className="text-center py-4">
-            <p className="text-gray-500 mb-2">No players found</p>
-            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing}>
+            <p className="text-gray-500 mb-2 text-sm">No players found</p>
+            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
               {syncing ? "Syncing..." : "Sync User Profiles"}
             </Button>
           </div>
         ) : (
-          <div className="space-y-3 max-h-96 overflow-y-auto">
+          <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+                {!isUsingFallback && (
+                  <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{0 + 1}</span>
+                )}
+                <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
+                  <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
+                    {("Test User" || "testuser").charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium text-xs md:text-sm truncate">{"Test User" || "testuser"}</p>
+                  <p className="text-xs text-gray-500 hidden xs:block">
+                    {isUsingFallback ? "Registered User" : "Player"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+                {!isUsingFallback && (
+                  <div className="text-right mr-1 md:mr-2">
+                    <p className="font-medium text-xs md:text-sm">100 pts</p>
+                    <p className="text-xs text-gray-500">99%</p>
+                  </div>
+                )}
+
+                {user && user.id !== "test-user" && (
+                  <Button
+                    size="sm"
+                    onClick={() =>
+                      handleChallenge({
+                        id: "test-user",
+                        username: "testuser",
+                        full_name: "Test User",
+                        total_score: 100,
+                        best_percentage: 99,
+                      })
+                    }
+                    className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
+                  >
+                    Challenge
+                  </Button>
+                )}
+              </div>
+            </div>
             {players.map((player, index) => (
-              <div key={player.id} className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  {!isUsingFallback && <span className="w-6 text-sm font-medium text-gray-500">{index + 1}</span>}
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-blue-100 text-blue-700">
+              <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+                  {!isUsingFallback && (
+                    <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
+                  )}
+                  <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
+                    <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
                       {(player.full_name || player.username).charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
-                  <div>
-                    <p className="font-medium text-sm">{player.full_name || player.username}</p>
-                    <p className="text-xs text-gray-500">{isUsingFallback ? "Registered User" : "Player"}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
+                    <p className="text-xs text-gray-500 hidden xs:block">
+                      {isUsingFallback ? "Registered User" : "Player"}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
                   {!isUsingFallback && (
-                    <div className="text-right mr-2">
-                      <p className="font-medium text-sm">{player.total_score} pts</p>
+                    <div className="text-right mr-1 md:mr-2">
+                      <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
                       <p className="text-xs text-gray-500">{player.best_percentage}%</p>
                     </div>
                   )}
@@ -578,7 +636,7 @@ export default function SimpleTopPlayers() {
                           best_percentage: player.best_percentage,
                         })
                       }
-                      className="h-8 py-0 px-3 text-xs bg-green-600 hover:bg-green-700"
+                      className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
                     >
                       Challenge
                     </Button>

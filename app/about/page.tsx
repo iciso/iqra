@@ -10,7 +10,7 @@ export default function AboutPage() {
         </div>
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
-          The first Islamic knowledge quiz app with a competitive challenge system
+          The first freeware open-source Islamic knowledge quiz app with a competitive challenge system
         </p>
       </div>
       <div className="prose dark:prose-invert max-w-none">
@@ -103,7 +103,7 @@ export default function AboutPage() {
             >
               License 4.0
             </a>{" "}
-            • Iqra 💡 Coding Team
+            • Iqra 💡 Team
           </span>
         </div>
       </div>
