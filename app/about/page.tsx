@@ -52,14 +52,14 @@ export default function AboutPage() {
             </p>
          </div>
 
-          <section className="mb-12">
+          <div className="prose dark:prose-invert max-w-none">
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-300">
-            KALAM is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
+          <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+            IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
             Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="https://github.com/iciso/KALAM" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
               <Button className="w-full sm:w-auto">
                 <Github className="mr-2 h-4 w-4" />
                 GitHub Repository
@@ -71,7 +71,7 @@ export default function AboutPage() {
               </Button>
             </Link>
           </div>
-        </section>
+        </div>
 
 
          <div className="prose dark:prose-invert max-w-none">
