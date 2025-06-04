@@ -12,6 +12,7 @@ import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
+import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
   name: string
@@ -253,11 +254,6 @@ export default function LeaderboardPage() {
           <Home className="h-4 w-4" />
           <span className="sr-only">Home</span>
         </a>
-      </div>
-
-      {/* Show header only on small screens */}
-      <div className="sm:hidden w-full">
-        <Header />
       </div>
 
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
