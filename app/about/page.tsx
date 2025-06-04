@@ -1,4 +1,5 @@
 import { IqraLogo } from "@/components/iqra-logo"
+import { Button } from "@/components/ui/button"
 import { MessageSquare } from "lucide-react"
 
 export default function AboutPage() {
@@ -50,6 +51,28 @@ export default function AboutPage() {
             <span className="block sm:inline">{" "}</span>
             </p>
          </div>
+
+          <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4">Open Source</h2>
+          <p className="mb-4 text-gray-600 dark:text-gray-300">
+            KALAM is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
+            Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <Link href="https://github.com/iciso/KALAM" target="_blank" rel="noopener noreferrer">
+              <Button className="w-full sm:w-auto">
+                <Github className="mr-2 h-4 w-4" />
+                GitHub Repository
+              </Button>
+            </Link>
+            <Link href="/contribute">
+              <Button variant="outline" className="w-full sm:w-auto">
+                How to Contribute
+              </Button>
+            </Link>
+          </div>
+        </section>
+
 
          <div className="prose dark:prose-invert max-w-none">
         <h2 className="text-2xl font-bold mb-4"><cite>Credits:</cite></h2>
@@ -131,6 +154,5 @@ export default function AboutPage() {
   </div>
 </div>
 </div>
-
   )
 }
