@@ -61,9 +61,9 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full sm:w-auto">
-                <Github className="mr-2 h-4 w-4" />
-                GitHub Repository
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <Github className="mr-2 h-4 w-4" />
+                GitHub IQRA Repository
               </Button>
             </Link>
             <Link href="https://qalaam.vercel.app/contribute" target="_blank" rel="noopener noreferrer">
@@ -115,6 +115,16 @@ export default function AboutPage() {
             <br className="hidden sm:block" />                   
             <span className="block sm:inline">{" "}</span>
         </p>
+
+        
+        <div className="flex justify-center mt-8">
+          <Link href="/">
+            <Button variant="outline">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
       </div>
 
      <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
