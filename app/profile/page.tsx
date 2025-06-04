@@ -145,7 +145,7 @@ export default function ProfilePage() {
           <CardContent className="text-center py-8">
             <p>Please sign in to view your profile</p>
             <Link href="/">
-              <Button className="mt-4">Go Home</Button>
+              
             </Link>
           </CardContent>
         </Card>
