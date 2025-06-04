@@ -247,12 +247,7 @@ export default function LeaderboardPage() {
      
       </div>
       <div className="hidden sm:block absolute top-4 left-4">
-        <a
-          href="/"
-          className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
-        >
-         
-        </a>
+       
       </div>
 
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
