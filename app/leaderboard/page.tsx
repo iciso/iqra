@@ -251,8 +251,7 @@ export default function LeaderboardPage() {
           href="/"
           className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
         >
-          <Home className="h-4 w-4" />
-          <span className="sr-only">Home</span>
+         
         </a>
       </div>
 
