@@ -14,7 +14,7 @@ export default function AboutPage() {
         </p>
         </div>
       <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Our Mission:</strong></h2>
+        <h2 className="text-2xl font-bold mb-4"><strong>Our Mission:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
           بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
            </p>
@@ -27,7 +27,7 @@ export default function AboutPage() {
         </div>
         
         <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Features:</strong></h2>
+        <h2 className="text-2xl font-bold mb-4"><strong>Features:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
         <ul>
           <li>
@@ -52,7 +52,7 @@ export default function AboutPage() {
          </div>
 
          <div className="prose dark:prose-invert max-w-none">
-        <h2><cite><strong>Credits:</strong></cite></h2>
+        <h2 className="text-2xl font-bold mb-4"><cite><strong>Credits:</strong></cite></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
         <ul>
           <li>
@@ -85,7 +85,7 @@ export default function AboutPage() {
          </div>
          
           <div className="prose dark:prose-invert max-w-none">
-        <h2><strong>Islamic Knowledge Categories:</strong></h2>
+        <h2 className="text-2xl font-bold mb-4"><strong>Islamic Knowledge Categories:</strong></h2>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
