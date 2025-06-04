@@ -59,13 +59,13 @@ export default function AboutPage() {
             Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/iciso/iqra/" target="_blank" rel="noopener noreferrer">
               <Button className="w-full sm:w-auto">
                 <Github className="mr-2 h-4 w-4" />
                 GitHub Repository
               </Button>
             </Link>
-            <Link href="https://qalaam.vercel.app/contribute">
+            <Link href="https://qalaam.vercel.app/contribute" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
               </Button>
