@@ -10,18 +10,25 @@ export default function AboutPage() {
         </div>
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
-          The first freeware open-source Islamic knowledge quiz app with a competitive challenge system
+          The first freeware open-source Islamic knowledge quiz app with competitive challenges
         </p>
-      </div>
+        </div>
       <div className="prose dark:prose-invert max-w-none">
-        <h2>Our Mission</h2>
-        <p>
-          IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
-          Through gamification and social learning, we hope to inspire a deeper connection with Islamic teachings and
-          foster a community of continuous learning.
+        <h2><strong>Our Mission:</strong></h2>
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+          بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
+           </p>
+           <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+            or This is an ongoing charity for the sake of Allah, The Entirely Generous.</p>
+          <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world
+            <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{"."}</span> 
         </p>
-        <p></p>
-        <h2>Features</h2>
+        </div>
+        
+        <div className="prose dark:prose-invert max-w-none">
+        <h2><strong>Features:</strong></h2>
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
         <ul>
           <li>
             <strong>Comprehensive Quiz System</strong> - Test your knowledge across multiple Islamic topics
@@ -39,15 +46,17 @@ export default function AboutPage() {
             <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
           </li>
         </ul>
-        <p></p>
-        <h2>Credits</h2>
-        <p>IQRA was created through a unique collaboration between human vision and artificial intelligence:</p>
+        <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
+            </p>
+         </div>
+
+         <div className="prose dark:prose-invert max-w-none">
+        <h2><cite><strong>Credits:</strong></cite></h2>
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
         <ul>
           <li>
-            <strong>Concept, Design & Demo Version:</strong> Rafique, and May Allah reward Joy whose mail is
-            joy_ahmed_007@yahoo.com for teaching and{" "}
-            <span>
-              guiding{" "}
+            <strong>Concept, Design & Demo Version:</strong> by {" "}
               <a
                 href="https://cvemrafi.vercel.app/"
                 target="_blank"
@@ -55,19 +64,33 @@ export default function AboutPage() {
                 className="text-blue-600 hover:text-blue-800 underline"
               >
                 Rafique
-              </a>{" "}
-            </span>
-            .
+              </a>{" "}; and May Allah <span>
+              reward{" "}
+              <a href="https://zettabyteincorp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline"
+              >Joy</a>
+               {" "}
+            </span>whose mail is
+            joy_ahmed_007@yahoo.com for teaching and guiding Rafique.
           </li>
           <li>
-            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel.
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
           </li>
         </ul>
-        <p></p>
-        <h2>Islamic Knowledge Categories</h2>
-        <p>
+        <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
+          </p>
+         </div>
+         
+          <div className="prose dark:prose-invert max-w-none">
+        <h2><strong>Islamic Knowledge Categories:</strong></h2>
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
           IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
           Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+            <br className="hidden sm:block" />                   
+            <span className="block sm:inline">{" "}</span>
         </p>
       </div>
 

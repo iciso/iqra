@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock, Info } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
@@ -563,7 +562,7 @@ export default function QuizContainer({
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
+       
       </div>
       <div className="absolute top-4 left-4">
         <Link href={challengeMode ? "/challenges" : "/categories"}>
