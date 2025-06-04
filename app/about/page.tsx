@@ -54,12 +54,13 @@ export default function AboutPage() {
             </p>
          </div>
 
-                   <h2 className="text-2xl font-bold mb-4">Open Source</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-300">
-            IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
-            Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
+          <div className="prose dark:prose-invert max-w-none">
+              <h2 className="text-2xl font-bold mb-4">Open Source</h2>
+              <p className="mb-4 text-gray-600 dark:text-gray-300">
+              IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
+              Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+         
             <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
             <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
               <Github className="mr-2 h-4 w-4" />
