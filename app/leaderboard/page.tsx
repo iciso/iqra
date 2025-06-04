@@ -12,7 +12,6 @@ import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
-import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
   name: string
