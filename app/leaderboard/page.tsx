@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -244,7 +244,7 @@ export default function LeaderboardPage() {
     <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       {/* Only show these buttons on larger screens where the header might not be visible */}
       <div className="hidden sm:block absolute top-4 right-4">
-        <ThemeToggle />
+     
       </div>
       <div className="hidden sm:block absolute top-4 left-4">
         <a

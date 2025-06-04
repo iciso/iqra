@@ -20,7 +20,7 @@ import {
   type Challenge,
   type Friendship,
 } from "@/lib/supabase-queries"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import Link from "next/link"
 import UserSearch from "@/components/profile/user-search"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
@@ -167,7 +167,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-2 sm:p-4">
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
+     
       </div>
       <div className="absolute top-4 left-4">
         <Link href="/">

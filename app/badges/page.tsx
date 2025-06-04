@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import { Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -31,7 +31,7 @@ export default function BadgesPage() {
   return (
     <main className="flex min-h-screen flex-col items-center pt-16 p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
+      
       </div>
       <div className="absolute top-4 left-4">
         <Link href="/">

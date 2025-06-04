@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import {
   Book,
   Scale,
@@ -144,7 +144,7 @@ export default function CategoriesPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
+     
       </div>
 
       <Card className="w-full max-w-3xl border-green-200 shadow-lg dark:border-green-800">

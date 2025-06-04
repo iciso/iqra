@@ -43,7 +43,7 @@ export default function AboutPage() {
             <strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics
           </li>
           <li>
-            <strong>Badges and Achievements</strong> - Earn badges as you master different knowledge areas
+            <strong>Badges & Achievements</strong> - Earn badges as you master different knowledge areas
           </li>
         </ul>
         <br className="hidden sm:block" />                   
