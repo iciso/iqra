@@ -65,7 +65,7 @@ export default function AboutPage() {
                 GitHub Repository
               </Button>
             </Link>
-            <Link href="/contribute">
+            <Link href="https://qalaam.vercel.app/contribute">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
               </Button>
