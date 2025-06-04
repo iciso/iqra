@@ -9,7 +9,7 @@ export default function HomePage() {
           Welcome to the Islamic Knowledge Hub
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          Explore and enhance your understanding of Islam through our interactive learning platforms
+          Explore and enhance your understanding of Islam through our interactive learning and gaming.
         </p>
       </div>
 
