@@ -79,9 +79,9 @@ export default function HomePage() {
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
           <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
           <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
-            ما شاء الله (Mā shāʾ A-llāh!) Welcome to IQRA, The first freeware open-source Islamic knowledge quiz app. 
-            <br className="hidden sm:block" />                   
-            <span className="block sm:inline"> Increase your knowledge of Islam through learning or test it with challenges.</span>
+            ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
+            <br className="hidden sm:block" />
+            <span className="block sm:inline"> of Islam through learning or challenges.</span>
           </p>
           {user && (
             <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
@@ -89,7 +89,7 @@ export default function HomePage() {
                 🎉 You're signed in as {user.email || user.user_metadata?.full_name || "a believer"}!
               </p>
               <p className="text-green-600 text-xs sm:text-sm">
-                 إِنْ شَاءَ الله (ʾIn shāʾ Allāh) Your progress will be saved across all IQRA and KALAM apps.
+                Your progress will be saved across IQRA and KALAM apps.
               </p>
             </div>
           )}
