@@ -7,18 +7,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function ContributePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-emerald-800 text-white py-6">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to KALAM</h1>
-          <p className="text-center mt-2 text-emerald-100">Help us improve Quranic vocabulary learning</p>
-        </div>
-      </header>
+      
 
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <section className="mb-12">
+         <div className="flex justify-center mb-8">
+             <IqraLogo size="lg" showText={false} />
+          </div>
+          
+        
           <h2 className="text-2xl font-bold mb-4">Ways to Contribute</h2>
           <p className="mb-6 text-gray-600 dark:text-gray-300">
-            KALAM is an open-source project that welcomes contributions from everyone. Whether you're a developer,
+            IQRA is an open-source freeware project that welcomes contributions from everyone. Whether you're a developer,
             designer, Arabic linguist, or Quran enthusiast, there are many ways you can help improve this project.
           </p>
 
