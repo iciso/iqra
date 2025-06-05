@@ -8,13 +8,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function ContributePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      
+      <header className="bg-white text-emerald-800 py-6">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to IQRA</h1>
+          <p className="text-center mt-2 text-emerald-100">Help us improve  learning Islam through Quizzes, Games & Challenges</p>
+        </div>
+      </header>
   
       <main className="container mx-auto px-4 py-8 max-w-4xl">
        
-         <div className="flex justify-center mb-8">
-             <IqraLogo size="lg" showText={false} />
-          </div>
+         
           
          <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Ways to Contribute</h2>
