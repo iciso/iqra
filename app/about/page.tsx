@@ -23,7 +23,9 @@ export default function AboutPage() {
              بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            or This is an ongoing charity for the sake of Allah, The Entirely Generous.
+            or This is an ongoing charity for the sake of Allah, The Entirely Generous.<br />
+            Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
+            <br />
           </p>
           <p className="text-gray-600 dark:text-gray-300">
             So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
@@ -66,7 +68,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
-            Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
+            Quran scholars, and anyone passionate about making Islamic knowledge more accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
@@ -85,7 +87,7 @@ export default function AboutPage() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Technology</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-300">KALAM is built using modern web technologies:</p>
+          <p className="mb-4 text-gray-600 dark:text-gray-300">IQRA is built using modern web technologies:</p>
           <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
             <li>Next.js - React framework for server-rendered applications</li>
             <li>TypeScript - For type safety and better developer experience</li>
@@ -93,12 +95,42 @@ export default function AboutPage() {
             <li>Vercel - For deployment and hosting</li>
           </ul>
         </section>
+
+         <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4"><cite>Credits</cite></h2>
+<ul>
+          <li>
+            <strong>Concept, Design & Demo Version:</strong> by {" "}
+              <a
+                href="https://cvemrafi.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Rafique
+              </a>{" "}; and May Allah <span>
+              reward{" "}
+              <a href="https://zettabyteincorp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline"
+              >Joy</a>
+               {" "}
+            </span>whose mail is
+            joy_ahmed_007@yahoo.com for teaching and guiding Rafique.
+          </li>
+          <li>
+            <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> v0 by Vercel. For, IQRA was created through a unique collaboration between human vision and artificial intelligence.
+          </li>
+        </ul>
+        </section>
+
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">IQRA Codes Team</h2>
+          <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             {" "}
             وهي صدقة جارية لوجه الله تعالى or This is an ongoing charity for the sake of Allah Almighty. <br />
-            Thus, all apps by IQRA codes team of Rafique and Joy are freeware, and open source.
+            Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
             <br />
             So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is
             joy_ahmed_007@yahoo.com for teachinng and guiding Rafique.
