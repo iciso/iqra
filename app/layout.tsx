@@ -24,6 +24,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "IQRA",
+    icons: [
+    {
+      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   },
   twitter: {
     card: "summary_large_image",

@@ -23,6 +23,7 @@ export default function FaviconCheck() {
         "/android-chrome-192x192.png",
         "/android-chrome-512x512.png",
         "/site.webmanifest",
+        "/manifest.json",
       ]
 
       const results: Record<string, boolean> = {}
