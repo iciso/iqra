@@ -1,30 +1,49 @@
-# IQRA - Islamic Quiz Rivalry App
+# Contributing to KALAM
 
-IQRA, the first freeware open-source Islamic knowledge quiz app, is dedicated to increasing your knowledge of Islam by learning or playing challenges. Our mission is to help Muslims and Arabic language enthusiasts develop a deeper connection with the Quran and Deen through interactive learning tools. So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
+Thank you for your interest in contributing to KALAM! This document provides guidelines and instructions for contributing.
 
-## Features
+## Code of Conduct
 
-- Interactive flashcards with Quranic vocabulary
-- Quizzes to test and reinforce learning
-- Vocabulary matching games
-- Progress tracking
-- Examples from the Quran for context
-- Responsive design for desktop and mobile use
-- Word lists for organized learning
-- Root word explorer
+By participating in this project, you agree to abide by our Code of Conduct. Please be respectful and considerate of others.
 
-## Getting Started
+## How Can I Contribute?
 
-### Prerequisites
+### Code Contributions
 
-- Node.js 18.0 or higher
-- npm or yarn
+1. Fork the repository
+2. Create a branch for your feature or bugfix: `git checkout -b feature/your-feature-name`
+3. Make your changes, following the project's coding standards
+4. Commit your changes with a descriptive commit message
+5. Push to your fork: `git push origin feature/your-feature-name`
+6. Create a Pull Request to the main repository
 
-### Installation
+### Content Contributions
+
+- Add new vocabulary words
+- Provide Quranic examples
+- Create new quizzes
+- Verify translations
+- Improve explanations
+
+### Feedback and Ideas
+
+- Report bugs
+- Suggest new features
+- Provide feedback on existing features
+- Share your learning experience
+
+### Community Support
+
+- Share KALAM with others
+- Write about your experience
+- Create tutorials
+- Answer questions from other users
+
+## Development Setup
 
 1. Clone the repository
    \`\`\`
-   git clone https://github.com/iciso/iqra.git
+   git clone https://github.com/YOUR-USERNAME/kalam.git
    cd kalam
    \`\`\`
 
@@ -44,33 +63,50 @@ IQRA, the first freeware open-source Islamic knowledge quiz app, is dedicated to
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Technology Stack
+## Pull Request Process
 
-- **Next.js** - React framework for server-rendered applications
-- **TypeScript** - For type safety and better developer experience
-- **Tailwind CSS** - For responsive and customizable styling
-- **Vercel** - For deployment and hosting
+1. Ensure your code follows the project's coding standards
+2. Update the README.md with details of changes if appropriate
+3. The PR should work in development environment
+4. Your PR will be reviewed by maintainers, who may request changes or provide feedback
+5. Once approved, your PR will be merged
 
-## Contributing
+## Coding Standards
 
-We welcome contributions from developers, Arabic linguists, Quran scholars, and anyone passionate about making Quranic knowledge more accessible. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+- Use TypeScript for all new code
+- Follow the existing code style
+- Write meaningful commit messages
+- Add comments for complex logic
+- Write tests for new features when possible
 
-## License
+## Questions?
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- IQRA Codes Team - Rafique and Joy
-- All contributors who have helped make this project better
-
-## Contact
-
+If you have any questions, feel free to reach out to the maintainers:
 - Rafique - WhatsApp: +91 7558845528
 - Joy - Email: joy_ahmed_007@yahoo.com
 
----
+Thank you for contributing to KALAM!
+\`\`\`
 
-وهي صدقة جارية لوجه الله تعالى
+\`\`\`plaintext file="LICENSE"
+MIT License
 
-This is an ongoing charity for the sake of Allah Almighty.
+Copyright (c) 2023 KALAM Project Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
