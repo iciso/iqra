@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { ArrowLeft, Code, FileText, MessageSquare, Users } from "lucide-react"
-
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Gamepad2 } from "lucide-react"
+import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { IqraLogo } from "@/components/iqra-logo"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function ContributePage() {
