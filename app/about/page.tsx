@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Github } from "lucide-react"
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, ListPlus, Users, Clock, Gamepad2 } from "lucide-react"
 import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -128,11 +128,12 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            This document provides the Policy, Proposal, & Plans (PPP)for the future to continue this ongoing charity for the sake of Allah The Entrely Merciful, The Entirely Generous.
+            This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah, The Entrely Merciful, The Entirely Generous.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
             <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <ListPlus className="mr-2 h-4 w-4" />
                 IQRA Papers
               </Button>
             </Link>
