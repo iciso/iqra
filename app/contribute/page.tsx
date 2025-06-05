@@ -9,14 +9,14 @@ export default function ContributePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       
-  </div>
+  
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-        <section className="mb-12">
+       
          <div className="flex justify-center mb-8">
              <IqraLogo size="lg" showText={false} />
           </div>
           
-        
+         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Ways to Contribute</h2>
           <p className="mb-6 text-gray-600 dark:text-gray-300">
             IQRA is an open-source freeware project that welcomes contributions from everyone. Whether you're a developer,
