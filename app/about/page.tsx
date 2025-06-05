@@ -20,8 +20,10 @@ export default function AboutPage() {
         </p>
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            IQRA is an open-source Demo project dedicated to making Quranic Arabic or the words of Allah comprehensible to everyone. Our mission is to help Muslims and Arabic language enthusiasts
-            develop a deeper connection with the Quran through gaming and other interactive learning tools.
+             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
+          </p>
+          <p className="mb-4 text-gray-600 dark:text-gray-300">
+            or This is an ongoing charity for the sake of Allah, The Entirely Generous.
           </p>
           <p className="text-gray-600 dark:text-gray-300">
             Muslims believe that understanding the language of the Quran enhances one's spiritual experience and provides a
