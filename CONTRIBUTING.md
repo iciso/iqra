@@ -1,4 +1,4 @@
-# Contributing to KALAM
+# Contributing to IQRA
 
 Thank you for your interest in contributing to KALAM! This document provides guidelines and instructions for contributing.
 
@@ -43,8 +43,8 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 
 1. Clone the repository
    \`\`\`
-   git clone https://github.com/YOUR-USERNAME/kalam.git
-   cd kalam
+   git clone https://github.com/iciso/iqra.git
+   cd iqra
    \`\`\`
 
 2. Install dependencies
