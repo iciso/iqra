@@ -23,7 +23,7 @@ export default function AboutPage() {
              بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            or This is an ongoing charity for the sake of Allah <span className="text-xl font-bold align-middle">ﷻ</span>, The Entirely Generous.<br />
+            or This is an ongoing charity for the sake of Allah <span className="text-2xl font-normal align-middle">ﷻ</span>, The Entirely Generous.<br />
             Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
             <br />
           </p>
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 className="text-blue-600 hover:text-blue-800 underline"
               >
                 Rafique
-              </a>{" "}; and May Allah <span className="text-xl font-bold align-middle">ﷻ</span>, <span>
+              </a>{" "}; and May Allah <span className="text-2xl font-normal align-middle">ﷻ</span>, <span>
               reward{" "}
               <a href="https://zettabyteincorp.com/"
               target="_blank"
@@ -128,7 +128,7 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <span className="text-xl font-bold align-middle">ﷻ</span>, The Entrely Merciful, The Entirely Generous.
+            This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <span className="text-2xl font-normal align-middle">ﷻ</span>, The Entrely Merciful, The Entirely Generous.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
