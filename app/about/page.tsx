@@ -98,7 +98,7 @@ export default function AboutPage() {
 
          <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4"><cite>Credits</cite></h2>
-<ul>
+      <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
           <li>
             <strong>Concept, Design & Demo Version:</strong> by {" "}
               <a
@@ -128,13 +128,15 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            {" "}
-            وهي صدقة جارية لوجه الله تعالى or This is an ongoing charity for the sake of Allah Almighty. <br />
-            Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
-            <br />
-            So, do send your suggestions to Rafique by WhatsApp on +91 7558845528 and May Allah reward Joy whose mail is
-            joy_ahmed_007@yahoo.com for teachinng and guiding Rafique.
+            This document provides the Policy, Proposal, & Plans (PPP)for the future to continue this ongoing charity for the sake of Allah The Entrely Merciful, The Entirely Generous.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+                IQRA Papers
+              </Button>
+            </Link>
+          </div>
         </section>
 
         <div className="flex justify-center mt-8">
