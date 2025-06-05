@@ -1,14 +1,14 @@
 # IQRA - Islamic Quiz Rivalry App
 
-KALAM is an open-source project dedicated to making Quranic Arabic vocabulary accessible to everyone. Our mission is to help Muslims and Arabic language enthusiasts develop a deeper connection with the Quran through interactive learning tools.
+IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your knowledge of Islam by learning or playing quiz challenges. Our mission is to help Muslims and Arabic language enthusiasts develop a deeper connection with Islam and the Glorious Quran through interactive learning, quizz challenges, and gaming tools.
 
 ## Features
 
-- Interactive flashcards with Quranic vocabulary
-- Quizzes to test and reinforce learning
+- Quiz challenges across 12 major subjects in Islam
+- Interactive lessons to test and reinforce learning
 - Vocabulary matching games
 - Progress tracking
-- Examples from the Quran for context
+- Infographic examples from the Quran for context
 - Responsive design for desktop and mobile use
 - Word lists for organized learning
 - Root word explorer
@@ -73,4 +73,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 وهي صدقة جارية لوجه الله تعالى
 
-This is an ongoing charity for the sake of Allah Almighty.
+This is an ongoing charity for the sake of  Allah ﷻ, The Entirely Generous.
