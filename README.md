@@ -1,4 +1,4 @@
-# KALAM - Quran Arabic Learning And Memorization
+# IQRA - Islamic Quiz Rivalry App
 
 KALAM is an open-source project dedicated to making Quranic Arabic vocabulary accessible to everyone. Our mission is to help Muslims and Arabic language enthusiasts develop a deeper connection with the Quran through interactive learning tools.
 
