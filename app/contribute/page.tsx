@@ -12,7 +12,7 @@ export default function ContributePage() {
       <header className="bg-#fffff2 text-emerald-700 py-6">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to IQRA</h1>
-          <p className="text-center mt-2 text-emerald-200">Help us improve Islamic learning by challenging in Quizzes and Games</p>
+          <p className="text-center mt-2 text-emerald-500">Help us improve Islamic learning by challenging in Quizzes and Games</p>
         </div>
       </header>
 
