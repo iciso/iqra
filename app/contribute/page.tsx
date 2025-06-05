@@ -1,33 +1,27 @@
 import Link from "next/link"
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Gamepad2 } from "lucide-react"
-import { MessageSquare } from "lucide-react"
+import { ArrowLeft, Code, FileText, MessageSquare, Users } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
-import { IqraLogo } from "@/components/iqra-logo"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function ContributePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white text-emerald-800 py-6">
+      <header className="bg-emerald-800 text-white py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to IQRA</h1>
-          <p className="text-center mt-2 text-emerald-100">Help us improve  learning Islam through Quizzes, Games & Challenges</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to KALAM</h1>
+          <p className="text-center mt-2 text-emerald-100">Help us improve Quranic vocabulary learning</p>
         </div>
       </header>
-  
+
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-       
-         
-          
-         <section className="mb-12">
+        <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Ways to Contribute</h2>
           <p className="mb-6 text-gray-600 dark:text-gray-300">
-            IQRA is an open-source freeware project that welcomes contributions from everyone. Whether you're a developer,
+            KALAM is an open-source project that welcomes contributions from everyone. Whether you're a developer,
             designer, Arabic linguist, or Quran enthusiast, there are many ways you can help improve this project.
           </p>
-          </section>
 
-        <section className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
