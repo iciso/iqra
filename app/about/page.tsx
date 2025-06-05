@@ -53,20 +53,29 @@ export default function AboutPage() {
           </ul>
         </section>
 
+         <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4">Islamic Knowledge Categories</h2>
+          <p className="mb-4 text-gray-600 dark:text-gray-300">
+            IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance..
+          </p>
+        </section>
+
+
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            KALAM is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
+            IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
             Quran scholars, and anyone passionate about making Quranic knowledge more accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="https://github.com/iciso/KALAM" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full sm:w-auto">
-                <Github className="mr-2 h-4 w-4" />
-                GitHub Repository
+            <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <Github className="mr-2 h-4 w-4" />
+                GitHub IQRA Repository
               </Button>
             </Link>
-            <Link href="/contribute">
+            <Link href="https://qalaam.vercel.app/contribute" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
               </Button>
