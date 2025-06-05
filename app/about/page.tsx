@@ -26,21 +26,30 @@ export default function AboutPage() {
             or This is an ongoing charity for the sake of Allah, The Entirely Generous.
           </p>
           <p className="text-gray-600 dark:text-gray-300">
-            Muslims believe that understanding the language of the Quran enhances one's spiritual experience and provides a
-            more profound connection to the text. By creating engaging, gaming and interactive tools for vocabulary acquisition, we
-            hope to make this journey fun-filled, enjoyable and effective.
+            So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
           </p>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Features</h2>
           <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
-            <li>Interactive flashcards with Quranic vocabulary</li>
-            <li>Quizzes to test and reinforce learning</li>
-            <li>Vocabulary matching games</li>
-            <li>Progress tracking</li>
-            <li>Examples from the Quran for context</li>
-            <li>Responsive design for desktop and mobile use</li>
+<li>
+            <strong>Comprehensive Quiz System</strong> - Test your knowledge across multiple Islamic topics
+          </li>
+          <li>
+            <strong>Challenge Friends</strong> - Send challenges to friends and compare your Islamic knowledge
+          </li>
+          <li>
+            <strong>Interactive Learning</strong> - Engage with interactive infographics and visual learning aids
+          </li>
+          <li>
+            <strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics
+          </li>
+          <li>
+            <strong>Badges & Achievements</strong> - Earn badges as you master different knowledge areas
+          </li>
+            <li>
+            <strong>Responsive design</strong> - For desktop and mobile use</li>
           </ul>
         </section>
 
