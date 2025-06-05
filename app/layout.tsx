@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "IQRA",
+    themeColor: "#15803D",
     icons: [
     {
       "src": "https://cvemrafi.vercel.app/iqra-app.png",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
   },
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#16a34a",
+  themeColor: "#15803D",
     generator: 'v0.dev'
 }
 
