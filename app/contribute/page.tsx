@@ -4,13 +4,15 @@ import { ArrowLeft, Code, FileText, MessageSquare, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
+import { IqraLogo } from "@/components/iqra-logo"
+
 export default function ContributePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-emerald-800 text-white py-6">
+      <header className="bg-white text-emerald-800 py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to KALAM</h1>
-          <p className="text-center mt-2 text-emerald-100">Help us improve Quranic vocabulary learning</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-center">Contribute to IQRA</h1>
+          <p className="text-center mt-2 text-emerald-100">Help us improve Islamic learning by challenging in Quizzes and Games</p>
         </div>
       </header>
 
@@ -18,7 +20,7 @@ export default function ContributePage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Ways to Contribute</h2>
           <p className="mb-6 text-gray-600 dark:text-gray-300">
-            KALAM is an open-source project that welcomes contributions from everyone. Whether you're a developer,
+            IQRA is an open-source, freeware project that welcomes contributions from everyone. Whether you're a developer,
             designer, Arabic linguist, or Quran enthusiast, there are many ways you can help improve this project.
           </p>
 
@@ -81,7 +83,7 @@ export default function ContributePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
-                  <li>Share KALAM with others</li>
+                  <li>Share IQRA with others</li>
                   <li>Write about your experience</li>
                   <li>Create tutorials</li>
                   <li>Answer questions from other users</li>
@@ -97,13 +99,13 @@ export default function ContributePage() {
             <ol className="list-decimal pl-6 space-y-4 text-gray-600 dark:text-gray-300">
               <li>
                 <strong>Fork the repository</strong>
-                <p>Start by forking the KALAM repository on GitHub.</p>
+                <p>Start by forking the IQRA repository on GitHub.</p>
               </li>
               <li>
                 <strong>Clone your fork</strong>
                 <p>Clone your fork to your local machine:</p>
                 <pre className="bg-gray-200 dark:bg-gray-700 p-2 rounded mt-2 overflow-x-auto">
-                  <code>git clone https://github.com/your-username/kalam.git</code>
+                  <code>git clone https://github.com/your-username/iqra.git</code>
                 </pre>
               </li>
               <li>
@@ -133,7 +135,7 @@ export default function ContributePage() {
               </li>
               <li>
                 <strong>Create a Pull Request</strong>
-                <p>Go to the KALAM repository and create a pull request from your branch.</p>
+                <p>Go to the IQRA repository and create a pull request from your branch.</p>
               </li>
             </ol>
           </div>
