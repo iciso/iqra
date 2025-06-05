@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, ListPlus, Users, Clock, Gamepad2 } from "lucide-react"
-import { FileText } from "@geist/icons"
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album,  Users, Clock, Gamepad2 } from "lucide-react"
 import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -8,7 +7,7 @@ import { IqraLogo } from "@/components/iqra-logo"
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      
+        
 
       <main className="container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-12">
@@ -134,7 +133,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
             <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
-              <FileText className="mr-2 h-4 w-4" />
+              <Album className="mr-2 h-4 w-4" />
                 IQRA Papers
               </Button>
             </Link>
