@@ -21,7 +21,9 @@ export default function ContributePage() {
             IQRA is an open-source freeware project that welcomes contributions from everyone. Whether you're a developer,
             designer, Arabic linguist, or Quran enthusiast, there are many ways you can help improve this project.
           </p>
+          </section>
 
+        <section className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
