@@ -1,6 +1,6 @@
 # Contributing to IQRA
 
-Thank you for your interest in contributing to KALAM! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to IQRA! This document provides guidelines and instructions for contributing.
 
 ## Code of Conduct
 
@@ -34,7 +34,7 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 
 ### Community Support
 
-- Share KALAM with others
+- Share IQRA with others
 - Write about your experience
 - Create tutorials
 - Answer questions from other users
@@ -85,13 +85,13 @@ If you have any questions, feel free to reach out to the maintainers:
 - Rafique - WhatsApp: +91 7558845528
 - Joy - Email: joy_ahmed_007@yahoo.com
 
-Thank you for contributing to KALAM!
+Thank you for contributing to IQRA!
 \`\`\`
 
 \`\`\`plaintext file="LICENSE"
 MIT License
 
-Copyright (c) 2023 KALAM Project Contributors
+Copyright (c) 2023 IQRA Project Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
