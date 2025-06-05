@@ -76,7 +76,7 @@ export default function AboutPage() {
                 GitHub IQRA Repository
               </Button>
             </Link>
-            <Link href="https://qalaam.vercel.app/contribute" target="_blank" rel="noopener noreferrer">
+            <Link href="/contribute" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
               </Button>
