@@ -1,139 +1,112 @@
-"use server"
+# Contributing to IQRA
 
-import { isStackAuthAvailable } from "@/lib/stack-auth-helpers"
+Thank you for your interest in contributing to IQRA! This document provides guidelines and instructions for contributing.
 
-interface ConnectionResult {
-  name: string
-  status: "success" | "error" | "warning"
-  message: string
-  details?: any
-}
+## Code of Conduct
 
-export async function testDatabaseConnections(): Promise<ConnectionResult[]> {
-  const results: ConnectionResult[] = []
+By participating in this project, you agree to abide by our Code of Conduct. Please be respectful and considerate of others.
 
-  // Test Supabase Database
-  try {
-    const { supabase } = await import("@/lib/supabase")
-    const { data, error } = await supabase.from("user_profiles").select("count").limit(1)
+## How Can I Contribute?
 
-    if (error) throw error
+### Code Contributions
 
-    results.push({
-      name: "Supabase Database",
-      status: "success",
-      message: "Connected successfully",
-      details: { recordCount: data?.length || 0 },
-    })
-  } catch (error) {
-    results.push({
-      name: "Supabase Database",
-      status: "error",
-      message: `Connection failed: ${error}`,
-    })
-  }
+1. Fork the repository
+2. Create a branch for your feature or bugfix: `git checkout -b feature/your-feature-name`
+3. Make your changes, following the project's coding standards
+4. Commit your changes with a descriptive commit message
+5. Push to your fork: `git push origin feature/your-feature-name`
+6. Create a Pull Request to the main repository
 
-  // Test Neon Database
-  try {
-    const { isNeonAvailable } = await import("@/lib/neon-fallback")
+### Content Contributions
 
-    if (!isNeonAvailable()) {
-      results.push({
-        name: "Neon Database",
-        status: "warning",
-        message: "No Neon database URL configured",
-      })
-    } else {
-      const { initializeFallbackTables } = await import("@/lib/neon-fallback")
-      const result = await initializeFallbackTables()
+- Add new vocabulary words
+- Provide Quranic examples
+- Create new quizzes
+- Verify translations
+- Improve explanations
 
-      results.push({
-        name: "Neon Database",
-        status: result ? "success" : "warning",
-        message: result ? "Connected and initialized" : "Connected but initialization failed",
-        details: { initialized: result },
-      })
-    }
-  } catch (error) {
-    results.push({
-      name: "Neon Database",
-      status: "error",
-      message: `Connection failed: ${error}`,
-    })
-  }
+### Feedback and Ideas
 
-  // Test Stack Auth (server-side only)
-  try {
-    const authAvailable = await isStackAuthAvailable()
+- Report bugs
+- Suggest new features
+- Provide feedback on existing features
+- Share your learning experience
 
-    if (!authAvailable) {
-      results.push({
-        name: "Stack Auth",
-        status: "warning",
-        message: "Stack Auth not configured",
-      })
-    } else {
-      results.push({
-        name: "Stack Auth",
-        status: "success",
-        message: "Stack Auth configured",
-        details: {
-          projectId: process.env.iqra_NEXT_PUBLIC_STACK_PROJECT_ID,
-          hasPublishableKey: !!process.env.iqra_STACK_PUBLISHABLE_CLIENT_KEY,
-          hasSecretKey: !!process.env.iqra_STACK_SECRET_SERVER_KEY,
-        },
-      })
-    }
-  } catch (error) {
-    results.push({
-      name: "Stack Auth",
-      status: "error",
-      message: `Auth config failed: ${error}`,
-    })
-  }
+### Community Support
 
-  // Test Environment Variables
-  const envVars = [
-    "iqra_DATABASE_URL",
-    "iqra_POSTGRES_URL",
-    "iqra_NEXT_PUBLIC_STACK_PROJECT_ID",
-    "iqra_STACK_SECRET_SERVER_KEY",
-    "iqra_STACK_PUBLISHABLE_CLIENT_KEY",
-    "SUPABASE_URL",
-    "NEXT_PUBLIC_SUPABASE_URL",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-  ]
+- Share IQRA with others
+- Write about your experience
+- Create tutorials
+- Answer questions from other users
 
-  const envStatus = envVars.map((varName) => ({
-    name: varName,
-    present: !!process.env[varName],
-  }))
+## Development Setup
 
-  results.push({
-    name: "Environment Variables",
-    status: envStatus.filter((env) => env.present).length >= 5 ? "success" : "warning",
-    message: `${envStatus.filter((env) => env.present).length}/${envVars.length} variables configured`,
-    details: envStatus,
-  })
+1. Clone the repository
+   \`\`\`
+   git clone https://github.com/iciso/iqra.git
+   cd kalam
+   \`\`\`
 
-  // Test Fallback System
-  try {
-    const { getLeaderboardWithFallback } = await import("@/lib/database-with-fallback")
-    const result = await getLeaderboardWithFallback()
+2. Install dependencies
+   \`\`\`
+   npm install
+   # or
+   yarn install
+   \`\`\`
 
-    results.push({
-      name: "Fallback System",
-      status: "success",
-      message: `Working - using ${result.source}`,
-      details: { source: result.source, recordCount: result.data.length },
-    })
-  } catch (error) {
-    results.push({
-      name: "Fallback System",
-      status: "error",
-      message: `Fallback failed: ${error}`,
-    })
-  }
+3. Run the development server
+   \`\`\`
+   npm run dev
+   # or
+   yarn dev
+   \`\`\`
 
-  return results
-}
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Pull Request Process
+
+1. Ensure your code follows the project's coding standards
+2. Update the README.md with details of changes if appropriate
+3. The PR should work in development environment
+4. Your PR will be reviewed by maintainers, who may request changes or provide feedback
+5. Once approved, your PR will be merged
+
+## Coding Standards
+
+- Use TypeScript for all new code
+- Follow the existing code style
+- Write meaningful commit messages
+- Add comments for complex logic
+- Write tests for new features when possible
+
+## Questions?
+
+If you have any questions, feel free to reach out to the maintainers:
+- Rafique - WhatsApp: +91 7558845528
+- Joy - Email: joy_ahmed_007@yahoo.com
+
+Thank you for contributing to IQRA!
+\`\`\`
+
+\`\`\`plaintext file="LICENSE"
+MIT License
+
+Copyright (c) 2023 IQRA Project Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
