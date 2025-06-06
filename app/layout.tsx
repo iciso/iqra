@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "/favicon.png" }],
+    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
   },
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "https://cvemrafi.vercel.app/iqra-app.png", type: "image/png" },
+      { url: "https://cvemrafi.vercel.app/iqra-app.png", sizes: "any" },
     ],
   },
   viewport: "width=device-width, initial-scale=1",
