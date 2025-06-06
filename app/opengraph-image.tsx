@@ -41,6 +41,20 @@ export default async function Image() {
           position: "relative",
           background: "linear-gradient(to bottom right, #4ADE80, #15803D)",
           opacity: 0.2,
+          themeColor: "#15803D",
+          icons: [
+    {
+      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  },
         }}
       />
       <div
@@ -58,7 +72,7 @@ export default async function Image() {
     {
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse width and height.
-      ...size,
+      //...size,
     },
   )
 }
