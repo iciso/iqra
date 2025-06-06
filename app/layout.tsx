@@ -21,43 +21,20 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
+     images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
     type: "website",
-    locale: "en_US",
-    siteName: "IQRA",
-    themeColor: "#15803D",
-    icons: [
-    {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
   },
   twitter: {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-      type: "website",
-    locale: "en_US",
-    siteName: "IQRA",
-    themeColor: "#15803D",
-    icons: [
-    {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+    images: [{ url: "/favicon.png" }],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
   },
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#15803D",
