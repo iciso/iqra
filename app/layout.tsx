@@ -21,7 +21,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-     images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
+    url: "https://cvemrafi.vercel.app/iqra-app.png?fbclid=IwZXh0bgNhZW0CMTEAYnJpZBExaGxoYXJHQUdSZjNkb1JoRgEeSeZg0i-hm9SmLnJWD4z3FsGLdxJUMedBYCrgxACUKn8q-C5oVY-Zm5YKaYU_aem_saodrXR4ZGK28l94KimEYQ",
+    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
     type: "website",
   },
   twitter: {
