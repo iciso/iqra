@@ -19,18 +19,28 @@ export const metadata: Metadata = {
   publisher: "IQRA",
   robots: "index, follow",
   openGraph: {
+    url: "https://iqrar.vercel.app/", // Added og:url
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    url: "https://cvemrafi.vercel.app/iqra-app.png?fbclid=IwZXh0bgNhZW0CMTEAYnJpZBExaGxoYXJHQUdSZjNkb1JoRgEeSeZg0i-hm9SmLnJWD4z3FsGLdxJUMedBYCrgxACUKn8q-C5oVY-Zm5YKaYU_aem_saodrXR4ZGK28l94KimEYQ",
-    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
+    images: [{ 
+      url: "https://cvemrafi.vercel.app/iqra-app.png", // Version parameter
+      width: 1200, // Recommended dimensions
+      height: 630,
+      alt: "IQRA App Logo",
+    }],
     type: "website",
+    siteName: "IQRA", // Recommended
   },
   twitter: {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png" }],
+    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png?v=2" }],
   },
+  // Optional but recommended if you have a Facebook App
+  // other: {
+  //   "fb:app_id": "YOUR_FACEBOOK_APP_ID" 
+  // },
   icons: {
     icon: [
       { url: "https://cvemrafi.vercel.app/iqra-app.png", type: "image/png" },
@@ -39,9 +49,8 @@ export const metadata: Metadata = {
   },
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#15803D",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
-
 export default function RootLayout({
   children,
 }: {
