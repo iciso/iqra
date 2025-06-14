@@ -122,10 +122,10 @@ const JoyPage = () => {
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-center">
           Challenge <Trophy style={animationStyles.wrench} size={24} color="green" /> or 
-          Play<Gamepad2 style={animationStyles.blink} size={24} color="indigo" /> with our{' '}
+          Play <Gamepad2 style={animationStyles.blink} size={24} color="indigo" /> with our{' '}
           <Heart style={{display: 'inline-block'}} size={24} color="red" fill="red" />{' '}
           <span className="text-green-600"> IQRA</span> &amp;{' '}
-          <span className="text-blue-600">Learn</span>{' '}Apps.
+          <span className="text-blue-600">KALAM</span>{' '}Apps.
         </h1>
       </header>
 
@@ -155,7 +155,7 @@ const JoyPage = () => {
           {/* Yes Path */}
           <div className="text-center">
             <button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
-              Yes! <br /> You are Quick!
+              Yes! <br /> We take to IQRA!
             </button>
             <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
             <div className="bg-green-100 p-4 rounded-lg">
@@ -175,7 +175,7 @@ const JoyPage = () => {
             <div className="bg-blue-100 p-4 rounded-lg mb-4">
               <p className="text-blue-800 inline-flex items-center">
                 <Gamepad2 style={animationStyles.pulse} size={24} color="green" />
-                <span className="ml-2">Let's share IQRA Challenge details?</span>
+                <span className="ml-2">Do we want to save our progress in KALAM?</span>
               </p>
             </div>
 
@@ -193,8 +193,8 @@ const JoyPage = () => {
                 <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
                 <div className="bg-green-100 p-2 rounded-lg">
                   <p className="text-green-800 text-sm inline-flex items-center">
-                    <Users style={animationStyles.tinUpOut} size={24} color="black" />
-                    <span>Okay! We challenge the best in IQRA to learn. We proceed to step 2.</span>
+                    <Users style={animationStyles.tinUpOut} size={36} color="black" />
+                    <span>Okay! We challenge in IQRA & learn. We proceed to step 2.</span>
                   </p>
                 </div>
               </div>
@@ -207,8 +207,8 @@ const JoyPage = () => {
                 <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
                 <div className="bg-red-100 p-2 rounded-lg">
                   <p className="text-red-800 text-sm inline-flex items-center">
-                    <span>Not Bad! We will play KALAM games and wait to challenge in IQRA</span>
-                    <Gamepad2 style={animationStyles.burst} size={24} color="black" />
+                    <span>We will play KALAM games and wait to challenge in IQRA</span>
+                    <Gamepad2 style={animationStyles.burst} size={36} color="black" />
                   </p>
                 </div>
               </div>
@@ -220,14 +220,14 @@ const JoyPage = () => {
       {/* Process 2 */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">
-          Process 2: Join the best Challengers among{' '}
-          <Trophy style={animationStyles.blink} size={20} color="blue" /> IQRA Players & learn from Infographcis.
+          Process 2: Challenge our friends in{' '}
+          <Trophy style={animationStyles.blink} size={20} color="blue" /> IQRA & learn from its Infographcis.
         </h2>
 
         <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
           <p className="text-blue-800 font-medium inline-flex items-center">
             <Award style={animationStyles.tinUpOut} size={24} color="green" />
-            <span className="ml-2">IQRA has a system of Leaderboards and badges</span>
+            <span className="ml-2">IQRA has Leaderboards and badges</span>
           </p>
         </div>
 
@@ -265,7 +265,7 @@ const JoyPage = () => {
                 <div className="bg-green-100 p-2 rounded-lg">
                   <p className="text-green-800 text-sm inline-flex items-center">
                     <span>Many IQRA players form buddy teams and top the Leaderboard.</span>
-                    <History style={animationStyles.blink} size={48} color="blue" />
+                    <History style={animationStyles.blink} size={36} color="blue" />
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ const JoyPage = () => {
                 <div className="bg-red-100 p-2 rounded-lg">
                   <p className="text-red-800 text-sm inline-flex items-center">
                     <span>KALAM players play and learn the Kalam of Allah slowly.</span>
-                    <AlertCircle style={{display: 'inline-block'}} size={48} color="red" />
+                    <AlertCircle style={{display: 'inline-block'}} size={36} color="red" />
                   </p>
                 </div>
               </div>
