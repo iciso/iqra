@@ -81,7 +81,7 @@ export default function AboutPage() {
                 How to Contribute
               </Button>
             </Link>
-            <Link href="/why" target="_blank" rel="noopener noreferrer">
+            <Link href="/why">
             <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
               <Github className="mr-2 h-4 w-4" />
                 Why IQRA than KALAM?
