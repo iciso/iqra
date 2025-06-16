@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Gamepad2 } from "lucide-react"
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Trophy, Gamepad2 } from "lucide-react"
 import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -142,8 +142,7 @@ export default function AboutPage() {
                 IQRA Papers
               </Button>
             </Link>
-          </div>
-        </section>
+        
 
         <div className="flex justify-center mt-8">
           <Link href="/">
@@ -152,8 +151,20 @@ export default function AboutPage() {
               Back to Home
             </Button>
           </Link>
-        </div>
+          
+
+         <Link href="/why">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <Trophy className="mr-2 h-4 w-4" />
+                Why IQRA than KALAM?
+              </Button>
+            </Link>
+    
+            </div>
+        </section>
       </main>
+  </div>
+      
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
   <div className="flex items-center justify-center mb-1">
     <MessageSquare className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" />
