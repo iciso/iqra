@@ -76,9 +76,15 @@ export default function AboutPage() {
                 GitHub IQRA Repository
               </Button>
             </Link>
-            <Link href="/contribute">
+            <Link href="/contribute" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
+              </Button>
+            </Link>
+            <Link href="/why" target="_blank" rel="noopener noreferrer">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <Github className="mr-2 h-4 w-4" />
+                Why IQRA than KALAM?
               </Button>
             </Link>
           </div>
