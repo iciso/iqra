@@ -354,4 +354,4 @@ const JoyPage = () => {
   );
 };
 
-export default JoyPage; 
+export default JoyPage;
