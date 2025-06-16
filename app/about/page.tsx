@@ -178,21 +178,25 @@ export default function AboutPage() {
   </div>
       
         <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
-        <div className="flex items-center justify-center mb-1">
-          <MessageSquare className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" />
-          <span>
-            For suggestions WhatsApp{" "}
-            <Link
-              href="https://cvemrafi.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
-            >
-              Rafique
-            </Link>{" "}
-            at +91 7558845528
-          </span>
-        </div>
+  <div className="flex items-center justify-center mb-1">
+    {MessageSquare && (
+      <MessageSquare 
+        className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" 
+      />
+    )}
+    <span>
+      For suggestions WhatsApp{" "}
+      <Link
+        href="https://cvemrafi.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
+      >
+        Rafique
+      </Link>{" "}
+      at +91 7558845528
+    </span>
+  </div>
         <div className="flex items-center justify-center">
           <svg viewBox="0 0 496.08 512" className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400">
             <path
