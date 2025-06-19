@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Gamepad2 } from "lucide-react"
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Trophy, Gamepad2 } from "lucide-react"
 import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { IqraLogo } from "@/components/iqra-logo"
@@ -79,6 +79,12 @@ export default function AboutPage() {
             <Link href="/contribute">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
+              </Button>
+            </Link>
+            <Link href="/why">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
+              <Trophy className="mr-2 h-4 w-4" />
+                Why IQRA than KALAM
               </Button>
             </Link>
           </div>
