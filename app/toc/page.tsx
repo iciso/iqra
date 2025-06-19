@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+"use client"; // 👈 Critical: Marks this as a Client Component
+
+import React from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+
+// Dynamically import Mermaid to avoid SSR issues
+const Mermaid = dynamic(() => import("mermaid"), { ssr: false });
 
 const TheoryOfChange = () => {
   // Initialize Mermaid after component mounts
-  useEffect(() => {
-    const loadMermaid = async () => {
-      if (typeof window !== "undefined" && !window.mermaid) {
-        const mermaid = await import("mermaid");
-        mermaid.default.initialize({ startOnLoad: true });
-      }
-    };
-    loadMermaid();
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.mermaid) {
+      window.mermaid.initialize({ startOnLoad: true });
+    }
   }, []);
 
   return (
