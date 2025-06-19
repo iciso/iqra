@@ -1,21 +1,20 @@
-'use client';
-
 import Link from "next/link"
-import { 
-  ArrowRight, ArrowLeft, Github, Trophy, MessageSquare 
-} from "lucide-react"
+import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Gamepad2 } from "lucide-react"
+import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { IqraLogo } from "@/components/iqra-logo"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <section className="mb-12">
-        <div className="flex justify-center mb-8">
-          <IqraLogo size="lg" showText={false} />
-        </div>
-        <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto">
+
+      <main className="container mx-auto px-4 py-8 max-w-3xl">
+        <section className="mb-12">
+          <div className="flex justify-center mb-8">
+             <IqraLogo size="lg" showText={false} />
+          </div>
+          <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
           The first freeware open-source Islamic knowledge quiz app with competitive challenges
         </p>
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
@@ -59,7 +58,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-4">Islamic Knowledge Categories</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
+          Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance..
           </p>
         </section>
 
@@ -71,27 +70,17 @@ export default function AboutPage() {
             Quran scholars, and anyone passionate about making Islamic knowledge more accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Button asChild className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
-                <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                      GitHub IQRA Repository
-                </Link>
-            </Button>
-         
-              <Button asChild variant="outline" className="w-full sm:w-auto">
-                    <Link href="/contribute" target="_blank" rel="noopener noreferrer">
-                      How to Contribute
-                    </Link>
-                 </Button>
-          
-           
-            <Button asChild className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
-                 <Link href="/why">
+            <Link href="https://github.com/iciso/iqra" target="_blank" rel="noopener noreferrer">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
               <Github className="mr-2 h-4 w-4" />
-                Why IQRA than KALAM?
-                    </Link>
+                GitHub IQRA Repository
               </Button>
-          
+            </Link>
+            <Link href="/contribute">
+              <Button variant="outline" className="w-full sm:w-auto">
+                How to Contribute
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -141,42 +130,25 @@ export default function AboutPage() {
             This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entrely Merciful, The Entirely Generous.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-           
-            <Button asChild className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
-             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
+            <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
+            <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
               <Album className="mr-2 h-4 w-4" />
                 IQRA Papers
-               </Link>
               </Button>
-           
-         
-       
-        
-            <Button asChild variant="outline">
-               <Link href="/">
+            </Link>
+          </div>
+        </section>
+
+        <div className="flex justify-center mt-8">
+          <Link href="/">
+            <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
-               </Link>
             </Button>
-         
-          
-
-       
-            <Button asChild className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
-                    <Link href="/why">
-              <Trophy className="mr-2 h-4 w-4" />
-                Why IQRA than KALAM?
-                   </Link>
-              </Button>
-           
-    
-            </div>
-
-        </section>
-     
-  </div>
-      
-        <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
+          </Link>
+        </div>
+      </main>
+      <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
   <div className="flex items-center justify-center mb-1">
     <MessageSquare className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" />
     <span>
