@@ -1,20 +1,9 @@
-"use client"; // 👈 Critical: Marks this as a Client Component
+"use client";
 
 import React from "react";
 import Head from "next/head";
-import dynamic from "next/dynamic";
-
-// Dynamically import Mermaid to avoid SSR issues
-const Mermaid = dynamic(() => import("mermaid"), { ssr: false });
 
 const TheoryOfChange = () => {
-  // Initialize Mermaid after component mounts
-  React.useEffect(() => {
-    if (typeof window !== "undefined" && window.mermaid) {
-      window.mermaid.initialize({ startOnLoad: true });
-    }
-  }, []);
-
   return (
     <div className="theory-page" style={{ fontFamily: "Arial, sans-serif", maxWidth: "1000px", margin: "0 auto", padding: "20px" }}>
       <Head>
@@ -25,56 +14,70 @@ const TheoryOfChange = () => {
         Theory of Change: Empowering Islamic Engagement Through AI
       </h1>
 
-      {/* Diagram 1 */}
-      <pre className="mermaid" style={{ marginBottom: "40px", background: "#f9f9f9", padding: "20px", borderRadius: "8px" }}>
-        {`
-          graph LR
-            subgraph A. Foundational Pillars
-              P1[Pillar 1: AI Advancements]
-              P2[Pillar 2: Freeware & Open-Source]
-              P3[Pillar 3: Islamic Education]
-              P4[Pillar 4: Social Welfare]
-              P5[Pillar 5: Unity Promotion]
-              P6[Pillar 6: Ethical Dialogue]
-            end
+      {/* Diagram 1: Pillars → Apps (SVG) */}
+      <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          {/* Pillars */}
+          <rect x="50" y="50" width="100" height="400" fill="#4CAF50" opacity="0.7" rx="5" />
+          <text x="100" y="30" textAnchor="middle" fontWeight="bold">Foundational Pillars</text>
+          
+          {/* Pillar Labels */}
+          {["AI Advancements", "Open-Source", "Islamic Ed", "Social Welfare", "Unity", "Ethical Dialogue"].map((label, i) => (
+            <text key={i} x="100" y={100 + i * 60} textAnchor="middle" fill="white">{label}</text>
+          ))}
 
-            subgraph B. Core Apps & Outputs
-              IQRA["IQRA App<br>(Interactive Learning)"]
-              KALAM["KALAM App<br>(Gamified Learning)"]
-              NOOR["Noor App<br>(AI Chat + Interfaith)"]
+          {/* Apps */}
+          <circle cx="400" cy="150" r="60" fill="#2196F3" />
+          <text x="400" y="150" textAnchor="middle" fill="white">IQRA</text>
+          
+          <circle cx="400" cy="300" r="60" fill="#FF9800" />
+          <text x="400" y="300" textAnchor="middle" fill="white">KALAM</text>
+          
+          <circle cx="600" cy="225" r="60" fill="#9C27B0" />
+          <text x="600" y="225" textAnchor="middle" fill="white">NOOR</text>
 
-              P1 & P2 & P3 & P5 --> IQRA --> Output1["a) Interactive Learning/Infographics<br>b) Quiz Challenges (Badges/Leaderboards)"]
-              P1 & P2 & P3 & P4 --> KALAM --> Output2["Gamified Education<br>(Community Features Pending)"]
-              P1 & P2 & P5 & P6 --> NOOR --> Output3["AI Chat + CLCP WhatsApp Group/Website"]
-            end
-        `}
-      </pre>
+          {/* Connectors */}
+          <path d="M150 80 L340 150" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 140 L340 150" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 200 L340 150" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 260 L340 150" stroke="#333" strokeWidth="2" fill="none" />
+          
+          <path d="M150 140 L340 300" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 200 L340 300" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 260 L340 300" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 320 L340 300" stroke="#333" strokeWidth="2" fill="none" />
+          
+          <path d="M150 80 L540 225" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 200 L540 225" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 260 L540 225" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M150 320 L540 225" stroke="#333" strokeWidth="2" fill="none" />
+        </svg>
+      </div>
 
-      {/* Diagram 2 */}
-      <pre className="mermaid" style={{ background: "#f9f9f9", padding: "20px", borderRadius: "8px" }}>
-        {`
-          graph TB
-            subgraph C. Synergies
-              Synergy1["Synergy 1: Reinforced Learning"]
-              Synergy2["Synergy 2: Gamified Open-Source Growth"]
-              Synergy3["Synergy 3: Ethical Framing"]
+      {/* Diagram 2: Synergies (SVG) */}
+      <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          {/* Synergy Boxes */}
+          <rect x="100" y="50" width="200" height="80" fill="#FF5722" rx="5" />
+          <text x="200" y="90" textAnchor="middle" fill="white">Reinforced Learning</text>
+          
+          <rect x="100" y="180" width="200" height="80" fill="#673AB7" rx="5" />
+          <text x="200" y="220" textAnchor="middle" fill="white">Gamified Growth</text>
+          
+          <rect x="100" y="310" width="200" height="80" fill="#009688" rx="5" />
+          <text x="200" y="350" textAnchor="middle" fill="white">Ethical Framing</text>
 
-              IQRA & NOOR --> Synergy1 --> OnDemand[Quiz Answers via Noor AI]
-              KALAM & P2 --> Synergy2 --> Future[Community-Driven Expansion]
-              NOOR & P6 --> Synergy3 --> Context[CLCP in IQRA/KALAM Content]
-            end
-
-            subgraph D. Outcomes
-              Individual[Individual Empowerment]
-              Cohesion[Intra-Community Cohesion]
-              Dialogue[Interfaith Dialogue]
-              Impact[Social Impact]
-              Ecosystem[Sustainable Ecosystem]
-
-              Synergy1 & Synergy2 & Synergy3 --> Individual & Cohesion & Dialogue & Impact & Ecosystem --> Transform[Transformative Ummah]
-            end
-        `}
-      </pre>
+          {/* Outcomes */}
+          {["Empowerment", "Cohesion", "Dialogue", "Impact", "Ecosystem"].map((label, i) => (
+            <circle key={i} cx={500} cy={50 + i * 90} r="40" fill="#607D8B" />
+          ))}
+          
+          {/* Connectors */}
+          <path d="M300 90 L460 50" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M300 220 L460 140" stroke="#333" strokeWidth="2" fill="none" />
+          <path d="M300 350 L460 230" stroke="#333" strokeWidth="2" fill="none" />
+        </svg>
+      </div>
 
       {/* Explanation Section */}
       <div style={{ marginTop: "40px", lineHeight: "1.6" }}>
