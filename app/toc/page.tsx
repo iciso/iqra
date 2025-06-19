@@ -1,20 +1,30 @@
-import React from "react";
-import Head from "next/head"; // For Next.js. Replace with <head> if using plain React.
+import React, { useEffect } from "react";
+import Head from "next/head";
 
 const TheoryOfChange = () => {
+  // Initialize Mermaid after component mounts
+  useEffect(() => {
+    const loadMermaid = async () => {
+      if (typeof window !== "undefined" && !window.mermaid) {
+        const mermaid = await import("mermaid");
+        mermaid.default.initialize({ startOnLoad: true });
+      }
+    };
+    loadMermaid();
+  }, []);
+
   return (
     <div className="theory-page" style={{ fontFamily: "Arial, sans-serif", maxWidth: "1000px", margin: "0 auto", padding: "20px" }}>
       <Head>
         <title>Theory of Change | AI-Driven Islamic Apps</title>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       </Head>
 
       <h1 style={{ textAlign: "center", color: "#2E7D32", marginBottom: "30px" }}>
         Theory of Change: Empowering Islamic Engagement Through AI
       </h1>
 
-      {/* Diagram 1: Revised Pillars → Apps → Outputs */}
-      <div className="mermaid" style={{ marginBottom: "40px" }}>
+      {/* Diagram 1 */}
+      <pre className="mermaid" style={{ marginBottom: "40px", background: "#f9f9f9", padding: "20px", borderRadius: "8px" }}>
         {`
           graph LR
             subgraph A. Foundational Pillars
@@ -36,10 +46,10 @@ const TheoryOfChange = () => {
               P1 & P2 & P5 & P6 --> NOOR --> Output3["AI Chat + CLCP WhatsApp Group/Website"]
             end
         `}
-      </div>
+      </pre>
 
-      {/* Diagram 2: Synergies → Outcomes */}
-      <div className="mermaid">
+      {/* Diagram 2 */}
+      <pre className="mermaid" style={{ background: "#f9f9f9", padding: "20px", borderRadius: "8px" }}>
         {`
           graph TB
             subgraph C. Synergies
@@ -62,7 +72,7 @@ const TheoryOfChange = () => {
               Synergy1 & Synergy2 & Synergy3 --> Individual & Cohesion & Dialogue & Impact & Ecosystem --> Transform[Transformative Ummah]
             end
         `}
-      </div>
+      </pre>
 
       {/* Explanation Section */}
       <div style={{ marginTop: "40px", lineHeight: "1.6" }}>
@@ -72,9 +82,6 @@ const TheoryOfChange = () => {
           and <strong>Noor</strong> (interfaith AI chat) synergize through <strong>AI, open-source, and Islamic ethics</strong> to create scalable impact.
         </p>
       </div>
-
-      {/* Initialize Mermaid.js */}
-      <script dangerouslySetInnerHTML={{ __html: "mermaid.initialize({ startOnLoad: true });" }} />
     </div>
   );
 };
