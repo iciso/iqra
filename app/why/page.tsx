@@ -1,50 +1,63 @@
-'use client';
+"use client"
 
-import React, { useState, useEffect } from 'react';
-import { 
-  Gamepad2, Trophy, BookOpen, Heart, Laugh, Users, User, Laptop, History, 
-  ThumbsUp, Smile, ArrowDown, MessageSquare, AlertCircle, Award  
-} from 'lucide-react';
+import type React from "react"
+import { useState, useEffect } from "react"
+import {
+  Gamepad2,
+  Trophy,
+  Heart,
+  Laugh,
+  Users,
+  User,
+  History,
+  ThumbsUp,
+  Smile,
+  ArrowDown,
+  MessageSquare,
+  AlertCircle,
+  Award,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const JoyPage = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
 
   // Animation styles with proper React.CSSProperties typing
   const animationStyles: Record<string, React.CSSProperties> = {
     blink: {
-      animation: 'blink 1s step-end infinite',
-      display: 'inline-block'
+      animation: "blink 1s step-end infinite",
+      display: "inline-block",
     },
     pulse: {
-      animation: 'pulse 1s ease-in-out infinite',
-      display: 'inline-block'
+      animation: "pulse 1s ease-in-out infinite",
+      display: "inline-block",
     },
     tinRightOut: {
-      animation: 'tinRightOut 3s ease-in-out infinite',
-      display: 'inline-block'
+      animation: "tinRightOut 3s ease-in-out infinite",
+      display: "inline-block",
     },
     tinUpOut: {
-      animation: 'tinUpOut 3s ease-in-out infinite',
-      display: 'inline-block'
+      animation: "tinUpOut 3s ease-in-out infinite",
+      display: "inline-block",
     },
     wrench: {
-      animation: 'wrench 3s ease-in-out infinite',
-      display: 'inline-block'
+      animation: "wrench 3s ease-in-out infinite",
+      display: "inline-block",
     },
     burst: {
-      animation: 'burst 3s ease-in-out infinite',
-      display: 'inline-block'
+      animation: "burst 3s ease-in-out infinite",
+      display: "inline-block",
     },
     spin: {
-      animation: 'spin 3s linear infinite',
-      display: 'inline-block'
-    }
-  };
+      animation: "spin 3s linear infinite",
+      display: "inline-block",
+    },
+  }
 
   useEffect(() => {
-    setIsMounted(true);
-    
-    const styleElement = document.createElement('style');
+    setIsMounted(true)
+
+    const styleElement = document.createElement("style")
     styleElement.textContent = `
       @keyframes blink {
         0%, 100% { opacity: 1; }
@@ -90,50 +103,50 @@ const JoyPage = () => {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-    `;
-    document.head.appendChild(styleElement);
+    `
+    document.head.appendChild(styleElement)
 
     const handleScroll = () => {
-      const backToTop = document.getElementById('back2Top');
+      const backToTop = document.getElementById("back2Top")
       if (backToTop) {
-        backToTop.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+        backToTop.style.display = window.pageYOffset > 300 ? "block" : "none"
       }
-    };
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.head.removeChild(styleElement);
-    };
-  }, []);
+      window.removeEventListener("scroll", handleScroll)
+      document.head.removeChild(styleElement)
+    }
+  }, [])
 
   if (!isMounted) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <div className="h-screen flex items-center justify-center">
-          Loading...
-        </div>
+        <div className="h-screen flex items-center justify-center">Loading...</div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-center">
-          Challenge <Trophy style={animationStyles.wrench} size={24} color="green" /> or 
-          Play <Gamepad2 style={animationStyles.blink} size={24} color="indigo" /> with our{' '}
-          <Heart style={{display: 'inline-block'}} size={24} color="red" fill="red" />{' '}
-          <span className="text-green-600"> IQRA</span> &amp;{' '}
-          <span className="text-blue-600">KALAM</span>{' '}Apps.
+          Challenge <Trophy style={animationStyles.wrench} size={24} color="green" /> or Play{" "}
+          <Gamepad2 style={animationStyles.blink} size={24} color="indigo" /> with our{" "}
+          <Heart style={{ display: "inline-block" }} size={24} color="red" fill="red" />{" "}
+          <span className="text-green-600"> IQRA</span> &amp; <span className="text-blue-600">KALAM</span> Apps.
         </h1>
       </header>
 
+      {/* Why IQRA? */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6">Why IQRA?</h2>
+      </section>
+
       {/* Process 1 */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">
-          Process 1: What do IQRA & KALAM players want?
-        </h2>
+        <h2 className="text-2xl font-bold mb-6">Process 1: What do IQRA & KALAM players want?</h2>
 
         <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
           <p className="text-blue-800 font-medium inline-flex items-center">
@@ -144,23 +157,23 @@ const JoyPage = () => {
 
         <div className="flex justify-center space-x-8 mb-8">
           <div className="text-center">
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} />
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} />
           </div>
           <div className="text-center">
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} />
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Yes Path */}
           <div className="text-center">
-            <button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
+            <Button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
               Yes! <br /> We take to IQRA!
-            </button>
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
+            </Button>
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-4" />
             <div className="bg-green-100 p-4 rounded-lg">
               <p className="text-green-800 inline-flex items-center">
-                Hurrah! <Laugh style={animationStyles.wrench} size={24} color="crimson" className="ml-2" /> 
+                Hurrah! <Laugh style={animationStyles.wrench} size={24} color="crimson" className="ml-2" />
                 <span>Go to Process 2.</span>
               </p>
             </div>
@@ -168,10 +181,10 @@ const JoyPage = () => {
 
           {/* No Path */}
           <div className="text-center">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
+            <Button className="bg-red-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
               No! <br /> We want to play in KALAM!
-            </button>
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
+            </Button>
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-4" />
             <div className="bg-blue-100 p-4 rounded-lg mb-4">
               <p className="text-blue-800 inline-flex items-center">
                 <Gamepad2 style={animationStyles.pulse} size={24} color="green" />
@@ -180,17 +193,15 @@ const JoyPage = () => {
             </div>
 
             <div className="flex justify-center space-x-8 mb-4">
-              <ArrowDown style={{display: 'block', margin: '0 auto'}} />
-              <ArrowDown style={{display: 'block', margin: '0 auto'}} />
+              <ArrowDown style={{ display: "block", margin: "0 auto" }} />
+              <ArrowDown style={{ display: "block", margin: "0 auto" }} />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               {/* Yes Sub-path */}
               <div className="text-center">
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg font-bold mb-2">
-                  Yes
-                </button>
-                <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
+                <Button className="bg-green-500 text-white px-4 py-2 rounded-lg font-bold mb-2">Yes</Button>
+                <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-2" />
                 <div className="bg-green-100 p-2 rounded-lg">
                   <p className="text-green-800 text-sm inline-flex items-center">
                     <Users style={animationStyles.tinUpOut} size={36} color="black" />
@@ -201,10 +212,8 @@ const JoyPage = () => {
 
               {/* No Sub-path */}
               <div className="text-center">
-                <button className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold mb-2">
-                  No
-                </button>
-                <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
+                <Button className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold mb-2">No</Button>
+                <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-2" />
                 <div className="bg-red-100 p-2 rounded-lg">
                   <p className="text-red-800 text-sm inline-flex items-center">
                     <span>We will play KALAM games and wait to challenge in IQRA</span>
@@ -220,8 +229,8 @@ const JoyPage = () => {
       {/* Process 2 */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">
-          Process 2: Challenge our friends in{' '}
-          <Trophy style={animationStyles.blink} size={20} color="blue" /> IQRA & learn from its Infographcis.
+          Process 2: Challenge our friends in <Trophy style={animationStyles.blink} size={20} color="blue" /> IQRA &
+          learn from its Infographcis.
         </h2>
 
         <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
@@ -232,36 +241,35 @@ const JoyPage = () => {
         </div>
 
         <div className="flex justify-center space-x-8 mb-8">
-          <ArrowDown style={{display: 'block', margin: '0 auto'}} />
-          <ArrowDown style={{display: 'block', margin: '0 auto'}} />
+          <ArrowDown style={{ display: "block", margin: "0 auto" }} />
+          <ArrowDown style={{ display: "block", margin: "0 auto" }} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Teams Path */}
           <div className="text-center">
-            <button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
-              IQRA Coders form Teams <Users style={{display: 'inline-block'}} size={24} color="white" className="ml-2" />
-            </button>
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
+            <Button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
+              IQRA Coders form Teams{" "}
+              <Users style={{ display: "inline-block" }} size={24} color="white" className="ml-2" />
+            </Button>
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-4" />
             <div className="bg-green-100 p-4 rounded-lg mb-4">
               <p className="text-green-800 inline-flex items-center">
-                <Users style={{color: 'gold', display: 'inline-block'}} size={24} />
+                <Users style={{ color: "gold", display: "inline-block" }} size={24} />
                 <span>IQRA Challengers learn quickly all the 12 themes in Islam</span>
               </p>
             </div>
 
             <div className="flex justify-center space-x-8 mb-4">
-              <ArrowDown style={{display: 'block', margin: '0 auto'}} />
-              <ArrowDown style={{display: 'block', margin: '0 auto'}} />
+              <ArrowDown style={{ display: "block", margin: "0 auto" }} />
+              <ArrowDown style={{ display: "block", margin: "0 auto" }} />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               {/* Yes Sub-path */}
               <div className="text-center">
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg font-bold mb-2">
-                  Yes!
-                </button>
-                <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
+                <Button className="bg-green-500 text-white px-4 py-2 rounded-lg font-bold mb-2">Yes!</Button>
+                <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-2" />
                 <div className="bg-green-100 p-2 rounded-lg">
                   <p className="text-green-800 text-sm inline-flex items-center">
                     <span>Many IQRA players form buddy teams and top the Leaderboard.</span>
@@ -272,14 +280,12 @@ const JoyPage = () => {
 
               {/* No Sub-path */}
               <div className="text-center">
-                <button className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold mb-2">
-                  No
-                </button>
-                <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-2" />
+                <Button className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold mb-2">No</Button>
+                <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-2" />
                 <div className="bg-red-100 p-2 rounded-lg">
                   <p className="text-red-800 text-sm inline-flex items-center">
                     <span>KALAM players play and learn the Kalam of Allah slowly.</span>
-                    <AlertCircle style={{display: 'inline-block'}} size={36} color="red" />
+                    <AlertCircle style={{ display: "inline-block" }} size={36} color="red" />
                   </p>
                 </div>
               </div>
@@ -288,17 +294,17 @@ const JoyPage = () => {
 
           {/* Feedback Path */}
           <div className="text-center">
-            <button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
+            <Button className="bg-green-500 text-white px-6 py-3 rounded-lg font-bold mb-4">
               KALAM players give feedback on <Gamepad2 style={animationStyles.burst} size={24} color="black" /> Games?
-            </button>
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
+            </Button>
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-4" />
             <div className="bg-green-100 p-4 rounded-lg mb-4">
               <p className="text-green-800 inline-flex items-center">
                 <MessageSquare style={animationStyles.wrench} size={24} color="indigo" />
                 <span>Okay! Rafique acts on feedback</span>
               </p>
             </div>
-            <ArrowDown style={{display: 'block', margin: '0 auto'}} className="mb-4" />
+            <ArrowDown style={{ display: "block", margin: "0 auto" }} className="mb-4" />
             <div className="bg-green-100 p-4 rounded-lg">
               <p className="text-green-800 inline-flex items-center">
                 <Laugh style={animationStyles.spin} size={24} color="crimson" />
@@ -309,13 +315,39 @@ const JoyPage = () => {
         </div>
       </section>
 
+      {/* IQRA and KALAM */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6">IQRA and KALAM</h2>
+
+        <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
+          <p className="text-blue-800 font-medium inline-flex items-center">
+            <span className="ml-2">
+              IQRA and KALAM stand at the intersection of Islamic education and modern technology.
+            </span>
+          </p>
+        </div>
+
+        <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
+          <p className="text-blue-800 font-medium inline-flex items-center">
+            <span className="ml-2">Built by the community, for the community.</span>
+          </p>
+        </div>
+
+        <div className="bg-blue-100 p-4 rounded-lg text-center mb-4">
+          <p className="text-blue-800 font-medium inline-flex items-center">
+            <span className="ml-2">Powered by Supporters</span>
+          </p>
+        </div>
+      </section>
+
       <section className="mt-12 border-t pt-6">
         <p className="italic">
-          All of us <User style={animationStyles.pulse} size={24} color="blue" /> Muslims have been in Islam for a long time. Who knows, 
-          Insha Allah, maybe a life time! And, each one of us can do our bit for our Deen{' '}
-          <ThumbsUp style={{display: 'inline-block'}} size={24} color="purple" /> For a start, we can share the links of IQRA and KALAM
-          among our families, friends , and communities, <Gamepad2 style={animationStyles.burst} size={24} color="black" /> or if you have more
-          time to spare, please call Rafique and tell him what you would like to do! IQRA and KALAM as freeware and opensource are just demos{' '}
+          All of us <User style={animationStyles.pulse} size={24} color="blue" /> Muslims have been in Islam for a long
+          time. Who knows, Insha Allah, maybe a life time! And, each one of us can do our bit for our Deen{" "}
+          <ThumbsUp style={{ display: "inline-block" }} size={24} color="purple" /> For a start, we can share the links
+          of IQRA and KALAM among our families, friends , and communities,{" "}
+          <Gamepad2 style={animationStyles.burst} size={24} color="black" /> or if you have more time to spare, please
+          call Rafique and tell him what you would like to do! IQRA and KALAM as freeware and opensource are just demos{" "}
           <Smile style={animationStyles.wrench} size={24} color="crimson" /> of what Rafique could do!
         </p>
       </section>
@@ -326,32 +358,32 @@ const JoyPage = () => {
         id="back2Top"
         title="Back to top"
         style={{
-          position: 'fixed',
-          display: 'none',
-          bottom: '50px',
-          right: '0',
-          backgroundColor: '#DDD',
-          color: '#555',
-          textAlign: 'center',
-          width: '40px',
-          height: '40px',
-          lineHeight: '40px',
-          textDecoration: 'none',
-          borderRadius: '4px 0 0 4px'
+          position: "fixed",
+          display: "none",
+          bottom: "50px",
+          right: "0",
+          backgroundColor: "#DDD",
+          color: "#555",
+          textAlign: "center",
+          width: "40px",
+          height: "40px",
+          lineHeight: "40px",
+          textDecoration: "none",
+          borderRadius: "4px 0 0 4px",
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = '#DDF';
-          e.currentTarget.style.color = '#000';
+          e.currentTarget.style.backgroundColor = "#DDF"
+          e.currentTarget.style.color = "#000"
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = '#DDD';
-          e.currentTarget.style.color = '#555';
+          e.currentTarget.style.backgroundColor = "#DDD"
+          e.currentTarget.style.color = "#555"
         }}
       >
         ↑
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default JoyPage;
+export default JoyPage
