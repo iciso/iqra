@@ -1,6 +1,5 @@
 "use client"
 import Head from "next/head"
-import Image from "next/image"
 
 const TheoryOfChange = () => {
   return (
@@ -18,53 +17,80 @@ const TheoryOfChange = () => {
 
       {/* Table 1: Pillars → Apps */}
       <div style={{ marginBottom: "40px", textAlign: "center" }}>
-          <h2>Pillars of TOC</h2>
+        <h2>Pillars of TOC</h2>
 
-	<p>We introduce the six pillars in the table.</p>
+        <p>We introduce the six pillars in the table.</p>
 
-	<table style="width:100%">
-  	<tr>
-    		<th>Pillar No.</th>
-    		<th>Pillar Name</th> 
-    		<th>Explanation</th>
-  	</tr>
-  	<tr>
-    		<td>P1</td>
-    		<td>AI advancements</td>
-    		<td>AI manifests in faster, accurate coding of complex apps like quiz challenges leaderboards which in turn directly fosters increased motivation, community dialogue and healthy competition</td>
-  	</tr>
-  	<tr>
-    		<td>P2</td>
-    		<td>Freeware and open-source</td>
-    		<td>The component evidenced by opensource GitHub repos ensures the software accessibility across global language and geographical divides</td>
-  	</tr>
-  	<tr>
-    		<td>P3</td>
-    		<td>Islamic education</td>
-    		<td>is established through gaming - KALAM, interactive AI chat - Noor, and the infographics, and quiz challenges leaderboards - IQRA as the synergism within the tripartite approach leads to increased retention and recall</td>
-  	</tr>
-	<tr>
-    		<td>P4</td>
-    		<td>Social welfare</td>
-    		<td>Describe its address through planned community interaction features—user profiles, leaderboards badges and future coding for user connections groups activity streams messaging as well as the app-to-masjid-transfer programs Emphasized is the vision to facilitate both online and geographical community activities</td>
-  	</tr>
-	<tr>
-    		<td>P5</td>
-    		<td>Unity promotion</td>
-    		<td>is achieved among Muslims through educational material sourced only from the Noble Quran and authentic Sunnah that are agreed upon by all madhabs IQRA and KALAM and for interfaith non-faith materials by focusing on neutral information or commonalities by Noor as well as the  nearly completed first draft of the book on commonalities with CLCP</td>
-  	</tr>
-	<tr>
-    		<td>P6</td>
-    		<td>Ethical Dialogue</td>
-    		<td>We show how neutral information resources provided bilingually by the Noor Chat App not only promotes understanding and reduces bias but is the first step towards the software accessibility across global language and geographical divides</td>
-  	</tr>
-	</table>
-
-
+        <table style={{ width: "100%", borderCollapse: "collapse", margin: "20px 0" }}>
+          <thead>
+            <tr>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Pillar No.</th>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Pillar Name</th>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Explanation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P1</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>AI advancements</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                AI manifests in faster, accurate coding of complex apps like quiz challenges leaderboards which in turn
+                directly fosters increased motivation, community dialogue and healthy competition
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P2</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Freeware and open-source</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                The component evidenced by opensource GitHub repos ensures the software accessibility across global
+                language and geographical divides
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P3</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Islamic education</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                is established through gaming - KALAM, interactive AI chat - Noor, and the infographics, and quiz
+                challenges leaderboards - IQRA as the synergism within the tripartite approach leads to increased
+                retention and recall
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P4</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Social welfare</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                Describe its address through planned community interaction features—user profiles, leaderboards badges
+                and future coding for user connections groups activity streams messaging as well as the
+                app-to-masjid-transfer programs Emphasized is the vision to facilitate both online and geographical
+                community activities
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P5</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Unity promotion</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                is achieved among Muslims through educational material sourced only from the Noble Quran and authentic
+                Sunnah that are agreed upon by all madhabs IQRA and KALAM and for interfaith non-faith materials by
+                focusing on neutral information or commonalities by Noor as well as the nearly completed first draft of
+                the book on commonalities with CLCP
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P6</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Ethical Dialogue</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                We show how neutral information resources provided bilingually by the Noor Chat App not only promotes
+                understanding and reduces bias but is the first step towards the software accessibility across global
+                language and geographical divides
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       {/* Diagram 2: Activities & Immediate Outputs */}
       <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <h2>Activities & Immediate Outputs</h2>
         <div className="w-full max-w-4xl mx-auto">
           <svg viewBox="0 0 800 400" className="w-full h-auto" style={{ maxWidth: "800px" }}>
             {/* Simplified diagram representation */}
@@ -171,6 +197,7 @@ const TheoryOfChange = () => {
 
       {/* Diagram 3: Synergies */}
       <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <h2>Synergies</h2>
         <div className="w-full max-w-5xl mx-auto">
           <svg viewBox="0 0 900 300" className="w-full h-auto" style={{ maxWidth: "900px" }}>
             <defs>
