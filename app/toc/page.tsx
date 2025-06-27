@@ -16,15 +16,51 @@ const TheoryOfChange = () => {
         Theory of Change: Empowering Islamic Engagement Through AI
       </h1>
 
-      {/* Diagram 1: Pillars → Apps */}
+      {/* Table 1: Pillars → Apps */}
       <div style={{ marginBottom: "40px", textAlign: "center" }}>
-        <Image
-          src="/theory-of-change/pillars-diagram.png"
-          alt="Theory of Change - Six Pillars Diagram"
-          width={276}
-          height={614}
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
+          <h2>Pillars of TOC</h2>
+
+	<p>We introduce the six pillars in the table.</p>
+
+	<table style="width:100%">
+  	<tr>
+    		<th>Pillar No.</th>
+    		<th>Pillar Name</th> 
+    		<th>Explanation</th>
+  	</tr>
+  	<tr>
+    		<td>P1</td>
+    		<td>AI advancements</td>
+    		<td>AI manifests in faster, accurate coding of complex apps like quiz challenges leaderboards which in turn directly fosters increased motivation, community dialogue and healthy competition</td>
+  	</tr>
+  	<tr>
+    		<td>P2</td>
+    		<td>Freeware and open-source</td>
+    		<td>The component evidenced by opensource GitHub repos ensures the software accessibility across global language and geographical divides</td>
+  	</tr>
+  	<tr>
+    		<td>P3</td>
+    		<td>Islamic education</td>
+    		<td>is established through gaming - KALAM, interactive AI chat - Noor, and the infographics, and quiz challenges leaderboards - IQRA as the synergism within the tripartite approach leads to increased retention and recall</td>
+  	</tr>
+	<tr>
+    		<td>P4</td>
+    		<td>Social welfare</td>
+    		<td>Describe its address through planned community interaction features—user profiles, leaderboards badges and future coding for user connections groups activity streams messaging as well as the app-to-masjid-transfer programs Emphasized is the vision to facilitate both online and geographical community activities</td>
+  	</tr>
+	<tr>
+    		<td>P5</td>
+    		<td>Unity promotion</td>
+    		<td>is achieved among Muslims through educational material sourced only from the Noble Quran and authentic Sunnah that are agreed upon by all madhabs IQRA and KALAM and for interfaith non-faith materials by focusing on neutral information or commonalities by Noor as well as the  nearly completed first draft of the book on commonalities with CLCP</td>
+  	</tr>
+	<tr>
+    		<td>P6</td>
+    		<td>Ethical Dialogue</td>
+    		<td>We show how neutral information resources provided bilingually by the Noor Chat App not only promotes understanding and reduces bias but is the first step towards the software accessibility across global language and geographical divides</td>
+  	</tr>
+	</table>
+
+
       </div>
 
       {/* Diagram 2: Activities & Immediate Outputs */}
