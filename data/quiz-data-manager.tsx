@@ -5,23 +5,17 @@ import comparativeReligionCategory from "./comparative-religion"
 import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
-import islamicMedicalEthicsCategory from "./islamic-medical-ethics"
-import islamicPsychologyCategory from "./islamic-psychology"
-import islamicParentingCategory from "./islamic-parenting"
 
 // Import the infographics enhancement function
-import {
-  enhanceQuestionsWithInfographicsForData,
-  enhanceQuestionsWithInfographics,
-} from "./quiz-data-manager-infographics"
+import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
 
 // Define all quiz categories directly in this file
-const baseQuizData: QuizCategory[] = [
+const quizData: QuizCategory[] = [
   {
     id: "quran",
     title: "Quran",
     description: "Test your knowledge of the Holy Quran",
-    icon: "📖",
+    icon: "",
     levels: {
       easy: [
         {
@@ -175,7 +169,7 @@ const baseQuizData: QuizCategory[] = [
     id: "fiqh",
     title: "Fiqh",
     description: "Islamic Jurisprudence",
-    icon: "⚖️",
+    icon: "",
     levels: {
       easy: [
         {
@@ -340,7 +334,7 @@ const baseQuizData: QuizCategory[] = [
     id: "tafsir",
     title: "Tafsir",
     description: "Quranic Interpretation",
-    icon: "📚",
+    icon: "",
     levels: {
       easy: [
         {
@@ -438,580 +432,662 @@ const baseQuizData: QuizCategory[] = [
         {
           question: "What is the first step in interpreting a verse according to classical Tafsir methodology?",
           options: [
-            "Check the linguistic meaning",
-            "Look for similar verses in the Quran",
-            "Consult the Hadith",
-            "Consider the historical context",
+            "Consulting historical context",
+            "Looking at linguistic meaning",
+            "Interpreting the Quran with the Quran",
+            "Referring to scholarly opinions",
           ],
-          correctAnswer: "Look for similar verses in the Quran",
+          correctAnswer: "Interpreting the Quran with the Quran",
           explanation:
-            "The first step in classical Tafsir methodology is to look for other verses in the Quran that explain or clarify the verse in question, as the Quran is the best interpreter of itself.",
+            "The first step in classical Tafsir methodology is to interpret the Quran with the Quran itself, looking for explanations of a verse in other parts of the Quran before moving to other sources.",
         },
       ],
       advanced: [
         {
+          question: "Who authored the famous Tafsir 'Fi Zilal al-Quran' (In the Shade of the Quran)?",
+          options: ["Ibn Kathir", "Sayyid Qutb", "Al-Tabari", "Al-Qurtubi"],
+          correctAnswer: "Sayyid Qutb",
+          explanation: "'Fi Zilal al-Quran' was written by Sayyid Qutb while he was in prison in Egypt.",
+        },
+        {
+          question: "What is 'Tafsir bil-Ra'y'?",
+          options: [
+            "Interpretation based on narrations",
+            "Interpretation based on personal opinion",
+            "Interpretation based on dreams",
+            "Interpretation based on consensus",
+          ],
+          correctAnswer: "Interpretation based on personal opinion",
+          explanation:
+            "Tafsir bil-Ra'y is interpretation based on personal opinion or reasoning, which must be grounded in sound knowledge.",
+        },
+        {
+          question: "Which famous Tafsir is known for its comprehensive linguistic analysis?",
+          options: ["Tafsir Ibn Kathir", "Tafsir al-Tabari", "Tafsir al-Kashshaf by Zamakhshari", "Tafsir al-Qurtubi"],
+          correctAnswer: "Tafsir al-Kashshaf by Zamakhshari",
+          explanation:
+            "Al-Kashshaf by Zamakhshari is renowned for its detailed linguistic and rhetorical analysis of the Quran.",
+        },
+        {
           question: "What is 'Asbab al-Nuzul'?",
-          options: ["Reasons for revelation", "Methods of recitation", "Types of verses", "Compilation of the Quran"],
-          correctAnswer: "Reasons for revelation",
-          explanation:
-            "Asbab al-Nuzul refers to the occasions or circumstances that led to the revelation of specific verses.",
-        },
-        {
-          question: "Who wrote 'Tafsir al-Tabari'?",
-          options: ["Ibn Kathir", "Al-Qurtubi", "Muhammad ibn Jarir al-Tabari", "Al-Jalalayn"],
-          correctAnswer: "Muhammad ibn Jarir al-Tabari",
-          explanation:
-            "Tafsir al-Tabari was written by Muhammad ibn Jarir al-Tabari and is considered one of the most comprehensive classical commentaries.",
-        },
-        {
-          question: "What is the methodology of 'Tafsir al-Quran bil-Quran'?",
           options: [
-            "Interpreting the Quran with Hadith",
-            "Interpreting the Quran with the Quran itself",
-            "Interpreting the Quran with scholarly opinions",
-            "Interpreting the Quran with historical context",
+            "The order of revelation",
+            "The occasions or circumstances of revelation",
+            "The place of revelation",
+            "The time of revelation",
           ],
-          correctAnswer: "Interpreting the Quran with the Quran itself",
+          correctAnswer: "The occasions or circumstances of revelation",
           explanation:
-            "This methodology involves explaining verses of the Quran by referring to other verses that clarify or elaborate on the same topic.",
+            "Asbab al-Nuzul refers to the historical contexts and occasions that led to the revelation of specific verses.",
         },
         {
-          question: "What is the difference between 'Muhkam' and 'Mutashabih' verses?",
+          question: "What is the difference between 'Tafsir' and 'Ta'wil'?",
           options: [
-            "Clear and ambiguous verses respectively",
-            "Meccan and Medinan verses respectively",
-            "Legal and narrative verses respectively",
-            "Early and late revelations respectively",
+            "They are synonyms",
+            "Tafsir is literal explanation, Ta'wil is deeper interpretation",
+            "Tafsir is for scholars, Ta'wil is for laypeople",
+            "Tafsir is based on narrations, Ta'wil on reasoning",
           ],
-          correctAnswer: "Clear and ambiguous verses respectively",
+          correctAnswer: "Tafsir is literal explanation, Ta'wil is deeper interpretation",
           explanation:
-            "Muhkam verses are clear and unambiguous, while Mutashabih verses are allegorical or ambiguous in meaning.",
+            "Traditionally, Tafsir refers to the apparent or literal explanation, while Ta'wil refers to the deeper or allegorical interpretation.",
         },
         {
-          question: "What is 'I'jaz al-Quran'?",
+          question: "What is 'Isra'iliyyat' in Tafsir literature?",
           options: [
-            "The compilation of the Quran",
-            "The miraculous nature of the Quran",
-            "The preservation of the Quran",
-            "The translation of the Quran",
+            "Interpretations from Israeli scholars",
+            "Stories about Bani Israel in the Quran",
+            "Narrations from Jewish and Christian sources",
+            "References to the Night Journey (Isra)",
           ],
-          correctAnswer: "The miraculous nature of the Quran",
+          correctAnswer: "Narrations from Jewish and Christian sources",
           explanation:
-            "I'jaz al-Quran refers to the miraculous and inimitable nature of the Quran in its language, style, and content.",
+            "Isra'iliyyat refers to narrations and stories from Jewish and Christian sources that were incorporated into some Tafsir works.",
         },
         {
-          question: "What is the significance of 'Nasikh wa Mansukh' in Tafsir?",
-          options: [
-            "Different recitations of the Quran",
-            "Abrogation and abrogated verses",
-            "Meccan and Medinan verses",
-            "Literal and metaphorical verses",
-          ],
-          correctAnswer: "Abrogation and abrogated verses",
+          question: "Which Tafsir is known for its focus on legal rulings (Ahkam)?",
+          options: ["Tafsir Ibn Kathir", "Tafsir al-Tabari", "Tafsir al-Qurtubi", "Tafsir al-Kashshaf"],
+          correctAnswer: "Tafsir al-Qurtubi",
           explanation:
-            "Nasikh wa Mansukh deals with the concept of abrogation, where later revelations may supersede earlier ones in certain legal or practical matters.",
+            "Tafsir al-Qurtubi (Al-Jami' li-Ahkam al-Quran) is famous for its detailed discussion of legal rulings derived from the Quran.",
         },
         {
-          question: "What is 'Tafsir Ishari' or 'Tafsir Sufi'?",
+          question: "What is 'Tafsir al-Ishari'?",
           options: [
-            "Literal interpretation",
-            "Historical interpretation",
-            "Mystical or spiritual interpretation",
-            "Legal interpretation",
+            "Interpretation based on historical context",
+            "Interpretation based on mystical or spiritual insights",
+            "Interpretation based on scientific discoveries",
+            "Interpretation based on linguistic analysis",
           ],
-          correctAnswer: "Mystical or spiritual interpretation",
+          correctAnswer: "Interpretation based on mystical or spiritual insights",
           explanation:
-            "Tafsir Ishari refers to the mystical or spiritual interpretation of the Quran, focusing on inner meanings and spiritual insights.",
+            "Tafsir al-Ishari refers to mystical or spiritual interpretations that go beyond the apparent meaning, often associated with Sufi traditions.",
         },
         {
-          question: "What is the role of 'Qira'at' (variant readings) in Tafsir?",
+          question: "What is the concept of 'Muhkam and Mutashabih' verses in the Quran?",
           options: [
-            "They are ignored in interpretation",
-            "They provide additional layers of meaning",
-            "They create confusion",
-            "They are only for recitation purposes",
+            "Abrogating and abrogated verses",
+            "Clear and ambiguous verses",
+            "Long and short verses",
+            "Early and late revelations",
           ],
-          correctAnswer: "They provide additional layers of meaning",
+          correctAnswer: "Clear and ambiguous verses",
           explanation:
-            "Different authentic readings (Qira'at) of the Quran can provide additional meanings and interpretations of verses.",
+            "Muhkam refers to verses with clear and definitive meanings, while Mutashabih refers to verses that are ambiguous or open to multiple interpretations.",
         },
         {
-          question: "What is 'Tafsir Mawdu'i' (Thematic Tafsir)?",
+          question: "What is the concept of 'Nasikh and Mansukh' in Quranic interpretation?",
           options: [
-            "Verse-by-verse interpretation",
-            "Interpretation based on themes across the Quran",
-            "Interpretation based on historical order",
-            "Interpretation based on grammatical analysis",
+            "Different styles of recitation",
+            "Abrogating and abrogated verses",
+            "Clear and ambiguous verses",
+            "Literal and metaphorical meanings",
           ],
-          correctAnswer: "Interpretation based on themes across the Quran",
+          correctAnswer: "Abrogating and abrogated verses",
           explanation:
-            "Tafsir Mawdu'i involves studying and interpreting verses related to specific themes or topics throughout the entire Quran.",
-        },
-        {
-          question: "What is the significance of 'Wujuh wa Naza'ir' in Quranic studies?",
-          options: [
-            "Different recitations",
-            "Similar words with different meanings in different contexts",
-            "Abrogated verses",
-            "Miraculous aspects",
-          ],
-          correctAnswer: "Similar words with different meanings in different contexts",
-          explanation:
-            "Wujuh wa Naza'ir studies how the same word can have different meanings in different contexts throughout the Quran.",
+            "Nasikh refers to verses that abrogate or supersede earlier rulings, while Mansukh refers to verses whose rulings have been abrogated or replaced by later revelations. This concept addresses the apparent contradictions in the Quran by recognizing the progressive nature of revelation.",
         },
       ],
     },
   },
   {
-    id: "hadith",
-    title: "Hadith",
-    description: "Prophetic Traditions",
-    icon: "📜",
+    id: "hadeeth",
+    title: "Hadeeth",
+    description: "Sayings and actions of Prophet Muhammad (PBUH)",
+    icon: "",
     levels: {
       easy: [
         {
-          question: "What is a Hadith?",
-          options: [
-            "A verse from the Quran",
-            "A saying, action, or approval of Prophet Muhammad (PBUH)",
-            "A prayer",
-            "A chapter in the Quran",
-          ],
-          correctAnswer: "A saying, action, or approval of Prophet Muhammad (PBUH)",
+          question: "What does the term 'Hadith' mean?",
+          options: ["Prayer", "Narration", "Book", "Law"],
+          correctAnswer: "Narration",
           explanation:
-            "A Hadith is a record of the words, actions, and the silent approval of the Islamic prophet Muhammad (PBUH).",
+            "Hadith literally means a narration, account, or report. In Islamic context, it refers to the sayings, actions, or approvals of Prophet Muhammad (PBUH).",
         },
         {
-          question: "What is the highest level of authenticity for a Hadith?",
-          options: ["Hasan", "Sahih", "Da'if", "Maudu"],
-          correctAnswer: "Sahih",
-          explanation: "Sahih (authentic) is the highest level of Hadith authenticity.",
+          question: "What are the two main components of a Hadith?",
+          options: ["Quran and Sunnah", "Isnad and Matn", "Sahih and Daif", "Fiqh and Aqeedah"],
+          correctAnswer: "Isnad and Matn",
+          explanation:
+            "A Hadith consists of the Isnad (chain of narrators) and the Matn (the actual text or content of the narration).",
         },
         {
-          question: "Who compiled Sahih al-Bukhari?",
-          options: ["Imam Muslim", "Imam Bukhari", "Imam Tirmidhi", "Imam Abu Dawud"],
+          question: "Who compiled the collection of Hadiths known as 'Sahih Bukhari'?",
+          options: ["Imam Muslim", "Imam Bukhari", "Imam Malik", "Imam Abu Dawud"],
           correctAnswer: "Imam Bukhari",
-          explanation: "Sahih al-Bukhari was compiled by Imam Muhammad al-Bukhari.",
+          explanation: "Sahih Bukhari was compiled by Imam Muhammad ibn Ismail al-Bukhari (810-870 CE).",
+        },
+        {
+          question: "What is a 'Sahih' Hadith?",
+          options: [
+            "A Hadith narrated by a companion",
+            "A Hadith found in the Quran",
+            "A Hadith that is authentic and meets all criteria of acceptance",
+            "A Hadith that is weak",
+          ],
+          correctAnswer: "A Hadith that is authentic and meets all criteria of acceptance",
+          explanation:
+            "A Sahih Hadith is one that is authentic and meets all the criteria of acceptance in terms of chain of narrators and content.",
+        },
+        {
+          question: "What is the difference between Hadith and Sunnah?",
+          options: [
+            "They are the same",
+            "Hadith is written, Sunnah is practiced",
+            "Hadith is the narration, Sunnah is the practice or way",
+            "Hadith is from the Quran, Sunnah is from the Prophet",
+          ],
+          correctAnswer: "Hadith is the narration, Sunnah is the practice or way",
+          explanation:
+            "Hadith refers to the narrations of the Prophet's sayings, actions, or approvals, while Sunnah refers to his established practice or way of life.",
+        },
+        {
+          question: "What is the purpose of studying Hadith?",
+          options: [
+            "To replace the Quran",
+            "To understand and implement the Quran and Islamic teachings correctly",
+            "Only for historical interest",
+            "Only for scholars, not regular Muslims",
+          ],
+          correctAnswer: "To understand and implement the Quran and Islamic teachings correctly",
+          explanation:
+            "Studying Hadith helps Muslims understand and implement the Quran and Islamic teachings correctly, as the Prophet Muhammad (PBUH) was the living example of the Quran in practice.",
+        },
+        {
+          question: "What is a 'Daif' (weak) Hadith?",
+          options: [
+            "A Hadith with a short text",
+            "A Hadith narrated by few people",
+            "A Hadith that doesn't meet all criteria of authenticity",
+            "A Hadith about minor issues",
+          ],
+          correctAnswer: "A Hadith that doesn't meet all criteria of authenticity",
+          explanation:
+            "A Daif (weak) Hadith is one that doesn't meet all the criteria of authenticity in terms of chain of narrators or content, making it less reliable than Sahih or Hasan Hadiths.",
+        },
+        {
+          question: "Who is considered the 'Mother of the Believers' who narrated many Hadiths?",
+          options: ["Fatimah", "Khadijah", "Aisha", "Zaynab"],
+          correctAnswer: "Aisha",
+          explanation:
+            "Aisha, the wife of Prophet Muhammad (PBUH), is considered one of the 'Mothers of the Believers' and narrated approximately 2,210 Hadiths, making her one of the most prolific narrators.",
+        },
+        {
+          question: "What is the meaning of 'Sunnah' in the context of Hadith studies?",
+          options: [
+            "The Quran",
+            "The way or practice of the Prophet",
+            "The consensus of scholars",
+            "The legal rulings",
+          ],
+          correctAnswer: "The way or practice of the Prophet",
+          explanation:
+            "In the context of Hadith studies, Sunnah refers to the way or practice of Prophet Muhammad (PBUH), including his sayings, actions, and tacit approvals.",
+        },
+        {
+          question: "What is the role of Hadith in Islamic law?",
+          options: [
+            "It has no role",
+            "It is the only source",
+            "It is the second primary source after the Quran",
+            "It is only used when the Quran is silent",
+          ],
+          correctAnswer: "It is the second primary source after the Quran",
+          explanation:
+            "Hadith serves as the second primary source of Islamic law after the Quran, providing detailed explanations, clarifications, and additional rulings not explicitly mentioned in the Quran.",
+        },
+      ],
+      advanced: [
+        {
+          question: "What is the difference between Hadith and Sunnah?",
+          options: [
+            "They are the same thing",
+            "Hadith is written, Sunnah is practiced",
+            "Hadith is the narration, Sunnah is the practice or way",
+            "Hadith is from companions, Sunnah is from the Prophet",
+          ],
+          correctAnswer: "Hadith is the narration, Sunnah is the practice or way",
+          explanation:
+            "Hadith refers to the narrations about the Prophet's sayings, actions, or approvals, while Sunnah refers to his way of life, practices, and traditions.",
+        },
+        {
+          question: "What is a 'Mutawatir' Hadith?",
+          options: [
+            "A Hadith narrated by a single person",
+            "A Hadith with a broken chain",
+            "A Hadith transmitted by a large number of narrators at each level",
+            "A Hadith that contradicts the Quran",
+          ],
+          correctAnswer: "A Hadith transmitted by a large number of narrators at each level",
+          explanation:
+            "A Mutawatir Hadith is one that has been narrated by such a large number of people at each level of the chain that it is impossible for them to have colluded in a lie.",
         },
         {
           question: "What are the 'Kutub al-Sittah'?",
           options: [
-            "Six pillars of Islam",
-            "Six major Hadith collections",
-            "Six companions of the Prophet",
-            "Six chapters of the Quran",
+            "The six verses of the Quran",
+            "The six pillars of faith",
+            "The six canonical collections of Hadith",
+            "The six schools of thought",
           ],
-          correctAnswer: "Six major Hadith collections",
+          correctAnswer: "The six canonical collections of Hadith",
           explanation:
-            "Kutub al-Sittah refers to the six major collections of Hadith in Sunni Islam: Bukhari, Muslim, Abu Dawud, Tirmidhi, Nasa'i, and Ibn Majah.",
+            "Kutub al-Sittah refers to the six major collections of Hadith: Sahih Bukhari, Sahih Muslim, Sunan Abu Dawud, Jami al-Tirmidhi, Sunan al-Nasa'i, and Sunan Ibn Majah.",
         },
         {
-          question: "What is the 'Isnad' of a Hadith?",
-          options: ["The text of the Hadith", "The chain of narrators", "The authenticity level", "The topic category"],
-          correctAnswer: "The chain of narrators",
-          explanation:
-            "Isnad refers to the chain of narrators who transmitted the Hadith from the Prophet to the compiler.",
-        },
-        {
-          question: "What is the 'Matn' of a Hadith?",
+          question: "What is 'Ilm al-Jarh wa al-Ta'dil'?",
           options: [
-            "The chain of narrators",
-            "The text or content of the Hadith",
-            "The compiler's name",
-            "The date of compilation",
-          ],
-          correctAnswer: "The text or content of the Hadith",
-          explanation:
-            "Matn refers to the actual text or content of the Hadith, as opposed to the chain of narrators (Isnad).",
-        },
-        {
-          question: "What is a 'Da'if' Hadith?",
-          options: ["A very authentic Hadith", "A weak Hadith", "A fabricated Hadith", "A good Hadith"],
-          correctAnswer: "A weak Hadith",
-          explanation:
-            "Da'if refers to a weak Hadith that does not meet the criteria for authenticity due to issues in its chain or content.",
-        },
-        {
-          question: "What is a 'Hasan' Hadith?",
-          options: ["A weak Hadith", "A good/fair Hadith", "A fabricated Hadith", "The most authentic Hadith"],
-          correctAnswer: "A good/fair Hadith",
-          explanation: "Hasan refers to a good or fair Hadith that is acceptable but not as strong as Sahih.",
-        },
-        {
-          question: "What is the second most authentic Hadith collection after Sahih al-Bukhari?",
-          options: ["Sunan Abu Dawud", "Sahih Muslim", "Jami' at-Tirmidhi", "Sunan an-Nasa'i"],
-          correctAnswer: "Sahih Muslim",
-          explanation:
-            "Sahih Muslim, compiled by Imam Muslim, is considered the second most authentic Hadith collection after Sahih al-Bukhari.",
-        },
-        {
-          question: "What is 'Sunnah'?",
-          options: [
-            "The Quran",
-            "The way of life prescribed as normative based on the Prophet's teachings",
-            "Islamic law",
-            "Prayer",
-          ],
-          correctAnswer: "The way of life prescribed as normative based on the Prophet's teachings",
-          explanation:
-            "Sunnah refers to the way of life prescribed as normative for Muslims based on the teachings and practices of the Islamic prophet Muhammad.",
-        },
-      ],
-      advanced: [
-        {
-          question: "What is a 'Mutawatir' Hadith?",
-          options: [
-            "A Hadith narrated by one person",
-            "A Hadith narrated by so many people that it's impossible for them to have conspired to lie",
-            "A weak Hadith",
-            "A fabricated Hadith",
-          ],
-          correctAnswer: "A Hadith narrated by so many people that it's impossible for them to have conspired to lie",
-          explanation:
-            "Mutawatir refers to a Hadith that has been narrated by such a large number of people at each level of the chain that it would be impossible for them all to have conspired to fabricate it.",
-        },
-        {
-          question: "What is 'Ilm al-Rijal'?",
-          options: [
-            "The science of Hadith compilation",
-            "The science of evaluating Hadith narrators",
             "The science of Quranic interpretation",
+            "The science of evaluating Hadith narrators",
             "The science of Islamic law",
+            "The science of Arabic grammar",
           ],
           correctAnswer: "The science of evaluating Hadith narrators",
           explanation:
-            "Ilm al-Rijal is the science of evaluating the reliability, character, and memory of Hadith narrators.",
+            "Ilm al-Jarh wa al-Ta'dil is the science of critically evaluating Hadith narrators to determine their reliability and integrity.",
         },
         {
           question: "What is a 'Hadith Qudsi'?",
           options: [
-            "A very authentic Hadith",
-            "A Hadith where the Prophet quotes Allah directly",
-            "A weak Hadith",
-            "A Hadith about prayer",
+            "A Hadith narrated by Qudsi, a companion",
+            "A Hadith where the Prophet quotes Allah's words",
+            "A Hadith about Jerusalem (Al-Quds)",
+            "A Hadith that is extremely authentic",
           ],
-          correctAnswer: "A Hadith where the Prophet quotes Allah directly",
+          correctAnswer: "A Hadith where the Prophet quotes Allah's words",
           explanation:
-            "Hadith Qudsi are sayings of the Prophet Muhammad (PBUH) that convey the meaning of Allah's words, though not in the exact wording of the Quran.",
+            "A Hadith Qudsi is a narration where the Prophet Muhammad (PBUH) quotes Allah's words, but it is not part of the Quran.",
         },
         {
-          question: "What is the difference between 'Sahih' and 'Hasan' Hadith?",
+          question: "What is the difference between 'Hadith Sahih' and 'Hadith Hasan'?",
           options: [
-            "There is no difference",
-            "Sahih has a stronger chain of narrators",
-            "Hasan is more authentic",
-            "Sahih is longer",
+            "They are the same",
+            "Sahih is authentic, Hasan is good but slightly less authentic",
+            "Sahih is from the Prophet, Hasan is from companions",
+            "Sahih is in Arabic, Hasan is translated",
           ],
-          correctAnswer: "Sahih has a stronger chain of narrators",
+          correctAnswer: "Sahih is authentic, Hasan is good but slightly less authentic",
           explanation:
-            "Sahih Hadith has a stronger and more reliable chain of narrators compared to Hasan, making it more authentic.",
+            "A Sahih Hadith meets all criteria of authenticity at the highest level, while a Hasan Hadith is reliable but doesn't reach the highest level of authenticity.",
         },
         {
-          question: "What is 'Tadlis' in Hadith science?",
+          question: "What is 'Ilm Mustalah al-Hadith'?",
           options: [
-            "A type of authentication",
-            "Concealing defects in the chain of narration",
-            "A method of compilation",
-            "A category of Hadith",
+            "The science of Hadith terminology and classification",
+            "The science of Hadith narration",
+            "The science of Hadith interpretation",
+            "The science of Hadith collection",
           ],
-          correctAnswer: "Concealing defects in the chain of narration",
+          correctAnswer: "The science of Hadith terminology and classification",
           explanation:
-            "Tadlis refers to the practice of concealing defects in the chain of narration, which affects the authenticity of a Hadith.",
+            "Ilm Mustalah al-Hadith is the science that deals with the terminology, classification, and methodology of Hadith studies.",
         },
         {
-          question: "What is 'Jarh wa Ta'dil'?",
+          question: "What is a 'Mawdu' Hadith?",
           options: [
-            "Compilation of Hadith",
-            "Criticism and praise of narrators",
-            "Classification of Hadith",
-            "Memorization techniques",
+            "A Hadith with a complete chain",
+            "A Hadith with multiple chains",
+            "A fabricated or forged Hadith",
+            "A Hadith with a single narrator",
           ],
-          correctAnswer: "Criticism and praise of narrators",
+          correctAnswer: "A fabricated or forged Hadith",
           explanation:
-            "Jarh wa Ta'dil is the science of criticizing and praising Hadith narrators to determine their reliability.",
+            "A Mawdu Hadith is one that has been fabricated or forged and falsely attributed to the Prophet Muhammad (PBUH).",
         },
         {
-          question: "What is a 'Maudu' Hadith?",
-          options: ["A very authentic Hadith", "A good Hadith", "A weak Hadith", "A fabricated Hadith"],
-          correctAnswer: "A fabricated Hadith",
-          explanation:
-            "Maudu refers to a fabricated or forged Hadith that was not actually said by the Prophet (PBUH).",
-        },
-        {
-          question: "What is 'Musnad' in Hadith literature?",
+          question: "What is the concept of 'Isnad' in Hadith studies?",
           options: [
-            "A type of weak Hadith",
-            "A collection arranged by the names of companions",
-            "A fabricated Hadith",
-            "A very short Hadith",
+            "The text of the Hadith",
+            "The chain of narrators",
+            "The meaning of the Hadith",
+            "The collection of Hadiths",
           ],
-          correctAnswer: "A collection arranged by the names of companions",
+          correctAnswer: "The chain of narrators",
           explanation:
-            "Musnad refers to a Hadith collection arranged according to the names of the companions who narrated from the Prophet.",
+            "Isnad refers to the chain of narrators through which a Hadith has been transmitted, which is crucial for evaluating its authenticity.",
         },
         {
-          question: "What is the significance of 'Ahadith al-Ahkam'?",
+          question: "What is the concept of 'Tadlis' in Hadith terminology?",
           options: [
-            "Hadith about beliefs",
-            "Hadith about legal rulings",
-            "Hadith about stories",
-            "Hadith about the afterlife",
+            "Adding extra information to a Hadith",
+            "Concealing a defect in the chain of narration",
+            "Translating a Hadith incorrectly",
+            "Fabricating a Hadith completely",
           ],
-          correctAnswer: "Hadith about legal rulings",
-          explanation: "Ahadith al-Ahkam refers to Hadith that deal with legal rulings and jurisprudential matters.",
-        },
-        {
-          question: "What is 'Takhrij al-Hadith'?",
-          options: [
-            "Memorizing Hadith",
-            "The process of tracing and verifying Hadith sources",
-            "Translating Hadith",
-            "Categorizing Hadith",
-          ],
-          correctAnswer: "The process of tracing and verifying Hadith sources",
+          correctAnswer: "Concealing a defect in the chain of narration",
           explanation:
-            "Takhrij al-Hadith is the scholarly process of tracing a Hadith to its original sources and verifying its authenticity.",
+            "Tadlis refers to the practice of concealing a defect in the chain of narration, such as when a narrator gives the impression that he heard the Hadith directly from someone he actually didn't meet or hear from directly. This is considered a form of misrepresentation that affects the authenticity of the Hadith.",
         },
       ],
     },
   },
   {
-    id: "seerah",
-    title: "Seerah",
-    description: "Biography of Prophet Muhammad (PBUH)",
-    icon: "🕌",
+    id: "aqeedah",
+    title: "Aqeedah",
+    description: "Islamic Creed and Beliefs",
+    icon: "",
     levels: {
       easy: [
         {
-          question: "In which city was Prophet Muhammad (PBUH) born?",
-          options: ["Madinah", "Makkah", "Taif", "Jerusalem"],
-          correctAnswer: "Makkah",
-          explanation: "Prophet Muhammad (PBUH) was born in Makkah in the year 570 CE.",
-        },
-        {
-          question: "What was the name of Prophet Muhammad's (PBUH) father?",
-          options: ["Abu Talib", "Abdullah", "Abu Bakr", "Abdul Muttalib"],
-          correctAnswer: "Abdullah",
-          explanation: "The Prophet's father was Abdullah ibn Abdul Muttalib, who died before the Prophet was born.",
-        },
-        {
-          question: "What was the name of Prophet Muhammad's (PBUH) mother?",
-          options: ["Khadijah", "Aminah", "Fatimah", "Aisha"],
-          correctAnswer: "Aminah",
-          explanation: "The Prophet's mother was Aminah bint Wahb, who died when he was six years old.",
-        },
-        {
-          question: "At what age did Prophet Muhammad (PBUH) receive his first revelation?",
-          options: ["35", "40", "45", "50"],
-          correctAnswer: "40",
-          explanation: "Prophet Muhammad (PBUH) received his first revelation at the age of 40 in the cave of Hira.",
-        },
-        {
-          question: "What was the name of the cave where Prophet Muhammad (PBUH) used to meditate?",
-          options: ["Cave of Thawr", "Cave of Hira", "Cave of Uhud", "Cave of Quba"],
-          correctAnswer: "Cave of Hira",
+          question: "What does 'Aqeedah' mean?",
+          options: ["Prayer", "Belief", "Charity", "Fasting"],
+          correctAnswer: "Belief",
           explanation:
-            "The Cave of Hira is where Prophet Muhammad (PBUH) used to retreat for meditation and where he received his first revelation.",
+            "Aqeedah refers to the core beliefs and creed of Islam that a Muslim must have firm conviction in.",
         },
         {
-          question: "Who was the first person to accept Islam?",
-          options: ["Abu Bakr", "Ali ibn Abi Talib", "Khadijah", "Umar ibn al-Khattab"],
-          correctAnswer: "Khadijah",
-          explanation: "Khadijah bint Khuwaylid, the Prophet's wife, was the first person to accept Islam.",
+          question: "How many articles of faith are there in Islam?",
+          options: ["4", "5", "6", "7"],
+          correctAnswer: "6",
+          explanation:
+            "There are six articles of faith in Islam: belief in Allah, His angels, His books, His messengers, the Day of Judgment, and divine decree.",
         },
         {
-          question: "What is the Hijra?",
+          question: "What is 'Tawheed'?",
           options: [
-            "The Prophet's first revelation",
-            "The migration from Makkah to Madinah",
-            "The conquest of Makkah",
-            "The Prophet's marriage",
+            "Belief in the Day of Judgment",
+            "Belief in the oneness of Allah",
+            "Belief in the prophets",
+            "Belief in the angels",
           ],
-          correctAnswer: "The migration from Makkah to Madinah",
+          correctAnswer: "Belief in the oneness of Allah",
           explanation:
-            "The Hijra refers to the migration of Prophet Muhammad (PBUH) and his followers from Makkah to Madinah in 622 CE.",
+            "Tawheed is the concept of the absolute oneness of Allah, which is the most fundamental aspect of Islamic belief.",
         },
         {
-          question: "In which year did the Hijra take place?",
-          options: ["620 CE", "622 CE", "624 CE", "630 CE"],
-          correctAnswer: "622 CE",
-          explanation: "The Hijra took place in 622 CE, which marks the beginning of the Islamic calendar.",
+          question: "What is the opposite of Tawheed?",
+          options: ["Iman", "Shirk", "Kufr", "Nifaq"],
+          correctAnswer: "Shirk",
+          explanation:
+            "Shirk is the association of partners with Allah, which is the opposite of Tawheed (monotheism).",
         },
         {
-          question: "What was the original name of Madinah?",
-          options: ["Yathrib", "Taiba", "Quba", "Uhud"],
-          correctAnswer: "Yathrib",
-          explanation: "Madinah was originally called Yathrib before the Prophet's migration there.",
+          question: "What is the meaning of 'La ilaha illa Allah'?",
+          options: [
+            "There is no god worthy of worship except Allah",
+            "Allah is the greatest",
+            "Praise be to Allah",
+            "Allah is one",
+          ],
+          correctAnswer: "There is no god worthy of worship except Allah",
+          explanation:
+            "La ilaha illa Allah is the first part of the Islamic declaration of faith (Shahada), meaning 'There is no god worthy of worship except Allah', affirming the absolute oneness of Allah.",
         },
         {
-          question: "How many years did Prophet Muhammad (PBUH) live in Madinah?",
-          options: ["8 years", "10 years", "12 years", "15 years"],
-          correctAnswer: "10 years",
-          explanation: "Prophet Muhammad (PBUH) lived in Madinah for 10 years until his death in 632 CE.",
+          question: "What is the belief about the Quran in Islamic Aqeedah?",
+          options: [
+            "It is one of many holy books",
+            "It is the unchanged, preserved word of Allah",
+            "It was written by Prophet Muhammad",
+            "It is only a historical document",
+          ],
+          correctAnswer: "It is the unchanged, preserved word of Allah",
+          explanation:
+            "In Islamic Aqeedah, the Quran is believed to be the literal, unchanged, and preserved word of Allah revealed to Prophet Muhammad (PBUH) through Angel Gabriel.",
+        },
+        {
+          question: "What is the Islamic belief about the angels?",
+          options: [
+            "They are myths",
+            "They are created beings who obey Allah",
+            "They are children of Allah",
+            "They can choose to disobey Allah",
+          ],
+          correctAnswer: "They are created beings who obey Allah",
+          explanation:
+            "In Islamic Aqeedah, angels are created beings made from light who always obey Allah and never disobey Him. They have various roles assigned by Allah.",
+        },
+        {
+          question: "What is the Islamic belief about the Day of Judgment?",
+          options: [
+            "It is symbolic, not literal",
+            "It will never happen",
+            "It is a certain reality that will come",
+            "It has already occurred",
+          ],
+          correctAnswer: "It is a certain reality that will come",
+          explanation:
+            "Islamic Aqeedah affirms that the Day of Judgment is a certain reality that will come, when all humans will be resurrected and held accountable for their deeds.",
+        },
+        {
+          question: "What is 'Iman' in Islamic terminology?",
+          options: ["Prayer", "Faith or belief", "Charity", "Pilgrimage"],
+          correctAnswer: "Faith or belief",
+          explanation:
+            "Iman refers to faith or belief in Islam, encompassing belief in Allah, His angels, His books, His messengers, the Day of Judgment, and divine decree.",
+        },
+        {
+          question: "What is the Islamic belief about previous prophets?",
+          options: [
+            "They were not real",
+            "They were all Arabs",
+            "They all brought the same core message of monotheism",
+            "Their messages are irrelevant now",
+          ],
+          correctAnswer: "They all brought the same core message of monotheism",
+          explanation:
+            "Islamic Aqeedah teaches that all prophets, from Adam to Muhammad (peace be upon them all), brought the same core message of monotheism (Tawheed), calling people to worship Allah alone.",
         },
       ],
       advanced: [
         {
-          question: "What was the Year of Sorrow (Am al-Huzn)?",
+          question: "What are the three categories of Tawheed?",
           options: [
-            "The year of the Prophet's birth",
-            "The year when both Khadijah and Abu Talib died",
-            "The year of Hijra",
-            "The year of the conquest of Makkah",
+            "Tawheed al-Uluhiyyah, Tawheed al-Rububiyyah, Tawheed al-Asma wa al-Sifat",
+            "Tawheed al-Salat, Tawheed al-Zakat, Tawheed al-Sawm",
+            "Tawheed al-Quran, Tawheed al-Sunnah, Tawheed al-Ijma",
+            "Tawheed al-Iman, Tawheed al-Islam, Tawheed al-Ihsan",
           ],
-          correctAnswer: "The year when both Khadijah and Abu Talib died",
+          correctAnswer: "Tawheed al-Uluhiyyah, Tawheed al-Rububiyyah, Tawheed al-Asma wa al-Sifat",
           explanation:
-            "The Year of Sorrow refers to the year when both the Prophet's wife Khadijah and his uncle Abu Talib died, leaving him without their support.",
+            "The three categories of Tawheed are: Tawheed al-Rububiyyah (Oneness of Lordship), Tawheed al-Uluhiyyah (Oneness of Worship), and Tawheed al-Asma wa al-Sifat (Oneness of Names and Attributes).",
         },
         {
-          question: "What was the Treaty of Hudaybiyyah?",
+          question: "What is 'Qadar' in Islamic belief?",
           options: [
-            "A trade agreement",
-            "A peace treaty between Muslims and Makkans",
-            "A marriage contract",
-            "A military alliance",
+            "The Islamic holy book",
+            "Divine decree and predestination",
+            "The Day of Judgment",
+            "The five pillars of Islam",
           ],
-          correctAnswer: "A peace treaty between Muslims and Makkans",
+          correctAnswer: "Divine decree and predestination",
           explanation:
-            "The Treaty of Hudaybiyyah was a peace agreement between the Muslims and the Quraysh tribe of Makkah, signed in 628 CE.",
+            "Qadar refers to Allah's divine decree and predestination, the belief that Allah has knowledge of and control over all things.",
         },
         {
-          question: "What was the significance of the Battle of Badr?",
-          options: [
-            "It was the Muslims' first major victory",
-            "It was the largest battle",
-            "It was the last battle",
-            "It was fought in Madinah",
-          ],
-          correctAnswer: "It was the Muslims' first major victory",
-          explanation:
-            "The Battle of Badr was the first major military victory for the Muslim community against the Quraysh of Makkah.",
+          question: "What is the concept of 'Kufr' in Islam?",
+          options: ["Belief in Allah", "Disbelief or rejection of faith", "Performing good deeds", "Giving charity"],
+          correctAnswer: "Disbelief or rejection of faith",
+          explanation: "Kufr refers to disbelief or the rejection of faith in Allah and the teachings of Islam.",
         },
         {
-          question: "What was the Constitution of Madinah?",
+          question: "What is 'Al-Wala wal-Bara'?",
           options: [
-            "A religious text",
-            "A document establishing the rights and duties of all citizens of Madinah",
-            "A military strategy",
-            "A trade agreement",
+            "The concept of Heaven and Hell",
+            "The concept of loyalty to Islam and disavowal of disbelief",
+            "The concept of reward and punishment",
+            "The concept of life and death",
           ],
-          correctAnswer: "A document establishing the rights and duties of all citizens of Madinah",
+          correctAnswer: "The concept of loyalty to Islam and disavowal of disbelief",
           explanation:
-            "The Constitution of Madinah was a document that established the rights and duties of all citizens of Madinah, regardless of their religion.",
+            "Al-Wala wal-Bara refers to the concept of loyalty and love for the sake of Allah, and disavowal and disassociation from disbelief and its people.",
         },
         {
-          question: "What was the Farewell Pilgrimage (Hajjat al-Wada)?",
+          question: "What is the difference between the attributes of Allah and those of His creation?",
           options: [
-            "The Prophet's first pilgrimage",
-            "The Prophet's last pilgrimage before his death",
-            "A pilgrimage to Jerusalem",
-            "A pilgrimage during Ramadan",
+            "There is no difference",
+            "Allah's attributes are limited, creation's are unlimited",
+            "Allah's attributes are perfect and unique, without resemblance to creation",
+            "Allah has no attributes",
           ],
-          correctAnswer: "The Prophet's last pilgrimage before his death",
+          correctAnswer: "Allah's attributes are perfect and unique, without resemblance to creation",
           explanation:
-            "The Farewell Pilgrimage was the last pilgrimage performed by Prophet Muhammad (PBUH) before his death, during which he delivered his famous farewell sermon.",
+            "Allah's attributes are perfect, complete, and unique to Him, without any resemblance to the attributes of His creation, as stated in the Quran: 'There is nothing like unto Him' (42:11).",
         },
         {
-          question: "What was the significance of the conquest of Makkah?",
+          question: "What is the Ash'ari school's approach to understanding Allah's attributes?",
           options: [
-            "It was the bloodiest battle",
-            "It was a peaceful conquest that led to mass conversions",
-            "It was the first conquest",
-            "It lasted for years",
+            "They reject all attributes",
+            "They interpret attributes literally",
+            "They interpret some attributes metaphorically",
+            "They believe attributes are created",
           ],
-          correctAnswer: "It was a peaceful conquest that led to mass conversions",
+          correctAnswer: "They interpret some attributes metaphorically",
           explanation:
-            "The conquest of Makkah in 630 CE was largely peaceful and led to the mass conversion of the Makkans to Islam.",
+            "The Ash'ari school, founded by Abu al-Hasan al-Ash'ari, takes a middle path by affirming Allah's attributes while interpreting some of them metaphorically to avoid anthropomorphism.",
         },
         {
-          question: "What was the Night Journey (Isra and Mi'raj)?",
+          question: "What is the concept of 'Bid'ah' in relation to Aqeedah?",
           options: [
-            "The Prophet's migration to Madinah",
-            "The Prophet's miraculous night journey to Jerusalem and ascension to heaven",
-            "A dream the Prophet had",
-            "The Prophet's first revelation",
+            "Innovation that is always good",
+            "Innovation in religious matters that has no precedent",
+            "Following the Sunnah strictly",
+            "Interpreting the Quran",
           ],
-          correctAnswer: "The Prophet's miraculous night journey to Jerusalem and ascension to heaven",
+          correctAnswer: "Innovation in religious matters that has no precedent",
           explanation:
-            "The Isra and Mi'raj refers to the Prophet's miraculous night journey from Makkah to Jerusalem and his ascension through the heavens.",
+            "Bid'ah refers to innovations or newly invented matters in religion that have no precedent from the time of the Prophet Muhammad (PBUH) and his companions.",
         },
         {
-          question: "Who was Waraqah ibn Nawfal?",
+          question: "What is the concept of 'Tawassul' in Islamic belief?",
           options: [
-            "The Prophet's uncle",
-            "Khadijah's cousin who confirmed the Prophet's first revelation",
-            "The first Caliph",
-            "A Makkan leader",
+            "Direct worship of saints",
+            "Seeking nearness to Allah through permissible means",
+            "Rejecting intercession completely",
+            "Praying to the deceased",
           ],
-          correctAnswer: "Khadijah's cousin who confirmed the Prophet's first revelation",
+          correctAnswer: "Seeking nearness to Allah through permissible means",
           explanation:
-            "Waraqah ibn Nawfal was Khadijah's cousin, a Christian scholar who confirmed that the Prophet's first revelation was from the same angel (Gabriel) who came to Moses.",
+            "Tawassul refers to the concept of seeking nearness to Allah through permissible means, such as through His names and attributes, good deeds, or the supplication of a living righteous person.",
         },
         {
-          question: "What was the significance of the Battle of Uhud?",
+          question: "What is the difference between 'Tawheed al-Rububiyyah' and 'Tawheed al-Uluhiyyah'?",
           options: [
-            "It was a complete Muslim victory",
-            "It taught the Muslims about the consequences of disobedience",
-            "It was the largest battle",
-            "It was fought in Makkah",
+            "They are the same thing",
+            "Rububiyyah is about Allah's lordship, Uluhiyyah is about worshipping Him alone",
+            "Rububiyyah is about worship, Uluhiyyah is about lordship",
+            "Rububiyyah is about the Quran, Uluhiyyah is about the Sunnah",
           ],
-          correctAnswer: "It taught the Muslims about the consequences of disobedience",
+          correctAnswer: "Rububiyyah is about Allah's lordship, Uluhiyyah is about worshipping Him alone",
           explanation:
-            "The Battle of Uhud initially favored the Muslims, but when some archers disobeyed orders and left their positions, it led to a setback, teaching important lessons about discipline and obedience.",
+            "Tawheed al-Rububiyyah is the belief in Allah's lordship, that He alone is the creator, sustainer, and controller of all things. Tawheed al-Uluhiyyah is the belief that Allah alone deserves to be worshipped, without any partners.",
         },
         {
-          question: "What was the Pledge of Aqabah?",
+          question: "What is the concept of 'Ru'yat Allah' (Seeing Allah) in Islamic Aqeedah?",
           options: [
-            "A trade agreement",
-            "The pledge of allegiance given by the people of Madinah to the Prophet",
-            "A military treaty",
-            "A marriage contract",
+            "Allah can never be seen under any circumstances",
+            "Believers will see Allah in the Hereafter without comprehending His nature",
+            "Allah can be seen in this world through spiritual exercises",
+            "It is a metaphorical concept, not literal",
           ],
-          correctAnswer: "The pledge of allegiance given by the people of Madinah to the Prophet",
+          correctAnswer: "Believers will see Allah in the Hereafter without comprehending His nature",
           explanation:
-            "The Pledge of Aqabah refers to the two pledges of allegiance given by the people of Madinah to Prophet Muhammad (PBUH), which paved the way for the Hijra.",
+            "According to mainstream Sunni Aqeedah, believers will literally see Allah in the Hereafter, as mentioned in various Quranic verses and authentic Hadiths. However, this vision will not encompass or comprehend Allah's nature or essence, as 'There is nothing like unto Him' (Quran 42:11).",
         },
       ],
     },
   },
-  // Add the imported categories
   seerahCategory,
   ...additionalCategories,
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
   dawahCategory,
-  islamicMedicalEthicsCategory,
-  islamicPsychologyCategory,
-  islamicParentingCategory,
 ]
 
-// Enhanced quiz data with infographics
-const enhancedQuizData = enhanceQuestionsWithInfographicsForData(baseQuizData)
+// Add this right after the quizData array definition
+console.log(
+  "Loaded categories:",
+  quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
+)
 
-// Export functions for external use
-export function getAllCategories(): QuizCategory[] {
-  return enhancedQuizData
-}
+// Add this at the top of the file, right after the import statements:
+// This will help us see if all categories are being loaded properly
+console.log(
+  "Loading quiz data with categories:",
+  quizData.map((cat) => cat.id),
+)
 
-export function getQuizData(): QuizCategory[] {
-  return enhancedQuizData
-}
-
+// Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
 export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
-  const category = enhancedQuizData.find((cat) => cat.id === categoryId)
+  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`)
+  const category = quizData.find((cat) => cat.id === categoryId)
   if (!category) {
-    console.warn(`Category ${categoryId} not found`)
+    console.log(`Category ${categoryId} not found`)
     return []
   }
 
-  const questions = category.levels[difficulty] || []
-  return enhanceQuestionsWithInfographics(questions, categoryId)
+  // If intermediate difficulty is requested but not available, fall back to easy
+  if (difficulty === "intermediate" && (!category.levels.intermediate || category.levels.intermediate.length === 0)) {
+    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`)
+    difficulty = "easy"
+  }
+
+  // Get the questions for the specified category and difficulty
+  let questions = category.levels[difficulty] || []
+
+  // Assign IDs to questions if they don't have them
+  questions = questions.map((question, index) => {
+    if (!question.id) {
+      return {
+        ...question,
+        id: `${categoryId}-${index + 1}`,
+      }
+    }
+    return question
+  })
+
+  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`)
+
+  // Before returning the questions, enhance them with infographics if available
+  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions)
+
+  // Log which questions have infographics
+  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length
+  console.log(`Enhanced ${withInfographics} questions with infographics`)
+
+  return enhancedQuestions
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
-  return enhancedQuizData.find((cat) => cat.id === categoryId)
+  return quizData.find((category) => category.id === categoryId)
 }
 
-// Default export for backward compatibility
-export default enhancedQuizData
+export function getAllCategories(): QuizCategory[] {
+  return quizData
+}
+
+// Verify all categories have questions
+quizData.forEach((category) => {
+  console.log(
+    `Category ${category.id} has ${category.levels.easy.length} easy questions and ${category.levels.advanced.length} advanced questions`,
+  )
+
+  // Check for any empty question arrays
+  if (category.levels.easy.length === 0) {
+    console.warn(`Warning: Category ${category.id} has no easy questions`)
+  }
+  if (category.levels.advanced.length === 0) {
+    console.warn(`Warning: Category ${category.id} has no advanced questions`)
+  }
+})

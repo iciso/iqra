@@ -1,482 +1,328 @@
 "use client"
+import Head from "next/head"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import {
-  Target,
-  Users,
-  BookOpen,
-  Trophy,
-  Heart,
-  Globe,
-  Lightbulb,
-  TrendingUp,
-  CheckCircle,
-  ArrowRight,
-  Star,
-  Award,
-  Zap,
-} from "lucide-react"
-import Link from "next/link"
-
-export default function TheoryOfChangePage() {
-  const impactMetrics = [
-    { label: "Active Users", value: "10,000+", icon: Users, color: "text-blue-600" },
-    { label: "Questions Answered", value: "500K+", icon: BookOpen, color: "text-green-600" },
-    { label: "Knowledge Areas", value: "15", icon: Target, color: "text-purple-600" },
-    { label: "Community Challenges", value: "25K+", icon: Trophy, color: "text-yellow-600" },
-  ]
-
-  const outcomes = [
-    {
-      title: "Short-term (3-6 months)",
-      items: [
-        "Increased daily engagement with Islamic learning",
-        "Basic knowledge improvement across core topics",
-        "Formation of study habits and learning routines",
-        "Initial community connections and friendships",
-      ],
-      color: "bg-green-100 border-green-200",
-    },
-    {
-      title: "Medium-term (6-18 months)",
-      items: [
-        "Deeper understanding of Islamic principles",
-        "Confident participation in religious discussions",
-        "Leadership in community learning initiatives",
-        "Mentoring newer community members",
-      ],
-      color: "bg-blue-100 border-blue-200",
-    },
-    {
-      title: "Long-term (18+ months)",
-      items: [
-        "Comprehensive Islamic knowledge foundation",
-        "Active contribution to Islamic education",
-        "Community leadership and guidance roles",
-        "Lifelong commitment to continuous learning",
-      ],
-      color: "bg-purple-100 border-purple-200",
-    },
-  ]
-
-  const successStories = [
-    {
-      name: "Ahmad Hassan",
-      role: "University Student",
-      story:
-        "IQRA helped me balance my secular studies with Islamic knowledge. The bite-sized quizzes fit perfectly into my busy schedule.",
-      achievement: "Completed 12 categories",
-      badge: "Scholar",
-    },
-    {
-      name: "Fatima Al-Zahra",
-      role: "Working Mother",
-      story:
-        "As a busy mom, I found it hard to find time for Islamic learning. IQRA's mobile-friendly format lets me learn during my commute.",
-      achievement: "500+ questions answered",
-      badge: "Dedicated Learner",
-    },
-    {
-      name: "Omar Khalil",
-      role: "Community Leader",
-      story:
-        "I use IQRA to prepare for our mosque's study circles. The comprehensive content helps me guide discussions effectively.",
-      achievement: "Top 10 leaderboard",
-      badge: "Community Champion",
-    },
-  ]
-
+const TheoryOfChange = () => {
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-          Theory of Change
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          How IQRA transforms individual learning into community-wide Islamic knowledge enhancement
-        </p>
+    <div
+      className="theory-page"
+      style={{ fontFamily: "Arial, sans-serif", maxWidth: "1000px", margin: "0 auto", padding: "20px" }}
+    >
+      <Head>
+        <title>Theory of Change | AI-Driven Islamic Apps</title>
+      </Head>
+
+      <h1 style={{ textAlign: "center", color: "#2E7D32", marginBottom: "30px" }}>
+        Theory of Change: Empowering Islamic Engagement Through AI
+      </h1>
+
+      {/* Table 1: Pillars → Apps */}
+      <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <h2>Pillars of TOC</h2>
+
+        <p>We introduce the six pillars in the table.</p>
+
+        <table style={{ width: "100%", borderCollapse: "collapse", margin: "20px 0" }}>
+          <thead>
+            <tr>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Pillar No.</th>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Pillar Name</th>
+              <th style={{ border: "1px solid #ddd", padding: "12px", backgroundColor: "#f2f2f2" }}>Explanation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P1</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>AI advancements</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                AI manifests in faster, accurate coding of complex apps like quiz challenges leaderboards which in turn
+                directly fosters increased motivation, community dialogue and healthy competition
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P2</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Freeware and open-source</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                The component evidenced by opensource GitHub repos ensures the software accessibility across global
+                language and geographical divides
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P3</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Islamic education</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                is established through gaming - KALAM, interactive AI chat - Noor, and the infographics, and quiz
+                challenges leaderboards - IQRA as the synergism within the tripartite approach leads to increased
+                retention and recall
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P4</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Social welfare</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                Describe its address through planned community interaction features—user profiles, leaderboards badges
+                and future coding for user connections groups activity streams messaging as well as the
+                app-to-masjid-transfer programs Emphasized is the vision to facilitate both online and geographical
+                community activities
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P5</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Unity promotion</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                is achieved among Muslims through educational material sourced only from the Noble Quran and authentic
+                Sunnah that are agreed upon by all madhabs IQRA and KALAM and for interfaith non-faith materials by
+                focusing on neutral information or commonalities by Noor as well as the nearly completed first draft of
+                the book on commonalities with CLCP
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>P6</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>Ethical Dialogue</td>
+              <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                We show how neutral information resources provided bilingually by the Noor Chat App not only promotes
+                understanding and reduces bias but is the first step towards the software accessibility across global
+                language and geographical divides
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      {/* Vision & Mission */}
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <Card className="border-2 border-green-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-green-700">
-              <Target className="h-6 w-6" />
-              Our Vision
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg leading-relaxed">
-              To create a global community of Muslims who are deeply knowledgeable about their faith, confident in their
-              beliefs, and actively contributing to Islamic education and community building.
-            </p>
-          </CardContent>
-        </Card>
+      {/* Diagram 2: Activities & Immediate Outputs */}
+      <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <h2>Activities & Immediate Outputs</h2>
+        <div className="w-full max-w-4xl mx-auto">
+          <svg viewBox="0 0 800 400" className="w-full h-auto" style={{ maxWidth: "800px" }}>
+            {/* Simplified diagram representation */}
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+              </marker>
+            </defs>
 
-        <Card className="border-2 border-blue-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-700">
-              <Heart className="h-6 w-6" />
-              Our Mission
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg leading-relaxed">
-              To make Islamic knowledge accessible, engaging, and social through innovative technology, fostering a
-              culture of continuous learning and community support.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+            {/* Pillars */}
+            <g className="pillars">
+              <rect x="50" y="50" width="80" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="90" y="75" textAnchor="middle" fontSize="12" fill="#333">
+                P1
+              </text>
 
-      {/* Current Impact Metrics */}
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">Current Impact</CardTitle>
-          <CardDescription className="text-center">
-            Real numbers showing our community's growth and engagement
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {impactMetrics.map((metric, index) => (
-              <div key={index} className="text-center">
-                <metric.icon className={`h-8 w-8 mx-auto mb-2 ${metric.color}`} />
-                <div className="text-2xl font-bold">{metric.value}</div>
-                <div className="text-sm text-muted-foreground">{metric.label}</div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              <rect x="50" y="120" width="80" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="90" y="145" textAnchor="middle" fontSize="12" fill="#333">
+                P2
+              </text>
 
-      {/* Theory of Change Flow */}
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">How Change Happens</CardTitle>
-          <CardDescription className="text-center">
-            Our step-by-step approach to transforming Islamic education
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-8">
-            {/* Step 1: Individual Engagement */}
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-green-700 font-bold">1</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                  <Lightbulb className="h-5 w-5 text-yellow-600" />
-                  Individual Engagement
-                </h3>
-                <p className="text-muted-foreground mb-3">
-                  Users discover IQRA and begin their personalized learning journey through interactive quizzes and
-                  challenges.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Daily Quizzes</Badge>
-                  <Badge variant="secondary">Progress Tracking</Badge>
-                  <Badge variant="secondary">Personalized Learning</Badge>
-                </div>
-              </div>
-            </div>
+              <rect x="50" y="190" width="80" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="90" y="215" textAnchor="middle" fontSize="12" fill="#333">
+                P3
+              </text>
 
-            <div className="flex justify-center">
-              <ArrowRight className="h-6 w-6 text-muted-foreground" />
-            </div>
+              <rect x="50" y="260" width="80" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="90" y="285" textAnchor="middle" fontSize="12" fill="#333">
+                P5
+              </text>
+            </g>
 
-            {/* Step 2: Knowledge Building */}
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-blue-700 font-bold">2</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-blue-600" />
-                  Knowledge Building
-                </h3>
-                <p className="text-muted-foreground mb-3">
-                  Consistent engagement leads to systematic knowledge acquisition across 15 comprehensive Islamic
-                  topics.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">15 Categories</Badge>
-                  <Badge variant="secondary">Easy to Advanced</Badge>
-                  <Badge variant="secondary">Comprehensive Coverage</Badge>
-                </div>
-              </div>
-            </div>
+            {/* Apps */}
+            <g className="apps">
+              <rect x="300" y="80" width="120" height="60" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="360" y="105" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#333">
+                IQRA App
+              </text>
+              <text x="360" y="125" textAnchor="middle" fontSize="10" fill="#666">
+                (Interactive Learning)
+              </text>
 
-            <div className="flex justify-center">
-              <ArrowRight className="h-6 w-6 text-muted-foreground" />
-            </div>
+              <rect x="300" y="160" width="120" height="60" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="360" y="185" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#333">
+                KALAM App
+              </text>
+              <text x="360" y="205" textAnchor="middle" fontSize="10" fill="#666">
+                (Gamified Learning)
+              </text>
 
-            {/* Step 3: Community Connection */}
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                <span className="text-purple-700 font-bold">3</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                  <Users className="h-5 w-5 text-purple-600" />
-                  Community Connection
-                </h3>
-                <p className="text-muted-foreground mb-3">
-                  Users connect with peers through challenges, leaderboards, and collaborative learning experiences.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Peer Challenges</Badge>
-                  <Badge variant="secondary">Leaderboards</Badge>
-                  <Badge variant="secondary">Study Groups</Badge>
-                </div>
-              </div>
-            </div>
+              <rect x="300" y="240" width="120" height="60" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="360" y="265" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#333">
+                Noor App
+              </text>
+              <text x="360" y="285" textAnchor="middle" fontSize="10" fill="#666">
+                (AI Chat + Interfaith)
+              </text>
+            </g>
 
-            <div className="flex justify-center">
-              <ArrowRight className="h-6 w-6 text-muted-foreground" />
-            </div>
+            {/* Outputs */}
+            <g className="outputs">
+              <rect x="550" y="60" width="180" height="80" fill="#FFF8E1" stroke="#F57C00" rx="5" />
+              <text x="640" y="85" textAnchor="middle" fontSize="12" fill="#333">
+                Learning via Interactivity
+              </text>
+              <text x="640" y="105" textAnchor="middle" fontSize="12" fill="#333">
+                Quiz Challenges
+              </text>
+              <text x="640" y="125" textAnchor="middle" fontSize="12" fill="#333">
+                (Leaderboards/Badges)
+              </text>
 
-            {/* Step 4: Community Impact */}
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <span className="text-yellow-700 font-bold">4</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-green-600" />
-                  Community Impact
-                </h3>
-                <p className="text-muted-foreground mb-3">
-                  Knowledgeable individuals become community leaders, educators, and positive influences in their local
-                  communities.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Community Leadership</Badge>
-                  <Badge variant="secondary">Knowledge Sharing</Badge>
-                  <Badge variant="secondary">Positive Influence</Badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+              <rect x="550" y="160" width="180" height="60" fill="#FFF8E1" stroke="#F57C00" rx="5" />
+              <text x="640" y="185" textAnchor="middle" fontSize="12" fill="#333">
+                Gamified Islamic Education
+              </text>
+              <text x="640" y="205" textAnchor="middle" fontSize="10" fill="#666">
+                (Community features pending)
+              </text>
 
-      {/* Expected Outcomes Timeline */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold text-center mb-8">Expected Outcomes Timeline</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {outcomes.map((outcome, index) => (
-            <Card key={index} className={`${outcome.color} border-2`}>
-              <CardHeader>
-                <CardTitle className="text-lg">{outcome.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {outcome.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+              <rect x="550" y="240" width="180" height="80" fill="#FFF8E1" stroke="#F57C00" rx="5" />
+              <text x="640" y="265" textAnchor="middle" fontSize="12" fill="#333">
+                AI Chat (Neutral Interfaith)
+              </text>
+              <text x="640" y="285" textAnchor="middle" fontSize="12" fill="#333">
+                + CLCP WhatsApp/Website
+              </text>
+            </g>
+
+            {/* Arrows */}
+            <g className="arrows" stroke="#333" fill="none" markerEnd="url(#arrowhead)">
+              <line x1="130" y1="70" x2="290" y2="110" strokeWidth="2" />
+              <line x1="130" y1="140" x2="290" y2="110" strokeWidth="2" />
+              <line x1="130" y1="210" x2="290" y2="190" strokeWidth="2" />
+              <line x1="130" y1="280" x2="290" y2="270" strokeWidth="2" />
+
+              <line x1="420" y1="110" x2="540" y2="100" strokeWidth="2" />
+              <line x1="420" y1="190" x2="540" y2="190" strokeWidth="2" />
+              <line x1="420" y1="270" x2="540" y2="280" strokeWidth="2" />
+            </g>
+          </svg>
         </div>
       </div>
 
-      {/* Success Stories */}
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl flex items-center justify-center gap-2">
-            <Star className="h-6 w-6 text-yellow-600" />
-            Success Stories
-          </CardTitle>
-          <CardDescription className="text-center">Real testimonials from our community members</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-3 gap-6">
-            {successStories.map((story, index) => (
-              <Card key={index} className="border-2 border-muted">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="text-lg">{story.name}</CardTitle>
-                      <CardDescription>{story.role}</CardDescription>
-                    </div>
-                    <Badge variant="outline" className="flex items-center gap-1">
-                      <Award className="h-3 w-3" />
-                      {story.badge}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-3 italic">"{story.story}"</p>
-                  <div className="flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-yellow-600" />
-                    <span className="text-sm font-medium">{story.achievement}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      {/* Diagram 3: Synergies */}
+      <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        <h2>Synergies</h2>
+        <div className="w-full max-w-5xl mx-auto">
+          <svg viewBox="0 0 900 300" className="w-full h-auto" style={{ maxWidth: "900px" }}>
+            <defs>
+              <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+              </marker>
+            </defs>
 
-      {/* Key Success Factors */}
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">Key Success Factors</CardTitle>
-          <CardDescription className="text-center">What makes our approach effective</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-green-600" />
-                Engagement Strategies
-              </h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Gamified learning experience</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Social challenges and competitions</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Progress tracking and achievements</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Mobile-first accessibility</span>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-blue-600" />
-                Content Quality
-              </h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Authentic Islamic sources</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Progressive difficulty levels</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Comprehensive topic coverage</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Regular content updates</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+            {/* Top row - Apps and Pillars */}
+            <g className="top-elements">
+              <rect x="50" y="30" width="80" height="40" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="90" y="55" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                IQRA
+              </text>
 
-      {/* Measuring Success */}
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">Measuring Success</CardTitle>
-          <CardDescription className="text-center">How we track our impact and effectiveness</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quantitative Metrics</h3>
-              <div className="space-y-3">
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>User Engagement Rate</span>
-                    <span>85%</span>
-                  </div>
-                  <Progress value={85} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Knowledge Retention</span>
-                    <span>78%</span>
-                  </div>
-                  <Progress value={78} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Community Participation</span>
-                    <span>92%</span>
-                  </div>
-                  <Progress value={92} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>User Satisfaction</span>
-                    <span>94%</span>
-                  </div>
-                  <Progress value={94} className="h-2" />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Qualitative Indicators</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Increased confidence in Islamic discussions</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Active participation in community events</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Peer-to-peer knowledge sharing</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Leadership roles in local communities</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Positive behavioral changes</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+              <rect x="200" y="30" width="80" height="40" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="240" y="55" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                Noor
+              </text>
 
-      {/* Call to Action */}
-      <Card className="text-center">
-        <CardContent className="p-8">
-          <h2 className="text-2xl font-bold mb-4">Join Our Mission</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Be part of the change. Start your Islamic learning journey today and help us build a more knowledgeable and
-            connected Muslim community.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-green-600 hover:bg-green-700">
-              <Link href="/categories">Start Learning</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/challenges">Join Community</Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+              <rect x="350" y="30" width="80" height="40" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="390" y="55" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                KALAM
+              </text>
+
+              <rect x="500" y="30" width="60" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="530" y="55" textAnchor="middle" fontSize="12" fill="#333">
+                P6
+              </text>
+
+              <rect x="620" y="30" width="80" height="40" fill="#E8F5E8" stroke="#2E7D32" rx="5" />
+              <text x="660" y="55" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                KALAM
+              </text>
+
+              <rect x="770" y="30" width="60" height="40" fill="#ECECFF" stroke="#9370DB" rx="5" />
+              <text x="800" y="55" textAnchor="middle" fontSize="12" fill="#333">
+                P2
+              </text>
+            </g>
+
+            {/* Middle row - Synergies */}
+            <g className="synergies">
+              <rect x="50" y="120" width="180" height="50" fill="#FFF3E0" stroke="#FF9800" rx="5" />
+              <text x="140" y="140" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                Synergy 1:
+              </text>
+              <text x="140" y="155" textAnchor="middle" fontSize="12" fill="#333">
+                Reinforced Learning
+              </text>
+
+              <rect x="300" y="120" width="180" height="50" fill="#FFF3E0" stroke="#FF9800" rx="5" />
+              <text x="390" y="140" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                Synergy 3:
+              </text>
+              <text x="390" y="155" textAnchor="middle" fontSize="12" fill="#333">
+                Ethical Framing
+              </text>
+
+              <rect x="550" y="120" width="180" height="50" fill="#FFF3E0" stroke="#FF9800" rx="5" />
+              <text x="640" y="140" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#333">
+                Synergy 2:
+              </text>
+              <text x="640" y="155" textAnchor="middle" fontSize="12" fill="#333">
+                Gamified Open-Source
+              </text>
+            </g>
+
+            {/* Bottom row - Outcomes */}
+            <g className="outcomes">
+              <rect x="50" y="220" width="180" height="50" fill="#E8F5E8" stroke="#4CAF50" rx="5" />
+              <text x="140" y="240" textAnchor="middle" fontSize="12" fill="#333">
+                Quiz answers via
+              </text>
+              <text x="140" y="255" textAnchor="middle" fontSize="12" fill="#333">
+                Noor AI Chat
+              </text>
+
+              <rect x="300" y="220" width="180" height="50" fill="#E8F5E8" stroke="#4CAF50" rx="5" />
+              <text x="390" y="240" textAnchor="middle" fontSize="12" fill="#333">
+                CLCP Principles in
+              </text>
+              <text x="390" y="255" textAnchor="middle" fontSize="12" fill="#333">
+                IQRA/KALAM Content
+              </text>
+
+              <rect x="550" y="220" width="180" height="50" fill="#E8F5E8" stroke="#4CAF50" rx="5" />
+              <text x="640" y="240" textAnchor="middle" fontSize="12" fill="#333">
+                Community-Driven
+              </text>
+              <text x="640" y="255" textAnchor="middle" fontSize="12" fill="#333">
+                Game Expansion
+              </text>
+            </g>
+
+            {/* Arrows */}
+            <g className="arrows" stroke="#333" fill="none" markerEnd="url(#arrowhead2)" strokeWidth="2">
+              {/* Top to middle */}
+              <line x1="90" y1="70" x2="120" y2="115" />
+              <line x1="240" y1="70" x2="160" y2="115" />
+              <line x1="390" y1="70" x2="370" y2="115" />
+              <line x1="530" y1="70" x2="410" y2="115" />
+              <line x1="660" y1="70" x2="620" y2="115" />
+              <line x1="800" y1="70" x2="660" y2="115" />
+
+              {/* Middle to bottom */}
+              <line x1="140" y1="170" x2="140" y2="215" />
+              <line x1="390" y1="170" x2="390" y2="215" />
+              <line x1="640" y1="170" x2="640" y2="215" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      {/* Explanation Section */}
+      <div style={{ marginTop: "40px", lineHeight: "1.6" }}>
+        <h2 style={{ color: "#2E7D32" }}>Key to Our Framework</h2>
+        <p>
+          This Theory of Change validates how <strong>IQRA</strong> (interactive learning), <strong>KALAM</strong>{" "}
+          (gamified education), and <strong>Noor</strong> (interfaith AI chat) synergize through{" "}
+          <strong>AI, open-source, and Islamic ethics</strong> to create scalable impact.
+        </p>
+      </div>
     </div>
   )
 }
+
+export default TheoryOfChange
