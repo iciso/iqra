@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
 import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -32,70 +31,45 @@ export default function LeaderboardPage() {
   const [filter, setFilter] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState<string>("")
   const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
-  const [loading, setLoading] = useState(true) // Start with loading true
+  const [loading, setLoading] = useState(true)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const { toast } = useToast()
 
-  // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
     return leaderboard
       .filter((entry) => {
-        // Apply challenge type filter
-        if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) {
-          return false
-        }
-
-        // Apply category filter if selected
-        if (filter && entry.category !== filter) {
-          return false
-        }
-
-        // Apply search
-        if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return false
-        }
-
+        if (entry.name === "Test User") return false
+        if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) return false
+        if (filter && entry.category !== filter) return false
+        if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) return false
         return true
       })
       .sort((a, b) => {
-        // First sort by score (descending)
-        if (b.score !== a.score) {
-          return b.score - a.score
-        }
-
-        // If scores are tied, sort by percentage (descending)
-        if (b.percentage !== a.percentage) {
-          return b.percentage - a.percentage
-        }
-
-        // If both are tied, sort by total questions (more questions = higher rank)
+        if (b.score !== a.score) return b.score - a.score
+        if (b.percentage !== a.percentage) return b.percentage - a.percentage
         return b.totalQuestions - a.totalQuestions
       })
   }
 
-  // Get the user's best rank
   const getUserRank = (userName: string) => {
     if (!userName) return null
-
     const sortedEntries = leaderboard.sort((a, b) => b.percentage - a.percentage)
     const userEntry = sortedEntries.findIndex((entry) => entry.name === userName)
-
     return userEntry !== -1 ? userEntry + 1 : null
   }
 
-  // Load leaderboard data with fallback mechanisms
   const loadLeaderboardData = async () => {
     try {
       setLoading(true)
       console.log("🏆 Loading leaderboard data directly...")
 
-      // First try the database-with-fallback system
       try {
         const result = await getLeaderboardWithFallback()
         if (result && result.data && result.data.length > 0) {
-          console.log(`✅ Retrieved ${result.data.length} entries from ${result.source}`)
-          setLeaderboard(result.data)
+          const filteredData = result.data.filter((entry) => entry.name !== "Test User")
+          console.log(`✅ Retrieved ${filteredData.length} entries from ${result.source}`)
+          setLeaderboard(filteredData)
           setDataSource(result.source)
           setLastRefresh(new Date())
           return
@@ -104,26 +78,27 @@ export default function LeaderboardPage() {
         console.error("❌ Fallback system error:", fallbackError)
       }
 
-      // If that fails, try Supabase directly
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(20)
+        const topPlayers = await getTopPlayers()
 
         if (topPlayers && topPlayers.length > 0) {
-          // Format the data for the leaderboard
-          const formattedData = topPlayers.map((player) => ({
-            name: player.full_name || player.username || "Unknown User",
-            score: player.total_score || 0,
-            totalQuestions: player.total_questions || 0,
-            percentage:
-              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-            date: new Date().toLocaleDateString(),
-            category: "All Categories",
-            challenge: "all",
-            user_id: player.id,
-          }))
+          const filteredData = topPlayers
+            .filter((player) => player.username !== "Test User")
+            .map((player) => ({
+              name: player.full_name || player.username || "Unknown User",
+              score: player.total_score || 0,
+              totalQuestions: player.total_questions || 0,
+              percentage:
+                player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+              date: new Date().toLocaleDateString(),
+              category: "All Categories",
+              challenge: "all",
+              user_id: player.id,
+            }))
 
-          setLeaderboard(formattedData)
+          console.log(`✅ Retrieved ${filteredData.length} entries from Supabase User Profiles`)
+          setLeaderboard(filteredData)
           setDataSource("Supabase User Profiles")
           setLastRefresh(new Date())
           return
@@ -132,9 +107,8 @@ export default function LeaderboardPage() {
         console.error("❌ Supabase direct error:", supabaseError)
       }
 
-      // Final fallback to demo data
       console.log("⚠️ All data sources failed, using demo data")
-      setLeaderboard([
+      const demoData = [
         {
           name: "Dr. Muhammad Murtaza Ikram",
           score: 10,
@@ -166,7 +140,8 @@ export default function LeaderboardPage() {
           difficulty: "Medium",
           challenge: "quiz",
         },
-      ])
+      ].filter((entry) => entry.name !== "Test User")
+      setLeaderboard(demoData)
       setDataSource("Demo Data (All Sources Failed)")
     } catch (error) {
       console.error("❌ Critical error loading leaderboard:", error)
@@ -182,23 +157,17 @@ export default function LeaderboardPage() {
     }
   }
 
-  // Initialize on component mount
   useEffect(() => {
     setIsClient(true)
-    loadLeaderboardData() // Load data immediately on mount
+    loadLeaderboardData()
 
-    // Set up a refresh interval (every 5 minutes)
-    const refreshInterval = setInterval(
-      () => {
-        loadLeaderboardData()
-      },
-      5 * 60 * 1000,
-    )
+    const refreshInterval = setInterval(() => {
+      loadLeaderboardData()
+    }, 5 * 60 * 1000)
 
     return () => clearInterval(refreshInterval)
   }, [])
 
-  // Function to get medal icon based on position
   const getMedalIcon = (position: number) => {
     switch (position) {
       case 0:
@@ -212,14 +181,12 @@ export default function LeaderboardPage() {
     }
   }
 
-  // Function to get source icon
   const getSourceIcon = (source: string) => {
     if (source.includes("Supabase")) return <Cloud className="h-4 w-4" />
     if (source.includes("Neon")) return <Database className="h-4 w-4" />
     return <HardDrive className="h-4 w-4" />
   }
 
-  // Function to get source color
   const getSourceColor = (source: string) => {
     if (source.includes("Supabase")) return "bg-green-100 text-green-800"
     if (source.includes("Neon")) return "bg-blue-100 text-blue-800"
@@ -227,7 +194,6 @@ export default function LeaderboardPage() {
     return "bg-gray-100 text-gray-800"
   }
 
-  // If we're not on the client yet, show a simple loading state
   if (!isClient) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
@@ -242,13 +208,8 @@ export default function LeaderboardPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      {/* Only show these buttons on larger screens where the header might not be visible */}
-      <div className="hidden sm:block absolute top-4 right-4">
-     
-      </div>
-      <div className="hidden sm:block absolute top-4 left-4">
-       
-      </div>
+      <div className="hidden sm:block absolute top-4 right-4"></div>
+      <div className="hidden sm:block absolute top-4 left-4"></div>
 
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
@@ -331,7 +292,7 @@ export default function LeaderboardPage() {
               <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
             </div>
           ) : getFilteredLeaderboard().length > 0 ? (
-            <div className="overflow-x-auto -mx-2 sm:mx-0">
+            <div className="max-h-[70vh] overflow-y-auto">
               <Table className="w-full">
                 <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
                 <TableHeader>
