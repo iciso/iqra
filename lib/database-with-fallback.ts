@@ -27,7 +27,7 @@ export async function getLeaderboardWithFallback() {
           difficulty: "Easy",
           challenge: "quiz",
         },
-      ].filter((entry) => !["Test User", "Build Time User", "Demo User"].includes(entry.name)),
+      ].filter((entry) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(entry.name)),
       source: "Build Time Mock",
     }
   }
@@ -39,7 +39,7 @@ export async function getLeaderboardWithFallback() {
     const { data: profiles, error: profilesError } = await supabase
       .from("user_profiles")
       .select("*")
-      .not("username", "in", '("Test User","Build Time User","Demo User")') // Filter out test users
+      .not("username", "in", '("Test User","Build Time User","Demo User","test-1748153442262")') // Filter out test users
       .order("total_score", { ascending: false })
 
     if (profilesError) {
@@ -89,7 +89,7 @@ export async function getLeaderboardWithFallback() {
             difficulty: "Easy",
             challenge: "quiz",
           },
-        ].filter((entry) => !["Test User", "Build Time User", "Demo User"].includes(entry.name)),
+        ].filter((entry) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(entry.name)),
         source: "Demo (Error)",
       }
     }
