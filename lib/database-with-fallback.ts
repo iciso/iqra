@@ -2,6 +2,7 @@ import { supabase } from "./supabase"
 import { getLeaderboardFromFallback } from "./neon-fallback"
 
 export interface LeaderboardEntry {
+  rank?: number
   name: string
   score: number
   totalQuestions: number
@@ -26,23 +27,8 @@ export async function getLeaderboardWithFallback() {
     !process.env.iqra_DATABASE_URL
 
   if (forcedBuildTimeCheck) {
-    console.log("🏗️ Build time detected in getLeaderboardWithFallback, using mock data")
-    return {
-      data: [
-        {
-          name: "Build Time User",
-          score: 10,
-          totalQuestions: 10,
-          percentage: 100,
-          date: new Date().toLocaleDateString(),
-          category: "Quran",
-          difficulty: "Easy",
-          challenge: "quiz",
-          user_id: "build-time-user",
-        },
-      ],
-      source: "Build Time Mock",
-    }
+    console.log("🏗️ Build time detected in getLeaderboardWithFallback, returning empty data")
+    return { data: [], source: "Build Time Empty" }
   }
 
   try {
@@ -95,24 +81,8 @@ export async function getLeaderboardWithFallback() {
     } catch (neonError) {
       console.error("❌ Neon fallback error:", neonError)
 
-      // Final fallback to demo data
-      return {
-        data: [
-          {
-            rank: 1,
-            name: "Demo User",
-            score: 10,
-            totalQuestions: 10,
-            percentage: 100,
-            date: new Date().toLocaleDateString(),
-            category: "Quran",
-            difficulty: "Easy",
-            challenge: "quiz",
-            user_id: "demo-user",
-          },
-        ],
-        source: "Demo (Error)",
-      }
+      // Final fallback to empty data
+      return { data: [], source: "Error Empty" }
     }
   }
 }
