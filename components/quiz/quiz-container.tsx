@@ -564,14 +564,7 @@ export default function QuizContainer({
       <div className="absolute top-4 right-4">
        
       </div>
-      <div className="absolute top-4 left-4">
-        <Link href={challengeMode ? "/challenges" : "/categories"}>
-          <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
-            <span className="sr-only">{challengeMode ? "Challenges" : "Categories"}</span>
-          </Button>
-        </Link>
-      </div>
-
+    
       <div className="w-full mb-4 mt-12">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-green-700 dark:text-green-400">
