@@ -34,13 +34,17 @@ export default function TopPlayersFixed() {
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .order("total_score", { ascending: false })
-        .limit(14)
 
       if (error) throw error
 
       const allPlayers = data || []
-      // Filter out current user if needed
-      const filteredPlayers = user ? allPlayers.filter((player) => player.id !== user.id) : allPlayers
+      // Filter out current user and any "Test User" entries
+      const filteredPlayers = allPlayers.filter(
+        (player) =>
+          (!user || player.id !== user.id) &&
+          !player.username.toLowerCase().includes("test") &&
+          !player.full_name?.toLowerCase().includes("test")
+      )
       setPlayers(filteredPlayers)
     } catch (error: any) {
       setError(error.message)
@@ -52,7 +56,7 @@ export default function TopPlayersFixed() {
   // Load players only once when component mounts
   useEffect(() => {
     loadTopPlayers()
-  }, []) // Remove user dependency to prevent infinite loops
+  }, [])
 
   const getUserInitials = (player: Player) => {
     if (player.full_name) {
@@ -78,7 +82,7 @@ export default function TopPlayersFixed() {
           </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="max-h-[50vh] overflow-y-auto">
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
