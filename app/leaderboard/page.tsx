@@ -36,6 +36,15 @@ export default function LeaderboardPage() {
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const { toast } = useToast()
 
+  // Helper function to abbreviate names with more than three words
+  const getDisplayName = (name: string) => {
+    const words = name.trim().split(/\s+/);
+    if (words.length > 3) {
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
+    }
+    return name;
+  }
+
   const getFilteredLeaderboard = () => {
     return leaderboard
       .filter((entry) => {
@@ -327,10 +336,10 @@ export default function LeaderboardPage() {
                           ) : (
                             <div className="flex items-center gap-1 md:gap-2">
                               <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
-                                {entry.name.charAt(0)}
+                                {getDisplayName(entry.name).charAt(0)}
                               </div>
                               <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
-                                {entry.name}
+                                {getDisplayName(entry.name)}
                               </span>
                             </div>
                           )}
