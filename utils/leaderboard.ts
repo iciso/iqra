@@ -1,4 +1,5 @@
 export interface LeaderboardEntry {
+  rank?: number
   name: string
   score: number
   totalQuestions: number
@@ -7,6 +8,7 @@ export interface LeaderboardEntry {
   category?: string
   difficulty?: string
   challenge?: string
+  user_id?: string
 }
 
 // Check if code is running in browser
@@ -18,7 +20,11 @@ export function getLeaderboard(): LeaderboardEntry[] {
 
   try {
     const leaderboard = localStorage.getItem("quranQuizLeaderboard")
-    return leaderboard ? JSON.parse(leaderboard) : []
+    const entries = leaderboard ? JSON.parse(leaderboard) : []
+    // Add rank based on sorted order
+    return entries
+      .sort((a, b) => b.percentage - a.percentage)
+      .map((entry, index) => ({ ...entry, rank: index + 1 }))
   } catch (error) {
     console.error("Error getting leaderboard:", error)
     return []
@@ -31,18 +37,12 @@ export function addToLeaderboard(entry: LeaderboardEntry): void {
 
   try {
     const leaderboard = getLeaderboard()
-
+    // Remove rank from existing entries to avoid duplication
+    const cleanLeaderboard = leaderboard.map(({ rank, ...rest }) => rest)
     // Add new entry
-    leaderboard.push(entry)
-
-    // Sort by percentage (highest first)
-    leaderboard.sort((a, b) => b.percentage - a.percentage)
-
-    // Keep only top 10 entries
-    const topEntries = leaderboard.slice(0, 10)
-
-    // Save back to localStorage
-    localStorage.setItem("quranQuizLeaderboard", JSON.stringify(topEntries))
+    cleanLeaderboard.push(entry)
+    // Save back to localStorage (no slicing to keep all entries)
+    localStorage.setItem("quranQuizLeaderboard", JSON.stringify(cleanLeaderboard))
   } catch (error) {
     console.error("Error adding to leaderboard:", error)
   }
