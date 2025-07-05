@@ -1,16 +1,13 @@
 import { neon } from "@neondatabase/serverless"
 
-// Client-side safe functions that don't try to access server environment variables
 export async function initializeFallbackTables() {
   console.log("🔄 Initializing fallback tables...")
 
-  // Safety check - don't run in browser
   if (typeof window !== "undefined") {
     console.log("🔄 Running in browser, skipping table initialization")
     return true
   }
 
-  // Server-side only logic
   const forcedBuildTimeCheck =
     process.env.NODE_ENV === "production" &&
     !process.env.VERCEL_ENV &&
@@ -30,7 +27,6 @@ export async function initializeFallbackTables() {
       return false
     }
 
-    console.log("🔌 Connecting to Neon database...")
     const sql = neon(dbUrl)
 
     await sql`
@@ -71,17 +67,14 @@ export async function initializeFallbackTables() {
   }
 }
 
-// Client-side safe function - returns empty array instead of trying to access server env
-export async function getTopPlayersFromFallback(limit = 10) {
-  console.log(`🏆 Getting top ${limit} players from fallback database...`)
+export async function getTopPlayersFromFallback() {
+  console.log("🏆 Getting top players from fallback database...")
 
-  // If running in browser, return empty array
   if (typeof window !== "undefined") {
     console.log("🌐 Running in browser, cannot access Neon database directly")
     return []
   }
 
-  // Server-side only logic
   const forcedBuildTimeCheck =
     process.env.NODE_ENV === "production" &&
     !process.env.VERCEL_ENV &&
@@ -106,8 +99,8 @@ export async function getTopPlayersFromFallback(limit = 10) {
     const players = await sql`
       SELECT id, username, full_name, total_score, best_percentage
       FROM user_profiles
+      WHERE username != 'Test User'
       ORDER BY total_score DESC
-      LIMIT ${limit}
     `
 
     console.log(`✅ Retrieved ${players.length} top players from fallback`)
@@ -118,7 +111,6 @@ export async function getTopPlayersFromFallback(limit = 10) {
   }
 }
 
-// Server-side only functions
 export async function saveQuizResultToFallback(
   userId: string,
   score: number,
@@ -298,8 +290,8 @@ export async function getLeaderboardFromFallback() {
         up.full_name
       FROM quiz_results qr
       LEFT JOIN user_profiles up ON qr.user_id = up.id
+      WHERE up.username != 'Test User'
       ORDER BY qr.percentage DESC, qr.created_at DESC
-      LIMIT 20
     `
 
     const leaderboard = results.map((result) => ({
