@@ -119,6 +119,126 @@ const comparativeReligionCategory: QuizCategory = {
           "Islam acknowledges that other religions, particularly monotheistic faiths, contain elements of truth as they originated from divine revelation. However, Islamic teaching holds that Islam represents the complete and final revelation from God, perfecting and superseding previous messages.",
       },
       {
+        question: "What does the Quran say about previous scriptures like the Torah and Gospel?",
+        options: [
+          "They are completely corrupted and worthless",
+          "They were originally divine revelations but have been altered",
+          "They are exactly the same as when revealed",
+          "The Quran doesn't mention previous scriptures",
+        ],
+        correctAnswer: "They were originally divine revelations but have been altered",
+        explanation:
+          "The Quran acknowledges the divine origin of previous scriptures but states they have been altered over time. 'So woe to those who write the Scripture with their own hands, then say, This is from Allah' (2:79).",
+      },
+      {
+        question: "How does Islam view the concept of original sin?",
+        options: [
+          "Islam fully accepts the Christian doctrine of original sin",
+          "Islam rejects the concept of original sin entirely",
+          "Islam believes in original sin but only for non-Muslims",
+          "Islam has no position on original sin",
+        ],
+        correctAnswer: "Islam rejects the concept of original sin entirely",
+        explanation:
+          "Islam teaches that each person is born pure and accountable only for their own actions. The Quran states: 'No soul bears the burden of another' (6:164).",
+      },
+      {
+        question: "What is the Islamic view on monasticism?",
+        options: [
+          "Islam encourages monastic life as the highest form of worship",
+          "Islam rejects monasticism as an innovation not prescribed by God",
+          "Islam allows monasticism only for women",
+          "Islam requires monasticism for all believers",
+        ],
+        correctAnswer: "Islam rejects monasticism as an innovation not prescribed by God",
+        explanation:
+          "The Quran states: 'But monasticism, they invented it - We did not prescribe it for them' (57:27). Islam promotes a balanced life between worship and worldly responsibilities.",
+      },
+      {
+        question: "How does Islam view the concept of divine incarnation?",
+        options: [
+          "Islam accepts divine incarnation in certain special cases",
+          "Islam completely rejects any notion of God taking human form",
+          "Islam believes God incarnates in every generation",
+          "Islam has no position on divine incarnation",
+        ],
+        correctAnswer: "Islam completely rejects any notion of God taking human form",
+        explanation:
+          "Islamic theology strongly maintains God's transcendence. The Quran states: 'There is nothing like unto Him' (42:11) and rejects any notion of God becoming human or taking physical form.",
+      },
+      {
+        question: "What is the Islamic perspective on salvation?",
+        options: [
+          "Salvation comes only through formal conversion to Islam",
+          "Salvation comes through faith and righteous deeds",
+          "Salvation is guaranteed for all people regardless of belief",
+          "Salvation is impossible for most people",
+        ],
+        correctAnswer: "Salvation comes through faith and righteous deeds",
+        explanation:
+          "Islam teaches that salvation comes through correct belief in God combined with righteous actions. The Quran states: 'Indeed, those who believe and do righteous deeds - they are the best of creatures' (98:7).",
+      },
+      {
+        question: "How does Islam view the concept of intercession on Judgment Day?",
+        options: [
+          "Islam rejects any form of intercession",
+          "Islam allows intercession only by Prophet Muhammad (PBUH)",
+          "Intercession is permitted but ultimately subject to Allah's permission",
+          "Everyone can intercede for their family members",
+        ],
+        correctAnswer: "Intercession is permitted but ultimately subject to Allah's permission",
+        explanation:
+          "The Quran states: 'Who is there that can intercede with Him except by His permission?' (2:255). Islamic belief holds that prophets and righteous people may intercede, but only by Allah's leave.",
+      },
+      {
+        question: "What is the Islamic view on images of prophets?",
+        options: [
+          "Islam encourages artistic depictions of all prophets",
+          "Islam strictly prohibits any visual representations of prophets",
+          "Islam allows images of prophets except Muhammad (PBUH)",
+          "Islam has no position on this matter",
+        ],
+        correctAnswer: "Islam strictly prohibits any visual representations of prophets",
+        explanation:
+          "To prevent idolatry and maintain respect, Islam prohibits visual representations of all prophets. This is based on numerous authentic hadiths warning against image-making.",
+      },
+      {
+        question: "How does Islam view the concept of predestination compared to Christianity?",
+        options: [
+          "Islam and Christianity have identical views on predestination",
+          "Islam emphasizes predestination more strongly than most Christian denominations",
+          "Christianity emphasizes predestination more than Islam",
+          "Neither religion believes in predestination",
+        ],
+        correctAnswer: "Islam emphasizes predestination more strongly than most Christian denominations",
+        explanation:
+          "While both religions acknowledge God's sovereignty, Islamic theology (especially Sunni Islam) places stronger emphasis on divine decree (qadar) while maintaining human responsibility.",
+      },
+      {
+        question: "What is the Islamic view on the status of women compared to other religions?",
+        options: [
+          "Islam considers women spiritually inferior to men",
+          "Islam grants women equal spiritual status but different roles",
+          "Islam views women as superior to men spiritually",
+          "Islam has no specific teachings about women",
+        ],
+        correctAnswer: "Islam grants women equal spiritual status but different roles",
+        explanation:
+          "The Quran states: 'Whoever does righteousness, whether male or female, while believing - We will surely grant them a good life' (16:97). Islam teaches spiritual equality while recognizing gender differences in roles and responsibilities.",
+      },
+      {
+        question: "How does Islamic prayer differ from prayer in other Abrahamic faiths?",
+        options: [
+          "Islamic prayer involves physical postures and set timings",
+          "Islamic prayer is always silent and private",
+          "Islamic prayer requires musical instruments",
+          "Islamic prayer is identical to Jewish and Christian prayer",
+        ],
+        correctAnswer: "Islamic prayer involves physical postures and set timings",
+        explanation:
+          "Islamic salah involves specific physical postures (standing, bowing, prostrating) at five set times daily, distinguishing it from prayer in other traditions. The Prophet (PBUH) said: 'Pray as you have seen me praying' (Bukhari).",
+      },
+      {
         question: "What is the Islamic perspective on the relationship between religion and state?",
         options: [
           "Islam mandates a specific form of government",
@@ -143,6 +263,127 @@ const comparativeReligionCategory: QuizCategory = {
         correctAnswer: "Islam emphasizes absolute oneness (Tawhid) while Christianity affirms a triune God",
         explanation:
           "Islam emphasizes the absolute oneness of God (Tawhid), rejecting any division or plurality within the divine nature. This differs from mainstream Christianity's trinitarian concept of God as Father, Son, and Holy Spirit - three persons in one divine essence. The Quran explicitly addresses this difference in Surah Al-Ikhlas and 4:171.",
+      },
+         // NEW questions (11-30)
+      {
+        question: "What does the Quran say about previous scriptures like the Torah and Gospel?",
+        options: [
+          "They are completely corrupted and worthless",
+          "They were originally divine revelations but have been altered",
+          "They are exactly the same as when revealed",
+          "The Quran doesn't mention previous scriptures",
+        ],
+        correctAnswer: "They were originally divine revelations but have been altered",
+        explanation:
+          "The Quran acknowledges the divine origin of previous scriptures but states they have been altered over time. 'So woe to those who write the Scripture with their own hands, then say, This is from Allah' (2:79).",
+      },
+      {
+        question: "How does Islam view the concept of original sin?",
+        options: [
+          "Islam fully accepts the Christian doctrine of original sin",
+          "Islam rejects the concept of original sin entirely",
+          "Islam believes in original sin but only for non-Muslims",
+          "Islam has no position on original sin",
+        ],
+        correctAnswer: "Islam rejects the concept of original sin entirely",
+        explanation:
+          "Islam teaches that each person is born pure and accountable only for their own actions. The Quran states: 'No soul bears the burden of another' (6:164).",
+      },
+      {
+        question: "What is the Islamic view on monasticism?",
+        options: [
+          "Islam encourages monastic life as the highest form of worship",
+          "Islam rejects monasticism as an innovation not prescribed by God",
+          "Islam allows monasticism only for women",
+          "Islam requires monasticism for all believers",
+        ],
+        correctAnswer: "Islam rejects monasticism as an innovation not prescribed by God",
+        explanation:
+          "The Quran states: 'But monasticism, they invented it - We did not prescribe it for them' (57:27). Islam promotes a balanced life between worship and worldly responsibilities.",
+      },
+      {
+        question: "How does Islam view the concept of divine incarnation?",
+        options: [
+          "Islam accepts divine incarnation in certain special cases",
+          "Islam completely rejects any notion of God taking human form",
+          "Islam believes God incarnates in every generation",
+          "Islam has no position on divine incarnation",
+        ],
+        correctAnswer: "Islam completely rejects any notion of God taking human form",
+        explanation:
+          "Islamic theology strongly maintains God's transcendence. The Quran states: 'There is nothing like unto Him' (42:11) and rejects any notion of God becoming human or taking physical form.",
+      },
+      {
+        question: "What is the Islamic perspective on salvation?",
+        options: [
+          "Salvation comes only through formal conversion to Islam",
+          "Salvation comes through faith and righteous deeds",
+          "Salvation is guaranteed for all people regardless of belief",
+          "Salvation is impossible for most people",
+        ],
+        correctAnswer: "Salvation comes through faith and righteous deeds",
+        explanation:
+          "Islam teaches that salvation comes through correct belief in God combined with righteous actions. The Quran states: 'Indeed, those who believe and do righteous deeds - they are the best of creatures' (98:7).",
+      },
+      {
+        question: "How does Islam view the concept of intercession on Judgment Day?",
+        options: [
+          "Islam rejects any form of intercession",
+          "Islam allows intercession only by Prophet Muhammad (PBUH)",
+          "Intercession is permitted but ultimately subject to Allah's permission",
+          "Everyone can intercede for their family members",
+        ],
+        correctAnswer: "Intercession is permitted but ultimately subject to Allah's permission",
+        explanation:
+          "The Quran states: 'Who is there that can intercede with Him except by His permission?' (2:255). Islamic belief holds that prophets and righteous people may intercede, but only by Allah's leave.",
+      },
+      {
+        question: "What is the Islamic view on images of prophets?",
+        options: [
+          "Islam encourages artistic depictions of all prophets",
+          "Islam strictly prohibits any visual representations of prophets",
+          "Islam allows images of prophets except Muhammad (PBUH)",
+          "Islam has no position on this matter",
+        ],
+        correctAnswer: "Islam strictly prohibits any visual representations of prophets",
+        explanation:
+          "To prevent idolatry and maintain respect, Islam prohibits visual representations of all prophets. This is based on numerous authentic hadiths warning against image-making.",
+      },
+      {
+        question: "How does Islam view the concept of predestination compared to Christianity?",
+        options: [
+          "Islam and Christianity have identical views on predestination",
+          "Islam emphasizes predestination more strongly than most Christian denominations",
+          "Christianity emphasizes predestination more than Islam",
+          "Neither religion believes in predestination",
+        ],
+        correctAnswer: "Islam emphasizes predestination more strongly than most Christian denominations",
+        explanation:
+          "While both religions acknowledge God's sovereignty, Islamic theology (especially Sunni Islam) places stronger emphasis on divine decree (qadar) while maintaining human responsibility.",
+      },
+      {
+        question: "What is the Islamic view on the status of women compared to other religions?",
+        options: [
+          "Islam considers women spiritually inferior to men",
+          "Islam grants women equal spiritual status but different roles",
+          "Islam views women as superior to men spiritually",
+          "Islam has no specific teachings about women",
+        ],
+        correctAnswer: "Islam grants women equal spiritual status but different roles",
+        explanation:
+          "The Quran states: 'Whoever does righteousness, whether male or female, while believing - We will surely grant them a good life' (16:97). Islam teaches spiritual equality while recognizing gender differences in roles and responsibilities.",
+      },
+      {
+        question: "How does Islamic prayer differ from prayer in other Abrahamic faiths?",
+        options: [
+          "Islamic prayer involves physical postures and set timings",
+          "Islamic prayer is always silent and private",
+          "Islamic prayer requires musical instruments",
+          "Islamic prayer is identical to Jewish and Christian prayer",
+        ],
+        correctAnswer: "Islamic prayer involves physical postures and set timings",
+        explanation:
+          "Islamic salah involves specific physical postures (standing, bowing, prostrating) at five set times daily, distinguishing it from prayer in other traditions. The Prophet (PBUH) said: 'Pray as you have seen me praying' (Bukhari).",
       },
       {
         question: "What is the epistemological framework for knowledge in Islamic thought?",
