@@ -162,7 +162,7 @@ export default React.memo(function SimpleTopPlayers() {
   };
 
   const handleChallenge = (player: Player) => {
-    console.log("Challenge button clicked for:", player.id, { userId: user?.id });
+    console.log("🎯 Challenge button clicked for:", player.id, { userId: user?.id });
     setSelectedOpponent(player);
     setChallengeDialogOpen(true);
   };
@@ -291,7 +291,7 @@ export default React.memo(function SimpleTopPlayers() {
             </div>
           ) : (
             <div className="top-players-grid">
-              <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-base items-center font-medium">
+              <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-base items-center font-medium border-b pb-2">
                 <span className="text-left">Rank</span>
                 <span className="text-left">Name</span>
                 <span className="text-center">Score</span>
