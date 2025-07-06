@@ -8,7 +8,7 @@ import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog";
-import {toast} from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 interface Player {
   id: string;
@@ -92,7 +92,7 @@ export default function SimpleTopPlayers() {
       });
       await loadPlayers();
     } catch (error: any) {
-      console.error("❌ Error{error} syncing profiles:", error);
+      console.error("❌ Error syncing profiles:", error);
       toast({
         title: "Error",
         description: "Failed to sync profiles",
@@ -301,7 +301,7 @@ export default function SimpleTopPlayers() {
             </div>
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-6 w-full overflow-x-hidden">
+        <CardContent className="p-6 w-full overflow-x-auto">
           {players.length === 0 ? (
             <div className="text-center py-6">
               <p className="text-gray-500 mb-4 text-base">No players found</p>
@@ -331,17 +331,17 @@ export default function SimpleTopPlayers() {
                         {(player.full_name || player.username).charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="truncate min-w-0 text-base">{player.full_name || player.username}</span>
+                    <span className="truncate min-w-0 text-base whitespace-nowrap overflow-hidden">{player.full_name || player.username}</span>
                     {index === 0 && !isUsingFallback && <Trophy className="h-5 w-5 text-yellow-500 flex-shrink-0" />}
                   </div>
-                  <span className="text-center font-medium">{isUsingFallback ? "-" : `${player.total_score} pts`}</span>
-                  <span className="text-center font-medium">{isUsingFallback ? "-" : `${player.best_percentage.toFixed(2)}%`}</span>
+                  <span className="text-center font-medium truncate">{isUsingFallback ? "-" : `${player.total_score} pts`}</span>
+                  <span className="text-center font-medium truncate">{isUsingFallback ? "-" : `${player.best_percentage.toFixed(2)}%`}</span>
                   <span className="text-center">
                     {user && user.id && user.id !== player.id ? (
                       <Button
                         size="sm"
                         onClick={() => handleChallenge(player)}
-                        className="h-9 px-4 bg-green-600 hover:bg-green-700 text-sm font-medium"
+                        className="h-9 px-4 bg-green-600 hover:bg-green-700 text-sm font-medium whitespace-nowrap"
                       >
                         Challenge
                       </Button>
