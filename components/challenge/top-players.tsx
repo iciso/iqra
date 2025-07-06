@@ -86,6 +86,7 @@ export default function TopPlayers() {
     try {
       const session = await supabase.auth.getSession();
       const token = session.data.session?.access_token;
+      console.log("Access token:", token ? "Present" : "Missing");
       if (!token) {
         throw new Error("No access token available");
       }
@@ -106,96 +107,103 @@ export default function TopPlayers() {
       });
 
       const result = await response.json();
+      console.log("API response:", result);
       if (!response.ok) {
         throw new Error(result.error || "Failed to create challenge");
       }
 
       console.log(`✅ Challenge sent to user ${opponentId}`, result);
       toast.success(`Challenge sent to ${players.find(p => p.id === opponentId)?.full_name || "opponent"}!`);
-    } catch (error) {
-      console.error("❌ Error sending challenge:", error);
-      toast.error("Failed to send challenge");
+    } catch (error: any) {
+      console.error("❌ Error sending challenge:", error.message);
+      toast.error(`Failed to send challenge: ${error.message}`);
     }
   };
 
   if (loading) {
     return (
-      <Card className="bg-card border rounded-lg shadow-md">
-        <CardContent className="p-6">
-          <Skeleton className="h-8 w-full mb-4" />
-          {[...Array(5)].map((_, i) => (
-            <Skeleton key={i} className="h-12 w-full mb-2" />
-          ))}
-        </CardContent>
-      </Card>
+      <div className="max-w-4xl mx-auto">
+        <Card className="bg-card border rounded-lg shadow-md">
+          <CardContent className="p-6 w-full overflow-x-hidden">
+            <Skeleton className="h-8 w-full mb-4" />
+            {[...Array(5)].map((_, i) => (
+              <Skeleton key={i} className="h-12 w-full mb-2" />
+            ))}
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   if (players.length === 0) {
     return (
-      <Card className="bg-card border rounded-lg shadow-md">
-        <CardHeader>
-          <CardTitle>All Players (0)</CardTitle>
-        </CardHeader>
-        <CardContent className="p-6">
-          <p>No players found</p>
-          <Button onClick={() => fetchPlayers()}>Sync User Profiles</Button>
-        </CardContent>
-      </Card>
+      <div className="max-w-4xl mx-auto">
+        <Card className="bg-card border rounded-lg shadow-md">
+          <CardHeader>
+            <CardTitle>All Players (0)</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 w-full overflow-x-hidden">
+            <p>No players found</p>
+            <Button onClick={() => fetchPlayers()}>Sync User Profiles</Button>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   return (
-    <Card className="bg-card border rounded-lg shadow-md">
-      <CardHeader>
-        <CardTitle>All Players ({players.length})</CardTitle>
-      </CardHeader>
-      <CardContent className="max-h-[70vh] overflow-y-auto p-6">
-        <div className="grid grid-cols-[60px_1fr_150px_150px_150px] gap-4 font-semibold border-b pb-2 text-sm">
-          <span>Rank</span>
-          <span>Name</span>
-          <span>Score</span>
-          <span>Percentage</span>
-          <span>Action</span>
-        </div>
-        {players.map((player, index) => (
-          <div
-            key={player.id}
-            className="grid grid-cols-[60px_1fr_150px_150px_150px] gap-4 items-center py-2 border-b text-sm"
-          >
-            <span>{index + 1}</span>
-            <div className="flex items-center gap-3">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src={player.avatar_url} alt={player.full_name} />
-                <AvatarFallback>{player.full_name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <span className="truncate">{player.full_name}</span>
-              {index === 0 && <Trophy className="h-5 w-5 text-yellow-500" />}
-              {index === 1 && <Medal className="h-5 w-5 text-gray-500" />}
-              {index === 2 && <Award className="h-5 w-5 text-orange-500" />}
-            </div>
-            <span>{player.total_score}/{player.total_questions}</span>
-            <span>{Math.round((player.total_score / player.total_questions) * 100) || 0}%</span>
-            <span>
-              {user && user.id && user.id !== player.id ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    console.log("Challenge button clicked for:", player.id);
-                    handleChallenge(player.id);
-                  }}
-                  className="text-green-600 border-green-600 hover:bg-green-50"
-                >
-                  Challenge
-                </Button>
-              ) : (
-                <span>-</span>
-              )}
-            </span>
+    <div className="max-w-4xl mx-auto">
+      <Card className="bg-card border rounded-lg shadow-md">
+        <CardHeader>
+          <CardTitle>All Players ({players.length})</CardTitle>
+        </CardHeader>
+        <CardContent className="p-6 w-full overflow-x-hidden">
+          <div className="grid grid-cols-[50px_2fr_1fr_1fr_1fr] gap-4 font-semibold border-b pb-2 text-sm">
+            <span className="text-left">Rank</span>
+            <span className="text-left">Name</span>
+            <span className="text-center">Score</span>
+            <span className="text-center">Percentage</span>
+            <span className="text-center">Action</span>
           </div>
-        ))}
-      </CardContent>
-    </Card>
+          {players.map((player, index) => (
+            <div
+              key={player.id}
+              className="grid grid-cols-[50px_2fr_1fr_1fr_1fr] gap-4 items-center py-2 border-b text-sm"
+            >
+              <span className="text-left">{index + 1}</span>
+              <div className="flex items-center gap-3">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={player.avatar_url || "/placeholder.svg"} alt={player.full_name} />
+                  <AvatarFallback className="bg-primary/10 text-primary">{player.full_name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <span className="truncate max-w-[300px]">{player.full_name}</span>
+                {index === 0 && <Trophy className="h-5 w-5 text-yellow-500" />}
+                {index === 1 && <Medal className="h-5 w-5 text-gray-500" />}
+                {index === 2 && <Award className="h-5 w-5 text-orange-500" />}
+              </div>
+              <span className="text-center">{player.total_score}/{player.total_questions}</span>
+              <span className="text-center">{Math.round((player.total_score / player.total_questions) * 100) || 0}%</span>
+              <span className="text-center">
+                {user && user.id && user.id !== player.id ? (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      console.log("Challenge button clicked for:", player.id, { userId: user.id });
+                      handleChallenge(player.id);
+                    }}
+                    className="text-primary border-primary hover:bg-primary/10"
+                  >
+                    Challenge
+                  </Button>
+                ) : (
+                  <span>-</span>
+                )}
+              </span>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    </div>
   );
 }
