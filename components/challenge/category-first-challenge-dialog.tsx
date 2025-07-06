@@ -1,112 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import {
-  Gamepad2,
-  Zap,
-  BookOpen,
-  Scale,
-  Scroll,
-  ChurchIcon as Mosque,
-  Heart,
-  Star,
-  Trophy,
-  Clock,
-  Target,
-  History,
-  Sparkles,
-  Users,
-  Globe,
-  Landmark,
-  AlertCircle,
-} from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/auth-context";
 
-interface User {
+interface Player {
   id: string;
   username: string;
   full_name?: string;
   avatar_url?: string;
-  total_score?: number;
-  best_percentage?: number;
 }
 
-interface CategoryFirstChallengeDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  opponent: User;
+interface Category {
+  id: string;
+  label: string;
+  description: string;
+  icon: any;
+  color: string;
+  textColor: string;
+  bgLight: string;
 }
 
 const challengeCategories = [
-  // ... (same as provided)
+  { id: "fiqh", label: "Fiqh", description: "Islamic Jurisprudence", icon: null, color: "bg-blue-500", textColor: "text-blue-700", bgLight: "bg-blue-50" },
+  { id: "quran", label: "Quran", description: "Quran Knowledge", icon: null, color: "bg-green-500", textColor: "text-green-700", bgLight: "bg-green-50" },
+  { id: "hadeeth", label: "Hadeeth", description: "Prophetic Traditions", icon: null, color: "bg-amber-500", textColor: "text-amber-700", bgLight: "bg-amber-50" },
+  { id: "seerah", label: "Seerah", description: "Prophet's Biography", icon: null, color: "bg-purple-500", textColor: "text-purple-700", bgLight: "bg-purple-50" },
+  { id: "aqeedah", label: "Aqeedah", description: "Islamic Creed", icon: null, color: "bg-red-500", textColor: "text-red-700", bgLight: "bg-red-50" },
+  { id: "tafsir", label: "Tafsir", description: "Quran Commentary", icon: null, color: "bg-indigo-500", textColor: "text-indigo-700", bgLight: "bg-indigo-50" },
 ];
 
 const difficulties = [
-  { value: "easy", label: "Easy", description: "Basic level questions", emoji: "🟢" },
-  { value: "intermediate", label: "Intermediate", description: "Moderate difficulty", emoji: "🟡" },
-  { value: "advanced", label: "Advanced", description: "Expert level questions", emoji: "🔴" },
-  { value: "mixed", label: "Mixed", description: "All difficulty levels", emoji: "🌈" },
+  { value: "easy", label: "Easy" },
+  { value: "intermediate", label: "Intermediate" },
+  { value: "advanced", label: "Advanced" },
+  { value: "mixed", label: "Mixed" },
 ];
 
-export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: CategoryFirstChallengeDialogProps) {
+export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: { isOpen: boolean; onClose: () => void; opponent: Player }) {
   const { user } = useAuth();
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState("mixed");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [challengeSent, setChallengeSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>(challengeCategories[0].id);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>(difficulties[0].value);
+  const [sending, setSending] = useState(false);
 
-  const getUserInitials = (user: User) => {
-    if (user.full_name) {
-      return user.full_name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase();
-    }
-    return user.username.charAt(0).toUpperCase();
-  };
-
-  const handleSendChallenge = async () => {
-    if (!user) {
-      toast({
-        title: "Sign in required",
-        description: "Please sign in to challenge other players",
-        variant: "destructive",
-      });
+  const sendChallenge = async () => {
+    if (!user?.id) {
+      toast({ title: "Error", description: "You must be signed in", variant: "destructive" });
       return;
     }
 
-    if (!selectedCategory) {
-      toast({
-        title: "Select Category",
-        description: "Please select a category before sending the challenge",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    setError(null);
-
+    setSending(true);
     try {
-      console.log(`🎯 Creating challenge: ${opponent.full_name || opponent.username} (${opponent.id})`);
-      console.log(`🎯 Challenge details:`, {
-        category: selectedCategory,
-        difficulty: selectedDifficulty,
-        questionCount: 10,
-        timeLimit: 300,
-      });
-
       const challengeData = {
         challenger_id: user.id,
         challenged_id: opponent.id,
@@ -118,61 +68,78 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       };
 
-      const { data: challenge, error } = await supabase
-        .from("user_challenges")
-        .insert(challengeData)
-        .select()
-        .single();
-
+      const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single();
       if (error) throw error;
-
-      console.log(`✅ Challenge created successfully:`, challenge);
-
-      setChallengeSent(true);
 
       const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory;
       toast({
-        title: "Challenge Created! 🎯",
-        description: `${categoryLabel} challenge sent to ${opponent.full_name || opponent.username}. Take your quiz now!`,
+        title: "Challenge Sent! 🎯",
+        description: `${categoryLabel} challenge sent to ${opponent.full_name || opponent.username}`,
       });
 
-      setTimeout(() => {
-        const challengeUrl = `/quiz?category=${encodeURIComponent(selectedCategory)}&difficulty=${encodeURIComponent(selectedDifficulty)}&challenge=${challenge.id}&questions=10&opponentId=${opponent.id}&opponentName=${encodeURIComponent(opponent.full_name || opponent.username)}&challengerTurn=true`;
-        console.log(`🔗 Redirecting challenger to:`, challengeUrl);
-        router.push(challengeUrl);
-      }, 1500);
+      // Navigate to quiz with challenge ID
+      if (data?.id) {
+        router.push(`/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${data.id}&opponentId=${opponent.id}`);
+      }
     } catch (error: any) {
-      console.error("❌ Error sending challenge:", error);
-      setError(error.message || "Failed to send challenge. Please try again.");
+      console.error("Challenge error:", error);
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
         variant: "destructive",
       });
     } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleClose = () => {
-    if (!isSubmitting && !challengeSent) {
-      setSelectedCategory(null);
-      setSelectedDifficulty("mixed");
-      setError(null);
+      setSending(false);
       onClose();
     }
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-xl">
-            <Gamepad2 className="h-6 w-6 text-green-600" />
-            Challenge {opponent.full_name || opponent.username}
-          </DialogTitle>
+          <DialogTitle>Challenge {opponent.full_name || opponent.username}</DialogTitle>
         </DialogHeader>
-        {/* ... (rest of the JSX same as provided) */}
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">Category</label>
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {challengeCategories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Difficulty</label>
+            <Select value={selectedDifficulty} onValueChange={setSelectedDifficulty}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select difficulty" />
+              </SelectTrigger>
+              <SelectContent>
+                {difficulties.map((diff) => (
+                  <SelectItem key={diff.value} value={diff.value}>
+                    {diff.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose} disabled={sending}>
+            Cancel
+          </Button>
+          <Button onClick={sendChallenge} disabled={sending} className="bg-green-600 hover:bg-green-700">
+            {sending ? "Sending..." : "Send Challenge"}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
