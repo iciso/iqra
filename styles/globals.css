@@ -100,21 +100,24 @@ body {
   white-space: nowrap;
 }
 
+.top-players-grid {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.top-players-grid .grid {
+  grid-template-columns: 40px minmax(200px, 2fr) 100px 100px 100px !important;
+  min-width: 0;
+}
+
+.top-players-grid .grid > div {
+  min-width: 0;
+}
+
 .quiz-card {
   max-width: 48rem !important; /* Constrain quiz card to ~768px */
   margin: 0 auto;
   padding: 1rem;
-}
-
-.grid {
-  display: grid !important;
-  grid-template-columns: 40px minmax(200px, 2fr) 100px 100px 100px !important;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 @layer base {
