@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/auth-context"
 
 interface Player {
@@ -34,13 +35,13 @@ export default function TopPlayers({ user }: { user: any }) {
         console.log(`🏆 Loading top players... (attempt ${attempt})`);
         const { data, error } = await supabase
           .from("user_profiles")
-          .select("*")
+          .select("id, username, full_name, total_score, total_questions")
           .not("username", "in", '("Test User","Build Time User","Demo User","test-1748153442262")')
           .order("total_score", { ascending: false });
         if (error) throw error;
         console.log("Raw players:", data);
         const filteredPlayers = data
-          .filter((player: Player) => (!user || player.id !== user.id) && !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username))
+          .filter((player: Player) => (!user || player.id !== user.id))
           .map((player: Player) => ({
             id: player.id,
             username: player.username,
@@ -66,6 +67,23 @@ export default function TopPlayers({ user }: { user: any }) {
     fetchPlayers();
   }, [user]);
 
+  const handleChallenge = async (opponentId: string) => {
+    try {
+      const { error } = await supabase
+        .from("user_challenges")
+        .insert({
+          challenger_id: user.id,
+          opponent_id: opponentId,
+          created_at: new Date().toISOString(),
+          status: "pending",
+        });
+      if (error) throw error;
+      console.log(`✅ Challenge sent to user ${opponentId}`);
+    } catch (error) {
+      console.error("❌ Error sending challenge:", error);
+    }
+  };
+
   if (loading) {
     return (
       <Card>
@@ -82,7 +100,7 @@ export default function TopPlayers({ user }: { user: any }) {
         </CardHeader>
         <CardContent>
           <p>No players found</p>
-          <button onClick={() => fetchPlayers()}>Sync User Profiles</button>
+          <Button onClick={() => fetchPlayers()}>Sync User Profiles</Button>
         </CardContent>
       </Card>
     );
@@ -93,10 +111,15 @@ export default function TopPlayers({ user }: { user: any }) {
       <CardHeader>
         <CardTitle>All Players ({players.length})</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="max-h-[70vh] overflow-y-auto">
         {players.map((player, index) => (
-          <div key={player.id}>
-            {index + 1}. {player.full_name} - {player.total_score}/{player.total_questions}
+          <div key={player.id} className="flex justify-between items-center py-2 border-b">
+            <div>
+              {index + 1}. {player.full_name} - {player.total_score}/{player.total_questions}
+            </div>
+            {user && user.id !== player.id && (
+              <Button onClick={() => handleChallenge(player.id)}>Challenge</Button>
+            )}
           </div>
         ))}
       </CardContent>
