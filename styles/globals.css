@@ -83,6 +83,21 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+.max-w-6xl {
+  max-width: 72rem !important; /* Revert to default tailwind max-width (1152px) */
+}
+
+.card-content {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.quiz-card {
+  max-width: 48rem !important; /* Constrain quiz card to ~768px */
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 .grid {
   display: grid !important;
   grid-template-columns: 40px minmax(200px, 2fr) 100px 100px 100px !important;
@@ -92,10 +107,6 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.max-w-6xl {
-  max-width: 100% !important;
 }
 
 @layer base {
