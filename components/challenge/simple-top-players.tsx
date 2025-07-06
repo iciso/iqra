@@ -193,35 +193,20 @@ export default function SimpleTopPlayers() {
 
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted");
+    if (!authLoading && user && mountedRef.current) {
+      loadPlayers();
+    }
     return () => {
       console.log("🚫 SimpleTopPlayers component unmounting");
       mountedRef.current = false;
     };
-  }, []);
+  }, [authLoading, user]);
 
   useEffect(() => {
-    if (!authLoading && mountedRef.current) {
-      loadPlayers();
-    }
-  }, [authLoading]);
-
-  useEffect(() => {
-    if (!authLoading && user && mountedRef.current) {
-      loadPlayers();
-    }
-  }, [user, authLoading]);
-
-  useEffect(() => {
-    if (!authLoading && mountedRef.current) {
+    if (!authLoading && user && mountedRef.current && !loading) {
       loadPlayers();
     }
   }, [showAll]);
-
-  useEffect(() => {
-    if (!authLoading && loading && mountedRef.current) {
-      loadPlayers();
-    }
-  }, [loading, user]);
 
   if (authLoading || (loading && retryCount === 0)) {
     return (
