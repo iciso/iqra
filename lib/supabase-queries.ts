@@ -25,18 +25,6 @@ export async function submitQuizResult(
     if (!user.data.user) throw new Error("User not authenticated");
 
     const percentage = Number(((score / totalQuestions) * 100).toFixed(2)); // Ensure 2 decimal places
-    export async function getChallenge(challengeId: string) {
-  console.log("🔍 Getting challenge:", challengeId);
-  const { data, error } = await supabase
-    .from("challenges")
-    .select("*")
-    .eq("id", challengeId)
-    .single();
-  if (error) throw error;
-  return data;
-}
-
-
     const insertData = {
       user_id: user.data.user.id,
       challenge_id: challengeId || null,
@@ -63,7 +51,7 @@ export async function submitQuizResult(
     }
 
     console.log("✅ SUBMIT QUIZ RESULT: Inserted:", data);
-    // Rest of the function remains unchanged...
+    return { success: true, data };
   } catch (error: any) {
     console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
     toast({
@@ -73,4 +61,15 @@ export async function submitQuizResult(
     });
     return { success: false, error };
   }
+}
+
+export async function getChallenge(challengeId: string) {
+  console.log("🔍 Getting challenge:", challengeId);
+  const { data, error } = await supabase
+    .from("challenges")
+    .select("*")
+    .eq("id", challengeId)
+    .single();
+  if (error) throw error;
+  return data;
 }
