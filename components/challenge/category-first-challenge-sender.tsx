@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 import {
   Gamepad2,
   Users,
@@ -20,21 +20,22 @@ import {
   ChurchIcon as Mosque,
   Heart,
   Star,
-} from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import { toast } from "@/hooks/use-toast";
-import ChallengeScoringInfo from "./challenge-scoring-info";
-import { useAuth } from "@/contexts/auth-context";
+} from "lucide-react"
+import { supabase } from "@/lib/supabase"
+import { toast } from "@/hooks/use-toast"
+import ChallengeScoringInfo from "./challenge-scoring-info"
+import { useAuth } from "@/contexts/auth-context"
 
 interface User {
-  id: string;
-  username: string;
-  full_name?: string;
-  avatar_url?: string;
-  total_score?: number;
-  best_percentage?: number;
+  id: string
+  username: string
+  full_name?: string
+  avatar_url?: string
+  total_score?: number
+  best_percentage?: number
 }
 
+// Category-first design with prominent visual categories
 const challengeCategories = [
   {
     id: "fiqh",
@@ -90,35 +91,35 @@ const challengeCategories = [
     textColor: "text-indigo-700",
     bgLight: "bg-indigo-50",
   },
-];
+]
 
 const difficulties = [
   { value: "easy", label: "Easy", description: "Basic level questions" },
   { value: "intermediate", label: "Intermediate", description: "Moderate difficulty" },
   { value: "advanced", label: "Advanced", description: "Expert level questions" },
   { value: "mixed", label: "Mixed", description: "All difficulty levels" },
-];
+]
 
 export default function CategoryFirstChallengeSender() {
-  const { user, loading: authLoading } = useAuth();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState("mixed");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<User[]>([]);
-  const [topPlayers, setTopPlayers] = useState<User[]>([]);
-  const [searchLoading, setSearchLoading] = useState(false);
-  const [topPlayersLoading, setTopPlayersLoading] = useState(false);
-  const [sendingChallenge, setSendingChallenge] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth()
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState<User[]>([])
+  const [topPlayers, setTopPlayers] = useState<User[]>([])
+  const [searchLoading, setSearchLoading] = useState(false)
+  const [topPlayersLoading, setTopPlayersLoading] = useState(false)
+  const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
 
   useEffect(() => {
     if (user && !authLoading) {
-      loadTopPlayers();
+      loadTopPlayers()
     }
-  }, [user, authLoading]);
+  }, [user, authLoading])
 
   const loadTopPlayers = async () => {
-    if (!user) return;
-    setTopPlayersLoading(true);
+    if (!user) return
+    setTopPlayersLoading(true)
 
     try {
       const { data, error } = await supabase
@@ -127,30 +128,30 @@ export default function CategoryFirstChallengeSender() {
         .neq("id", user.id)
         .order("total_score", { ascending: false })
         .order("best_percentage", { ascending: false })
-        .limit(8);
+        .limit(8)
 
-      if (error) throw error;
-      setTopPlayers(data || []);
+      if (error) throw error
+      setTopPlayers(data || [])
     } catch (error: any) {
-      console.error("Error loading top players:", error);
+      console.error("Error loading top players:", error)
       toast({
         title: "Error",
         description: "Failed to load top players",
         variant: "destructive",
-      });
+      })
     } finally {
-      setTopPlayersLoading(false);
+      setTopPlayersLoading(false)
     }
-  };
+  }
 
   const searchUsers = async (query: string) => {
     if (!query || query.length < 2) {
-      setSearchResults([]);
-      return;
+      setSearchResults([])
+      return
     }
 
-    if (!user) return;
-    setSearchLoading(true);
+    if (!user) return
+    setSearchLoading(true)
 
     try {
       const { data, error } = await supabase
@@ -158,26 +159,26 @@ export default function CategoryFirstChallengeSender() {
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .neq("id", user.id)
         .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
-        .limit(10);
+        .limit(10)
 
-      if (error) throw error;
-      setSearchResults(data || []);
+      if (error) throw error
+      setSearchResults(data || [])
     } catch (error: any) {
-      console.error("Error searching users:", error);
+      console.error("Error searching users:", error)
       toast({
         title: "Search Error",
         description: "Failed to search for users",
         variant: "destructive",
-      });
+      })
     } finally {
-      setSearchLoading(false);
+      setSearchLoading(false)
     }
-  };
+  }
 
   const handleSearchChange = (value: string) => {
-    setSearchQuery(value);
-    searchUsers(value);
-  };
+    setSearchQuery(value)
+    searchUsers(value)
+  }
 
   const sendChallenge = async (challengedUser: User) => {
     if (!user) {
@@ -185,8 +186,8 @@ export default function CategoryFirstChallengeSender() {
         title: "Error",
         description: "You must be signed in to send challenges",
         variant: "destructive",
-      });
-      return;
+      })
+      return
     }
 
     if (!selectedCategory) {
@@ -194,11 +195,11 @@ export default function CategoryFirstChallengeSender() {
         title: "Select Category",
         description: "Please select a category before sending a challenge",
         variant: "destructive",
-      });
-      return;
+      })
+      return
     }
 
-    setSendingChallenge(challengedUser.id);
+    setSendingChallenge(challengedUser.id)
 
     try {
       const challengeData = {
@@ -210,30 +211,30 @@ export default function CategoryFirstChallengeSender() {
         time_limit: 300,
         status: "pending",
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-      };
+      }
 
-      const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single();
+      const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
 
-      if (error) throw error;
+      if (error) throw error
 
-      const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory;
+      const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory
       toast({
         title: "Challenge Sent! 🎯",
         description: `${categoryLabel} challenge sent to ${challengedUser.full_name || challengedUser.username}`,
-      });
+      })
 
-      setSearchQuery("");
-      setSearchResults([]);
+      setSearchQuery("")
+      setSearchResults([])
     } catch (error: any) {
       toast({
         title: "Error",
         description: error.message || "Failed to send challenge",
         variant: "destructive",
-      });
+      })
     } finally {
-      setSendingChallenge(null);
+      setSendingChallenge(null)
     }
-  };
+  }
 
   const getUserInitials = (user: User) => {
     if (user.full_name) {
@@ -241,10 +242,10 @@ export default function CategoryFirstChallengeSender() {
         .split(" ")
         .map((n) => n[0])
         .join("")
-        .toUpperCase();
+        .toUpperCase()
     }
-    return user.username.charAt(0).toUpperCase();
-  };
+    return user.username.charAt(0).toUpperCase()
+  }
 
   if (authLoading) {
     return (
@@ -258,7 +259,7 @@ export default function CategoryFirstChallengeSender() {
           </CardContent>
         </Card>
       </div>
-    );
+    )
   }
 
   if (!user) {
@@ -270,11 +271,12 @@ export default function CategoryFirstChallengeSender() {
           </CardContent>
         </Card>
       </div>
-    );
+    )
   }
 
   return (
     <div className="space-y-6">
+      {/* Step 1: Category Selection - Most Prominent */}
       <Card className="border-2 border-dashed border-gray-300 dark:border-gray-600">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl">
@@ -288,8 +290,8 @@ export default function CategoryFirstChallengeSender() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {challengeCategories.map((category) => {
-              const IconComponent = category.icon;
-              const isSelected = selectedCategory === category.id;
+              const IconComponent = category.icon
+              const isSelected = selectedCategory === category.id
 
               return (
                 <Card
@@ -316,7 +318,7 @@ export default function CategoryFirstChallengeSender() {
                     {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800">Selected ✓</Badge>}
                   </CardContent>
                 </Card>
-              );
+              )
             })}
           </div>
 
@@ -360,8 +362,10 @@ export default function CategoryFirstChallengeSender() {
         </CardContent>
       </Card>
 
+      {/* Step 2: Find Opponents - Only show if category is selected */}
       {selectedCategory && (
         <>
+          {/* Search Users */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -372,7 +376,7 @@ export default function CategoryFirstChallengeSender() {
                 Search for users to challenge in {challengeCategories.find((c) => c.id === selectedCategory)?.label}
               </p>
             </CardHeader>
-            <CardContent className="overflow-x-auto">
+            <CardContent>
               <div className="space-y-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -396,18 +400,18 @@ export default function CategoryFirstChallengeSender() {
                     {searchResults.map((searchUser) => (
                       <div
                         key={searchUser.id}
-                        className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600 min-w-0"
+                        className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
                       >
-                        <div className="flex items-center space-x-3 min-w-0">
+                        <div className="flex items-center space-x-3">
                           <Avatar className="h-10 w-10">
                             <AvatarImage src={searchUser.avatar_url || "/placeholder.svg"} />
                             <AvatarFallback className="bg-green-100 text-green-700">
                               {getUserInitials(searchUser)}
                             </AvatarFallback>
                           </Avatar>
-                          <div className="min-w-0">
-                            <p className="font-medium dark:text-white truncate">{searchUser.full_name || searchUser.username}</p>
-                            <p className="text-sm text-gray-500 truncate">@{searchUser.username}</p>
+                          <div>
+                            <p className="font-medium dark:text-white">{searchUser.full_name || searchUser.username}</p>
+                            <p className="text-sm text-gray-500">@{searchUser.username}</p>
                             {searchUser.best_percentage && (
                               <Badge variant="secondary" className="text-xs">
                                 Best: {searchUser.best_percentage}%
@@ -418,7 +422,7 @@ export default function CategoryFirstChallengeSender() {
                         <Button
                           onClick={() => sendChallenge(searchUser)}
                           disabled={sendingChallenge === searchUser.id}
-                          className="bg-green-600 hover:bg-green-700 whitespace-nowrap"
+                          className="bg-green-600 hover:bg-green-700"
                         >
                           {sendingChallenge === searchUser.id ? (
                             <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -437,6 +441,7 @@ export default function CategoryFirstChallengeSender() {
             </CardContent>
           </Card>
 
+          {/* Top Players */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
@@ -455,7 +460,7 @@ export default function CategoryFirstChallengeSender() {
                 </Button>
               </CardTitle>
             </CardHeader>
-            <CardContent className="overflow-x-auto">
+            <CardContent>
               {topPlayersLoading ? (
                 <div className="flex justify-center py-8">
                   <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
@@ -473,9 +478,9 @@ export default function CategoryFirstChallengeSender() {
                   {topPlayers.map((player, index) => (
                     <div
                       key={player.id}
-                      className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600 min-w-0"
+                      className="flex items-center justify-between p-3 border rounded-lg dark:border-gray-600"
                     >
-                      <div className="flex items-center space-x-3 min-w-0">
+                      <div className="flex items-center space-x-3">
                         <div className="relative">
                           <Avatar className="h-10 w-10">
                             <AvatarImage src={player.avatar_url || "/placeholder.svg"} />
@@ -489,8 +494,8 @@ export default function CategoryFirstChallengeSender() {
                             </div>
                           )}
                         </div>
-                        <div className="min-w-0">
-                          <p className="font-medium dark:text-white truncate">{player.full_name || player.username}</p>
+                        <div>
+                          <p className="font-medium dark:text-white">{player.full_name || player.username}</p>
                           <div className="flex items-center gap-2">
                             <Badge variant="secondary" className="text-xs">
                               {player.best_percentage || 0}%
@@ -505,7 +510,7 @@ export default function CategoryFirstChallengeSender() {
                         onClick={() => sendChallenge(player)}
                         disabled={sendingChallenge === player.id}
                         size="sm"
-                        className="bg-green-600 hover:bg-green-700 whitespace-nowrap"
+                        className="bg-green-600 hover:bg-green-700"
                       >
                         {sendingChallenge === player.id ? (
                           <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -525,5 +530,5 @@ export default function CategoryFirstChallengeSender() {
         </>
       )}
     </div>
-  );
+  )
 }

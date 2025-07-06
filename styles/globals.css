@@ -84,42 +84,6 @@ body {
   }
 }
 
-.max-w-6xl {
-  max-width: 72rem !important;
-  overflow-x: auto;
-}
-
-.card-content, .card .card-content {
-  max-width: 100%;
-  overflow-x: auto !important;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.top-players-grid {
-  overflow-x: auto;
-  width: 100%;
-}
-
-.top-players-grid .grid {
-  grid-template-columns: 40px minmax(200px, 2fr) 100px 100px 100px !important;
-  min-width: 0;
-}
-
-.top-players-grid .grid > div {
-  min-width: 0;
-}
-
-.quiz-card {
-  max-width: 48rem !important; /* Constrain quiz card to ~768px */
-  margin: 0 auto;
-  padding: 1rem;
-}
-
 @layer base {
   * {
     @apply border-border;
