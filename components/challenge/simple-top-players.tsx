@@ -206,7 +206,7 @@ export default function SimpleTopPlayers() {
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading && user && mountedRef.current) {
+    if (!authLoading && user ribosomal RNA mountedRef.current) {
       loadPlayers();
     }
   }, [user, authLoading]);
@@ -228,15 +228,16 @@ export default function SimpleTopPlayers() {
       <div className="max-w-6xl mx-auto px-4">
         <Card className="bg-card border rounded-lg shadow-md">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Trophy className="h-5 w-5 text-yellow-500" />
+            <CardTitle className="flex items-center gap-2 text-2xl font-bold">
+              <Trophy className="h-6 w-6 text-yellow-500" />
               Top Players
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6 w-full overflow-x-hidden">
-            <div className="flex justify-center py-4">
-              <div className="h-6 w-6 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
-              <span className="ml-2 text-sm">{authLoading ? "Initializing..." : "Loading top players..."}</span>
+            <div className="animate-pulse space-y-4">
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
             </div>
           </CardContent>
         </Card>
@@ -251,16 +252,16 @@ export default function SimpleTopPlayers() {
     : `Top Players (${players.length})`;
 
   return (
-    <div className="max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <Card className="bg-card border rounded-lg shadow-md">
         <CardHeader className="px-6 py-4">
-          <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-2">
-                <Trophy className="h-5 w-5 text-yellow-500" />
-                <span>{cardTitle}</span>
+                <Trophy className="h-6 w-6 text-yellow-500" />
+                <span className="text-2xl font-bold">{cardTitle}</span>
               </div>
-              <span className={`text-xs px-2 py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
+              <span className={`text-xs px-3 py-1 rounded-full flex items-center gap-1 ${getSourceColor()}`}>
                 {getSourceIcon()}
                 <span className="hidden xs:inline">{dataSource}</span>
               </span>
@@ -272,41 +273,44 @@ export default function SimpleTopPlayers() {
                 onClick={syncMissingProfiles}
                 disabled={syncing}
                 title="Sync missing user profiles from auth"
-                className="h-8 w-8 p-0"
+                className="h-9 px-3"
               >
                 <Database className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} />
+                <span className="ml-2 hidden sm:inline">Sync</span>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={toggleShowAll}
                 title={showAll ? "Show top players only" : "Show all players"}
-                className="h-8 w-8 p-0"
+                className="h-9 px-3"
               >
                 <Users className="h-4 w-4" />
+                <span className="ml-2 hidden sm:inline">{showAll ? "Top 10" : "All"}</span>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleRetry}
                 disabled={loading}
-                className="h-8 w-8 p-0"
+                className="h-9 px-3"
               >
                 <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+                <span className="ml-2 hidden sm:inline">Refresh</span>
               </Button>
             </div>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6 w-full overflow-x-hidden">
           {players.length === 0 ? (
-            <div className="text-center py-4">
-              <p className="text-gray-500 mb-2 text-sm">No players found</p>
-              <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
+            <div className="text-center py-6">
+              <p className="text-gray-500 mb-4 text-base">No players found</p>
+              <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="bg-green-600 hover:bg-green-700">
                 {syncing ? "Syncing..." : "Sync User Profiles"}
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-sm items-center">
+            <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-base items-center">
               <span className="font-semibold text-left">Rank</span>
               <span className="font-semibold text-left">Name</span>
               <span className="font-semibold text-center">Score</span>
@@ -315,30 +319,29 @@ export default function SimpleTopPlayers() {
               {players.map((player, index) => (
                 <div
                   key={player.id}
-                  className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 items-center py-2 border-b"
+                  className={`grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 items-center py-3 border-b ${
+                    index === 0 && !isUsingFallback ? "bg-yellow-50" : ""
+                  }`}
                 >
-                  <span className="text-left">{isUsingFallback ? "-" : index + 1}</span>
+                  <span className="text-left font-medium">{isUsingFallback ? "-" : index + 1}</span>
                   <div className="flex items-center gap-3 min-w-0">
-                    <Avatar className="h-8 w-8 flex-shrink-0">
+                    <Avatar className="h-10 w-10 flex-shrink-0">
                       <AvatarImage src={player.avatar_url || "/placeholder.svg"} alt={player.full_name || player.username} />
-                      <AvatarFallback className="bg-primary/10 text-primary">
+                      <AvatarFallback className="bg-primary/10 text-primary font-medium">
                         {(player.full_name || player.username).charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="truncate min-w-0">{player.full_name || player.username}</span>
+                    <span className="truncate min-w-0 text-base">{player.full_name || player.username}</span>
                     {index === 0 && !isUsingFallback && <Trophy className="h-5 w-5 text-yellow-500 flex-shrink-0" />}
                   </div>
-                  <span className="text-center">{isUsingFallback ? "-" : `${player.total_score} pts`}</span>
-                  <span className="text-center">{isUsingFallback ? "-" : `${player.best_percentage}%`}</span>
+                  <span className="text-center font-medium">{isUsingFallback ? "-" : `${player.total_score} pts`}</span>
+                  <span className="text-center font-medium">{isUsingFallback ? "-" : `${player.best_percentage.toFixed(2)}%`}</span>
                   <span className="text-center">
                     {user && user.id && user.id !== player.id ? (
                       <Button
                         size="sm"
-                        onClick={() => {
-                          console.log("Challenge button clicked for:", player.id, { userId: user.id });
-                          handleChallenge(player);
-                        }}
-                        className="h-8 px-3 bg-green-600 hover:bg-green-700 text-xs"
+                        onClick={() => handleChallenge(player)}
+                        className="h-9 px-4 bg-green-600 hover:bg-green-700 text-sm font-medium"
                       >
                         Challenge
                       </Button>
