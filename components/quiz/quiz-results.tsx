@@ -1,123 +1,60 @@
 "use client";
 
-import { useState } from "react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { submitQuizResult } from "@/lib/supabase-queries";
 import { useAuth } from "@/contexts/auth-context";
-import { toast } from "@/hooks/use-toast";
+import { useSearchParams } from "next/navigation";
 
-interface Question {
-  id: string;
-  question: string;
-  options: string[];
-  correct_answer: string;
+interface QuizResultsProps {
+  score: number | undefined;
+  totalQuestions: number | undefined;
+  category: string | undefined;
+  difficulty: string | undefined;
 }
 
-interface QuizContainerProps {
-  questions: Question[];
-  category: string;
-  difficulty: string;
-  challengeId?: string;
-  opponentId?: string;
-  opponentName?: string;
-  challengerTurn: boolean;
-}
-
-export default function QuizContainer({
-  questions,
-  category,
-  difficulty,
-  challengeId,
-  opponentId,
-  opponentName,
-  challengerTurn,
-}: QuizContainerProps) {
+export default function QuizResults({ score, totalQuestions, category, difficulty }: QuizResultsProps) {
   const { user } = useAuth();
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [score, setScore] = useState(0);
-  const [answers, setAnswers] = useState<any[]>([]);
-  const [startTime] = useState(Date.now());
+  const challengeId = searchParams.get("challenge");
+  const opponentId = searchParams.get("opponentId");
+  const opponentName = searchParams.get("opponentName");
 
-  const currentQuestion = questions[currentQuestionIndex];
-
-  const handleAnswer = () => {
-    if (selectedAnswer === currentQuestion.correct_answer) {
-      setScore((prev) => prev + 1);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("quizScore", JSON.stringify(score));
+      localStorage.setItem("totalQuestions", JSON.stringify(totalQuestions));
     }
-    setAnswers((prev) => [
-      ...prev,
-      { question_id: currentQuestion.id, selected_answer: selectedAnswer },
-    ]);
-    setSelectedAnswer(null);
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    } else {
-      // Finish quiz
-      const timeTaken = Math.round((Date.now() - startTime) / 1000);
-      const percentage = (score / questions.length) * 100;
-      if (user) {
-        submitQuizResult(
-          score,
-          questions.length,
-          category,
-          difficulty,
-          timeTaken,
-          answers,
-          challengeId
-        ).then(({ success }) => {
-          if (success) {
-            toast({
-              title: "Quiz Completed!",
-              description: `Your score: ${score}/${questions.length}`,
-            });
-          }
-        });
-      }
-      router.push(
-        `/results?score=${score}&total=${questions.length}&category=${encodeURIComponent(category)}&difficulty=${encodeURIComponent(difficulty)}${challengeId ? `&challenge=${challengeId}` : ""}${opponentId ? `&opponentId=${opponentId}` : ""}${opponentName ? `&opponentName=${encodeURIComponent(opponentName)}` : ""}`
-      );
+    if (user && score !== undefined && totalQuestions !== undefined) {
+      submitQuizResult(
+        score,
+        totalQuestions,
+        category || "quran",
+        difficulty || "easy",
+        undefined, // time_taken
+        undefined, // answers
+        challengeId || undefined // challenge_id
+      ).catch((error) => {
+        console.error("Error saving quiz result to database:", error);
+      });
     }
-  };
-
-  console.log("🎯 QUIZ CONTAINER: Setup complete", {
-    challengeId,
-    opponentId,
-    opponentName,
-    challengerTurn,
-    questionsCount: questions.length,
-  });
+  }, [score, totalQuestions, category, difficulty, user, challengeId]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h2 className="text-xl font-semibold mb-4">
-        {currentQuestion?.question || "Loading..."}
-      </h2>
-      <RadioGroup
-        value={selectedAnswer ?? ""}
-        onValueChange={setSelectedAnswer}
-        className="space-y-2"
-      >
-        {currentQuestion?.options.map((option: string, index: number) => (
-          <div key={index} className="flex items-center space-x-2">
-            <RadioGroupItem value={option} id={`option-${index}`} />
-            <Label htmlFor={`option-${index}`}>{option}</Label>
-          </div>
-        ))}
-      </RadioGroup>
-      <Button
-        onClick={handleAnswer}
-        disabled={!selectedAnswer}
-        className="mt-4 bg-green-600 hover:bg-green-700"
-      >
-        Submit Answer
-      </Button>
+      <h2 className="text-2xl font-semibold mb-4">Quiz Results</h2>
+      {score !== undefined && totalQuestions !== undefined ? (
+        <>
+          <p className="text-lg">
+            Your Score: {score} / {totalQuestions}
+          </p>
+          <p className="text-lg">Percentage: {((score / totalQuestions) * 100).toFixed(2)}%</p>
+          {opponentName && <p className="text-lg">Opponent: {opponentName}</p>}
+          {challengeId && <p className="text-sm text-gray-500">Challenge ID: {challengeId}</p>}
+        </>
+      ) : (
+        <p>Calculating results...</p>
+      )}
     </div>
   );
 }
