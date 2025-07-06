@@ -234,7 +234,7 @@ export default function SimpleTopPlayers() {
 
       console.log("🔍 Step 4: Using registered users as final fallback...")
       if (mountedRef.current) {
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username))
         console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
@@ -247,7 +247,7 @@ export default function SimpleTopPlayers() {
 
       if (mountedRef.current) {
         console.log("🔄 Using registered users as fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username))
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
@@ -348,7 +348,7 @@ export default function SimpleTopPlayers() {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username))
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
