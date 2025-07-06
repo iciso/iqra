@@ -202,12 +202,6 @@ export default function SimpleTopPlayers() {
     };
   }, [authLoading, user]);
 
-  useEffect(() => {
-    if (!authLoading && user && mountedRef.current && !loading) {
-      loadPlayers();
-    }
-  }, [showAll]);
-
   if (authLoading || (loading && retryCount === 0)) {
     return (
       <div className="max-w-6xl mx-auto px-4">
@@ -295,20 +289,20 @@ export default function SimpleTopPlayers() {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-base items-center">
-              <span className="font-semibold text-left">Rank</span>
-              <span className="font-semibold text-left">Name</span>
-              <span className="font-semibold text-center">Score</span>
-              <span className="font-semibold text-center">Percentage</span>
-              <span className="font-semibold text-center">Action</span>
+            <div className="top-players-grid">
+              <div className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 text-base items-center font-medium">
+                <span className="text-left">Rank</span>
+                <span className="text-left">Name</span>
+                <span className="text-center">Score</span>
+                <span className="text-center">Percentage</span>
+                <span className="text-center">Action</span>
+              </div>
               {players.map((player, index) => (
                 <div
                   key={player.id}
-                  className={`grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 items-center py-3 border-b ${
-                    index === 0 && !isUsingFallback ? "bg-yellow-50" : ""
-                  }`}
+                  className="grid grid-cols-[40px_minmax(200px,2fr)_100px_100px_100px] gap-4 items-center py-3 border-b"
                 >
-                  <span className="text-left font-medium">{isUsingFallback ? "-" : index + 1}</span>
+                  <span className="text-left">{index + 1}</span>
                   <div className="flex items-center gap-3 min-w-0">
                     <Avatar className="h-10 w-10 flex-shrink-0">
                       <AvatarImage src={player.avatar_url || "/placeholder.svg"} alt={player.full_name || player.username} />
@@ -316,11 +310,10 @@ export default function SimpleTopPlayers() {
                         {(player.full_name || player.username).charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="truncate min-w-0 text-base whitespace-nowrap overflow-hidden">{player.full_name || player.username}</span>
-                    {index === 0 && !isUsingFallback && <Trophy className="h-5 w-5 text-yellow-500 flex-shrink-0" />}
+                    <span className="truncate text-base min-w-0">{player.full_name || player.username}</span>
                   </div>
-                  <span className="text-center font-medium truncate">{isUsingFallback ? "-" : `${player.total_score} pts`}</span>
-                  <span className="text-center font-medium truncate">{isUsingFallback ? "-" : `${player.best_percentage.toFixed(2)}%`}</span>
+                  <span className="text-center truncate">{player.total_score} pts</span>
+                  <span className="text-center truncate">{player.best_percentage.toFixed(2)}%</span>
                   <span className="text-center">
                     {user && user.id && user.id !== player.id ? (
                       <Button
