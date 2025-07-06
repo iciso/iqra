@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function ChallengeNotification() {
   const { user } = useAuth();
@@ -17,15 +18,13 @@ export default function ChallengeNotification() {
         const { data, error } = await supabase
           .from("user_challenges")
           .select("id, challenger_id, challenged_id, created_at, expires_at, status, question_count, time_limit, category, difficulty")
-          .eq("challenged_id", user?.id)
-          .eq("status", "pending")
-          .gt("expires_at", new Date().toISOString());
+          .eq("challenged_id", user?.id);
         if (error) throw error;
         console.log(`🔔 DEBUG: Challenges query result:`, { error, count: data?.length });
-        console.log(`�BEL DEBUG: Found ${data?.length || 0} raw challenges`, data);
+        console.log(`🔔 DEBUG: Found ${data?.length || 0} raw challenges`, data);
         const validChallenges = data?.filter((challenge) => {
-          console.log(`Challenge expires_at: ${challenge.expires_at}`);
-          return new Date(challenge.expires_at) > new Date();
+          console.log(`Challenge expires_at: ${challenge.expires_at}, status: ${challenge.status}`);
+          return challenge.status === "pending" && new Date(challenge.expires_at) > new Date();
         }) || [];
         console.log(`🔔 DEBUG: After expiry filter: ${validChallenges.length} valid challenges`);
         setChallenges(validChallenges);
@@ -45,15 +44,17 @@ export default function ChallengeNotification() {
   }, [user]);
 
   return (
-    <Card className="bg-card border rounded-lg shadow-md fixed bottom-4 right-4">
+    <Card className="bg-card border rounded-lg shadow-md fixed bottom-4 right-4 max-w-sm">
       <CardContent className="p-4">
         {challenges.length > 0 ? (
           <div>
             <p>{challenges.length} pending challenge{challenges.length > 1 ? "s" : ""}</p>
             {challenges.map((challenge) => (
-              <Badge key={challenge.id} variant="secondary" className="mt-2">
-                {challenge.category} ({challenge.difficulty})
-              </Badge>
+              <Link key={challenge.id} href={`/challenge-results/${challenge.id}`}>
+                <Badge variant="secondary" className="mt-2 block">
+                  {challenge.category} ({challenge.difficulty})
+                </Badge>
+              </Link>
             ))}
           </div>
         ) : (
