@@ -66,9 +66,7 @@ export default function TopPlayers() {
       addDebug(`Success: Found ${result?.length || 0} players`)
 
       const data = result || []
-      const filteredPlayers = data.filter(
-        (player: Player) => (!user || player.id !== user.id) && player.username !== "Test User"
-      )
+      const filteredPlayers = data.filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username))
 
       addDebug(`Filtered to ${filteredPlayers.length} players`)
       setPlayers(filteredPlayers)
