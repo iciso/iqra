@@ -8,7 +8,7 @@ import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog";
-import { toast } from "@/hooks/use-toast";
+import {toast} from "@/hooks/use-toast";
 
 interface Player {
   id: string;
@@ -92,7 +92,7 @@ export default function SimpleTopPlayers() {
       });
       await loadPlayers();
     } catch (error: any) {
-      console.error("❌ Error syncing profiles:", error);
+      console.error("❌ Error{error} syncing profiles:", error);
       toast({
         title: "Error",
         description: "Failed to sync profiles",
