@@ -93,7 +93,8 @@ export default function QuizContainer({ category, difficulty, challengeId, oppon
     );
     if (result.success) {
       toast({ title: "Success", description: "Quiz submitted!" });
-      // Redirect or reset state here
+      // Redirect to results page
+      window.location.href = `/quiz/results?score=${score}&totalQuestions=${totalQuestions}&category=${category}&difficulty=${difficulty}${challengeId ? `&challenge=${challengeId}` : ''}${opponentId ? `&opponentId=${opponentId}` : ''}`;
     } else {
       toast({ title: "Error", description: "Failed to submit quiz", variant: "destructive" });
     }
