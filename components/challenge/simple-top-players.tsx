@@ -206,7 +206,7 @@ export default function SimpleTopPlayers() {
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading && user ribosomal RNA mountedRef.current) {
+    if (!authLoading && user && mountedRef.current) {
       loadPlayers();
     }
   }, [user, authLoading]);
