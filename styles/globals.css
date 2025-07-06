@@ -83,6 +83,20 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+.grid {
+  display: grid !important;
+  grid-template-columns: 40px minmax(200px, 2fr) 100px 100px 100px !important;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.max-w-6xl {
+  max-width: 100% !important;
+}
 
 @layer base {
   * {
