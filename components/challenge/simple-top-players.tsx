@@ -24,16 +24,15 @@ export default function SimpleTopPlayers() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPlayers() {
+    async function fetchPlayers(attempt = 1, maxAttempts = 3) {
       try {
         setLoading(true);
-        console.log("📊 Fetching simple top players...");
+        console.log(`📊 Fetching simple top players... (attempt ${attempt})`);
         const { data, error } = await supabase
           .from("user_profiles")
           .select("*")
           .not("username", "in", '("Test User","Build Time User","Demo User","test-1748153442262")')
-          .order("total_score", { ascending: false })
-          .timeout(10000);
+          .order("total_score", { ascending: false });
         if (error) throw error;
         console.log("Raw players:", data);
         const filteredPlayers = data.map((player) => ({
@@ -42,14 +41,19 @@ export default function SimpleTopPlayers() {
           totalQuestions: player.total_questions || 0,
           percentage: player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
         }));
-        console.log(`✅ Players loaded from Supabase: ${filteredPlayers.length} players`);
+        console.log(`✅ Players loaded from Supabase: ${filteredPlayers.length} players`, filteredPlayers.map(p => p.name));
         setPlayers(filteredPlayers.length > 0 ? filteredPlayers : fallbackPlayers);
       } catch (error) {
-        console.error("❌ Supabase error:", error);
-        console.log("🔄 Using fallback players");
-        setPlayers(fallbackPlayers);
+        console.error(`❌ Supabase error (attempt ${attempt}):`, error);
+        if (attempt < maxAttempts) {
+          console.log(`🔄 Retrying... (attempt ${attempt + 1})`);
+          setTimeout(() => fetchPlayers(attempt + 1, maxAttempts), 1000);
+        } else {
+          console.log("🔄 Using fallback players");
+          setPlayers(fallbackPlayers);
+        }
       } finally {
-        setLoading(false);
+        if (attempt === 1) setLoading(false);
       }
     }
     fetchPlayers();
