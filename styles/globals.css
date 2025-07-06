@@ -83,8 +83,10 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
 .max-w-6xl {
-  max-width: 72rem !important; /* Revert to default tailwind max-width (1152px) */
+  max-width: 72rem !important;
+  overflow-x: auto;
 }
 
 .card-content {
