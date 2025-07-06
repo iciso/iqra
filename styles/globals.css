@@ -89,9 +89,9 @@ body {
   overflow-x: auto;
 }
 
-.card-content {
+.card-content, .card .card-content {
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: auto !important;
 }
 
 .truncate {
