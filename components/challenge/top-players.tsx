@@ -12,7 +12,6 @@ interface Player {
   total_questions: number;
 }
 
-// Fallback data to prevent ReferenceError
 const fallbackPlayers: Player[] = [
   {
     id: "fallback-1",
@@ -28,16 +27,15 @@ export default function TopPlayers({ user }: { user: any }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPlayers() {
+    async function fetchPlayers(attempt = 1, maxAttempts = 3) {
       try {
         setLoading(true);
-        console.log("🏆 Loading top players... (attempt 1)");
+        console.log(`🏆 Loading top players... (attempt ${attempt})`);
         const { data, error } = await supabase
           .from("user_profiles")
           .select("*")
           .not("username", "in", '("Test User","Build Time User","Demo User","test-1748153442262")')
-          .order("total_score", { ascending: false })
-          .timeout(10000); // Increase timeout to 10s
+          .order("total_score", { ascending: false });
         if (error) throw error;
         console.log("Raw players:", data);
         const filteredPlayers = data
@@ -49,14 +47,19 @@ export default function TopPlayers({ user }: { user: any }) {
             total_score: player.total_score || 0,
             total_questions: player.total_questions || 0,
           }));
-        console.log(`✅ Players loaded from Supabase: ${filteredPlayers.length} players`);
+        console.log(`✅ Players loaded from Supabase: ${filteredPlayers.length} players`, filteredPlayers.map(p => p.username));
         setPlayers(filteredPlayers.length > 0 ? filteredPlayers : fallbackPlayers);
       } catch (error) {
-        console.error("❌ Supabase error:", error);
-        console.log("🔄 Using fallback players");
-        setPlayers(fallbackPlayers);
+        console.error(`❌ Supabase error (attempt ${attempt}):`, error);
+        if (attempt < maxAttempts) {
+          console.log(`🔄 Retrying... (attempt ${attempt + 1})`);
+          setTimeout(() => fetchPlayers(attempt + 1, maxAttempts), 1000);
+        } else {
+          console.log("🔄 Using fallback players");
+          setPlayers(fallbackPlayers);
+        }
       } finally {
-        setLoading(false);
+        if (attempt === 1) setLoading(false);
       }
     }
     fetchPlayers();
@@ -78,7 +81,7 @@ export default function TopPlayers({ user }: { user: any }) {
         </CardHeader>
         <CardContent>
           <p>No players found</p>
-          <button>Sync User Profiles</button>
+          <button onClick={() => fetchPlayers()}>Sync User Profiles</button>
         </CardContent>
       </Card>
     );
