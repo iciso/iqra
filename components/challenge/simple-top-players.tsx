@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,7 @@ const fallbackPlayers: Player[] = [
   },
 ].filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username));
 
-export default function SimpleTopPlayers() {
+export default React.memo(function SimpleTopPlayers() {
   const { user, loading: authLoading } = useAuth();
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
@@ -193,7 +194,7 @@ export default function SimpleTopPlayers() {
 
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted");
-    if (!authLoading && user && mountedRef.current) {
+    if (!authLoading && user && mountedRef.current && !loading) {
       loadPlayers();
     }
     return () => {
@@ -345,4 +346,4 @@ export default function SimpleTopPlayers() {
       </Card>
     </div>
   );
-}
+});
