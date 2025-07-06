@@ -25,6 +25,18 @@ export async function submitQuizResult(
     if (!user.data.user) throw new Error("User not authenticated");
 
     const percentage = Number(((score / totalQuestions) * 100).toFixed(2)); // Ensure 2 decimal places
+    export async function getChallenge(challengeId: string) {
+  console.log("🔍 Getting challenge:", challengeId);
+  const { data, error } = await supabase
+    .from("challenges")
+    .select("*")
+    .eq("id", challengeId)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+
     const insertData = {
       user_id: user.data.user.id,
       challenge_id: challengeId || null,
