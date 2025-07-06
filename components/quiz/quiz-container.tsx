@@ -32,14 +32,15 @@ export default function QuizContainer({ category, difficulty, challengeId, oppon
   const loadQuestions = async () => {
     setIsLoading(true);
     try {
+      console.log("🔍 QUIZ CONTAINER: Loading questions for", { category, difficulty });
       const { data, error } = await supabase
         .from("questions")
         .select("*")
         .eq("category", category)
         .eq("difficulty", difficulty)
-        .limit(10); // Fixed limit of 10 questions
-      if (error) throw error;
-      if (!data || data.length === 0) throw new Error("No questions available");
+        .limit(10);
+      if (error) throw new Error(`Query error: ${error.message}`);
+      if (!data || data.length === 0) throw new Error(`No questions found for ${category}/${difficulty}`);
       setQuestions(data);
       console.log("🎯 QUIZ CONTAINER: Questions loaded", data.length);
     } catch (error: any) {
@@ -97,6 +98,7 @@ export default function QuizContainer({ category, difficulty, challengeId, oppon
   };
 
   const handleSubmit = () => {
+    console.log("🎯 HANDLE SUBMIT: Index", currentQuestionIndex, "Length", questions.length, "Selected", selectedAnswer);
     if (currentQuestionIndex === questions.length - 1 && selectedAnswer) {
       submitQuiz();
     } else if (currentQuestionIndex < questions.length - 1) {
@@ -104,9 +106,9 @@ export default function QuizContainer({ category, difficulty, challengeId, oppon
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-  if (currentQuestionIndex >= questions.length) return <div>Quiz completed!</div>;
+  if (isLoading) return <div className="text-center py-4">Loading quiz...</div>;
+  if (error) return <div className="text-center py-4 text-red-500">{error}</div>;
+  if (currentQuestionIndex >= questions.length) return <div className="text-center py-4">Quiz completed!</div>;
 
   const currentQuestion = questions[currentQuestionIndex];
 
