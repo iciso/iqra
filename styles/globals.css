@@ -94,6 +94,12 @@ body {
   overflow-x: auto;
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .quiz-card {
   max-width: 48rem !important; /* Constrain quiz card to ~768px */
   margin: 0 auto;
