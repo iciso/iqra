@@ -1,43 +1,39 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Gamepad2 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
-import { useAuth } from "@/contexts/auth-context"
-import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Gamepad2 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 interface SupabaseChallengeButtonProps {
-  userId: string
-  userName: string
-  className?: string
+  userId: string;
+  userName: string;
+  className?: string;
 }
 
 export default function SupabaseChallengeButton({ userId, userName, className = "" }: SupabaseChallengeButtonProps) {
-  const [isLoading, setIsLoading] = useState(false)
-  const { user } = useAuth()
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuth();
+  const router = useRouter();
 
   const handleChallenge = async () => {
     if (!user) {
+      console.log("❌ No user - sign in required");
       toast({
         title: "Sign in required",
         description: "Please sign in to challenge other players",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
-
     try {
-      setIsLoading(true)
-      console.log(`🎯 Creating challenge for: ${userName} (${userId})`)
-
-      // Calculate expiry date (24 hours from now)
-      const expiresAt = new Date()
-      expiresAt.setHours(expiresAt.getHours() + 24)
-
-      // Create challenge directly in user_challenges table
+      setIsLoading(true);
+      console.log(`🎯 Creating challenge for: ${userName} (${userId}), by: ${user.id}`);
+      const expiresAt = new Date();
+      expiresAt.setHours(expiresAt.getHours() + 24);
       const { data, error } = await supabase
         .from("user_challenges")
         .insert({
@@ -51,40 +47,37 @@ export default function SupabaseChallengeButton({ userId, userName, className = 
           expires_at: expiresAt.toISOString(),
         })
         .select()
-        .single()
-
+        .single();
       if (error) {
-        console.error("❌ Database error:", error)
-        throw new Error(error.message)
+        console.error("❌ Database error:", error);
+        throw new Error(error.message);
       }
-
-      console.log(`✅ Challenge created successfully:`, data)
-
+      console.log(`✅ Challenge created successfully:`, data);
       toast({
         title: "Challenge Created!",
         description: `You've challenged ${userName}. Take your quiz now!`,
-      })
-
-      // Redirect to quiz as challenger
-      const challengeUrl = `/quiz?category=quran&difficulty=mixed&challenge=${data.id}&questions=10&opponent=${userId}&opponentName=${encodeURIComponent(userName)}&challengerTurn=true`
-
-      console.log(`🔗 Redirecting to:`, challengeUrl)
-      router.push(challengeUrl)
+      });
+      const challengeUrl = `/quiz?category=quran&difficulty=mixed&challenge=${data.id}&questions=10&opponent=${userId}&opponentName=${encodeURIComponent(userName)}&challengerTurn=true`;
+      console.log(`🔗 Redirecting to:`, challengeUrl);
+      router.push(challengeUrl);
     } catch (error: any) {
-      console.error("❌ Error creating challenge:", error)
+      console.error("❌ Error creating challenge:", error);
       toast({
         title: "Challenge Failed",
         description: error.message || "Failed to create challenge",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Button
-      onClick={handleChallenge}
+      onClick={() => {
+        console.log("Button clicked for:", userId, { userId: user?.id });
+        handleChallenge();
+      }}
       disabled={isLoading || !user}
       className={`bg-green-600 hover:bg-green-700 ${className}`}
       size="sm"
@@ -101,5 +94,5 @@ export default function SupabaseChallengeButton({ userId, userName, className = 
         </>
       )}
     </Button>
-  )
+  );
 }
