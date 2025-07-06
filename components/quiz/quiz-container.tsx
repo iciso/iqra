@@ -26,7 +26,9 @@ export default function QuizContainer({ category, difficulty, challengeId, oppon
 
   useEffect(() => {
     console.log("🎯 QUIZ CONTAINER: Setup started", { category, difficulty, challengeId, opponentId });
-    loadQuestions();
+    if (category && difficulty) {
+      loadQuestions();
+    }
   }, [category, difficulty, challengeId, opponentId]);
 
   const loadQuestions = async () => {
