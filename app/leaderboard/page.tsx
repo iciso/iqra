@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
 import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -105,32 +104,33 @@ export default function LeaderboardPage() {
       }
 
       // If that fails, try Supabase directly
-try {
-  const { getTopPlayers } = await import("@/lib/supabase-queries");
-  const topPlayers = await getTopPlayers(); // Remove the limit (20) to fetch all
+      try {
+        const { getTopPlayers } = await import("@/lib/supabase-queries")
+        const topPlayers = await getTopPlayers() // Remove limit to fetch all
 
-  if (topPlayers && topPlayers.length > 0) {
-    // Format the data for the leaderboard
-    const formattedData = topPlayers.map((player) => ({
-      name: player.full_name || player.username || "Unknown User",
-      score: player.total_score || 0,
-      totalQuestions: player.total_questions || 0,
-      percentage:
-        player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-      date: new Date().toLocaleDateString(),
-      category: "All Categories",
-      challenge: "all",
-      user_id: player.id,
-    }));
+        if (topPlayers && topPlayers.length > 0) {
+          // Format the data for the leaderboard
+          const formattedData = topPlayers.map((player) => ({
+            name: player.full_name || player.username || "Unknown User",
+            score: player.total_score || 0,
+            totalQuestions: player.total_questions || 0,
+            percentage:
+              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+            date: new Date().toLocaleDateString(),
+            category: "All Categories",
+            challenge: "all",
+            user_id: player.id,
+          }))
 
-    setLeaderboard(formattedData);
-    setDataSource("Supabase User Profiles");
-    setLastRefresh(new Date());
-    return;
-  }
-} catch (supabaseError) {
-  console.error("❌ Supabase direct error:", supabaseError);
-}
+          setLeaderboard(formattedData)
+          setDataSource("Supabase User Profiles")
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (supabaseError) {
+        console.error("❌ Supabase direct error:", supabaseError)
+      }
+
       // Final fallback to demo data
       console.log("⚠️ All data sources failed, using demo data")
       setLeaderboard([
@@ -241,14 +241,6 @@ try {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      {/* Only show these buttons on larger screens where the header might not be visible */}
-      <div className="hidden sm:block absolute top-4 right-4">
-     
-      </div>
-      <div className="hidden sm:block absolute top-4 left-4">
-       
-      </div>
-
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
           <div className="flex justify-center mb-2">
@@ -331,76 +323,78 @@ try {
             </div>
           ) : getFilteredLeaderboard().length > 0 ? (
             <div className="overflow-x-auto -mx-2 sm:mx-0">
-              <Table className="w-full">
-                <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12 text-xs">Rank</TableHead>
-                    <TableHead className="text-xs">Player</TableHead>
-                    <TableHead className="text-xs hidden md:table-cell">Category</TableHead>
-                    <TableHead className="text-xs hidden sm:table-cell">Type</TableHead>
-                    <TableHead className="text-right text-xs">Score</TableHead>
-                    <TableHead className="text-right text-xs">%</TableHead>
-                    <TableHead className="text-right text-xs hidden sm:table-cell">Last Active</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {getFilteredLeaderboard().map((entry, index) => (
-                    <TableRow key={index} className={index < 3 ? "font-medium" : ""}>
-                      <TableCell className="flex items-center py-2 text-xs">
-                        {index + 1}
-                        <span className="ml-1 md:ml-2">{getMedalIcon(index)}</span>
-                      </TableCell>
-                      <TableCell className="py-2">
-                        <div className="flex items-center gap-1 md:gap-2">
-                          {entry.name === "IQRA Bot" || entry.name === "QuizMaster" ? (
-                            <OpponentProfile
-                              opponent={{
-                                id: "bot-1",
-                                name: entry.name,
-                                type: "bot",
-                              }}
-                              size="sm"
-                            />
-                          ) : (
-                            <div className="flex items-center gap-1 md:gap-2">
-                              <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
-                                {entry.name.charAt(0)}
+              <div className="max-h-[60vh] overflow-y-auto">
+                <Table className="w-full">
+                  <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-12 text-xs">Rank</TableHead>
+                      <TableHead className="text-xs">Player</TableHead>
+                      <TableHead className="text-xs hidden md:table-cell">Category</TableHead>
+                      <TableHead className="text-xs hidden sm:table-cell">Type</TableHead>
+                      <TableHead className="text-right text-xs">Score</TableHead>
+                      <TableHead className="text-right text-xs">%</TableHead>
+                      <TableHead className="text-right text-xs hidden sm:table-cell">Last Active</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {getFilteredLeaderboard().map((entry, index) => (
+                      <TableRow key={index} className={index < 3 ? "font-medium" : ""}>
+                        <TableCell className="flex items-center py-2 text-xs">
+                          {index + 1}
+                          <span className="ml-1 md:ml-2">{getMedalIcon(index)}</span>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            {entry.name === "IQRA Bot" || entry.name === "QuizMaster" ? (
+                              <OpponentProfile
+                                opponent={{
+                                  id: "bot-1",
+                                  name: entry.name,
+                                  type: "bot",
+                                }}
+                                size="sm"
+                              />
+                            ) : (
+                              <div className="flex items-center gap-1 md:gap-2">
+                                <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
+                                  {entry.name.charAt(0)}
+                                </div>
+                                <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
+                                  {entry.name}
+                                </span>
                               </div>
-                              <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
-                                {entry.name}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell className="py-2 text-xs hidden md:table-cell">
-                        {entry.category || "All Categories"}
-                      </TableCell>
-                      <TableCell className="py-2 text-xs hidden sm:table-cell">
-                        {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
-                      </TableCell>
-                      <TableCell className="text-right py-2 text-xs">
-                        {entry.score}/{entry.totalQuestions}
-                      </TableCell>
-                      <TableCell className="text-right py-2 text-xs font-medium">
-                        <span
-                          className={
-                            entry.percentage >= 90
-                              ? "text-green-600 dark:text-green-400"
-                              : entry.percentage >= 70
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2 text-xs hidden md:table-cell">
+                          {entry.category || "All Categories"}
+                        </TableCell>
+                        <TableCell className="py-2 text-xs hidden sm:table-cell">
+                          {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
+                        </TableCell>
+                        <TableCell className="text-right py-2 text-xs">
+                          {entry.score}/{entry.totalQuestions}
+                        </TableCell>
+                        <TableCell className="text-right py-2 text-xs font-medium">
+                          <span
+                            className={
+                              entry.percentage >= 90
+                                ? "text-green-600 dark:text-green-400"
+                                : entry.percentage >= 70
                                 ? "text-blue-600 dark:text-blue-400"
                                 : "text-gray-600 dark:text-gray-400"
-                          }
-                        >
-                          {entry.percentage}%
-                        </span>
-                      </TableCell>
-                      <TableCell className="text-right py-2 text-xs hidden sm:table-cell">{entry.date}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                            }
+                          >
+                            {entry.percentage}%
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-right py-2 text-xs hidden sm:table-cell">{entry.date}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
           ) : (
             <div className="text-center py-6 md:py-8 text-gray-500 dark:text-gray-400">
