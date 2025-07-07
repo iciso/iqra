@@ -37,15 +37,13 @@ export default function LeaderboardPage() {
   const { toast } = useToast()
 
   // Helper function to abbreviate names with more than three words
- const abbreviateName = (fullName: string): string => {
-  if (!fullName) return "Unknown";
-  const words = fullName.trim().split(/\s+/);
-  if (words.length <= 1) return fullName;
-  if (words.length > 4) {
-    return words.slice(0, 5).map(word => word.charAt(0).toUpperCase()).join('');
+  const getDisplayName = (name: string) => {
+    const words = name.trim().split(/\s+/);
+    if (words.length > 4) {
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
+    }
+    return name;
   }
-  return words.map(word => word.charAt(0).toUpperCase()).join('');
-};
 
   const getFilteredLeaderboard = () => {
     return leaderboard
