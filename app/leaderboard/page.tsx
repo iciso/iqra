@@ -106,7 +106,7 @@ export default function LeaderboardPage() {
       // If that fails, try Supabase directly
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers() // Remove limit to fetch all
+        const topPlayers = await getTopPlayers(3000) // Remove limit to fetch all
 
         if (topPlayers && topPlayers.length > 0) {
           // Format the data for the leaderboard
