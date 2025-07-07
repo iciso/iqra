@@ -34,77 +34,77 @@ export default function SimpleTopPlayers() {
 
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
   const fallbackPlayers: Player[] = [
-    {
-      id: "aefe42f1-297b-4649-b664-934d37edc957",
-      username: "ihmi",
-      full_name: "India Hypertension Management Initiative Wayanad",
-      total_score: 0, // No hardcoded points
-      best_percentage: 0, // No hardcoded percentage
-    },
-    {
-      id: "871d3522-512b-4930-a9de-a092f2e33783",
-      username: "rafique",
-      full_name: "Mohamed Essa Rafique",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
-      username: "feroza.rafique",
-      full_name: "feroza.rafique",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
-      username: "drmurtazaa50",
-      full_name: "Dr.Muhammad Murtaza Ikram",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "e299ae2c-9581-47eb-bb0e-daabf686b469",
-      username: "aiesha",
-      full_name: "aiesha waseem",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
-      username: "afsarkam1962",
-      full_name: "KAM Afsar",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "8d46dbdc-3104-4de9-9735-a00c3aec1619",
-      username: "joy",
-      full_name: "Joy Ahmed",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "d3e5eba5-f706-4065-8639-797bd180f40d",
-      username: "francis",
-      full_name: "francis raj",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "7bdc8022-2a23-45db-a388-a2ea71a71b52",
-      username: "hashim",
-      full_name: "Hashim Mohammed",
-      total_score: 0,
-      best_percentage: 0,
-    },
-    {
-      id: "94e7149b-ce48-4d9a-8ee4-730698bc1bc5",
-      username: "essa",
-      full_name: "essa nilu",
-      total_score: 0,
-      best_percentage: 0,
-    },
-  ]
+  {
+    id: "aefe42f1-297b-4649-b664-934d37edc957",
+    username: "ihmi",
+    full_name: "India Hypertension Management Initiative Wayanad",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "871d3522-512b-4930-a9de-a092f2e33783",
+    username: "rafique",
+    full_name: "Mohamed Essa Rafique",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
+    username: "feroza.rafique",
+    full_name: "feroza.rafique",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+    username: "drmurtazaa50",
+    full_name: "Dr.Muhammad Murtaza Ikram",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "e299ae2c-9581-47eb-bb0e-daabf686b469",
+    username: "aiesha",
+    full_name: "aiesha waseem",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
+    username: "afsarkam1962",
+    full_name: "KAM Afsar",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "8d46dbdc-3104-4de9-9735-a00c3aec1619",
+    username: "joy",
+    full_name: "Joy Ahmed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "d3e5eba5-f706-4065-8639-797bd180f40d",
+    username: "francis",
+    full_name: "francis raj",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "7bdc8022-2a23-45db-a388-a2ea71a71b52",
+    username: "hashim",
+    full_name: "Hashim Mohammed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "94e7149b-ce48-4d9a-8ee4-730698bc1bc5",
+    username: "essa",
+    full_name: "essa nilu",
+    total_score: 0,
+    best_percentage: 0,
+  },
+].filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username));
 
   const syncMissingProfiles = async () => {
     try {
