@@ -51,7 +51,7 @@ const fallbackPlayers: Player[] = [
   {
     id: "aefe42f1-297b-4649-b664-934d37edc957",
     username: "ihmi",
-    full_name: "India Hypertension Management Initiative Wayanad",
+    full_name: "IHMIW",
     total_score: 0,
     best_percentage: 0,
   },
