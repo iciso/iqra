@@ -56,13 +56,6 @@ const fallbackPlayers: Player[] = [
     best_percentage: 0,
   },
   {
-    id: "871d3522-512b-4930-a9de-a092f2e33783",
-    username: "rafique",
-    full_name: "Mohamed Essa Rafique",
-    total_score: 0,
-    best_percentage: 0,
-  },
-  {
     id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
     username: "feroza.rafique",
     full_name: "feroza.rafique",
@@ -94,6 +87,13 @@ const fallbackPlayers: Player[] = [
     id: "7bdc8022-2a23-45db-a388-a2ea71a71b52",
     username: "hashim",
     full_name: "Hashim Mohammed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "871d3522-512b-4930-a9de-a092f2e33783",
+    username: "rafique",
+    full_name: "Mohamed Essa Rafique",
     total_score: 0,
     best_percentage: 0,
   },
