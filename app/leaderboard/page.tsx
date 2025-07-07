@@ -105,33 +105,32 @@ export default function LeaderboardPage() {
       }
 
       // If that fails, try Supabase directly
-      try {
-        const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(20)
+try {
+  const { getTopPlayers } = await import("@/lib/supabase-queries");
+  const topPlayers = await getTopPlayers(); // Remove the limit (20) to fetch all
 
-        if (topPlayers && topPlayers.length > 0) {
-          // Format the data for the leaderboard
-          const formattedData = topPlayers.map((player) => ({
-            name: player.full_name || player.username || "Unknown User",
-            score: player.total_score || 0,
-            totalQuestions: player.total_questions || 0,
-            percentage:
-              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-            date: new Date().toLocaleDateString(),
-            category: "All Categories",
-            challenge: "all",
-            user_id: player.id,
-          }))
+  if (topPlayers && topPlayers.length > 0) {
+    // Format the data for the leaderboard
+    const formattedData = topPlayers.map((player) => ({
+      name: player.full_name || player.username || "Unknown User",
+      score: player.total_score || 0,
+      totalQuestions: player.total_questions || 0,
+      percentage:
+        player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+      date: new Date().toLocaleDateString(),
+      category: "All Categories",
+      challenge: "all",
+      user_id: player.id,
+    }));
 
-          setLeaderboard(formattedData)
-          setDataSource("Supabase User Profiles")
-          setLastRefresh(new Date())
-          return
-        }
-      } catch (supabaseError) {
-        console.error("❌ Supabase direct error:", supabaseError)
-      }
-
+    setLeaderboard(formattedData);
+    setDataSource("Supabase User Profiles");
+    setLastRefresh(new Date());
+    return;
+  }
+} catch (supabaseError) {
+  console.error("❌ Supabase direct error:", supabaseError);
+}
       // Final fallback to demo data
       console.log("⚠️ All data sources failed, using demo data")
       setLeaderboard([
