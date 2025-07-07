@@ -35,6 +35,20 @@ export default function SimpleTopPlayers() {
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
 const fallbackPlayers: Player[] = [
   {
+    id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
+    username: "afsarkam1962",
+    full_name: "KAM Afsar",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "cc6504c4-8efd-442a-aadc-7b44e7da02f8",
+    username: "ebahammed",
+    full_name: "E Basheer Ahammed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
     id: "aefe42f1-297b-4649-b664-934d37edc957",
     username: "ihmi",
     full_name: "India Hypertension Management Initiative Wayanad",
@@ -70,23 +84,9 @@ const fallbackPlayers: Player[] = [
     best_percentage: 0,
   },
   {
-    id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
-    username: "afsarkam1962",
-    full_name: "KAM Afsar",
-    total_score: 0,
-    best_percentage: 0,
-  },
-  {
     id: "8d46dbdc-3104-4de9-9735-a00c3aec1619",
     username: "joy",
     full_name: "Joy Ahmed",
-    total_score: 0,
-    best_percentage: 0,
-  },
-  {
-    id: "d3e5eba5-f706-4065-8639-797bd180f40d",
-    username: "francis",
-    full_name: "francis raj",
     total_score: 0,
     best_percentage: 0,
   },
