@@ -33,7 +33,7 @@ export default function SimpleTopPlayers() {
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
-  const fallbackPlayers: Player[] = [
+const fallbackPlayers: Player[] = [
   {
     id: "aefe42f1-297b-4649-b664-934d37edc957",
     username: "ihmi",
@@ -575,7 +575,7 @@ export default function SimpleTopPlayers() {
         ) : (
           <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
             <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+              /* <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
                 {!isUsingFallback && (
                   <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{0 + 1}</span>
                 )}
@@ -591,16 +591,18 @@ export default function SimpleTopPlayers() {
                   </p>
                 </div>
               </div>
+              */
               <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
                 {!isUsingFallback && (
-                  <div className="text-right mr-1 md:mr-2">
+                 /* <div className="text-right mr-1 md:mr-2">
                     <p className="font-medium text-xs md:text-sm">100 pts</p>
                     <p className="text-xs text-gray-500">99%</p>
                   </div>
+                  */
                 )}
 
                 {user && user.id !== "test-user" && (
-                  <Button
+                 /* <Button
                     size="sm"
                     onClick={() =>
                       handleChallenge({
@@ -615,6 +617,7 @@ export default function SimpleTopPlayers() {
                   >
                     Challenge
                   </Button>
+                */
                 )}
               </div>
             </div>
