@@ -576,7 +576,6 @@ const fallbackPlayers: Player[] = [
           <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
-   /*
                 {!isUsingFallback && (
                   <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{0 + 1}</span>
                 )}
@@ -585,32 +584,23 @@ const fallbackPlayers: Player[] = [
                     {("Test User" || "testuser").charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
-*/
                 <div className="min-w-0 flex-1">
                   <p className="font-medium text-xs md:text-sm truncate">
-/*
           {"Test User" || "testuser"}
-*/
                   </p>
                   <p className="text-xs text-gray-500 hidden xs:block">
-/*
                     {isUsingFallback ? "Registered User" : "Player"}
-*/
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-  /*
                 {!isUsingFallback && (
                   <div className="text-right mr-1 md:mr-2">
                     <p className="font-medium text-xs md:text-sm">100 pts</p>
                     <p className="text-xs text-gray-500">99%</p>
                   </div>
-     */
                 )}
-
                 {user && user.id !== "test-user" && (
-        /* 
                         <Button
                     size="sm"
                     onClick={() =>
@@ -626,7 +616,6 @@ const fallbackPlayers: Player[] = [
                   >
                     Challenge
                   </Button>
-        */
                 )}
               </div>
             </div>
