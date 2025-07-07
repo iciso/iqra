@@ -39,7 +39,7 @@ export default function LeaderboardPage() {
   // Helper function to abbreviate names with more than three words
   const getDisplayName = (name: string) => {
     const words = name.trim().split(/\s+/);
-    if (words.length > 4) {
+    if (words.length > 5) {
       return words.map(word => word.charAt(0).toUpperCase()).join('');
     }
     return name;
