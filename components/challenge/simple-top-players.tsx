@@ -114,7 +114,7 @@ const fallbackPlayers: Player[] = [
       // Try a very simple query first
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 5000)),
       ])
 
       if (testError) {
