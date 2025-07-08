@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog";
 import { searchUsers } from "@/lib/supabase-queries";
-import { Input } from "@/components/ui/input"; // Added missing import
+import { Input } from "@/components/ui/input"; // Ensure this import is present
 
 interface Player {
   id: string;
@@ -33,6 +33,7 @@ export default function SimpleTopPlayers() {
   const loadingRef = useRef(false);
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false);
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null);
+  const [searchTerm, setSearchTerm] = useState(""); // Added missing searchTerm state
 
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
   const fallbackPlayers: Player[] = [
