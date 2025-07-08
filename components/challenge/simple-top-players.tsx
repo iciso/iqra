@@ -106,23 +106,23 @@ const fallbackPlayers: Player[] = [
   },
 ].filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username));
 
-  const syncMissingProfiles = async () => {
+ const syncMissingProfiles = async () => {
     try {
       setSyncing(true)
-      console.log("?? Attempting to sync missing user profiles...")
+      console.log("🔄 Attempting to sync missing user profiles...")
 
       // Try a very simple query first
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 5000)),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
       ])
 
       if (testError) {
-        console.error("? Test query failed:", testError)
+        console.error("❌ Test query failed:", testError)
         throw testError
       }
 
-      console.log("? Database connection working, proceeding with sync...")
+      console.log("✅ Database connection working, proceeding with sync...")
 
       // Get auth users with timeout
       const authResult = await Promise.race([
@@ -133,11 +133,11 @@ const fallbackPlayers: Player[] = [
       const { data: authUsers, error: authError } = authResult as any
 
       if (authError) {
-        console.error("? Error fetching auth users:", authError)
+        console.error("❌ Error fetching auth users:", authError)
         throw authError
       }
 
-      console.log("?? Found auth users:", authUsers.users.length)
+      console.log("👥 Found auth users:", authUsers.users.length)
 
       // Get existing profiles with timeout
       const profilesResult = await Promise.race([
@@ -148,19 +148,19 @@ const fallbackPlayers: Player[] = [
       const { data: existingProfiles, error: profilesError } = profilesResult as any
 
       if (profilesError) {
-        console.error("? Error fetching existing profiles:", profilesError)
+        console.error("❌ Error fetching existing profiles:", profilesError)
         throw profilesError
       }
 
       const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || [])
-      console.log("?? Existing profile IDs:", existingIds.size)
+      console.log("📋 Existing profile IDs:", existingIds.size)
 
       // Find missing profiles
       const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id))
-      console.log("?? Missing profiles for users:", missingUsers.length)
+      console.log("🔍 Missing profiles for users:", missingUsers.length)
 
       if (missingUsers.length === 0) {
-        console.log("? All users already have profiles")
+        console.log("✅ All users already have profiles")
         return
       }
 
@@ -178,7 +178,7 @@ const fallbackPlayers: Player[] = [
       }))
 
       console.log(
-        "? Creating profiles for:",
+        "➕ Creating profiles for:",
         newProfiles.map((p) => p.full_name || p.username),
       )
 
@@ -190,16 +190,16 @@ const fallbackPlayers: Player[] = [
       const { data: insertedProfiles, error: insertError } = insertResult as any
 
       if (insertError) {
-        console.error("? Error creating profiles:", insertError)
+        console.error("❌ Error creating profiles:", insertError)
         throw insertError
       }
 
-      console.log("? Successfully created profiles:", insertedProfiles?.length)
+      console.log("✅ Successfully created profiles:", insertedProfiles?.length)
 
       // Reload players after sync
       loadPlayers()
     } catch (err: any) {
-      console.error("? Sync error:", err)
+      console.error("❌ Sync error:", err)
       alert(`Sync failed: ${err.message}. Using fallback data.`)
     } finally {
       setSyncing(false)
@@ -207,182 +207,162 @@ const fallbackPlayers: Player[] = [
   }
 
   const loadPlayers = async () => {
-  // Prevent concurrent loading
-  if (loadingRef.current) {
-    console.log("?? Already loading players, skipping...")
-    return
-  }
-
-  try {
-    loadingRef.current = true
-    setLoading(true)
-    setError(null)
-    setIsUsingFallback(false)
-    console.log("?? Loading top players... (attempt", retryCount + 1, ")")
-
-    // Wait for auth to be ready
-    if (authLoading) {
-      console.log("? Waiting for auth to complete...")
+    // Prevent concurrent loading
+    if (loadingRef.current) {
+      console.log("🛑 Already loading players, skipping...")
       return
     }
 
-    console.log("?? Step 1: Auth ready, trying Supabase...")
-
-    const limit = showAll ? 50 : 30
-
-    // Try Supabase first with improved sorting
     try {
-      const queryResult = await Promise.race([
-        supabase
-          .from("user_profiles")
-          .select("id, username, full_name, total_score, best_percentage")
-          .order("total_score", { ascending: false })
-          .order("best_percentage", { ascending: false })
-          .order("total_questions", { ascending: false })
-          .limit(limit),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
-      ])
+      loadingRef.current = true
+      setLoading(true)
+      setError(null)
+      setIsUsingFallback(false)
+      console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
-      const { data, error } = queryResult as any
-
-      if (error) throw error
-
-      if (data && data.length > 0) {
-        console.log("? Players loaded from Supabase:", data.length, "players")
-        // Filter out test users
-        const validPlayers = data.filter(
-          (player: Player) =>
-            player.id &&
-            player.username &&
-            !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username)
-        );
-        if (mountedRef.current) {
-          setPlayers(validPlayers)
-          setDataSource("Supabase")
-          setIsUsingFallback(false)
-        }
+      // Wait for auth to be ready
+      if (authLoading) {
+        console.log("⏳ Waiting for auth to complete...")
         return
       }
-    } catch (supabaseError) {
-      console.error("? Supabase error:", supabaseError)
-    }
 
-    // Try Neon fallback
-    console.log("?? Step 2: Trying Neon fallback...")
-    try {
-      const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback(limit))
+      console.log("🔍 Step 1: Auth ready, trying Supabase...")
 
-      const neonPlayers = await Promise.race([
-        neonPromise,
-        new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 3000)),
-      ])
+      const limit = showAll ? 50 : 10
 
-      if (neonPlayers && neonPlayers.length > 0) {
-        console.log("? Players loaded from Neon:", neonPlayers.length, "players")
-        // Filter out test users (assuming Neon data has similar structure)
-        const validPlayers = neonPlayers.filter(
-          (player: Player) =>
-            player.id &&
-            player.username &&
-            !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username)
-        );
-        if (mountedRef.current) {
-          setPlayers(validPlayers)
-          setDataSource("Neon")
-          setIsUsingFallback(false)
+      // Try Supabase first with improved sorting
+      try {
+        const queryResult = await Promise.race([
+          supabase
+            .from("user_profiles")
+            .select("id, username, full_name, total_score, best_percentage")
+            .order("total_score", { ascending: false })
+            .order("best_percentage", { ascending: false })
+            .order("total_questions", { ascending: false })
+            .limit(limit),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
+        ])
+
+        const { data, error } = queryResult as any
+
+        if (error) throw error
+
+        if (data && data.length > 0) {
+          console.log("✅ Players loaded from Supabase:", data.length, "players")
+          if (mountedRef.current) {
+            setPlayers(data)
+            setDataSource("Supabase")
+            setIsUsingFallback(false)
+          }
+          return
         }
-        return
+      } catch (supabaseError) {
+        console.error("❌ Supabase error:", supabaseError)
       }
-    } catch (neonError) {
-      console.error("? Neon error:", neonError)
-    }
 
-    // Try leaderboard data with timeout
-    console.log("?? Step 3: Getting actual leaderboard data...")
-    try {
-      const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
-        module.getLeaderboardWithFallback(),
-      )
+      // Try Neon fallback
+      console.log("🔍 Step 2: Trying Neon fallback...")
+      try {
+        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback(limit))
 
-      const leaderboardResult = await Promise.race([
-        leaderboardPromise,
-        new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 3000)),
-      ])
+        const neonPlayers = await Promise.race([
+          neonPromise,
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 3000)),
+        ])
 
-      if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
-        // Convert leaderboard format to player format
-        const leaderboardPlayers = leaderboardResult.data
-          .filter((entry) => entry.user_id) // Only include entries with real user IDs
-          .map((entry) => ({
-            id: entry.user_id,
-            username: entry.name.split(" ")[0].toLowerCase(),
-            full_name: entry.name,
-            total_score: entry.score,
-            best_percentage: entry.percentage,
-          }))
-        // Filter out test users
-        const validPlayers = leaderboardPlayers.filter(
-          (player: Player) =>
-            player.id &&
-            player.username &&
-            !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username)
-        );
-        console.log("? Players loaded from leaderboard:", validPlayers.length, "players")
-        if (mountedRef.current) {
-          setPlayers(validPlayers.slice(0, limit))
-          setDataSource("Live Leaderboard")
-          setIsUsingFallback(false)
+        if (neonPlayers && neonPlayers.length > 0) {
+          console.log("✅ Players loaded from Neon:", neonPlayers.length, "players")
+          if (mountedRef.current) {
+            setPlayers(neonPlayers)
+            setDataSource("Neon")
+            setIsUsingFallback(false)
+          }
+          return
         }
-        return
+      } catch (neonError) {
+        console.error("❌ Neon error:", neonError)
       }
-    } catch (leaderboardError) {
-      console.error("? Leaderboard error:", leaderboardError)
-    }
 
-    // FINAL FALLBACK: Use ONLY real users (no ranking, no points)
-    console.log("?? Step 4: Using registered users as final fallback...")
-    if (mountedRef.current) {
-      console.log("? Using registered users as fallback:", fallbackPlayers.length, "users")
-      setPlayers(fallbackPlayers) // No sorting needed since no points
-      setDataSource("Registered Users")
-      setIsUsingFallback(true)
-    }
+      // Try leaderboard data with timeout
+      console.log("🔍 Step 3: Getting actual leaderboard data...")
+      try {
+        const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
+          module.getLeaderboardWithFallback(),
+        )
 
-    console.log("?? Load complete!")
-  } catch (err: any) {
-    console.error("? Load error:", err.message)
+        const leaderboardResult = await Promise.race([
+          leaderboardPromise,
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 3000)),
+        ])
 
-    if (mountedRef.current) {
-      // Use fallback data instead of showing error
-      console.log("?? Using registered users as fallback data")
-      setPlayers(fallbackPlayers)
-      setDataSource("Registered Users")
-      setIsUsingFallback(true)
-      setError(null) // Don't show error, just use fallback
-    }
+        if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
+          // Convert leaderboard format to player format
+          const leaderboardPlayers = leaderboardResult.data
+            .filter((entry) => entry.user_id) // Only include entries with real user IDs
+            .map((entry) => ({
+              id: entry.user_id,
+              username: entry.name.split(" ")[0].toLowerCase(),
+              full_name: entry.name,
+              total_score: entry.score,
+              best_percentage: entry.percentage,
+            }))
 
-    // Only retry if we haven't exceeded max attempts
-    if (retryCount < 2 && mountedRef.current) {
-      const delay = (retryCount + 1) * 2000 // 2s, 4s
-      console.log(`?? Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`)
-      setTimeout(() => {
-        if (mountedRef.current) {
-          setRetryCount(retryCount + 1)
-          loadingRef.current = false
-          loadPlayers()
+          console.log("✅ Players loaded from leaderboard:", leaderboardPlayers.length, "players")
+          if (mountedRef.current) {
+            setPlayers(leaderboardPlayers.slice(0, limit))
+            setDataSource("Live Leaderboard")
+            setIsUsingFallback(false)
+          }
+          return
         }
-      }, delay)
+      } catch (leaderboardError) {
+        console.error("❌ Leaderboard error:", leaderboardError)
+      }
+
+      // FINAL FALLBACK: Use ONLY real users (no ranking, no points)
+      console.log("🔍 Step 4: Using registered users as final fallback...")
+      if (mountedRef.current) {
+        console.log("✅ Using registered users as fallback:", fallbackPlayers.length, "users")
+        setPlayers(fallbackPlayers) // No sorting needed since no points
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
+      }
+
+      console.log("🔍 Load complete!")
+    } catch (err: any) {
+      console.error("❌ Load error:", err.message)
+
+      if (mountedRef.current) {
+        // Use fallback data instead of showing error
+        console.log("🔄 Using registered users as fallback data")
+        setPlayers(fallbackPlayers)
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
+        setError(null) // Don't show error, just use fallback
+      }
+
+      // Only retry if we haven't exceeded max attempts
+      if (retryCount < 2 && mountedRef.current) {
+        const delay = (retryCount + 1) * 2000 // 2s, 4s
+        console.log(`🔄 Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`)
+        setTimeout(() => {
+          if (mountedRef.current) {
+            setRetryCount(retryCount + 1)
+            loadingRef.current = false
+            loadPlayers()
+          }
+        }, delay)
+      }
+    } finally {
+      if (mountedRef.current) {
+        setLoading(false)
+      }
+      loadingRef.current = false
     }
-  } finally {
-    if (mountedRef.current) {
-      setLoading(false)
-    }
-    loadingRef.current = false
   }
-}
 
   const resetLoadingState = () => {
-    console.log("?? Resetting loading state...")
+    console.log("🔄 Resetting loading state...")
     loadingRef.current = false
     setLoading(false)
     setRetryCount(0)
@@ -394,7 +374,7 @@ const fallbackPlayers: Player[] = [
   }
 
   const handleRetry = () => {
-    console.log("?? Manual retry triggered by user")
+    console.log("🔄 Manual retry triggered by user")
     resetLoadingState()
     loadPlayers()
   }
@@ -419,14 +399,14 @@ const fallbackPlayers: Player[] = [
 
   // Load players when auth is ready
   useEffect(() => {
-    console.log("?? SimpleTopPlayers component mounted")
+    console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
 
     if (!authLoading) {
-      console.log("? Auth is ready, loading players...")
+      console.log("✅ Auth is ready, loading players...")
       loadPlayers()
     } else {
-      console.log("? Auth still loading, waiting...")
+      console.log("⏳ Auth still loading, waiting...")
       // Force auth completion after 3 seconds to prevent hanging
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
@@ -437,7 +417,7 @@ const fallbackPlayers: Player[] = [
     }
 
     return () => {
-      console.log("?? SimpleTopPlayers component unmounting")
+      console.log("🚫 SimpleTopPlayers component unmounting")
       mountedRef.current = false
     }
   }, [authLoading])
@@ -445,7 +425,7 @@ const fallbackPlayers: Player[] = [
   // Also listen for auth state changes
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
-      console.log("?? Auth state changed, reloading players...")
+      console.log("🔄 Auth state changed, reloading players...")
       loadPlayers()
     }
   }, [user, authLoading])
@@ -461,7 +441,7 @@ const fallbackPlayers: Player[] = [
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
-        console.log("?? Safety timeout triggered - forcing fallback data")
+        console.log("⚠️ Safety timeout triggered - forcing fallback data")
         setPlayers(fallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
@@ -476,6 +456,7 @@ const fallbackPlayers: Player[] = [
   // Show loading while auth is initializing
   if (authLoading) {
     return (
+
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
