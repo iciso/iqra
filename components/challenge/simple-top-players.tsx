@@ -229,7 +229,7 @@ const fallbackPlayers: Player[] = [
 
     console.log("?? Step 1: Auth ready, trying Supabase...")
 
-    const limit = showAll ? 50 : 40
+    const limit = showAll ? 60 : 40
 
 
     // Use searchUsers if a search term exists, otherwise get top players 08 07 2025
