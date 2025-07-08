@@ -324,7 +324,7 @@ const fallbackPlayers: Player[] = [
       if (mountedRef.current) {
         console.log("✅ Using registered users as fallback:", fallbackPlayers.length, "users")
         setPlayers(fallbackPlayers) // No sorting needed since no points
-        setDataSource("Registered Users")
+        setDataSource("All Users")
         setIsUsingFallback(true)
       }
 
@@ -336,7 +336,7 @@ const fallbackPlayers: Player[] = [
         // Use fallback data instead of showing error
         console.log("🔄 Using registered users as fallback data")
         setPlayers(fallbackPlayers)
-        setDataSource("Registered Users")
+        setDataSource("All Users")
         setIsUsingFallback(true)
         setError(null) // Don't show error, just use fallback
       }
