@@ -111,7 +111,6 @@ const fallbackPlayers: Player[] = [
       setSyncing(true)
       console.log("🔄 Attempting to sync missing user profiles...")
 
-      // Try a very simple query first
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
@@ -124,7 +123,6 @@ const fallbackPlayers: Player[] = [
 
       console.log("✅ Database connection working, proceeding with sync...")
 
-      // Get auth users with timeout
       const authResult = await Promise.race([
         supabase.auth.admin.listUsers(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Auth query timeout")), 5000)),
@@ -139,7 +137,6 @@ const fallbackPlayers: Player[] = [
 
       console.log("👥 Found auth users:", authUsers.users.length)
 
-      // Get existing profiles with timeout
       const profilesResult = await Promise.race([
         supabase.from("user_profiles").select("id"),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Profiles query timeout")), 5000)),
@@ -155,7 +152,6 @@ const fallbackPlayers: Player[] = [
       const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || [])
       console.log("📋 Existing profile IDs:", existingIds.size)
 
-      // Find missing profiles
       const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id))
       console.log("🔍 Missing profiles for users:", missingUsers.length)
 
@@ -164,7 +160,6 @@ const fallbackPlayers: Player[] = [
         return
       }
 
-      // Create missing profiles
       const newProfiles = missingUsers.map((authUser: any) => ({
         id: authUser.id,
         username: authUser.user_metadata?.username || authUser.email?.split("@")[0] || "user",
@@ -196,7 +191,6 @@ const fallbackPlayers: Player[] = [
 
       console.log("✅ Successfully created profiles:", insertedProfiles?.length)
 
-      // Reload players after sync
       loadPlayers()
     } catch (err: any) {
       console.error("❌ Sync error:", err)
@@ -207,7 +201,6 @@ const fallbackPlayers: Player[] = [
   }
 
   const loadPlayers = async () => {
-    // Prevent concurrent loading
     if (loadingRef.current) {
       console.log("🛑 Already loading players, skipping...")
       return
@@ -220,7 +213,6 @@ const fallbackPlayers: Player[] = [
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
-      // Wait for auth to be ready
       if (authLoading) {
         console.log("⏳ Waiting for auth to complete...")
         return
@@ -228,9 +220,6 @@ const fallbackPlayers: Player[] = [
 
       console.log("🔍 Step 1: Auth ready, trying Supabase...")
 
-      const limit = showAll ? 50 : 35
-
-      // Try Supabase first with improved sorting
       try {
         const queryResult = await Promise.race([
           supabase
@@ -238,9 +227,8 @@ const fallbackPlayers: Player[] = [
             .select("id, username, full_name, total_score, best_percentage")
             .order("total_score", { ascending: false })
             .order("best_percentage", { ascending: false })
-            .order("total_questions", { ascending: false })
-            .limit(limit),
-          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
+            .order("total_questions", { ascending: false }),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 8000)),
         ])
 
         const { data, error } = queryResult as any
@@ -248,9 +236,10 @@ const fallbackPlayers: Player[] = [
         if (error) throw error
 
         if (data && data.length > 0) {
-          console.log("✅ Players loaded from Supabase:", data.length, "players")
+          const filteredData = data.filter((player: Player) => player.username !== "Test User")
+          console.log("✅ Players loaded from Supabase:", filteredData.length, "players")
           if (mountedRef.current) {
-            setPlayers(data)
+            setPlayers(filteredData)
             setDataSource("Supabase")
             setIsUsingFallback(false)
           }
@@ -260,20 +249,20 @@ const fallbackPlayers: Player[] = [
         console.error("❌ Supabase error:", supabaseError)
       }
 
-      // Try Neon fallback
       console.log("🔍 Step 2: Trying Neon fallback...")
       try {
-        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback(limit))
+        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback())
 
         const neonPlayers = await Promise.race([
           neonPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 3000)),
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 5000)),
         ])
 
         if (neonPlayers && neonPlayers.length > 0) {
-          console.log("✅ Players loaded from Neon:", neonPlayers.length, "players")
+          const filteredNeonPlayers = neonPlayers.filter((player: Player) => player.username !== "Test User")
+          console.log("✅ Players loaded from Neon:", filteredNeonPlayers.length, "players")
           if (mountedRef.current) {
-            setPlayers(neonPlayers)
+            setPlayers(filteredNeonPlayers)
             setDataSource("Neon")
             setIsUsingFallback(false)
           }
@@ -283,7 +272,6 @@ const fallbackPlayers: Player[] = [
         console.error("❌ Neon error:", neonError)
       }
 
-      // Try leaderboard data with timeout
       console.log("🔍 Step 3: Getting actual leaderboard data...")
       try {
         const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
@@ -292,13 +280,12 @@ const fallbackPlayers: Player[] = [
 
         const leaderboardResult = await Promise.race([
           leaderboardPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 3000)),
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
         ])
 
         if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
-          // Convert leaderboard format to player format
           const leaderboardPlayers = leaderboardResult.data
-            .filter((entry) => entry.user_id) // Only include entries with real user IDs
+            .filter((entry) => entry.user_id && entry.name !== "Test User")
             .map((entry) => ({
               id: entry.user_id,
               username: entry.name.split(" ")[0].toLowerCase(),
@@ -309,7 +296,7 @@ const fallbackPlayers: Player[] = [
 
           console.log("✅ Players loaded from leaderboard:", leaderboardPlayers.length, "players")
           if (mountedRef.current) {
-            setPlayers(leaderboardPlayers.slice(0, limit))
+            setPlayers(leaderboardPlayers)
             setDataSource("Live Leaderboard")
             setIsUsingFallback(false)
           }
@@ -319,11 +306,11 @@ const fallbackPlayers: Player[] = [
         console.error("❌ Leaderboard error:", leaderboardError)
       }
 
-      // FINAL FALLBACK: Use ONLY real users (no ranking, no points)
-      console.log("🔍 Step 4: Using registered users as final fallback...")
+      console.log("🔍 Step 4: Using All users as final fallback...")
       if (mountedRef.current) {
-        console.log("✅ Using registered users as fallback:", fallbackPlayers.length, "users")
-        setPlayers(fallbackPlayers) // No sorting needed since no points
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        console.log("✅ Using All users as fallback:", filteredFallbackPlayers.length, "users")
+        setPlayers(filteredFallbackPlayers)
         setDataSource("All Users")
         setIsUsingFallback(true)
       }
@@ -333,17 +320,16 @@ const fallbackPlayers: Player[] = [
       console.error("❌ Load error:", err.message)
 
       if (mountedRef.current) {
-        // Use fallback data instead of showing error
-        console.log("🔄 Using registered users as fallback data")
-        setPlayers(fallbackPlayers)
+        console.log("🔄 Using All users as fallback data")
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        setPlayers(filteredFallbackPlayers)
         setDataSource("All Users")
         setIsUsingFallback(true)
-        setError(null) // Don't show error, just use fallback
+        setError(null)
       }
 
-      // Only retry if we haven't exceeded max attempts
       if (retryCount < 2 && mountedRef.current) {
-        const delay = (retryCount + 1) * 2000 // 2s, 4s
+        const delay = (retryCount + 1) * 2000
         console.log(`🔄 Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`)
         setTimeout(() => {
           if (mountedRef.current) {
@@ -381,7 +367,6 @@ const fallbackPlayers: Player[] = [
 
   const toggleShowAll = () => {
     setShowAll(!showAll)
-    // Reload with new limit
     setTimeout(() => loadPlayers(), 100)
   }
 
@@ -397,7 +382,6 @@ const fallbackPlayers: Player[] = [
     return "bg-purple-100 text-purple-800"
   }
 
-  // Load players when auth is ready
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
@@ -407,7 +391,6 @@ const fallbackPlayers: Player[] = [
       loadPlayers()
     } else {
       console.log("⏳ Auth still loading, waiting...")
-      // Force auth completion after 3 seconds to prevent hanging
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
         loadPlayers()
@@ -422,7 +405,6 @@ const fallbackPlayers: Player[] = [
     }
   }, [authLoading])
 
-  // Also listen for auth state changes
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
       console.log("🔄 Auth state changed, reloading players...")
@@ -430,33 +412,31 @@ const fallbackPlayers: Player[] = [
     }
   }, [user, authLoading])
 
-  // Reload when showAll changes
   useEffect(() => {
     if (!authLoading && mountedRef.current) {
       loadPlayers()
     }
   }, [showAll])
 
-  // Add a safety timeout to prevent infinite loading
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        setPlayers(fallbackPlayers)
-        setDataSource("Registered Users")
+        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        setPlayers(filteredFallbackPlayers)
+        setDataSource("All Users")
         setIsUsingFallback(true)
         setLoading(false)
+        setError(null)
         loadingRef.current = false
       }
-    }, 5000) // 5 second safety timeout
+    }, 10000)
 
     return () => clearTimeout(safetyTimeout)
   }, [loading])
 
-  // Show loading while auth is initializing
   if (authLoading) {
     return (
-
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -494,11 +474,10 @@ const fallbackPlayers: Player[] = [
   }
 
   const cardTitle = isUsingFallback
-    ? `Registered Users (${players.length})`
+    ? `All Users (${players.length})`
     : showAll
       ? `All Players (${players.length})`
       : `Top Players (${players.length})`
-
   return (
     <Card>
       <CardHeader className="px-3 md:px-6 py-4">
