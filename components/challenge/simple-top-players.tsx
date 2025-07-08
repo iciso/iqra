@@ -8,7 +8,7 @@ import { Trophy, RefreshCw, Search, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog";
-import { searchUsers, getTopPlayers } from "@/lib/supabase-queries"; // Added getTopPlayers import
+import { searchUsers, getTopPlayers } from "@/lib/supabase-queries";
 import { Input } from "@/components/ui/input";
 
 interface Player {
@@ -226,10 +226,10 @@ export default function SimpleTopPlayers() {
 
       const queryFn = searchTerm
         ? () => searchUsers(searchTerm, limit)
-        : () => getTopPlayers(limit); // Relies on imported getTopPlayers
+        : () => getTopPlayers(limit);
       const queryResult = await Promise.race([
         queryFn(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 5000)), // Increased to 5000ms
       ]);
 
       const { data, error } = queryResult as any;
@@ -403,7 +403,7 @@ export default function SimpleTopPlayers() {
   }
 
   const cardTitle = isUsingFallback
-    ? `Registered Users (${players.length})`
+    ? `All Players (${players.length})` // Changed from "Registered Users" to "All Players"
     : showAll
     ? `All Players (${players.length})`
     : `Top Players (${players.length})`;
