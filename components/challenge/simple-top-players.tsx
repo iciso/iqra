@@ -8,8 +8,8 @@ import { Trophy, RefreshCw, Search, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/auth-context";
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog";
-import { searchUsers } from "@/lib/supabase-queries";
-import { Input } from "@/components/ui/input"; // Ensure this import is present
+import { searchUsers, getTopPlayers } from "@/lib/supabase-queries"; // Added getTopPlayers import
+import { Input } from "@/components/ui/input";
 
 interface Player {
   id: string;
@@ -33,9 +33,8 @@ export default function SimpleTopPlayers() {
   const loadingRef = useRef(false);
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false);
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null);
-  const [searchTerm, setSearchTerm] = useState(""); // Added missing searchTerm state
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
   const fallbackPlayers: Player[] = [
     {
       id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
@@ -114,7 +113,6 @@ export default function SimpleTopPlayers() {
       setSyncing(true);
       console.log("?? Attempting to sync missing user profiles...");
 
-      // Try a very simple query first
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 5000)),
@@ -127,7 +125,6 @@ export default function SimpleTopPlayers() {
 
       console.log("? Database connection working, proceeding with sync...");
 
-      // Get auth users with timeout
       const authResult = await Promise.race([
         supabase.auth.admin.listUsers(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Auth query timeout")), 5000)),
@@ -142,7 +139,6 @@ export default function SimpleTopPlayers() {
 
       console.log("?? Found auth users:", authUsers.users.length);
 
-      // Get existing profiles with timeout
       const profilesResult = await Promise.race([
         supabase.from("user_profiles").select("id"),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Profiles query timeout")), 5000)),
@@ -158,7 +154,6 @@ export default function SimpleTopPlayers() {
       const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || []);
       console.log("?? Existing profile IDs:", existingIds.size);
 
-      // Find missing profiles
       const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id));
       console.log("?? Missing profiles for users:", missingUsers.length);
 
@@ -167,7 +162,6 @@ export default function SimpleTopPlayers() {
         return;
       }
 
-      // Create missing profiles
       const newProfiles = missingUsers.map((authUser: any) => ({
         id: authUser.id,
         username: authUser.user_metadata?.username || authUser.email?.split("@")[0] || "user",
@@ -199,7 +193,6 @@ export default function SimpleTopPlayers() {
 
       console.log("? Successfully created profiles:", insertedProfiles?.length);
 
-      // Reload players after sync
       loadPlayers();
     } catch (err: any) {
       console.error("? Sync error:", err);
@@ -210,7 +203,6 @@ export default function SimpleTopPlayers() {
   };
 
   const loadPlayers = async () => {
-    // Prevent concurrent loading
     if (loadingRef.current) {
       console.log("?? Already loading players, skipping...");
       return;
@@ -223,7 +215,6 @@ export default function SimpleTopPlayers() {
       setIsUsingFallback(false);
       console.log("?? Loading top players... (attempt", retryCount + 1, ")");
 
-      // Wait for auth to be ready
       if (authLoading) {
         console.log("? Waiting for auth to complete...");
         return;
@@ -233,10 +224,9 @@ export default function SimpleTopPlayers() {
 
       const limit = showAll ? 30 : 10;
 
-      // Use searchUsers if a search term exists, otherwise get top players
       const queryFn = searchTerm
         ? () => searchUsers(searchTerm, limit)
-        : () => getTopPlayers(limit);
+        : () => getTopPlayers(limit); // Relies on imported getTopPlayers
       const queryResult = await Promise.race([
         queryFn(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
@@ -264,17 +254,15 @@ export default function SimpleTopPlayers() {
       console.error("? Load error:", err.message);
 
       if (mountedRef.current) {
-        // Use fallback data instead of showing error
         console.log("?? Using registered users as fallback data");
         setPlayers(fallbackPlayers);
         setDataSource("Registered Users");
         setIsUsingFallback(true);
-        setError(null); // Don't show error, just use fallback
+        setError(null);
       }
 
-      // Only retry if we haven't exceeded max attempts
       if (retryCount < 2 && mountedRef.current) {
-        const delay = (retryCount + 1) * 2000; // 2s, 4s
+        const delay = (retryCount + 1) * 2000;
         console.log(`?? Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`);
         setTimeout(() => {
           if (mountedRef.current) {
@@ -359,7 +347,7 @@ export default function SimpleTopPlayers() {
     if (!authLoading && mountedRef.current) {
       loadPlayers();
     }
-  }, [showAll, searchTerm]); // Add searchTerm to trigger reload on change
+  }, [showAll, searchTerm]);
 
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
