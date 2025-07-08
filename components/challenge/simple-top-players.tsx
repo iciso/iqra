@@ -229,7 +229,7 @@ export default function SimpleTopPlayers() {
         : () => getTopPlayers(limit);
       const queryResult = await Promise.race([
         queryFn(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 5000)), // Increased to 5000ms
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 5000)),
       ]);
 
       const { data, error } = queryResult as any;
@@ -403,7 +403,7 @@ export default function SimpleTopPlayers() {
   }
 
   const cardTitle = isUsingFallback
-    ? `All Players (${players.length})` // Changed from "Registered Users" to "All Players"
+    ? `All Players (${players.length})`
     : showAll
     ? `All Players (${players.length})`
     : `Top Players (${players.length})`;
@@ -489,7 +489,7 @@ export default function SimpleTopPlayers() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-                  {!isUsingFallback && (
+                  {!isUsingFallback && player.total_score > 0 && ( // Conditionally render points if > 0
                     <div className="text-right mr-1 md:mr-2">
                       <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
                       <p className="text-xs text-gray-500">{player.best_percentage}%</p>
