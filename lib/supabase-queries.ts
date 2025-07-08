@@ -1,33 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { toast } from "@/hooks/use-toast";
 
-// Added for search o 08 07 25
-
-export async function getTopPlayers(limit = 10) {
-  const { data, error } = await supabase
-    .from("user_profiles")
-    .select("id, username, full_name, total_score, best_percentage")
-    .order("total_score", { ascending: false })
-    .limit(limit);
-  if (error) throw error;
-  return data || [];
-}
-
-export async function searchUsers(searchTerm: string, limit = 30) {
-  if (!searchTerm) return getTopPlayers(limit); // Fallback to top players if no search term
-  const { data, error } = await supabase
-    .from("user_profiles")
-    .select("id, username, full_name, total_score, best_percentage")
-    .ilike("username", `%${searchTerm.toLowerCase()}%`)
-    .or(`full_name.ilike.%${searchTerm.toLowerCase()}%`)
-    .order("total_score", { ascending: false })
-    .limit(limit);
-  if (error) throw error;
-  return data || [];
-}
-
-// End of Added search on 08 07 25 If required add other missing exports if needed (e.g., for profile page)
-
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
