@@ -3,8 +3,6 @@ import { toast } from "@/hooks/use-toast";
 
 // Added for search o 08 07 25
 
-import { supabase } from "./supabase";
-
 export async function getTopPlayers(limit = 10) {
   const { data, error } = await supabase
     .from("user_profiles")
