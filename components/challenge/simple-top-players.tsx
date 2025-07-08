@@ -569,7 +569,7 @@ const fallbackPlayers: Player[] = [
             <div className="min-w-0 flex-1">
               <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
               <p className="text-xs text-gray-500 hidden xs:block">
-                {isUsingFallback ? "Registered User" : "Player"}
+                {isUsingFallback ? "All Users" : "Player"}
               </p>
             </div>
           </div>
