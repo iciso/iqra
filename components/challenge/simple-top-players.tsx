@@ -8,6 +8,7 @@ import { Trophy, RefreshCw, Search, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import { searchUsers } from "@/lib/supabase-queries" // Import the new function
 
 interface Player {
   id: string
@@ -230,26 +231,19 @@ const fallbackPlayers: Player[] = [
 
     const limit = showAll ? 50 : 40
 
-    // Try Supabase first with improved sorting
-    try {
+
+    // Use searchUsers if a search term exists, otherwise get top players 08 07 2025
+      const queryFn = searchTerm ? () => searchUsers(searchTerm, limit) : () => getTopPlayers(limit);
       const queryResult = await Promise.race([
-        supabase
-          .from("user_profiles")
-          .select("id, username, full_name, total_score, best_percentage")
-          .order("total_score", { ascending: false })
-          .order("best_percentage", { ascending: false })
-          .order("total_questions", { ascending: false })
-          .limit(limit),
+        queryFn(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
-      ])
+      ]);
 
-      const { data, error } = queryResult as any
-
-      if (error) throw error
+      const { data, error } = queryResult as any;
+      if (error) throw error;
 
       if (data && data.length > 0) {
         console.log("? Players loaded from Supabase:", data.length, "players")
-        // Filter out test users
         const validPlayers = data.filter(
           (player: Player) =>
             player.id &&
@@ -266,6 +260,8 @@ const fallbackPlayers: Player[] = [
     } catch (supabaseError) {
       console.error("? Supabase error:", supabaseError)
     }
+    // ... (rest of the fallback logic remains unchanged)  08 07 25
+    // Try Supabase first with improved sorting
 
     // Try Neon fallback
     console.log("?? Step 2: Trying Neon fallback...")
@@ -344,7 +340,7 @@ const fallbackPlayers: Player[] = [
     if (mountedRef.current) {
       console.log("? Using registered users as fallback:", fallbackPlayers.length, "users")
       setPlayers(fallbackPlayers) // No sorting needed since no points
-      setDataSource("Registered Users")
+      setDataSource("Top Users")
       setIsUsingFallback(true)
     }
 
@@ -388,7 +384,7 @@ const fallbackPlayers: Player[] = [
     setRetryCount(0)
   }
 
-  const handleChallenge = (player: Player) => {
+   const handleChallenge = (player: Player) => {
     setSelectedOpponent(player)
     setChallengeDialogOpen(true)
   }
@@ -401,8 +397,14 @@ const fallbackPlayers: Player[] = [
 
   const toggleShowAll = () => {
     setShowAll(!showAll)
-    // Reload with new limit
     setTimeout(() => loadPlayers(), 100)
+  }
+
+  const resetLoadingState = () => {
+    console.log("?? Resetting loading state...")
+    loadingRef.current = false
+    setLoading(false)
+    setRetryCount(0)
   }
 
   const getSourceIcon = () => {
@@ -417,7 +419,6 @@ const fallbackPlayers: Player[] = [
     return "bg-purple-100 text-purple-800"
   }
 
-  // Load players when auth is ready
   useEffect(() => {
     console.log("?? SimpleTopPlayers component mounted")
     mountedRef.current = true
@@ -426,13 +427,10 @@ const fallbackPlayers: Player[] = [
       console.log("? Auth is ready, loading players...")
       loadPlayers()
     } else {
-      console.log("? Auth still loading, waiting...")
-      // Force auth completion after 3 seconds to prevent hanging
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
         loadPlayers()
       }, 3000)
-
       return () => clearTimeout(timeout)
     }
 
@@ -442,7 +440,6 @@ const fallbackPlayers: Player[] = [
     }
   }, [authLoading])
 
-  // Also listen for auth state changes
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
       console.log("?? Auth state changed, reloading players...")
@@ -450,14 +447,12 @@ const fallbackPlayers: Player[] = [
     }
   }, [user, authLoading])
 
-  // Reload when showAll changes
   useEffect(() => {
     if (!authLoading && mountedRef.current) {
       loadPlayers()
     }
-  }, [showAll])
+  }, [showAll, searchTerm]) // Add searchTerm to trigger reload on change
 
-  // Add a safety timeout to prevent infinite loading
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
@@ -468,12 +463,11 @@ const fallbackPlayers: Player[] = [
         setLoading(false)
         loadingRef.current = false
       }
-    }, 5000) // 5 second safety timeout
+    }, 5000)
 
     return () => clearTimeout(safetyTimeout)
   }, [loading])
 
-  // Show loading while auth is initializing
   if (authLoading) {
     return (
       <Card>
@@ -482,86 +476,6 @@ const fallbackPlayers: Player[] = [
             <Trophy className="h-5 w-5 text-yellow-500" />
             Top Players
           </CardTitle>
-          const [searchTerm, setSearchTerm] = useState("");
-
-const filteredPlayers = players.filter(player =>
-  (player.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-   (player.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) || ""))
-);
-
-return (
-  <Card>
-    <CardHeader className="px-3 md:px-6 py-4">
-      <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1 md:gap-2">
-            <Trophy className="h-4 w-4 md:h-5 md:w-5 text-yellow-500" />
-            <span className="text-sm md:text-base">{cardTitle}</span>
-          </div>
-          <span className={`text-xs px-1 md:px-2 py-0.5 md:py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
-            {getSourceIcon()}
-            <span className="hidden xs:inline">{dataSource}</span>
-          </span>
-        </div>
-        <div className="flex gap-1 md:gap-2">
-          <Input
-            placeholder="🔎 Search User..."
-            className="pl-7 text-sm h-7 md:h-8 w-32 md:w-40"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={syncMissingProfiles}
-            disabled={syncing}
-            title="Sync missing user profiles from auth"
-            className="h-7 w-7 md:h-8 md:w-8 p-0"
-          >
-            <Database className={`h-3 w-3 md:h-4 md:w-4 ${syncing ? "animate-spin" : ""}`} />
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleShowAll}
-            title={showAll ? "Show top players only" : "Show all players"}
-            className="h-7 w-7 md:h-8 md:w-8 p-0"
-          >
-            <Users className="h-3 w-3 md:h-4 md:w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleRetry}
-            disabled={loading}
-            className="h-7 w-7 md:h-8 md:w-8 p-0"
-          >
-            <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
-          </Button>
-        </div>
-      </CardTitle>
-    </CardHeader>
-    <CardContent className="px-3 md:px-6 py-2 md:py-4">
-      {filteredPlayers.length === 0 ? (
-        <div className="text-center py-4">
-          <p className="text-gray-500 mb-2 text-sm">No players found</p>
-          <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
-            {syncing ? "Syncing..." : "Sync User Profiles"}
-          </Button>
-        </div>
-      ) : (
-        <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
-          {filteredPlayers.map((player, index) => (
-            <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
-              {/* Existing player row rendering */}
-            </div>
-          ))}
-        </div>
-      )}
-    </CardContent>
-    {/* Challenge Dialog remains unchanged */}
-  </Card>
-);
         </CardHeader>
         <CardContent>
           <div className="flex justify-center py-4">
@@ -613,6 +527,12 @@ return (
             </span>
           </div>
           <div className="flex gap-1 md:gap-2">
+            <Input
+              placeholder="🔎 Search User..."
+              className="pl-7 text-sm h-7 md:h-8 w-32 md:w-40"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <Button
               variant="outline"
               size="sm"
@@ -645,64 +565,64 @@ return (
         </CardTitle>
       </CardHeader>
       <CardContent className="px-3 md:px-6 py-2 md:py-4">
-  {players.length === 0 ? (
-    <div className="text-center py-4">
-      <p className="text-gray-500 mb-2 text-sm">No players found</p>
-      <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
-        {syncing ? "Syncing..." : "Sync User Profiles"}
-      </Button>
-    </div>
-  ) : (
-    <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
-      {players.map((player, index) => (
-        <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
-            {!isUsingFallback && (
-              <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
-            )}
-            <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
-              <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
-                {(player.full_name || player.username).charAt(0).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <div className="min-w-0 flex-1">
-              <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
-              <p className="text-xs text-gray-500 hidden xs:block">
-                {isUsingFallback ? "Registered User" : "Player"}
-              </p>
-            </div>
+        {players.length === 0 ? (
+          <div className="text-center py-4">
+            <p className="text-gray-500 mb-2 text-sm">No players found</p>
+            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
+              {syncing ? "Syncing..." : "Sync User Profiles"}
+            </Button>
           </div>
-          <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-            {!isUsingFallback && (
-              <div className="text-right mr-1 md:mr-2">
-                <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
-                <p className="text-xs text-gray-500">{player.best_percentage}%</p>
-              </div>
-            )}
+        ) : (
+          <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
+            {players.map((player, index) => (
+              <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+                  {!isUsingFallback && (
+                    <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
+                  )}
+                  <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
+                    <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
+                      {(player.full_name || player.username).charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
+                    <p className="text-xs text-gray-500 hidden xs:block">
+                      {isUsingFallback ? "Registered User" : "Player"}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+                  {!isUsingFallback && (
+                    <div className="text-right mr-1 md:mr-2">
+                      <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
+                      <p className="text-xs text-gray-500">{player.best_percentage}%</p>
+                    </div>
+                  )}
 
-            {user && user.id !== player.id && (
-              <Button
-                size="sm"
-                onClick={() =>
-                  handleChallenge({
-                    id: player.id,
-                    username: player.username,
-                    full_name: player.full_name,
-                    total_score: player.total_score,
-                    best_percentage: player.best_percentage,
-                  })
-                }
-                className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
-              >
-                Challenge
-              </Button>
-            )}
+                  {user && user.id !== player.id && (
+                    <Button
+                      size="sm"
+                      onClick={() =>
+                        handleChallenge({
+                          id: player.id,
+                          username: player.username,
+                          full_name: player.full_name,
+                          total_score: player.total_score,
+                          best_percentage: player.best_percentage,
+                        })
+                      }
+                      className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
+                    >
+                      Challenge
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
-    </div>
-  )}
-</CardContent>
+        )}
+      </CardContent>
       {selectedOpponent && (
         <CategoryFirstChallengeDialog
           isOpen={challengeDialogOpen}
