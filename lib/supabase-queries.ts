@@ -3,6 +3,8 @@ import { toast } from "@/hooks/use-toast";
 
 // Added for search o 08 07 25
 
+import { supabase } from "./supabase";
+
 export async function getTopPlayers(limit = 10) {
   const { data, error } = await supabase
     .from("user_profiles")
@@ -14,12 +16,12 @@ export async function getTopPlayers(limit = 10) {
 }
 
 export async function searchUsers(searchTerm: string, limit = 30) {
-  if (!searchTerm) return getTopPlayers(limit); // Return all if no search term
+  if (!searchTerm) return getTopPlayers(limit); // Fallback to top players if no search term
   const { data, error } = await supabase
     .from("user_profiles")
     .select("id, username, full_name, total_score, best_percentage")
-    .ilike("username", `%${searchTerm.toLowerCase()}%`) // Case-insensitive search on username
-    .or(`full_name.ilike.%${searchTerm.toLowerCase()}%`) // Optional: search full_name too
+    .ilike("username", `%${searchTerm.toLowerCase()}%`)
+    .or(`full_name.ilike.%${searchTerm.toLowerCase()}%`)
     .order("total_score", { ascending: false })
     .limit(limit);
   if (error) throw error;
