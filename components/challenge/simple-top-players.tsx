@@ -228,7 +228,7 @@ const fallbackPlayers: Player[] = [
 
     console.log("?? Step 1: Auth ready, trying Supabase...")
 
-    const limit = showAll ? 50 : 10
+    const limit = showAll ? 50 : 30
 
     // Try Supabase first with improved sorting
     try {
