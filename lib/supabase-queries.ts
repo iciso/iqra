@@ -24,7 +24,7 @@ export async function submitQuizResult(
     const user = await supabase.auth.getUser();
     if (!user.data.user) throw new Error("User not authenticated");
 
-    const percentage = Number(((score / totalQuestions) * 100).toFixed(2)); // Ensure 2 decimal places
+    const percentage = Number(((score / totalQuestions) * 100).toFixed(2));
     const insertData = {
       user_id: user.data.user.id,
       challenge_id: challengeId || null,
@@ -50,6 +50,14 @@ export async function submitQuizResult(
       throw error;
     }
 
+    // Aggregate score into user_profiles
+    const { error: profileError } = await supabase.rpc("aggregate_user_score", {
+      p_user_id: user.data.user.id,
+      p_score: score,
+      p_total_questions: totalQuestions,
+    });
+    if (profileError) console.warn("Warning: Failed to aggregate score:", profileError);
+
     console.log("✅ SUBMIT QUIZ RESULT: Inserted:", data);
     return { success: true, data };
   } catch (error: any) {
@@ -72,4 +80,22 @@ export async function getChallenge(challengeId: string) {
     .single();
   if (error) throw error;
   return data;
+}
+
+export async function getTopPlayers(limit = 10) {
+  console.log("🏆 Getting top players...");
+  const { data, error } = await supabase
+    .from("user_profiles")
+    .select("id, username, full_name, total_score, total_questions")
+    .order("total_score", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+
+  return data.map((player) => ({
+    id: player.id,
+    username: player.username,
+    full_name: player.full_name,
+    total_score: player.total_score || 0,
+    total_questions: player.total_questions || 1, // Avoid division by zero
+  }));
 }
