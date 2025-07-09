@@ -12,7 +12,8 @@ export async function POST(request: Request) {
       .upsert(
         {
           id: challengerId,
-          total_score: challengerScore, // Adjust based on your scoring logic
+          total_score: challengerScore,
+          total_questions: 1, // Adjust based on your logic
           updated_at: new Date().toISOString(),
         },
         { onConflict: "id" }
@@ -25,7 +26,8 @@ export async function POST(request: Request) {
       .upsert(
         {
           id: challengedId,
-          total_score: challengedScore, // Adjust based on your scoring logic
+          total_score: challengedScore,
+          total_questions: 1, // Adjust based on your logic
           updated_at: new Date().toISOString(),
         },
         { onConflict: "id" }
