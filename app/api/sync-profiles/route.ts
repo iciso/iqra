@@ -4,18 +4,26 @@ import { createClient } from "@/lib/supabase/server";
 export async function POST() {
   const supabase = createClient();
   try {
+    console.log("Syncing profiles...");
     const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers();
-    if (authError) throw authError;
+    if (authError) {
+      console.error("Auth error:", authError.message);
+      throw authError;
+    }
 
     const { data: existingProfiles, error: profilesError } = await supabase
       .from("user_profiles")
       .select("id");
-    if (profilesError) throw profilesError;
+    if (profilesError) {
+      console.error("Profiles error:", profilesError.message);
+      throw profilesError;
+    }
 
     const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || []);
     const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id));
 
     if (missingUsers.length === 0) {
+      console.log("No new profiles to sync");
       return NextResponse.json({ message: "All users already have profiles" });
     }
 
@@ -32,11 +40,15 @@ export async function POST() {
       .from("user_profiles")
       .insert(newProfiles)
       .select();
-    if (insertError) throw insertError;
+    if (insertError) {
+      console.error("Insert error:", insertError.message);
+      throw insertError;
+    }
 
+    console.log(`Synced ${insertedProfiles.length} profiles`);
     return NextResponse.json({ message: "Profiles synced", count: insertedProfiles.length });
   } catch (error: any) {
-    console.error("Sync error:", error);
+    console.error("Sync error:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
