@@ -34,7 +34,7 @@ const dawahCategory: QuizCategory = {
       "Proclaim"
     ],
     correctAnswer: "Read",
-    explanation: "The first revelation in Surah Al-Alaq (96:1) began with 'Read in the name of your Lord who created.' This emphasizes the importance of knowledge in Islamic dawah."
+    explanation: "The first revelation in Surah Al-Alaq (96:1) began with 'Read (or Proclaim) in the name of your Lord who created.' This emphasizes the importance of knowledge in Islamic dawah."
   },
   {
     question: "Which companion was known as 'The First Male Muslim'?",
