@@ -35,59 +35,66 @@ export default function QuizPage({
     redirect("/categories")
   }
 
-  // Get all available questions for this category and difficulty
+  // Get and validate questions
   let questions: QuizQuestion[] = []
+  try {
+    if (difficulty === "mixed") {
+      const easyQuestions = getQuizQuestions(categoryId, "easy") || []
+      const mediumQuestions = getQuizQuestions(categoryId, "medium") || []
+      const hardQuestions = getQuizQuestions(categoryId, "hard") || []
+      questions = [...easyQuestions, ...mediumQuestions, ...hardQuestions]
+    } else {
+      questions = getQuizQuestions(categoryId, difficulty) || []
+    }
 
-  if (difficulty === "mixed") {
-    // For mixed difficulty, combine questions from all difficulty levels
-    const easyQuestions = getQuizQuestions(categoryId, "easy")
-    const mediumQuestions = getQuizQuestions(categoryId, "medium")
-    const hardQuestions = getQuizQuestions(categoryId, "hard")
+    questions = shuffleArray(questions)
+    const maxQuestions = 10
+    if (questions.length > maxQuestions) {
+      questions = questions.slice(0, maxQuestions)
+    }
 
-    // Combine all questions
-    questions = [...easyQuestions, ...mediumQuestions, ...hardQuestions]
-  } else {
-    // For specific difficulty, get questions normally
-    questions = getQuizQuestions(categoryId, difficulty)
-  }
-
-  // Always shuffle the questions to randomize the order
-  questions = shuffleArray(questions)
-
-  // Limit to a maximum of 10 questions per session
-  const maxQuestions = 10
-  if (questions.length > maxQuestions) {
-    questions = questions.slice(0, maxQuestions)
-  }
-
-  if (questions.length === 0) {
-    const redirectPath = challengeMode ? "/challenges" : "/categories"
-    const redirectText = challengeMode ? "Back to Challenges" : "Browse Categories"
-
+    if (questions.length === 0) {
+      return (
+        <div className="container mx-auto py-12 px-4 text-center">
+          <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
+          <p className="mb-6">
+            Sorry, there are no questions available for {category.title} in {difficulty} mode at this time.
+          </p>
+          <a href={challengeMode ? "/challenges" : "/categories"} className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+            {challengeMode ? "Back to Challenges" : "Browse Categories"}
+          </a>
+        </div>
+      )
+    }
+  } catch (error) {
+    console.error("Error fetching questions:", error)
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
-        <p className="mb-6">
-          Sorry, there are no questions available for {category.title} in {difficulty} mode at this time.
-        </p>
-        <a href={redirectPath} className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          {redirectText}
+        <h1 className="text-2xl font-bold mb-4">Something Went Wrong!</h1>
+        <p className="mb-6">We apologize for the inconvenience. Please try again later.</p>
+        <a href="/quiz" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Try Again
         </a>
       </div>
     )
   }
 
-  // Add navigation logic with session tracking
-  const sessionId = `${categoryId}-${difficulty}-${new Date().toISOString().split('T')[0]}` // Simple session identifier
+  // Navigation logic
+  const sessionId = `${categoryId}-${difficulty}-${new Date().toISOString().split('T')[0]}`
   const currentQuestionIndex = Number(searchParams.index) || 0
   const totalQuestions = questions.length
 
-  // Handle navigation
+  if (currentQuestionIndex >= totalQuestions) {
+    redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
+  }
+
   const handleNext = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       const url = new URL(window.location.href)
       url.searchParams.set("index", (currentQuestionIndex + 1).toString())
       window.location.href = url.toString()
+    } else {
+      redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
     }
   }
 
@@ -97,10 +104,6 @@ export default function QuizPage({
       url.searchParams.set("index", (currentQuestionIndex - 1).toString())
       window.location.href = url.toString()
     }
-  }
-
-  const handleFinish = () => {
-    redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
   }
 
   return (
@@ -117,7 +120,7 @@ export default function QuizPage({
           Question {currentQuestionIndex + 1} of {totalQuestions}
         </span>
         <button
-          onClick={currentQuestionIndex === totalQuestions - 1 ? handleFinish : handleNext}
+          onClick={handleNext}
           className="py-2 px-4 bg-blue-500 text-white rounded-md"
         >
           {currentQuestionIndex === totalQuestions - 1 ? "Finish" : "Next"}
