@@ -591,18 +591,6 @@ const dawahCategory: QuizCategory = {
           "'Mujadalah bil-lati hiya ahsan' means debating or arguing in a manner that is best and most gracious. It emphasizes respectful dialogue that aims to reach truth rather than win arguments.",
       },
       {
-        question: "What is the importance of understanding the audience in Dawah?",
-        options: [
-          "It's not important as the message is universal",
-          "It helps tailor the approach to be more effective and relevant",
-          "It's only important when speaking to scholars",
-          "It's less important than memorizing texts",
-        ],
-        correctAnswer: "It helps tailor the approach to be more effective and relevant",
-        explanation:
-          "Understanding the audience helps tailor the approach to be more effective and relevant. Prophet Muhammad (PBUH) would address people according to their level of understanding and background.",
-      },
-      {
         question: "What is the concept of 'Daruriyyat' (necessities) in prioritizing Dawah topics?",
         options: [
           "Focusing only on prayer and fasting",
