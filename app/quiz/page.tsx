@@ -26,6 +26,7 @@ export default function QuizPage({
   const opponentName = searchParams.opponentName as string | undefined
   const challengerTurn = searchParams.challengerTurn === "true"
   const index = Number(searchParams.index) || 0
+  const set = Number(searchParams.set) || 0
 
   if (!categoryId) {
     redirect("/categories")
@@ -48,10 +49,13 @@ export default function QuizPage({
     }
 
     questions = shuffleArray(questions)
-    const maxQuestions = 10
-    if (questions.length > maxQuestions) {
-      questions = questions.slice(0, maxQuestions)
+    const maxQuestionsPerSet = 10
+    const totalQuestions = questions.length
+    const startIdx = set * maxQuestionsPerSet
+    if (startIdx >= totalQuestions) {
+      redirect(`/quiz/results?category=${categoryId}&difficulty=${difficulty}`)
     }
+    questions = questions.slice(startIdx, startIdx + maxQuestionsPerSet)
 
     if (questions.length === 0) {
       return (
@@ -80,28 +84,17 @@ export default function QuizPage({
   }
 
   if (index >= questions.length) {
-    redirect(`/quiz/results?category=${categoryId}&difficulty=${difficulty}`)
+    const nextSet = set + 1
+    const totalSets = Math.ceil((getQuizQuestions(categoryId, difficulty)?.length || 0) / maxQuestionsPerSet)
+    if (nextSet < totalSets) {
+      redirect(`/quiz?category=${categoryId}&difficulty=${difficulty}&set=${nextSet}`)
+    } else {
+      redirect(`/quiz/results?category=${categoryId}&difficulty=${difficulty}`)
+    }
   }
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex justify-between mb-4">
-        <a
-          href={`/quiz?category=${categoryId}&difficulty=${difficulty}${index > 0 ? `&index=${index - 1}` : ""}`}
-          className={`py-2 px-4 ${index === 0 ? "bg-gray-400" : "bg-blue-500"} text-white rounded-md`}
-        >
-          Previous
-        </a>
-        <span>
-          Question {index + 1} of {questions.length}
-        </span>
-        <a
-          href={`/quiz?category=${categoryId}&difficulty=${difficulty}&index=${index + 1}`}
-          className="py-2 px-4 bg-blue-500 text-white rounded-md"
-        >
-          {index === questions.length - 1 ? "Finish" : "Next"}
-        </a>
-      </div>
       <QuizContainer
         questions={questions}
         category={category}
