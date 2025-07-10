@@ -22,7 +22,6 @@ export default function QuizPage({
   const categoryId = searchParams.category as string
   const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy"
   const challengeMode = searchParams.challenge as string | undefined
-  const questionCount = searchParams.questions ? Number.parseInt(searchParams.questions as string, 10) : undefined
   const opponentId = searchParams.opponent as string | undefined
   const opponentName = searchParams.opponentName as string | undefined
   const challengerTurn = searchParams.challengerTurn === "true"
@@ -55,11 +54,10 @@ export default function QuizPage({
   // Always shuffle the questions to randomize the order
   questions = shuffleArray(questions)
 
-  // If a specific question count is requested and there are enough questions available,
-  // limit the number of questions to the requested count
-  if (questionCount && questions.length > questionCount) {
-    // Take only the requested number of questions from the already shuffled array
-    questions = questions.slice(0, questionCount)
+  // Limit to a maximum of 10 questions per session
+  const maxQuestions = 10
+  if (questions.length > maxQuestions) {
+    questions = questions.slice(0, maxQuestions)
   }
 
   if (questions.length === 0) {
@@ -79,8 +77,52 @@ export default function QuizPage({
     )
   }
 
+  // Add navigation logic with session tracking
+  const sessionId = `${categoryId}-${difficulty}-${new Date().toISOString().split('T')[0]}` // Simple session identifier
+  const currentQuestionIndex = Number(searchParams.index) || 0
+  const totalQuestions = questions.length
+
+  // Handle navigation
+  const handleNext = () => {
+    if (currentQuestionIndex < totalQuestions - 1) {
+      const url = new URL(window.location.href)
+      url.searchParams.set("index", (currentQuestionIndex + 1).toString())
+      window.location.href = url.toString()
+    }
+  }
+
+  const handlePrev = () => {
+    if (currentQuestionIndex > 0) {
+      const url = new URL(window.location.href)
+      url.searchParams.set("index", (currentQuestionIndex - 1).toString())
+      window.location.href = url.toString()
+    }
+  }
+
+  const handleFinish = () => {
+    redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
+  }
+
   return (
     <div className="container mx-auto py-8 px-4">
+      <div className="flex justify-between mb-4">
+        <button
+          onClick={handlePrev}
+          disabled={currentQuestionIndex === 0}
+          className="py-2 px-4 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
+        >
+          Previous
+        </button>
+        <span>
+          Question {currentQuestionIndex + 1} of {totalQuestions}
+        </span>
+        <button
+          onClick={currentQuestionIndex === totalQuestions - 1 ? handleFinish : handleNext}
+          className="py-2 px-4 bg-blue-500 text-white rounded-md"
+        >
+          {currentQuestionIndex === totalQuestions - 1 ? "Finish" : "Next"}
+        </button>
+      </div>
       <QuizContainer
         questions={questions}
         category={category}
@@ -89,6 +131,7 @@ export default function QuizPage({
         opponentId={opponentId}
         opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
         challengerTurn={challengerTurn}
+        currentQuestionIndex={currentQuestionIndex}
       />
     </div>
   )
