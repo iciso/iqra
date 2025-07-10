@@ -35,8 +35,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png?fe032b8e85e0108a4b81b3e81fff56d6" }],
+    images: [{ url: "/placeholder-logo.png" }],  
   },
+  //removed for WhatsApp image url https://cvemrafi.vercel.app/iqra-app.png?fe032b8e85e0108a4b81b3e81fff56d6 to see if logo appears 
   // Optional but recommended if you have a Facebook App
   // other: {
   //   "fb:app_id": "YOUR_FACEBOOK_APP_ID" 
