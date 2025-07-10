@@ -25,6 +25,7 @@ export default function QuizPage({
   const opponentId = searchParams.opponent as string | undefined
   const opponentName = searchParams.opponentName as string | undefined
   const challengerTurn = searchParams.challengerTurn === "true"
+  const index = Number(searchParams.index) || 0
 
   if (!categoryId) {
     redirect("/categories")
@@ -35,7 +36,6 @@ export default function QuizPage({
     redirect("/categories")
   }
 
-  // Get and validate questions
   let questions: QuizQuestion[] = []
   try {
     if (difficulty === "mixed") {
@@ -79,52 +79,28 @@ export default function QuizPage({
     )
   }
 
-  // Navigation logic
-  const sessionId = `${categoryId}-${difficulty}-${new Date().toISOString().split('T')[0]}`
-  const currentQuestionIndex = Number(searchParams.index) || 0
-  const totalQuestions = questions.length
-
-  if (currentQuestionIndex >= totalQuestions) {
-    redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
-  }
-
-  const handleNext = () => {
-    if (currentQuestionIndex < totalQuestions - 1) {
-      const url = new URL(window.location.href)
-      url.searchParams.set("index", (currentQuestionIndex + 1).toString())
-      window.location.href = url.toString()
-    } else {
-      redirect("/quiz/results?category=" + categoryId + "&difficulty=" + difficulty)
-    }
-  }
-
-  const handlePrev = () => {
-    if (currentQuestionIndex > 0) {
-      const url = new URL(window.location.href)
-      url.searchParams.set("index", (currentQuestionIndex - 1).toString())
-      window.location.href = url.toString()
-    }
+  if (index >= questions.length) {
+    redirect(`/quiz/results?category=${categoryId}&difficulty=${difficulty}`)
   }
 
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex justify-between mb-4">
-        <button
-          onClick={handlePrev}
-          disabled={currentQuestionIndex === 0}
-          className="py-2 px-4 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
+        <a
+          href={`/quiz?category=${categoryId}&difficulty=${difficulty}${index > 0 ? `&index=${index - 1}` : ""}`}
+          className={`py-2 px-4 ${index === 0 ? "bg-gray-400" : "bg-blue-500"} text-white rounded-md`}
         >
           Previous
-        </button>
+        </a>
         <span>
-          Question {currentQuestionIndex + 1} of {totalQuestions}
+          Question {index + 1} of {questions.length}
         </span>
-        <button
-          onClick={handleNext}
+        <a
+          href={`/quiz?category=${categoryId}&difficulty=${difficulty}&index=${index + 1}`}
           className="py-2 px-4 bg-blue-500 text-white rounded-md"
         >
-          {currentQuestionIndex === totalQuestions - 1 ? "Finish" : "Next"}
-        </button>
+          {index === questions.length - 1 ? "Finish" : "Next"}
+        </a>
       </div>
       <QuizContainer
         questions={questions}
@@ -134,7 +110,7 @@ export default function QuizPage({
         opponentId={opponentId}
         opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
         challengerTurn={challengerTurn}
-        currentQuestionIndex={currentQuestionIndex}
+        currentQuestionIndex={index}
       />
     </div>
   )
