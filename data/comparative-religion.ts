@@ -83,7 +83,7 @@ const comparativeReligionCategory: QuizCategory = {
       "Islam acknowledges it was prescribed by God but later innovations were added",
       "Islam requires all pious people to become monks"
     ],
-    correctAnswer: "Islam acknowledges it was prescribed by God but later innovations were added",
+    correctAnswer: "Islam rejects it completely as un-Islamic",
     explanation: "The Quran states: '...But as for monasticism, they invented it - We had not prescribed it for them...' (57:27), indicating that while asceticism was originally part of divine guidance, later innovations distorted its practice."
   },
   {
