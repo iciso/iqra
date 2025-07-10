@@ -60,6 +60,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        <link rel="icon" href="/pubic/iqralogo.ico" type="image/x-icon" />
+        <meta property="og:title" content="IQRA App" />
+        <meta property="og:description" content="Learn and challenge yourself with IQRA!" />
+        <meta property="og:image" content="https://iqrar.vercel.app/public/iqralogo.png" />
+        <meta property="og:url" content="https://iqrar.vercel.app/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://iqrar.vercel.app/public/iqralogo.png" />
+      </Head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <AuthProvider>
