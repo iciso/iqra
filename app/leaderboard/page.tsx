@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";  
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -85,15 +85,15 @@ export default function LeaderboardPage() {
             totalQuestions: player.total_questions || 1,
             percentage:
               player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-            date: new Date().toLocaleDateString(),
-            category: "All Categories",
-            challenge: "all",
+            date: new Date(player.created_at || Date.now()).toLocaleDateString(),
+            category: player.category || "All Categories",
+            challenge: player.challenge_id ? "challenge" : "quiz",
             user_id: player.id,
           }));
 
-        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase User Profiles`);
+        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase`);
         setLeaderboard(filteredData);
-        setDataSource("Supabase User Profiles");
+        setDataSource("Supabase");
         setLastRefresh(new Date());
         return;
       }
@@ -332,7 +332,7 @@ export default function LeaderboardPage() {
                         {entry.category || "All Categories"}
                       </TableCell>
                       <TableCell className="py-2 text-xs hidden sm:table-cell">
-                        {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
+                        {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "Quiz"}
                       </TableCell>
                       <TableCell className="text-right py-2 text-xs">
                         {entry.score}/{entry.totalQuestions}
