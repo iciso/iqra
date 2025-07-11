@@ -74,52 +74,46 @@ export default function ResultsPage() {
       if (savedScore && savedTotal) {
         const parsedScore = Number.parseInt(savedScore)
         const parsedTotal = Number.parseInt(savedTotal)
-
         setScore(parsedScore)
         setTotalQuestions(parsedTotal)
+      }
 
-        if (savedChallenge) {
-          setChallenge(savedChallenge)
-
-          const fetchChallengeData = async () => {
-            try {
-              if (!user) return
-
-              const challengeData = await getChallenge(savedChallenge)
-              console.log("📋 Challenge data:", challengeData)
-
-              if (challengeData) {
-                setChallengeData(challengeData)
-                const isUserChallenger = challengeData.challenger_id === user.id
-                setIsChallenger(isUserChallenger)
-
-                const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
-                if (opponentData) {
-                  const opponentInfo = {
-                    id: opponentData.id,
-                    name: opponentData.full_name || opponentData.username || "Opponent",
-                    avatar_url: opponentData.avatar_url,
-                    level: savedChallengerTurn ? "Waiting for response" : "Challenger",
-                    score: isUserChallenger ? null : challengeData.challenger_score,
-                  }
-                  setOpponent(opponentInfo)
+      if (savedChallenge) {
+        setChallenge(savedChallenge)
+        const fetchChallengeData = async () => {
+          try {
+            if (!user) return
+            const challengeData = await getChallenge(savedChallenge)
+            console.log("📋 Challenge data:", challengeData)
+            if (challengeData) {
+              setChallengeData(challengeData)
+              const isUserChallenger = challengeData.challenger_id === user.id
+              setIsChallenger(isUserChallenger)
+              const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
+              if (opponentData) {
+                const opponentInfo = {
+                  id: opponentData.id,
+                  name: opponentData.full_name || opponentData.username || "Opponent",
+                  avatar_url: opponentData.avatar_url,
+                  level: savedChallengerTurn ? "Waiting for response" : "Challenger",
+                  score: isUserChallenger ? null : challengeData.challenger_score,
                 }
-              }
-            } catch (error) {
-              console.error("Error fetching challenge data:", error)
-              const newOpponent = savedOpponentId
-                ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
-                : getRandomOpponent()
-              if (newOpponent) {
-                newOpponent.score = generateBotScore(parsedScore, parsedTotal)
-                setOpponent(newOpponent)
+                setOpponent(opponentInfo)
               }
             }
+          } catch (error) {
+            console.error("Error fetching challenge data:", error)
+            const newOpponent = savedOpponentId
+              ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+              : getRandomOpponent()
+            if (newOpponent) {
+              newOpponent.score = generateBotScore(Number.parseInt(savedScore || "0"), Number.parseInt(savedTotal || "1"))
+              setOpponent(newOpponent)
+            }
           }
-
-          fetchChallengeData()
-          setNextChallenge(getNextChallenge(savedCategory, savedDifficulty))
         }
+        fetchChallengeData()
+        setNextChallenge(getNextChallenge(savedCategory, savedDifficulty))
       }
 
       if (savedCategory) {
@@ -127,7 +121,6 @@ export default function ResultsPage() {
         const category = getCategory(savedCategory)
         if (category) setCategoryTitle(category.title)
       }
-
       if (savedDifficulty) setDifficulty(savedDifficulty)
       if (savedTimeLeft) setTimeLeft(Number.parseInt(savedTimeLeft))
       if (savedTimeTotal) setTimeTotal(Number.parseInt(savedTimeTotal))
@@ -166,15 +159,15 @@ export default function ResultsPage() {
         challengerTurn,
       })
 
-      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
+      if (user && (profile || !loading) && score !== null && totalQuestions !== null && !submitted && !saving) {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
           const result = await submitQuizResult(
             score,
             totalQuestions,
-            categoryId || "quran",
-            difficulty || "easy",
+            categoryId || "islamic-finance", // Default to Islamic Finance if not set
+            difficulty || "advanced", // Default to advanced if not set
             timeLeft || undefined,
             undefined,
             challenge || undefined,
@@ -190,7 +183,7 @@ export default function ResultsPage() {
     }
 
     autoSave()
-  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge, loading])
+  }, [user, profile, loading, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
 
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
   const getMessage = () => {
@@ -225,7 +218,7 @@ export default function ResultsPage() {
     )
   }
 
-  const isAuthenticated = user && profile && !loading
+  const isAuthenticated = user && (profile || !loading)
   const { challenge: currentChallenge, challengerTurn: currentChallengerTurn, score: currentScore } = {
     challenge: localStorage.getItem("quizChallenge"),
     challengerTurn: localStorage.getItem("challengerTurn") === "true",
@@ -365,7 +358,7 @@ export default function ResultsPage() {
                 )}
               </CardHeader>
               <CardContent className="text-center">
-                {score !== null && totalQuestions !== null && isAuthenticated ? (
+                {score !== null && totalQuestions !== null ? (
                   <>
                     <div className="mb-6">
                       <div className="relative w-32 h-32 mx-auto">
@@ -399,7 +392,7 @@ export default function ResultsPage() {
                       <div className="flex items-center justify-center mb-2">
                         <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
                         <span className="text-lg font-medium dark:text-white">
-                          Welcome, {profile?.full_name || profile?.username}! 🎉
+                          Welcome, {profile?.full_name || profile?.username || "You"}! 🎉
                         </span>
                       </div>
                       {saving ? (
