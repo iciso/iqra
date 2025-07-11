@@ -50,13 +50,23 @@ export async function submitQuizResult(
       throw error;
     }
 
-    // Aggregate score into user_profiles
+    // Aggregate score into user_profiles with fallback
     const { error: profileError } = await supabase.rpc("aggregate_user_score", {
       p_user_id: user.data.user.id,
       p_score: score,
       p_total_questions: totalQuestions,
     });
-    if (profileError) console.warn("Warning: Failed to aggregate score:", profileError);
+    if (profileError) {
+      console.warn("Warning: Failed to aggregate score, using fallback update:", profileError);
+      const { error: fallbackError } = await supabase
+        .from("user_profiles")
+        .update({
+          total_score: (row: any) => row.total_score + score,
+          total_questions: (row: any) => row.total_questions + totalQuestions,
+        })
+        .eq("id", user.data.user.id);
+      if (fallbackError) console.error("❌ Fallback aggregation failed:", fallbackError);
+    }
 
     console.log("✅ SUBMIT QUIZ RESULT: Inserted:", data);
     return { success: true, data };
