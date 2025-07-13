@@ -71,80 +71,81 @@ export default function LeaderboardPage() {
   };
 
   const loadLeaderboardData = async () => {
-    try {
-      setLoading(true);
-      console.log(`🏆 Loading leaderboard data for category: ${category}`);
+  try {
+    setLoading(true);
+    console.log(`🏆 Loading leaderboard data for category: ${category}`);
 
-      const topPlayers = await getTopPlayers(category);
-      if (topPlayers && topPlayers.length > 0) {
-        const filteredData = topPlayers
-          .filter((player) => player.username !== "Test User")
-          .map((player) => ({
-            user_id: player.user_id,
-            username: player.username || "Unknown User",
-            score: player.score || 0,
-            total_questions: player.total_questions || 1,
-            percentage: player.total_questions > 0 ? Math.round((player.score / player.total_questions) * 100) : 0,
-            date: new Date().toLocaleDateString(),
-            category: category,
-            challenge: player.challenge_id ? "challenge" : "quiz",
-          }));
+    const topPlayers = await getTopPlayers(category);
+    console.log("🏆 Raw top players data:", topPlayers);
+    if (topPlayers && topPlayers.length > 0) {
+      const filteredData = topPlayers
+        .filter((player) => player.username !== "Test User")
+        .map((player) => ({
+          user_id: player.user_id,
+          username: player.username || "Unknown User",
+          score: player.total_score || 0,
+          total_questions: player.total_questions || 1,
+          percentage: player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+          date: new Date().toLocaleDateString(),
+          category: category,
+          challenge: player.challenge_id ? "challenge" : "quiz",
+        }));
 
-        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase for ${category}`);
-        setLeaderboard(filteredData);
-        setDataSource("Supabase");
-        setLastRefresh(new Date());
-        return;
-      }
-
-      console.log("⚠️ Supabase fetch failed, using demo data");
-      const demoData = [
-        {
-          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
-          username: "Dr. Muhammad Murtaza Ikram",
-          score: 10,
-          total_questions: 10,
-          percentage: 100,
-          date: new Date().toLocaleDateString(),
-          category: "Quran",
-          challenge: "daily",
-        },
-        {
-          user_id: "bot-1",
-          username: "IQRA Bot",
-          score: 9,
-          total_questions: 10,
-          percentage: 90,
-          date: new Date().toLocaleDateString(),
-          category: "Quran",
-          challenge: "daily",
-        },
-        {
-          user_id: "bot-2",
-          username: "QuizMaster",
-          score: 8,
-          total_questions: 10,
-          percentage: 80,
-          date: new Date().toLocaleDateString(),
-          category: "Islamic History",
-          challenge: "quiz",
-        },
-      ].filter((entry) => entry.username !== "Test User");
-      setLeaderboard(demoData);
-      setDataSource("Demo Data");
-    } catch (error) {
-      console.error("❌ Critical error loading leaderboard:", error);
-      toast({
-        title: "Error loading leaderboard",
-        description: "Please try refreshing the page",
-        variant: "destructive",
-      });
-      setLeaderboard([]);
-      setDataSource("Error");
-    } finally {
-      setLoading(false);
+      console.log(`✅ Retrieved ${filteredData.length} entries from Supabase for ${category}`);
+      setLeaderboard(filteredData);
+      setDataSource("Supabase");
+      setLastRefresh(new Date());
+      return;
     }
-  };
+
+    console.log("⚠️ Supabase fetch failed, using demo data");
+    const demoData = [
+      {
+        user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+        username: "Dr. Muhammad Murtaza Ikram",
+        score: 10,
+        total_questions: 10,
+        percentage: 100,
+        date: new Date().toLocaleDateString(),
+        category: "Quran",
+        challenge: "daily",
+      },
+      {
+        user_id: "bot-1",
+        username: "IQRA Bot",
+        score: 9,
+        total_questions: 10,
+        percentage: 90,
+        date: new Date().toLocaleDateString(),
+        category: "Quran",
+        challenge: "daily",
+      },
+      {
+        user_id: "bot-2",
+        username: "QuizMaster",
+        score: 8,
+        total_questions: 10,
+        percentage: 80,
+        date: new Date().toLocaleDateString(),
+        category: "Islamic History",
+        challenge: "quiz",
+      },
+    ].filter((entry) => entry.username !== "Test User");
+    setLeaderboard(demoData);
+    setDataSource("Demo Data");
+  } catch (error) {
+    console.error("❌ Critical error loading leaderboard:", error);
+    toast({
+      title: "Error loading leaderboard",
+      description: "Please try refreshing the page",
+      variant: "destructive",
+    });
+    setLeaderboard([]);
+    setDataSource("Error");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     setIsClient(true);
