@@ -1011,6 +1011,7 @@ const quizData: QuizCategory[] = [
   },
   seerahCategory,
   ...additionalCategories,
+  newMuslimsCategory,
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
@@ -1018,6 +1019,12 @@ const quizData: QuizCategory[] = [
 ]
 
 // Add this right after the quizData array definition
+// Debug logs
+console.log(
+  "Loading quiz data with categories:",
+  quizData.map((cat) => cat.id),
+);
+
 console.log(
   "Loaded categories:",
   quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
