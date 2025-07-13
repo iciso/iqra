@@ -1,16 +1,14 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz"
 import seerahCategory from "./quiz-data-manager-additions"
-import { additionalCategories } from "./quiz-data-manager-additional-categories"
 import comparativeReligionCategory from "./comparative-religion"
 import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
 import newMuslimsCategory from "./new-muslims"
 import tazkiyahCategory from "./tazkiyah"
+import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
 
 //  Has Quran Fiqh Tafsir Hadeeth Aqeedah
-// Import the infographics enhancement function
-import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
 
 // Define all quiz categories directly in this file
 const quizData: QuizCategory[] = [
