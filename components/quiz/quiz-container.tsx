@@ -200,106 +200,114 @@ export default function QuizContainer({
     }, 800)
   }
 
-  const handleFinishQuiz = async () => {
-    console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
-    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
-    setIsTimerRunning(false)
+const handleFinishQuiz = async () => {
+  console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...");
+  console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge());
+  setIsTimerRunning(false);
 
-    try {
-      localStorage.setItem("quizScore", score.toString())
-      localStorage.setItem("totalQuestions", questions.length.toString())
-      localStorage.setItem("quizCategory", category.id)
-      localStorage.setItem("quizDifficulty", difficulty)
-      localStorage.setItem("quizChallenge", challengeMode || "")
-      localStorage.setItem("quizTimeLeft", timeLeft.toString())
-      localStorage.setItem("quizId", quizId)
-      if (challengerTurn) localStorage.setItem("challengerTurn", "true")
-      else localStorage.setItem("challengerTurn", "false")
-      if (opponent) {
-        localStorage.setItem("quizOpponentId", opponent.id || "")
-        localStorage.setItem("quizOpponent", JSON.stringify(opponent))
-      }
-      console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully")
-    } catch (error) {
-      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
+  try {
+    const localScore = score;
+    const localTotalQuestions = questions.length;
+    const localCategory = category.id; // Use category from props
+    const localDifficulty = difficulty; // Use difficulty from props
+    const localTimeLeft = timeLeft;
+    const localAnswers = answers;
+    const localChallengeId = challengeMode; // Use challengeMode as challenge_id
+
+    localStorage.setItem("quizScore", localScore.toString());
+    localStorage.setItem("totalQuestions", localTotalQuestions.toString());
+    localStorage.setItem("quizCategory", localCategory);
+    localStorage.setItem("quizDifficulty", localDifficulty);
+    localStorage.setItem("quizChallenge", localChallengeId || "");
+    localStorage.setItem("quizTimeLeft", localTimeLeft.toString());
+    localStorage.setItem("quizId", quizId);
+    if (challengerTurn) localStorage.setItem("challengerTurn", "true");
+    else localStorage.setItem("challengerTurn", "false");
+    if (opponent) {
+      localStorage.setItem("quizOpponentId", opponent.id || "");
+      localStorage.setItem("quizOpponent", JSON.stringify(opponent));
     }
-
-    if (isFallbackChallenge()) {
-      console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations")
-      toast({
-        title: "Challenge Sent!",
-        description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
-        duration: 5000,
-      })
-      router.push("/results")
-      return
-    }
-
-    toast({
-      title: "Saving your score...",
-      description: "Please wait while we update the leaderboard.",
-      duration: 3000,
-    })
-
-    try {
-      // Submit quiz result
-      await submitQuizResult(
-        score,
-        questions.length,
-        category.id,
-        difficulty,
-        timeLeft,
-        answers,
-        challengeMode
-      )
-
-      if (challengeMode) {
-        console.log("🎯 QUIZ CONTAINER: Updating challenge status for:", challengeMode)
-        const challengeData = await getChallenge(challengeMode)
-        if (!challengeData) throw new Error("Challenge not found")
-
-        const isChallenger = user?.id === challengeData.challenger_id
-        const updateData = isChallenger
-          ? {
-              challenger_score: score,
-              challenger_completed_at: new Date().toISOString(),
-              status: challengeData.challenged_score ? "completed" : "pending",
-              challenge_questions: JSON.stringify(questions), // Ensure JSON serialization
-            }
-          : {
-              challenged_score: score,
-              challenged_completed_at: new Date().toISOString(),
-              status: "completed",
-            }
-
-        await updateChallenge(challengeMode, updateData)
-
-        toast({
-          title: isChallenger ? "Challenge Sent!" : "Challenge Completed!",
-          description: isChallenger
-            ? `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`
-            : `Both scores updated in leaderboard. Check your ranking!`,
-          duration: 5000,
-        })
-      } else {
-        toast({
-          title: "Quiz Completed!",
-          description: `Your score (${score}/${questions.length}) has been saved to the leaderboard.`,
-          duration: 5000,
-        })
-      }
-      router.push("/results")
-    } catch (error: any) {
-      console.error("❌ QUIZ CONTAINER: Error in quiz completion:", error)
-      toast({
-        title: "Error",
-        description: `Failed to save quiz: ${error.message || "Unknown error"}`,
-        variant: "destructive",
-        duration: 5000,
-      })
-      router.push("/results")
-    }
+    console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully");
+  } catch (error) {
+    console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error);
   }
+
+  if (isFallbackChallenge()) {
+    console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations");
+    toast({
+      title: "Challenge Sent!",
+      description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+      duration: 5000,
+    });
+    router.push("/results");
+    return;
+  }
+
+  toast({
+    title: "Saving your score...",
+    description: "Please wait while we update the leaderboard.",
+    duration: 3000,
+  });
+
+  try {
+    // Submit quiz result with challenge context
+    const result = await submitQuizResult(
+      score,
+      questions.length,
+      category.id, // Use category from props
+      difficulty, // Use difficulty from props
+      timeLeft,
+      answers,
+      challengeMode // Ensure challengeMode is passed
+    );
+
+    if (challengeMode) {
+      console.log("🎯 QUIZ CONTAINER: Updating challenge status for:", challengeMode);
+      const challengeData = await getChallenge(challengeMode);
+      if (!challengeData) throw new Error("Challenge not found");
+
+      const isChallenger = user?.id === challengeData.challenger_id;
+      const updateData = isChallenger
+        ? {
+            challenger_score: score,
+            challenger_completed_at: new Date().toISOString(),
+            status: challengeData.challenged_score ? "completed" : "pending",
+            challenge_questions: JSON.stringify(questions),
+          }
+        : {
+            challenged_score: score,
+            challenged_completed_at: new Date().toISOString(),
+            status: "completed",
+          };
+
+      await updateChallenge(challengeMode, updateData);
+
+      toast({
+        title: isChallenger ? "Challenge Sent!" : "Challenge Completed!",
+        description: isChallenger
+          ? `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`
+          : `Both scores updated in leaderboard. Check your ranking!`,
+        duration: 5000,
+      });
+    } else {
+      toast({
+        title: "Quiz Completed!",
+        description: `Your score (${score}/${questions.length}) has been saved to the leaderboard.`,
+        duration: 5000,
+      });
+    }
+    router.push("/results");
+  } catch (error: any) {
+    console.error("❌ QUIZ CONTAINER: Error in quiz completion:", error);
+    toast({
+      title: "Error",
+      description: `Failed to save quiz: ${error.message || "Unknown error"}`,
+      variant: "destructive",
+      duration: 5000,
+    });
+    router.push("/results");
+  }
+};
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
