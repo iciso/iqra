@@ -81,20 +81,16 @@ export async function submitQuizResult(
 }
 
 export async function getTopPlayers(category: string) {
-  const { data, error } = await supabase
-    .from('quiz_results')
-    .select('user_id, profiles!inner(username), sum(score), sum(total_questions)')
-    .eq('category', category)
-    .groupBy('user_id, profiles.username')
-    .order('sum', { ascending: false })
-    .limit(10)
-    .eq('created_at', new Date().toISOString()); // Force fresh data
+  const { data, error } = await supabase.rpc('get_top_players_by_category', {
+    p_category: category,
+    p_limit: 10,
+  });
   if (error) throw error;
-  return data.map((row) => ({
+  return data.map((row: any) => ({
     user_id: row.user_id,
-    username: row.profiles.username,
-    score: row.sum?.score || 0,
-    total_questions: row.sum?.total_questions || 1,
+    username: row.username,
+    score: row.total_score || 0,
+    total_questions: row.total_questions || 1,
   }));
 }
 
