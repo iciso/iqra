@@ -15,15 +15,15 @@ import { useToast } from "@/components/ui/use-toast";
 import { Header } from "@/components/layout/header";
 
 interface LeaderboardEntry {
-  name: string;
+  user_id: string;
+  username: string;
   score: number;
-  totalQuestions: number;
+  total_questions: number;
   percentage: number;
   date: string;
   category?: string;
   difficulty?: string;
   challenge?: string;
-  user_id?: string;
 }
 
 export default function LeaderboardPage() {
@@ -37,7 +37,7 @@ export default function LeaderboardPage() {
   const [dataSource, setDataSource] = useState<string>("Loading...");
   const { toast } = useToast();
   const searchParams = useSearchParams();
-  const shouldRefresh = searchParams.get("refresh") === "true";
+  const category = searchParams.get("category") || "tazkiyah"; // Default to 'tazkiyah' if not provided
 
   const getDisplayName = (name: string) => {
     const words = name.trim().split(/\s+/);
@@ -50,48 +50,47 @@ export default function LeaderboardPage() {
   const getFilteredLeaderboard = () => {
     return leaderboard
       .filter((entry) => {
-        if (entry.name === "Test User") return false;
+        if (entry.username === "Test User") return false;
         if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) return false;
         if (filter && entry.category !== filter) return false;
-        if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+        if (searchTerm && !entry.username.toLowerCase().includes(searchTerm.toLowerCase())) return false;
         return true;
       })
       .sort((a, b) => {
         if (b.score !== a.score) return b.score - a.score;
         if (b.percentage !== a.percentage) return b.percentage - a.percentage;
-        return b.totalQuestions - a.totalQuestions;
+        return b.total_questions - a.total_questions;
       });
   };
 
   const getUserRank = (userName: string) => {
     if (!userName) return null;
     const sortedEntries = leaderboard.sort((a, b) => b.percentage - a.percentage);
-    const userEntry = sortedEntries.findIndex((entry) => entry.name === userName);
+    const userEntry = sortedEntries.findIndex((entry) => entry.username === userName);
     return userEntry !== -1 ? userEntry + 1 : null;
   };
 
   const loadLeaderboardData = async () => {
     try {
       setLoading(true);
-      console.log("🏆 Loading leaderboard data directly...");
+      console.log(`🏆 Loading leaderboard data for category: ${category}`);
 
-      const topPlayers = await getTopPlayers(50); // Increased limit for more data
+      const topPlayers = await getTopPlayers(category);
       if (topPlayers && topPlayers.length > 0) {
         const filteredData = topPlayers
           .filter((player) => player.username !== "Test User")
           .map((player) => ({
-            name: player.full_name || player.username || "Unknown User",
-            score: player.total_score || 0,
-            totalQuestions: player.total_questions || 1,
-            percentage:
-              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
-            date: new Date(player.created_at || Date.now()).toLocaleDateString(),
-            category: player.category || "All Categories",
+            user_id: player.user_id,
+            username: player.username || "Unknown User",
+            score: player.score || 0,
+            total_questions: player.total_questions || 1,
+            percentage: player.total_questions > 0 ? Math.round((player.score / player.total_questions) * 100) : 0,
+            date: new Date().toLocaleDateString(),
+            category: category, // Set category from URL param
             challenge: player.challenge_id ? "challenge" : "quiz",
-            user_id: player.id,
           }));
 
-        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase`);
+        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase for ${category}`);
         setLeaderboard(filteredData);
         setDataSource("Supabase");
         setLastRefresh(new Date());
@@ -101,37 +100,36 @@ export default function LeaderboardPage() {
       console.log("⚠️ Supabase fetch failed, using demo data");
       const demoData = [
         {
-          name: "Dr. Muhammad Murtaza Ikram",
+          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+          username: "Dr. Muhammad Murtaza Ikram",
           score: 10,
-          totalQuestions: 10,
+          total_questions: 10,
           percentage: 100,
           date: new Date().toLocaleDateString(),
           category: "Quran",
-          difficulty: "Easy",
           challenge: "daily",
-          user_id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
         },
         {
-          name: "IQRA Bot",
+          user_id: "bot-1",
+          username: "IQRA Bot",
           score: 9,
-          totalQuestions: 10,
+          total_questions: 10,
           percentage: 90,
           date: new Date().toLocaleDateString(),
           category: "Quran",
-          difficulty: "Easy",
           challenge: "daily",
         },
         {
-          name: "QuizMaster",
+          user_id: "bot-2",
+          username: "QuizMaster",
           score: 8,
-          totalQuestions: 10,
+          total_questions: 10,
           percentage: 80,
           date: new Date().toLocaleDateString(),
           category: "Islamic History",
-          difficulty: "Medium",
           challenge: "quiz",
         },
-      ].filter((entry) => entry.name !== "Test User");
+      ].filter((entry) => entry.username !== "Test User");
       setLeaderboard(demoData);
       setDataSource("Demo Data");
     } catch (error) {
@@ -151,14 +149,7 @@ export default function LeaderboardPage() {
   useEffect(() => {
     setIsClient(true);
     loadLeaderboardData();
-  }, []);
-
-  useEffect(() => {
-    if (shouldRefresh) {
-      console.log("🔄 Refresh triggered, reloading leaderboard...");
-      loadLeaderboardData();
-    }
-  }, [shouldRefresh]);
+  }, [category]); // Reload when category changes
 
   const getMedalIcon = (position: number) => {
     switch (position) {
@@ -260,10 +251,10 @@ export default function LeaderboardPage() {
                 <Button
                   variant="outline"
                   className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
-                  onClick={() => setFilter(filter ? "" : "Quran")}
+                  onClick={() => setFilter(filter ? "" : category)} // Use category from URL
                 >
                   <Filter className="h-3.5 w-3.5" />
-                  <span className="truncate">{filter || "All Categories"}</span>
+                  <span className="truncate">{filter || category}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -300,18 +291,18 @@ export default function LeaderboardPage() {
                 </TableHeader>
                 <TableBody>
                   {getFilteredLeaderboard().map((entry, index) => (
-                    <TableRow key={index} className={index < 3 ? "font-medium" : ""}>
+                    <TableRow key={entry.user_id} className={index < 3 ? "font-medium" : ""}>
                       <TableCell className="flex items-center py-2 text-xs">
                         {index + 1}
                         <span className="ml-1 md:ml-2">{getMedalIcon(index)}</span>
                       </TableCell>
                       <TableCell className="py-2">
                         <div className="flex items-center gap-1 md:gap-2">
-                          {entry.name === "IQRA Bot" || entry.name === "QuizMaster" ? (
+                          {entry.username === "IQRA Bot" || entry.username === "QuizMaster" ? (
                             <OpponentProfile
                               opponent={{
                                 id: "bot-1",
-                                name: entry.name,
+                                name: entry.username,
                                 type: "bot",
                               }}
                               size="sm"
@@ -319,10 +310,10 @@ export default function LeaderboardPage() {
                           ) : (
                             <div className="flex items-center gap-1 md:gap-2">
                               <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
-                                {getDisplayName(entry.name).charAt(0)}
+                                {getDisplayName(entry.username).charAt(0)}
                               </div>
                               <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
-                                {getDisplayName(entry.name)}
+                                {getDisplayName(entry.username)}
                               </span>
                             </div>
                           )}
@@ -335,7 +326,7 @@ export default function LeaderboardPage() {
                         {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "Quiz"}
                       </TableCell>
                       <TableCell className="text-right py-2 text-xs">
-                        {entry.score}/{entry.totalQuestions}
+                        {entry.score}/{entry.total_questions}
                       </TableCell>
                       <TableCell className="text-right py-2 text-xs font-medium">
                         <span
