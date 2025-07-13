@@ -5,7 +5,7 @@ import comparativeReligionCategory from "./comparative-religion"
 import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
-import newMuslimsCategory from "./new-muslim"
+import newMuslimsCategory from "./new-muslims"
 
 //  Has Quran Fiqh Tafsir Hadeeth Aqeedah
 // Import the infographics enhancement function
