@@ -6,12 +6,30 @@ import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
 import newMuslimsCategory from "./new-muslims"
+import tazkiyahCategory from "./tazkiyah"
 
 //  Has Quran Fiqh Tafsir Hadeeth Aqeedah
 // Import the infographics enhancement function
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
 
 // Define all quiz categories directly in this file
+const quizData: QuizCategory[] = [
+  { id: "quran", ... },
+  { id: "fiqh", ... },
+  { id: "tafsir", ... },
+  { id: "hadeeth", ... },
+  { id: "aqeedah", ... },
+  seerahCategory,
+  newMuslimsCategory,
+  tazkiyahCategory,
+  comparativeReligionCategory,
+  islamicFinanceCategory,
+  islamicHistoryCategory,
+  dawahCategory,
+];
+
+
+
 const quizData: QuizCategory[] = [
   {
     id: "quran",
