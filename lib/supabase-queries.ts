@@ -155,37 +155,6 @@ export async function updateChallenge(challengeId: string, updates: {
   }
 }
 
-export async function getTopPlayers(limit = 10) {
-  console.log("🏆 Getting top players...");
-  try {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("id, username, total_score, total_questions")
-      .order("total_score", { ascending: false })
-      .limit(limit);
-    if (error) {
-      console.error("❌ GET TOP PLAYERS: Error:", error);
-      throw error;
-    }
-
-    console.log("✅ GET TOP PLAYERS: Retrieved:", data);
-    return data.map((player) => ({
-      id: player.id,
-      username: player.username,
-      total_score: player.total_score || 0,
-      total_questions: player.total_questions || 1,
-    }));
-  } catch (error: any) {
-    console.error("❌ GET TOP PLAYERS: Error:", error);
-    toast({
-      title: "Error Fetching Top Players",
-      description: error.message || "Failed to fetch top players.",
-      variant: "destructive",
-    });
-    return [];
-  }
-}
-
 export async function getUserProfile(userId: string) {
   console.log("🔍 Getting user profile:", userId);
   try {
