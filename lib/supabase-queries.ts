@@ -83,14 +83,17 @@ export async function submitQuizResult(
 export async function getTopPlayers(category: string) {
   const { data, error } = await supabase
     .from('quiz_results')
-    .select('user_id, profiles(username), score, total_questions')
+    .select('user_id, profiles!inner(username)')
     .eq('category', category)
-    .join('profiles', { on: { id: 'user_id' } })
-    .groupBy('user_id, profiles.username')
     .order('score', { ascending: false })
     .limit(10);
   if (error) throw error;
-  return data;
+  return data.map((row) => ({
+    user_id: row.user_id,
+    username: row.profiles.username,
+    score: row.score,
+    total_questions: row.total_questions,
+  }));
 }
 
 export async function getChallenge(challengeId: string) {
