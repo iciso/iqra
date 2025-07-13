@@ -5,7 +5,9 @@ import comparativeReligionCategory from "./comparative-religion"
 import islamicFinanceCategory from "./islamic-finance"
 import islamicHistoryCategory from "./islamic-history"
 import dawahCategory from "./dawah"
+import newMuslimCategory from "./new-muslim"
 
+//  Has Quran Fiqh Tafsir Hadeeth Aqeedah
 // Import the infographics enhancement function
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
 
