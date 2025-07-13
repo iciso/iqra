@@ -80,6 +80,19 @@ export async function submitQuizResult(
   }
 }
 
+export async function getTopPlayers(category: string) {
+  const { data, error } = await supabase
+    .from('quiz_results')
+    .select('user_id, profiles(username), score, total_questions')
+    .eq('category', category)
+    .join('profiles', { on: { id: 'user_id' } })
+    .groupBy('user_id, profiles.username')
+    .order('score', { ascending: false })
+    .limit(10);
+  if (error) throw error;
+  return data;
+}
+
 export async function getChallenge(challengeId: string) {
   console.log("🔍 Getting challenge:", challengeId);
   try {
