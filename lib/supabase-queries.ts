@@ -83,16 +83,17 @@ export async function submitQuizResult(
 export async function getTopPlayers(category: string) {
   const { data, error } = await supabase
     .from('quiz_results')
-    .select('user_id, profiles!inner(username)')
+    .select('user_id, profiles!inner(username), sum(score), sum(total_questions)')
     .eq('category', category)
-    .order('score', { ascending: false })
+    .groupBy('user_id, profiles.username')
+    .order('sum', { ascending: false }) // Order by the summed score
     .limit(10);
   if (error) throw error;
   return data.map((row) => ({
     user_id: row.user_id,
     username: row.profiles.username,
-    score: row.score,
-    total_questions: row.total_questions,
+    score: row.sum?.score || 0, // Access summed score
+    total_questions: row.sum?.total_questions || 1,
   }));
 }
 
