@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { toast } from "@/hooks/use-toast";
 
+// In supabase-queries (2).ts
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
@@ -68,8 +69,8 @@ export async function submitQuizResult(
     }
 
     console.log("✅ SUBMIT QUIZ RESULT: Inserted:", data);
+    console.log("✅ SUBMIT QUIZ RESULT: Submission completed"); // Moved here
     return { success: true, data };
-    console.log("✅ SUBMIT QUIZ RESULT: Submission completed");
   } catch (error: any) {
     console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
     toast({
