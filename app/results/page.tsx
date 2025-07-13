@@ -193,7 +193,7 @@ export default function ResultsPage() {
     return "Keep studying. You can improve! Astaghufiruallah!"
   }
 
-  const viewLeaderboard = () => router.push("/leaderboard")
+ const viewLeaderboard = () => router.push(`/leaderboard?category=${categoryId || "tazkiyah"}`);
   const viewChallenges = () => router.push("/challenges")
   const tryAgain = () => {
     if (challenge) router.push("/challenges")
