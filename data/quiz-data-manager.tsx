@@ -14,23 +14,6 @@ import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographi
 
 // Define all quiz categories directly in this file
 const quizData: QuizCategory[] = [
-  { id: "quran", ... },
-  { id: "fiqh", ... },
-  { id: "tafsir", ... },
-  { id: "hadeeth", ... },
-  { id: "aqeedah", ... },
-  seerahCategory,
-  newMuslimsCategory,
-  tazkiyahCategory,
-  comparativeReligionCategory,
-  islamicFinanceCategory,
-  islamicHistoryCategory,
-  dawahCategory,
-];
-
-
-
-const quizData: QuizCategory[] = [
   {
     id: "quran",
     title: "Quran",
