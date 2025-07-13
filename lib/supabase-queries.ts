@@ -50,7 +50,6 @@ export async function submitQuizResult(
       throw error;
     }
 
-    // Aggregate score into profiles with fallback
     const { error: profileError } = await supabase.rpc("aggregate_user_score", {
       p_user_id: user.data.user.id,
       p_score: score,
@@ -86,7 +85,7 @@ export async function getChallenge(challengeId: string) {
   try {
     const { data, error } = await supabase
       .from("user_challenges")
-      .select("id, challenger_id, opponent_id, status, challenger_score, challenged_score, challenge_questions")
+      .select("id, challenger_id, challenged_id, status, challenger_score, challenged_score, challenge_questions, category, difficulty, question_count, time_limit")
       .eq("id", challengeId)
       .single();
     if (error) {
@@ -113,6 +112,10 @@ export async function updateChallenge(challengeId: string, updates: {
   challenger_completed_at?: string;
   challenged_completed_at?: string;
   challenge_questions?: any;
+  category?: string;
+  difficulty?: string;
+  question_count?: number;
+  time_limit?: number;
 }) {
   console.log("🎯 UPDATE CHALLENGE: Updating challenge:", challengeId, updates);
   try {
@@ -157,7 +160,7 @@ export async function getTopPlayers(limit = 10) {
       id: player.id,
       username: player.username,
       total_score: player.total_score || 0,
-      total_questions: player.total_questions || 1, // Avoid division by zero
+      total_questions: player.total_questions || 1,
     }));
   } catch (error: any) {
     console.error("❌ GET TOP PLAYERS: Error:", error);
@@ -256,8 +259,8 @@ export async function getUserChallenges(userId: string) {
   try {
     const { data, error } = await supabase
       .from("user_challenges")
-      .select("id, challenger_id, opponent_id, status, challenger_score, challenge_questions")
-      .or(`challenger_id.eq.${userId},opponent_id.eq.${userId}`);
+      .select("id, challenger_id, challenged_id, status, challenger_score, challenged_score, challenge_questions, category, difficulty, question_count, time_limit")
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`);
 
     if (error) {
       console.error("❌ GET USER CHALLENGES: Error:", error);
@@ -298,6 +301,103 @@ export async function getPendingFriendRequests(userId: string) {
     toast({
       title: "Error Fetching Friend Requests",
       description: error.message || "Failed to fetch pending friend requests.",
+      variant: "destructive",
+    });
+    return [];
+  }
+}
+
+export async function searchUsers(searchTerm: string) {
+  console.log("🔍 Searching users:", searchTerm);
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, username, email")
+      .ilike("username", `%${searchTerm}%`)
+      .limit(10);
+
+    if (error) {
+      console.error("❌ SEARCH USERS: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ SEARCH USERS: Retrieved:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ SEARCH USERS: Error:", error);
+    toast({
+      title: "Error Searching Users",
+      description: error.message || "Failed to search users.",
+      variant: "destructive",
+    });
+    return [];
+  }
+}
+
+export async function createChallenge(
+  challengerId: string,
+  challengedId: string,
+  category: string,
+  difficulty: string,
+  questionCount: number,
+  timeLimit: number
+) {
+  console.log("🎯 CREATE CHALLENGE: Creating challenge for:", { challengerId, challengedId, category, difficulty, questionCount, timeLimit });
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .insert({
+        challenger_id: challengerId,
+        challenged_id: challengedId,
+        category,
+        difficulty,
+        question_count: questionCount,
+        time_limit: timeLimit,
+        status: "pending",
+        created_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("❌ CREATE CHALLENGE: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ CREATE CHALLENGE: Created:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ CREATE CHALLENGE: Error:", error);
+    toast({
+      title: "Error Creating Challenge",
+      description: error.message || "Failed to create challenge.",
+      variant: "destructive",
+    });
+    return null;
+  }
+}
+
+export async function getPendingChallenges(userId: string) {
+  console.log("🏅 Getting pending challenges for user:", userId);
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select("id, challenger_id, challenged_id, status, category, difficulty, question_count, time_limit")
+      .eq("status", "pending")
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`);
+
+    if (error) {
+      console.error("❌ GET PENDING CHALLENGES: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET PENDING CHALLENGES: Retrieved:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ GET PENDING CHALLENGES: Error:", error);
+    toast({
+      title: "Error Fetching Pending Challenges",
+      description: error.message || "Failed to fetch pending challenges.",
       variant: "destructive",
     });
     return [];
