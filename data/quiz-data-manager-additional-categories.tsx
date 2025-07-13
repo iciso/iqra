@@ -1,5 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
+// Has Tazkiyah, History and New Muslims
 // Additional quiz categories with questions
 export const additionalCategories: QuizCategory[] = [
   {
