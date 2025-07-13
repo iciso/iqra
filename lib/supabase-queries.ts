@@ -50,7 +50,7 @@ export async function submitQuizResult(
       throw error;
     }
 
-    // Aggregate score into user_profiles with fallback
+    // Aggregate score into profiles with fallback
     const { error: profileError } = await supabase.rpc("aggregate_user_score", {
       p_user_id: user.data.user.id,
       p_score: score,
@@ -59,10 +59,10 @@ export async function submitQuizResult(
     if (profileError) {
       console.warn("Warning: Failed to aggregate score, using fallback update:", profileError);
       const { error: fallbackError } = await supabase
-        .from("user_profiles")
+        .from("profiles") // Changed from user_profiles to profiles
         .update({
-          total_score: (row: any) => row.total_score + score,
-          total_questions: (row: any) => row.total_questions + totalQuestions,
+          total_score: (row: any) => (row.total_score || 0) + score,
+          total_questions: (row: any) => (row.total_questions || 0) + totalQuestions,
         })
         .eq("id", user.data.user.id);
       if (fallbackError) console.error("❌ Fallback aggregation failed:", fallbackError);
@@ -83,31 +83,91 @@ export async function submitQuizResult(
 
 export async function getChallenge(challengeId: string) {
   console.log("🔍 Getting challenge:", challengeId);
-  const { data, error } = await supabase
-    .from("challenges")
-    .select("*")
-    .eq("id", challengeId)
-    .single();
-  if (error) throw error;
-  return data;
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges") // Changed from challenges to user_challenges
+      .select("id, challenger_id, opponent_id, status, challenger_score, challenged_score, challenge_questions")
+      .eq("id", challengeId)
+      .single();
+    if (error) {
+      console.error("❌ GET CHALLENGE: Error:", error);
+      throw error;
+    }
+    console.log("✅ GET CHALLENGE: Retrieved:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ GET CHALLENGE: Error:", error);
+    toast({
+      title: "Error Fetching Challenge",
+      description: error.message || "Failed to fetch challenge.",
+      variant: "destructive",
+    });
+    return null;
+  }
+}
+
+export async function updateChallenge(challengeId: string, updates: {
+  challenger_score?: number;
+  challenged_score?: number;
+  status?: string;
+  challenger_completed_at?: string;
+  challenged_completed_at?: string;
+  challenge_questions?: any;
+}) {
+  console.log("🎯 UPDATE CHALLENGE: Updating challenge:", challengeId, updates);
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .update(updates)
+      .eq("id", challengeId)
+      .select()
+      .single();
+    if (error) {
+      console.error("❌ UPDATE CHALLENGE: Error:", error);
+      throw error;
+    }
+    console.log("✅ UPDATE CHALLENGE: Updated:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ UPDATE CHALLENGE: Error:", error);
+    toast({
+      title: "Error Updating Challenge",
+      description: error.message || "Failed to update challenge.",
+      variant: "destructive",
+    });
+    return null;
+  }
 }
 
 export async function getTopPlayers(limit = 10) {
   console.log("🏆 Getting top players...");
-  const { data, error } = await supabase
-    .from("user_profiles")
-    .select("id, username, full_name, total_score, total_questions")
-    .order("total_score", { ascending: false })
-    .limit(limit);
-  if (error) throw error;
+  try {
+    const { data, error } = await supabase
+      .from("profiles") // Changed from user_profiles to profiles
+      .select("id, username, total_score, total_questions")
+      .order("total_score", { ascending: false })
+      .limit(limit);
+    if (error) {
+      console.error("❌ GET TOP PLAYERS: Error:", error);
+      throw error;
+    }
 
-  return data.map((player) => ({
-    id: player.id,
-    username: player.username,
-    full_name: player.full_name,
-    total_score: player.total_score || 0,
-    total_questions: player.total_questions || 1, // Avoid division by zero
-  }));
+    console.log("✅ GET TOP PLAYERS: Retrieved:", data);
+    return data.map((player) => ({
+      id: player.id,
+      username: player.username,
+      total_score: player.total_score || 0,
+      total_questions: player.total_questions || 1, // Avoid division by zero
+    }));
+  } catch (error: any) {
+    console.error("❌ GET TOP PLAYERS: Error:", error);
+    toast({
+      title: "Error Fetching Top Players",
+      description: error.message || "Failed to fetch top players.",
+      variant: "destructive",
+    });
+    return [];
+  }
 }
 
 export async function getUserProfile(userId: string) {
