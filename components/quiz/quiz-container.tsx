@@ -14,7 +14,7 @@ import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
-import { getUserProfile, submitQuizResult, updateChallenge } from "@/lib/supabase-queries"
+import { getUserProfile, submitQuizResult, updateChallenge, getChallenge } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
 import { toast } from "@/components/ui/use-toast"
 
@@ -88,8 +88,8 @@ export default function QuizContainer({
             if (opponentData) {
               const opponentInfo = {
                 id: opponentData.id,
-                name: opponentData.username || "Challenger", // Use username from profiles table
-                avatar_url: null, // No avatar_url in profiles table
+                name: opponentData.username || "Challenger",
+                avatar_url: null,
                 level: challengerTurn ? "Waiting for your quiz" : "Challenger",
               }
               setOpponent(opponentInfo)
@@ -251,25 +251,28 @@ export default function QuizContainer({
         timeLeft,
         answers,
         challengeMode
-      );
+      )
 
       if (challengeMode) {
-        console.log("🎯 QUIZ CONTAINER: Updating challenge status for:", challengeMode);
-        const isChallenger = user?.id === opponentId ? false : true; // Simplified check
+        console.log("🎯 QUIZ CONTAINER: Updating challenge status for:", challengeMode)
+        const challengeData = await getChallenge(challengeMode)
+        if (!challengeData) throw new Error("Challenge not found")
+
+        const isChallenger = user?.id === challengeData.challenger_id
         const updateData = isChallenger
           ? {
               challenger_score: score,
               challenger_completed_at: new Date().toISOString(),
-              status: "pending",
-              challenge_questions: questions, // Already JSON-compatible
+              status: challengeData.challenged_score ? "completed" : "pending",
+              challenge_questions: JSON.stringify(questions), // Ensure JSON serialization
             }
           : {
               challenged_score: score,
               challenged_completed_at: new Date().toISOString(),
               status: "completed",
-            };
+            }
 
-        await updateChallenge(challengeMode, updateData);
+        await updateChallenge(challengeMode, updateData)
 
         toast({
           title: isChallenger ? "Challenge Sent!" : "Challenge Completed!",
@@ -277,24 +280,24 @@ export default function QuizContainer({
             ? `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`
             : `Both scores updated in leaderboard. Check your ranking!`,
           duration: 5000,
-        });
+        })
       } else {
         toast({
           title: "Quiz Completed!",
           description: `Your score (${score}/${questions.length}) has been saved to the leaderboard.`,
           duration: 5000,
-        });
+        })
       }
-      router.push("/results");
+      router.push("/results")
     } catch (error: any) {
-      console.error("❌ QUIZ CONTAINER: Error in quiz completion:", error);
+      console.error("❌ QUIZ CONTAINER: Error in quiz completion:", error)
       toast({
         title: "Error",
         description: `Failed to save quiz: ${error.message || "Unknown error"}`,
         variant: "destructive",
         duration: 5000,
-      });
-      router.push("/results");
+      })
+      router.push("/results")
     }
   }
 
