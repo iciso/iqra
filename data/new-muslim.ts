@@ -1,6 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
-const newMuslimCategory: QuizCategory = {
+const newMuslimsCategory: QuizCategory = {
   {
     id: "new-muslims",
     title: "New Muslims",
