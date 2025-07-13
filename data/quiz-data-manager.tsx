@@ -1016,6 +1016,7 @@ const quizData: QuizCategory[] = [
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
+  tazakiyahCategory,
   dawahCategory,
 ]
 
