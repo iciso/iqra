@@ -128,7 +128,7 @@ export default function QuizContainer({
         localStorage.setItem("quizOpponentId", randomOpponent.id)
         localStorage.setItem("quizOpponent", JSON.stringify(randomOpponent))
       }
-
+      
       let minutes = 5
       if (challengeMode === "daily") minutes = 5
       else if (challengeMode === "quran") minutes = 7
@@ -199,6 +199,22 @@ export default function QuizContainer({
       setTransitionType(null)
     }, 800)
   }
+
+      const updateChallenge = async (challengeId, score, questions) => {
+  console.log('🎯 QUIZ CONTAINER: Updating challenge:', challengeId);
+  const { data, error } = await supabase
+    .from('user_challenges')
+    .update({
+      challenger_score: score,
+      status: 'completed',
+    })
+    .eq('id', challengeId);
+  if (error) {
+    console.error('🎯 QUIZ CONTAINER: Challenge update failed or timed out:', error);
+    return;
+  }
+  console.log('🎯 QUIZ CONTAINER: Challenge updated:', data);
+};
 
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
