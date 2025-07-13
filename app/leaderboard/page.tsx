@@ -71,29 +71,14 @@ export default function LeaderboardPage() {
   const loadLeaderboardData = async () => {
   try {
     setLoading(true);
-    console.log("🏆 Loading leaderboard data directly...");
-
     const searchParams = new URLSearchParams(window.location.search);
     const category = searchParams.get("category") || "tazkiyah";
-    console.log(`🏆 Loading for category: ${category}`);
-
-    try {
-      const result = await getLeaderboardWithFallback(category); // Pass category
-      if (result && result.data && result.data.length > 0) {
-        const filteredData = result.data.filter((entry) => entry.name !== "Test User");
-        console.log(`✅ Retrieved ${filteredData.length} entries from ${result.source}`);
-        setLeaderboard(filteredData);
-        setDataSource(result.source);
-        setLastRefresh(new Date());
-        return;
-      }
-    } catch (fallbackError) {
-      console.error("❌ Fallback system error:", fallbackError);
-    }
+    console.log(`🏆 Loading leaderboard data directly for category: ${category}`);
 
     try {
       const { getTopPlayers } = await import("@/lib/supabase-queries");
-      const topPlayers = await getTopPlayers(category); // Pass category
+      const topPlayers = await getTopPlayers(category);
+      console.log("🏆 Raw top players data:", topPlayers);
       if (topPlayers && topPlayers.length > 0) {
         const filteredData = topPlayers
           .filter((player) => player.username !== "Test User")
@@ -119,7 +104,7 @@ export default function LeaderboardPage() {
       console.error("❌ Supabase direct error:", supabaseError);
     }
 
-    console.log("⚠️ All data sources failed, using demo data");
+    console.log("⚠️ Supabase fetch failed, using demo data");
     const demoData = [
       {
         name: "Dr. Muhammad Murtaza Ikram",
@@ -154,7 +139,7 @@ export default function LeaderboardPage() {
       },
     ].filter((entry) => entry.name !== "Test User");
     setLeaderboard(demoData);
-    setDataSource("Demo Data (All Sources Failed)");
+    setDataSource("Demo Data (Supabase Failed)");
   } catch (error) {
     console.error("❌ Critical error loading leaderboard:", error);
     toast({
