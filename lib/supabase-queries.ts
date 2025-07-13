@@ -86,13 +86,14 @@ export async function getTopPlayers(category: string) {
     .select('user_id, profiles!inner(username), sum(score), sum(total_questions)')
     .eq('category', category)
     .groupBy('user_id, profiles.username')
-    .order('sum', { ascending: false }) // Order by the summed score
-    .limit(10);
+    .order('sum', { ascending: false })
+    .limit(10)
+    .eq('created_at', new Date().toISOString()); // Force fresh data
   if (error) throw error;
   return data.map((row) => ({
     user_id: row.user_id,
     username: row.profiles.username,
-    score: row.sum?.score || 0, // Access summed score
+    score: row.sum?.score || 0,
     total_questions: row.sum?.total_questions || 1,
   }));
 }
