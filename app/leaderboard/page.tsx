@@ -37,7 +37,7 @@ export default function LeaderboardPage() {
   const [dataSource, setDataSource] = useState<string>("Loading...");
   const { toast } = useToast();
   const searchParams = useSearchParams();
-  const category = searchParams.get("category") || "tazkiyah"; // Default to 'tazkiyah' if not provided
+  const category = searchParams.get("category") || "tazkiyah";
 
   const getDisplayName = (name: string) => {
     const words = name.trim().split(/\s+/);
@@ -86,7 +86,7 @@ export default function LeaderboardPage() {
             total_questions: player.total_questions || 1,
             percentage: player.total_questions > 0 ? Math.round((player.score / player.total_questions) * 100) : 0,
             date: new Date().toLocaleDateString(),
-            category: category, // Set category from URL param
+            category: category,
             challenge: player.challenge_id ? "challenge" : "quiz",
           }));
 
@@ -149,7 +149,12 @@ export default function LeaderboardPage() {
   useEffect(() => {
     setIsClient(true);
     loadLeaderboardData();
-  }, [category]); // Reload when category changes
+  }, [category]);
+
+  useEffect(() => {
+    // Force refresh when navigating to leaderboard
+    loadLeaderboardData();
+  }, []); // Empty dependency array ensures it runs on mount
 
   const getMedalIcon = (position: number) => {
     switch (position) {
@@ -251,7 +256,7 @@ export default function LeaderboardPage() {
                 <Button
                   variant="outline"
                   className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
-                  onClick={() => setFilter(filter ? "" : category)} // Use category from URL
+                  onClick={() => setFilter(filter ? "" : category)}
                 >
                   <Filter className="h-3.5 w-3.5" />
                   <span className="truncate">{filter || category}</span>
