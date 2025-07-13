@@ -59,7 +59,7 @@ export async function submitQuizResult(
     if (profileError) {
       console.warn("Warning: Failed to aggregate score, using fallback update:", profileError);
       const { error: fallbackError } = await supabase
-        .from("profiles") // Changed from user_profiles to profiles
+        .from("profiles")
         .update({
           total_score: (row: any) => (row.total_score || 0) + score,
           total_questions: (row: any) => (row.total_questions || 0) + totalQuestions,
@@ -85,7 +85,7 @@ export async function getChallenge(challengeId: string) {
   console.log("🔍 Getting challenge:", challengeId);
   try {
     const { data, error } = await supabase
-      .from("user_challenges") // Changed from challenges to user_challenges
+      .from("user_challenges")
       .select("id, challenger_id, opponent_id, status, challenger_score, challenged_score, challenge_questions")
       .eq("id", challengeId)
       .single();
@@ -143,7 +143,7 @@ export async function getTopPlayers(limit = 10) {
   console.log("🏆 Getting top players...");
   try {
     const { data, error } = await supabase
-      .from("profiles") // Changed from user_profiles to profiles
+      .from("profiles")
       .select("id, username, total_score, total_questions")
       .order("total_score", { ascending: false })
       .limit(limit);
