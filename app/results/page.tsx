@@ -47,9 +47,9 @@ export default function ResultsPage() {
 
     // Get query parameters from URL
     const urlParams = new URLSearchParams(window.location.search)
-    const savedCategory = urlParams.get("category")
-    const savedDifficulty = urlParams.get("difficulty")
-    const savedChallenge = urlParams.get("challenge")
+    const savedCategory = urlParams.get("category") || localStorage.getItem("quizCategory")
+    const savedDifficulty = urlParams.get("difficulty") || localStorage.getItem("quizDifficulty")
+    const savedChallenge = urlParams.get("challenge") || localStorage.getItem("quizChallenge")
 
     // Get localStorage values
     try {
@@ -166,11 +166,11 @@ export default function ResultsPage() {
           const result = await submitQuizResult(
             score,
             totalQuestions,
-            categoryId || "islamic-finance", // Default to Islamic Finance if not set
-            difficulty || "advanced", // Default to advanced if not set
+            categoryId || localStorage.getItem("quizCategory"), // Fall back to localStorage if URL param missing
+            difficulty || localStorage.getItem("quizDifficulty"), // Fall back to localStorage if URL param missing
             timeLeft || undefined,
             undefined,
-            challenge || undefined,
+            challenge || localStorage.getItem("quizChallenge"),
           )
           setSubmitted(true)
           console.log("✅ RESULTS AUTO-SAVE: Quiz result saved successfully!", result)
@@ -469,4 +469,3 @@ export default function ResultsPage() {
       )}
     </main>
   )
-}
