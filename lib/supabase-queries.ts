@@ -109,3 +109,137 @@ export async function getTopPlayers(limit = 10) {
     total_questions: player.total_questions || 1, // Avoid division by zero
   }));
 }
+
+export async function getUserProfile(userId: string) {
+  console.log("🔍 Getting user profile:", userId);
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, username, email")
+      .eq("id", userId)
+      .single();
+
+    if (error) {
+      console.error("❌ GET USER PROFILE: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET USER PROFILE: Retrieved:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ GET USER PROFILE: Error:", error);
+    toast({
+      title: "Error Fetching Profile",
+      description: error.message || "Failed to fetch user profile.",
+      variant: "destructive",
+    });
+    return null;
+  }
+}
+
+export async function updateUserProfile(userId: string, updates: { username?: string; email?: string }) {
+  console.log("✏️ Updating user profile:", userId, updates);
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .update(updates)
+      .eq("id", userId)
+      .select()
+      .single();
+
+    if (error) {
+      console.error("❌ UPDATE USER PROFILE: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ UPDATE USER PROFILE: Updated:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ UPDATE USER PROFILE: Error:", error);
+    toast({
+      title: "Error Updating Profile",
+      description: error.message || "Failed to update user profile.",
+      variant: "destructive",
+    });
+    return null;
+  }
+}
+
+export async function getFriends(userId: string) {
+  console.log("👥 Getting friends for user:", userId);
+  try {
+    const { data, error } = await supabase
+      .from("friends")
+      .select("friend_id, profiles(id, username, email)")
+      .eq("user_id", userId);
+
+    if (error) {
+      console.error("❌ GET FRIENDS: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET FRIENDS: Retrieved:", data);
+    return data.map((friend) => friend.profiles);
+  } catch (error: any) {
+    console.error("❌ GET FRIENDS: Error:", error);
+    toast({
+      title: "Error Fetching Friends",
+      description: error.message || "Failed to fetch friends list.",
+      variant: "destructive",
+    });
+    return [];
+  }
+}
+
+export async function getUserChallenges(userId: string) {
+  console.log("🏅 Getting challenges for user:", userId);
+  try {
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .select("id, challenger_id, opponent_id, status, challenger_score, challenge_questions")
+      .or(`challenger_id.eq.${userId},opponent_id.eq.${userId}`);
+
+    if (error) {
+      console.error("❌ GET USER CHALLENGES: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET USER CHALLENGES: Retrieved:", data);
+    return data;
+  } catch (error: any) {
+    console.error("❌ GET USER CHALLENGES: Error:", error);
+    toast({
+      title: "Error Fetching Challenges",
+      description: error.message || "Failed to fetch user challenges.",
+      variant: "destructive",
+    });
+    return [];
+  }
+}
+
+export async function getPendingFriendRequests(userId: string) {
+  console.log("📩 Getting pending friend requests for user:", userId);
+  try {
+    const { data, error } = await supabase
+      .from("friend_requests")
+      .select("from_id, profiles(id, username, email)")
+      .eq("to_id", userId)
+      .eq("status", "pending");
+
+    if (error) {
+      console.error("❌ GET PENDING FRIEND REQUESTS: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET PENDING FRIEND REQUESTS: Retrieved:", data);
+    return data.map((request) => request.profiles);
+  } catch (error: any) {
+    console.error("❌ GET PENDING FRIEND REQUESTS: Error:", error);
+    toast({
+      title: "Error Fetching Friend Requests",
+      description: error.message || "Failed to fetch pending friend requests.",
+      variant: "destructive",
+    });
+    return [];
+  }
+}
