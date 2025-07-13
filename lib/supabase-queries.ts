@@ -85,13 +85,8 @@ export async function getTopPlayers(category: string) {
     p_category: category,
     p_limit: 10,
   });
-  if (error) throw error;
-  return data.map((row: any) => ({
-    user_id: row.user_id,
-    username: row.username,
-    score: row.total_score || 0,
-    total_questions: row.total_questions || 1,
-  }));
+  if (error) throw new Error(`Supabase RPC error: ${error.message}`);
+  return data as any[]; // Type adjustment for dynamic return
 }
 
 export async function getChallenge(challengeId: string) {
