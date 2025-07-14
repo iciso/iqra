@@ -53,6 +53,13 @@ export default function QuizContainer({
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
+
+//RadioGroup component in UI to ensure the value prop is consistently defined:
+const [selectedValue, setSelectedValue] = useState('');
+<RadioGroup value={selectedValue || ''} onValueChange={setSelectedValue}>
+  {/* Options */}
+</RadioGroup>
+
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
     return (
