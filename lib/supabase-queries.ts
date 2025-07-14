@@ -50,8 +50,9 @@ export async function submitQuizResult(
       throw error;
     }
 
-    console.log("✅ SUBMIT QUIZ RESULT: Inserted:", data);
+    console.log("✅ SUBMIT QUIZ RESULT: Inserting:", data);
     return { success: true, data };
+    console.log("✅ SUBMISSION OF QUIZ RESULT: SUCCESS:", data);
   } catch (error: any) {
     console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
     toast({
