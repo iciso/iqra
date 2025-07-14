@@ -60,6 +60,12 @@ const handleCreateChallenge = async (opponentId, opponentName) => {
   }
 };
 
+const { data: challenger } = await supabase.from('profiles').select('id').eq('id', challengerId).single();
+const { data: challenged } = await supabase.from('profiles').select('id').eq('id', challengedId).single();
+if (!challenger || !challenged) {
+  throw new Error('Challenger or challenged profile not found');
+}
+
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
 const fallbackPlayers: Player[] = [
   {
