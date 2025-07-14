@@ -103,20 +103,7 @@ export const expandedFiqhQuestions: QuizCategory = {
   description: "Test your knowledge of Islamic jurisprudence",
   icon: "scale",
   questions: [
-    {
-  "id": "fiqh-10",
-  "question": "Is it permissible in Islamic law to perform IVF using donor sperm or eggs?",
-  "options": [
-    "Yes, with no restrictions",
-    "No, it is always forbidden",
-    "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-    "No, unless both spouses are related"
-  ],
-  "correctAnswer": "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-  "explanation": "Islam permits IVF for medical treatment purposes, provided that it involves the couple's own sperm and eggs and does not involve third-party donors. Use of donor sperm or eggs is generally considered impermissible because it introduces a third party into the marital relationship, which is against Islamic principles.",
-  "difficulty": "high"
-    },
-    {
+       {
       id: "fiqh-11",
       question: "What is the minimum amount of wealth (nisab) required for Zakat on gold?",
       options: ["85 grams", "87.48 grams", "90 grams", "95 grams"],
