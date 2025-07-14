@@ -35,6 +35,31 @@ export default function SimpleTopPlayers() {
 
 
 
+// In the component where challenge is created
+const handleCreateChallenge = async (opponentId, opponentName) => {
+  const challenge = {
+    challengerId: user.id, // From auth context
+    challengedId: opponentId,
+    category: 'seerah',
+    difficulty: 'mixed',
+    questionCount: 10,
+    timeLimit: 300,
+  };
+  const { success, data } = await createChallenge(
+    challenge.challengerId,
+    challenge.challengedId,
+    challenge.category,
+    challenge.difficulty,
+    challenge.questionCount,
+    challenge.timeLimit
+  );
+  if (success) {
+    console.log('✅ Challenge created successfully:', data);
+    // Redirect to quiz
+    window.location.href = `/quiz?category=${challenge.category}&difficulty=${challenge.difficulty}&challenge=${data.id}&questions=${challenge.questionCount}&opponent=${opponentId}&opponentName=${opponentName}&challengerTurn=true`;
+  }
+};
+
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
 const fallbackPlayers: Player[] = [
   {
