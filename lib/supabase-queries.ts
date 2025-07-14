@@ -5,6 +5,9 @@ import { createServerClient } from '@/lib/supabase';
 // added on 14 July 25
 const supabase = createServerClient();
 
+console.log('Supabase client initialized with URL:', supabaseUrl);
+console.log('Supabase anon key:', supabaseAnonKey ? 'Set' : 'Missing');
+
 export async function createChallenge(
   challengerId: string,
   challengedId: string,
