@@ -1,5 +1,6 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
 import seerahCategory from "./quiz-data-manager-additions";
+import { additionalCategories } from "./quiz-data-manager-additional-categories";
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
 import islamicHistoryCategory from "./islamic-history";
@@ -1007,6 +1008,7 @@ const quizData: QuizCategory[] = [
     },
   },
   seerahCategory,
+   ...additionalCategories,
   newMuslimsCategory,
   tazkiyahCategory,
   comparativeReligionCategory,
