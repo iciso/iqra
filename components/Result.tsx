@@ -10,6 +10,21 @@ interface ResultProps {
   message: string
 }
 
+//useEffect added on 14.07.2025
+useEffect(() => {
+  if (hasUser && hasProfile && hasScore && hasTotalQuestions && !submitted) {
+    console.log('🚀 RESULTS AUTO-SAVE: Starting auto-save...');
+    submitQuizResult({ score, totalQuestions, category, difficulty, timeTaken, challengeId })
+      .then(({ success }) => {
+        if (success) {
+          setSubmitted(true);
+          console.log('✅ RESULTS AUTO-SAVE: Quiz result saved successfully!');
+        }
+      })
+      .catch((error) => console.error('Auto-save failed:', error));
+  }
+}, [hasUser, hasProfile, hasScore, hasTotalQuestions, submitted, challengeId, score, totalQuestions, category, difficulty, timeTaken]);
+
 export default function Result({ score, totalQuestions, percentage, message }: ResultProps) {
   return (
     <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
