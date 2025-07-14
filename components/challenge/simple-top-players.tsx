@@ -35,30 +35,50 @@ export default function SimpleTopPlayers() {
 
 
 
-// In the component where challenge is created
-const handleCreateChallenge = async (opponentId, opponentName) => {
-  const challenge = {
-    challengerId: user.id, // From auth context
-    challengedId: opponentId,
-    category: 'seerah',
-    difficulty: 'mixed',
-    questionCount: 10,
-    timeLimit: 300,
+// Instead of the component where challenge is created
+import { useState, useEffect } from 'react';
+import { createChallenge } from '@/lib/supabase-queries';
+
+const SimpleTopPlayers = ({ user }) => {
+  const [players, setPlayers] = useState([]);
+
+  const handleCreateChallenge = async (opponentId, opponentName) => {
+    try {
+      const challenge = {
+        challengerId: user.id,
+        challengedId: opponentId,
+        category: 'hadeeth',
+        difficulty: 'mixed',
+        questionCount: 10,
+        timeLimit: 300,
+      };
+      console.log('🎯 Creating challenge:', opponentName, opponentId);
+      console.log('🎯 Challenge details:', challenge);
+
+      // Verify profiles exist
+      const { data: challenger } = await supabase.from('profiles').select('id').eq('id', challenge.challengerId).single();
+      const { data: challenged } = await supabase.from('profiles').select('id').eq('id', challenge.challengedId).single();
+      if (!challenger || !challenged) {
+        throw new Error('Challenger or challenged profile not found');
+      }
+
+      const { success, data } = await createChallenge(
+        challenge.challengerId,
+        challenge.challengedId,
+        challenge.category,
+        challenge.difficulty,
+        challenge.questionCount,
+        challenge.timeLimit
+      );
+      if (success) {
+        console.log('✅ Challenge created successfully:', data);
+        window.location.href = `/quiz?category=${challenge.category}&difficulty=${challenge.difficulty}&challenge=${data.id}&questions=${challenge.questionCount}&opponent=${opponentId}&opponentName=${opponentName}&challengerTurn=true`;
+      }
+    } catch (error) {
+      console.error('❌ Failed to create challenge:', error);
+      // Handle error (e.g., show toast notification)
+    }
   };
-  const { success, data } = await createChallenge(
-    challenge.challengerId,
-    challenge.challengedId,
-    challenge.category,
-    challenge.difficulty,
-    challenge.questionCount,
-    challenge.timeLimit
-  );
-  if (success) {
-    console.log('✅ Challenge created successfully:', data);
-    // Redirect to quiz
-    window.location.href = `/quiz?category=${challenge.category}&difficulty=${challenge.difficulty}&challenge=${data.id}&questions=${challenge.questionCount}&opponent=${opponentId}&opponentName=${opponentName}&challengerTurn=true`;
-  }
-};
 
 const { data: challenger } = await supabase.from('profiles').select('id').eq('id', challengerId).single();
 const { data: challenged } = await supabase.from('profiles').select('id').eq('id', challengedId).single();
