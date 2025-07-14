@@ -1,12 +1,5 @@
-import { supabase } from "@/lib/supabase";
-import { toast } from "@/hooks/use-toast";
-import { createServerClient } from '@/lib/supabase';
-
-// added on 14 July 25
-const supabase = createServerClient();
-
-console.log('Supabase client initialized with URL:', supabaseUrl);
-console.log('Supabase anon key:', supabaseAnonKey ? 'Set' : 'Missing');
+import { supabase } from "@/lib/supabase"
+import { toast } from "@/components/ui/use-toast"
 
 export async function createChallenge(
   challengerId: string,
@@ -16,40 +9,43 @@ export async function createChallenge(
   questionCount: number,
   timeLimit: number
 ) {
-  console.log("🎯 CREATING CHALLENGE:", { challengerId, challengedId, category, difficulty, questionCount, timeLimit });
+  console.log("🎯 CREATING CHALLENGE:", { challengerId, challengedId, category, difficulty, questionCount, timeLimit })
   try {
-    const { data, error } = await supabase
-      .from('challenges')
-      .insert({
-        id: crypto.randomUUID(),
-        challenger_id: challengerId,
-        challenged_id: challengedId,
-        category,
-        difficulty,
-        question_count: questionCount,
-        time_limit: timeLimit,
-        status: 'pending',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
+    const { data, error } = await Promise.race([
+      supabase
+        .from('challenges')
+        .insert({
+          id: crypto.randomUUID(),
+          challenger_id: challengerId,
+          challenged_id: challengedId,
+          category,
+          difficulty,
+          question_count: questionCount,
+          time_limit: timeLimit,
+          status: 'pending',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .select()
+        .single(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Challenge insert timeout")), 5000)),
+    ])
 
     if (error) {
-      console.error("❌ CREATE CHALLENGE: Error:", error);
-      throw error;
+      console.error("❌ CREATE CHALLENGE: Error:", error)
+      throw error
     }
 
-    console.log("✅ CREATE CHALLENGE: Inserted successfully:", data);
-    return { success: true, data };
+    console.log("✅ CREATE CHALLENGE: Inserted successfully:", data)
+    return { success: true, data }
   } catch (error: any) {
-    console.error("❌ CREATE CHALLENGE: Error:", error);
+    console.error("❌ CREATE CHALLENGE: Error:", error)
     toast({
       title: "Error Creating Challenge",
       description: error.message || "Failed to create challenge.",
       variant: "destructive",
-    });
-    return { success: false, error };
+    })
+    return { success: false, error }
   }
 }
 
@@ -70,19 +66,18 @@ export async function submitQuizResult(
     timeTaken,
     answers,
     challengeId,
-  });
+  })
 
   try {
-    const user = await supabase.auth.getUser();
-    if (!user.data.user) throw new Error("User not authenticated");
+    const user = await supabase.auth.getUser()
+    if (!user.data.user) throw new Error("User not authenticated")
 
-    // Validate challengeId if provided
     if (challengeId && !isValidUUID(challengeId)) {
-      console.warn("Invalid challengeId, setting to null:", challengeId);
-      challengeId = null;
+      console.warn("Invalid challengeId, setting to null:", challengeId)
+      challengeId = null
     }
 
-    const percentage = Number(((score / totalQuestions) * 100).toFixed(2));
+    const percentage = Number(((score / totalQuestions) * 100).toFixed(2))
     const insertData = {
       user_id: user.data.user.id,
       challenge_id: challengeId || null,
@@ -94,95 +89,120 @@ export async function submitQuizResult(
       created_at: new Date().toISOString(),
       answers: answers || null,
       time_taken: timeTaken || null,
-    };
-    console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData);
+    }
+    console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData)
 
-    const { data, error } = await supabase
-      .from('quiz_results')
-      .insert(insertData)
-      .select()
-      .single();
+    const { data, error } = await Promise.race([
+      supabase
+        .from('quiz_results')
+        .insert(insertData)
+        .select()
+        .single(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Quiz result insert timeout")), 5000)),
+    ])
 
     if (error) {
-      console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
-      throw error;
+      console.error("❌ SUBMIT QUIZ RESULT: Error:", error)
+      throw error
     }
 
-    console.log("✅ SUBMIT QUIZ RESULT: Inserted successfully:", data);
+    console.log("✅ SUBMIT QUIZ RESULT: Inserted successfully:", data)
 
     if (challengeId) {
       const { error: updateError } = await supabase
         .from('challenges')
         .update({ status: 'completed', updated_at: new Date().toISOString() })
         .eq('id', challengeId)
-        .eq('challenger_id', user.data.user.id);
+        .eq('challenger_id', user.data.user.id)
 
       if (updateError) {
-        console.error("❌ SUBMIT QUIZ RESULT: Error updating challenge:", updateError);
-        throw updateError;
+        console.error("❌ SUBMIT QUIZ RESULT: Error updating challenge:", updateError)
+        throw updateError
       }
-      console.log("✅ SUBMIT QUIZ RESULT: Challenge status updated to completed");
+      console.log("✅ SUBMIT QUIZ RESULT: Challenge status updated to completed")
     }
 
-    return { success: true, data };
+    return { success: true, data }
   } catch (error: any) {
-    console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
+    console.error("❌ SUBMIT QUIZ RESULT: Error:", error)
     toast({
       title: "Error Saving Quiz Result",
       description: error.message || "Failed to save quiz result.",
       variant: "destructive",
-    });
-    return { success: false, error };
+    })
+    return { success: false, error }
   }
 }
 
-// Utility function to validate UUID
 function isValidUUID(str: string): boolean {
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-  return uuidRegex.test(str);
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  return uuidRegex.test(str)
 }
 
 export async function getChallenge(challengeId: string) {
-  console.log("🔍 Getting challenge:", challengeId);
-  const { data, error } = await supabase
-    .from("challenges")
-    .select("*")
-    .eq("id", challengeId)
-    .single();
-  if (error) {
-    console.error("❌ GET CHALLENGE: Error:", error);
-    throw error;
-  }
-  return data;
-}
-
-// Example leaderboard query (optional, for reference)
-export async function getLeaderboard() {
-  console.log("🏆 Getting leaderboard data...");
+  console.log("🔍 Getting challenge:", challengeId)
   try {
-    const { data, error } = await supabase
-      .from('quiz_results')
-      .select(`
-        user_id,
-        score,
-        total_questions,
-        percentage,
-        category,
-        difficulty,
-        profiles!inner(username)
-      `)
-      .order('percentage', { ascending: false })
-      .limit(50);
+    const { data, error } = await Promise.race([
+      supabase
+        .from("challenges")
+        .select("*")
+        .eq("id", challengeId)
+        .single(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Get challenge timeout")), 5000)),
+    ])
 
     if (error) {
-      console.error("❌ GET LEADERBOARD: Error:", error);
-      throw error;
+      console.error("❌ GET CHALLENGE: Error:", error)
+      throw error
     }
 
-    console.log("✅ GET LEADERBOARD: Retrieved:", data);
-    return { success: true, data };
+    console.log("✅ GET CHALLENGE: Retrieved:", data)
+    return { success: true, data }
   } catch (error: any) {
-    console.error("❌ GET LEADERBOARD: Error:", error);
-    return { success: false, error };
+    console.error("❌ GET CHALLENGE: Error:", error)
+    toast({
+      title: "Error Fetching Challenge",
+      description: error.message || "Failed to fetch challenge.",
+      variant: "destructive",
+    })
+    return { success: false, error }
+  }
+}
+
+export async function getLeaderboard() {
+  console.log("🏆 Getting leaderboard data...")
+  try {
+    const { data, error } = await Promise.race([
+      supabase
+        .from('quiz_results')
+        .select(`
+          user_id,
+          score,
+          total_questions,
+          percentage,
+          category,
+          difficulty,
+          profiles!inner(username)
+        `)
+        .order('percentage', { ascending: false })
+        .limit(50),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
+    ])
+
+    if (error) {
+      console.error("❌ GET LEADERBOARD: Error:", error)
+      throw error
+    }
+
+    console.log("✅ GET LEADERBOARD: Retrieved:", data)
+    return { success: true, data }
+  } catch (error: any) {
+    console.error("❌ GET LEADERBOARD: Error:", error)
+    toast({
+      title: "Error Fetching Leaderboard",
+      description: error.message || "Failed to fetch leaderboard.",
+      variant: "destructive",
+    })
+    return { success: false, error }
   }
 }
