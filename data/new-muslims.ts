@@ -555,17 +555,6 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Ruqyah is the Islamic practice of healing through recitation of Quran, authentic dua, and permissible means. It differs from magic or shirk-based practices."
   },
   {
-    question: "What is the Islamic ruling on IVF (In Vitro Fertilization)?",
-    options: [
-      "Permissible under same conditions as artificial insemination",
-      "Completely prohibited",
-      "Only for male infertility",
-      "Permissible with donor eggs/sperm"
-    ],
-    correctAnswer: "Permissible under same conditions as artificial insemination",
-    explanation: "IVF is generally permitted when using the married couple's own egg and sperm, with all embryos implanted in the wife's uterus to prevent mixing of lineages."
-  },
-  {
     question: "What is 'Sunnah Mu'akkadah' in Islamic law?",
     options: [
       "Highly emphasized prophetic practices",
@@ -629,7 +618,7 @@ const newMuslimsCategory: QuizCategory = {
       "Permissible with family members only"
     ],
     correctAnswer: "Prohibited due to lineage concerns",
-    explanation: "Surrogacy is generally prohibited as it risks confusing lineage (a major Islamic concern) and involves exposing awrah (private parts) to non-mahrams during procedures."
+    explanation: "Surrogacy is generally prohibited as it risks confusing lineage (a major Islamic concern) and involves growing the sperm of another male without nikah during the whole procedure."
   },
   {
     question: "What is 'Wasatiyyah' in Islamic discourse?",
