@@ -1,6 +1,52 @@
 import { supabase } from "@/lib/supabase";
 import { toast } from "@/hooks/use-toast";
 
+// added on 14 July 25
+export async function createChallenge(
+  challengerId: string,
+  challengedId: string,
+  category: string,
+  difficulty: string,
+  questionCount: number,
+  timeLimit: number
+) {
+  console.log("🎯 CREATING CHALLENGE:", { challengerId, challengedId, category, difficulty, questionCount, timeLimit });
+  try {
+    const { data, error } = await supabase
+      .from('challenges')
+      .insert({
+        id: crypto.randomUUID(),
+        challenger_id: challengerId,
+        challenged_id: challengedId,
+        category,
+        difficulty,
+        question_count: questionCount,
+        time_limit: timeLimit,
+        status: 'pending',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("❌ CREATE CHALLENGE: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ CREATE CHALLENGE: Inserted successfully:", data);
+    return { success: true, data };
+  } catch (error: any) {
+    console.error("❌ CREATE CHALLENGE: Error:", error);
+    toast({
+      title: "Error Creating Challenge",
+      description: error.message || "Failed to create challenge.",
+      variant: "destructive",
+    });
+    return { success: false, error };
+  }
+}
+
 export async function submitQuizResult(
   score: number,
   totalQuestions: number,
