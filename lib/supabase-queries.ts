@@ -1,208 +1,162 @@
-import { supabase } from "@/lib/supabase"
-import { toast } from "@/components/ui/use-toast"
+import { createClient } from "@/utils/supabase/client"
+import { SupabaseClient } from "@supabase/supabase-js"
+import { Database } from "@/types/supabase"
 
-export async function createChallenge(
-  challengerId: string,
-  challengedId: string,
-  category: string,
-  difficulty: string,
-  questionCount: number,
-  timeLimit: number
-) {
-  console.log("🎯 CREATING CHALLENGE:", { challengerId, challengedId, category, difficulty, questionCount, timeLimit })
+const supabase: SupabaseClient<Database> = createClient()
+
+export const getTopPlayers = async () => {
   try {
-    const { data, error } = await Promise.race([
-      supabase
-        .from('challenges')
-        .insert({
-          id: crypto.randomUUID(),
-          challenger_id: challengerId,
-          challenged_id: challengedId,
-          category,
-          difficulty,
-          question_count: questionCount,
-          time_limit: timeLimit,
-          status: 'pending',
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        })
-        .select()
-        .single(),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Challenge insert timeout")), 5000)),
-    ])
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, username, total_score, best_percentage")
+      .order("total_score", { ascending: false })
+      .order("best_percentage", { ascending: false })
+      .order("total_questions", { ascending: false })
+      .limit(10)
 
-    if (error) {
-      console.error("❌ CREATE CHALLENGE: Error:", error)
-      throw error
-    }
-
-    console.log("✅ CREATE CHALLENGE: Inserted successfully:", data)
-    return { success: true, data }
+    if (error) throw error
+    return { data: data || [], error: null }
   } catch (error: any) {
-    console.error("❌ CREATE CHALLENGE: Error:", error)
-    toast({
-      title: "Error Creating Challenge",
-      description: error.message || "Failed to create challenge.",
-      variant: "destructive",
-    })
-    return { success: false, error }
+    console.error("❌ Supabase error:", error)
+    return { data: [], error }
   }
 }
 
-export async function submitQuizResult(
+export const submitQuizResult = async (
   score: number,
   totalQuestions: number,
   category: string,
   difficulty: string,
-  timeTaken?: number,
-  answers?: any,
-  challengeId?: string
-) {
-  console.log("💾 SUBMIT QUIZ RESULT: Starting submission", {
-    score,
-    totalQuestions,
-    category,
-    difficulty,
-    timeTaken,
-    answers,
-    challengeId,
-  })
-
+  timeTaken: number | null,
+  answers: string[] | null,
+  challengeId: string | null
+) => {
   try {
-    const user = await supabase.auth.getUser()
-    if (!user.data.user) throw new Error("User not authenticated")
-
-    if (challengeId && !isValidUUID(challengeId)) {
-      console.warn("Invalid challengeId, setting to null:", challengeId)
-      challengeId = null
+    const { data: authData, error: authError } = await supabase.auth.getUser()
+    if (authError || !authData.user) {
+      return { success: false, error: authError || new Error("No user logged in") }
     }
 
     const percentage = Number(((score / totalQuestions) * 100).toFixed(2))
-    const insertData = {
-      user_id: user.data.user.id,
-      challenge_id: challengeId || null,
+    const { error } = await supabase.from("quiz_results").insert({
+      user_id: authData.user.id,
+      challenge_id: challengeId,
       category,
       difficulty,
       score,
       total_questions: totalQuestions,
       percentage,
-      created_at: new Date().toISOString(),
-      answers: answers || null,
-      time_taken: timeTaken || null,
-    }
-    console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData)
-
-    const { data, error } = await Promise.race([
-      supabase
-        .from('quiz_results')
-        .insert(insertData)
-        .select()
-        .single(),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Quiz result insert timeout")), 5000)),
-    ])
-
-    if (error) {
-      console.error("❌ SUBMIT QUIZ RESULT: Error:", error)
-      throw error
-    }
-
-    console.log("✅ SUBMIT QUIZ RESULT: Inserted successfully:", data)
-
-    if (challengeId) {
-      const { error: updateError } = await supabase
-        .from('challenges')
-        .update({ status: 'completed', updated_at: new Date().toISOString() })
-        .eq('id', challengeId)
-        .eq('challenger_id', user.data.user.id)
-
-      if (updateError) {
-        console.error("❌ SUBMIT QUIZ RESULT: Error updating challenge:", updateError)
-        throw updateError
-      }
-      console.log("✅ SUBMIT QUIZ RESULT: Challenge status updated to completed")
-    }
-
-    return { success: true, data }
-  } catch (error: any) {
-    console.error("❌ SUBMIT QUIZ RESULT: Error:", error)
-    toast({
-      title: "Error Saving Quiz Result",
-      description: error.message || "Failed to save quiz result.",
-      variant: "destructive",
+      time_taken: timeTaken,
+      answers,
     })
+
+    if (error) throw error
+    return { success: true, error: null }
+  } catch (error: any) {
+    console.error("❌ Error submitting quiz result:", error)
     return { success: false, error }
   }
 }
 
-function isValidUUID(str: string): boolean {
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
-  return uuidRegex.test(str)
-}
-
-export async function getChallenge(challengeId: string) {
-  console.log("🔍 Getting challenge:", challengeId)
+export const getQuizResultByChallenge = async (challengeId: string, userId: string) => {
   try {
-    const { data, error } = await Promise.race([
-      supabase
-        .from("challenges")
-        .select("*")
-        .eq("id", challengeId)
-        .single(),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Get challenge timeout")), 5000)),
-    ])
+    const { data, error } = await supabase
+      .from("quiz_results")
+      .select("*")
+      .eq("challenge_id", challengeId)
+      .eq("user_id", userId)
 
-    if (error) {
-      console.error("❌ GET CHALLENGE: Error:", error)
-      throw error
-    }
-
-    console.log("✅ GET CHALLENGE: Retrieved:", data)
-    return { success: true, data }
+    if (error) throw error
+    return { data: data || [], error: null }
   } catch (error: any) {
-    console.error("❌ GET CHALLENGE: Error:", error)
-    toast({
-      title: "Error Fetching Challenge",
-      description: error.message || "Failed to fetch challenge.",
-      variant: "destructive",
-    })
-    return { success: false, error }
+    console.error("❌ Error fetching quiz result by challenge:", error)
+    return { data: [], error }
   }
 }
 
-export async function getLeaderboard() {
-  console.log("🏆 Getting leaderboard data...")
+export const getChallenge = async (challengeId: string) => {
   try {
-    const { data, error } = await Promise.race([
-      supabase
-        .from('quiz_results')
-        .select(`
-          user_id,
-          score,
-          total_questions,
-          percentage,
-          category,
-          difficulty,
-          profiles!inner(username)
-        `)
-        .order('percentage', { ascending: false })
-        .limit(50),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
-    ])
+    const { data, error } = await supabase
+      .from("challenges")
+      .select("*")
+      .eq("id", challengeId)
+      .single()
 
-    if (error) {
-      console.error("❌ GET LEADERBOARD: Error:", error)
-      throw error
+    if (error) throw error
+    return { data, error: null }
+  } catch (error: any) {
+    console.error("❌ Error fetching challenge:", error)
+    return { data: null, error }
+  }
+}
+
+export const createChallenge = async (
+  challengerId: string,
+  challengedId: string,
+  category: string,
+  difficulty: string,
+  questionCount: number,
+  timeLimit: number,
+  challengeQuestions: any[]
+) => {
+  try {
+    // Verify profiles exist
+    const { data: profiles, error: profileError } = await supabase
+      .from("profiles")
+      .select("id, username")
+      .in("id", [challengerId, challengedId])
+
+    if (profileError || !profiles || profiles.length !== 2) {
+      throw new Error("Challenger or challenged profile not found")
     }
 
-    console.log("✅ GET LEADERBOARD: Retrieved:", data)
-    return { success: true, data }
+    const { data, error } = await supabase
+      .from("challenges")
+      .insert({
+        challenger_id: challengerId,
+        challenged_id: challengedId,
+        category,
+        difficulty,
+        question_count: questionCount,
+        time_limit: timeLimit,
+        status: "pending",
+        challenge_questions: challengeQuestions,
+      })
+      .select()
+      .single()
+
+    if (error) throw error
+    return { data, error: null }
   } catch (error: any) {
-    console.error("❌ GET LEADERBOARD: Error:", error)
-    toast({
-      title: "Error Fetching Leaderboard",
-      description: error.message || "Failed to fetch leaderboard.",
-      variant: "destructive",
-    })
-    return { success: false, error }
+    console.error("❌ Error creating challenge:", error)
+    return { data: null, error }
+  }
+}
+
+export const loadChallenges = async (userId: string) => {
+  try {
+    const { data, error, count } = await supabase
+      .from("challenges")
+      .select("*", { count: "exact" })
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .gte("created_at", new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+      .order("created_at", { ascending: false })
+
+    if (error) throw error
+    console.log("🔔 DEBUG: Challenges query result:", { error, count })
+    console.log("🔔 DEBUG: Found", count, "raw challenges")
+
+    const validChallenges = data?.filter((challenge) => {
+      const createdAt = new Date(challenge.created_at)
+      const expiry = new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000)
+      return expiry > new Date()
+    }) || []
+
+    console.log("🔔 DEBUG: After expiry filter:", validChallenges.length, "valid challenges")
+    return { data: validChallenges, count: validChallenges.length, error: null }
+  } catch (error: any) {
+    console.error("🔔 DEBUG: Error:", error.message || "Challenge loading timeout after 8 seconds")
+    console.error("🔔 DEBUG: Error details:", error)
+    return { data: [], count: 0, error }
   }
 }
