@@ -32,7 +32,81 @@ export default function SimpleTopPlayers() {
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
-  const syncMissingProfiles = async () => {
+  // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
+const fallbackPlayers: Player[] = [
+  {
+    id: "83813437-5d7e-4aef-b915-96b99ac96fa0",
+    username: "afsarkam1962",
+    full_name: "KAM Afsar",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "cc6504c4-8efd-442a-aadc-7b44e7da02f8",
+    username: "ebahammed",
+    full_name: "E Basheer Ahammed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "aefe42f1-297b-4649-b664-934d37edc957",
+    username: "ihmi",
+    full_name: "IHMIW",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
+    username: "feroza.rafique",
+    full_name: "feroza.rafique",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+    username: "drmurtazaa50",
+    full_name: "Dr.Muhammad Murtaza Ikram",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "e299ae2c-9581-47eb-bb0e-daabf686b469",
+    username: "aiesha",
+    full_name: "aiesha waseem",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "8d46dbdc-3104-4de9-9735-a00c3aec1619",
+    username: "joy",
+    full_name: "Joy Ahmed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "7bdc8022-2a23-45db-a388-a2ea71a71b52",
+    username: "hashim",
+    full_name: "Hashim Mohammed",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "871d3522-512b-4930-a9de-a092f2e33783",
+    username: "rafique",
+    full_name: "Mohamed Essa Rafique",
+    total_score: 0,
+    best_percentage: 0,
+  },
+  {
+    id: "94e7149b-ce48-4d9a-8ee4-730698bc1bc5",
+    username: "essa",
+    full_name: "essa nilu",
+    total_score: 0,
+    best_percentage: 0,
+  },
+].filter((player) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(player.username));
+
+ const syncMissingProfiles = async () => {
     try {
       setSyncing(true)
       console.log("🔄 Attempting to sync missing user profiles...")
@@ -232,12 +306,12 @@ export default function SimpleTopPlayers() {
         console.error("❌ Leaderboard error:", leaderboardError)
       }
 
-      console.log("🔍 Step 4: Using registered users as final fallback...")
+      console.log("🔍 Step 4: Using All users as final fallback...")
       if (mountedRef.current) {
         const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
-        console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
+        console.log("✅ Using All users as fallback:", filteredFallbackPlayers.length, "users")
         setPlayers(filteredFallbackPlayers)
-        setDataSource("Registered Users")
+        setDataSource("All Users")
         setIsUsingFallback(true)
       }
 
@@ -246,10 +320,10 @@ export default function SimpleTopPlayers() {
       console.error("❌ Load error:", err.message)
 
       if (mountedRef.current) {
-        console.log("🔄 Using registered users as fallback data")
+        console.log("🔄 Using All users as fallback data")
         const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
-        setDataSource("Registered Users")
+        setDataSource("All Users")
         setIsUsingFallback(true)
         setError(null)
       }
@@ -350,7 +424,7 @@ export default function SimpleTopPlayers() {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
         const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
-        setDataSource("Registered Users")
+        setDataSource("All Users")
         setIsUsingFallback(true)
         setLoading(false)
         setError(null)
@@ -400,11 +474,10 @@ export default function SimpleTopPlayers() {
   }
 
   const cardTitle = isUsingFallback
-    ? `Registered Users (${players.length})`
+    ? `All Users (${players.length})`
     : showAll
       ? `All Players (${players.length})`
       : `Top Players (${players.length})`
-
   return (
     <Card>
       <CardHeader className="px-3 md:px-6 py-4">
@@ -426,7 +499,7 @@ export default function SimpleTopPlayers() {
               onClick={syncMissingProfiles}
               disabled={syncing}
               title="Sync missing user profiles from auth"
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
             >
               <Database className={`h-3 w-3 md:h-4 md:w-4 ${syncing ? "animate-spin" : ""}`} />
             </Button>
@@ -435,7 +508,7 @@ export default function SimpleTopPlayers() {
               size="sm"
               onClick={toggleShowAll}
               title={showAll ? "Show top players only" : "Show all players"}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
             >
               <Users className="h-3 w-3 md:h-4 md:w-4" />
             </Button>
@@ -444,71 +517,72 @@ export default function SimpleTopPlayers() {
               size="sm"
               onClick={handleRetry}
               disabled={loading}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
+              className="h-7 w-7 md:h-8 md:w-8 p-0"
             >
               <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="px-3 md:px-6 py-2 md:py-4 max-h-[70vh] overflow-y-auto">
-        {players.length === 0 ? (
-          <div className="text-center py-4">
-            <p className="text-gray-500 mb-2 text-sm">No players found</p>
-            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
-              {syncing ? "Syncing..." : "Sync User Profiles"}
-            </Button>
+      <CardContent className="px-3 md:px-6 py-2 md:py-4">
+  {players.length === 0 ? (
+    <div className="text-center py-4">
+      <p className="text-gray-500 mb-2 text-sm">No players found</p>
+      <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
+        {syncing ? "Syncing..." : "Sync User Profiles"}
+      </Button>
+    </div>
+  ) : (
+    <div className="space-y-2 md:space-y-3 max-h-80 md:max-h-96 overflow-y-auto">
+      {players.map((player, index) => (
+        <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+            {!isUsingFallback && (
+              <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
+            )}
+            <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
+              <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
+                {(player.full_name || player.username).charAt(0).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="min-w-0 flex-1">
+              <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
+              <p className="text-xs text-gray-500 hidden xs:block">
+                {isUsingFallback ? "All Users" : "Player"}
+              </p>
+            </div>
           </div>
-        ) : (
-          <div className="space-y-2 md:space-y-3">
-            {players.map((player, index) => (
-              <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
-                <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
-                  {!isUsingFallback && (
-                    <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
-                  )}
-                  <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
-                    <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
-                      {(player.full_name || player.username).charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
-                    <p className="text-xs text-gray-500 hidden xs:block">
-                      {isUsingFallback ? "Registered User" : "Player"}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-                  {!isUsingFallback && (
-                    <div className="text-right mr-1 md:mr-2">
-                      <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
-                      <p className="text-xs text-gray-500">{player.best_percentage}%</p>
-                    </div>
-                  )}
-                  {user && user.id !== player.id && (
-                    <Button
-                      size="sm"
-                      onClick={() =>
-                        handleChallenge({
-                          id: player.id,
-                          username: player.username,
-                          full_name: player.full_name,
-                          total_score: player.total_score,
-                          best_percentage: player.best_percentage,
-                        })
-                      }
-                      className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
-                    >
-                      Challenge
-                    </Button>
-                  )}
-                </div>
+          <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+            {!isUsingFallback && (
+              <div className="text-right mr-1 md:mr-2">
+                <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
+                <p className="text-xs text-gray-500">{player.best_percentage}%</p>
               </div>
-            ))}
+            )}
+
+            {user && user.id !== player.id && (
+              <Button
+                size="sm"
+                onClick={() =>
+                  handleChallenge({
+                    id: player.id,
+                    username: player.username,
+                    full_name: player.full_name,
+                    total_score: player.total_score,
+                    best_percentage: player.best_percentage,
+                  })
+                }
+                className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
+              >
+                Challenge
+              </Button>
+            )}
           </div>
-        )}
-      </CardContent>
+        </div>
+      ))}
+    </div>
+  )}
+</CardContent>
       {selectedOpponent && (
         <CategoryFirstChallengeDialog
           isOpen={challengeDialogOpen}
