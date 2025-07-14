@@ -9,7 +9,7 @@ import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Define all quiz categories directly in this file
+// Define all quiz categories directly in this file if removing any data category
 const quizData: QuizCategory[] = [
   {
     id: "quran",
