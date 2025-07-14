@@ -1,7 +1,10 @@
 import { supabase } from "@/lib/supabase";
 import { toast } from "@/hooks/use-toast";
+import { createServerClient } from '@/lib/supabase';
 
 // added on 14 July 25
+const supabase = createServerClient();
+
 export async function createChallenge(
   challengerId: string,
   challengedId: string,
