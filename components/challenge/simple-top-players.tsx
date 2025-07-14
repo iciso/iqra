@@ -650,3 +650,5 @@ const fallbackPlayers: Player[] = [
     </Card>
   )
 }
+
+export default SimpleTopPlayers;
