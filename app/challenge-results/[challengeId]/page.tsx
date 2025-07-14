@@ -1,64 +1,39 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Trophy, Crown, Medal, ArrowLeft, Zap } from "lucide-react";
-import { getChallenge } from "@/lib/supabase-queries";
-import { useAuth } from "@/contexts/auth-context";
-import Link from "next/link";
+import { useEffect, useState } from "react"
+import { useParams, useRouter } from "next/navigation"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Trophy, Crown, Medal, ArrowLeft, Zap } from "lucide-react"
+import { getChallenge } from "@/lib/supabase-queries"
+import { useAuth } from "@/contexts/auth-context"
+import Link from "next/link"
 
 export default function ChallengeResultsPage() {
-  const params = useParams();
-  const router = useRouter();
-  const { user } = useAuth();
-  const [challenge, setChallenge] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const params = useParams()
+  const router = useRouter()
+  const { user } = useAuth()
+  const [challenge, setChallenge] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (params.challengeId) {
-      loadChallenge();
+      loadChallenge()
     }
-  }, [params.challengeId]);
+  }, [params.challengeId])
 
   const loadChallenge = async () => {
     try {
-      const challengeData = await getChallenge(params.challengeId as string);
-      setChallenge(challengeData);
-      // Save scores to Supabase after loading
-      if (challengeData.challenger_score && challengeData.challenged_score) {
-        await saveChallengeScores(challengeData);
-      }
+      const challengeData = await getChallenge(params.challengeId as string)
+      setChallenge(challengeData)
     } catch (error) {
-      console.error("Error loading challenge:", error);
+      console.error("Error loading challenge:", error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
-
-  const saveChallengeScores = async (challengeData: any) => {
-    try {
-      const response = await fetch("/api/update-challenge-score", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          challengeId: params.challengeId,
-          challengerId: challengeData.challenger.id,
-          challengerScore: challengeData.challenger_score,
-          challengedId: challengeData.challenged.id,
-          challengedScore: challengeData.challenged_score,
-        }),
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Failed to update scores");
-      console.log("Scores saved:", result.message);
-    } catch (error) {
-      console.error("Error saving scores:", error);
-    }
-  };
+  }
 
   const getUserInitials = (profile: any) => {
     if (profile?.full_name) {
@@ -66,22 +41,22 @@ export default function ChallengeResultsPage() {
         .split(" ")
         .map((n: string) => n[0])
         .join("")
-        .toUpperCase();
+        .toUpperCase()
     }
-    return profile?.username?.charAt(0).toUpperCase() || "U";
-  };
+    return profile?.username?.charAt(0).toUpperCase() || "U"
+  }
 
   const getWinner = () => {
-    if (!challenge || !challenge.challenger_score || !challenge.challenged_score) return null;
+    if (!challenge || !challenge.challenger_score || !challenge.challenged_score) return null
 
     if (challenge.challenger_score > challenge.challenged_score) {
-      return { winner: challenge.challenger, loser: challenge.challenged, type: "challenger" };
+      return { winner: challenge.challenger, loser: challenge.challenged, type: "challenger" }
     } else if (challenge.challenged_score > challenge.challenger_score) {
-      return { winner: challenge.challenged, loser: challenge.challenger, type: "challenged" };
+      return { winner: challenge.challenged, loser: challenge.challenger, type: "challenged" }
     } else {
-      return { winner: null, loser: null, type: "tie" };
+      return { winner: null, loser: null, type: "tie" }
     }
-  };
+  }
 
   if (loading) {
     return (
@@ -91,7 +66,7 @@ export default function ChallengeResultsPage() {
           <p>Loading challenge results...</p>
         </div>
       </div>
-    );
+    )
   }
 
   if (!challenge) {
@@ -106,15 +81,11 @@ export default function ChallengeResultsPage() {
           </CardContent>
         </Card>
       </div>
-    );
+    )
   }
 
-  const result = getWinner();
-  const isUserWinner = result?.winner?.id === user?.id;
-
-  const handleViewLeaderboard = () => {
-    router.push("/leaderboard?refresh=true"); // Trigger refresh
-  };
+  const result = getWinner()
+  const isUserWinner = result?.winner?.id === user?.id
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
@@ -202,13 +173,15 @@ export default function ChallengeResultsPage() {
             New Challenge
           </Button>
           <div>
-            <Button onClick={handleViewLeaderboard} variant="outline">
-              <Trophy className="h-4 w-4 mr-2" />
-              View Leaderboard
-            </Button>
+            <Link href="/leaderboard">
+              <Button variant="outline">
+                <Trophy className="h-4 w-4 mr-2" />
+                View Leaderboard
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
