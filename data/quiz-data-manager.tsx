@@ -315,6 +315,18 @@ const quizData: QuizCategory[] = [
           explanation:
             "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence.",
         },
+          {
+        "question": "Is it permissible in Islamic law to perform IVF using donor sperm or eggs?",
+  "options": [
+    "Yes, with no restrictions",
+    "No, it is always forbidden",
+    "Yes, if it is for treatment and within the boundaries of Islamic ethics",
+    "No, unless both spouses are related"
+  ],
+  "correctAnswer": "Yes, if it is for treatment and within the boundaries of Islamic ethics",
+  "explanation": "Islam permits IVF for medical treatment purposes, provided that it involves the couple's own sperm and eggs and does not involve third-party donors. Use of donor sperm or eggs is generally considered impermissible because it introduces a third party into the marital relationship, which is against Islamic principles.",
+  "difficulty": "high"
+        },
         {
           question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
           options: [
