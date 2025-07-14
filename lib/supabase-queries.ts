@@ -70,7 +70,13 @@ export async function submitQuizResult(
     const user = await supabase.auth.getUser();
     if (!user.data.user) throw new Error("User not authenticated");
 
-    const percentage = Number(((score / totalQuestions) * 100).toFixed(2)); // Ensure 2 decimal places
+    // Validate challengeId if provided
+    if (challengeId && !isValidUUID(challengeId)) {
+      console.warn("Invalid challengeId, setting to null:", challengeId);
+      challengeId = null;
+    }
+
+    const percentage = Number(((score / totalQuestions) * 100).toFixed(2));
     const insertData = {
       user_id: user.data.user.id,
       challenge_id: challengeId || null,
@@ -85,7 +91,6 @@ export async function submitQuizResult(
     };
     console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData);
 
-    // Insert quiz result into quiz_results table
     const { data, error } = await supabase
       .from('quiz_results')
       .insert(insertData)
@@ -93,16 +98,12 @@ export async function submitQuizResult(
       .single();
 
     if (error) {
-      if (error.code === '42P01') {
-        console.warn('Table not found, likely quiz_results table missing');
-      }
       console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
       throw error;
     }
 
     console.log("✅ SUBMIT QUIZ RESULT: Inserted successfully:", data);
 
-    // Optionally update challenge status if challengeId exists
     if (challengeId) {
       const { error: updateError } = await supabase
         .from('challenges')
@@ -127,6 +128,12 @@ export async function submitQuizResult(
     });
     return { success: false, error };
   }
+}
+
+// Utility function to validate UUID
+function isValidUUID(str: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  return uuidRegex.test(str);
 }
 
 export async function getChallenge(challengeId: string) {
