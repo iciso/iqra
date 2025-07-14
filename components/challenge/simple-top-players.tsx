@@ -18,6 +18,7 @@ interface Player {
   best_percentage: number
 }
 
+// done by AI Grok
 export default function SimpleTopPlayers() {
   const { user, loading: authLoading } = useAuth()
   const [players, setPlayers] = useState<Player[]>([])
