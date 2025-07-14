@@ -39,30 +39,39 @@ export async function submitQuizResult(
     };
     console.log("📊 SUBMIT QUIZ RESULT: Insert data:", insertData);
 
+    // Insert quiz result into quiz_results table
     const { data, error } = await supabase
-  .from('quiz_results')
-  .select(`
-    *,
-    challenges!inner(id, challenger_id, challenged_id, status),
-    profiles!inner(id, username)
-  `)
-  .eq('challenges.status', 'completed')
-  .order('score', { ascending: false });
-
-    if (error && error.code === '42P01') {
-  console.warn('Challenges table not found, falling back to default leaderboard data');
-  // Load leaderboard using only quiz_results or a fallback dataset
-     throw error;
-    }
+      .from('quiz_results')
+      .insert(insertData)
+      .select()
+      .single();
 
     if (error) {
+      if (error.code === '42P01') {
+        console.warn('Table not found, likely quiz_results table missing');
+      }
       console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
       throw error;
     }
 
-    console.log("✅ SUBMIT QUIZ RESULT: Inserting:", data);
+    console.log("✅ SUBMIT QUIZ RESULT: Inserted successfully:", data);
+
+    // Optionally update challenge status if challengeId exists
+    if (challengeId) {
+      const { error: updateError } = await supabase
+        .from('challenges')
+        .update({ status: 'completed', updated_at: new Date().toISOString() })
+        .eq('id', challengeId)
+        .eq('challenger_id', user.data.user.id);
+
+      if (updateError) {
+        console.error("❌ SUBMIT QUIZ RESULT: Error updating challenge:", updateError);
+        throw updateError;
+      }
+      console.log("✅ SUBMIT QUIZ RESULT: Challenge status updated to completed");
+    }
+
     return { success: true, data };
-    console.log("✅ SUBMISSION OF QUIZ RESULT: SUCCESS:", data);
   } catch (error: any) {
     console.error("❌ SUBMIT QUIZ RESULT: Error:", error);
     toast({
@@ -74,21 +83,6 @@ export async function submitQuizResult(
   }
 }
 
-useEffect(() => {
-  if (hasUser && hasProfile && hasScore && hasTotalQuestions && !submitted) {
-    console.log('🚀 RESULTS AUTO-SAVE: Starting auto-save...');
-    submitQuizResult({ score, totalQuestions, category, difficulty, timeTaken, challengeId });
-  }
-}, [hasUser, hasProfile, hasScore, hasTotalQuestions, submitted, challengeId]);
-
-const submitQuizResult = async (result) => {
-  const { data, error } = await supabase.from('quiz_results').insert(result);
-  if (!error) {
-    setSubmitted(true);
-    console.log('✅ RESULTS AUTO-SAVE: Quiz result saved successfully!', { success: true, data });
-  }
-};
-
 export async function getChallenge(challengeId: string) {
   console.log("🔍 Getting challenge:", challengeId);
   const { data, error } = await supabase
@@ -96,6 +90,40 @@ export async function getChallenge(challengeId: string) {
     .select("*")
     .eq("id", challengeId)
     .single();
-  if (error) throw error;
+  if (error) {
+    console.error("❌ GET CHALLENGE: Error:", error);
+    throw error;
+  }
   return data;
+}
+
+// Example leaderboard query (optional, for reference)
+export async function getLeaderboard() {
+  console.log("🏆 Getting leaderboard data...");
+  try {
+    const { data, error } = await supabase
+      .from('quiz_results')
+      .select(`
+        user_id,
+        score,
+        total_questions,
+        percentage,
+        category,
+        difficulty,
+        profiles!inner(username)
+      `)
+      .order('percentage', { ascending: false })
+      .limit(50);
+
+    if (error) {
+      console.error("❌ GET LEADERBOARD: Error:", error);
+      throw error;
+    }
+
+    console.log("✅ GET LEADERBOARD: Retrieved:", data);
+    return { success: true, data };
+  } catch (error: any) {
+    console.error("❌ GET LEADERBOARD: Error:", error);
+    return { success: false, error };
+  }
 }
