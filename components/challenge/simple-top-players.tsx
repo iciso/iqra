@@ -8,6 +8,7 @@ import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import { createChallenge } from "@/lib/supabase-queries" 
 
 interface Player {
   id: string
@@ -31,6 +32,8 @@ export default function SimpleTopPlayers() {
   const loadingRef = useRef(false)
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
+
+
 
   // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
 const fallbackPlayers: Player[] = [
