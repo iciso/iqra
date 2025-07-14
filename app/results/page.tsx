@@ -42,19 +42,38 @@ export default function ResultsPage() {
   const [isChallenger, setIsChallenger] = useState(false)
   const [challengerTurn, setChallengerTurn] = useState(false)
 
+  // Get localStorage values directly for render decision
+  const getLocalStorageValues = () => {
+    if (typeof window === "undefined") return { challenge: null, challengerTurn: false, score: null }
+
+    return {
+      challenge: localStorage.getItem("quizChallenge"),
+      challengerTurn: localStorage.getItem("challengerTurn") === "true",
+      score: localStorage.getItem("quizScore"),
+    }
+  }
+
+  // Debug authentication state
+  useEffect(() => {
+    console.log("🔍 Results page auth state:", {
+      user: !!user,
+      profile: !!profile,
+      loading,
+      userEmail: user?.email,
+      profileUsername: profile?.username,
+    })
+  }, [user, profile, loading])
+
   useEffect(() => {
     setIsClient(true)
 
-    // Get query parameters from URL
-    const urlParams = new URLSearchParams(window.location.search)
-    const savedCategory = urlParams.get("category") || localStorage.getItem("quizCategory")
-    const savedDifficulty = urlParams.get("difficulty") || localStorage.getItem("quizDifficulty")
-    const savedChallenge = urlParams.get("challenge") || localStorage.getItem("quizChallenge")
-
-    // Get localStorage values
+    // Get score from localStorage
     try {
       const savedScore = localStorage.getItem("quizScore")
       const savedTotal = localStorage.getItem("totalQuestions")
+      const savedCategory = localStorage.getItem("quizCategory")
+      const savedDifficulty = localStorage.getItem("quizDifficulty")
+      const savedChallenge = localStorage.getItem("quizChallenge")
       const savedTimeLeft = localStorage.getItem("quizTimeLeft")
       const savedTimeTotal = localStorage.getItem("quizTimeTotal")
       const savedOpponentId = localStorage.getItem("quizOpponentId")
@@ -74,57 +93,74 @@ export default function ResultsPage() {
       if (savedScore && savedTotal) {
         const parsedScore = Number.parseInt(savedScore)
         const parsedTotal = Number.parseInt(savedTotal)
+
         setScore(parsedScore)
         setTotalQuestions(parsedTotal)
-      }
 
-      if (savedChallenge) {
-        setChallenge(savedChallenge)
-        const fetchChallengeData = async () => {
-          try {
-            if (!user) return
-            const challengeData = await getChallenge(savedChallenge)
-            console.log("📋 Challenge data:", challengeData)
-            if (challengeData) {
-              setChallengeData(challengeData)
-              const isUserChallenger = challengeData.challenger_id === user.id
-              setIsChallenger(isUserChallenger)
-              const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
-              if (opponentData) {
-                const opponentInfo = {
-                  id: opponentData.id,
-                  name: opponentData.full_name || opponentData.username || "Opponent",
-                  avatar_url: opponentData.avatar_url,
-                  level: savedChallengerTurn ? "Waiting for response" : "Challenger",
-                  score: isUserChallenger ? null : challengeData.challenger_score,
+        // Generate opponent for challenges
+        if (savedChallenge) {
+          setChallenge(savedChallenge)
+
+          // Fetch challenge data from Supabase
+          const fetchChallengeData = async () => {
+            try {
+              if (!user) return
+
+              const challengeData = await getChallenge(savedChallenge)
+              console.log("📋 Challenge data:", challengeData)
+
+              if (challengeData) {
+                setChallengeData(challengeData)
+                const isUserChallenger = challengeData.challenger_id === user.id
+                setIsChallenger(isUserChallenger)
+
+                // Set opponent based on challenge data
+                const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
+                if (opponentData) {
+                  const opponentInfo = {
+                    id: opponentData.id,
+                    name: opponentData.full_name || opponentData.username || "Opponent",
+                    avatar_url: opponentData.avatar_url,
+                    level: savedChallengerTurn ? "Waiting for response" : "Challenger",
+                    score: isUserChallenger ? null : challengeData.challenger_score,
+                  }
+                  setOpponent(opponentInfo)
                 }
-                setOpponent(opponentInfo)
+              }
+            } catch (error) {
+              console.error("Error fetching challenge data:", error)
+
+              // Fallback to localStorage opponent
+              const newOpponent = savedOpponentId
+                ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+                : getRandomOpponent()
+
+              if (newOpponent) {
+                newOpponent.score = generateBotScore(parsedScore, parsedTotal)
+                setOpponent(newOpponent)
               }
             }
-          } catch (error) {
-            console.error("Error fetching challenge data:", error)
-            const newOpponent = savedOpponentId
-              ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
-              : getRandomOpponent()
-            if (newOpponent) {
-              newOpponent.score = generateBotScore(Number.parseInt(savedScore || "0"), Number.parseInt(savedTotal || "1"))
-              setOpponent(newOpponent)
-            }
           }
+
+          fetchChallengeData()
+          setNextChallenge(getNextChallenge(savedCategory || undefined, savedDifficulty || undefined))
         }
-        fetchChallengeData()
-        setNextChallenge(getNextChallenge(savedCategory, savedDifficulty))
       }
 
+      // Set other data
       if (savedCategory) {
         setCategoryId(savedCategory)
         const category = getCategory(savedCategory)
-        if (category) setCategoryTitle(category.title)
+        if (category) {
+          setCategoryTitle(category.title)
+        }
       }
+
       if (savedDifficulty) setDifficulty(savedDifficulty)
       if (savedTimeLeft) setTimeLeft(Number.parseInt(savedTimeLeft))
       if (savedTimeTotal) setTimeTotal(Number.parseInt(savedTimeTotal))
 
+      // Check for new badges
       if (savedScore && savedTotal) {
         const awardedBadgeIds = checkForBadges({
           score: Number.parseInt(savedScore),
@@ -135,6 +171,7 @@ export default function ResultsPage() {
           timeLeft: savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
           timeTotal: savedTimeTotal ? Number.parseInt(savedTimeTotal) : undefined,
         })
+
         if (awardedBadgeIds.length > 0) {
           const newBadgeDetails = badgesData.filter((badge) => awardedBadgeIds.includes(badge.id))
           setNewBadges(newBadgeDetails)
@@ -145,6 +182,7 @@ export default function ResultsPage() {
     }
   }, [user])
 
+  // Auto-save when user and profile are available
   useEffect(() => {
     const autoSave = async () => {
       console.log("💾 RESULTS AUTO-SAVE: Starting check...", {
@@ -159,23 +197,24 @@ export default function ResultsPage() {
         challengerTurn,
       })
 
-      if (user && (profile || !loading) && score !== null && totalQuestions !== null && !submitted && !saving) {
+      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
           const result = await submitQuizResult(
             score,
             totalQuestions,
-            categoryId || localStorage.getItem("quizCategory"), // Fall back to localStorage if URL param missing
-            difficulty || localStorage.getItem("quizDifficulty"), // Fall back to localStorage if URL param missing
+            categoryId || "quran",
+            difficulty || "easy",
             timeLeft || undefined,
-            undefined,
-            challenge || localStorage.getItem("quizChallenge"),
+            undefined, // answers - can be added later
+            challenge || undefined, // challenge_id for challenges
           )
           setSubmitted(true)
           console.log("✅ RESULTS AUTO-SAVE: Quiz result saved successfully!", result)
         } catch (error) {
           console.error("❌ RESULTS AUTO-SAVE: Error saving to database:", error)
+          // Don't set submitted to true if there was an error
         } finally {
           setSaving(false)
         }
@@ -183,9 +222,12 @@ export default function ResultsPage() {
     }
 
     autoSave()
-  }, [user, profile, loading, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
+  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge, loading])
 
+  // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
+
+  // Determine message based on score
   const getMessage = () => {
     if (percentage === null) return ""
     if (percentage >= 80) return "Excellent! MashaAllah!"
@@ -193,19 +235,35 @@ export default function ResultsPage() {
     return "Keep studying. You can improve! Astaghufiruallah!"
   }
 
- const viewLeaderboard = () => router.push(`/leaderboard?category=${categoryId || encodeURIComponent(challenge?.category) || "tazkiyah"}`);
-  const viewChallenges = () => router.push("/challenges")
-  const tryAgain = () => {
-    if (challenge) router.push("/challenges")
-    else if (categoryId && difficulty) router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
-    else router.push("/categories")
+  const viewLeaderboard = () => {
+    router.push("/leaderboard")
   }
-  const goToNextChallenge = () =>
-    nextChallenge &&
-    router.push(
-      `/quiz?category=${nextChallenge.category}&difficulty=${nextChallenge.difficulty}&challenge=${nextChallenge.challenge}&questions=10`,
-    )
 
+  const viewChallenges = () => {
+    router.push("/challenges")
+  }
+
+  const tryAgain = () => {
+    if (challenge) {
+      router.push(`/challenges`)
+    } else if (categoryId && difficulty) {
+      router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
+    } else {
+      router.push("/categories")
+    }
+  }
+
+  const goToNextChallenge = () => {
+    if (nextChallenge) {
+      router.push(
+        `/quiz?category=${nextChallenge.category}&difficulty=${nextChallenge.difficulty}&challenge=${nextChallenge.challenge}&questions=10`,
+      )
+    } else {
+      router.push("/challenges")
+    }
+  }
+
+  // Show loading state while auth is loading
   if (!isClient || loading) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
@@ -218,12 +276,17 @@ export default function ResultsPage() {
     )
   }
 
-  const isAuthenticated = user && (profile || !loading)
-  const { challenge: currentChallenge, challengerTurn: currentChallengerTurn, score: currentScore } = {
-    challenge: localStorage.getItem("quizChallenge"),
-    challengerTurn: localStorage.getItem("challengerTurn") === "true",
-    score: localStorage.getItem("quizScore"),
-  }
+  // Determine if user is authenticated
+  const isAuthenticated = user && profile && !loading
+
+  // Get current localStorage values for render decision
+  const {
+    challenge: currentChallenge,
+    challengerTurn: currentChallengerTurn,
+    score: currentScore,
+  } = getLocalStorageValues()
+
+  // Special case for challenger who just completed their turn
   const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
 
   console.log("🎯 FINAL Render decision:", {
@@ -246,6 +309,7 @@ export default function ResultsPage() {
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
       {showChallengeSubmitted ? (
+        // Challenge submitted view - show when challenger has just completed their turn
         <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-2">
@@ -330,12 +394,13 @@ export default function ResultsPage() {
           </CardFooter>
         </Card>
       ) : (
+        // Regular results view
         <>
           {challenge && opponent && (
             <div className="w-full max-w-md mx-auto mb-6">
               <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
               <ChallengeResultsComparison
-                userName={profile?.full_name || profile?.username || "You"}
+                userName={isAuthenticated ? profile.full_name || profile.username || "You" : "You"}
                 userScore={score || 0}
                 opponent={opponent}
                 totalQuestions={totalQuestions || 10}
@@ -388,46 +453,70 @@ export default function ResultsPage() {
                     </p>
                     <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
-                    <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
-                      <div className="flex items-center justify-center mb-2">
-                        <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
-                        <span className="text-lg font-medium dark:text-white">
-                          Welcome, {profile?.full_name || profile?.username || "You"}! 🎉
-                        </span>
-                      </div>
-                      {saving ? (
-                        <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
-                      ) : submitted ? (
-                        <p className="text-green-700 dark:text-green-400 mb-4">
-                          ✅ Your score has been saved to your profile!
-                        </p>
-                      ) : (
-                        <p className="text-yellow-600 dark:text-yellow-400 mb-4">🔄 Preparing to save your score...</p>
-                      )}
-                      <div className="flex flex-col sm:flex-row gap-3 w-full">
-                        <Button
-                          onClick={viewLeaderboard}
-                          className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
-                        >
-                          <Trophy className="mr-2 h-4 w-4" />
-                          View Leaderboard
-                        </Button>
-                        {challenge && (
-                          <Button
-                            onClick={viewChallenges}
-                            className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                          >
-                            <Users className="mr-2 h-4 w-4" />
-                            View Challenges
-                          </Button>
+                    {isAuthenticated ? (
+                      // 🎉 Authenticated user - SUCCESS CASE!
+                      <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-center mb-2">
+                          <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
+                          <span className="text-lg font-medium dark:text-white">
+                            Welcome, {profile?.full_name || profile?.username}! 🎉
+                          </span>
+                        </div>
+                        {saving ? (
+                          <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
+                        ) : submitted ? (
+                          <p className="text-green-700 dark:text-green-400 mb-4">
+                            ✅ Your score has been saved to your profile!
+                          </p>
+                        ) : (
+                          <p className="text-yellow-600 dark:text-yellow-400 mb-4">
+                            🔄 Preparing to save your score...
+                          </p>
                         )}
+                        <div className="flex flex-col sm:flex-row gap-3 w-full">
+                          <Button
+                            onClick={viewLeaderboard}
+                            className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
+                          >
+                            <Trophy className="mr-2 h-4 w-4" />
+                            View Leaderboard
+                          </Button>
+                          {challenge && (
+                            <Button
+                              onClick={viewChallenges}
+                              className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+                            >
+                              <Users className="mr-2 h-4 w-4" />
+                              View Challenges
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      // This should now rarely appear since users must be authenticated
+                      <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-center mb-2">
+                          <Award className="mr-2 h-5 w-5 text-red-500" />
+                          <span className="text-lg font-medium dark:text-white">Authentication Issue</span>
+                        </div>
+                        <p className="text-center text-red-600 dark:text-red-400 mb-4">
+                          Please refresh the page to restore your session.
+                        </p>
+                        <Button
+                          onClick={() => window.location.reload()}
+                          className="w-full bg-blue-600 hover:bg-blue-700"
+                        >
+                          🔄 Refresh Page
+                        </Button>
+                      </div>
+                    )}
                   </>
                 ) : (
                   <div className="text-center py-8">
                     <p className="dark:text-white mb-4">No quiz results found.</p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">Complete a quiz to see your results here!</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      Complete a quiz to see your results here!
+                    </p>
                     <Link href="/categories">
                       <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                         Start a Quiz
