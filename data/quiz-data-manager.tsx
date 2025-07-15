@@ -1,15 +1,17 @@
-import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz"
-import seerahCategory from "./quiz-data-manager-additions"
-import { additionalCategories } from "./quiz-data-manager-additional-categories"
-import comparativeReligionCategory from "./comparative-religion"
-import islamicFinanceCategory from "./islamic-finance"
-import islamicHistoryCategory from "./islamic-history"
-import dawahCategory from "./dawah"
+import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
+import seerahCategory from "./quiz-data-manager-additions";
+import { additionalCategories } from "./quiz-data-manager-additional-categories";
+import comparativeReligionCategory from "./comparative-religion";
+import islamicFinanceCategory from "./islamic-finance";
+import islamicHistoryCategory from "./islamic-history";
+import dawahCategory from "./dawah";
+import newMuslimsCategory from "./new-muslims";
+import tazkiyahCategory from "./tazkiyah";
+import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Import the infographics enhancement function
-import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics"
+// Has Quran Fiqh Tafsir Hadeeth Aqeedah 10-10 each in easy and advanced 
 
-// Define all quiz categories directly in this file
+// Define all quiz categories directly in this file if removing any data category
 const quizData: QuizCategory[] = [
   {
     id: "quran",
@@ -315,12 +317,17 @@ const quizData: QuizCategory[] = [
           explanation:
             "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence.",
         },
-        {
-          question: "What is the fiqh principle that allows prohibited actions in situations of extreme necessity to prevent harm?",
-          options: ["Qiyas", "Istihsan", "Dharoorat", "Ijma"],
-          correctAnswer: "Dharoorat",
-          explanation:
-            "The principle of Dharoorat (necessity) allows for the temporary suspension of certain prohibitions in Islamic law when faced with extreme necessity or unavoidable harm, based on the maxim 'necessities permit prohibited things'.",
+          {
+        "question": "Is it permissible in Islamic law to perform IVF using donor sperm or eggs?",
+  "options": [
+    "Yes, with no restrictions",
+    "No, it is always forbidden",
+    "Yes, if it is for treatment and within the boundaries of Islamic ethics",
+    "No, unless both spouses are related"
+  ],
+  "correctAnswer": "Yes, if it is for treatment and within the boundaries of Islamic ethics",
+  "explanation": "Islam permits IVF for medical treatment purposes, provided that it involves the couple's own sperm and eggs and does not involve third-party donors. Use of donor sperm or eggs is generally considered impermissible because it introduces a third party into the marital relationship, which is against Islamic principles.",
+  "difficulty": "high"
         },
         {
           question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
@@ -788,270 +795,44 @@ const quizData: QuizCategory[] = [
       ],
     },
   },
-  {
-    id: "aqeedah",
-    title: "Aqeedah",
-    description: "Islamic Creed and Beliefs",
-    icon: "",
-    levels: {
-      easy: [
-        {
-          question: "What does 'Aqeedah' mean?",
-          options: ["Prayer", "Belief", "Charity", "Fasting"],
-          correctAnswer: "Belief",
-          explanation:
-            "Aqeedah refers to the core beliefs and creed of Islam that a Muslim must have firm conviction in.",
-        },
-        {
-          question: "How many articles of faith are there in Islam?",
-          options: ["4", "5", "6", "7"],
-          correctAnswer: "6",
-          explanation:
-            "There are six articles of faith in Islam: belief in Allah, His angels, His books, His messengers, the Day of Judgment, and divine decree.",
-        },
-        {
-          question: "What is 'Tawheed'?",
-          options: [
-            "Belief in the Day of Judgment",
-            "Belief in the oneness of Allah",
-            "Belief in the prophets",
-            "Belief in the angels",
-          ],
-          correctAnswer: "Belief in the oneness of Allah",
-          explanation:
-            "Tawheed is the concept of the absolute oneness of Allah, which is the most fundamental aspect of Islamic belief.",
-        },
-        {
-          question: "What is the opposite of Tawheed?",
-          options: ["Iman", "Shirk", "Kufr", "Nifaq"],
-          correctAnswer: "Shirk",
-          explanation:
-            "Shirk is the association of partners with Allah, which is the opposite of Tawheed (monotheism).",
-        },
-        {
-          question: "What is the meaning of 'La ilaha illa Allah'?",
-          options: [
-            "There is no god worthy of worship except Allah",
-            "Allah is the greatest",
-            "Praise be to Allah",
-            "Allah is one",
-          ],
-          correctAnswer: "There is no god worthy of worship except Allah",
-          explanation:
-            "La ilaha illa Allah is the first part of the Islamic declaration of faith (Shahada), meaning 'There is no god worthy of worship except Allah', affirming the absolute oneness of Allah.",
-        },
-        {
-          question: "What is the belief about the Quran in Islamic Aqeedah?",
-          options: [
-            "It is one of many holy books",
-            "It is the unchanged, preserved word of Allah",
-            "It was written by Prophet Muhammad",
-            "It is only a historical document",
-          ],
-          correctAnswer: "It is the unchanged, preserved word of Allah",
-          explanation:
-            "In Islamic Aqeedah, the Quran is believed to be the literal, unchanged, and preserved word of Allah revealed to Prophet Muhammad (PBUH) through Angel Gabriel.",
-        },
-        {
-          question: "What is the Islamic belief about the angels?",
-          options: [
-            "They are myths",
-            "They are created beings who obey Allah",
-            "They are children of Allah",
-            "They can choose to disobey Allah",
-          ],
-          correctAnswer: "They are created beings who obey Allah",
-          explanation:
-            "In Islamic Aqeedah, angels are created beings made from light who always obey Allah and never disobey Him. They have various roles assigned by Allah.",
-        },
-        {
-          question: "What is the Islamic belief about the Day of Judgment?",
-          options: [
-            "It is symbolic, not literal",
-            "It will never happen",
-            "It is a certain reality that will come",
-            "It has already occurred",
-          ],
-          correctAnswer: "It is a certain reality that will come",
-          explanation:
-            "Islamic Aqeedah affirms that the Day of Judgment is a certain reality that will come, when all humans will be resurrected and held accountable for their deeds.",
-        },
-        {
-          question: "What is 'Iman' in Islamic terminology?",
-          options: ["Prayer", "Faith or belief", "Charity", "Pilgrimage"],
-          correctAnswer: "Faith or belief",
-          explanation:
-            "Iman refers to faith or belief in Islam, encompassing belief in Allah, His angels, His books, His messengers, the Day of Judgment, and divine decree.",
-        },
-        {
-          question: "What is the Islamic belief about previous prophets?",
-          options: [
-            "They were not real",
-            "They were all Arabs",
-            "They all brought the same core message of monotheism",
-            "Their messages are irrelevant now",
-          ],
-          correctAnswer: "They all brought the same core message of monotheism",
-          explanation:
-            "Islamic Aqeedah teaches that all prophets, from Adam to Muhammad (peace be upon them all), brought the same core message of monotheism (Tawheed), calling people to worship Allah alone.",
-        },
-      ],
-      advanced: [
-        {
-          question: "What are the three categories of Tawheed?",
-          options: [
-            "Tawheed al-Uluhiyyah, Tawheed al-Rububiyyah, Tawheed al-Asma wa al-Sifat",
-            "Tawheed al-Salat, Tawheed al-Zakat, Tawheed al-Sawm",
-            "Tawheed al-Quran, Tawheed al-Sunnah, Tawheed al-Ijma",
-            "Tawheed al-Iman, Tawheed al-Islam, Tawheed al-Ihsan",
-          ],
-          correctAnswer: "Tawheed al-Uluhiyyah, Tawheed al-Rububiyyah, Tawheed al-Asma wa al-Sifat",
-          explanation:
-            "The three categories of Tawheed are: Tawheed al-Rububiyyah (Oneness of Lordship), Tawheed al-Uluhiyyah (Oneness of Worship), and Tawheed al-Asma wa al-Sifat (Oneness of Names and Attributes).",
-        },
-        {
-          question: "What is 'Qadar' in Islamic belief?",
-          options: [
-            "The Islamic holy book",
-            "Divine decree and predestination",
-            "The Day of Judgment",
-            "The five pillars of Islam",
-          ],
-          correctAnswer: "Divine decree and predestination",
-          explanation:
-            "Qadar refers to Allah's divine decree and predestination, the belief that Allah has knowledge of and control over all things.",
-        },
-        {
-          question: "What is the concept of 'Kufr' in Islam?",
-          options: ["Belief in Allah", "Disbelief or rejection of faith", "Performing good deeds", "Giving charity"],
-          correctAnswer: "Disbelief or rejection of faith",
-          explanation: "Kufr refers to disbelief or the rejection of faith in Allah and the teachings of Islam.",
-        },
-        {
-          question: "What is 'Al-Wala wal-Bara'?",
-          options: [
-            "The concept of Heaven and Hell",
-            "The concept of loyalty to Islam and disavowal of disbelief",
-            "The concept of reward and punishment",
-            "The concept of life and death",
-          ],
-          correctAnswer: "The concept of loyalty to Islam and disavowal of disbelief",
-          explanation:
-            "Al-Wala wal-Bara refers to the concept of loyalty and love for the sake of Allah, and disavowal and disassociation from disbelief and its people.",
-        },
-        {
-          question: "What is the difference between the attributes of Allah and those of His creation?",
-          options: [
-            "There is no difference",
-            "Allah's attributes are limited, creation's are unlimited",
-            "Allah's attributes are perfect and unique, without resemblance to creation",
-            "Allah has no attributes",
-          ],
-          correctAnswer: "Allah's attributes are perfect and unique, without resemblance to creation",
-          explanation:
-            "Allah's attributes are perfect, complete, and unique to Him, without any resemblance to the attributes of His creation, as stated in the Quran: 'There is nothing like unto Him' (42:11).",
-        },
-        {
-          question: "What is the Ash'ari school's approach to understanding Allah's attributes?",
-          options: [
-            "They reject all attributes",
-            "They interpret attributes literally",
-            "They interpret some attributes metaphorically",
-            "They believe attributes are created",
-          ],
-          correctAnswer: "They interpret some attributes metaphorically",
-          explanation:
-            "The Ash'ari school, founded by Abu al-Hasan al-Ash'ari, takes a middle path by affirming Allah's attributes while interpreting some of them metaphorically to avoid anthropomorphism.",
-        },
-        {
-          question: "What is the concept of 'Bid'ah' in relation to Aqeedah?",
-          options: [
-            "Innovation that is always good",
-            "Innovation in religious matters that has no precedent",
-            "Following the Sunnah strictly",
-            "Interpreting the Quran",
-          ],
-          correctAnswer: "Innovation in religious matters that has no precedent",
-          explanation:
-            "Bid'ah refers to innovations or newly invented matters in religion that have no precedent from the time of the Prophet Muhammad (PBUH) and his companions.",
-        },
-        {
-          question: "What is the concept of 'Tawassul' in Islamic belief?",
-          options: [
-            "Direct worship of saints",
-            "Seeking nearness to Allah through permissible means",
-            "Rejecting intercession completely",
-            "Praying to the deceased",
-          ],
-          correctAnswer: "Seeking nearness to Allah through permissible means",
-          explanation:
-            "Tawassul refers to the concept of seeking nearness to Allah through permissible means, such as through His names and attributes, good deeds, or the supplication of a living righteous person.",
-        },
-        {
-          question: "What is the difference between 'Tawheed al-Rububiyyah' and 'Tawheed al-Uluhiyyah'?",
-          options: [
-            "They are the same thing",
-            "Rububiyyah is about Allah's lordship, Uluhiyyah is about worshipping Him alone",
-            "Rububiyyah is about worship, Uluhiyyah is about lordship",
-            "Rububiyyah is about the Quran, Uluhiyyah is about the Sunnah",
-          ],
-          correctAnswer: "Rububiyyah is about Allah's lordship, Uluhiyyah is about worshipping Him alone",
-          explanation:
-            "Tawheed al-Rububiyyah is the belief in Allah's lordship, that He alone is the creator, sustainer, and controller of all things. Tawheed al-Uluhiyyah is the belief that Allah alone deserves to be worshipped, without any partners.",
-        },
-        {
-          question: "What is the concept of 'Ru'yat Allah' (Seeing Allah) in Islamic Aqeedah?",
-          options: [
-            "Allah can never be seen under any circumstances",
-            "Believers will see Allah in the Hereafter without comprehending His nature",
-            "Allah can be seen in this world through spiritual exercises",
-            "It is a metaphorical concept, not literal",
-          ],
-          correctAnswer: "Believers will see Allah in the Hereafter without comprehending His nature",
-          explanation:
-            "According to mainstream Sunni Aqeedah, believers will literally see Allah in the Hereafter, as mentioned in various Quranic verses and authentic Hadiths. However, this vision will not encompass or comprehend Allah's nature or essence, as 'There is nothing like unto Him' (Quran 42:11).",
-        },
-      ],
-    },
-  },
   seerahCategory,
-  ...additionalCategories,
+   ...additionalCategories,
+  newMuslimsCategory,
+  tazkiyahCategory,
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
   dawahCategory,
-]
+];
 
-// Add this right after the quizData array definition
-console.log(
-  "Loaded categories:",
-  quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
-)
-
-// Add this at the top of the file, right after the import statements:
-// This will help us see if all categories are being loaded properly
+// Debug logs
 console.log(
   "Loading quiz data with categories:",
   quizData.map((cat) => cat.id),
-)
+);
+
+console.log(
+  "Loaded categories:",
+  quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
+);
 
 // Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
 export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
-  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`)
-  const category = quizData.find((cat) => cat.id === categoryId)
+  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`);
+  const category = quizData.find((cat) => cat.id === categoryId);
   if (!category) {
-    console.log(`Category ${categoryId} not found`)
-    return []
+    console.log(`Category ${categoryId} not found`);
+    return [];
   }
 
   // If intermediate difficulty is requested but not available, fall back to easy
   if (difficulty === "intermediate" && (!category.levels.intermediate || category.levels.intermediate.length === 0)) {
-    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`)
-    difficulty = "easy"
+    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`);
+    difficulty = "easy";
   }
 
   // Get the questions for the specified category and difficulty
-  let questions = category.levels[difficulty] || []
+  let questions = category.levels[difficulty] || [];
 
   // Assign IDs to questions if they don't have them
   questions = questions.map((question, index) => {
@@ -1059,42 +840,42 @@ export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel
       return {
         ...question,
         id: `${categoryId}-${index + 1}`,
-      }
+      };
     }
-    return question
-  })
+    return question;
+  });
 
-  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`)
+  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`);
 
   // Before returning the questions, enhance them with infographics if available
-  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions)
+  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
 
   // Log which questions have infographics
-  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length
-  console.log(`Enhanced ${withInfographics} questions with infographics`)
+  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length;
+  console.log(`Enhanced ${withInfographics} questions with infographics`);
 
-  return enhancedQuestions
+  return enhancedQuestions;
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
-  return quizData.find((category) => category.id === categoryId)
+  return quizData.find((category) => category.id === categoryId);
 }
 
 export function getAllCategories(): QuizCategory[] {
-  return quizData
+  return quizData;
 }
 
 // Verify all categories have questions
 quizData.forEach((category) => {
   console.log(
     `Category ${category.id} has ${category.levels.easy.length} easy questions and ${category.levels.advanced.length} advanced questions`,
-  )
+  );
 
   // Check for any empty question arrays
   if (category.levels.easy.length === 0) {
-    console.warn(`Warning: Category ${category.id} has no easy questions`)
+    console.warn(`Warning: Category ${category.id} has no easy questions`);
   }
   if (category.levels.advanced.length === 0) {
-    console.warn(`Warning: Category ${category.id} has no advanced questions`)
+    console.warn(`Warning: Category ${category.id} has no advanced questions`);
   }
-})
+});
