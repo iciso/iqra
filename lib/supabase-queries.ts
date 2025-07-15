@@ -2,7 +2,11 @@
 import { neon } from "@neondatabase/serverless";
 import { createClient } from "@/lib/supabase/server";
 
-const sql = neon(process.env.NEON_DATABASE_URL || process.env.DATABASE_URL || process.env.iqra_DATABASE_URL || '');
+const connectionString = process.env.NEON_DATABASE_URL || process.env.DATABASE_URL || process.env.iqra_DATABASE_URL;
+if (!connectionString) {
+  throw new Error("No Neon database connection string provided. Check environment variables.");
+}
+const sql = neon(connectionString);
 
 export async function pingNeon() {
   try {
