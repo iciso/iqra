@@ -316,6 +316,13 @@ const quizData: QuizCategory[] = [
             "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence.",
         },
         {
+          question: "What is the fiqh principle that allows prohibited actions in situations of extreme necessity to prevent harm?",
+          options: ["Qiyas", "Istihsan", "Dharoorat", "Ijma"],
+          correctAnswer: "Dharoorat",
+          explanation:
+            "The principle of Dharoorat (necessity) allows for the temporary suspension of certain prohibitions in Islamic law when faced with extreme necessity or unavoidable harm, based on the maxim 'necessities permit prohibited things'.",
+        },
+        {
           question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
           options: [
             "They are synonyms",
