@@ -1,3 +1,4 @@
+```typescript
 "use client"
 
 import { useState, useEffect } from "react"
@@ -8,7 +9,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Check, X, Trophy, Clock, AlertCircle, RefreshCw } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { supabase } from "@/lib/supabase"
+import { neon } from "@neondatabase/serverless"
 import { toast } from "@/hooks/use-toast"
+
+const sql = neon(process.env.NEON_DATABASE_URL || process.env.DATABASE_URL || process.env.iqra_DATABASE_URL || '')
 
 interface Challenge {
   id: string
@@ -41,7 +45,6 @@ export default function ChallengeNotification() {
     setDebugInfo((prev) => [...prev.slice(-3), `${new Date().toLocaleTimeString()}: ${message}`])
   }
 
-  // Category mapping for better descriptions
   const categoryDescriptions = {
     quran: "Quran Knowledge",
     seerah: "Seerah (Prophet's Biography)",
@@ -56,7 +59,6 @@ export default function ChallengeNotification() {
     dawah: "Dawah (Islamic Outreach)",
   }
 
-  // Difficulty mapping
   const difficultyLabels = {
     easy: "Easy",
     intermediate: "Intermediate",
@@ -68,27 +70,8 @@ export default function ChallengeNotification() {
     if (user) {
       loadPendingChallenges()
 
-      // Set up real-time subscription for new challenges
-      const subscription = supabase
-        .channel("challenge-notifications")
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "user_challenges",
-            filter: `challenged_id=eq.${user.id}`,
-          },
-          (payload) => {
-            addDebug("New challenge received via real-time!")
-            loadPendingChallenges()
-          },
-        )
-        .subscribe()
-
-      return () => {
-        subscription.unsubscribe()
-      }
+      // Note: Supabase Realtime is not supported in Neon. Consider polling or WebSocket alternatives.
+      addDebug("Supabase Realtime disabled for Neon migration")
     }
   }, [user])
 
@@ -99,20 +82,10 @@ export default function ChallengeNotification() {
     setLoading(true)
 
     try {
-      // First, verify we have a valid session
-      const { data: session } = await supabase.auth.getSession()
-      if (!session.session) {
-        addDebug("No valid session found")
-        setLoading(false)
-        return
-      }
-
       addDebug(`Loading challenges for user: ${user.id}`)
 
-      // Use a more robust query with proper error handling
-      const { data: challengesData, error: challengesError } = await supabase
-        .from("user_challenges")
-        .select(`
+      const { data: challengesData, error: challengesError } = await sql`
+        SELECT 
           id,
           challenger_id,
           challenged_id,
@@ -122,11 +95,12 @@ export default function ChallengeNotification() {
           status,
           created_at,
           expires_at
-        `)
-        .eq("challenged_id", user.id)
-        .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
-        .order("created_at", { ascending: false })
+        FROM challenges
+        WHERE challenged_id = ${user.id}
+        AND status = 'pending'
+        AND expires_at > ${new Date().toISOString()}
+        ORDER BY created_at DESC
+      `
 
       if (challengesError) {
         addDebug(`Challenges query error: ${challengesError.message}`)
@@ -141,17 +115,16 @@ export default function ChallengeNotification() {
         return
       }
 
-      // Get challenger profiles separately to avoid join issues
       const challengesWithProfiles: Challenge[] = []
 
       for (const challenge of challengesData) {
         addDebug(`Getting profile for challenger: ${challenge.challenger_id}`)
 
-        const { data: profileData, error: profileError } = await supabase
-          .from("user_profiles")
-          .select("username, full_name, avatar_url")
-          .eq("id", challenge.challenger_id)
-          .single()
+        const { data: profileData, error: profileError } = await sql`
+          SELECT username, full_name, avatar_url
+          FROM profiles
+          WHERE id = ${challenge.challenger_id}
+        `
 
         if (profileError) {
           addDebug(`Profile error: ${profileError.message}`)
@@ -159,7 +132,7 @@ export default function ChallengeNotification() {
 
         challengesWithProfiles.push({
           ...challenge,
-          challenger: profileData || {
+          challenger: profileData[0] || {
             username: "Unknown User",
             full_name: "Unknown User",
             avatar_url: null,
@@ -184,11 +157,14 @@ export default function ChallengeNotification() {
     setProcessingAction(true)
 
     try {
-      const { error } = await supabase.from("user_challenges").update({ status: "accepted" }).eq("id", challengeId)
+      const { error } = await sql`
+        UPDATE challenges
+        SET status = 'accepted'
+        WHERE id = ${challengeId}
+      `
 
       if (error) throw error
 
-      // Remove from pending challenges
       setPendingChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
       toast({
@@ -198,7 +174,6 @@ export default function ChallengeNotification() {
 
       addDebug("Challenge accepted successfully, redirecting to quiz...")
 
-      // Redirect to the challenge quiz with proper parameters
       const challengeUrl = `/quiz?category=${selectedChallenge.category}&difficulty=${selectedChallenge.difficulty}&challenge=${challengeId}&questions=${selectedChallenge.question_count}&opponent=${selectedChallenge.challenger_id}&opponentName=${encodeURIComponent(selectedChallenge.challenger.full_name || selectedChallenge.challenger.username)}&challengerTurn=false`
 
       addDebug(`Redirecting to: ${challengeUrl}`)
@@ -220,11 +195,14 @@ export default function ChallengeNotification() {
     setProcessingAction(true)
 
     try {
-      const { error } = await supabase.from("user_challenges").update({ status: "declined" }).eq("id", challengeId)
+      const { error } = await sql`
+        UPDATE challenges
+        SET status = 'declined'
+        WHERE id = ${challengeId}
+      `
 
       if (error) throw error
 
-      // Remove from pending challenges
       setPendingChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
       toast({
@@ -269,7 +247,7 @@ export default function ChallengeNotification() {
 
   const formatExpiresIn = (dateString: string) => {
     const expiryDate = new Date(dateString)
-    const now = new Date()
+    const now = New Date()
     const diffMs = expiryDate.getTime() - now.getTime()
 
     if (diffMs <= 0) return "Expired"
@@ -281,14 +259,12 @@ export default function ChallengeNotification() {
     return `${diffDays} day${diffDays !== 1 ? "s" : ""}`
   }
 
-  // Don't show anything if no challenges and not loading
   if (!loading && pendingChallenges.length === 0) {
     return null
   }
 
   return (
     <>
-      {/* Floating notification button */}
       {pendingChallenges.length > 0 && (
         <div className="fixed bottom-4 right-4 z-50">
           <Button
@@ -303,7 +279,6 @@ export default function ChallengeNotification() {
         </div>
       )}
 
-      {/* Loading indicator */}
       {loading && (
         <div className="fixed bottom-4 right-4 z-50">
           <Button disabled className="bg-gray-400 text-white rounded-full p-4 shadow-lg flex items-center gap-2">
@@ -313,7 +288,6 @@ export default function ChallengeNotification() {
         </div>
       )}
 
-      {/* Challenge details dialog */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -410,7 +384,6 @@ export default function ChallengeNotification() {
                 </Button>
               </div>
 
-              {/* Debug info */}
               {debugInfo.length > 0 && (
                 <div className="text-xs text-gray-500 p-2 bg-gray-50 rounded">
                   <p className="font-medium">Debug Log:</p>
@@ -426,3 +399,4 @@ export default function ChallengeNotification() {
     </>
   )
 }
+```
