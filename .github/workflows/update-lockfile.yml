@@ -1,0 +1,25 @@
+name: Update pnpm-lock.yaml
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies and update lockfile
+        run: pnpm install
+      - name: Commit updated lockfile
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add pnpm-lock.yaml
+          git commit -m "Regenerate pnpm-lock.yaml with @neondatabase/serverless@^0.10.0" || echo "No changes to commit"
+          git push
