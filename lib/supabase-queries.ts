@@ -3,11 +3,12 @@ import { toast } from "@/hooks/use-toast";
 import { neon } from "@neondatabase/serverless";
 
 const supabase = createServerClient();
-const sql = neon(process.env.DATABASE_URL);
+const sql = neon(process.env.iqra_DATABASE_URL || process.env.DATABASE_URL);
 
 console.log('Supabase client initialized with URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
 console.log('Supabase anon key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Missing');
 console.log('Neon DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'Missing');
+console.log('Neon iqra_DATABASE_URL:', process.env.iqra_DATABASE_URL ? 'Set' : 'Missing');
 
 // Neon query helper
 const queryNeon = async (query: string, params: any[] = []) => {
