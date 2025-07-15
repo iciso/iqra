@@ -10,7 +10,6 @@ import tazkiyahCategory from "./tazkiyah";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran Fiqh Tafsir Hadeeth Aqeedah 10-10 each in easy and advanced 
-
 // Define all quiz categories directly in this file if removing any data category
 const quizData: QuizCategory[] = [
   {
