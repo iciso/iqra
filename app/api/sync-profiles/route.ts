@@ -70,4 +70,4 @@ export async function POST() {
     console.error("❌ Sync error:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-}
+}       
