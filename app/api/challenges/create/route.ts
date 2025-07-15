@@ -1,69 +1,58 @@
-```typescript
-import { NextResponse } from "next/server";
-import { neon } from "@neondatabase/serverless";
-import { createClient } from "@/lib/supabase/server";
-import { cookies } from "next/headers";
+import { type NextRequest, NextResponse } from "next/server"
+import { createClient } from "@supabase/supabase-js"
 
-const connectionString = process.env.NEON_DATABASE_URL || process.env.DATABASE_URL || process.env.iqra_DATABASE_URL;
-if (!connectionString) {
-  console.error("❌ No Neon database connection string provided");
-  return NextResponse.json({ error: "Database configuration error" }, { status: 500 });
-}
-const sql = neon(connectionString);
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const supabase = createClient(cookies());
+    const { challengedId, category, difficulty, questionCount, timeLimit } = await request.json()
+
+    // Get the current user from the session
+    const authHeader = request.headers.get("authorization")
+    if (!authHeader) {
+      return NextResponse.json({ error: "No authorization header" }, { status: 401 })
+    }
+
+    const token = authHeader.replace("Bearer ", "")
     const {
       data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      console.error("❌ No authenticated user");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      error: authError,
+    } = await supabase.auth.getUser(token)
+
+    if (authError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { challengedId, category, difficulty, questionCount, timeLimit } = await request.json();
-    if (!challengedId || !category || !difficulty || !questionCount || !timeLimit) {
-      console.error("❌ Missing required fields");
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
+    // Create challenge in user_challenges table
+    const challengeId = crypto.randomUUID()
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours from now
 
-    const { data, error } = await sql`
-      INSERT INTO challenges (
-        challenger_id,
-        challenged_id,
+    const { data, error } = await supabase
+      .from("user_challenges")
+      .insert({
+        id: challengeId,
+        challenger_id: user.id,
+        challenged_id: challengedId,
         category,
         difficulty,
-        question_count,
-        time_limit,
-        status,
-        created_at,
-        expires_at
-      )
-      VALUES (
-        ${user.id},
-        ${challengedId},
-        ${category},
-        ${difficulty},
-        ${questionCount},
-        ${timeLimit},
-        'pending',
-        ${new Date().toISOString()},
-        ${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()}
-      )
-      RETURNING *
-    `;
+        question_count: questionCount,
+        time_limit: timeLimit,
+        status: "pending",
+        expires_at: expiresAt.toISOString(),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .select()
+      .single()
 
     if (error) {
-      console.error("❌ Challenge creation error:", error);
-      throw error;
+      console.error("Database error:", error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    console.log("✅ Challenge created successfully:", data[0]);
-    return NextResponse.json({ challenge: data[0] });
+    return NextResponse.json({ challenge: data })
   } catch (error: any) {
-    console.error("❌ Challenge creation failed:", error);
-    return NextResponse.json({ error: error.message || "Failed to create challenge" }, { status: 500 });
+    console.error("API error:", error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
-```

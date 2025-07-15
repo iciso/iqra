@@ -1,16 +1,15 @@
-import type React from "react";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "@/contexts/auth-context";
-import { Header } from "@/components/layout/header";
-import { Toaster } from "@/components/ui/toaster";
-import ChallengeNotification from "@/components/challenge/challenge-notification";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/contexts/auth-context"
+import { Header } from "@/components/layout/header"
+import { Toaster } from "@/components/ui/toaster"
+import ChallengeNotification from "@/components/challenge/challenge-notification"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
-// Metadata export
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Increase & Test your Islamic knowledge through interactive quizzes and challenges",
@@ -20,56 +19,47 @@ export const metadata: Metadata = {
   publisher: "IQRA",
   robots: "index, follow",
   openGraph: {
-    url: "https://iqrar.vercel.app/", // Corrected domain
+    url: "https://ichal.vercel.app/", // Added og:url
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [
-      {
-        url: "/iqralogo.png", // Relative path to public folder
-        width: 1200,
-        height: 630,
-        alt: "IQRA App Logo",
-      },
-    ],
+    images: [{ 
+      url: "https://cvemrafi.vercel.app/iqra-app.png?fe032b8e85e0108a4b81b3e81fff56d6", // Version parameter
+      width: 1200, // Recommended dimensions
+      height: 630,
+      alt: "IQRA App Logo",
+    }],
     type: "website",
-    siteName: "IQRA",
+    siteName: "IQRA", // Recommended
   },
   twitter: {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "/iqralogo.png" }], // Use the same logo
+    images: [{ url: "https://cvemrafi.vercel.app/iqra-app.png?fe032b8e85e0108a4b81b3e81fff56d6" }],
   },
+  // Optional but recommended if you have a Facebook App
+  // other: {
+  //   "fb:app_id": "YOUR_FACEBOOK_APP_ID" 
+  // },
   icons: {
     icon: [
-      { url: "/iqralogo.ico", type: "image/x-icon" }, // Corrected path
-      { url: "/iqralogo.ico", sizes: "any" },
+      { url: "https://cvemrafi.vercel.app/iqra-app.png", type: "image/png" },
+      { url: "https://cvemrafi.vercel.app/iqra-app.png", sizes: "any" },
     ],
   },
-  generator: "v0.dev",
-};
-
-// Viewport export (for viewport and themeColor)
-export const viewport: Viewport = {
+  viewport: "width=device-width, initial-scale=1",
   themeColor: "#15803D",
-  width: "device-width",
-  initialScale: 1,
-};
-
+  generator: 'v0.dev'
+}
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <AuthProvider>
             <div className="min-h-screen flex flex-col">
               <Header />
@@ -82,5 +72,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

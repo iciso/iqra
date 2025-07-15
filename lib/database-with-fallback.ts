@@ -27,7 +27,7 @@ export async function getLeaderboardWithFallback() {
           difficulty: "Easy",
           challenge: "quiz",
         },
-      ].filter((entry) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(entry.name)),
+      ],
       source: "Build Time Mock",
     }
   }
@@ -35,12 +35,12 @@ export async function getLeaderboardWithFallback() {
   try {
     console.log("📊 Trying Supabase for leaderboard...")
 
-    // Get all user profiles from Supabase (total scores)
+    // First try to get user profiles from Supabase (total scores)
     const { data: profiles, error: profilesError } = await supabase
       .from("user_profiles")
       .select("*")
-      .not("username", "in", '("Test User","Build Time User","Demo User","test-1748153442262")') // Filter out test users
       .order("total_score", { ascending: false })
+      .limit(20)
 
     if (profilesError) {
       throw profilesError
@@ -89,7 +89,7 @@ export async function getLeaderboardWithFallback() {
             difficulty: "Easy",
             challenge: "quiz",
           },
-        ].filter((entry) => !["Test User", "Build Time User", "Demo User", "test-1748153442262"].includes(entry.name)),
+        ],
         source: "Demo (Error)",
       }
     }
