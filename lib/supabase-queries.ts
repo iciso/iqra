@@ -1,4 +1,4 @@
-```typescript
+"use client"
 import { neon } from "@neondatabase/serverless";
 import { createClient } from "@/lib/supabase/server";
 
@@ -105,4 +105,3 @@ export async function getPendingFriendRequests(userId: string) {
     throw error;
   }
 }
-```
