@@ -1,5 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
+// Contains Quran, Fiqh, Tafseer, Hadeeth, and Aqeedah
 // Expanded Quran Questions
 export const expandedQuranQuestions: QuizCategory = {
   name: "Quran",
@@ -102,7 +103,7 @@ export const expandedFiqhQuestions: QuizCategory = {
   description: "Test your knowledge of Islamic jurisprudence",
   icon: "scale",
   questions: [
-    {
+       {
       id: "fiqh-11",
       question: "What is the minimum amount of wealth (nisab) required for Zakat on gold?",
       options: ["85 grams", "87.48 grams", "90 grams", "95 grams"],
@@ -549,47 +550,4 @@ export const expandedAqeedahQuestions: QuizCategory = {
   ],
 }
 
-// Expanded History Questions
-export const expandedHistoryQuestions: QuizCategory = {
-  name: "History",
-  description: "Test your knowledge of Islamic history",
-  icon: "clock",
-  questions: [
-    {
-      id: "history-11",
-      question: "Which caliph was known as 'The Commander of the Faithful' (Amir al-Mu'minin) first?",
-      options: ["Abu Bakr", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"],
-      correctAnswer: "Umar ibn al-Khattab",
-      explanation:
-        "Umar ibn al-Khattab was the first to be called 'Amir al-Mu'minin' (Commander of the Faithful). Abu Bakr was called 'Khalifatu Rasulillah' (Successor of the Messenger of Allah).",
-      difficulty: "medium",
-    },
-    {
-      id: "history-12",
-      question: "During which caliph's reign was the Quran compiled into a single manuscript?",
-      options: ["Abu Bakr", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"],
-      correctAnswer: "Abu Bakr",
-      explanation:
-        "The Quran was first compiled into a single manuscript during Abu Bakr's caliphate, at the suggestion of Umar ibn al-Khattab, following the Battle of Yamama where many Quran memorizers were martyred.",
-      difficulty: "medium",
-    },
-    {
-      id: "history-13",
-      question: "Which Muslim dynasty ruled Spain (Al-Andalus) for nearly 800 years?",
-      options: ["Abbasids", "Umayyads", "Ottomans", "Fatimids"],
-      correctAnswer: "Umayyads",
-      explanation:
-        "The Umayyad dynasty established rule in Al-Andalus (Islamic Spain) in 711 CE, and various Muslim dynasties continued to rule parts of the Iberian Peninsula until 1492 CE.",
-      difficulty: "medium",
-    },
-    {
-      id: "history-14",
-      question: "Who was the founder of the Ottoman Empire?",
-      options: ["Osman I", "Mehmed II", "Suleiman the Magnificent", "Selim I"],
-      correctAnswer: "Osman I",
-      explanation:
-        "Osman I (also known as Osman Bey or Osman Ghazi) founded the Ottoman Empire around 1299 CE. The empire was named after him - 'Ottoman' is derived from the Arabic form of his name, 'Uthman'.",
-      difficulty: "medium",
-    },
-  ],
-}
+// Removed on 14 July 2025 three appendicular History questions which were here
