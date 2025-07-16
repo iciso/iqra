@@ -64,7 +64,7 @@ const categories = [
   {
     id: "tazkiyah",
     title: "Tazkiyah",
-    description: "Spiritual Purification",
+    description: "Spiritual Purification", 
     icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
