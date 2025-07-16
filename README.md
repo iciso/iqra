@@ -25,7 +25,7 @@ IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your
 1. Clone the repository
    \`\`\`
    git clone https://github.com/iciso/iqra.git
-   cd 1qra
+   cd iqra
    \`\`\`
 
 2. Install dependencies
