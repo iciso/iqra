@@ -358,7 +358,16 @@ const  medicalEthicsCategory: QuizCategory = {
         explanation: "Islam teaches respect for all people, making cultural competency essential for providing sensitive, effective care to diverse populations."
       },
     ],
+    intermediate: [
+      // Copy the first 10 questions from easy or advanced level
+      // This is a temporary solution until proper intermediate questions are created
+    ],
   },
-};
+}
+
+// Add this line to copy questions to intermediate level if it doesn't exist
+if (!medicalEthicsCategory.levels.intermediate) {
+  medicalEthicsCategory.levels.intermediate = [...medicalEthicsCategory.levels.easy]
+}
 
 export default  medicalEthicsCategory;
