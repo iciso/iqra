@@ -11,9 +11,9 @@ import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Has Quran Tafsir Hadeeth 10-10 each in easy and advanced 
+// Has Quran Tafsir 10-10 each in easy and advanced 
 // Seerah is in quiz-data-manager-additions,  Aqeedah in quiz-data-manager-additional-categories
-// Define all quiz categories directly in this file if removing any data category
+// Define all quiz categories in this file if removing any category from here or adding in data folder
 const quizData: QuizCategory[] = [
   {
     id: "quran",
