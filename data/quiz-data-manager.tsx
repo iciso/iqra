@@ -10,6 +10,7 @@ import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
+import { islamicMedicalEthicsQuestions } from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran only 30-10 each in easy and advanced 
@@ -421,6 +422,7 @@ const quizData: QuizCategory[] = [
   hadeethCategory,
   fiqhCategory,
   dawahCategory,
+  islamicMedicalEthicsCategory,
 ];
 
 // Debug logs
