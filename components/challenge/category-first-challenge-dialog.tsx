@@ -10,6 +10,7 @@ import {
   Gamepad2,
   Zap,
   BookOpen,
+  BriefcaseMedical,
   Scale,
   Scroll,
   ChurchIcon as Mosque,
