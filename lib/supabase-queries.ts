@@ -113,7 +113,7 @@ export async function updateUserOnlineStatus(isOnline: boolean) {
 }
 
 // User search and discovery (these are in Supabase)
-export async function searchUsers(query: string, limit = 10) {
+export async function searchUsers(query: string, limit = 30) {
   console.log("🔍 SEARCH USERS FUNCTION: Called with query:", query)
 
   if (!query || query.length < 2) {
@@ -141,7 +141,7 @@ export async function searchUsers(query: string, limit = 10) {
   }
 }
 
-export async function getTopPlayers(limit = 10) {
+export async function getTopPlayers(limit = 30) {
   const { data, error } = await supabase
     .from("user_profiles")
     .select("*")
