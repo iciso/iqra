@@ -128,12 +128,12 @@ const fiqhCategory: QuizCategory = {
     {
       question: "What invalidates Wudu?",
       options: [
-        "Sleeping while lying down",
-        "Touching a dog",
+        "Deep sleep",
+        "Answering the call of nature",
         "Passing wind",
-        "Eating cooked food"
+        "All of the above"
       ],
-      correctAnswer: "Passing wind",
+      correctAnswer: "All of the above",
       explanation: "Among the things that nullify Wudu are passing wind, answering the call of nature, and deep sleep, as established in authentic hadith.",
     },
     {
@@ -214,7 +214,7 @@ const fiqhCategory: QuizCategory = {
       explanation: "Zakat becomes obligatory when one possesses the nisab amount for a complete lunar year, as established in Quran 9:103 and authentic Sunnah.",
     },
     {
-      question: "What is 'Eid al-Fitr'?",
+      question: "What is 'Eid ul-Fitr'?",
       options: [
         "The festival at Hajj completion",
         "The festival ending Ramadan",
@@ -222,7 +222,7 @@ const fiqhCategory: QuizCategory = {
         "Islamic New Year"
       ],
       correctAnswer: "The festival ending Ramadan",
-      explanation: "Eid al-Fitr marks the end of Ramadan, celebrated on 1st Shawwal, as established by the Prophet (PBUH) and mentioned in authentic hadith.",
+      explanation: "Eid ul-Fitr marks the end of Ramadan, celebrated on 1st Shawwal, as established by the Prophet (PBUH) and mentioned in authentic hadith.",
     },
     {
       question: "What is the minimum age for Hajj obligation?",
@@ -312,7 +312,7 @@ const fiqhCategory: QuizCategory = {
             explanation: "Qiyas is the process of deductive analogy used to apply a known ruling to a new situation.",
           },
           {
-            question: "Which school of thought was founded by Imam Abu Hanifa?",
+            question: "Which school of thought was founded by the students of Imam Abu Hanifa?",
             options: ["Maliki", "Shafi'i", "Hanbali", "Hanafi"],
             correctAnswer: "Hanafi",
             explanation:
@@ -354,18 +354,6 @@ const fiqhCategory: QuizCategory = {
             correctAnswer: "Juristic preference or discretion",
             explanation:
               "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence.",
-          },
-            {
-          "question": "Is it permissible in Islamic law to perform IVF using donor sperm or eggs?",
-          "options": [
-          "Yes, with no restrictions",
-          "No, it is always forbidden",
-          "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-          "No, unless both spouses are related"
-          ],
-          "correctAnswer": "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-          "explanation": "Islam permits IVF for medical treatment purposes, provided that it involves the couple's own sperm and eggs and does not involve third-party donors. Use of donor sperm or eggs is generally considered impermissible because it introduces a third party into the marital relationship, which is against Islamic principles.",
-          "difficulty": "high"
           },
           {
             question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
