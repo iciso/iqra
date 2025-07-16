@@ -352,6 +352,28 @@ const  medicalEthicsCategory: QuizCategory = {
         explanation: "Islamic ethics generally prohibits cognitive enhancement for healthy individuals as it constitutes unnecessary tampering with Allah's creation."
       },
       {
+        question: "What is the Islamic ruling on using human-animal chimeras for organ transplantation?",
+        options: [
+          "Completely permitted without restrictions",
+          "Permitted only for vital organs with strict ethical oversight",
+          "Forbidden as it violates the boundaries between species",
+          "Only allowed for non-human primates"
+        ],
+        correctAnswer: "Permitted only for vital organs with strict ethical oversight",
+        explanation: "Some Islamic scholars conditionally permit human-animal chimeras for organ transplantation when there's critical need and no alternatives exist, provided strict ethical guidelines prevent the mixing of human and animal reproductive cells or neural tissues."
+      },
+      {
+        question: "How does Islamic medical ethics view the use of nanotechnology in targeted drug delivery?",
+        options: [
+          "Forbidden as it alters the body at molecular level",
+          "Permitted with safety testing and ethical review",
+          "Only allowed for cancer treatment",
+          "Considered makruh (disliked) but not haram"
+        ],
+        correctAnswer: "Permitted with safety testing and ethical review",
+        explanation: "Islamic ethics generally permits nanotechnology in medicine when it demonstrates clear therapeutic benefits, undergoes rigorous safety testing, and receives proper ethical review, following the principle of 'bringing benefit and preventing harm' (jalb al-masalih wa dar' al-mafasid)."
+      },
+      {
         question: "How should Muslim doctors approach cultural competency training?",
         options: ["Unnecessary", "Essential part of medical education", "Only about Muslim cultures", "Only for doctors abroad"],
         correctAnswer: "Essential part of medical education",
