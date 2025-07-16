@@ -177,6 +177,8 @@ export default function WorkingChallengeSender() {
     { value: "islamic-finance", label: "Islamic Finance" },
     { value: "tazkiyah", label: "Tazkiyah" },
     { value: "history", label: "Islamic History" },
+    { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
+    { value: "new-muslims", label: "New Muslims" },
     { value: "dawah", label: "Dawah" },
   ]
 
