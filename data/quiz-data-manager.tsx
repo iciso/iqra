@@ -4,6 +4,7 @@ import { additionalCategories } from "./quiz-data-manager-additional-categories"
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
 import islamicHistoryCategory from "./islamic-history";
+import hadeethCategory from "./hadeeth";
 import fiqhCategory from "./fiqh";
 import dawahCategory from "./dawah";
 import newMuslimsCategory from "./new-muslims";
@@ -11,7 +12,7 @@ import tazkiyahCategory from "./tazkiyah";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran Tafsir Hadeeth 10-10 each in easy and advanced 
-// Seerah is in quiz-data-manager-additions  Aqeedah in quiz-data-manager-additional-categories
+// Seerah is in quiz-data-manager-additions,  Aqeedah in quiz-data-manager-additional-categories
 // Define all quiz categories directly in this file if removing any data category
 const quizData: QuizCategory[] = [
   {
@@ -388,237 +389,6 @@ const quizData: QuizCategory[] = [
       ],
     },
   },
-  {
-    id: "hadeeth",
-    title: "Hadeeth",
-    description: "Sayings and actions of Prophet Muhammad (PBUH)",
-    icon: "",
-    levels: {
-      easy: [
-        {
-          question: "What does the term 'Hadith' mean?",
-          options: ["Prayer", "Narration", "Book", "Law"],
-          correctAnswer: "Narration",
-          explanation:
-            "Hadith literally means a narration, account, or report. In Islamic context, it refers to the sayings, actions, or approvals of Prophet Muhammad (PBUH).",
-        },
-        {
-          question: "What are the two main components of a Hadith?",
-          options: ["Quran and Sunnah", "Isnad and Matn", "Sahih and Daif", "Fiqh and Aqeedah"],
-          correctAnswer: "Isnad and Matn",
-          explanation:
-            "A Hadith consists of the Isnad (chain of narrators) and the Matn (the actual text or content of the narration).",
-        },
-        {
-          question: "Who compiled the collection of Hadiths known as 'Sahih Bukhari'?",
-          options: ["Imam Muslim", "Imam Bukhari", "Imam Malik", "Imam Abu Dawud"],
-          correctAnswer: "Imam Bukhari",
-          explanation: "Sahih Bukhari was compiled by Imam Muhammad ibn Ismail al-Bukhari (810-870 CE).",
-        },
-        {
-          question: "What is a 'Sahih' Hadith?",
-          options: [
-            "A Hadith narrated by a companion",
-            "A Hadith found in the Quran",
-            "A Hadith that is authentic and meets all criteria of acceptance",
-            "A Hadith that is weak",
-          ],
-          correctAnswer: "A Hadith that is authentic and meets all criteria of acceptance",
-          explanation:
-            "A Sahih Hadith is one that is authentic and meets all the criteria of acceptance in terms of chain of narrators and content.",
-        },
-        {
-          question: "What is the difference between Hadith and Sunnah?",
-          options: [
-            "They are the same",
-            "Hadith is written, Sunnah is practiced",
-            "Hadith is the narration, Sunnah is the practice or way",
-            "Hadith is from the Quran, Sunnah is from the Prophet",
-          ],
-          correctAnswer: "Hadith is the narration, Sunnah is the practice or way",
-          explanation:
-            "Hadith refers to the narrations of the Prophet's sayings, actions, or approvals, while Sunnah refers to his established practice or way of life.",
-        },
-        {
-          question: "What is the purpose of studying Hadith?",
-          options: [
-            "To replace the Quran",
-            "To understand and implement the Quran and Islamic teachings correctly",
-            "Only for historical interest",
-            "Only for scholars, not regular Muslims",
-          ],
-          correctAnswer: "To understand and implement the Quran and Islamic teachings correctly",
-          explanation:
-            "Studying Hadith helps Muslims understand and implement the Quran and Islamic teachings correctly, as the Prophet Muhammad (PBUH) was the living example of the Quran in practice.",
-        },
-        {
-          question: "What is a 'Daif' (weak) Hadith?",
-          options: [
-            "A Hadith with a short text",
-            "A Hadith narrated by few people",
-            "A Hadith that doesn't meet all criteria of authenticity",
-            "A Hadith about minor issues",
-          ],
-          correctAnswer: "A Hadith that doesn't meet all criteria of authenticity",
-          explanation:
-            "A Daif (weak) Hadith is one that doesn't meet all the criteria of authenticity in terms of chain of narrators or content, making it less reliable than Sahih or Hasan Hadiths.",
-        },
-        {
-          question: "Who is considered the 'Mother of the Believers' who narrated many Hadiths?",
-          options: ["Fatimah", "Khadijah", "Aisha", "Zaynab"],
-          correctAnswer: "Aisha",
-          explanation:
-            "Aisha, the wife of Prophet Muhammad (PBUH), is considered one of the 'Mothers of the Believers' and narrated approximately 2,210 Hadiths, making her one of the most prolific narrators.",
-        },
-        {
-          question: "What is the meaning of 'Sunnah' in the context of Hadith studies?",
-          options: [
-            "The Quran",
-            "The way or practice of the Prophet",
-            "The consensus of scholars",
-            "The legal rulings",
-          ],
-          correctAnswer: "The way or practice of the Prophet",
-          explanation:
-            "In the context of Hadith studies, Sunnah refers to the way or practice of Prophet Muhammad (PBUH), including his sayings, actions, and tacit approvals.",
-        },
-        {
-          question: "What is the role of Hadith in Islamic law?",
-          options: [
-            "It has no role",
-            "It is the only source",
-            "It is the second primary source after the Quran",
-            "It is only used when the Quran is silent",
-          ],
-          correctAnswer: "It is the second primary source after the Quran",
-          explanation:
-            "Hadith serves as the second primary source of Islamic law after the Quran, providing detailed explanations, clarifications, and additional rulings not explicitly mentioned in the Quran.",
-        },
-      ],
-      advanced: [
-        {
-          question: "What is the difference between Hadith and Sunnah?",
-          options: [
-            "They are the same thing",
-            "Hadith is written, Sunnah is practiced",
-            "Hadith is the narration, Sunnah is the practice or way",
-            "Hadith is from companions, Sunnah is from the Prophet",
-          ],
-          correctAnswer: "Hadith is the narration, Sunnah is the practice or way",
-          explanation:
-            "Hadith refers to the narrations about the Prophet's sayings, actions, or approvals, while Sunnah refers to his way of life, practices, and traditions.",
-        },
-        {
-          question: "What is a 'Mutawatir' Hadith?",
-          options: [
-            "A Hadith narrated by a single person",
-            "A Hadith with a broken chain",
-            "A Hadith transmitted by a large number of narrators at each level",
-            "A Hadith that contradicts the Quran",
-          ],
-          correctAnswer: "A Hadith transmitted by a large number of narrators at each level",
-          explanation:
-            "A Mutawatir Hadith is one that has been narrated by such a large number of people at each level of the chain that it is impossible for them to have colluded in a lie.",
-        },
-        {
-          question: "What are the 'Kutub al-Sittah'?",
-          options: [
-            "The six verses of the Quran",
-            "The six pillars of faith",
-            "The six canonical collections of Hadith",
-            "The six schools of thought",
-          ],
-          correctAnswer: "The six canonical collections of Hadith",
-          explanation:
-            "Kutub al-Sittah refers to the six major collections of Hadith: Sahih Bukhari, Sahih Muslim, Sunan Abu Dawud, Jami al-Tirmidhi, Sunan al-Nasa'i, and Sunan Ibn Majah.",
-        },
-        {
-          question: "What is 'Ilm al-Jarh wa al-Ta'dil'?",
-          options: [
-            "The science of Quranic interpretation",
-            "The science of evaluating Hadith narrators",
-            "The science of Islamic law",
-            "The science of Arabic grammar",
-          ],
-          correctAnswer: "The science of evaluating Hadith narrators",
-          explanation:
-            "Ilm al-Jarh wa al-Ta'dil is the science of critically evaluating Hadith narrators to determine their reliability and integrity.",
-        },
-        {
-          question: "What is a 'Hadith Qudsi'?",
-          options: [
-            "A Hadith narrated by Qudsi, a companion",
-            "A Hadith where the Prophet quotes Allah's words",
-            "A Hadith about Jerusalem (Al-Quds)",
-            "A Hadith that is extremely authentic",
-          ],
-          correctAnswer: "A Hadith where the Prophet quotes Allah's words",
-          explanation:
-            "A Hadith Qudsi is a narration where the Prophet Muhammad (PBUH) quotes Allah's words, but it is not part of the Quran.",
-        },
-        {
-          question: "What is the difference between 'Hadith Sahih' and 'Hadith Hasan'?",
-          options: [
-            "They are the same",
-            "Sahih is authentic, Hasan is good but slightly less authentic",
-            "Sahih is from the Prophet, Hasan is from companions",
-            "Sahih is in Arabic, Hasan is translated",
-          ],
-          correctAnswer: "Sahih is authentic, Hasan is good but slightly less authentic",
-          explanation:
-            "A Sahih Hadith meets all criteria of authenticity at the highest level, while a Hasan Hadith is reliable but doesn't reach the highest level of authenticity.",
-        },
-        {
-          question: "What is 'Ilm Mustalah al-Hadith'?",
-          options: [
-            "The science of Hadith terminology and classification",
-            "The science of Hadith narration",
-            "The science of Hadith interpretation",
-            "The science of Hadith collection",
-          ],
-          correctAnswer: "The science of Hadith terminology and classification",
-          explanation:
-            "Ilm Mustalah al-Hadith is the science that deals with the terminology, classification, and methodology of Hadith studies.",
-        },
-        {
-          question: "What is a 'Mawdu' Hadith?",
-          options: [
-            "A Hadith with a complete chain",
-            "A Hadith with multiple chains",
-            "A fabricated or forged Hadith",
-            "A Hadith with a single narrator",
-          ],
-          correctAnswer: "A fabricated or forged Hadith",
-          explanation:
-            "A Mawdu Hadith is one that has been fabricated or forged and falsely attributed to the Prophet Muhammad (PBUH).",
-        },
-        {
-          question: "What is the concept of 'Isnad' in Hadith studies?",
-          options: [
-            "The text of the Hadith",
-            "The chain of narrators",
-            "The meaning of the Hadith",
-            "The collection of Hadiths",
-          ],
-          correctAnswer: "The chain of narrators",
-          explanation:
-            "Isnad refers to the chain of narrators through which a Hadith has been transmitted, which is crucial for evaluating its authenticity.",
-        },
-        {
-          question: "What is the concept of 'Tadlis' in Hadith terminology?",
-          options: [
-            "Adding extra information to a Hadith",
-            "Concealing a defect in the chain of narration",
-            "Translating a Hadith incorrectly",
-            "Fabricating a Hadith completely",
-          ],
-          correctAnswer: "Concealing a defect in the chain of narration",
-          explanation:
-            "Tadlis refers to the practice of concealing a defect in the chain of narration, such as when a narrator gives the impression that he heard the Hadith directly from someone he actually didn't meet or hear from directly. This is considered a form of misrepresentation that affects the authenticity of the Hadith.",
-        },
-      ],
-    },
-  },
   seerahCategory,
    ...additionalCategories,
   newMuslimsCategory,
@@ -626,6 +396,7 @@ const quizData: QuizCategory[] = [
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
+  hadeethCategory,
   fiqhCategory,
   dawahCategory,
 ];
