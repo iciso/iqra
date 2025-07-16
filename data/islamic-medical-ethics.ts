@@ -1,7 +1,7 @@
 import type { QuizCategory } from "@/types/quiz";
 
 const  islamicMedicalEthicsCategory: QuizCategory = {
-  id: " islamicMedicalEthics",
+  id: " islamic-medical-ethics",
   title: " Islamic Medical Ethics",
   description: "Islamic Perspectives of Medical Ethics",
   icon: "BriefcaseMedical"
