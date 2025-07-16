@@ -669,9 +669,6 @@ const hadeethCategory: QuizCategory = {
           "Tadlis refers to the practice of concealing a defect in the chain of narration, such as when a narrator gives the impression that he heard the Hadith directly from someone he actually didn't meet or hear from directly. This is considered a form of misrepresentation that affects the authenticity of the Hadith.",
       },
     ],
-  },
-},    
-    ],
     intermediate: [
       // Copy the first 10 questions from easy or advanced level
       // This is a temporary solution until proper intermediate questions are created
