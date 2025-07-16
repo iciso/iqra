@@ -1,7 +1,7 @@
 import type { QuizCategory } from "@/types/quiz"
 import { getAllCategories as getAllQuizCategories } from "./quiz-data-manager"
 
-// Add the missing named export 'categories'
+// Add the missing named export 'categories' My doubt is would missing category be picked up hee
 export const categories = getAllQuizCategories()
 
 export function getAllCategories(): QuizCategory[] {
