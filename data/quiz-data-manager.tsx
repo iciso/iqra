@@ -4,12 +4,13 @@ import { additionalCategories } from "./quiz-data-manager-additional-categories"
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
 import islamicHistoryCategory from "./islamic-history";
+import fiqhCategory from "./fiqh";
 import dawahCategory from "./dawah";
 import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Has Quran Fiqh Tafsir Hadeeth Aqeedah 10-10 each in easy and advanced 
+// Has Quran Tafsir Hadeeth Aqeedah 10-10 each in easy and advanced 
 // Define all quiz categories directly in this file if removing any data category
 const quizData: QuizCategory[] = [
   {
@@ -162,183 +163,6 @@ const quizData: QuizCategory[] = [
           correctAnswer: "Surahs revealed in Makkah and Madinah respectively",
           explanation:
             "Makki Surahs are those revealed before the Prophet's migration (Hijrah) to Madinah, while Madani Surahs are those revealed after the Hijrah. Makki Surahs generally focus on faith and monotheism, while Madani Surahs often address social legislation and community matters.",
-        },
-      ],
-    },
-  },
-  {
-    id: "fiqh",
-    title: "Fiqh",
-    description: "Islamic Jurisprudence",
-    icon: "",
-    levels: {
-      easy: [
-        {
-          question: "What is the first obligation upon a Muslim?",
-          options: [
-            "To pray five times a day",
-            "To believe in Allah and His Messenger",
-            "To fast during Ramadan",
-            "To give Zakat",
-          ],
-          correctAnswer: "To believe in Allah and His Messenger",
-          explanation: "The Shahada (declaration of faith) is the first and most fundamental pillar of Islam.",
-        },
-        {
-          question: "How many obligatory prayers are there in a day?",
-          options: ["3", "4", "5", "6"],
-          correctAnswer: "5",
-          explanation: "There are five obligatory prayers in a day: Fajr, Dhuhr, Asr, Maghrib, and Isha.",
-        },
-        {
-          question: "What is the minimum amount of wealth (nisab) required for Zakat on gold?",
-          options: ["50 grams", "85 grams", "100 grams", "200 grams"],
-          correctAnswer: "85 grams",
-          explanation: "The nisab for gold is 85 grams (or its equivalent value in currency).",
-        },
-        {
-          question: "What is the Arabic term for ritual purification?",
-          options: ["Salat", "Wudu", "Taharah", "Tayammum"],
-          correctAnswer: "Taharah",
-          explanation: "Taharah refers to the state of ritual purity and the process of purification in Islam.",
-        },
-        {
-          question: "Which of the following invalidates the fast?",
-          options: [
-            "Unintentional vomiting",
-            "Using an inhaler for asthma",
-            "Intentionally eating or drinking",
-            "Taking a shower",
-          ],
-          correctAnswer: "Intentionally eating or drinking",
-          explanation: "Intentionally eating or drinking invalidates the fast, while unintentional actions do not.",
-        },
-        {
-          question: "What is the term for the intention to perform a religious act?",
-          options: ["Niyyah", "Ijma", "Qiyas", "Ijtihad"],
-          correctAnswer: "Niyyah",
-          explanation: "Niyyah refers to the intention one must have before performing any act of worship in Islam.",
-        },
-        {
-          question: "What is 'Ghusl' in Islamic jurisprudence?",
-          options: ["Dry ablution", "Partial ablution", "Full body ritual bath", "Washing hands before eating"],
-          correctAnswer: "Full body ritual bath",
-          explanation:
-            "Ghusl refers to the ritual bath or full body washing that is required after certain events such as sexual intercourse, completion of menstruation, or before certain religious practices.",
-        },
-        {
-          question: "What is the term for the direction Muslims face during prayer?",
-          options: ["Mihrab", "Qiblah", "Ka'bah", "Sajdah"],
-          correctAnswer: "Qiblah",
-          explanation: "Qiblah is the direction that Muslims face during prayer, which is toward the Ka'bah in Makkah.",
-        },
-        {
-          question: "What is 'Zakatul-Fitr'?",
-          options: [
-            "Regular annual charity",
-            "Charity given at any time",
-            "Charity given at the end of Ramadan",
-            "Charity given during Hajj",
-          ],
-          correctAnswer: "Charity given at the end of Ramadan",
-          explanation:
-            "Zakatul-Fitr is a type of charity that must be given by every Muslim, regardless of age or wealth, before the Eid prayer at the end of Ramadan.",
-        },
-        {
-          question: "What is the ruling on praying the five daily prayers on time?",
-          options: ["Recommended (Mustahabb)", "Obligatory (Fard)", "Optional (Nafl)", "Emphasized Sunnah"],
-          correctAnswer: "Obligatory (Fard)",
-          explanation:
-            "Performing the five daily prayers on their prescribed times is obligatory (Fard) upon every adult Muslim of sound mind.",
-        },
-      ],
-      advanced: [
-        {
-          question: "What is the term for consensus of Islamic scholars?",
-          options: ["Qiyas", "Ijma", "Ijtihad", "Istihsan"],
-          correctAnswer: "Ijma",
-          explanation: "Ijma refers to the consensus of Islamic scholars on a point of Islamic law.",
-        },
-        {
-          question: "What is the minimum period of waiting (Iddah) for a divorced woman?",
-          options: ["1 month", "3 menstrual cycles", "4 months and 10 days", "1 year"],
-          correctAnswer: "3 menstrual cycles",
-          explanation:
-            "The standard Iddah period for a divorced woman is three menstrual cycles or three months if she does not menstruate.",
-        },
-        {
-          question: "What is the term for legal reasoning by analogy?",
-          options: ["Ijma", "Qiyas", "Istihsan", "Ijtihad"],
-          correctAnswer: "Qiyas",
-          explanation: "Qiyas is the process of deductive analogy used to apply a known ruling to a new situation.",
-        },
-        {
-          question: "Which school of thought was founded by Imam Abu Hanifa?",
-          options: ["Maliki", "Shafi'i", "Hanbali", "Hanafi"],
-          correctAnswer: "Hanafi",
-          explanation:
-            "The Hanafi school of thought was founded by Imam Abu Hanifa and is one of the four major Sunni schools of jurisprudence.",
-        },
-        {
-          question: "What is 'Ijma' in Islamic jurisprudence?",
-          options: ["Consensus", "Analogy", "Precedent", "Interpretation"],
-          correctAnswer: "Consensus",
-          explanation: "'Ijma' refers to the consensus of Muslim scholars on a matter of Islamic law.",
-        },
-        {
-          question: "What is the difference between Fard and Wajib in the Hanafi school?",
-          options: [
-            "They are the same thing",
-            "Fard is obligatory based on definitive evidence, Wajib on probable evidence",
-            "Fard is for individuals, Wajib is for communities",
-            "Fard is in the Quran, Wajib is in the Sunnah",
-          ],
-          correctAnswer: "Fard is obligatory based on definitive evidence, Wajib on probable evidence",
-          explanation:
-            "In the Hanafi school, Fard is an obligation established by definitive evidence, while Wajib is established by probable evidence.",
-        },
-        {
-          question: "What is 'Urf' in Islamic jurisprudence?",
-          options: ["Legal precedent", "Custom or common practice", "Scholarly opinion", "Textual interpretation"],
-          correctAnswer: "Custom or common practice",
-          explanation:
-            "'Urf refers to the custom or common practice of a society that is considered in Islamic legal rulings when it doesn't contradict Islamic principles.",
-        },
-        {
-          question: "What is the concept of 'Istihsan' in Islamic jurisprudence?",
-          options: [
-            "Consensus of scholars",
-            "Juristic preference or discretion",
-            "Analogical reasoning",
-            "Public interest",
-          ],
-          correctAnswer: "Juristic preference or discretion",
-          explanation:
-            "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence.",
-        },
-          {
-        "question": "Is it permissible in Islamic law to perform IVF using donor sperm or eggs?",
-  "options": [
-    "Yes, with no restrictions",
-    "No, it is always forbidden",
-    "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-    "No, unless both spouses are related"
-  ],
-  "correctAnswer": "Yes, if it is for treatment and within the boundaries of Islamic ethics",
-  "explanation": "Islam permits IVF for medical treatment purposes, provided that it involves the couple's own sperm and eggs and does not involve third-party donors. Use of donor sperm or eggs is generally considered impermissible because it introduces a third party into the marital relationship, which is against Islamic principles.",
-  "difficulty": "high"
-        },
-        {
-          question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
-          options: [
-            "They are synonyms",
-            "Qada is Allah's decree, Qadar is its manifestation",
-            "Qada is for good things, Qadar is for bad things",
-            "Qada is predestination, Qadar is free will",
-          ],
-          correctAnswer: "Qada is Allah's decree, Qadar is its manifestation",
-          explanation:
-            "Qada refers to Allah's decree or decision, while Qadar refers to the execution or manifestation of that decree.",
         },
       ],
     },
@@ -801,6 +625,7 @@ const quizData: QuizCategory[] = [
   comparativeReligionCategory,
   islamicFinanceCategory,
   islamicHistoryCategory,
+  fiqhCategory,
   dawahCategory,
 ];
 
