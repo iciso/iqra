@@ -4,7 +4,7 @@ const  islamicMedicalEthicsCategory: QuizCategory = {
   id: " islamic-medical-ethics",
   title: " Islamic Medical Ethics",
   description: "Islamic Perspectives of Medical Ethics",
-  icon: "BriefcaseMedical"
+  icon: "BriefcaseMedical",
   levels: {
     easy: [
       {
