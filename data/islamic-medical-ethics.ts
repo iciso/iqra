@@ -9,7 +9,7 @@ const  islamicMedicalEthicsCategory: QuizCategory = {
     easy: [
       {
         question: "What is the primary principle in Islamic medical ethics?",
-        options: ["Profit maximization", "Preserving life (Hifz al-Nafs)", "Personal convenience", "Social status"],
+        options: ["Profit maximization", "Preserving life (Hifz al-Nafs)", "Personal convenience", "Social status"],  
         correctAnswer: "Preserving life (Hifz al-Nafs)",
         explanation: "Preserving life (Hifz al-Nafs) is one of the five essential values (Maqasid) in Islamic law and the foundation of medical ethics."
       },
