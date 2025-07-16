@@ -98,7 +98,7 @@ const categories = [
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
-    id: "islamicMedicalEthics",
+    id: "islamic-medical-ethics",
     title: "Islamic Medical Ethics",
     description: "Islamic Perspectives of Medical Ethics",
     icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
