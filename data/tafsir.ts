@@ -635,17 +635,6 @@ const tafsirCategory: QuizCategory = {
             explanation: "This classical Tafsir reflects Hanafi school interpretations while drawing on traditional sources."
           },
           {
-            question: "What is 'Tafsir al-Bahr al-Muhit' by Abu Hayyan known for?",
-            options: [
-              "Extensive linguistic analysis",
-              "Focus only on legal verses",
-              "Rejection of grammar studies",
-              "Exclusive use of Hadith"
-            ],
-            correctAnswer: "Extensive linguistic analysis",
-            explanation: "This Andalusian Tafsir is renowned for its deep grammatical and linguistic examination of the Quran."
-          },
-          {
             question: "What is 'Al-Fawz al-Kabir' by Shah Waliullah about?",
             options: [
               "Principles of Quranic interpretation",
