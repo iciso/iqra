@@ -24,8 +24,8 @@ IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your
 
 1. Clone the repository
    \`\`\`
-   git clone https://github.com/YOUR-USERNAME/kalam.git
-   cd kalam
+   git clone https://github.com/iciso/iqra.git
+   cd 1qra
    \`\`\`
 
 2. Install dependencies
@@ -61,7 +61,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- IQRA Codes Team - Rafique and Joy
+- IQRA Codes Team - Rafique and Joy who taught Rafique during the COVID-19 years.
 - All contributors who have helped make this project better
 
 ## Contact
