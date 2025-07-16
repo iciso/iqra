@@ -9,6 +9,7 @@ import {
   Book,
   Scale,
   BookOpen,
+  BriefcaseMedical,
   MessageSquare,
   Heart,
   User,
@@ -95,6 +96,12 @@ const categories = [
     title: "Islamic Finance",
     description: "Principles and practices of Islamic economics",
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "islamicMedicalEthics",
+    title: "Islamic Medical Ethics",
+    description: "Islamic Perspectives of Medical Ethics",
+    icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
 ]
 
