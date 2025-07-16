@@ -10,7 +10,7 @@ import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
-import islamicMedicalEthicsCategory from "./islamic-medical-ethics"
+import { islamicMedicalEthicsCategory } from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran only 30-30 each in easy and advanced 
