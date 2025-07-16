@@ -1,6 +1,6 @@
 import type { QuizCategory } from "@/types/quiz";
 
-const  islamicMedicalEthicsCategory: QuizCategory = {
+const  medicalEthicsCategory: QuizCategory = {
   id: " islamic-medical-ethics",
   title: " Islamic Medical Ethics",
   description: "Islamic Perspectives of Medical Ethics",
@@ -361,4 +361,4 @@ const  islamicMedicalEthicsCategory: QuizCategory = {
   },
 };
 
-export default  islamicMedicalEthicsCategory;
+export default  medicalEthicsCategory;
