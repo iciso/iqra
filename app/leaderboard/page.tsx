@@ -37,6 +37,16 @@ export default function LeaderboardPage() {
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const { toast } = useToast()
 
+    // Helper function to abbreviate names with more than three words
+  const getDisplayName = (name: string) => {
+    const words = name.trim().split(/\s+/);
+    if (words.length > 4) {
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
+    }
+    return name;
+  }
+
+
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
     return leaderboard
