@@ -230,6 +230,8 @@ export default function ChallengeSenderV3() {
     { value: "tafsir", label: "Tafsir" },
     { value: "comparative", label: "Comparative Religion" },
     { value: "islamic-finance", label: "Islamic Finance" },
+    { value: "new-muslims", label: "New Muslims" },
+    { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
     { value: "tazkiyah", label: "Tazkiyah" },
     { value: "history", label: "Islamic History" },
     { value: "dawah", label: "Dawah" },
