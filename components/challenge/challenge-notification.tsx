@@ -51,9 +51,11 @@ export default function ChallengeNotification() {
     tafsir: "Tafsir (Quran Commentary)",
     comparative: "Comparative Religion",
     "islamic-finance": "Islamic Finance",
+    "new-muslims": "New Muslims",
     tazkiyah: "Tazkiyah (Spiritual Purification)",
     history: "Islamic History & Civilization",
     dawah: "Dawah (Islamic Outreach)",
+    "islamic-medical-ethics": "Islamic Medical Ethics",
   }
 
   // Difficulty mapping
