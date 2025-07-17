@@ -467,7 +467,7 @@ console.log(
   console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}/set-${setNumber}`);
   return questions;
 }
- /*
+ 
   // Before returning the questions, enhance them with infographics if available
   const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
 
@@ -476,7 +476,7 @@ console.log(
   console.log(`Enhanced ${withInfographics} questions with infographics`);
 
   return enhancedQuestions;
-*/
+
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
