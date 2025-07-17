@@ -40,7 +40,7 @@ export async function getLeaderboardWithFallback() {
       .from("user_profiles")
       .select("*")
       .order("total_score", { ascending: false })
-      .limit(20)
+      .limit(30)
 
     if (profilesError) {
       throw profilesError
