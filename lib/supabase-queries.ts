@@ -527,6 +527,34 @@ export async function submitQuizResult(
   answers?: any,
   challengeId?: string,
 ) {
+    try {
+    // Remove time_left from the payload
+    const { time_left, ...payload } = result;
+    console.log('📊 SUBMIT QUIZ RESULT: Insert data:', JSON.stringify(payload, null, 2));
+    const { data, error } = await supabase
+      .from('quiz_results')
+      .insert([payload])
+      .select();
+
+    if (error) {
+      console.error('❌ SUBMIT QUIZ RESULT: Detailed error:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code,
+      });
+      throw error;
+    }
+
+    console.log('✅ SUBMIT QUIZ RESULT: Saved to Supabase:', data);
+    return data;
+  } catch (error) {
+    console.error('❌ SUBMIT QUIZ RESULT: Failed, trying Neon fallback...', error);
+    await saveToNeonFallback(result); // Fallback logic
+    console.log('✅ SUBMIT QUIZ RESULT: Saved to Neon fallback successfully');
+    return { success: true };
+  }
+
   try {
     const {
       data: { user },
