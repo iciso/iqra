@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { getQuizQuestions, getCategory, getAllCategories } from '@/data/quiz-data-manager';
 import type { QuizCategory, DifficultyLevel } from '@/types/quiz';
-import QuizContainer from '@/ components/quiz/quiz-container';  
+import QuizContainer from '@/components/quiz/quiz-container';  
 
 // Helper function to shuffle an array using Fisher-Yates algorithm
 function shuffleArray<T>(array: T[]): T[] {
