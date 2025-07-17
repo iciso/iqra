@@ -14,7 +14,7 @@ import medicalEthicsCategory from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran only 30-30 each in easy and advanced 
-// Seerah is in quiz-data-manager-additions,  Aqeedah in quiz-data-manager-additional-categories
+// Seerah is in quiz-data-manager-additions, Aqeedah in quiz-data-manager-additional-categories
 // Define all quiz categories in this file if removing any category from here or adding any new in data folder
 const quizData: QuizCategory[] = [
   {
@@ -436,8 +436,8 @@ console.log(
   quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
 );
 
-// Updated the getQuizQuestions function to handle intermediate difficulty and assign IDs
-// as well as to divide into sets of 10
+// Updated getQuizQuestions function to handle intermediate difficulty, assign IDs, and support question sets
+export function getQuizQuestions(
   categoryId: string,
   difficulty: DifficultyLevel,
   setNumber: number = 1, // Default to first set (1–10)
@@ -450,11 +450,14 @@ console.log(
     return [];
   }
 
-  let questions = category.levels[difficulty] || [];
-  if (!questions.length) {
-    console.log(`No ${difficulty} questions found for ${categoryId}, falling back to easy`);
-    questions = category.levels.easy || [];
+  // If intermediate difficulty is requested but not available, fall back to easy
+  if (difficulty === "intermediate" && (!category.levels.intermediate || category.levels.intermediate.length === 0)) {
+    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`);
+    difficulty = "easy";
   }
+
+  // Get the questions for the specified category and difficulty
+  let questions = category.levels[difficulty] || [];
 
   // Calculate start and end indices for the set
   const startIndex = (setNumber - 1) * questionsPerSet;
@@ -465,18 +468,14 @@ console.log(
   }));
 
   console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}/set-${setNumber}`);
+
+  // Temporarily disable infographics due to display issues
+  // const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
+  // const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length;
+  // console.log(`Enhanced ${withInfographics} questions with infographics`);
+  // return enhancedQuestions;
+
   return questions;
-}
- 
-  // Before returning the questions, enhance them with infographics if available
-  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
-
-  // Log which questions have infographics
-  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length;
-  console.log(`Enhanced ${withInfographics} questions with infographics`);
-
-  return enhancedQuestions;
-
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
