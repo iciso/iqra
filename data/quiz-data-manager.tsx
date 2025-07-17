@@ -436,37 +436,38 @@ console.log(
   quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
 );
 
-// Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
-export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
-  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`);
+// Updated the getQuizQuestions function to handle intermediate difficulty and assign IDs
+// as well as to divide into sets of 10
+  categoryId: string,
+  difficulty: DifficultyLevel,
+  setNumber: number = 1, // Default to first set (1–10)
+  questionsPerSet: number = 10 // Default to 10 questions
+): QuizQuestion[] {
+  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}, set: ${setNumber}`);
   const category = quizData.find((cat) => cat.id === categoryId);
   if (!category) {
     console.log(`Category ${categoryId} not found`);
     return [];
   }
 
-  // If intermediate difficulty is requested but not available, fall back to easy
-  if (difficulty === "intermediate" && (!category.levels.intermediate || category.levels.intermediate.length === 0)) {
-    console.log(`No intermediate questions found for ${categoryId}, falling back to easy`);
-    difficulty = "easy";
+  let questions = category.levels[difficulty] || [];
+  if (!questions.length) {
+    console.log(`No ${difficulty} questions found for ${categoryId}, falling back to easy`);
+    questions = category.levels.easy || [];
   }
 
-  // Get the questions for the specified category and difficulty
-  let questions = category.levels[difficulty] || [];
+  // Calculate start and end indices for the set
+  const startIndex = (setNumber - 1) * questionsPerSet;
+  const endIndex = startIndex + questionsPerSet;
+  questions = questions.slice(startIndex, endIndex).map((question, index) => ({
+    ...question,
+    id: `${categoryId}-${difficulty}-${startIndex + index + 1}`,
+  }));
 
-  // Assign IDs to questions if they don't have them
-  questions = questions.map((question, index) => {
-    if (!question.id) {
-      return {
-        ...question,
-        id: `${categoryId}-${index + 1}`,
-      };
-    }
-    return question;
-  });
-
-  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`);
-
+  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}/set-${setNumber}`);
+  return questions;
+}
+ /*
   // Before returning the questions, enhance them with infographics if available
   const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
 
@@ -475,6 +476,7 @@ export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel
   console.log(`Enhanced ${withInfographics} questions with infographics`);
 
   return enhancedQuestions;
+*/
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
