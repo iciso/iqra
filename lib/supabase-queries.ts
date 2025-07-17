@@ -1,5 +1,11 @@
 import { supabase } from "./supabase"
 import { saveQuizResultToFallback, initializeFallbackTables } from "./neon-fallback"
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 // Initialize fallback tables
 let fallbackInitialized = false
