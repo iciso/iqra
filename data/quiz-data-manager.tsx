@@ -14,7 +14,7 @@ import medicalEthicsCategory from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Has Quran only 30-30 each in easy and advanced 
-// Seerah is in quiz-data-manager-additions, Aqeedah in quiz-data-manager-additional-categories
+// Seerah is in quiz-data-manager-additions,  Aqeedah in quiz-data-manager-additional-categories
 // Define all quiz categories in this file if removing any category from here or adding any new in data folder
 const quizData: QuizCategory[] = [
   {
@@ -436,14 +436,9 @@ console.log(
   quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
 );
 
-// Updated getQuizQuestions function to handle intermediate difficulty, assign IDs, and support question sets
-export function getQuizQuestions(
-  categoryId: string,
-  difficulty: DifficultyLevel,
-  setNumber: number = 1, // Default to first set (1–10)
-  questionsPerSet: number = 10 // Default to 10 questions
-): QuizQuestion[] {
-  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}, set: ${setNumber}`);
+// Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
+export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
+  console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`);
   const category = quizData.find((cat) => cat.id === categoryId);
   if (!category) {
     console.log(`Category ${categoryId} not found`);
@@ -459,23 +454,27 @@ export function getQuizQuestions(
   // Get the questions for the specified category and difficulty
   let questions = category.levels[difficulty] || [];
 
-  // Calculate start and end indices for the set
-  const startIndex = (setNumber - 1) * questionsPerSet;
-  const endIndex = startIndex + questionsPerSet;
-  questions = questions.slice(startIndex, endIndex).map((question, index) => ({
-    ...question,
-    id: `${categoryId}-${difficulty}-${startIndex + index + 1}`,
-  }));
+  // Assign IDs to questions if they don't have them
+  questions = questions.map((question, index) => {
+    if (!question.id) {
+      return {
+        ...question,
+        id: `${categoryId}-${index + 1}`,
+      };
+    }
+    return question;
+  });
 
-  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}/set-${setNumber}`);
+  console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`);
 
-  // Temporarily disable infographics due to display issues
-  // const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
-  // const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length;
-  // console.log(`Enhanced ${withInfographics} questions with infographics`);
-  // return enhancedQuestions;
+  // Before returning the questions, enhance them with infographics if available
+  const enhancedQuestions = enhanceQuestionsWithInfographics(categoryId, questions);
 
-  return questions;
+  // Log which questions have infographics
+  const withInfographics = enhancedQuestions.filter((q) => q.hasInfographic).length;
+  console.log(`Enhanced ${withInfographics} questions with infographics`);
+
+  return enhancedQuestions;
 }
 
 export function getCategory(categoryId: string): QuizCategory | undefined {
