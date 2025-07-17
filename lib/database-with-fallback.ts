@@ -1,5 +1,5 @@
 import { supabase } from "./supabase"
-import { getLeaderboardFromFallback } from "./neon-fallback"
+import { getLeaderboardFromFallback } from "./neon-fallback"  
 
 // Get leaderboard with fallback to Neon if Supabase fails
 export async function getLeaderboardWithFallback() {
@@ -30,6 +30,15 @@ export async function getLeaderboardWithFallback() {
       ],
       source: "Build Time Mock",
     }
+  }
+
+      // Helper function to abbreviate names with more than three words
+  const getDisplayName = (name: string) => {
+    const words = name.trim().split(/\s+/);
+    if (words.length > 4) {
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
+    }
+    return name;
   }
 
   try {
