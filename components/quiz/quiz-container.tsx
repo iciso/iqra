@@ -53,6 +53,9 @@ export default function QuizContainer({
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
+  // Updating the state initialization 18 Jul 25
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
     return (
