@@ -8,12 +8,12 @@
   "theme_color": "#15803D",
   "icons": [
     {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "src": "public/iqralogo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://cvemrafi.vercel.app/iqra-app.png",
+      "src": "public/iqralogo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
