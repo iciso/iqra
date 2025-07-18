@@ -8,6 +8,7 @@ import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface Player {
   id: string
@@ -15,6 +16,20 @@ interface Player {
   full_name?: string
   total_score: number
   best_percentage: number
+}
+
+function ChallengeDialog({ open, onOpenChange }) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create Challenge</DialogTitle>
+          <DialogDescription>Challenge a player to a quiz.</DialogDescription>
+        </DialogHeader>
+        {/* Dialog content */}
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export default function SimpleTopPlayers() {
