@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/lib/supabase-client"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Player {
   id: string
@@ -18,7 +18,7 @@ interface Player {
   best_percentage: number
 }
 
-function ChallengeDialog({ open, onOpenChange }) {
+function ChallengeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -26,10 +26,9 @@ function ChallengeDialog({ open, onOpenChange }) {
           <DialogTitle>Create Challenge</DialogTitle>
           <DialogDescription>Challenge a player to a quiz.</DialogDescription>
         </DialogHeader>
-        {/* Dialog content */}
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
 export default function SimpleTopPlayers() {
@@ -47,11 +46,12 @@ export default function SimpleTopPlayers() {
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
+  const fallbackPlayers: Player[] = [] // Add fallback players if needed
+
   const syncMissingProfiles = async () => {
     try {
       setSyncing(true)
       console.log("🔄 Attempting to sync missing user profiles...")
-
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
@@ -61,30 +61,24 @@ export default function SimpleTopPlayers() {
         console.error("❌ Test query failed:", testError)
         throw testError
       }
-
       console.log("✅ Database connection working, proceeding with sync...")
-
       const authResult = await Promise.race([
         supabase.auth.admin.listUsers(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Auth query timeout")), 5000)),
       ])
 
       const { data: authUsers, error: authError } = authResult as any
-
       if (authError) {
         console.error("❌ Error fetching auth users:", authError)
         throw authError
       }
-
       console.log("👥 Found auth users:", authUsers.users.length)
-
       const profilesResult = await Promise.race([
         supabase.from("user_profiles").select("id"),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Profiles query timeout")), 5000)),
       ])
 
       const { data: existingProfiles, error: profilesError } = profilesResult as any
-
       if (profilesError) {
         console.error("❌ Error fetching existing profiles:", profilesError)
         throw profilesError
@@ -92,7 +86,6 @@ export default function SimpleTopPlayers() {
 
       const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || [])
       console.log("📋 Existing profile IDs:", existingIds.size)
-
       const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id))
       console.log("🔍 Missing profiles for users:", missingUsers.length)
 
@@ -124,14 +117,11 @@ export default function SimpleTopPlayers() {
       ])
 
       const { data: insertedProfiles, error: insertError } = insertResult as any
-
       if (insertError) {
         console.error("❌ Error creating profiles:", insertError)
         throw insertError
       }
-
       console.log("✅ Successfully created profiles:", insertedProfiles?.length)
-
       loadPlayers()
     } catch (err: any) {
       console.error("❌ Sync error:", err)
@@ -160,7 +150,6 @@ export default function SimpleTopPlayers() {
       }
 
       console.log("🔍 Step 1: Auth ready, trying Supabase...")
-
       try {
         const queryResult = await Promise.race([
           supabase
@@ -173,7 +162,6 @@ export default function SimpleTopPlayers() {
         ])
 
         const { data, error } = queryResult as any
-
         if (error) throw error
 
         if (data && data.length > 0) {
@@ -193,7 +181,6 @@ export default function SimpleTopPlayers() {
       console.log("🔍 Step 2: Trying Neon fallback...")
       try {
         const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback())
-
         const neonPlayers = await Promise.race([
           neonPromise,
           new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 5000)),
@@ -218,7 +205,6 @@ export default function SimpleTopPlayers() {
         const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
           module.getLeaderboardWithFallback(),
         )
-
         const leaderboardResult = await Promise.race([
           leaderboardPromise,
           new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
@@ -255,11 +241,8 @@ export default function SimpleTopPlayers() {
         setDataSource("Registered Users")
         setIsUsingFallback(true)
       }
-
-      console.log("🔍 Load complete!")
     } catch (err: any) {
       console.error("❌ Load error:", err.message)
-
       if (mountedRef.current) {
         console.log("🔄 Using registered users as fallback data")
         const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
@@ -326,7 +309,6 @@ export default function SimpleTopPlayers() {
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
-
     if (!authLoading) {
       console.log("✅ Auth is ready, loading players...")
       loadPlayers()
@@ -336,10 +318,8 @@ export default function SimpleTopPlayers() {
         console.log("Auth loading timeout - forcing completion")
         loadPlayers()
       }, 3000)
-
       return () => clearTimeout(timeout)
     }
-
     return () => {
       console.log("🚫 SimpleTopPlayers component unmounting")
       mountedRef.current = false
@@ -372,7 +352,6 @@ export default function SimpleTopPlayers() {
         loadingRef.current = false
       }
     }, 10000)
-
     return () => clearTimeout(safetyTimeout)
   }, [loading])
 
