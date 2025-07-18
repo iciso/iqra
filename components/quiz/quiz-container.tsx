@@ -191,13 +191,13 @@ export default function QuizContainer({
   }
 
   const handleAnswerSelect = (value: string) => {
-    if (showExplanation) return // Prevent changing answer after submission
+    if (showExplanation) return; // Prevent changing answer after submission
 
-    setSelectedAnswer(value)
-    const newAnswers = [...answers]
-    newAnswers[currentQuestion] = value
-    setAnswers(newAnswers)
-  }
+  setSelectedAnswer(value || "");
+  const newAnswers = [...answers];
+  newAnswers[currentQuestion] = value || "";
+  setAnswers(newAnswers);
+};
 
   const handleSubmitAnswer = () => {
     if (!questions[currentQuestion]) return
@@ -634,7 +634,7 @@ export default function QuizContainer({
                 <div className="mb-6 flex-1">
                   <h2 className="text-lg font-medium mb-4 dark:text-white min-h-[3rem]">{question.question}</h2>
                   <div className="min-h-[200px]">
-                    <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
+                    <RadioGroup value={selectedAnswer || ""} onValueChange={handleAnswerSelect}>
                       {question.options.map((option, index) => (
                         <div
                           key={index}
