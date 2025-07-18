@@ -63,6 +63,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+        <Head>
+          <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
