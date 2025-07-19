@@ -10,6 +10,7 @@ import {
   Scale,
   BookOpen,
   BriefcaseMedical,
+  Church,
   MessageSquare,
   Heart,
   User,
@@ -90,6 +91,12 @@ const categories = [
     title: "Comparative Religion",
     description: "Atheism, Science and Islamic Thought",
     icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+     {
+    id: "christ",
+    title: "Christianity",
+    description: "Commonalities between Islam and Christianity",
+    icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "islamic-finance",
