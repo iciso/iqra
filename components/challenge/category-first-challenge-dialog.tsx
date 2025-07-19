@@ -174,7 +174,7 @@ const challengeCategories = [
     id: "hindu",
     label: "Hinduism",
     description: "Commonalities between Islam and Hinduism",
-    icon: Church,
+    icon: BookDashed,
     color: "bg-fuchsia-500 hover:bg-fuchsia-600",
     textColor: "text-fuchsia-700",
     bgLight: "bg-fuchsia-50",
