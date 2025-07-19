@@ -487,7 +487,7 @@ export function getAllCategories(): QuizCategory[] {
   return quizData;
 }
 
-// Verify all categories have questions
+// Verify all categories have questions or not 
 quizData.forEach((category) => {
   console.log(
     `Category ${category.id} has ${category.levels.easy.length} easy questions and ${category.levels.advanced.length} advanced questions`,
