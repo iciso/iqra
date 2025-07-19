@@ -4,7 +4,7 @@ import QuizContainer from "@/components/quiz/quiz-container"
 import type { DifficultyLevel } from "@/types/quiz"
 import type { QuizQuestion } from "@/types/quiz"
 
-// Helper function to shuffle an array using Fisher-Yates algorithm
+// Helper function to shuffle an array using Fisher-Yates algorithm 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array]
   for (let i = shuffled.length - 1; i > 0; i--) {
