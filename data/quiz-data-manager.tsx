@@ -7,6 +7,7 @@ import islamicHistoryCategory from "./islamic-history";
 import hadeethCategory from "./hadeeth";
 import fiqhCategory from "./fiqh";
 import christCategory from "./christ";
+import hinduCategory from "./hindu";
 import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
@@ -423,6 +424,7 @@ const quizData: QuizCategory[] = [
   hadeethCategory,
   fiqhCategory,
   christCategory,
+  hinduCategory,
   dawahCategory,
   medicalEthicsCategory,
 ];
