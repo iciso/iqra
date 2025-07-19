@@ -102,7 +102,7 @@ const categories = [
     {
     id: "hindu",
     title: "Hinduism",
-    description: Commonalities between Islam and Hinduism",
+    description: "Commonalities between Islam and Hinduism",
     icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
