@@ -86,15 +86,15 @@ export default function AboutPage() {
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <img src="https://supabase.com/images/logo-dark.png" alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
-            <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <img src="https://supabase.com/images/logo-dark.png" alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform ring-1 ring-gray-300 dark:ring-gray-700 dark:invert" />
+            <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform ring-1 ring-gray-300 dark:ring-gray-700 dark:invert" />
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, Ameen.
+            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, Ameen, Summa Ameen.
           </p>
           <ul className="list-disc pl-6 space-y-4 text-gray-600 dark:text-gray-300">
             <li>
@@ -106,7 +106,7 @@ export default function AboutPage() {
                 className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
               >
                 Mohamed Essa Rafique
-              </a>, whose vision brought IQRA to life. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
+              </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
               <a
                 href="https://zettabyteincorp.com/"
                 target="_blank"
@@ -150,7 +150,31 @@ export default function AboutPage() {
               </div>
             </li>
             <li>
-              <strong>Community & Contributors:</strong> Gratitude to all open-source contributors, Quran scholars, and community members who have provided feedback, questions, and support to make IQRA a global platform for Islamic learning.
+              <strong>Data Coding & Content Curation:</strong> Deep gratitude to{" "}
+              <a
+                href="https://www.deepseek.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
+                DeepSeek
+              </a>{" "}
+              for their invaluable assistance in structuring data and curating Islamic content, ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.
+            </li>
+            <li>
+              <strong>Content Creation:</strong> Heartfelt thanks to{" "}
+              <a
+                href="https://gemini.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
+                Gemini
+              </a>{" "}
+              for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, Alhamdulillah.
+            </li>
+            <li>
+              <strong>Community & Contributors:</strong> Immense gratitude to all open-source contributors, Quran scholars, Arabic linguists, and community members who have provided feedback, questions, and support to make IQRA a global platform for Islamic learning, may Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
             </li>
           </ul>
         </section>
