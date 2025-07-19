@@ -8,13 +8,6 @@ const christCategory: QuizCategory = {
   levels: {
     easy: [
       {
-  id: "christianity_comparison",
-  title: "Christianity in Islamic Perspective",
-  description: "Explore the commonalities and differences between Islam and Christianity",
-  icon: "",
-  levels: {
-    easy: [
-      {
         question: "How do Islam and Christianity view biblical prophets?",
         options: [
           "Only local leaders",
