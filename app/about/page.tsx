@@ -180,7 +180,7 @@ export default function AboutPage() {
                   </div>
               </li>
             <li>
-              <strong>Community & Contributors:</strong> Immense gratitude to all open-source contributors, Quran scholars, Arabic linguists, and community members who have provided feedback, questions, and support to make IQRA a global platform for Islamic learning, may Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
+              <strong>Community & Contributors:</strong> Immense gratitude to all open-source contributors, Quran scholars, Arabic linguists, and community members who have provided feedback, questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
                  <div className="mt-2">
                   <img src="/meta.svg" alt="Meta Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
