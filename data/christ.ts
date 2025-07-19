@@ -689,4 +689,4 @@ if (!christCategory.levels.intermediate) {
   christCategory.levels.intermediate = [...christCategory.levels.easy]
 }
 
-export default christCategory
+export default christCategory 
