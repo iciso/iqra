@@ -302,7 +302,7 @@ const christCategory: QuizCategory = {
           "Elisha"
         ],
         correctAnswer: "John the Baptist",
-        explanation: "John (Yahya) appears in Luke 1:5-25 (angelic birth announcement to Zechariah) and Quran 19:2-15 (Allah's gift to aged parents). Both note his asceticism (Matthew 3:4/Quran 19:12-14) and role preparing for Jesus (John 1:29-34/Quran 3:39)."
+        explanation: "John (Yahya) appears in Luke 1:5-25 (angelic birth announcement to Zechariah) and Quran 19:2-15 (Allah's gift to aged parents). Both note his asceticism (стора Matthew 3:4/Quran 19:12-14) and role preparing for Jesus (John 1:29-34/Quran 3:39)."
       },
       {
         question: "What do both say about backbiting?",
@@ -615,13 +615,14 @@ const christCategory: QuizCategory = {
         explanation: "Based on 'Those who make images will be punished' (Hadith, Bukhari 5951), Islam avoids figural representation, especially of prophets, contrasting Christian iconodulism (John of Damascus' defense). Quranic emphasis on Allah's transcendence (42:11) parallels Byzantine iconoclasm periods. Calligraphy replaces visual depictions."
       },
       {
-        question: "How do views of the Promised Land differ?",
+        question: "What is the Islamic view of the Promised Land?",
         options: [
           "Islam rejects any sacred geography",
           "Both affirm Canaanite covenant",
           "Christianity spiritualizes it entirely",
           "Islam reorients toward Mecca"
         ],
+        correctAnswer: "Islam reorients toward Mecca",
         explanation: "Quran affirms Allah's earth is spacious (4:97, 29:56), criticizing Jewish exclusivism. Abrahamic promise (2:124) isn't land-based. Hajj reorients sacred geography to Mecca (3:96-97). Contrast Zionist interpretations of Genesis 15:18. Some parallels in Christian supersessionism (Romans 4:13)."
       },
       {
@@ -629,6 +630,9 @@ const christCategory: QuizCategory = {
         options: [
           "Accepts all deuterocanonical books",
           "Validates only Enoch and Jubilees",
+          "Selectively references some narratives",
+          "Rejects all apocryphal texts"
+        ],
         correctAnswer: "Selectively references some narratives",
         explanation: "Quran references stories like Saul's kingship (2:246-251) resembling 1 Samuel, and Alexander's wall (18:83-98) similar to 4 Ezra's Gog-Magog. Rejected are doctrinally problematic texts (Tobit's angelology, Maccabees' Hanukkah). Islamic sources like al-Tabari's history critically evaluate biblical material."
       },
@@ -675,18 +679,18 @@ const christCategory: QuizCategory = {
         ],
         correctAnswer: "Sees all Gospels as equally corrupted",
         explanation: "Muslim scholars note Synoptic contradictions (Matthew 27:5 vs Acts 1:18 on Judas' death) as evidence of tahrif (textual distortion). Quran's singular Gospel (Injeel-5:46) contrasts four canonical versions. Parallels exist between Islamic oral transmission rigor (isnad) and form criticism concerns."
-      },
+      }
     ],
     intermediate: [
-      // Copy the first 10 questions from easy or advanced level
+      // Copy the first 10 questions from easy level
       // This is a temporary solution until proper intermediate questions are created
-    ],
-  },
+    ]
+  }
 }
 
 // Add this line to copy questions to intermediate level if it doesn't exist
-if (!christCategory.levels.intermediate) {
-  christCategory.levels.intermediate = [...christCategory.levels.easy]
+if (!christCategory.levels.intermediate || christCategory.levels.intermediate.length === 0) {
+  christCategory.levels.intermediate = [...christCategory.levels.easy.slice(0, 10)]
 }
 
-export default christCategory 
+export default christCategory
