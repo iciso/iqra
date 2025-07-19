@@ -195,10 +195,10 @@ const challengeCategories = [
     label: "Islamic Medical Ethics",
     description: "Islamic Perspectives of Medical Ethics",
     icon: BriefcaseMedical,
-    color: "bg-grey-500 hover:bg-grey-600",
-    textColor: "text-grey-700",
-    bgLight: "bg-grey-50",
-    borderColor: "border-grey-300",
+    color: "bg-gray-500 hover:bg-gray-600",
+    textColor: "text-gray-700",
+    bgLight: "bg-gray-50",
+    borderColor: "border-gray-300",
   },
 ]
 
