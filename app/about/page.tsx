@@ -180,7 +180,10 @@ export default function AboutPage() {
                 Gemini
               </a>{" "}
               for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, Alhamdulillah.
-            </li>
+                <div className="mt-2">
+                  <img src="/gemini.svg" alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  </div>
+              </li>
             <li>
               <strong>Community & Contributors:</strong> Immense gratitude to all open-source contributors, Quran scholars, Arabic linguists, and community members who have provided feedback, questions, and support to make IQRA a global platform for Islamic learning, may Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
             </li>
