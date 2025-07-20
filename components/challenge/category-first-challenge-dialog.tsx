@@ -194,12 +194,12 @@ const challengeCategories = [
     {
     id: "psych",
     title: "Islamic Psychology",
-    description: "Explore mental health and behavior through Islamic teachings",
+    description: "Explore mental health through Islamic teachings",
     icon: "Brain",
-    color: "bg-brown-500 hover:bg-brown-600",
-    textColor: "text-brown-700",
-    bgLight: "bg-brown-50",
-    borderColor: "border-brown-300",
+    color: "bg-lime-500 hover:bg-lime-600",
+    textColor: "text-lime-700",
+    bgLight: "bg-lime-50",
+    borderColor: "border-lime-300",
   },
    {
     id: "islamic-medical-ethics",
