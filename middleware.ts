@@ -37,7 +37,9 @@ export async function middleware(request: NextRequest) {
     if (protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route))) {
       if (!session) {
         // Redirect unauthenticated users to login page
-        return NextResponse.redirect(new URL("/login", request.url));
+        const redirectUrl = new URL("/login", request.url);
+        redirectUrl.searchParams.set("redirect", request.nextUrl.pathname + request.nextUrl.search);
+        return NextResponse.redirect(redirectUrl);
       }
     }
 
