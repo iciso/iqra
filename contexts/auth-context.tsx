@@ -32,7 +32,7 @@ interface AuthContextType {
   signInWithProvider: (provider: "google" | "github") => Promise<{ error: any }>;
   refreshProfile: () => Promise<void>;
 }
-
+ 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   profile: null,
