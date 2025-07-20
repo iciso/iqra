@@ -115,7 +115,7 @@ const categories = [
    {
     id: "psych",
     title: "Islamic Psychology",
-    description: "Explore mental health and behavior through Islamic teachings",
+    description: "Explore mental health through Islamic teachings",
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
