@@ -1,5 +1,5 @@
 import type React from "react";
-import Head from 'next/head';
+import Head from "next/head";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -7,7 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/auth-context";
 import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/toaster";
-import ChallengeNotification from "@/components/challenge/challenge-notification";
+import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,12 @@ export const metadata: Metadata = {
   publisher: "IQRA",
   robots: "index, follow",
   openGraph: {
-    url: "https://iqrar.vercel.app/", // Corrected domain
+    url: "https://iqrar.vercel.app/",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
     images: [
       {
-        url: "/iqralogo.png", // Relative path to public folder
+        url: "/iqralogo.png",
         width: 1200,
         height: 630,
         alt: "IQRA App Logo",
@@ -39,35 +40,43 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "/iqralogo.png" }], // Use the same logo
+    images: [{ url: "/iqralogo.png" }],
   },
   icons: {
     icon: [
-      { url: "/iqralogo.ico", type: "image/x-icon" }, // Corrected path
+      { url: "/iqralogo.ico", type: "image/x-icon" },
       { url: "/iqralogo.ico", sizes: "any" },
     ],
   },
   generator: "v0.dev",
 };
 
-// Viewport export (for viewport and themeColor)
+// Viewport export
 export const viewport: Viewport = {
   themeColor: "#15803D",
   width: "device-width",
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { cookies }
+  );
+
+  const { data: { session } } = await supabase.auth.getSession();
+
   return (
     <html lang="en" suppressHydrationWarning>
-        <Head>
-          <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
-          <link rel="manifest" href="/manifest.json" />
-        </Head>
+      <Head>
+        <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -75,11 +84,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
+          <AuthProvider session={session}>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
-              {/* Footer removed for better UX during quiz play */}
             </div>
             <ChallengeNotification />
             <Toaster />
