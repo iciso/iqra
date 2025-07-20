@@ -16,7 +16,7 @@ import psychCategory from "./psych";
 import medicalEthicsCategory from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Has Quran only 30-30 each in easy and advanced
+// Has Quran only 30-30 each in easy and advanced questions
 // Seerah is in quiz-data-manager-additions,  Aqeedah in quiz-data-manager-additional-categories 
 // Define all quiz categories in this file if removing any category from here or adding any new in data folder
 const quizData: QuizCategory[] = [
