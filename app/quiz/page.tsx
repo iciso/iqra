@@ -25,11 +25,11 @@ async function getCategory(categoryId: string): Promise<QuizCategory | null> {
     .eq("id", categoryId)
     .single();
   if (error) {
-    console.error(`Error fetching category ${categoryId}:`, error);
+    console.error("Error fetching category " + categoryId + ":", error);
     return null;
   }
   if (!data) {
-    console.error(`No category found for ID: ${categoryId}`);
+    console.error("No category found for ID: " + categoryId);
     return null;
   }
   console.log("Fetched category:", data);
@@ -58,7 +58,7 @@ export default async function QuizPage({
 
   const category = await getCategory(categoryId);
   if (!category) {
-    console.log(`Category ${categoryId} not found, redirecting to /categories");
+    console.log("Category " + categoryId + " not found, redirecting to /categories");
     redirect("/categories");
   }
 
@@ -78,7 +78,7 @@ export default async function QuizPage({
         .eq("category_id", categoryId);
       if (error) throw error;
       if (!data) {
-        console.error(`No questions found for category ${categoryId} (mixed)`);
+        console.error("No questions found for category " + categoryId + " (mixed)");
       } else {
         rawQuestions = data as QuizQuestion[];
         console.log("Fetched questions (mixed):", JSON.stringify(rawQuestions, null, 2));
@@ -91,8 +91,7 @@ export default async function QuizPage({
         .eq("difficulty", difficulty);
       if (error) throw error;
       if (!data) {
-        console.error("No questions found for category:" ${categoryId}, difficulty ${difficulty}`
-        );
+        console.error("No questions found for category " + categoryId + ", difficulty " + difficulty);
       } else {
         rawQuestions = data as QuizQuestion[];
         console.log("Fetched questions:", JSON.stringify(rawQuestions, null, 2));
