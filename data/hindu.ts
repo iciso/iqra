@@ -16,7 +16,7 @@ const hinduCategory: QuizCategory = {
           "Identical to Quranic teachings"
         ],
         correctAnswer: "Partially contain divine wisdom",
-        explanation: "Islam acknowledges that Allah sent guidance to all nations (Quran 35:24). While Vedas/Upanishads aren't considered preserved scriptures like Torah/Injeel, they may contain remnants of original monotheistic teachings (tawhid) before polytheistic additions. The Quran states: *'To every people we sent a warner'* (35:24)."
+        explanation: "Islam acknowledges that Allah sent guidance to all nations, stating: *'To every people we sent a warner'* [Quran 35:24]. While Vedas/Upanishads aren't considered preserved scriptures like Torah/Injeel, they may contain remnants of original monotheistic teachings (Tawhid) before polytheistic additions."
       },
       {
         question: "Which Hindu concept aligns closest with Islamic Tawhid?",
@@ -27,7 +27,7 @@ const hinduCategory: QuizCategory = {
           "Atman is Brahman"
         ],
         correctAnswer: "Brahman as supreme reality",
-        explanation: "The Upanishadic concept of Nirguna Brahman (formless ultimate reality) parallels Islamic tawhid: *'Say: He is Allah, the One'* (Quran 112:1). Both reject anthropomorphism (Bhagavad Gita 12:5/Quran 42:11). Differences emerge in pantheistic interpretations of 'All is Brahman' vs Quranic creator-creature distinction (25:2)."
+        explanation: "The Upanishadic concept of Nirguna Brahman (formless ultimate reality) parallels Islamic Tawhid: *'Say: He is Allah, the One'* [Quran 112:1]. Both reject anthropomorphism [Bhagavad Gita 12:5; Quran 42:11]. Differences emerge in pantheistic interpretations of 'All is Brahman' vs. Quranic creator-creature distinction [Quran 25:2]."
       },
       {
         question: "How does Islam view the caste system?",
@@ -38,7 +38,7 @@ const hinduCategory: QuizCategory = {
           "Mandates it for converts"
         ],
         correctAnswer: "Condemns its hereditary hierarchy",
-        explanation: "Islam establishes equality: *'No Arab has superiority over non-Arab... except by piety'* (Prophet's Farewell Sermon). The Quran states: *'We created you from male and female and made you peoples and tribes to know one another'* (49:13). Contrast with Manusmriti's birth-based varnas (1:87-91)."
+        explanation: "Islam establishes equality, as the Prophet (PBUH) said: *'No Arab has superiority over non-Arab... except by piety'* [Prophet's Farewell Sermon]. The Quran states: *'We created you from male and female and made you peoples and tribes to know one another'* [Quran 49:13]. This contrasts with Manusmriti's birth-based varnas [Manusmriti 1:87-91]."
       },
       {
         question: "Which Islamic concept parallels Hindu ideas of cosmic order?",
@@ -49,7 +49,7 @@ const hinduCategory: QuizCategory = {
           "Fitra (primordial nature)"
         ],
         correctAnswer: "Sunnah of Allah",
-        explanation: "The Quranic concept of *'Sunnat Allah'* (Allah's unchanging ways - 33:62) resembles Vedic Rita (cosmic order). Both describe natural/spiritual laws governing existence (Rigveda 1.164.46/Quran 30:30). Key difference: Sunnah originates from Allah's will, while Rita is impersonal cosmic principle."
+        explanation: "The Quranic concept of *'Sunnat Allah'* (Allah's unchanging ways) [Quran 33:62] resembles Vedic Rita (cosmic order). Both describe natural and spiritual laws governing existence [Rigveda 1.164.46; Quran 30:30]. A key difference is that Sunnah originates from Allah's will, while Rita is often presented as an impersonal cosmic principle."
       },
       {
         question: "What is Islam's position on karma theory?",
@@ -60,7 +60,7 @@ const hinduCategory: QuizCategory = {
           "Considers it identical to qadr"
         ],
         correctAnswer: "Rejects rebirth but affirms moral causation",
-        explanation: "Islam teaches: *'Whoever does an atom's weight of good will see it'* (Quran 99:7-8), affirming moral accountability. But rejects rebirth (83:18-20) in favor of resurrection (75:3-4). Divine mercy (39:53) transcends strict karmic retribution. Actions matter but don't bind Allah's forgiveness."
+        explanation: "Islam teaches: *'Whoever does an atom's weight of good will see it'* [Quran 99:7-8], affirming moral accountability for actions. While it shares the principle that deeds have consequences, Islam rejects rebirth [Quran 83:18-20] in favor of resurrection and a single earthly life [Quran 75:3-4]. Divine mercy [Quran 39:53] transcends strict karmic retribution."
       },
       {
         question: "Which Hindu practice finds partial resonance in Islam?",
@@ -71,7 +71,7 @@ const hinduCategory: QuizCategory = {
           "Meditation (dhyana)"
         ],
         correctAnswer: "Meditation (dhyana)",
-        explanation: "Islamic muraqaba (mindfulness) resembles dhyana but with tawhid focus: *'Remember Allah with much remembrance'* (33:41). Prophet Muhammad meditated in Hira cave before revelation (Bukhari 3). Contrast with idol worship (5:90) or cow sanctity (Bhagavad Gita 18:44 vs Quran 22:36's sacrificial animals)."
+        explanation: "Islamic *muraqaba* (mindfulness and contemplation of Allah) resembles *dhyana* (meditation), but with a Tawhid focus: *'Remember Allah with much remembrance'* [Quran 33:41]. Prophet Muhammad (PBUH) meditated in Hira cave before revelation [Bukhari 3]. This contrasts with idol worship [Quran 5:90] or cow sanctity [Bhagavad Gita 18:44 vs. Quran 22:36's sacrificial animals]."
       },
       {
         question: "How does Islamic monotheism view the Trimurti?",
@@ -82,7 +82,7 @@ const hinduCategory: QuizCategory = {
           "As angelic beings"
         ],
         correctAnswer: "As shirk (associating partners with God)",
-        explanation: "Quran strictly prohibits associating divine functions: *'No son did Allah beget... Nor is any like Him'* (112:3-4). Contrast with Brahma-Vishnu-Shiva roles (Puranas). Islam acknowledges all creation/maintenance/destruction originate from Allah alone (7:54, 30:11, 55:26-27)."
+        explanation: "Islamic theology, while acknowledging divine attributes (e.g., Creator, Preserver, Destroyer), strictly ascribes all divine functions to Allah alone, stating: *'No son did Allah beget... Nor is any like Him'* [Quran 112:3-4]. All creation, maintenance, and destruction originate solely from Allah [Quran 7:54, 30:11, 55:26-27]. While the Trimurti conceptualizes these roles, Islamic Tawhid asserts their singular, indivisible source, prohibiting the association of partners with God [Quran 4:48]."
       },
       {
         question: "What is the Islamic perspective on yoga?",
@@ -93,7 +93,7 @@ const hinduCategory: QuizCategory = {
           "Mandatory for Muslims"
         ],
         correctAnswer: "Permitted as physical exercise",
-        explanation: "Physical postures (asanas) without theological elements are permissible like any exercise. But practices invoking deities (e.g., Surya Namaskar) conflict with tawhid (4:48). Breathing techniques must avoid Hindu mantras. Prophet said: *'The strong believer is better...'* (Muslim 2664)."
+        explanation: "Physical postures (asanas) without theological elements are permissible in Islam like any beneficial exercise. However, practices invoking deities (e.g., Surya Namaskar) conflict with Tawhid [Quran 4:48]. Breathing techniques must avoid Hindu mantras. The Prophet (PBUH) said: *'The strong believer is better and more beloved to Allah than the weak believer'* [Muslim 2664], encouraging physical well-being."
       },
       {
         question: "Which Islamic value aligns with ahimsa?",
@@ -104,7 +104,7 @@ const hinduCategory: QuizCategory = {
           "Predestination"
         ],
         correctAnswer: "Mercy (rahma)",
-        explanation: "While Islam permits defensive war (2:190), it shares ahimsa's spirit in: *'Allah is Kind and loves kindness'* (Muslim 2593). Prohibits animal cruelty (Hadith - Abu Dawud 2549) like Mahavira. Differences: Islam allows meat consumption (5:1) and just retribution (2:178)."
+        explanation: "While Islam permits defensive war [Quran 2:190], it shares the spirit of *ahimsa* (non-violence) in its emphasis on mercy (*rahma*): *'Allah is Kind and loves kindness'* [Muslim 2593]. Islam prohibits animal cruelty [Hadith - Abu Dawud 2549]. Differences exist as Islam allows meat consumption [Quran 5:1] and just retribution [Quran 2:178]."
       },
       {
         question: "How does Islam view the Gita's teaching on detached action?",
@@ -115,7 +115,7 @@ const hinduCategory: QuizCategory = {
           "Considers it identical to tawakkul"
         ],
         correctAnswer: "Parallels but with different intent",
-        explanation: "Gita's nishkama karma (2:47) resembles Islamic sincerity (ikhlas): *'Worship Allah as if you see Him'* (Muslim 8). But Islamic actions serve Allah alone (98:5), not merging with Brahman. Prophet said: *'Do for this world as if living forever...'* (Ibn Majah 4100) balancing material/spiritual."
+        explanation: "The Gita's *nishkama karma* (action without attachment to results) [Bhagavad Gita 2:47] resembles Islamic sincerity (*ikhlas*), which instructs: *'Worship Allah as if you see Him'* [Muslim 8]. However, Islamic actions ultimately serve Allah alone [Quran 98:5], without merging with a supreme being. The Prophet (PBUH) balanced material and spiritual: *'Do for this world as if living forever, and do for the Hereafter as if you will die tomorrow'* [Ibn Majah 4100]."
       },
       {
         question: "What is Islam's stance on avatar theory?",
@@ -126,7 +126,7 @@ const hinduCategory: QuizCategory = {
           "Accepts Rama as prophet"
         ],
         correctAnswer: "Rejects all human manifestations of God",
-        explanation: "Quran states: *'Nothing is like Him'* (42:11), rejecting divine incarnation. Contrasts Vishnu's avatars (Bhagavata Purana) with Islamic view of prophets as fully human (3:79). Jesus in Islam is created prophet (3:59), not God incarnate. Allah *'begets not nor is begotten'* (112:3)."
+        explanation: "The Quran states: *'Nothing is like Him'* [Quran 42:11], firmly rejecting the concept of divine incarnation. This contrasts Vishnu's avatars [Bhagavata Purana]. Islam views prophets (like Jesus in Islam) as fully human messengers [Quran 3:79, 3:59], not God incarnate. Allah *'begets not nor is begotten'* [Quran 112:3]."
       },
       {
         question: "Which Hindu festival has an Islamic ethical parallel?",
@@ -137,7 +137,7 @@ const hinduCategory: QuizCategory = {
           "Pongal (charity)"
         ],
         correctAnswer: "Pongal (charity)",
-        explanation: "Islamic zakat (2.5% wealth charity - Quran 9:60) parallels harvest festivals' generosity. Contrasts Diwali's Lakshmi worship (prohibited in 17:23) or Holi's revelry. Eid al-Fitr shares Pongal's communal feasting aspect but with takbir (Allah's glorification) not deity thanks."
+        explanation: "Islamic *zakat* (obligatory charity, 2.5% of wealth) [Quran 9:60] parallels the spirit of generosity seen in harvest festivals like Pongal. This practice of giving shares a common ethical ground with the charitable aspects of some Hindu festivals. Eid al-Fitr in Islam also shares a communal feasting aspect, but with *takbir* (glorification of Allah) instead of deity thanks."
       },
       {
         question: "How does Quranic creation narrative compare to Puranic accounts?",
@@ -148,7 +148,7 @@ const hinduCategory: QuizCategory = {
           "Both describe god's exhaustion"
         ],
         correctAnswer: "Quran rejects cyclical creation",
-        explanation: "Quran describes linear creation in six ayyaam (periods - 41:9-12), contrasting Puranic cycles of creation/destruction (kalpas). Both mention water's primacy (Rigveda 10.129/Quran 21:30) but Quran emphasizes Allah's effortless command (2:117) vs Brahma's labor (Manusmriti 1:5-16)."
+        explanation: "The Quran describes a linear creation in six *ayyaam* (periods) [Quran 41:9-12], contrasting with Puranic cycles of creation and destruction (kalpas). Both traditions, however, mention the primacy of water in creation [Rigveda 10.129; Quran 21:30], but the Quran emphasizes Allah's effortless command *'Be, and it is'* [Quran 2:117] versus Brahma's labor in some Hindu texts [Manusmriti 1:5-16]."
       },
       {
         question: "What is the Islamic view of moksha?",
@@ -159,7 +159,7 @@ const hinduCategory: QuizCategory = {
           "Only for prophets"
         ],
         correctAnswer: "Rejects liberation as merging with God",
-        explanation: "Islam promises eternal paradise (jannah) with Allah's presence (9:72) but no ontological merging: *'Everyone thereon will pass away; there remains the Face of your Lord...'* (55:26-27). Contrasts Advaita's nirvana (Mandukya Upanishad 7). Soul remains distinct worshipping Allah (19:93)."
+        explanation: "Islam promises eternal paradise (*Jannah*) with Allah's presence [Quran 9:72], but it maintains a clear distinction between the Creator and creation, with no ontological merging: *'Everyone thereon will pass away; there remains the Face of your Lord...'* [Quran 55:26-27]. This contrasts with Advaita Vedanta's concept of *moksha* or *nirvana* as merging with Brahman [Mandukya Upanishad 7]. The soul in Islam remains a distinct entity, worshipping Allah [Quran 19:93]."
       },
       {
         question: "Which Islamic concept parallels dharma?",
@@ -170,7 +170,7 @@ const hinduCategory: QuizCategory = {
           "Qiyamah"
         ],
         correctAnswer: "Sharia",
-        explanation: "Both prescribe righteous living (dharma/sharia) but differ foundationally. Sanatana Dharma derives from smritis/shrutis, while sharia comes from Quran/sunnah. Islam's fixed moral law (5:3) contrasts Hinduism's contextual dharma (Bhagavad Gita 2:31). Both include worship, ethics, and law."
+        explanation: "Both *dharma* and *Sharia* prescribe righteous living and a way of life guided by divine principles, but their foundations differ. Sanatana Dharma derives from *smritis* and *shrutis*, while Sharia comes from the Quran and Sunnah. Islam presents a fixed moral law [Quran 5:3], contrasting with Hinduism's often contextual dharma [Bhagavad Gita 2:31]. Both encompass worship, ethics, and law."
       },
       {
         question: "How does Islamic afterlife differ from samsara?",
@@ -181,7 +181,7 @@ const hinduCategory: QuizCategory = {
           "Jannah equals moksha"
         ],
         correctAnswer: "Islam has single earthly life",
-        explanation: "Quran states: *'When death comes to one of you... then after that resurrection'* (23:99-100). Single earthly test (67:2) contrasts karma-driven rebirths. Paradise/hell are final (43:74-77). Islamic accountability is individual (6:164), not through multiple lives to burn karma."
+        explanation: "The Quran states: *'When death comes to one of you... then after that resurrection'* [Quran 23:99-100]. Islam teaches a single earthly life as a test [Quran 67:2], which contrasts with the karma-driven cycle of rebirths (*samsara*). Paradise and hell are final states in Islam [Quran 43:74-77]. Islamic accountability is individual [Quran 6:164], not requiring multiple lives to burn off karma."
       },
       {
         question: "What is Islam's position on bhakti (devotional worship)?",
@@ -192,7 +192,7 @@ const hinduCategory: QuizCategory = {
           "Identical to Hindu practices"
         ],
         correctAnswer: "Permits with tawhid focus",
-        explanation: "Islamic dua (supplication - 40:60) and dhikr (remembrance - 33:41) resemble bhakti but direct all love/worship to Allah alone (2:165). Contrasts deity-specific pujas. Prophet's emotional night prayers (Bukhari 1121) show devotion within tawhid framework."
+        explanation: "Islamic *dua* (supplication) [Quran 40:60] and *dhikr* (remembrance of Allah) [Quran 33:41] resemble *bhakti* but direct all love and worship to Allah alone [Quran 2:165]. This contrasts with deity-specific *pujas*. The Prophet's (PBUH) emotional night prayers [Bukhari 1121] demonstrate profound devotion within a strict Tawhid framework."
       },
       {
         question: "Which Hindu sage's teachings align partially with Islamic values?",
@@ -203,7 +203,7 @@ const hinduCategory: QuizCategory = {
           "Charvaka's materialism"
         ],
         correctAnswer: "Patanjali's yamas",
-        explanation: "Yoga Sutra's yamas (ethical restraints) parallel Islamic morals: truth (satya - Quran 9:119), non-stealing (asteya - 2:188), celibacy in fasting (brahmacharya - 24:33). But niyamas' deity focus conflicts. Chanakya's pragmatism contradicts Islamic trust in Allah (65:3)."
+        explanation: "Patanjali's Yoga Sutra's *yamas* (ethical restraints) parallel Islamic morals, such as truth (*satya* vs. *sidq* - Quran 9:119), non-stealing (*asteya* vs. prohibition of theft - Quran 2:188), and restraint in desires. However, the *niyamas'* deity focus conflicts with Tawhid. Chanakya's pragmatism, for example, often contradicts Islamic reliance and trust in Allah (*tawakkul*) [Quran 65:3]."
       },
       {
         question: "How does Islamic prayer differ from puja?",
@@ -214,7 +214,7 @@ const hinduCategory: QuizCategory = {
           "Identical ritual sequences"
         ],
         correctAnswer: "Islamic salah is submission without imagery",
-        explanation: "Salah involves prescribed movements (Bukhari 794) without idols/murtis (5:90). Puja includes offerings/pranama to deities. Both have purification (wudu/snan) but Muslim prayer focuses on Allah alone (1:5). Qibla direction (2:144) differs from temple deity orientations."
+        explanation: "Islamic *salah* involves prescribed movements and recitations [Bukhari 794] performed without idols or *murtis* [Quran 5:90]. *Puja*, in contrast, often includes offerings and *pranama* (prostrations) to deities. While both have purification rituals (*wudu* vs. *snan*), Muslim prayer focuses on direct submission to Allah alone [Quran 1:5]. The *Qibla* direction [Quran 2:144] in Islam differs from temple deity orientations."
       },
       {
         question: "What is the Islamic view of Vedanta philosophy?",
@@ -225,7 +225,7 @@ const hinduCategory: QuizCategory = {
           "Considers it identical to Sufism"
         ],
         correctAnswer: "Rejects pantheistic elements",
-        explanation: "While Sufi concepts like wahdat al-wujud resemble Advaita, mainstream Islam rejects creation's ontological unity with Creator (112:4). Quranic *'He is with you wherever you are'* (57:4) describes knowledge, not essence. Dvaita's creator-creation distinction aligns closer but still differs theologically."
+        explanation: "While Sufi concepts like *wahdat al-wujud* (unity of existence) share conceptual parallels with Advaita, mainstream Islam rejects the ontological unity of creation with the Creator [Quran 112:4]. The Quranic phrase *'He is with you wherever you are'* [Quran 57:4] describes Allah's knowledge and presence, not an essential merging. Dvaita's creator-creation distinction aligns closer with Islamic theology but still maintains fundamental differences."
       },
       {
         question: "Which Islamic practice parallels japa (mantra repetition)?",
@@ -236,7 +236,7 @@ const hinduCategory: QuizCategory = {
           "Zakat"
         ],
         correctAnswer: "Dhikr",
-        explanation: "Repetitive dhikr like 'SubhanAllah' (Muslim 680) resembles japa but affirms tawhid, not deity energies. Prophet said: *'The best remembrance is La ilaha illallah'* (Tirmidhi 3383). Contrasts om mantra's impersonal focus. Islamic dhikr uses Arabic, not Sanskrit syllables."
+        explanation: "Repetitive *dhikr* (remembrance of Allah) like 'SubhanAllah' or 'Alhamdulillah' [Muslim 680] resembles *japa* (mantra repetition) in its method but affirms Tawhid, focusing solely on the glorification of Allah. The Prophet (PBUH) stated: *'The best remembrance is La ilaha illallah'* [Tirmidhi 3383]. This contrasts with *om* mantra's impersonal focus, as Islamic *dhikr* uses Arabic phrases affirming God's oneness."
       },
       {
         question: "How does Islamic tawakkul differ from karma yoga's surrender?",
@@ -247,7 +247,7 @@ const hinduCategory: QuizCategory = {
           "Only karma yoga accepts destiny"
         ],
         correctAnswer: "Tawakkul combines trust with effort",
-        explanation: "Quran commands: *'Trust in Allah but tie your camel'* (Hadith - Tirmidhi 2517). Contrasts fatalistic interpretations of karma yoga. Islam balances qadr (divine decree - 57:22) with human responsibility (2:286). Surrender isn't passive but involves sharia-compliant action."
+        explanation: "Islamic *tawakkul* (trust in Allah) combines reliance on God with diligent effort, as the Prophet (PBUH) advised: *'Trust in Allah but tie your camel'* [Hadith - Tirmidhi 2517]. This contrasts with potentially fatalistic interpretations of *karma yoga*. Islam balances *Qadr* (divine decree) [Quran 57:22] with human responsibility [Quran 2:286]. Surrender in Islam is active engagement, not passive acceptance."
       },
       {
         question: "What is Islam's stance on Hindu astrology?",
@@ -258,7 +258,7 @@ const hinduCategory: QuizCategory = {
           "Mandates for all Muslims"
         ],
         correctAnswer: "Rejects fortune-telling aspects",
-        explanation: "Prohibited as shirk: *'Whoever learns astrology...'* (Abu Dawud 3905). Planets obey Allah (7:54), don't influence fates. Contrasts Jyotisha's nakshatra system. Permissible astronomy (moon phases for Ramadan - 2:189) differs from horoscopes. Divine knowledge alone is supreme (31:34)."
+        explanation: "Astrology is prohibited in Islam as a form of *shirk* (associating partners with God) because it attributes influence over fate to celestial bodies, which is solely Allah's domain: *'Whoever learns astrology has learnt a branch of magic'* [Abu Dawud 3905]. Planets obey Allah [Quran 7:54], they do not influence human destinies. Permissible astronomy for practical purposes (e.g., moon phases for Ramadan) [Quran 2:189] differs from horoscopes and fortune-telling."
       },
       {
         question: "Which Islamic concept parallels the guru-shishya tradition?",
@@ -269,7 +269,7 @@ const hinduCategory: QuizCategory = {
           "Parent-child"
         ],
         correctAnswer: "Sufi murshid-murid",
-        explanation: "Sufi spiritual mentoring resembles guru-disciple relationships but with key differences: Murshids don't possess divine status (3:79), teaching Quran/sunnah not personal revelations. Prophet said: *'Scholars are inheritors of prophets'* (Abu Dawud 3641) - knowledge transfer not self-realization techniques."
+        explanation: "The Sufi spiritual mentoring relationship between a *murshid* (guide) and *murid* (disciple) resembles the Hindu guru-disciple tradition. However, *murshids* do not possess divine status [Quran 3:79], and their role is to teach Quran and Sunnah, not personal revelations. The Prophet (PBUH) said: *'Scholars are the inheritors of the prophets'* [Abu Dawud 3641], emphasizing knowledge transfer for spiritual growth rather than self-realization techniques that might involve deification."
       },
       {
         question: "How does Islamic animal sacrifice differ from yajna?",
@@ -280,7 +280,7 @@ const hinduCategory: QuizCategory = {
           "Only Hindus say God's name"
         ],
         correctAnswer: "Islamic udhiya commemorates Prophet Ibrahim",
-        explanation: "Qurbani remembers Ibrahim's sacrifice (37:102-107), not deity offerings like yajnas. Prohibits blood for altars (22:37): *'Their meat will not reach Allah... but your piety does'*. Shares Vedic Abrahamic roots but Islam rejects fire rituals (5:3). Both emphasize charity (22:36/Rigveda 1.164.50)."
+        explanation: "Islamic *Qurbani* (animal sacrifice) during Eid al-Adha commemorates Prophet Ibrahim's obedience to Allah [Quran 37:102-107], not offerings to deities like Hindu *yajnas*. Islam prohibits offering blood to altars [Quran 22:37], emphasizing that *'Their meat will not reach Allah... but your piety does'*. While both traditions share ancient Abrahamic roots, Islam rejects fire rituals and focuses on charity with the meat [Quran 22:36; Rigveda 1.164.50]."
       },
       {
         question: "What is the Islamic view of Hindu temple architecture?",
@@ -291,7 +291,7 @@ const hinduCategory: QuizCategory = {
           "Considers it shirk automatically"
         ],
         correctAnswer: "Permits non-idolatrous designs",
-        explanation: "Islamic architecture uses geometry/calligraphy (2:144) avoiding deity imagery. Shared elements: domes (Quba Mosque/Tirumala), minarets (inspired by gopurams?). Key difference: mosques avoid murti garbhagriha (sanctums). Mughal architecture fused styles but maintained tawhid principles."
+        explanation: "Islamic architecture utilizes geometry and calligraphy [Quran 2:144], avoiding imagery of living beings due to the prohibition of idol worship. There are shared architectural elements like domes (e.g., Quba Mosque and Tirumala Temple) and minarets (possibly inspired by *gopurams*). However, a key difference is that mosques meticulously avoid *murti garbhagriha* (sanctums for idols), maintaining strict Tawhid principles in design."
       },
       {
         question: "How does Islamic fasting differ from Hindu vratas?",
@@ -302,7 +302,7 @@ const hinduCategory: QuizCategory = {
           "Only Hindus fast for gods"
         ],
         correctAnswer: "Ramadan has fixed lunar dates",
-        explanation: "Islamic fasting follows hijri calendar (2:185), while Hindu vratas vary (Ekadashi/Purnima). Muslims abstain dawn-dusk (2:187); some Hindu fasts allow fruits. Intent differs: Ramadan earns taqwa (2:183) vs vratas for deity boons. Both emphasize charity (Bukhari 1903/Skanda Purana)."
+        explanation: "Islamic fasting (e.g., Ramadan) follows fixed dates of the lunar Hijri calendar [Quran 2:185], while Hindu *vratas* (fasts) vary in timing (e.g., Ekadashi, Purnima). Muslims abstain from food and drink from dawn to dusk [Quran 2:187]; some Hindu fasts allow specific foods. The intent also differs: Ramadan aims for *taqwa* (God-consciousness) [Quran 2:183], while *vratas* are often for deity boons. Both emphasize charity and self-discipline [Bukhari 1903; Skanda Purana]."
       },
       {
         question: "Which Islamic theological school engaged most with Hindu philosophy?",
@@ -313,7 +313,29 @@ const hinduCategory: QuizCategory = {
           "Ahl al-Hadith"
         ],
         correctAnswer: "Maturidi",
-        explanation: "Central Asian Maturidis (al-Biruni, Shah Waliullah) systematically compared Hindu concepts. Al-Biruni's 'India' (1030 CE) analyzed Vedanta. Contrasts literalist Ahl al-Hadith. Shared with Mu'tazila: rational approach but Maturidis balanced it with revelation. Sufis like Dara Shikoh translated Upanishads."
+        explanation: "Central Asian Maturidi scholars, such as al-Biruni and Shah Waliullah, systematically engaged with and compared Hindu concepts. Al-Biruni's seminal work 'Kitab fi Tahqiq ma li l-Hind' (often called 'India', 1030 CE) provided a detailed analysis of Vedanta and other Hindu philosophies. This contrasts with more literalist schools like Ahl al-Hadith. Sufis, like Dara Shikoh, also contributed by translating Upanishads."
+      },
+      {
+        question: "Which foundational ethical principle is shared by both Islam and Hinduism?",
+        options: [
+          "Karma",
+          "Rebirth",
+          "Truthfulness",
+          "Idol worship"
+        ],
+        correctAnswer: "Truthfulness",
+        explanation: "Both Islam and Hinduism emphasize the importance of truthfulness (صدق - *sidq* in Islam, *satya* in Hinduism). The Quran states: *'O you who have believed, be mindful of Allah and be with those who are truthful.'* [Quran 9:119]. Similarly, the Mahabharata declares: *'Truth is the highest dharma.'* [Mahabharata, Shanti Parva 162.24]. While their theological frameworks differ, honesty is a universal virtue enjoined by both."
+      },
+      {
+        question: "What shared concept emphasizes the importance of human accountability for actions?",
+        options: [
+          "Nirvana",
+          "Resurrection",
+          "Moral Causation",
+          "Pantheism"
+        ],
+        correctAnswer: "Moral Causation",
+        explanation: "Both Islam and Hinduism uphold a principle of moral causation, where actions have consequences. Islam teaches: *'Whoever does an atom’s weight of good will see it, and whoever does an atom’s weight of evil will see it.'* [Quran 99:7-8]. This parallels the Hindu concept of *karma*, where deeds determine future states. Though Islam rejects rebirth and affirms a singular accountability in the afterlife [Quran 75:3-4], both faiths stress that human actions are not without divine reckoning."
       }
     ],
     advanced: [
@@ -326,7 +348,7 @@ const hinduCategory: QuizCategory = {
           "Identical concepts"
         ],
         correctAnswer: "Islam affirms creation's reality",
-        explanation: "Quran states: *'We created not heaven and earth... except in truth'* (44:38-39). Contrasts Advaita's maya (illusion). Islamic occasionalism (creation renewed each moment - 55:29) differs from Brahman's lila (divine play). World is Allah's ayah (sign - 3:190), not veil over reality."
+        explanation: "The Quran states: *'We created not heaven and earth... except in truth'* [Quran 44:38-39], firmly affirming the reality and purposeful nature of creation. This contrasts with Advaita Vedanta's *maya* (illusion) theory, which often posits the world as ultimately unreal. While Islam acknowledges the transient nature of this life, it views the world as Allah's *ayah* (sign) [Quran 3:190], a real manifestation of His power and wisdom, not a veil over reality."
       },
       {
         question: "What is the Islamic critique of saguna Brahman worship?",
@@ -337,7 +359,7 @@ const hinduCategory: QuizCategory = {
           "Permits with tawhid adjustments"
         ],
         correctAnswer: "Rejects all form-based devotion",
-        explanation: "Quran prohibits deity representations: *'Those you worship besides Allah cannot create...'* (16:20-21). Nirguna Brahman aligns somewhat with tawhid but saguna forms (Krishna/Shiva) constitute shirk (4:48). Allah's attributes (asma ul-husna) aren't separate beings but one essence."
+        explanation: "Islamic theology, while affirming Allah's attributes (*Asma ul-Husna*), strictly prohibits deity representations: *'Those you worship besides Allah cannot create...'* [Quran 16:20-21]. Nirguna Brahman (formless ultimate reality) aligns somewhat with Tawhid's formlessness, but *Saguna* forms (e.g., Krishna/Shiva) constitute *shirk* (associating partners) [Quran 4:48], as Allah's attributes are not separate beings but belong to His singular essence and are not to be personified."
       },
       {
         question: "How does Islamic prophetology reconcile with Hindu avatar cycles?",
@@ -348,7 +370,7 @@ const hinduCategory: QuizCategory = {
           "Considers Buddha as last avatar"
         ],
         correctAnswer: "Rejects cyclical manifestations",
-        explanation: "Islam teaches linear prophecy ending with Muhammad (33:40). Avatars' divine descent contradicts Quranic *'Nothing is like Him'* (42:11). Some scholars (e.g., Hamiduddin Farahi) suggested Hindu sages may have been regional warners (35:24) but their messages got distorted into incarnation theology."
+        explanation: "Islam teaches a linear history of prophecy culminating with Muhammad (PBUH) as the final prophet [Quran 33:40]. The concept of avatars' divine descent directly contradicts the Quranic tenet: *'Nothing is like Him'* [Quran 42:11], which asserts God's absolute transcendence and dissimilarity from creation. While some scholars suggested Hindu sages may have been regional warners [Quran 35:24], their messages were distorted into incarnation theology, which is rejected in Islam."
       },
       {
         question: "What is the Islamic position on Hindu monastic orders?",
@@ -359,7 +381,7 @@ const hinduCategory: QuizCategory = {
           "Only allows female ascetics"
         ],
         correctAnswer: "Rejects celibate monasticism",
-        explanation: "Quran states: *'Monasticism they invented...'* (57:27). Prophet said: *'No monasticism in Islam'* (Musnad Ahmad 14982). Contrasts Hindu sannyasa (Bhagavad Gita 5:3). Permits zuhd (asceticism) within society (Hadith - Tirmidhi 2374). Sufi tariqas aren't monastic but emphasize communal worship."
+        explanation: "The Quran states: *'Monasticism they invented... We did not prescribe it for them'* [Quran 57:27]. The Prophet (PBUH) explicitly said: *'There is no monasticism in Islam'* [Musnad Ahmad 14982]. This contrasts with Hindu *sannyasa* (complete renunciation of worldly life) [Bhagavad Gita 5:3]. Islam permits *zuhd* (asceticism or detachment from worldly desires) but within the bounds of society and family life [Hadith - Tirmidhi 2374]. Sufi *tariqas* (orders) are not monastic but emphasize communal worship and spiritual discipline."
       },
       {
         question: "How does Islamic law view Hindu marriage customs?",
@@ -370,7 +392,7 @@ const hinduCategory: QuizCategory = {
           "Rejects all Hindu ceremonies"
         ],
         correctAnswer: "Permits with Islamic conditions",
-        explanation: "Non-idolatrous customs (mehndi, jaimala) are permissible if they don't contradict sharia. Key requirements: mutual consent (4:21), mahr (4:4), no caste restrictions (49:13). Prohibits: saptapadi around fire (5:90), deity invocations. Interfaith marriages: Muslim men may marry Hindu women (5:5) with conditions."
+        explanation: "Non-idolatrous customs such as *mehndi* (henna) or *jaimala* (garland exchange) are permissible in Islam if they do not contradict *Sharia*. Key Islamic requirements for marriage include mutual consent [Quran 4:21], *mahr* (dowry) [Quran 4:4], and no caste restrictions [Quran 49:13]. Practices like *saptapadi* (seven steps around fire) [Quran 5:90] or deity invocations are prohibited. Interfaith marriages: Muslim men may marry Hindu women [Quran 5:5] under specific conditions related to the woman's monotheistic belief, though most scholars agree that 'people of the book' refers to Christians and Jews, not Hindus."
       },
       {
         question: "What is the Islamic view of the Bhagavad Gita's battlefield ethics?",
@@ -381,7 +403,7 @@ const hinduCategory: QuizCategory = {
           "Considers it identical to jihad"
         ],
         correctAnswer: "Parallels just war principles",
-        explanation: "Gita's kshatriya dharma (2:31-38) resembles Islamic combat ethics: no aggression (2:190), protect oppressed (4:75), avoid civilians (Hadith - Abu Dawud 2668). Differences: jihad requires state declaration; Gita permits war for caste duty. Islam emphasizes intent: *'Fight in Allah's cause...'* (4:76)."
+        explanation: "The Gita's *kshatriya dharma* (duty of a warrior) [Bhagavad Gita 2:31-38] shares parallels with Islamic principles of just war. Islam forbids aggression [Quran 2:190], mandates protecting the oppressed [Quran 4:75], and avoiding harm to non-combatants [Hadith - Abu Dawud 2668]. Differences include that *jihad* (struggle in the path of Allah) requires state declaration and adherence to strict ethical guidelines, while the Gita permits war for caste duty. Islam emphasizes the intent: *'Fight in Allah's cause those who fight you, but do not transgress limits'* [Quran 2:190]."
       },
       {
         question: "How does Islamic theology interpret Hindu deity hierarchies?",
@@ -392,7 +414,7 @@ const hinduCategory: QuizCategory = {
           "As jinn manifestations"
         ],
         correctAnswer: "As corrupted angelology",
-        explanation: "Some scholars suggest devas (Indra, Agni) reflect distorted memories of angels (malaika - 35:1). Quran states jinn mislead humans (6:112), possibly explaining some deity worship. But all supernatural power ultimately belongs to Allah (40:62). Trimurti functions resemble but exceed angelic roles in Islam."
+        explanation: "Some Islamic scholars suggest that concepts of *devas* (e.g., Indra, Agni) might reflect distorted memories of angelic beings (*malaika*) [Quran 35:1]. The Quran also explains that *jinn* can mislead humans [Quran 6:112], potentially accounting for certain forms of deity worship. However, Islam firmly asserts that all supernatural power ultimately belongs to Allah alone [Quran 40:62]. The functions attributed to the Trimurti, while resembling divine roles, exceed angelic capacities in Islam and are ultimately ascribed solely to Allah."
       },
       {
         question: "What is the Islamic perspective on Hindu death rituals?",
@@ -403,7 +425,7 @@ const hinduCategory: QuizCategory = {
           "Validates asthi visarjan"
         ],
         correctAnswer: "Replaces with Islamic janazah",
-        explanation: "Islamic burial within 24 hours (Hadith - Abu Dawud 3156) contrasts Hindu cremation (Garuda Purana). Prohibits shraddha's pinda offerings (5:3). Permits non-shirk condolence customs. Soul's fate is sealed at death (23:99-100), no preta/bhuta states. Dua replaces tarpan rituals."
+        explanation: "Islamic burial, typically performed within 24 hours of death [Hadith - Abu Dawud 3156], contrasts with Hindu cremation practices [Garuda Purana]. Islam prohibits practices like *shraddha*'s *pinda* offerings [Quran 5:3] as they can be seen as associating partners with God's ultimate authority over the deceased. While permissible to offer condolences to non-Muslims, the soul's fate is sealed at death in Islam [Quran 23:99-100], and rituals like *dua* (supplication) for the deceased replace *tarpan* rituals."
       },
       {
         question: "How does Islamic eschatology compare with Hindu kali yuga concepts?",
@@ -414,7 +436,7 @@ const hinduCategory: QuizCategory = {
           "Kali yuga equals Islamic golden age"
         ],
         correctAnswer: "Both predict moral decline",
-        explanation: "Hadith describe Dajjal's fitna (Muslim 2934) resembling kali yuga's chaos (Bhagavata Purana 12.1). Differences: Islamic decline isn't cosmically mandated but results from sin (30:41). Judgment Day is final (69:13-18), not cycle's end. Mahdi's arrival (Abu Dawud 4282) parallels Kalki avatar but for tawhid."
+        explanation: "Both traditions predict periods of moral decline. Islamic narrations describe the *fitna* (trials) leading to the appearance of Dajjal (Anti-Christ) [Muslim 2934], which resonates with the chaos and moral degradation prophesied for the *Kali Yuga* [Bhagavata Purana 12.1]. However, a key difference is that in Islam, this decline is not cosmically mandated but results from human sin [Quran 30:41]. Judgment Day in Islam is a final event [Quran 69:13-18], not the end of a cycle. The arrival of the Mahdi [Abu Dawud 4282] in Islam parallels the Kalki avatar in Hinduism, but for the restoration of Tawhid and justice."
       },
       {
         question: "What is the Islamic critique of bhakti's deity emotionalism?",
@@ -425,7 +447,7 @@ const hinduCategory: QuizCategory = {
           "Only allows prophetic love"
         ],
         correctAnswer: "Permits only to Allah",
-        explanation: "Islamic mahabbah (divine love) directs all passion to Allah: *'Those who believe are strongest in love for Allah'* (2:165). Contrasts Krishna bhakti's romantic imagery (Gita Govinda). Sufi poets (Rumi) expressed love within tawhid. Prohibits shrine-based ecstatic practices (5:90)."
+        explanation: "Islamic *mahabbah* (divine love) directs all passion, emotion, and devotion exclusively to Allah: *'Those who believe are strongest in love for Allah'* [Quran 2:165]. This contrasts with the romantic or anthropomorphic imagery often associated with Krishna *bhakti* [Gita Govinda]. Sufi poets like Rumi expressed profound love, but strictly within the framework of Tawhid. Islam prohibits ecstatic practices or rituals at shrines that may lead to *shirk* [Quran 5:90]."
       },
       {
         question: "How does Islamic art theology differ from Hindu iconography?",
@@ -436,7 +458,7 @@ const hinduCategory: QuizCategory = {
           "Only calligraphy is allowed"
         ],
         correctAnswer: "Islamic aniconism contrasts murti puja",
-        explanation: "Hadith prohibit images of living beings (Bukhari 5951), focusing on geometric/calligraphic art (Quran 2:144). Contrasts Hindu pratima worship (Yajur Veda 12.95). Mosques avoid imagery; temples center on vigrahas. Shared aesthetic principles but divergent theology of representation."
+        explanation: "Islamic art theology emphasizes *aniconism*, generally prohibiting the depiction of living beings in religious contexts [Hadith - Bukhari 5951], focusing instead on geometric patterns, arabesques, and calligraphy (reflecting Quranic verses) [Quran 2:144]. This stands in stark contrast to Hindu *pratima* worship (iconography) [Yajur Veda 12.95]. While both traditions may share aesthetic principles in secular art, mosques meticulously avoid *murti* (idol) imagery, whereas temples are centered on *vigrahas* (deity images), reflecting divergent theological approaches to divine representation."
       },
       {
         question: "What is the Islamic position on Ayurvedic medicine?",
@@ -447,7 +469,7 @@ const hinduCategory: QuizCategory = {
           "Mandates over modern medicine"
         ],
         correctAnswer: "Permits physical treatments",
-        explanation: "Permissible if free from shirk elements (mantras/deity invocations). Prophet said: *'Allah has not made a disease without creating a cure'* (Bukhari 5678). Dosha theory is acceptable as observational science, not theology. Prohibits forbidden ingredients (alcohol - 5:90)."
+        explanation: "Ayurvedic treatments are permissible in Islam if they are free from elements of *shirk* (e.g., mantras invoking deities) and illicit ingredients. The Prophet (PBUH) stated: *'Allah has not made a disease without creating a cure for it'* [Bukhari 5678], encouraging seeking medical treatment. The *dosha* theory can be viewed as an observational scientific framework, not a theological one. However, practices involving forbidden ingredients like alcohol [Quran 5:90] or those with overtly polytheistic rituals are not permitted."
       },
       {
         question: "How does Islamic theology view the concept of Ishvara?",
@@ -458,7 +480,7 @@ const hinduCategory: QuizCategory = {
           "As angelic being"
         ],
         correctAnswer: "As shirk when multiple",
-        explanation: "Nyaya school's Ishvara resembles Islamic tawhid but Hindu theology's multiplicity (Brahma-Vishnu-Shiva) conflicts with Quranic *'No god but He'* (2:163). Dvaita's Vishnu as supreme comes closest but still differs in attributes. Islam rejects philosophical theism equating all deity concepts."
+        explanation: "While the Nyaya school's concept of Ishvara (a singular, supreme God) can appear to resemble Islamic Tawhid, the multiplicity of deities in the broader Hindu theological framework (e.g., Brahma-Vishnu-Shiva) fundamentally conflicts with the Quranic declaration: *'No god but He'* [Quran 2:163]. Islam rejects any philosophical theism that equates or posits multiple co-equal divine concepts, asserting Allah's absolute oneness and uniqueness [Quran 112:1-4]."
       },
       {
         question: "What is the Islamic critique of jnana yoga's path?",
@@ -469,7 +491,7 @@ const hinduCategory: QuizCategory = {
           "Mandates identical approach"
         ],
         correctAnswer: "Permits within tawhid framework",
-        explanation: "Islam values ilm (knowledge - 58:11) but grounds it in revelation: *'Only those fear Allah who have knowledge'* (35:28). Contrasts jnana's reliance on personal realization (Upanishads). Kalam theology uses reason but submits to Quran/sunnah. Sufi ma'rifah (gnosis) differs from Vedantic jnana."
+        explanation: "Islam highly values *ilm* (knowledge) and intellectual pursuit [Quran 58:11] but grounds it in divine revelation: *'Only those fear Allah, from among His servants, who have knowledge'* [Quran 35:28]. This contrasts with *jnana yoga's* reliance on personal realization or intellectual discernment of the self's unity with Brahman [Upanishads]. While Islamic *Kalam* (theology) uses reason, it always submits to the Quran and Sunnah. Sufi *ma'rifah* (gnosis) is a deeper understanding of Allah but differs from Vedantic *jnana* in its adherence to Tawhid and rejection of ontological merging."
       },
       {
         question: "How does Islamic environmental ethics compare with Hindu dharma?",
@@ -480,7 +502,7 @@ const hinduCategory: QuizCategory = {
           "Identical stewardship concepts"
         ],
         correctAnswer: "Islam balances use and conservation",
-        explanation: "Quran permits resource use (67:15) with responsibility: *'Do not waste'* (7:31). Contrasts extreme ahimsa (Jainism) or sacred groves. Islamic hima (protected zones) parallel vana dharma. Prophet prohibited cutting fruit-bearing trees (Muslim 4743). Animals have rights (Hadith - Abu Dawud 2549)."
+        explanation: "Islam permits the responsible use of natural resources [Quran 67:15] with a strong emphasis on avoiding waste and exploitation: *'Do not waste'* [Quran 7:31]. This balances human needs with conservation, differing from some extreme forms of *ahimsa* (non-harm) or sacred groves in Hinduism. Islamic practices like *hima* (protected zones) parallel ancient conservation efforts. The Prophet (PBUH) prohibited cutting fruit-bearing trees during war [Muslim 4743], and animals are recognized as having rights [Hadith - Abu Dawud 2549]. Both traditions underscore human stewardship of the earth as a divine trust."
       },
       {
         question: "What is the Islamic view of Hindu caste-based occupations?",
@@ -491,7 +513,7 @@ const hinduCategory: QuizCategory = {
           "Only accepts Brahmin roles"
         ],
         correctAnswer: "Rejects hereditary restrictions",
-        explanation: "Prophet said: *'All occupations are lawful except what Islam prohibits'* (Bayhaqi). Bilal (ex-slave) became muadhin; Salman (Persian) was sahabi. Quran states: *'The most noble... is most righteous'* (49:13). Contrasts varnashrama dharma's birth-based duties (Bhagavad Gita 18:41-44)."
+        explanation: "Islam fundamentally rejects hereditary restrictions on occupations. The Prophet (PBUH) stated: *'All occupations are lawful except what Islam prohibits'* [Bayhaqi]. Islamic history provides examples of social mobility based on merit and piety, such as Bilal, an emancipated slave, becoming the first *muadhin* (caller to prayer), and Salman, a Persian, being a revered companion. The Quran emphasizes that *'The most noble... in the sight of Allah is the most righteous'* [Quran 49:13], directly contrasting the birth-based duties of *varnashrama dharma* [Bhagavad Gita 18:41-44]."
       },
       {
         question: "How does Islamic finance compare with Hindu economic dharma?",
@@ -502,7 +524,7 @@ const hinduCategory: QuizCategory = {
           "Identical wealth distribution"
         ],
         correctAnswer: "Zakat parallels danam but is obligatory",
-        explanation: "Zakat (2.5% wealth - Quran 9:60) resembles danam (charity) but is fixed, not voluntary. Prohibits riba (2:275) like Dharmashastras but more strictly. Islamic profit-sharing (mudarabah) parallels ancient guilds. Contrasts Hindu temple wealth accumulation vs Islamic waqf community benefits."
+        explanation: "Islamic *Zakat* (obligatory annual charity, typically 2.5% of wealth) [Quran 9:60] shares a common ethical goal with Hindu *danam* (voluntary charity), but Zakat is a fixed religious obligation. Islam strictly prohibits *riba* (interest) [Quran 2:275], a stance also found in some Dharmashastras but more rigorously applied in Islamic law. Islamic principles like *mudarabah* (profit-sharing partnerships) reflect ancient ethical trade practices. Differences arise in the accumulation of wealth by temples versus Islamic *waqf* (endowments) primarily for community benefits."
       },
       {
         question: "What is the Islamic position on Hindu musical traditions?",
@@ -513,7 +535,7 @@ const hinduCategory: QuizCategory = {
           "Mandates identical qawwali"
         ],
         correctAnswer: "Permits non-religious forms",
-        explanation: "Scholars differ on music; most permit non-promiscuous forms (Fatwa - Ibn Baz 3/423). Prohibits instruments used in worship (5:90). Qawwali differs from bhajans by avoiding deity praise. Carnatic/Hindustani music permissible if lyrics are Islamically appropriate. Contrasts Sikh kirtan's theological acceptance."
+        explanation: "Islamic scholars have diverse opinions on music, but many permit non-promiscuous forms of music [Fatwa - Ibn Baz 3/423]. However, instruments used in worship that could lead to *shirk* are prohibited [Quran 5:90]. While *Qawwali* (a form of Sufi devotional music) exists in Islamic culture, it differs from Hindu *bhajans* by avoiding deity praise. Carnatic or Hindustani music, if its lyrics are Islamically appropriate and not used for illicit purposes, can be permissible. This contrasts with the theological acceptance of music like Sikh *kirtan*."
       },
       {
         question: "How does Islamic time theology differ from Hindu kalpa cycles?",
@@ -524,7 +546,7 @@ const hinduCategory: QuizCategory = {
           "Only Hinduism measures time"
         ],
         correctAnswer: "Islam has linear creation to judgment",
-        explanation: "Quranic time is linear: creation (21:30), earthly test (67:2), resurrection (36:51-53). Contrasts kalpas' 4.32 billion-year cycles (Mahabharata 12.231). Islamic 'day' equals 50,000 years (70:4) metaphorically. Houris/jannah are eternal (44:51-57), not temporary svarga."
+        explanation: "Islamic time is fundamentally linear, encompassing creation [Quran 21:30], an earthly test [Quran 67:2], and a definitive resurrection and final judgment [Quran 36:51-53]. This contrasts with Hindu *kalpa* cycles, which describe vast, recurring periods of creation and destruction lasting billions of years [Mahabharata 12.231]. While the Quran mentions a 'day' with Allah can be equivalent to 50,000 years [Quran 70:4], this is metaphorical, not indicative of cyclical time. Islamic concepts of Paradise (*Jannah*) and Hell are eternal [Quran 44:51-57], not temporary realms before another cycle."
       },
       {
         question: "What is the Islamic critique of tantric practices?",
@@ -535,7 +557,7 @@ const hinduCategory: QuizCategory = {
           "Mandates identical Sufi techniques"
         ],
         correctAnswer: "Rejects shirk and illicit elements",
-        explanation: "Prohibits deity visualization (42:11), sexual rituals (17:32), and substance use (5:90). Sufi dhikr differs from tantric mantras by avoiding bija syllables. Permissible ruqya (healing) has strict conditions (Hadith - Bukhari 5735). Islam channels spiritual energy (barakah) through halal means only."
+        explanation: "Islam prohibits Tantric practices that involve *shirk* (e.g., deity visualization) [Quran 42:11], illicit sexual rituals [Quran 17:32], or forbidden substances [Quran 5:90]. While Sufi *dhikr* and contemplative practices aim for spiritual purification, they differ from Tantric mantras and rituals by avoiding *bija* syllables and energy work that contradicts Tawhid. Permissible *ruqya* (healing through Quranic recitation and supplication) has strict conditions [Hadith - Bukhari 5735], and Islam channels spiritual energy (*barakah*) exclusively through permissible means."
       },
       {
         question: "How does Islamic social justice compare with varna dharma?",
@@ -546,7 +568,7 @@ const hinduCategory: QuizCategory = {
           "Identical mobility restrictions"
         ],
         correctAnswer: "Islam establishes equality before law",
-        explanation: "Prophet said: *'No Arab has superiority over non-Arab...'* (Farewell Sermon). Contrasts Manusmriti's fixed varnas (1:87-91). Islamic justice examples: Bilal's emancipation, Umar's equal stipends. Zakat uplifts all poor (9:60), not caste-specific danam. Caliph Umar punished elite offenders (Tarikh al-Tabari)."
+        explanation: "Islam fundamentally establishes equality before the law, as articulated by the Prophet (PBUH): *'No Arab has superiority over non-Arab...'* [Farewell Sermon]. This directly contrasts with Manusmriti's fixed, birth-based *varnas* (castes) [Manusmriti 1:87-91]. Islamic justice examples include the emancipation of slaves like Bilal and the Caliph Umar's equitable distribution of stipends. Islamic *Zakat* aims to uplift all poor regardless of background [Quran 9:60], unlike caste-specific *danam*. Islamic law holds all individuals accountable regardless of social status [Tarikh al-Tabari]."
       },
       {
         question: "What is the Islamic view of Hindu cosmological models?",
@@ -557,7 +579,7 @@ const hinduCategory: QuizCategory = {
           "Considers it identical to Quran"
         ],
         correctAnswer: "Rejects flat earth concepts",
-        explanation: "Quran describes spherical earth (39:5) and expanding universe (51:47), contradicting Puranic flat earth/mandala models. Seven heavens (67:3) are metaphorical, not literal lokas. Scientific miracles in Quran align with modern cosmology, while Hindu models reflect ancient knowledge. Both agree on universe's divine origin."
+        explanation: "The Quran describes a spherical earth [Quran 39:5] and an expanding universe [Quran 51:47], which contradicts Puranic flat earth or mandala models. The concept of 'seven heavens' in Islam [Quran 67:3] is metaphorical for multiple levels of existence, not literal *lokas* (planes of existence). While both traditions agree on the universe's divine origin, Islamic cosmology, particularly in its scientific interpretations, aligns with modern scientific understanding, whereas Hindu models often reflect ancient geographical and philosophical views."
       },
       {
         question: "How does Islamic spirituality address Hindu kundalini concepts?",
@@ -568,7 +590,7 @@ const hinduCategory: QuizCategory = {
           "Mandates identical energy practices"
         ],
         correctAnswer: "Replaces with ruh (soul) purification",
-        explanation: "Sufi lataif (subtle centers) differ from chakras by avoiding physical locations. Spiritual ascent through dhikr/muraqaba, not kundalini rising. Prophet's night journey (Isra 17:1) represents spiritual not energetic ascent. Prohibits practices involving shirk or forbidden acts (5:90)."
+        explanation: "Islamic spirituality, particularly in Sufism, focuses on the purification of the *ruh* (soul) and engagement with *lataif* (subtle centers), which differ from *chakras* by avoiding fixed physical locations. Spiritual ascent is achieved through *dhikr* (remembrance of Allah) and *muraqaba* (contemplation), not through *kundalini* rising. The Prophet's (PBUH) Night Journey (*Isra* and *Mi'raj*) [Quran 17:1] represents a spiritual ascent to divine presence, not an energetic one. Practices involving *shirk* or forbidden acts [Quran 5:90] are explicitly prohibited in Islam."
       },
       {
         question: "What is the Islamic position on Hindu temple donations?",
@@ -579,7 +601,7 @@ const hinduCategory: QuizCategory = {
           "Mandates equal zakat distribution"
         ],
         correctAnswer: "Prohibits all funding of shirk",
-        explanation: "Quran states: *'Do not cooperate in sin...'* (5:2). Donations supporting idolatry are forbidden. Permissible: helping poor Hindus through Islamic charities. Contrasts with dharmic obligation of temple danam. Waqf funds must avoid shirk activities (Fatwa - Ibn Uthaymin 2/293)."
+        explanation: "Islam strictly prohibits any act that supports *shirk* (associating partners with God), including financial contributions to institutions where idolatry is practiced [Quran 5:2]. Donations must be for permissible causes. While helping the poor regardless of faith is encouraged in Islam, directly funding temples where idol worship occurs is considered forbidden. Islamic *waqf* (endowments) and *Zakat* funds must be used for purposes that align with Islamic principles and primarily benefit the Muslim community or those in need through permissible means [Fatwa - Ibn Uthaymin 2/293]."
       },
       {
         question: "How does Islamic theology interpret Hindu saint miracles?",
@@ -590,7 +612,7 @@ const hinduCategory: QuizCategory = {
           "As identical to prophetic miracles"
         ],
         correctAnswer: "As possible karamat of righteous people",
-        explanation: "Allah may grant wonders to non-Muslims testing believers (Quran 2:258). But true karamat don't contradict tawhid (Hadith - Muslim 2262). Distinguish from sihr (magic - 2:102). Some Hindu saints may have been awliya (friends of Allah) despite theological differences, like Christian ascetics."
+        explanation: "In Islamic theology, Allah may grant *karamat* (wonders or divine favors) to righteous individuals (*awliya* - friends of Allah), regardless of their religious affiliation, as a test for believers [Quran 2:258]. However, true *karamat* do not contradict Tawhid [Hadith - Muslim 2262] and are distinct from prophetic miracles (*mu'jizat*), which serve as proof of prophethood. Miraculous occurrences are also distinguished from *sihr* (magic) [Quran 2:102]. Some Hindu saints may have indeed been virtuous individuals whose wonders were a manifestation of Allah's power, even amidst theological differences."
       },
       {
         question: "What is the Islamic critique of murti puja's theology?",
@@ -601,7 +623,7 @@ const hinduCategory: QuizCategory = {
           "Permits with tawhid declaration"
         ],
         correctAnswer: "Rejects all form-based devotion",
-        explanation: "Quran states: *'Do you worship what you carve?'* (37:95). Abraham rejected idol worship (6:74-79). Even 'symbolic' worship risks shirk (4:48). Allah's closeness (50:16) needs no physical媒介. Tawhid requires direct connection without imagery (2:115). Sufi visualization differs by avoiding physical forms."
+        explanation: "Islam unequivocally rejects *murti puja* (idol worship) and all form-based devotion, considering it a severe form of *shirk*. The Quran records Prophet Abraham's rejection of idols: *'Do you worship what you carve?'* [Quran 37:95]. Even if intended as symbolic, such practices are seen as potentially leading to attributing divine qualities to creation [Quran 4:48]. Allah's closeness (*'We are closer to him than his jugular vein'*) [Quran 50:16] emphasizes a direct, unmediated connection without any physical representation or intermediary. Islamic Tawhid requires worship to be directed solely to Allah, who is formless and beyond human comprehension [Quran 112:1-4]."
       },
       {
         question: "How does Islamic da'wa approach Hindu concepts positively?",
@@ -612,7 +634,40 @@ const hinduCategory: QuizCategory = {
           "Mandating immediate shahada"
         ],
         correctAnswer: "Using shared values as bridges",
-        explanation: "Prophet used common ground with Arabs (Hadith - Bukhari 3371). Examples: Brahman's transcendence introducing tawhid, karma's justice leading to Quranic accountability (99:7-8). Al-Biruni's methodology: understand then critique. Avoid mocking deities (6:108). Focus on shared prophets (35:24) and mercy (21:107)."
+        explanation: "Islamic *da'wa* (invitation to Islam) emphasizes using shared values and common ground as bridges for communication, following the example of the Prophet (PBUH) who engaged with people by highlighting universal truths [Hadith - Bukhari 3371]. This involves acknowledging ethical principles like truthfulness (from *karma*'s justice leading to Quranic accountability [Quran 99:7-8]) and recognizing the possibility of earlier divine warners [Quran 35:24]. Scholars like al-Biruni exemplified this methodology: understanding before offering critique. The approach prioritizes wisdom, good counsel, and avoiding mockery of others' deities [Quran 6:108], focusing on the ultimate message of Tawhid, mercy [Quran 21:107], and the shared human quest for truth."
+      },
+      {
+        question: "How does the concept of divine omnipresence manifest similarly in Islamic and Hindu thought?",
+        options: [
+          "Through physical idols",
+          "Through divine incarnation",
+          "As Allah's knowledge encompassing all",
+          "As a merging of individual souls with God"
+        ],
+        correctAnswer: "As Allah's knowledge encompassing all",
+        explanation: "In Islam, Allah's omnipresence is understood primarily through His infinite knowledge, power, and witnessing, as stated: *'And He is with you wherever you are; and Allah is Seeing of what you do.'* [Quran 57:4]. This resonates with certain Hindu philosophical schools (e.g., in the Upanishads) which describe Brahman as an all-pervading, unmanifest reality that encompasses everything. While Islam maintains a clear distinction between Creator and creation and rejects pantheistic interpretations, both traditions emphasize a pervasive divine presence that governs existence [Upanishads, e.g., Mundaka Upanishad 2.2.7]."
+      },
+      {
+        question: "What commonality exists in the emphasis on spiritual purity and inner cleansing in both faiths?",
+        options: [
+          "Ablution for idol worship",
+          "Celibacy for spiritual advancement",
+          "Heart purification and remembrance of God",
+          "Ritualistic bathing only"
+        ],
+        correctAnswer: "Heart purification and remembrance of God",
+        explanation: "Both Islam and Hinduism emphasize inner purification. In Islam, the concept of *tazkiyah al-nafs* (purification of the soul) involves freeing the heart from spiritual ailments through remembrance (*dhikr*) and reflection [Quran 33:41]. Similarly, Hindu practices like *yoga* and *bhakti* aim for inner cleansing and a connection with the divine through meditation (*dhyana*) and devotion. The focus is on purifying the heart as the seat of faith and spiritual insight, rather than mere outward ritual [Bhagavad Gita 18:62; Quran 2:165]."
+      },
+      {
+        question: "How do both Islam and certain Hindu philosophies view the ultimate dependence of creation on a singular divine source?",
+        options: [
+          "All existence is an illusion",
+          "The universe is self-sustaining",
+          "Existence originates from and relies on one supreme reality",
+          "Multiple gods created different parts of the universe"
+        ],
+        correctAnswer: "Existence originates from and relies on one supreme reality",
+        explanation: "Islam unequivocally states that *'Allah is the Creator of all things, and He is over all things a Disposer of affairs.'* [Quran 39:62]. This absolute dependence of all creation on a singular divine source is a core tenet of Tawhid. While Hinduism has diverse schools, the Upanishadic concept of Brahman as the ultimate, singular reality from which all existence emanates and to which it returns, shares this foundational idea of a singular source of being [Chandogya Upanishad 6.2.1]. Both traditions, despite their differences in defining this ultimate reality, point to a universe fundamentally contingent upon a single, supreme power."
       }
     ],
     intermediate: [
