@@ -315,20 +315,7 @@ const christCategory: QuizCategory = {
         correctAnswer: "Equivalent to eating flesh",
         explanation: "'Do not speak against one another' (James 4:11 RSV) and 'Do not backbite... would any of you like to eat his brother's dead flesh?' (Quran 49:12). Both require repentance (Matthew 5:23-24/Hadith, Abu Dawood 4874) and repairing reputations damaged."
       },
-      {
-        question: "How do both view the Sabbath?",
-        options: [
-          "Transferred to Sunday",
-          "Abrogated entirely",
-          "Day of worship focus",
-          "Only for Jews"
-        ],
-        correctAnswer: "Day of worship focus",
-        explanation: "While Christians observe Sunday (Acts 20:7) and Muslims Friday (Quran 62:9-11), both maintain Sabbath principles: weekly worship (Hebrews 10:25/Hadith, Bukhari 893), rest (Exodus 20:8-11/Quran 4:154), and family time (Mark 2:27/Hadith, Ibn Majah 1727)."
-      }
-    ],
-    advanced: [
-      {
+        {
         question: "How does Christology differ between Islam and Christianity?",
         options: [
           "Both affirm Trinity",
@@ -340,6 +327,19 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms Jesus' virgin birth (3:47), miracles (5:110), and return (43:61) but rejects divinity (5:72-75) and crucifixion (4:157). Contrast Nicene Creed's 'true God from true God.' Both agree on his eschatological role (Matthew 24:30-31/Quran 4:159)."
       },
       {
+        question: "How do both religions view the Sabbath?",
+        options: [
+          "Transferred to Sunday",
+          "Abrogated entirely",
+          "Day of worship focus",
+          "Only for Jews"
+        ],
+        correctAnswer: "Day of worship focus",
+        explanation: "While Christians observe Sunday (Acts 20:7) and Muslims Friday (Quran 62:9-11), both maintain Sabbath principles: weekly worship (Hebrews 10:25/Hadith, Bukhari 893), rest (Exodus 20:8-11/Quran 4:154), and family time (Mark 2:27/Hadith, Ibn Majah 1727)."
+      }
+    ],
+    advanced: [
+       {
         question: "What is the Islamic view of Pauline theology?",
         options: [
           "Fully accepted",
@@ -635,17 +635,6 @@ const christCategory: QuizCategory = {
         ],
         correctAnswer: "Selectively references some narratives",
         explanation: "Quran references stories like Saul's kingship (2:246-251) resembling 1 Samuel, and Alexander's wall (18:83-98) similar to 4 Ezra's Gog-Magog. Rejected are doctrinally problematic texts (Tobit's angelology, Maccabees' Hanukkah). Islamic sources like al-Tabari's history critically evaluate biblical material."
-      },
-      {
-        question: "How does Islamic theodicy address suffering?",
-        options: [
-          "As always divine punishment",
-          "As test with eternal compensation",
-          "As proof of God's absence",
-          "Identical to Christian 'felix culpa'"
-        ],
-        correctAnswer: "As test with eternal compensation",
-        explanation: "Quran states 'We test you with good and evil' (21:35), promising 'No fatigue, nor disease... befalls a believer but Allah expiates sins thereby' (Hadith, Bukhari 5641). Contrast Augustinian privation theory. Islamic view closer to Irenaean soul-making: Job's patience (38:41) is model, not original sin's consequences."
       },
       {
         question: "What is the Islamic view of the Ecclesiastical hierarchy?",
