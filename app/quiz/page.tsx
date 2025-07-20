@@ -1,119 +1,99 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
-import QuizContainer from "@/components/quiz/quiz-container";
-import type { DifficultyLevel, QuizQuestion, QuizCategory } from "@/types/quiz";
+import type React from "react";
+import Head from "next/head";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/contexts/auth-context";
+import { Header } from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster";
+import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
-// Helper function to shuffle an array using Fisher-Yates algorithm
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+const inter = Inter({ subsets: ["latin"] });
 
-// Mock getCategory function (replace with actual implementation)
-function getCategory(categoryId: string): QuizCategory | null {
-  // This should query your categories table or use a static data source
-  return { id: categoryId, title: categoryId }; // Placeholder
-}
+// Metadata export
+export const metadata: Metadata = {
+  title: "IQRA - Islamic Quiz Rivalry App",
+  description: "Increase & Test your Islamic knowledge through interactive quizzes and challenges",
+  keywords: "Islamic quiz, Islamic knowledge, Quran quiz, Islamic education, Muslim learning",
+  authors: [{ name: "Mohamed Essa Rafique" }],
+  creator: "Mohamed Essa Rafique",
+  publisher: "IQRA",
+  robots: "index, follow",
+  openGraph: {
+    url: "https://iqrar.vercel.app/",
+    title: "IQRA - Islamic Quiz Rivalry App",
+    description: "Test your Islamic knowledge through interactive quizzes and challenges",
+    images: [
+      {
+        url: "/iqralogo.png",
+        width: 1200,
+        height: 630,
+        alt: "IQRA App Logo",
+      },
+    ],
+    type: "website",
+    siteName: "IQRA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IQRA - Islamic Quiz Rivalry App",
+    description: "Test your Islamic knowledge through interactive quizzes and challenges",
+    images: [{ url: "/iqralogo.png" }],
+  },
+  icons: {
+    icon: [
+      { url: "/iqralogo.ico", type: "image/x-icon" },
+      { url: "/iqralogo.ico", sizes: "any" },
+    ],
+  },
+  generator: "v0.dev",
+};
 
-export default async function QuizPage({
-  searchParams,
+// Viewport export
+export const viewport: Viewport = {
+  themeColor: "#15803D",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default async function RootLayout({
+  children,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  children: React.ReactNode;
 }) {
-  const categoryId = searchParams.category as string;
-  const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy";
-  const challengeMode = searchParams.challenge as string | undefined;
-  const questionCount = searchParams.questions ? Number.parseInt(searchParams.questions as string, 10) : undefined;
-  const opponentId = searchParams.opponent as string | undefined;
-  const opponentName = searchParams.opponentName as string | undefined;
-  const challengerTurn = searchParams.challengerTurn === "true";
-
-  if (!categoryId) {
-    redirect("/categories");
-  }
-
-  const category = getCategory(categoryId);
-  if (!category) {
-    redirect("/categories");
-  }
-
-  // Initialize Supabase client
-  const supabase = createClient(
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { cookies }
   );
 
-  // Fetch questions from Supabase
-  let questions: QuizQuestion[] = [];
-  if (difficulty === "mixed") {
-    const { data, error } = await supabase
-      .from("quizzes")
-      .select("*")
-      .eq("category_id", categoryId);
-    if (error) {
-      console.error("Error fetching mixed questions:", error);
-    } else {
-      questions = data as QuizQuestion[];
-    }
-  } else {
-    const { data, error } = await supabase
-      .from("quizzes")
-      .select("*")
-      .eq("category_id", categoryId)
-      .eq("difficulty", difficulty);
-    if (error) {
-      console.error(`Error fetching ${difficulty} questions:`, error);
-    } else {
-      questions = data as QuizQuestion[];
-    }
-  }
-
-  // Shuffle questions
-  questions = shuffleArray(questions);
-
-  // Limit question count if specified
-  if (questionCount && questions.length > questionCount) {
-    questions = questions.slice(0, questionCount);
-  }
-
-  if (questions.length === 0) {
-    const redirectPath = challengeMode ? "/challenges" : "/categories";
-    const redirectText = challengeMode ? "Back to Challenges" : "Browse Categories";
-
-    return (
-      <div className="container mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
-        <p className="mb-6">
-          Sorry, there are no questions available for {category.title} in {difficulty} mode at this time.
-        </p>
-        <a
-          href={redirectPath}
-          className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
-        >
-          {redirectText}
-        </a>
-      </div>
-    );
-  }
+  const { data: { session } } = await supabase.auth.getSession();
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-2xl font-bold mb-4">
-        {challengeMode ? "Challenge Mode" : "Quiz Mode"}: {category.title} ({difficulty})
-      </h1>
-      <QuizContainer
-        questions={questions}
-        category={category}
-        difficulty={difficulty}
-        challengeMode={challengeMode}
-        opponentId={opponentId}
-        opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
-        challengerTurn={challengerTurn}
-      />
-    </div>
+    <html lang="en" suppressHydrationWarning>
+      <Head>
+        <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider session={session}>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+            </div>
+            <ChallengeNotification />
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
