@@ -1,32 +1,32 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Progress } from "@/components/ui/progress"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock, Info } from "lucide-react"
-import Link from "next/link"
-import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
-import { getRandomOpponent } from "@/utils/opponents"
-import { LoadingAnimation } from "@/components/loading-animation"
-import InteractiveInfographic from "@/components/quiz/interactive-infographic"
-import { getUserProfile } from "@/lib/supabase-queries"
-import { useAuth } from "@/contexts/auth-context"
-import { toast } from "@/components/ui/use-toast"
-import { supabase } from "@/lib/supabase-client"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock, Info } from "lucide-react";
+import Link from "next/link";
+import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz";
+import { getRandomOpponent } from "@/utils/opponents";
+import { LoadingAnimation } from "@/components/loading-animation";
+import InteractiveInfographic from "@/components/quiz/interactive-infographic";
+import { getUserProfile } from "@/lib/supabase-queries";
+import { useAuth } from "@/contexts/auth-context";
+import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/lib/supabase-client";
 
 interface QuizContainerProps {
-  questions: QuizQuestion[]
-  category: QuizCategory
-  difficulty: DifficultyLevel
-  challengeMode?: string
-  opponentId?: string
-  opponentName?: string
-  challengerTurn?: boolean
+  questions: QuizQuestion[];
+  category: QuizCategory;
+  difficulty: DifficultyLevel;
+  challengeMode?: string;
+  opponentId?: string;
+  opponentName?: string;
+  challengerTurn?: boolean;
 }
 
 export default function QuizContainer({
@@ -38,63 +38,65 @@ export default function QuizContainer({
   opponentName,
   challengerTurn,
 }: QuizContainerProps) {
-  const router = useRouter()
-  const { user } = useAuth()
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<string>("")
-  const [score, setScore] = useState(0)
-  const [answers, setAnswers] = useState<string[]>([])
-  const [showExplanation, setShowExplanation] = useState(false)
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
-  const [progress, setProgress] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(0)
-  const [isTimerRunning, setIsTimerRunning] = useState(false)
-  const [quizId, setQuizId] = useState("")
-  const [opponent, setOpponent] = useState<any>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
+  const router = useRouter();
+  const { user } = useAuth();
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [quizId, setQuizId] = useState("");
+  const [opponent, setOpponent] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null);
 
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
     return (
-      challengeMode?.startsWith("demo-") || challengeMode?.startsWith("fallback-") || opponentId?.startsWith("demo-")
-    )
-  }
+      challengeMode?.startsWith("demo-") ||
+      challengeMode?.startsWith("fallback-") ||
+      opponentId?.startsWith("demo-")
+    );
+  };
 
   // Generate a unique quiz ID when the component mounts
   useEffect(() => {
-    setQuizId(`quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`)
-  }, [])
+    setQuizId(`quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`);
+  }, []);
 
   useEffect(() => {
     // Initialize answers array
-    setAnswers(Array(questions.length).fill(""))
+    setAnswers(Array(questions.length).fill(""));
 
     // Set up opponent for challenge mode
     if (challengeMode) {
-      console.log("🎯 QUIZ CONTAINER: Challenge mode active")
-      console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId)
-      console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName)
-      console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
-      console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
+      console.log("🎯 QUIZ CONTAINER: Challenge mode active");
+      console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId);
+      console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName);
+      console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn);
+      console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge());
 
       if (opponentId && opponentName) {
-        console.log("🎯 QUIZ CONTAINER: Using opponent info from URL")
+        console.log("🎯 QUIZ CONTAINER: Using opponent info from URL");
         const opponentInfo = {
           id: opponentId,
           name: opponentName,
           avatar_url: null,
           level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-        }
-        setOpponent(opponentInfo)
-        localStorage.setItem("quizOpponentId", opponentId)
-        localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
+        };
+        setOpponent(opponentInfo);
+        localStorage.setItem("quizOpponentId", opponentId);
+        localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo));
       } else if (opponentId && !isFallbackChallenge()) {
-        console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
+        console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database");
         const fetchOpponent = async () => {
           try {
-            const opponentData = await getUserProfile(opponentId)
-            console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData)
+            const opponentData = await getUserProfile(opponentId);
+            console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData);
 
             if (opponentData) {
               const opponentInfo = {
@@ -102,134 +104,134 @@ export default function QuizContainer({
                 name: opponentData.full_name || opponentData.username || "Challenger",
                 avatar_url: opponentData.avatar_url,
                 level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              }
-              setOpponent(opponentInfo)
-              localStorage.setItem("quizOpponentId", opponentData.id)
-              localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
+              };
+              setOpponent(opponentInfo);
+              localStorage.setItem("quizOpponentId", opponentData.id);
+              localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo));
             } else {
-              console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback")
+              console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback");
               const fallbackOpponent = {
                 id: opponentId,
                 name: opponentName || "Challenger",
                 avatar_url: null,
                 level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              }
-              setOpponent(fallbackOpponent)
-              localStorage.setItem("quizOpponentId", opponentId)
-              localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
+              };
+              setOpponent(fallbackOpponent);
+              localStorage.setItem("quizOpponentId", opponentId);
+              localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent));
             }
           } catch (error) {
-            console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error)
+            console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error);
             const fallbackOpponent = {
               id: opponentId,
               name: opponentName || "Challenger",
               avatar_url: null,
               level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-            }
-            setOpponent(fallbackOpponent)
-            localStorage.setItem("quizOpponentId", opponentId)
-            localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
+            };
+            setOpponent(fallbackOpponent);
+            localStorage.setItem("quizOpponentId", opponentId);
+            localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent));
           }
-        }
+        };
 
-        fetchOpponent()
+        fetchOpponent();
       } else {
-        console.log("🎯 QUIZ CONTAINER: Using fallback opponent")
-        const randomOpponent = getRandomOpponent()
-        setOpponent(randomOpponent)
-        localStorage.setItem("quizOpponentId", randomOpponent.id)
-        localStorage.setItem("quizOpponent", JSON.stringify(randomOpponent))
+        console.log("🎯 QUIZ CONTAINER: Using fallback opponent");
+        const randomOpponent = getRandomOpponent();
+        setOpponent(randomOpponent);
+        localStorage.setItem("quizOpponentId", randomOpponent.id);
+        localStorage.setItem("quizOpponent", JSON.stringify(randomOpponent));
       }
 
       // Set up timer for challenge mode
-      let minutes = 5 // Default
-      if (challengeMode === "daily") minutes = 5
-      else if (challengeMode === "quran") minutes = 7
-      else if (challengeMode === "seerah") minutes = 6
-      else if (challengeMode === "fiqh") minutes = 5
+      let minutes = 5; // Default
+      if (challengeMode === "daily") minutes = 5;
+      else if (challengeMode === "quran") minutes = 7;
+      else if (challengeMode === "seerah") minutes = 6;
+      else if (challengeMode === "fiqh") minutes = 5;
 
-      const totalTime = minutes * 60
-      setTimeLeft(totalTime)
-      localStorage.setItem("quizTimeTotal", totalTime.toString())
-      setIsTimerRunning(true)
+      const totalTime = minutes * 60;
+      setTimeLeft(totalTime);
+      localStorage.setItem("quizTimeTotal", totalTime.toString());
+      setIsTimerRunning(true);
     }
 
-    console.log("🎯 QUIZ CONTAINER: Setup complete")
-    console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length)
-  }, [questions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn])
+    console.log("🎯 QUIZ CONTAINER: Setup complete");
+    console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length);
+  }, [questions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn]);
 
   // Timer effect
   useEffect(() => {
-    let timer: NodeJS.Timeout
+    let timer: NodeJS.Timeout;
     if (isTimerRunning && timeLeft > 0) {
       timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1)
-      }, 1000)
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
     } else if (timeLeft === 0 && isTimerRunning) {
-      handleFinishQuiz()
+      handleFinishQuiz();
     }
 
     return () => {
-      if (timer) clearInterval(timer)
-    }
-  }, [isTimerRunning, timeLeft])
+      if (timer) clearInterval(timer);
+    };
+  }, [isTimerRunning, timeLeft]);
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`
-  }
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
 
   const handleAnswerSelect = (value: string) => {
-    if (showExplanation) return
-    setSelectedAnswer(value)
-    const newAnswers = [...answers]
-    newAnswers[currentQuestion] = value
-    setAnswers(newAnswers)
-  }
+    if (showExplanation) return;
+    setSelectedAnswer(value);
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = value;
+    setAnswers(newAnswers);
+  };
 
   const handleSubmitAnswer = () => {
-    if (!questions[currentQuestion]) return
-    setTransitionType("submit")
-    setIsLoading(true)
+    if (!questions[currentQuestion]) return;
+    setTransitionType("submit");
+    setIsLoading(true);
 
     setTimeout(() => {
-      const correct = selectedAnswer === questions[currentQuestion].correctAnswer
-      setIsCorrect(correct)
+      const correct = selectedAnswer === questions[currentQuestion].correct_answer;
+      setIsCorrect(correct);
       if (correct) {
-        setScore(score + 1)
+        setScore(score + 1);
       }
-      setShowExplanation(true)
-      setIsLoading(false)
-      setTransitionType(null)
-    }, 800)
-  }
+      setShowExplanation(true);
+      setIsLoading(false);
+      setTransitionType(null);
+    }, 800);
+  };
 
   const handleNext = () => {
-    setTransitionType("next")
-    setIsLoading(true)
+    setTransitionType("next");
+    setIsLoading(true);
 
     setTimeout(() => {
-      setShowExplanation(false)
-      setIsCorrect(null)
+      setShowExplanation(false);
+      setIsCorrect(null);
       if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-        setSelectedAnswer(answers[currentQuestion + 1] || "")
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(answers[currentQuestion + 1] || "");
       } else {
-        setTransitionType("finish")
-        handleFinishQuiz()
-        return
+        setTransitionType("finish");
+        handleFinishQuiz();
+        return;
       }
-      setIsLoading(false)
-      setTransitionType(null)
-    }, 800)
-  }
+      setIsLoading(false);
+      setTransitionType(null);
+    }, 800);
+  };
 
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
-    const { submitQuizResult } = await import("@/lib/supabase-queries")
+    const { submitQuizResult } = await import("@/lib/supabase-queries");
     const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs)
-    })
+      setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs);
+    });
     const submitPromise = submitQuizResult(
       score,
       questions.length,
@@ -238,62 +240,62 @@ export default function QuizContainer({
       timeLeft,
       answers,
       challengeMode,
-    )
-    return Promise.race([submitPromise, timeoutPromise])
-  }
+    );
+    return Promise.race([submitPromise, timeoutPromise]);
+  };
 
   const handleFinishQuiz = async () => {
-    console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
-    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
-    setIsTimerRunning(false)
+    console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...");
+    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge());
+    setIsTimerRunning(false);
 
     try {
-      localStorage.setItem("quizScore", score.toString())
-      localStorage.setItem("totalQuestions", questions.length.toString())
-      localStorage.setItem("quizCategory", category.id)
-      localStorage.setItem("quizDifficulty", difficulty)
-      localStorage.setItem("quizChallenge", challengeMode || "")
-      localStorage.setItem("quizTimeLeft", timeLeft.toString())
-      localStorage.setItem("quizId", quizId)
+      localStorage.setItem("quizScore", score.toString());
+      localStorage.setItem("totalQuestions", questions.length.toString());
+      localStorage.setItem("quizCategory", category.id);
+      localStorage.setItem("quizDifficulty", difficulty);
+      localStorage.setItem("quizChallenge", challengeMode || "");
+      localStorage.setItem("quizTimeLeft", timeLeft.toString());
+      localStorage.setItem("quizId", quizId);
       if (challengerTurn) {
-        localStorage.setItem("challengerTurn", "true")
-        console.log("🎯 QUIZ CONTAINER: Stored challengerTurn=true in localStorage")
+        localStorage.setItem("challengerTurn", "true");
+        console.log("🎯 QUIZ CONTAINER: Stored challengerTurn=true in localStorage");
       } else {
-        localStorage.setItem("challengerTurn", "false")
+        localStorage.setItem("challengerTurn", "false");
       }
       if (opponent) {
-        localStorage.setItem("quizOpponentId", opponent.id || "")
-        localStorage.setItem("quizOpponent", JSON.stringify(opponent))
+        localStorage.setItem("quizOpponentId", opponent.id || "");
+        localStorage.setItem("quizOpponent", JSON.stringify(opponent));
       }
-      console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully")
+      console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully");
     } catch (error) {
-      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
+      console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error);
     }
 
     if (isFallbackChallenge()) {
-      console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations")
+      console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations");
       toast({
         title: "Challenge Sent!",
         description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
         duration: 5000,
-      })
-      router.push("/results")
-      return
+      });
+      router.push("/results");
+      return;
     }
 
     toast({
       title: "Saving your score...",
       description: "Please wait while we update the leaderboard.",
       duration: 3000,
-    })
+    });
 
     try {
       if (challengerTurn && challengeMode) {
-        console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
+        console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...");
         try {
-          console.log("🎯 QUIZ CONTAINER: Attempting real challenge update with timeout...")
-          await submitQuizWithTimeout(5000)
-          console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
+          console.log("🎯 QUIZ CONTAINER: Attempting real challenge update with timeout...");
+          await submitQuizWithTimeout(5000);
+          console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully");
           const { error } = await supabase
             .from("user_challenges")
             .update({
@@ -302,32 +304,32 @@ export default function QuizContainer({
               challenger_completed_at: new Date().toISOString(),
               challenge_questions: JSON.stringify(questions),
             })
-            .eq("id", challengeMode)
+            .eq("id", challengeMode);
 
           if (error) {
-            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
-            throw error
+            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error);
+            throw error;
           }
-          console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
+          console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully");
           toast({
             title: "Challenge Sent Successfully!",
             description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
             duration: 5000,
-          })
-          router.push("/results")
-          return
+          });
+          router.push("/results");
+          return;
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
+          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error);
           toast({
             title: "Challenge Sent!",
             description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
             duration: 5000,
-          })
-          router.push("/results")
-          return
+          });
+          router.push("/results");
+          return;
         }
       } else if (challengeMode) {
-        console.log("🏆 QUIZ CONTAINER: Challenge completion - updating leaderboard with both scores...")
+        console.log("🏆 QUIZ CONTAINER: Challenge completion - updating leaderboard with both scores...");
         try {
           const { data: challenge, error: challengeError } = await supabase
             .from("user_challenges")
@@ -337,31 +339,31 @@ export default function QuizContainer({
               challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name)
             `)
             .eq("id", challengeMode)
-            .single()
+            .single();
 
           if (challengeError) {
-            console.error("🏆 Error fetching challenge:", challengeError)
-            throw challengeError
+            console.error("🏆 Error fetching challenge:", challengeError);
+            throw challengeError;
           }
-          console.log("🏆 Challenge data:", challenge)
+          console.log("🏆 Challenge data:", challenge);
 
-          const isChallenger = challenge.challenger_id === user?.id
-          const currentUserScore = score
-          const opponentScore = isChallenger ? challenge.challenged_score : challenge.challenger_score
+          const isChallenger = challenge.challenger_id === user?.id;
+          const currentUserScore = score;
+          const opponentScore = isChallenger ? challenge.challenged_score : challenge.challenger_score;
           console.log("🏆 Score details:", {
             isChallenger,
             currentUserScore,
             opponentScore,
             challengerId: challenge.challenger_id,
             challengedId: challenge.challenged_id,
-          })
+          });
 
-          console.log("💾 Saving current user score to leaderboard...")
-          await submitQuizWithTimeout(5000)
+          console.log("💾 Saving current user score to leaderboard...");
+          await submitQuizWithTimeout(5000);
 
           if (opponentScore !== null && opponentScore !== undefined) {
-            console.log("💾 Saving opponent score to leaderboard...")
-            const opponentId = isChallenger ? challenge.challenged_id : challenge.challenger_id
+            console.log("💾 Saving opponent score to leaderboard...");
+            const opponentId = isChallenger ? challenge.challenged_id : challenge.challenger_id;
             const { error: opponentError } = await supabase.from("quiz_results").insert({
               user_id: opponentId,
               score: opponentScore,
@@ -372,12 +374,12 @@ export default function QuizContainer({
               time_left: timeLeft,
               challenge_id: challengeMode,
               created_at: new Date().toISOString(),
-            })
+            });
 
             if (opponentError) {
-              console.error("❌ Error saving opponent score:", opponentError)
+              console.error("❌ Error saving opponent score:", opponentError);
             } else {
-              console.log("✅ Opponent score saved to leaderboard")
+              console.log("✅ Opponent score saved to leaderboard");
             }
           }
 
@@ -391,72 +393,72 @@ export default function QuizContainer({
                 challenged_score: score,
                 challenged_completed_at: new Date().toISOString(),
                 status: "completed",
-              }
+              };
 
-          await supabase.from("user_challenges").update(updateData).eq("id", challengeMode)
-          console.log("✅ Challenge updated successfully")
-          console.log("🏆 Both scores should now be in leaderboard")
+          await supabase.from("user_challenges").update(updateData).eq("id", challengeMode);
+          console.log("✅ Challenge updated successfully");
+          console.log("🏆 Both scores should now be in leaderboard");
           toast({
             title: "Challenge Completed!",
             description: `Both scores updated in leaderboard. Check your ranking!`,
             duration: 5000,
-          })
-          router.push("/results")
-          return
+          });
+          router.push("/results");
+          return;
         } catch (error) {
-          console.error("❌ Error in challenge completion:", error)
+          console.error("❌ Error in challenge completion:", error);
           toast({
             title: "Challenge Completed!",
             description: `Your score: ${score}/${questions.length}. Great job!`,
             duration: 5000,
-          })
-          router.push("/results")
-          return
+          });
+          router.push("/results");
+          return;
         }
       } else {
-        console.log("🎯 QUIZ CONTAINER: Regular quiz completion - saving to localStorage only...")
+        console.log("🎯 QUIZ CONTAINER: Regular quiz completion - saving to localStorage only...");
         toast({
           title: "Quiz Completed!",
           description: `Saving your score (${score}/${questions.length}) to the leaderboard...`,
           duration: 3000,
-        })
-        router.push("/results")
-        return
+        });
+        router.push("/results");
+        return;
       }
     } catch (error) {
-      console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error)
+      console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error);
       toast({
         title: "Quiz Completed!",
         description: `Your score: ${score}/${questions.length}. Great job!`,
         duration: 3000,
-      })
-      router.push("/results")
+      });
+      router.push("/results");
     }
-  }
+  };
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      setTransitionType("next")
-      setIsLoading(true)
+      setTransitionType("next");
+      setIsLoading(true);
       setTimeout(() => {
-        setShowExplanation(false)
-        setIsCorrect(null)
-        setCurrentQuestion(currentQuestion - 1)
-        setSelectedAnswer(answers[currentQuestion - 1] || "")
-        setIsLoading(false)
-        setTransitionType(null)
-      }, 800)
+        setShowExplanation(false);
+        setIsCorrect(null);
+        setCurrentQuestion(currentQuestion - 1);
+        setSelectedAnswer(answers[currentQuestion - 1] || "");
+        setIsLoading(false);
+        setTransitionType(null);
+      }, 800);
     }
-  }
+  };
 
   useEffect(() => {
-    setSelectedAnswer(answers[currentQuestion] || "")
-  }, [currentQuestion, answers])
+    setSelectedAnswer(answers[currentQuestion] || "");
+  }, [currentQuestion, answers]);
 
   useEffect(() => {
-    const progressValue = (currentQuestion / questions.length) * 100
-    setProgress(progressValue)
-  }, [currentQuestion, questions.length])
+    const progressValue = (currentQuestion / questions.length) * 100;
+    setProgress(progressValue);
+  }, [currentQuestion, questions.length]);
 
   if (questions.length === 0) {
     return (
@@ -470,16 +472,16 @@ export default function QuizContainer({
           </Link>
         </CardContent>
       </Card>
-    )
+    );
   }
 
-  const question = questions[currentQuestion]
+  const question = questions[currentQuestion];
   const getLoadingText = () => {
-    if (transitionType === "submit") return "Checking answer..."
-    if (transitionType === "next") return "Loading next question..."
-    if (transitionType === "finish") return "Saving results..."
-    return "Loading..."
-  }
+    if (transitionType === "submit") return "Checking answer...";
+    if (transitionType === "next") return "Loading next question...";
+    if (transitionType === "finish") return "Saving results...";
+    return "Loading...";
+  };
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -555,9 +557,9 @@ export default function QuizContainer({
                           key={index}
                           className={`flex items-center space-x-2 mb-2 p-2 rounded 
                             ${
-                              showExplanation && option === question.correctAnswer
+                              showExplanation && option === question.correct_answer
                                 ? "bg-green-100 dark:bg-green-900"
-                                : showExplanation && option === selectedAnswer && option !== question.correctAnswer
+                                : showExplanation && option === selectedAnswer && option !== question.correct_answer
                                   ? "bg-red-100 dark:bg-red-900"
                                   : "hover:bg-green-50 dark:hover:bg-green-900/50"
                             }`}
@@ -565,10 +567,10 @@ export default function QuizContainer({
                           <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
                           <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
                             {option}
-                            {showExplanation && option === question.correctAnswer && (
+                            {showExplanation && option === question.correct_answer && (
                               <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />
                             )}
-                            {showExplanation && option === selectedAnswer && option !== question.correctAnswer && (
+                            {showExplanation && option === selectedAnswer && option !== question.correct_answer && (
                               <XCircle className="inline-block ml-2 h-4 w-4 text-red-600 dark:text-red-400" />
                             )}
                           </Label>
@@ -644,5 +646,5 @@ export default function QuizContainer({
         )}
       </Card>
     </div>
-  )
+  );
 }
