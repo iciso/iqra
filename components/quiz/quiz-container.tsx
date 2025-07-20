@@ -158,7 +158,7 @@ export default function QuizContainer({
 
     console.log("🎯 QUIZ CONTAINER: Setup complete");
     console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length);
-  }, [questions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn]);
+  }, [questions.length, challengeMode, category, difficulty, opponentId, opponentName, challengerTurn]);
 
   // Timer effect
   useEffect(() => {
@@ -235,7 +235,7 @@ export default function QuizContainer({
     const submitPromise = submitQuizResult(
       score,
       questions.length,
-      category.id,
+      category, // Changed from category.id
       difficulty,
       timeLeft,
       answers,
@@ -252,7 +252,7 @@ export default function QuizContainer({
     try {
       localStorage.setItem("quizScore", score.toString());
       localStorage.setItem("totalQuestions", questions.length.toString());
-      localStorage.setItem("quizCategory", category.id);
+      localStorage.setItem("quizCategory", category);
       localStorage.setItem("quizDifficulty", difficulty);
       localStorage.setItem("quizChallenge", challengeMode || "");
       localStorage.setItem("quizTimeLeft", timeLeft.toString());
@@ -369,7 +369,7 @@ export default function QuizContainer({
               score: opponentScore,
               total_questions: questions.length,
               percentage: Math.round((opponentScore / questions.length) * 100),
-              category: category.id,
+              category: category,
               difficulty: difficulty,
               time_left: timeLeft,
               challenge_id: challengeMode,
