@@ -88,9 +88,9 @@ export default async function RootLayout({
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
+              <ChallengeNotification />
+              <Toaster />
             </div>
-            <ChallengeNotification />
-            <Toaster />
           </AuthProvider>
         </ThemeProvider>
       </body>
