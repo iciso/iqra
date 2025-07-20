@@ -4,7 +4,7 @@ const psychCategory: QuizCategory = {
   id: "psych",
   title: "Islamic Psychology",
   description: "Explore mental health and behavior through Islamic teachings",
-  icon: "brain",
+  icon: "",
   levels: {
     easy: [
       {
