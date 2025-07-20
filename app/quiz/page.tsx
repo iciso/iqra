@@ -1,99 +1,183 @@
-import type React from "react";
-import Head from "next/head";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "@/contexts/auth-context";
-import { Header } from "@/components/layout/header";
-import { Toaster } from "@/components/ui/toaster";
-import { createServerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
+import QuizContainer from "@/components/quiz/quiz-container";
+import type { DifficultyLevel, QuizQuestion, QuizCategory } from "@/types/quiz";
 
-const inter = Inter({ subsets: ["latin"] });
+// Helper function to shuffle an array using Fisher-Yates algorithm
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
-// Metadata export
-export const metadata: Metadata = {
-  title: "IQRA - Islamic Quiz Rivalry App",
-  description: "Increase & Test your Islamic knowledge through interactive quizzes and challenges",
-  keywords: "Islamic quiz, Islamic knowledge, Quran quiz, Islamic education, Muslim learning",
-  authors: [{ name: "Mohamed Essa Rafique" }],
-  creator: "Mohamed Essa Rafique",
-  publisher: "IQRA",
-  robots: "index, follow",
-  openGraph: {
-    url: "https://iqrar.vercel.app/",
-    title: "IQRA - Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [
-      {
-        url: "/iqralogo.png",
-        width: 1200,
-        height: 630,
-        alt: "IQRA App Logo",
-      },
-    ],
-    type: "website",
-    siteName: "IQRA",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "IQRA - Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    images: [{ url: "/iqralogo.png" }],
-  },
-  icons: {
-    icon: [
-      { url: "/iqralogo.ico", type: "image/x-icon" },
-      { url: "/iqralogo.ico", sizes: "any" },
-    ],
-  },
-  generator: "v0.dev",
-};
-
-// Viewport export
-export const viewport: Viewport = {
-  themeColor: "#15803D",
-  width: "device-width",
-  initialScale: 1,
-};
-
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const supabase = createServerClient(
+// Fetch category from Supabase
+async function getCategory(categoryId: string): Promise<QuizCategory | null> {
+  const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies }
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("id", categoryId)
+    .single();
+  if (error) {
+    console.error(`Error fetching category ${categoryId}:`, error);
+    return null;
+  }
+  if (!data) {
+    console.error(`No category found for ID: ${categoryId}`);
+    return null;
+  }
+  console.log("Fetched category:", data);
+  return data as QuizCategory;
+}
+
+export default async function QuizPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const categoryId = searchParams.category as string;
+  const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy";
+  const challengeMode = searchParams.challenge as string | undefined;
+  const questionCount = searchParams.questions
+    ? Number.parseInt(searchParams.questions as string, 10)
+    : undefined;
+  const opponentId = searchParams.opponent as string | undefined;
+  const opponentName = searchParams.opponentName as string | undefined;
+  const challengerTurn = searchParams.challengerTurn === "true";
+
+  if (!categoryId) {
+    console.log("No categoryId provided, redirecting to /categories");
+    redirect("/categories");
+  }
+
+  const category = await getCategory(categoryId);
+  if (!category) {
+    console.log(`Category ${categoryId} not found, redirecting to /categories");
+    redirect("/categories");
+  }
+
+  // Initialize Supabase client
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const { data: { session } } = await supabase.auth.getSession();
+  // Fetch questions from Supabase
+  let rawQuestions: QuizQuestion[] = [];
+  try {
+    if (difficulty === "mixed") {
+      const { data, error } = await supabase
+        .from("quizzes")
+        .select("*")
+        .eq("category_id", categoryId);
+      if (error) throw error;
+      if (!data) {
+        console.error(`No questions found for category ${categoryId} (mixed)`);
+      } else {
+        rawQuestions = data as QuizQuestion[];
+        console.log("Fetched questions (mixed):", JSON.stringify(rawQuestions, null, 2));
+      }
+    } else {
+      const { data, error } = await supabase
+        .from("quizzes")
+        .select("*")
+        .eq("category_id", categoryId)
+        .eq("difficulty", difficulty);
+      if (error) throw error;
+      if (!data) {
+        console.error(
+          `No questions found for category ${categoryId}, difficulty ${difficulty}`
+        );
+      } else {
+        rawQuestions = data as QuizQuestion[];
+        console.log("Fetched questions:", JSON.stringify(rawQuestions, null, 2));
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching quiz questions:", error);
+  }
 
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <Head>
-        <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
+  // Transform questions to include options
+  const questions: QuizQuestion[] = rawQuestions.map((q) => ({
+    ...q,
+    options: shuffleArray([q.correct_answer, ...(q.incorrect_answers || [])]),
+  }));
+
+  // Shuffle questions
+  if (questions.length > 0) {
+    questions = shuffleArray(questions);
+  }
+
+  // Limit question count if specified
+  if (questionCount && questions.length > questionCount) {
+    questions = questions.slice(0, questionCount);
+  }
+
+  if (questions.length === 0) {
+    const redirectPath = challengeMode ? "/challenges" : "/categories";
+    const redirectText = challengeMode ? "Back to Challenges" : "Browse Categories";
+
+    return (
+      <div className="container mx-auto py-12 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
+        <p className="mb-6">
+          Sorry, there are no questions available for {category.title} in {difficulty} mode at this time.
+        </p>
+        <a
+          href={redirectPath}
+          className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
         >
-          <AuthProvider session={session}>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-            </div>
-            <ChallengeNotification />
-            <Toaster />
-          </AuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+          {redirectText}
+        </a>
+      </div>
+    );
+  }
+
+  try {
+    console.log("Passing to QuizContainer:", {
+      questions: JSON.stringify(questions, null, 2),
+      category,
+      difficulty,
+      challengeMode,
+      opponentId,
+      opponentName,
+      challengerTurn,
+    });
+    return (
+      <div className="container mx-auto py-8 px-4">
+        <h1 className="text-2xl font-bold mb-4">
+          {challengeMode ? "Challenge Mode" : "Quiz Mode"}: {category.title} ({difficulty})
+        </h1>
+        <QuizContainer
+          questions={questions}
+          category={category}
+          difficulty={difficulty}
+          challengeMode={challengeMode}
+          opponentId={opponentId}
+          opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
+          challengerTurn={challengerTurn}
+        />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error rendering QuizContainer:", error);
+    return (
+      <div className="container mx-auto py-12 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-4">Something went wrong!</h1>
+        <p className="mb-6">We apologize for the inconvenience. Please try again later.</p>
+        <a
+          href="/categories"
+          className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
+        >
+          Back to Categories
+        </a>
+      </div>
+    );
+  }
 }
