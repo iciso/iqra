@@ -3,7 +3,7 @@ import type { QuizCategory } from "@/types/quiz";
 const psychCategory: QuizCategory = {
   id: "psych",
   title: "Islamic Psychology",
-  description: "Explore mental health and behavior through Islamic teachings",
+  description: "Explore mental health through Islamic teachings",
   icon: "",
   levels: {
     easy: [
