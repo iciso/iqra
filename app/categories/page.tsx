@@ -9,6 +9,7 @@ import {
   Book,
   Scale,
   BookOpen,
+  Brain,
   BriefcaseMedical,
   BookDashed,
   Church,
@@ -110,6 +111,12 @@ const categories = [
     title: "Islamic Finance",
     description: "Principles and practices of Islamic economics",
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+   {
+    id: "psych",
+    title: "Islamic Psychology",
+    description: "Explore mental health and behavior through Islamic teachings",
+    icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "islamic-medical-ethics",
