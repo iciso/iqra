@@ -12,6 +12,7 @@ import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
+import psychCategory from "./psych";
 import medicalEthicsCategory from "./islamic-medical-ethics"
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
@@ -426,6 +427,7 @@ const quizData: QuizCategory[] = [
   christCategory,
   hinduCategory,
   dawahCategory,
+  psychCategory,
   medicalEthicsCategory,
 ];
 
