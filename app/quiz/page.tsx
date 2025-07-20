@@ -78,7 +78,7 @@ export default async function QuizPage({
         .eq("category_id", categoryId);
       if (error) throw error;
       if (!data) {
-        console.log(`No questions found for category ${categoryId} (mixed)`);
+        console.error(`No questions found for category ${categoryId} (mixed)`);
       } else {
         rawQuestions = data as QuizQuestion[];
         console.log("Fetched questions (mixed):", JSON.stringify(rawQuestions, null, 2));
@@ -91,7 +91,7 @@ export default async function QuizPage({
         .eq("difficulty", difficulty);
       if (error) throw error;
       if (!data) {
-        console.log(`No questions found for category ${categoryId}, difficulty ${difficulty}`
+        console.error("No questions found for category:" ${categoryId}, difficulty ${difficulty}`
         );
       } else {
         rawQuestions = data as QuizQuestion[];
@@ -99,7 +99,7 @@ export default async function QuizPage({
       }
     }
   } catch (error) {
-    console.log("Error fetching quiz questions:", error);
+    console.error("Error fetching quiz questions:", error);
   }
 
   // Transform questions to include options
