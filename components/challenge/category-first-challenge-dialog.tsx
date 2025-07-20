@@ -49,7 +49,7 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Category-first design with prominent visual categories - now with all 12 categories
+// Category-first design with prominent visual categories - now with all categories
 const challengeCategories = [
   {
     id: "quran",
@@ -193,7 +193,7 @@ const challengeCategories = [
   },
     {
     id: "psych",
-    title: "Islamic Psychology",
+    label: "Islamic Psychology",
     description: "Explore mental health through Islamic teachings",
     icon: Brain,
     color: "bg-lime-500 hover:bg-lime-600",
