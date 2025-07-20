@@ -7,8 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/auth-context";
 import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/toaster";
-import { createServerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import ChallengeNotification from "@/components/challenge/challenge-notification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,19 +57,11 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies }
-  );
-
-  const { data: { session } } = await supabase.auth.getSession();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
@@ -84,7 +75,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider session={session}>
+          <AuthProvider>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
