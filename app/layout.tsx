@@ -11,7 +11,7 @@ import ChallengeNotification from "@/components/challenge/challenge-notification
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Metadata export
+// Metadata export 
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Increase & Test your Islamic knowledge through interactive quizzes and challenges",
