@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {
   Book,
   Scale,
-  BookCopy,
+  BookCopy, 
   Brain,
   BriefcaseMedical,
   BookDashed,
@@ -28,6 +28,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 
+// Define all categories here for the quiz 
 const categories = [
   {
     id: "quran",
