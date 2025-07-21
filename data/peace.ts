@@ -627,8 +627,8 @@ const peaceCategory: QuizCategory = {
         }
     ],
     intermediate: [
-      // Copy the first 10 questions from easy level
-      // This is a temporary solution until proper intermediate questions are created
+      // Copy the first 10 questions from easy level.
+      // This is a temporary solution until proper intermediate questions are created.
     ]
   }
 }
