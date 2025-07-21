@@ -316,6 +316,17 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran praises those who 'repair what corruption has done' (30:41). Caliph Ali prioritized rebuilding after battles (Nahj al-Balagha). Modern Islamic development models emphasize: 1) Inclusive reconstruction, 2) Environmental restoration (Hadith - Abu Dawud 2614), 3) Trauma healing - as seen in post-ISIS Mosul rebuilding projects."
           },
           {
+            question: "What is the Islamic principle regarding water resources during conflicts?",
+            options: [
+                "Can be weaponized by cutting supplies",
+                "Must remain accessible to all civilians",
+                "Only for Muslim communities",
+                "Can be poisoned to weaken enemies"
+            ],
+            correctAnswer: "Must remain accessible to all civilians",
+            explanation: "The Prophet (PBUH) prohibited poisoning wells (Hadith - Abu Dawud 2614), establishing water as a protected right for all. Quranic principles of preserving life (5:32) and environmental protection (30:41) require maintaining water access during wars. Modern applications include protecting dams and water infrastructure in conflict zones like Yemen and Syria."
+            },
+          {
             question: "What is the Islamic ruling on war crimes tribunals?",
             options: [
               "Victors judge the defeated",
@@ -614,7 +625,40 @@ const peaceCategory: QuizCategory = {
             correctAnswer: "Voluntary, safe, dignified repatriation",
             explanation: "The Quran commands: 'Do not turn back those who flee' (4:90). Islamic refugee principles: 1) Voluntary return (Hadith - Abu Dawud 2686), 2) Property restitution (Hadith - Bukhari 3046), 3) Reintegration support (59:9). The FBA guide applies this to Palestinian, Rohingya and Syrian refugee cases with Islamic human rights groups."
           },
-          {
+            {
+            question: "How does Islamic law address the use of siege warfare?",
+            options: [
+                "Permitted without restrictions",
+                "Prohibited if it starves civilians",
+                "Only allowed against military targets",
+                "Mandatory for all urban battles"
+            ],
+            correctAnswer: "Prohibited if it starves civilians",
+            explanation: "Islamic rules of war forbid starvation tactics (Hadith - Abu Dawud 2614). Caliph Abu Bakr's instructions to armies: 'Do not cut down fruit-bearing trees' include protecting food supplies. Contemporary scholars cite these rules to condemn sieges like those in Gaza and Madaya that target civilians, violating the Quranic principle of civilian immunity (2:190)."
+            },
+            {
+            question: "What is the Islamic ruling on rebuilding houses of worship destroyed in conflicts?",
+            options: [
+                "Only mosques should be rebuilt",
+                "All destroyed religious sites must be restored",
+                "Leave ruins as war memorials",
+                "Rebuild only if Muslims will use them"
+            ],
+            correctAnswer: "All destroyed religious sites must be restored",
+            explanation: "The Quran commands: 'Had not Allah checked one set of people... monasteries, churches, synagogues would have been pulled down' (22:40). Caliph Umar rebuilt Jerusalem's churches after conquest. Modern fatwas (like Dar al-Ifta Egypt 2017) require post-conflict restoration of all religious sites, as seen in the reconstruction of Mosul's churches and Yazidi temples."
+            },
+            {
+            question: "How does Islamic law view the role of women in peace processes?",
+            options: [
+                "Excluded from all negotiations",
+                "Can participate as mediators and witnesses",
+                "Only permitted in educational roles",
+                "Allowed only if no men are available"
+            ],
+            correctAnswer: "Can participate as mediators and witnesses",
+            explanation: "The Quran records women like Umm Kulthum serving as witnesses (60:12). Prophet Muhammad (PBUH) accepted Umm Salamah's crucial advice during Hudaybiyyah negotiations (Hadith - Ahmad 27425). Modern applications include OIC Resolution 5/45-LEG (2018) promoting women's inclusion in Islamic peacebuilding, exemplified by Yemeni women's mediation networks."
+            },
+             {
             question: "How does Islamic law view war trauma treatment?",
             options: [
               "Ignore trauma as spiritual weakness",
