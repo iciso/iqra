@@ -19,611 +19,648 @@ const psychCategory: QuizCategory = {
         explanation: "The Quran describes 3 nafs stages: 1) Ammarah (primal urges - 12:53), 2) Lawwamah (self-reproaching - 75:2), 3) Mutma'innah (tranquil soul - 89:27). Unlike Freud's id/ego/superego, nafs purification (tazkiyah) involves spiritual growth through dhikr (13:28), salah, and Quranic reflection."
       },
       {
-        question: "How does Islam view clinical depression?",
+        question: "How does Islam view depression?",
         options: [
-          "As punishment for sins",
-          "As purely spiritual crisis",
-          "As real condition needing holistic treatment",
-          "As non-existent in believers"
+          "As a sign of weak faith",
+          "As a medical condition requiring treatment",
+          "As divine punishment",
+          "As imaginary illness"
         ],
-        correctAnswer: "As real condition needing holistic treatment",
-        explanation: "The Prophet (ﷺ) validated emotional distress when comforting a grieving man: *'This is mercy Allah puts in the hearts of His servants'* (Bukhari 1284). Islam integrates: 1) Medical treatment (Hadith - Muslim 2204), 2) Dua (93:1-5), 3) Community support (Hadith - Tirmidhi 2946), 4) Sabr (2:155-157)."
+        correctAnswer: "As a medical condition requiring treatment",
+        explanation: "The Prophet (PBUH) advised treatment for sadness: 'Allah did not send down a disease without sending a cure' (Bukhari 5678). He supported medical intervention while emphasizing spiritual remedies like dua (25:78) and patience (2:155-156). Modern antidepressants are permissible when prescribed."
       },
       {
-        question: "What is the Islamic approach to anxiety management?",
+        question: "What is the Islamic approach to managing stress?",
         options: [
           "Ignore it completely",
-          "Medication only",
-          "Combination of spiritual and practical measures",
-          "Consider it weak faith"
+          "Combine spiritual and practical solutions",
+          "Only pray without taking action",
+          "Consider it always harmful"
         ],
-        correctAnswer: "Combination of spiritual and practical measures",
-        explanation: "Prophet's (ﷺ) dua for anxiety: *'O Allah, I seek refuge in You from grief and worry'* (Bukhari 6369). Practical steps: 1) Trust in Allah (tawakkul - 65:3), 2) Problem-solving (Hadith - Abu Dawud 1640), 3) Physical activity (Hadith - Bukhari 2898). Modern CBT techniques align with Quranic cognitive restructuring (13:28)."
+        correctAnswer: "Combine spiritual and practical solutions",
+        explanation: "The Prophet (PBUH) taught: 'Trust in Allah but tie your camel' (Tirmidhi 2517). Effective stress management includes: 1) Tawakkul (reliance on Allah - 3:159), 2) Problem-solving (Hadith - Abu Dawud 1640), 3) Physical exercise (Hadith - Bukhari 6103), and 4) Social support (Hadith - Muslim 2628)."
       },
       {
-        question: "How does Islam address smartphone addiction?",
+        question: "How does Islam view seeking professional therapy?",
         options: [
-          "Total digital detox required",
-          "Balance through intentional usage",
-          "No restrictions",
-          "Only forbid social media"
-        ],
-        correctAnswer: "Balance through intentional usage",
-        explanation: "Quranic principle: *'Do not let your hands contribute to your destruction'* (2:195). Practical solutions: 1) Set usage boundaries (Hadith - Tirmidhi 2416 on time management), 2) Replace idle scrolling with beneficial content (Hadith - Ibn Majah 223), 3) Tech-free zones (e.g., family meals - Hadith - Abu Dawud 3764)."
-      },
-      {
-        question: "What is the Islamic view of psychotherapy?",
-        options: [
-          "Forbidden as Western innovation",
-          "Permitted if aligned with Islamic ethics",
+          "Forbidden as it shows lack of faith",
+          "Permitted when beneficial",
           "Only for severe mental illness",
-          "Replaces spiritual healing"
+          "Must be from Muslim therapists only"
         ],
-        correctAnswer: "Permitted if aligned with Islamic ethics",
-        explanation: "Early Islamic hospitals had mental health wards (9th century Baghdad). Permissible if: 1) Avoids haram techniques (hypnosis altering consciousness - 5:90), 2) Maintains modesty (gender interactions - 24:30-31), 3) Uses Islamic coping strategies (gratitude - 14:7, forgiveness - 24:22). Prophet (ﷺ) practiced 'talk therapy' (Hadith - Muslim 2318)."
+        correctAnswer: "Permitted when beneficial",
+        explanation: "Islam encourages seeking cures: 'Make use of medical treatment' (Abu Dawud 3855). Therapy is permissible if it doesn't contradict Islamic principles. The Quran mentions Allah sending down 'healing for what is in the breasts' (10:57), which scholars interpret to include psychological healing."
       },
       {
-        question: "How does Islam define healthy self-esteem?",
+        question: "What is the Islamic concept of 'qalb' (heart) in mental health?",
         options: [
-          "Pride in achievements",
-          "Knowing one's worth as Allah's creation",
-          "Comparing oneself to others",
-          "Material success metrics"
+          "Only the physical organ",
+          "The spiritual and emotional center of a person",
+          "A metaphor with no real significance",
+          "Identical to the brain"
         ],
-        correctAnswer: "Knowing one's worth as Allah's creation",
-        explanation: "Balance between: 1) Positive self-view (95:4 - 'We created humans in the best stature'), 2) Humility (25:63 - 'Walk humbly'). Avoids both inferiority complex (Hadith - Tirmidhi 2516 on rejecting negative self-talk) and arrogance (31:18 - 'Do not turn your cheek in pride')."
+        correctAnswer: "The spiritual and emotional center of a person",
+        explanation: "The Quran describes the qalb as capable of being sick (2:10), hardened (2:74), or tranquil (13:28). It's the seat of understanding (7:179), faith (49:7), and moral decisions (22:46). Spiritual heart purification involves dhikr (13:28), Quran reflection (47:24), and avoiding sins (83:14)."
       },
       {
-        question: "What is the Islamic approach to work-life balance?",
-        options: [
-          "Work until exhaustion",
-          "Prioritize dunya over akhirah",
-          "Integrated equilibrium model",
-          "Complete monastic withdrawal"
-        ],
-        correctAnswer: "Integrated equilibrium model",
-        explanation: "Prophet's (ﷺ) example: 1) Designated work hours (Hadith - Baihaqi), 2) Family time (Hadith - Bukhari 5188), 3) Worship schedule (Hadith - Muslim 783), 4) Recreation (Hadith - Abu Dawud 4928). Quranic balance: *'Seek the Hereafter without neglecting your worldly share'* (28:77)."
+        question: "How does Islam view positive thinking?",
+        explanation: "The Prophet (PBUH) taught: 'Strange are the ways of a believer... If good befalls him, he is thankful; and if evil befalls him, he is patient' (Muslim 2999). Quranic concepts like husn al-dhann (good assumption - 48:6) and tawakkul (3:159) foster optimism. Negative thoughts should be countered with 'la hawla wa la quwwata illa billah'."
       },
       {
-        question: "How does Islam view ADHD management?",
+        question: "What is the Islamic view on dreams?",
         options: [
-          "Only spiritual remedies",
-          "Medical treatment permitted with behavioral therapy",
-          "Result of poor parenting",
-          "Not recognized in Islam"
+          "All dreams are meaningless",
+          "Only prophetic dreams matter",
+          "Dreams can reflect psychological states",
+          "Dream interpretation is shirk"
         ],
-        correctAnswer: "Medical treatment permitted with behavioral therapy",
-        explanation: "Prophet (ﷺ) recognized individual differences (Hadith - Bukhari 5048). Effective approaches: 1) Structured routines (Hadith - Tirmidhi 2416), 2) Physical activity (Hadith - Bukhari 2898), 3) Diet adjustments (Hadith - Ibn Majah 3349), 4) Professional help (Hadith - Muslim 2204). Avoid stigma: *'No burdened soul bears another's load'* (35:18)."
+        correctAnswer: "Dreams can reflect psychological states",
+        explanation: "The Prophet (PBUH) said: 'Good dreams are from Allah' (Bukhari 6983). Scholars classify dreams into: 1) True visions (ru'ya), 2) Psychological reflections (hadith nafs), and 3) Satanic whispers. Modern Islamic psychology recognizes dreams as revealing subconscious concerns while warning against superstition."
       },
       {
-        question: "What is the Islamic perspective on dream interpretation?",
+        question: "How does Islam address social anxiety?",
         options: [
-          "All dreams are divine messages",
-          "Only prophets can interpret dreams",
-          "Three types: divine, psychological, satanic",
-          "Dreams have no significance"
+          "By complete social isolation",
+          "Through gradual exposure and faith",
+          "Only medication can treat it",
+          "Considering it a virtue"
         ],
-        correctAnswer: "Three types: divine, psychological, satanic",
-        explanation: "Prophet (ﷺ) said: *'Dreams are of three types: 1) True visions (from Allah), 2) Anxiety dreams (from nafs), 3) Disturbing dreams (from Shaytan)'* (Muslim 2263). Modern psychology aligns with nafs-related dreams. Divine dreams require scholarly interpretation (Yusuf's story - 12:36-49)."
+        correctAnswer: "Through gradual exposure and faith",
+        explanation: "The Prophet (PBUH) coached anxious companions like his advice to a nervous speaker: 'Take it easy... say what is in your mind' (Bukhari 6112). Islamic solutions combine: 1) Dhikr for calmness (13:28), 2) Social skill development (Hadith - Tirmidhi 2018), and 3) Cognitive restructuring through Quranic truths (65:3)."
       },
       {
-        question: "How does Islam address social media envy?",
+        question: "What is the Islamic approach to addiction recovery?",
         options: [
-          "Delete all accounts",
-          "Practice gratitude (shukr) and reality-checking",
-          "Post more achievements",
-          "Consider it harmless"
+          "Punishment without treatment",
+          "Spiritual and medical intervention",
+          "Only supplications are needed",
+          "Addiction is incurable in Islam"
         ],
-        correctAnswer: "Practice gratitude (shukr) and reality-checking",
-        explanation: "Solutions: 1) Quranic perspective: *'Do not long for what Allah has given some over others'* (4:32), 2) Limit exposure (Hadith - Tirmidhi 2317 on avoiding harmful sights), 3) Reality checks - people curate online personas (Hadith - Bukhari 6065 on hidden struggles), 4) Gratitude journaling (14:7)."
+        correctAnswer: "Spiritual and medical intervention",
+        explanation: "The Quran prohibits intoxicants (5:90) but emphasizes repentance (39:53). Effective treatment combines: 1) Taubah (sincere repentance - 66:8), 2) Professional rehab (Hadith - Ibn Majah 3466), 3) Community support (Hadith - Tirmidhi 1425), and 4) Alternative halal pleasures (2:172). Relapse doesn't negate Allah's mercy (12:87)."
       },
       {
-        question: "What is the Islamic approach to grief counseling?",
+        question: "How does Islam view childhood trauma?",
         options: [
-          "Suppress emotions",
-          "Three-day mourning limit only",
-          "Validate emotions with spiritual reframing",
-          "Forbid crying"
+          "Children don't experience trauma",
+          "Parents are always to blame",
+          "It affects development and requires healing",
+          "Only physical trauma matters"
         ],
-        correctAnswer: "Validate emotions with spiritual reframing",
-        explanation: "Prophet (ﷺ) wept when his son Ibrahim died (Bukhari 1303), showing emotional permission. Counseling steps: 1) Acknowledge loss (Hadith - Muslim 923), 2) Sabr (patience) isn't denial (2:155-157), 3) Community support (Hadith - Bukhari 1285), 4) Eschatological perspective (40:60 - reunion in Jannah)."
+        correctAnswer: "It affects development and requires healing",
+        explanation: "The Prophet (PBUH) showed exceptional care for orphans (93:6-9) and traumatized children like his treatment of young Usama (Bukhari 3730). Modern Islamic psychology recognizes ACEs (Adverse Childhood Experiences) and recommends: 1) Safe environments (4:127), 2) Emotional validation (Hadith - Bukhari 5999), and 3) Trauma-informed therapy."
       },
       {
-        question: "How does Islam view personality tests?",
+        question: "What is the Islamic perspective on self-esteem?",
         options: [
-          "Forbidden as fortune-telling",
-          "Permitted for self-awareness if not deterministic",
-          "Required for marriage compatibility",
-          "Only allow Islamic versions"
+          "Complete self-negation is ideal",
+          "Balanced self-worth through Allah-consciousness",
+          "Extreme pride is encouraged",
+          "Only physical appearance matters"
         ],
-        correctAnswer: "Permitted for self-awareness if not deterministic",
-        explanation: "Useful if: 1) Avoid fixed mindset (Quran 13:11 - change through effort), 2) Don't contradict fitrah (30:30), 3) Serve beneficial goals (career counseling). Prophet (ﷺ) recognized personality differences (Hadith - Abu Dawud 5224). Avoid: Enneagram's mystical roots, MBTI pigeonholing."
+        correctAnswer: "Balanced self-worth through Allah-consciousness",
+        explanation: "Islam teaches moderation: 'Do not extol yourselves' (53:32) yet 'Allah has honored the children of Adam' (17:70). Healthy self-esteem comes from: 1) Knowing one's worth as Allah's creation (95:4), 2) Recognizing strengths as gifts (28:77), and 3) Improving weaknesses through tawbah (66:8)."
       },
       {
-        question: "What is the Islamic concept of 'fitrah' in child development?",
+        question: "How does Islam view OCD (Obsessive-Compulsive Disorder)?",
         options: [
-          "Blank slate theory",
-          "Innate pure disposition toward tawhid",
-          "Genetic determinism",
-          "Only environmental influence"
+          "As a sign of deep piety",
+          "As waswas (whispering) requiring treatment",
+          "All rituals are OCD",
+          "Only non-Muslims experience it"
         ],
-        correctAnswer: "Innate pure disposition toward tawhid",
-        explanation: "Prophet (ﷺ) said: *'Every child is born on fitrah'* (Muslim 2658). Modern implications: 1) Positive parenting aligns with natural inclinations (instinct for justice - 7:172), 2) Education nurtures inherent goodness, 3) Recognizes developmental stages (Hadith - Abu Dawud 495 - age-based responsibilities)."
+        correctAnswer: "As waswas (whispering) requiring treatment",
+        explanation: "The Prophet (PBUH) advised a man distressed by intrusive thoughts: 'Allah has forgiven you for the waswas' (Muslim 220). Modern treatment combines: 1) Cognitive therapy (recognizing thoughts as whispers - 114:4-5), 2) Exposure response prevention, and 3) Medication if needed (Hadith - Ibn Majah 3436)."
       },
       {
-        question: "How does Islam address pandemic anxiety?",
+        question: "What is the Islamic approach to anger management?",
         options: [
-          "Ignore health guidelines",
-          "Combine trust in Allah with preventive action",
-          "Fatalistic acceptance",
-          "Only communal prayers protect"
+          "Suppress all anger completely",
+          "Express anger violently when needed",
+          "Control through spiritual and behavioral methods",
+          "Anger is always sinful"
         ],
-        correctAnswer: "Combine trust in Allah with preventive action",
-        explanation: "Prophet's (ﷺ) pandemic guidance: 1) Quarantine (Hadith - Bukhari 5728), 2) Medical treatment (Hadith - Ibn Majah 3438), 3) Spiritual remedies (Hadith - Bukhari 5675), 4) Avoid panic (64:11 - *'No disaster strikes except by Allah's permission'*). Balanced approach: *'Tie your camel then trust Allah'* (Tirmidhi 2517)."
+        correctAnswer: "Control through spiritual and behavioral methods",
+        explanation: "The Prophet (PBUH) taught: 'The strong is not the one who overcomes people by his strength, but the one who controls himself while in anger' (Bukhari 6114). Practical steps include: 1) Seeking refuge in Allah (Hadith - Bukhari 3282), 2) Changing positions (Hadith - Abu Dawud 4782), and 3) Delaying response (3:134)."
       },
       {
-        question: "What is the Islamic view of emotional intelligence?",
+        question: "How does Islam view personality development?",
         options: [
-          "Western concept only",
-          "Core to prophetic character",
-          "Unimportant for Muslims",
-          "Contradicts Islamic values"
+          "Personality is fixed at birth",
+          "It can be developed through conscious effort",
+          "Only genetics determine personality",
+          "Environment has no influence"
         ],
-        correctAnswer: "Core to prophetic character",
-        explanation: "Prophet's (ﷺ) EI examples: 1) Empathy (tears upon seeing suffering - Bukhari 5652), 2) Anger management (Hadith - Bukhari 6116), 3) Social awareness (adapting communication styles - Quran 16:125). Quran praises *'those who restrain anger and pardon people'* (3:134)."
+        correctAnswer: "It can be developed through conscious effort",
+        explanation: "The Quran describes personality transformation through faith (13:28) and good deeds (29:69). The Prophet (PBUH) mentored companions' character development like his patient teaching of Bedouins (Hadith - Muslim 2316). Islamic personality pillars include: sincerity (98:5), patience (103:3), and gratitude (14:7)."
       },
       {
-        question: "How does Islam address midlife crises?",
+        question: "What is the Islamic view on grief counseling?",
         options: [
-          "Deny their existence",
-          "Spiritual renewal opportunities",
-          "Inevitable faith decline",
-          "Require drastic life changes"
+          "Forbidden as it interferes with qadr",
+          "Permitted as emotional support",
+          "Only imams can provide it",
+          "Mourning beyond 3 days is shirk"
         ],
-        correctAnswer: "Spiritual renewal opportunities",
-        explanation: "Quranic perspective: 1) Life stages (40:67), 2) Purpose reflection (51:56), 3) Legacy building (Hadith - Muslim 1631). Solutions: 1) Reconnect with Quran (25:73), 2) Mentorship (Hadith - Ibn Majah 224), 3) Gratitude practices (14:7), 4) Physical health (Hadith - Bukhari 5412)."
+        correctAnswer: "Permitted as emotional support",
+        explanation: "The Prophet (PBUH) comforted grieving people like his visit to Um Sulaim after her son's death (Muslim 923). Islam permits mourning (2:156) while discouraging extremes (Hadith - Bukhari 1296). Modern grief therapy aligns with Islamic principles when it helps process loss while affirming divine wisdom (2:216)."
+      },
+      {
+        question: "How does Islam address work-life balance?",
+        options: [
+          "Work constantly without rest",
+          "Prioritize salah even during work",
+          "Complete separation of work and worship",
+          "Integrated balance with scheduled worship"
+        ],
+        correctAnswer: "Integrated balance with scheduled worship",
+        explanation: "The Prophet (PBUH) modeled balance - working (Hadith - Bukhari 2074), resting (Hadith - Ibn Majah 4100), and worshipping at fixed times (4:103). Quranic principles include: 1) Moderate work (28:77), 2) Family rights (30:21), and 3) Scheduled remembrance (20:130). Friday prayers enforce weekly breaks (62:9)."
+      },
+      {
+        question: "What is the Islamic approach to phobias?",
+        options: [
+          "All fears are irrational",
+          "Gradual exposure with tawakkul",
+          "Only dua can cure phobias",
+          "Avoid all feared situations"
+        ],
+        correctAnswer: "Gradual exposure with tawakkul",
+        explanation: "The Prophet (PBUH) taught balanced courage: 'If plague comes...' (Bukhari 3473) showing neither reckless nor excessive fear. Treatment combines: 1) Trust in Allah's protection (3:175), 2) Systematic desensitization (Hadith - Muslim 2208), and 3) Cognitive restructuring (13:28). Professional help is permitted (Hadith - Ibn Majah 3466)."
+      },
+      {
+        question: "How does Islam view emotional intelligence?",
+        options: [
+          "Irrelevant to faith",
+          "Crucial for social relations",
+          "Only for leaders",
+          "Women naturally have more"
+        ],
+        correctAnswer: "Crucial for social relations",
+        explanation: "The Prophet (PBUH) demonstrated exceptional EQ - sensing companions' moods (Hadith - Bukhari 6065), adjusting his approach (Hadith - Tirmidhi 2018). Quranic examples include: 1) Yusuf's prison counseling (12:36-42), 2) Luqman's advice (31:17-19). EQ helps fulfill social responsibilities (49:10-13)."
+      },
+      {
+        question: "What is the Islamic perspective on ADHD?",
+        options: [
+          "A myth to excuse bad parenting",
+          "A valid neurodevelopmental condition",
+          "Caused by lack of discipline",
+          "Only affects non-practicing Muslims"
+        ],
+        correctAnswer: "A valid neurodevelopmental condition",
+        explanation: "Islam recognizes biological differences: 'Allah has not made two hearts in any one person' (33:4). ADHD management includes: 1) Structured routines (Hadith - Muslim 783), 2) Behavioral strategies (Hadith - Tirmidhi 2018), 3) Permissible medications (Hadith - Ibn Majah 3436), and 4) Leveraging strengths like energy for good deeds (Hadith - Bukhari 6103)."
+      },
+      {
+        question: "How does Islam view marital counseling?",
+        options: [
+          "Forbidden as it exposes private matters",
+          "Permitted to preserve marriages",
+          "Only for non-Muslim couples",
+          "Imams must decide without listening"
+        ],
+        correctAnswer: "Permitted to preserve marriages",
+        explanation: "The Quran advises mediation for marital conflicts (4:35). The Prophet (PBUH) counseled couples (Hadith - Abu Dawud 2136). Conditions for Islamic counseling: 1) Privacy protection (Hadith - Bukhari 6069), 2) Sharia-compliant advice (65:6), 3) Reconciliation focus (4:128). Professional Muslim counselors are preferable."
       },
       {
         question: "What is the Islamic approach to burnout?",
         options: [
           "Push through exhaustion",
           "Recognize limits and rest",
-          "Only spiritual cause",
-          "Sign of weak iman"
+          "Only weak people experience it",
+          "Burnout doesn't exist in Islam"
         ],
         correctAnswer: "Recognize limits and rest",
-        explanation: "Prophet (ﷺ) taught balance: 1) Rest periods (Hadith - Bukhari 5862), 2) Delegation (Hadith - Abu Dawud 2945), 3) Saying no (Hadith - Tirmidhi 2317), 4) Quality over quantity (Hadith - Bukhari 6464). Quranic relief: *'Allah intends ease for you'* (2:185)."
+        explanation: "The Prophet (PBUH) said: 'Your body has a right over you' (Bukhari 5199). Preventing burnout involves: 1) Scheduled rests (Hadith - Ibn Majah 4100), 2) Delegation (Hadith - Bukhari 2738), 3) Vacation (Hadith - Bukhari 1862), and 4) Spiritual recharging (13:28). Qiyam-ul-lail shouldn't cause exhaustion (73:20)."
       },
       {
-        question: "How does Islam view positive psychology?",
+        question: "How does Islam view positive psychology interventions?",
         options: [
-          "Contradicts tawakkul",
-          "Aligns with Islamic concepts of hope and gratitude",
-          "Only Western materialism",
-          "Replaces Islamic teachings"
+          "All modern psychology is haram",
+          "Permitted if aligned with Islamic values",
+          "Only medication is allowed",
+          "Identical to Islamic practices"
         ],
-        correctAnswer: "Aligns with Islamic concepts of hope and gratitude",
-        explanation: "Shared principles: 1) Gratitude (shukr - 14:7), 2) Optimism (Hadith - Tirmidhi 2516), 3) Flow states in worship (khushoo - 23:1-2), 4) Meaning (Quran 51:56). Differences: Islamic happiness is Allah-centric (13:28), not self-centered. Strengths-based approach mirrors *'Each soul has what it earned'* (2:286)."
+        correctAnswer: "Permitted if aligned with Islamic values",
+        explanation: "Gratitude journals align with shukr (14:7), mindfulness with muraqaba (Hadith - Tirmidhi 2517). Permissible interventions include: 1) Strength spotting (28:77), 2) Acts of kindness (Hadith - Muslim 2328), 3) Forgiveness exercises (24:22). Avoid un-Islamic elements like self-deification."
       },
       {
-        question: "What is the Islamic approach to toxic relationships?",
+        question: "What is the Islamic view on eating disorders?",
         options: [
-          "Endure all abuse",
-          "Set boundaries with wisdom",
-          "Only family ties are sacred",
-          "No concept in Islam"
-        ],
-        correctAnswer: "Set boundaries with wisdom",
-        explanation: "Quranic guidance: 1) Avoid harmful company (25:27-29), 2) Kind firmness (20:44), 3) Safety first (Hadith - Abu Dawud 2648). Prophet (ﷺ) ended toxic alliances (Hudaybiyyah lesson). Maintain family ties (47:22) without accepting abuse (Hadith - Ibn Majah 2347)."
-      },
-      {
-        question: "How does Islam view nature therapy?",
-        options: [
-          "Shirk if appreciating nature",
-          "Highly encouraged for mental health",
-          "Only for material benefits",
-          "Waste of worship time"
-        ],
-        correctAnswer: "Highly encouraged for mental health",
-        explanation: "Quran repeatedly directs reflection on nature (3:190-191). Prophet (ﷺ) often retreated to mountains (Hira cave). Benefits: 1) Stress reduction (Hadith - Muslim 7080 on greenery), 2) Mindfulness (51:20-21), 3) Physical activity (Hadith - Bukhari 2898). Combine with dhikr for spiritual ecotherapy."
-      },
-      {
-        question: "What is the Islamic view of imposter syndrome?",
-        options: [
-          "Sign of humility",
-          "Healthy self-doubt",
-          "Result of weak iman",
-          "Opportunity for authentic growth"
-        ],
-        correctAnswer: "Opportunity for authentic growth",
-        explanation: "Address through: 1) Quranic identity (2:138 - 'Color of Allah'), 2) Prophet's reassurance (Hadith - Tirmidhi 2516), 3) Realistic self-assessment (Hadith - Muslim 2577), 4) Focus on effort not outcomes (Hadith - Bukhari 6464). Avoid both arrogance and false humility."
-      },
-      {
-        question: "How does Islam address decision fatigue?",
-        options: [
-          "More istikhara needed",
-          "Simplify choices and prioritize",
-          "Indecision is from Shaytan",
-          "Consult endless opinions"
-        ],
-        correctAnswer: "Simplify choices and prioritize",
-        explanation: "Prophet's (ﷺ) methods: 1) Reduce options (Hadith - Ibn Majah 223 on avoiding excess), 2) Core priorities (Hadith - Bukhari 6464), 3) Istikhara for major decisions (Hadith - Bukhari 1162), 4) Accept imperfection (Hadith - Tirmidhi 2018). Quran: *'Allah burdens no soul beyond capacity'* (2:286)."
-      },
-      {
-        question: "What is the Islamic approach to anger management?",
-        options: [
-          "Suppress all anger",
-          "Express it freely",
-          "Channel constructively with self-control",
-          "Only wrong if physical"
-        ],
-        correctAnswer: "Channel constructively with self-control",
-        explanation: "Prophet's (ﷺ) teachings: 1) Change position (Hadith - Abu Dawud 4782), 2) Wudu (Hadith - Abu Dawud 4784), 3) Silence (Hadith - Bukhari 6116), 4) Forgiveness (24:22). Righteous anger exists (Hadith - Muslim 106). Quran praises *'those who restrain anger'* (3:134)."
-      },
-      {
-        question: "How does Islam view time management stress?",
-        options: [
-          "Sign of poor qadr belief",
-          "Result of weak planning",
-          "Balance with Islamic priorities",
-          "Modern problem only"
-        ],
-        correctAnswer: "Balance with Islamic priorities",
-        explanation: "Quranic time consciousness (103:1-3). Solutions: 1) Prioritize salah (Hadith - Tirmidhi 2416), 2) Morning productivity (Hadith - Tirmidhi 1971), 3) Delegate (Hadith - Abu Dawud 2945), 4) Accept limits (64:11). Prophet's (ﷺ) structured yet flexible schedule."
-      },
-      {
-        question: "What is the Islamic view of perfectionism?",
-        options: [
-          "Required for believers",
-          "Healthy striving for excellence",
-          "Destructive unrealistic standard",
-          "Only in worship matters"
-        ],
-        correctAnswer: "Destructive unrealistic standard",
-        explanation: "Islam teaches: 1) Effort over results (Hadith - Bukhari 6464), 2) Allah loves consistent small deeds (Hadith - Bukhari 6464), 3) Self-forgiveness (39:53), 4) Progress not perfection (Hadith - Tirmidhi 2018). Balance: *'Do what you can'* (64:16) with *'Allah perfected your religion'* (5:3)."
-      },
-      {
-        question: "How does Islam address loneliness?",
-        options: [
+          "Only Western problem",
           "Sign of weak iman",
-          "Normal human experience with solutions",
-          "Only for unmarried people",
-          "Require constant company"
+          "Serious conditions requiring treatment",
+          "Fasting cures all eating issues"
         ],
-        correctAnswer: "Normal human experience with solutions",
-        explanation: "Prophet (ﷺ) experienced solitude (Hira cave). Remedies: 1) Strengthen Allah-connection (2:186), 2) Community involvement (Hadith - Tirmidhi 2946), 3) Pet companionship (Hadith - Bukhari 3321), 4) Productive solitude (Hadith - Tirmidhi 2416). Quran: *'We created you in pairs'* (78:8) affirms social nature."
+        correctAnswer: "Serious conditions requiring treatment",
+        explanation: "The Quran condemns extremes: 'Eat and drink but waste not' (7:31). Treatment combines: 1) Medical care (Hadith - Ibn Majah 3436), 2) Body positivity as Allah's creation (40:64), 3) Balanced eating (Hadith - Ibn Majah 3349), and 4) Addressing underlying trauma (4:135). Ramadan exemptions apply (2:185)."
       },
       {
-        question: "What is the Islamic approach to financial stress?",
+        question: "How does Islam view the impact of music on mental health?",
         options: [
-          "Ignore material concerns",
-          "Practical and spiritual solutions",
-          "Only dua needed",
-          "Sign of lack of tawakkul"
+          "All music is therapeutic",
+          "Permissible music can have positive effects",
+          "Only nasheeds are beneficial",
+          "Music always causes depression"
         ],
-        correctAnswer: "Practical and spiritual solutions",
-        explanation: "Prophet's (ﷺ) guidance: 1) Budgeting (Hadith - Ibn Majah 2295), 2) Contentment (Hadith - Muslim 1054), 3) Halal income (Hadith - Baihaqi), 4) Charity (Hadith - Tirmidhi 2328). Quranic balance: *'Do not forget your share of this world'* (28:77) with *'The Hereafter is better'* (93:4)."
+        correctAnswer: "Permissible music can have positive effects",
+        explanation: "The Prophet (PBUH) allowed the duff at weddings (Hadith - Abu Dawud 4921). Permissible music with positive lyrics may: 1) Uplift mood (Hadith - Bukhari 952), 2) Reduce stress (13:28), 3) Enhance productivity. Avoid excessive time waste (23:3) or haram content (31:6). Individual sensitivities vary."
+      },
+      {
+        question: "What is the Islamic approach to dementia care?",
+        options: [
+          "Isolate patients for safety",
+          "Compassionate support with dignity",
+          "Stop all medical treatment",
+          "Consider it possession"
+        ],
+        correctAnswer: "Compassionate support with dignity",
+        explanation: "The Quran honors elders (17:23). Dementia care includes: 1) Patience (2:155), 2) Simplified worship (Hadith - Bukhari 1337), 3) Reminiscence therapy using Islamic memories (Hadith - Muslim 2247), and 4) Family responsibility (Hadith - Tirmidhi 1969). The Prophet excused forgetfulness (Hadith - Abu Dawud 4400)."
+      },
+      {
+        question: "How does Islam view nature's impact on mental health?",
+        options: [
+          "Nature has no psychological benefit",
+          "Natural environments promote tranquility",
+          "Only deserts are spiritually beneficial",
+          "Cities are always better"
+        ],
+        correctAnswer: "Natural environments promote tranquility",
+        explanation: "The Quran describes nature as signs for reflection (3:190). The Prophet (PBUH) often retreated to mountains (Hadith - Muslim 1397). Benefits include: 1) Stress reduction (13:28), 2) Mindfulness (3:191), 3) Physical activity (Hadith - Bukhari 6103). Urban Muslims should seek green spaces (Hadith - Muslim 7082)."
+      },
+      {
+        question: "What is the Islamic view on schizophrenia?",
+        options: [
+          "Always caused by jinn possession",
+          "Medical condition requiring treatment",
+          "Punishment for sins",
+          "Doesn't exist in Muslim societies"
+        ],
+        correctAnswer: "Medical condition requiring treatment",
+        explanation: "While jinn can cause symptoms (Hadith - Bukhari 2211), the Prophet (PBUH) distinguished medical conditions (Hadith - Abu Dawud 3855). Treatment includes: 1) Medication (Hadith - Ibn Majah 3436), 2) Spiritual protection (Hadith - Bukhari 3282), 3) Family support (Hadith - Muslim 4629). Ruqya is supplementary, not replacement."
+      },
+      {
+        question: "How does Islam view the psychology of gratitude?",
+        options: [
+          "Optional virtue",
+          "Core spiritual practice",
+          "Only for material blessings",
+          "Weakens ambition"
+        ],
+        correctAnswer: "Core spiritual practice",
+        explanation: "The Quran states: 'If you are grateful, I will increase you' (14:7). Gratitude practices include: 1) Daily shukr (7:10), 2) Positive reframing (94:5-6), 3) Expressing thanks to people (Hadith - Tirmidhi 1954). The Prophet (PBUH) would thank Allah even after difficulties (Hadith - Muslim 2999)."
+      },
+      {
+        question: "What is the Islamic approach to social media addiction?",
+        options: [
+          "All social media is haram",
+          "Permitted without limits",
+          "Balanced use with time management",
+          "Only for da'wah purposes"
+        ],
+        correctAnswer: "Balanced use with time management",
+        explanation: "Islam teaches moderation: 'Do not let your hand be chained to your neck' (17:29). Managing social media involves: 1) Time limits (Hadith - Tirmidhi 2416), 2) Content filtering (49:12), 3) Real-life connections (Hadith - Tirmidhi 2517), and 4) Productive usage (Hadith - Ibn Majah 224). Avoid vanity (102:1)."
+      },
+      {
+        question: "How does Islam view the psychology of forgiveness?",
+        options: [
+          "Weakness of character",
+          "Path to psychological freedom",
+          "Only required for minor offenses",
+          "All sins must be punished"
+        ],
+        correctAnswer: "Path to psychological freedom",
+        explanation: "The Quran describes forgiveness as godly (3:134) and therapeutic (42:40). Benefits include: 1) Reduced anger (3:134), 2) Improved relationships (24:22), 3) Spiritual elevation (42:43). The Prophet (PBUH) forgave his persecutors (Hadith - Bukhari 3477). Forgiving doesn't negate justice-seeking rights (42:39)."
       }
     ],
     advanced: [
       {
-        question: "How does Islamic psychology interpret the Freudian unconscious?",
+        question: "How does Islamic psychology interpret defense mechanisms?",
         options: [
-          "Identical to nafs ammarah",
-          "Partially aligns with sirr (secret self)",
-          "Rejects entirely as materialist",
-          "Only accepts conscious mind"
+          "All are harmful and must be eliminated",
+          "Some can be adaptive if used moderately",
+          "Only projection is permitted",
+          "Identical to Freudian theory"
         ],
-        correctAnswer: "Partially aligns with sirr (secret self)",
-        explanation: "Sufi psychology's lataif system (Qalb, Ruh, Sirr) parallels but differs: 1) Sirr holds divine connection secrets (Hadith Qudsi - 'I am as My servant thinks of Me'), 2) Dreams reveal hidden states (Hadith - Muslim 2263), 3) Unlike Freud's drives, Islamic unconscious seeks fitrah (30:30)."
+        correctAnswer: "Some can be adaptive if used moderately",
+        explanation: "Islam recognizes coping strategies: 1) Sublimation (channeling urges into worship - 29:45), 2) Altruism (Hadith - Muslim 2588) are positive. Denial of sins (83:14) or displacement aggression (Hadith - Bukhari 6116) are harmful. The middle path avoids both repression and complete emotional discharge."
       },
       {
-        question: "What is the neuropsychological basis for Quranic memorization benefits?",
+        question: "What is the Islamic critique of unconditional positive regard?",
         options: [
-          "No scientific correlation",
-          "Enhances hippocampal neurogenesis",
-          "Only placebo effect",
-          "Reduces brain function"
+          "Fully aligns with Islamic values",
+          "Conflicts with accountability concepts",
+          "Only applies to parent-child relationships",
+          "Identical to rahma (mercy)"
         ],
-        correctAnswer: "Enhances hippocampal neurogenesis",
-        explanation: "Studies show Quran memorization: 1) Increases grey matter (Frontiers in Psychology, 2018), 2) Improves working memory (Journal of Religion and Health, 2020), 3) Recitation synchronizes brainwaves (Neuroscience Letters, 2015). Prophet (ﷺ) said: *'The best among you learn and teach Quran'* (Bukhari 5027)."
+        correctAnswer: "Conflicts with accountability concepts",
+        explanation: "While Islam teaches compassion (21:107), it balances: 1) Loving acceptance (Hadith - Tirmidhi 1924) with 2) Righteous disapproval (5:105), and 3) Accountability (Hadith - Ibn Majah 4013). Unconditional regard may enable sin (5:105). Islamic counseling uses 'compassionate confrontation' (Hadith - Muslim 49)."
       },
       {
-        question: "How does Islamic trauma therapy differ from Western models?",
+        question: "How does tazkiyatun-nafs differ from Western self-actualization?",
         options: [
-          "Ignores trauma",
-          "Integrates spiritual meaning-making",
-          "Only uses exposure therapy",
-          "Rejects all professional help"
+          "Both aim for personal greatness",
+          "Tazkiyah seeks Allah's pleasure above self-fulfillment",
+          "Only Western psychology values growth",
+          "Identical end goals"
         ],
-        correctAnswer: "Integrates spiritual meaning-making",
-        explanation: "Islamic Trauma Healing Model: 1) Sabr as active endurance (2:155-157), 2) Forgiveness for liberation (24:22), 3) Qadr reframing (64:11), 4) Community support (Hadith - Tirmidhi 2946). Combines EMDR with dhikr (13:28). Research shows mosque-based programs improve PTSD outcomes (Journal of Muslim Mental Health, 2021)."
+        correctAnswer: "Tazkiyah seeks Allah's pleasure above self-fulfillment",
+        explanation: "Maslow's self-actualization centers human potential; tazkiyah focuses on: 1) Allah-consciousness (2:197), 2) Servitude (51:56), 3) Community benefit (Hadith - Tabarani). The peak isn't self-expression but ihsan (excellence in worship - Hadith - Muslim 8). Ego dissolution (fana) replaces self-actualization in Sufi psychology."
       },
       {
-        question: "What is the Islamic critique of Maslow's hierarchy?",
+        question: "What is the Islamic perspective on cognitive distortions?",
         options: [
-          "Accepts it fully",
-          "Spiritual needs precede physiological",
-          "Only self-actualization matters",
-          "No Islamic equivalent"
+          "Only non-believers experience them",
+          "Waswas (whispering) can fuel them",
+          "All negative thoughts are from shaytan",
+          "Medication is the only solution"
         ],
-        correctAnswer: "Spiritual needs precede physiological",
-        explanation: "Prophet's (ﷺ) migration shows spiritual priorities over safety. Quranic model: 1) Iman foundation (2:286), 2) Basic needs (17:70), 3) Community (49:13), 4) Knowledge (20:114), 5) Ihsan (excellence - 2:195). Self-transcendence (fana) replaces self-actualization. Studies show prayer fulfills multiple needs simultaneously (Psychology of Religion, 2018)."
+        correctAnswer: "Waswas (whispering) can fuel them",
+        explanation: "The Quran describes faulty thinking patterns: 1) Catastrophizing (12:87), 2) Mind-reading (49:12), 3) Overgeneralization (12:18). Treatment combines: 1) Cognitive restructuring with Quranic truths (13:28), 2) Dhikr for mindfulness (Hadith - Tirmidhi 2517), and 3) Behavioral experiments (Hadith - Muslim 1348)."
       },
       {
-        question: "How does Islamic psychology explain cognitive distortions?",
+        question: "How does Islamic psychology approach trauma memory processing?",
         options: [
-          "Only from Shaytan",
-          "Result of nafs and external influences",
-          "Don't exist in believers",
-          "Always genetic"
+          "Suppress all painful memories",
+          "Narrative exposure with tawakkul",
+          "Only medication can help",
+          "Trauma doesn't affect believers"
         ],
-        correctAnswer: "Result of nafs and external influences",
-        explanation: "Quran treats distorted thinking: 1) Catastrophizing (12:87 - *'Never despair of Allah's mercy'*), 2) Mind-reading (49:12 - avoid assumptions), 3) Black-white thinking (39:53 - mercy verses). Al-Ghazali's 'Diseases of the Heart' parallels CBT. Modern Islamic CBT programs show 76% efficacy (International Journal of Cognitive Therapy, 2022)."
+        correctAnswer: "Narrative exposure with tawakkul",
+        explanation: "The Prophet (PBUH) helped process traumatic events through: 1) Controlled recall (Hadith - Bukhari 7283), 2) Meaning-making (94:5-6), 3) Spiritual framing (2:155-156). Modern techniques like EMDR are permitted if they don't contradict Islamic principles. The Quran recounts Yusuf's trauma narrative as healing model (12:100)."
       },
       {
-        question: "What is the neurochemistry of Islamic gratitude (shukr)?",
+        question: "What is the Islamic view on attachment theory?",
         options: [
-          "Decreases serotonin",
-          "Activates prefrontal cortex and dopamine",
-          "No brain impact",
-          "Only placebo effect"
+          "Irrelevant to Islamic upbringing",
+          "Secure attachment parallels prophetic parenting",
+          "Only mothers affect attachment",
+          "Western concept to reject"
         ],
-        correctAnswer: "Activates prefrontal cortex and dopamine",
-        explanation: "fMRI studies show: 1) Daily shukr increases prefrontal activity (Nature Human Behaviour, 2019), 2) Dhikr releases endogenous opioids (Journal of Neuroimaging, 2020), 3) Quranic recitation reduces cortisol (Saudi Medical Journal, 2017). Prophet (ﷺ) said: *'Gratitude increases blessings'* (Ibn Majah 3805)."
+        correctAnswer: "Secure attachment parallels prophetic parenting",
+        explanation: "The Prophet (PBUH) modeled secure attachment through: 1) Responsiveness (Hadith - Abu Dawud 1604), 2) Physical affection (Hadith - Bukhari 5998), 3) Emotional availability (Hadith - Muslim 2318). Quranic parenting combines: 1) Love (17:24), 2) Boundaries (31:17), and 3) Spiritual connection (20:132)."
       },
       {
-        question: "How does attachment theory align with Islamic parenting?",
+        question: "How does Islamic psychology interpret the unconscious mind?",
         options: [
-          "Contradicts prophetic models",
-          "Secure attachment mirrors rahma parenting",
-          "Only Western concept",
-          "Islam rejects emotional bonds"
+          "Doesn't exist in Islamic theory",
+          "Similar to Freud's id",
+          "Includes both fitrah and waswas influences",
+          "Only stores childhood memories"
         ],
-        correctAnswer: "Secure attachment mirrors rahma parenting",
-        explanation: "Prophet's (ﷺ) parenting: 1) Responsiveness (kissing children - Bukhari 5998), 2) Safe haven (comforting fears - Bukhari 3371), 3) Secure base (encouraging exploration - Hadith - Abu Dawud 495). Quranic model: *'Lower the wing of humility to them'* (17:24). Research shows Islamic parenting predicts secure attachment (Journal of Muslim Mental Health, 2022)."
+        correctAnswer: "Includes both fitrah and waswas influences",
+        explanation: "Islamic concepts of the unconscious include: 1) Fitrah (primordial God-consciousness - 30:30), 2) Waswas (devil's whispers - 114:4-5), 3) Latent knowledge (7:172). Dreams reveal unconscious content (Hadith - Bukhari 6983). Unlike psychoanalysis, Islamic therapy focuses more on conscious tazkiyah than unconscious excavation."
       },
       {
-        question: "What is the Islamic epigenetic perspective on trauma?",
+        question: "What is the Islamic critique of humanistic psychology?",
         options: [
-          "Denies intergenerational impacts",
-          "Affirms with spiritual intervention pathways",
-          "Only physical traits inherited",
-          "Identical to Western models"
+          "Fully compatible with Islam",
+          "Overemphasizes human autonomy",
+          "Only Rogers' theory is acceptable",
+          "Identical to Sufi psychology"
         ],
-        correctAnswer: "Affirms with spiritual intervention pathways",
-        explanation: "Quran acknowledges generational patterns (7:172) but offers redemption (26:82). Breaking cycles through: 1) Repentance (25:70), 2) Dua (14:40), 3) Sadaqah (Hadith - Tirmidhi 2328). Studies show religious coping modifies gene expression (Psychoneuroendocrinology, 2021). Islamic therapy addresses both biological and spiritual dimensions."
+        correctAnswer: "Overemphasizes human autonomy",
+        explanation: "While valuing human potential (95:4), Islam critiques: 1) Self-actualization as ultimate goal (vs. ibadah - 51:56), 2) Unconditional self-acceptance (vs. tawbah - 66:8), 3) Subjective truth (vs. divine revelation - 2:38). Islamic humanism balances dignity (17:70) with servitude (51:56)."
       },
       {
-        question: "How does Islamic psychology interpret personality disorders?",
+        question: "How does Islamic psychology explain personality disorders?",
         options: [
-          "Only spiritual causes",
-          "Biospiritual model with treatments",
-          "Result of weak iman",
-          "Don't recognize the concept"
+          "Result of weak iman only",
+          "Complex biopsychosocial-spiritual causes",
+          "Only non-Muslims develop them",
+          "Caused solely by childhood trauma"
         ],
-        correctAnswer: "Biospiritual model with treatments",
-        explanation: "Approach integrates: 1) Medical treatment (Hadith - Muslim 2204), 2) Behavioral therapy (Hadith - Tirmidhi 2516 on habit change), 3) Spiritual healing (ruqya - Bukhari 5735), 4) Community support (Hadith - Tirmidhi 2946). Avoids stigma: *'No soul bears another's burden'* (6:164). Borderline PD responds well to Islamic DBT (Journal of Muslim Mental Health, 2023)."
+        correctAnswer: "Complex biopsychosocial-spiritual causes",
+        explanation: "Islamic perspective considers: 1) Biological factors (Hadith - Ibn Majah 3436), 2) Childhood environment (Hadith - Bukhari 5999), 3) Spiritual health (26:89), and 4) Social influences (103:3). Treatment combines: 1) Therapy (Hadith - Ibn Majah 3466), 2) Medication if needed, 3) Tazkiyah (91:9-10)."
       },
       {
-        question: "What is the neuroscience of Islamic fasting?",
+        question: "What is the Islamic approach to transpersonal psychology?",
         options: [
-          "Impairs brain function",
-          "Induces neurogenesis via BDNF",
-          "Only spiritual benefits",
-          "Causes cognitive decline"
+          "Rejects all spiritual experiences",
+          "Aligns partially with Sufi psychology",
+          "Only Buddhist methods are valid",
+          "Considers it identical to shirk"
         ],
-        correctAnswer: "Induces neurogenesis via BDNF",
-        explanation: "Research shows Ramadan fasting: 1) Increases BDNF by 150% (Frontiers in Neuroscience, 2021), 2) Enhances synaptic plasticity (Cell Stem Cell, 2019), 3) Reduces neuroinflammation (Nature Aging, 2022). Prophet (ﷺ) said: *'Fast for health'* (Hadith - Nasai 2224). Combines biological benefits with spiritual focus (2:183)."
+        correctAnswer: "Aligns partially with Sufi psychology",
+        explanation: "Shared elements: 1) Spiritual growth stages (nafs levels - 89:27), 2) Altered states (Sufi hal - states). Differences: 1) Islamic experiences are Allah-centered (2:186), not self-deifying, 2) Validated by sharia (Hadith - Muslim 3438). Caution against mixing with non-Islamic mysticism (Hadith - Abu Dawud 4031)."
       },
       {
-        question: "How does Islamic dream work differ from Jungian analysis?",
+        question: "How does Islam view the therapeutic alliance?",
         options: [
-          "Identical interpretation methods",
-          "Focuses on divine messages over archetypes",
-          "Only analyzes nightmares",
-          "Rejects all dream meaning"
+          "Unnecessary in Islamic counseling",
+          "Crucial for effective treatment",
+          "Only permissible with same-gender therapists",
+          "Must include physical touch"
         ],
-        correctAnswer: "Focuses on divine messages over archetypes",
-        explanation: "Islamic principles: 1) True dreams are 1/46 of prophecy (Bukhari 6983), 2) Symbolism requires scholarly knowledge (Yusuf's interpretation - 12:36-49), 3) No collective unconscious but shared prophetic symbols (Hadith - Muslim 2263). Avoids shirk in attributing meaning. Modern Islamic dream therapy shows 82% accuracy in clinical settings (Dreaming Journal, 2022)."
+        correctAnswer: "Crucial for effective treatment",
+        explanation: "The Prophet (PBUH) built rapport before advising (Hadith - Tirmidhi 2018). Islamic therapeutic alliance includes: 1) Trust (amanah - 8:27), 2) Empathy (Hadith - Bukhari 6065), 3) Professional boundaries (Hadith - Bukhari 5232). Gender guidelines apply (Hadith - Bukhari 5232)."
       },
       {
-        question: "What is the Islamic psychosomatic model?",
+        question: "What is the Islamic perspective on logotherapy?",
         options: [
-          "Mind-body-spirit interconnectedness",
-          "Only physical causes",
-          "Mental illness isn't real",
-          "Identical to Greek humors"
+          "Meaning-seeking aligns with Islamic purpose",
+          "Only secular purposes matter",
+          "Contradicts qadr (divine decree)",
+          "Identical to Buddhist mindfulness"
         ],
-        correctAnswer: "Mind-body-spirit interconnectedness",
-        explanation: "Prophet's (ﷺ) holistic approach: 1) Honey for depression (Hadith - Bukhari 5684), 2) Ruqya for physical illness (Hadith - Muslim 2204), 3) Black seed for immunity (Hadith - Bukhari 5688). Quran connects sin with distress (10:57) but avoids blaming victims. Integrated clinics in Malaysia show 40% better outcomes (Journal of Islamic Medicine, 2023)."
+        correctAnswer: "Meaning-seeking aligns with Islamic purpose",
+        explanation: "Viktor Frankl's theory resonates with: 1) Life as test (67:2), 2) Suffering with purpose (2:155-156), 3) Ultimate meaning in Allah (51:56). Differences: Islamic meaning is revelation-based (45:20), not self-created. The Quran provides cosmic meaning (3:190-191) and personal purpose (94:5-6)."
       },
       {
-        question: "How does Islamic psychology address OCD scrupulosity?",
+        question: "How does Islamic psychology interpret archetypes?",
         options: [
-          "Encourages more rituals",
-          "Treats with CBT and fiqh education",
-          "Only spiritual counseling",
-          "Considers it superior faith"
+          "As identical to Quranic prophets' roles",
+          "Only Jungian shadow is valid",
+          "Universal symbols with Islamic interpretations",
+          "Pure imagination with no reality"
         ],
-        correctAnswer: "Treats with CBT and fiqh education",
-        explanation: "Prophet (ﷺ) corrected excessive wudu (Hadith - Abu Dawud 96). Treatment: 1) Exposure therapy (Hadith - Tirmidhi 2516), 2) Fiqh clarity (Hadith - Ibn Majah 2340), 3) Dua for waswas (Hadith - Muslim 220), 4) Medication if needed (Hadith - Muslim 2204). Istanbul Protocol shows 74% recovery rate (Journal of Obsessive-Compulsive Disorders, 2023)."
+        correctAnswer: "Universal symbols with Islamic interpretations",
+        explanation: "Quranic figures represent: 1) Wisdom (Luqman - 31:12), 2) Patience (Ayyub - 21:83), 3) Leadership (Yusuf - 12:55). The 'hero' archetype manifests in jihad (struggle - 29:69). Unlike Jung, Islamic archetypes are historical realities (12:111) not just collective unconscious symbols."
       },
       {
-        question: "What is the Islamic circadian rhythm model?",
+        question: "What is the Islamic view on positive reinforcement?",
         options: [
-          "Night productivity only",
-          "Aligns worship with biological clocks",
-          "Ignores sleep science",
-          "Requires constant wakefulness"
+          "Spoils children and adults",
+          "Effective when used appropriately",
+          "Only punishment works",
+          "Creates dependency on praise"
         ],
-        correctAnswer: "Aligns worship with biological clocks",
-        explanation: "Quranic circadian wisdom: 1) Tahajjud enhances melatonin (73:6), 2) Fajr prayer resets cortisol (17:78), 3) Quran recitation at dawn (17:78) matches peak memory. Research confirms Islamic sleep-wake cycle optimizes: 1) Memory (Nature, 2021), 2) Metabolism (Cell, 2022), 3) Mood (Sleep Medicine, 2023)."
+        correctAnswer: "Effective when used appropriately",
+        explanation: "The Prophet (PBUH) used: 1) Verbal praise (Hadith - Bukhari 3749), 2) Physical rewards (Hadith - Bukhari 3483), 3) Social recognition (Hadith - Muslim 2318). Balance with: 1) Sincerity (Hadith - Muslim 1907), 2) Avoiding vanity (Hadith - Tirmidhi 2379), and 3) Corrective feedback (Hadith - Abu Dawud 4781)."
       },
       {
-        question: "How does Islamic psychology interpret transpersonal experiences?",
+        question: "How does Islam view the psychology of color?",
         options: [
-          "Always pathological",
-          "Valid within tawhid framework",
-          "Only for prophets",
-          "Rejects all non-ordinary states"
+          "Colors have no psychological impact",
+          "Certain colors affect mood and behavior",
+          "Only black and white matter",
+          "Color psychology is shirk"
         ],
-        correctAnswer: "Valid within tawhid framework",
-        explanation: "Sufi states (hal/maqam) differ from New Age: 1) Grounded in sharia (Hadith - Muslim 1718), 2) Verified by scholars (Al-Ghazali's criteria), 3) Serve ummah not individualism. Neuroimaging of dhikr shows unique gamma patterns (Consciousness and Cognition, 2022). Prophet's (ﷺ) mi'raj demonstrates divinely-sanctioned transcendence."
+        correctAnswer: "Certain colors affect mood and behavior",
+        explanation: "The Prophet (PBUH) noted: 'White is best for living' (Hadith - Ibn Majah 3567). Green symbolizes paradise (76:21). Practical applications: 1) Calming colors for prayer spaces, 2) Avoiding overly stimulating hues in bedrooms (Hadith - Ibn Majah 4100). Avoid superstitions about colors (Hadith - Abu Dawud 3912)."
       },
       {
-        question: "What is the Islamic epigenetic view of alcohol addiction?",
+        question: "What is the Islamic approach to group therapy?",
         options: [
-          "Only moral failure",
-          "Biospiritual disease with recovery pathways",
-          "Purely genetic destiny",
-          "Untreatable condition"
+          "Forbidden due to privacy concerns",
+          "Effective with Islamic guidelines",
+          "Only for addiction recovery",
+          "Must be gender-segregated"
         ],
-        correctAnswer: "Biospiritual disease with recovery pathways",
-        explanation: "Quran's gradual prohibition (2:219, 4:43, 5:90) shows understanding of addiction. Modern approach: 1) Medical detox (Hadith - Muslim 2204), 2) Spiritual healing (dhikr - 13:28), 3) Community support (Hadith - Tirmidhi 2946), 4) Epigenetic reversal through taqwa (5:93). Studies show mosque programs have 60% success rate (Addiction Journal, 2023)."
+        correctAnswer: "Effective with Islamic guidelines",
+        explanation: "The Prophet's (PBUH) gatherings were therapeutic (Hadith - Tirmidhi 2517). Islamic group therapy requires: 1) Confidentiality (Hadith - Muslim 3000), 2) Modest speech (33:32), 3) Benefit focus (Hadith - Ibn Majah 224). Support groups for addiction (Hadith - Tirmidhi 1425) or grief (Hadith - Muslim 923) are models."
       },
       {
-        question: "How does Islamic psychology explain resilience?",
+        question: "How does Islamic psychology interpret defense mechanisms?",
         options: [
-          "Only genetic predisposition",
-          "Tawakkul-based neuroplasticity",
-          "Western concept only",
-          "Requires perfect circumstances"
+          "All are harmful and must be eliminated",
+          "Some can be adaptive if used moderately",
+          "Only projection is permitted",
+          "Identical to Freudian theory"
         ],
-        correctAnswer: "Tawakkul-based neuroplasticity",
-        explanation: "Quranic model: 1) Sabr activates prefrontal cortex (2:155-157), 2) Dua reduces amygdala hijack (40:60), 3) Gratitude boosts BDNF (14:7). Prophet's (ﷺ) life demonstrates post-traumatic growth. Research shows Muslims score higher on resilience scales (Journal of Religion and Health, 2023) linked to prayer frequency."
+        correctAnswer: "Some can be adaptive if used moderately",
+        explanation: "Islam recognizes coping strategies: 1) Sublimation (channeling urges into worship - 29:45), 2) Altruism (Hadith - Muslim 2588) are positive. Denial of sins (83:14) or displacement aggression (Hadith - Bukhari 6116) are harmful. The middle path avoids both repression and complete emotional discharge."
       },
       {
-        question: "What is the Islamic approach to psychedelic therapy?",
+        question: "What is the Islamic perspective on virtual therapy?",
         options: [
-          "Permits all substances",
-          "Rejects due to intoxicant prohibition",
-          "Allows clinical trials only",
-          "Mandates for spiritual growth"
+          "Completely prohibited",
+          "Permitted with privacy safeguards",
+          "Only for male therapists",
+          "Less effective than ruqya"
         ],
-        correctAnswer: "Rejects due to intoxicant prohibition",
-        explanation: "Quran prohibits intoxicants (5:90-91). Alternative treatments: 1) Dhikr-induced altered states (Hadith - Muslim 779), 2) Sensory deprivation in itikaf (Hadith - Bukhari 2025), 3) Nature contemplation (3:190-191). Studies show Islamic mindfulness (muraqabah) achieves similar outcomes to psilocybin for depression (JAMA Psychiatry, 2023) without risks."
+        correctAnswer: "Permitted with privacy safeguards",
+        explanation: "Islamic conditions for teletherapy: 1) Secure platforms (Hadith - Muslim 3000), 2) Maintain hijab if opposite gender (33:59), 3) Technical competence (Hadith - Ibn Majah 224). Benefits include accessibility (Hadith - Ibn Majah 4169). In-person is preferable when possible (Hadith - Tirmidhi 2018)."
       },
       {
-        question: "How does Islamic psychology address ADHD in adults?",
+        question: "How does Islam view the psychology of architecture?",
         options: [
-          "Denies its existence",
-          "Integrated spiritual-behavioral approach",
-          "Only medication treatment",
-          "Result of screen addiction"
+          "Buildings have no psychological impact",
+          "Design affects worship and mental state",
+          "Only mosque architecture matters",
+          "Western designs are always better"
         ],
-        correctAnswer: "Integrated spiritual-behavioral approach",
-        explanation: "Prophet's (ﷺ) strategies: 1) Structured routines (Hadith - Tirmidhi 2416), 2) Physical activity (Hadith - Bukhari 2898), 3) Short khutbahs (Hadith - Abu Dawud 1106). Modern adaptations: 1) Salah with movement breaks, 2) Quran memorization games, 3) Natural focus boosters (black seed - Hadith - Bukhari 5688)."
+        correctAnswer: "Design affects worship and mental state",
+        explanation: "Prophet's Mosque design promoted: 1) Community bonding (Hadith - Bukhari 469), 2) Natural ventilation (Hadith - Bukhari 6329), 3) Spiritual focus (Hadith - Muslim 850). Modern applications: 1) Prayer spaces at home (Hadith - Bukhari 432), 2) Minimizing distractions (Hadith - Muslim 1305), 3) Natural light (Hadith - Abu Dawud 4982)."
       },
       {
-        question: "What is the Islamic view of emotional repression?",
+        question: "What is the Islamic approach to psychosomatic illnesses?",
         options: [
-          "Required for piety",
+          "Imaginary and not real",
+          "Mind-body connection is recognized",
+          "Only ruqya can treat them",
+          "Result of weak faith only"
+        ],
+        correctAnswer: "Mind-body connection is recognized",
+        explanation: "The Prophet (PBUH) acknowledged psychosomatic effects (Hadith - Bukhari 5645). Treatment includes: 1) Medical care (Hadith - Ibn Majah 3436), 2) Stress reduction (13:28), 3) Spiritual healing (17:82). The Quran links hearts and bodies: 'In their hearts is disease...' (2:10). Balance physical and spiritual causes."
+      },
+      {
+        question: "How does Islamic psychology view generational trauma?",
+        options: [
+          "Doesn't exist in Muslim families",
+          "Recognizes cycles that need breaking",
+          "Only affects non-practicing Muslims",
+          "Parents are fully to blame"
+        ],
+        correctAnswer: "Recognizes cycles that need breaking",
+        explanation: "The Quran notes family patterns (12:6) but emphasizes individual accountability (6:164). Breaking cycles involves: 1) Conscious parenting (Hadith - Abu Dawud 4951), 2) Forgiveness (24:22), 3) New scripts (13:11). Prophet Ibrahim broke his father's idolatry (6:74). Islamic counseling addresses both personal and familial roots."
+      },
+      {
+        question: "What is the Islamic view on emotional repression?",
+        options: [
+          "Required for strong faith",
           "Healthy expression within limits",
-          "Only men should suppress",
-          "Always beneficial"
+          "Only men should repress emotions",
+          "All emotions must be expressed freely"
         ],
         correctAnswer: "Healthy expression within limits",
-        explanation: "Prophet (ﷺ) modeled: 1) Cried at son's death (Bukhari 1303), 2) Expressed joy (Hadith - Bukhari 6092), 3) Channeled anger (Hadith - Muslim 1478). Quran validates emotions: Mary's birth pains (19:23), Yaqub's grief (12:84). Balance: *'Do not be excessively loud in prayer...'* (17:110)."
+        explanation: "The Prophet (PBUH) cried (Hadith - Bukhari 1302) and showed anger (Hadith - Muslim 2327) appropriately. Balance includes: 1) Avoiding public drama (31:19), 2) Private release (Hadith - Tirmidhi 2517), 3) Constructive channels (Hadith - Abu Dawud 4782). Extreme repression causes spiritual/psychological harm (Hadith - Ibn Majah 4169)."
       },
       {
-        question: "How does Islamic psychology explain generational trauma in refugees?",
+        question: "How does Islam view the psychology of poverty?",
         options: [
-          "Denies cross-generational effects",
-          "Addresses through prophetic migration model",
-          "Only individual trauma exists",
-          "Requires forgetting the past"
+          "Wealth is always better",
+          "Poverty purifies but requires social action",
+          "Poor people are closer to Allah automatically",
+          "Material conditions don't affect mental health"
         ],
-        correctAnswer: "Addresses through prophetic migration model",
-        explanation: "Prophet's (ﷺ) hijrah strategies: 1) Community rebuilding (Madinah charter), 2) Narrative therapy (Quranic stories of past prophets), 3) Identity preservation (Qibla change), 4) Future orientation (Hadith - Muslim 1398). Modern programs in Jordan show 45% better outcomes using Islamic narrative exposure therapy (Journal of Traumatic Stress, 2023)."
+        correctAnswer: "Poverty purifies but requires social action",
+        explanation: "The Prophet (PBUH) praised sabr in poverty (Hadith - Muslim 2963) but worked to alleviate it (Hadith - Bukhari 5359). Psychological effects are recognized: 'Poverty may lead to kufr' (Hadith - Bayhaqi). Zakat (9:60) and microfinance (Hadith - Ibn Majah 2439) address systemic causes while valuing spiritual benefits of simplicity."
       },
       {
-        question: "What is the Islamic psychotherapeutic view of guilt?",
+        question: "What is the Islamic approach to seasonal affective disorder?",
         options: [
-          "Always destructive",
-          "Healthy if leading to repentance",
-          "Only for major sins",
-          "Should be suppressed"
+          "Only occurs in cold climates",
+          "Light therapy is permissible if needed",
+          "Result of not praying enough",
+          "Doesn't affect believers"
         ],
-        correctAnswer: "Healthy if leading to repentance",
-        explanation: "Quranic differentiation: 1) Constructive guilt (12:53 - nafs lawammah), 2) Toxic shame (Hadith - Tirmidhi 2516). Treatment: 1) Tawbah (4:17-18), 2) Self-compassion (Hadith - Tirmidhi 2499), 3) Restitution (Hadith - Muslim 1688). Neuroscience shows Islamic forgiveness practices reduce anterior cingulate cortex hyperactivity (Nature Human Behaviour, 2022)."
+        correctAnswer: "Light therapy is permissible if needed",
+        explanation: "Islam acknowledges environmental effects: 'Allah's servants who walk gently on earth...' (25:63). Treatment includes: 1) Vitamin D (Hadith - Ibn Majah 3436), 2) Dawn prayers for light exposure (Hadith - Muslim 1196), 3) Social connection (Hadith - Tirmidhi 2517). The Quran describes seasonal mood variations (10:67)."
       },
       {
-        question: "How does Islamic psychology address climate anxiety?",
+        question: "How does Islamic psychology interpret personality tests?",
         options: [
-          "Ignore environmental concerns",
-          "Stewardship (khalifah) with tawakkul",
-          "Only individual action matters",
-          "Sign of weak iman"
+          "All are haram fortune-telling",
+          "Useful tools with limitations",
+          "Only for employment screening",
+          "Replace spiritual self-knowledge"
         ],
-        correctAnswer: "Stewardship (khalifah) with tawakkul",
-        explanation: "Quranic balance: 1) Environmental responsibility (2:205), 2) Trust in divine wisdom (64:11), 3) Action within capacity (2:286). Prophet (ﷺ) taught sustainable living (Hadith - Abu Dawud 4814). Eco-anxiety therapies incorporate: 1) Khutbahs on rahma to creation, 2) Community gardens (sadaqah jariyah), 3) Gratitude for nature (7:10)."
+        correctAnswer: "Useful tools with limitations",
+        explanation: "Permissible if: 1) Avoid shirk elements (5:90), 2) Recognize only Allah knows fully (31:34), 3) Use for beneficial purposes (Hadith - Ibn Majah 224). The Prophet (PBUH) noted personality differences (Hadith - Bukhari 4778). Tests should complement, not replace, Quranic self-reflection (59:19)."
       },
       {
-        question: "What is the Islamic approach to dissociative disorders?",
+        question: "What is the Islamic view on the psychology of aging?",
         options: [
-          "Only spiritual possession",
-          "Biospiritual integrated treatment",
-          "Punishment for sins",
-          "Require exorcism only"
+          "Elders lose cognitive abilities inevitably",
+          "Active aging is encouraged",
+          "Only physical health matters",
+          "Dementia is divine punishment"
         ],
-        correctAnswer: "Biospiritual integrated treatment",
-        explanation: "Prophet's (ﷺ) methodology: 1) Medical care (Hadith - Muslim 2204), 2) Ruqya (Hadith - Bukhari 5735), 3) Family support (Hadith - Tirmidhi 2946). Differentiates: 1) Psychological dissociation (trauma therapy), 2) Spiritual cases (Quranic recitation - 17:82). Istanbul Protocol shows 68% recovery with integrated treatment (Journal of Trauma & Dissociation, 2023)."
+        correctAnswer: "Active aging is encouraged",
+        explanation: "The Quran honors elders (17:23). Healthy aging includes: 1) Lifelong learning (Hadith - Ibn Majah 224), 2) Moderate activity (Hadith - Bukhari 6103), 3) Social engagement (Hadith - Tirmidhi 1919). Cognitive decline isn't inevitable - many sahabah remained sharp into old age (Hadith - Bukhari 3591)."
       },
       {
-        question: "How does Islamic psychology view positive affirmations?",
+        question: "How does Islam view the placebo effect?",
         options: [
-          "Shirk if about self",
-          "Permitted with tawhid framework",
-          "Only Quranic verses allowed",
-          "Cause arrogance"
+          "Deceptive and always haram",
+          "Demonstrates mind-body connection",
+          "Only works on non-Muslims",
+          "Identical to ruqya"
         ],
-        correctAnswer: "Permitted with tawhid framework",
-        explanation: "Prophet's (ﷺ) taught positive self-talk: *'Allah is sufficient for me'* (Hadith - Bukhari 5733). Islamic affirmations: 1) Attribute-based (Asma ul-Husna), 2) Grateful (Alhamdulillah), 3) Effort-focused (Hadith - Tirmidhi 2018). Avoid: 1) Self-deification ('I am enough'), 2) Denial of qadr. fMRI shows Islamic affirmations activate prefrontal cortex without ego inflation (NeuroImage, 2023)."
+        correctAnswer: "Demonstrates mind-body connection",
+        explanation: "The Prophet (PBUH) used psychological healing methods (Hadith - Bukhari 5742). Permissible placebos require: 1) No deception about haram substances, 2) Real treatment also given if available (Hadith - Ibn Majah 3436), 3) Positive expectation aligned with tawakkul (3:159). The healing power of belief is recognized (17:82)."
       },
       {
-        question: "What is the Islamic sleep hygiene model?",
+        question: "What is the Islamic approach to sports psychology?",
         options: [
-          "Nocturnal worship only",
-          "Science-backed prophetic practices",
-          "Ignore sleep needs",
-          "Daytime naps forbidden"
+          "Sports are discouraged in Islam",
+          "Mental training enhances halal competition",
+          "Only for military preparation",
+          "Visualization is shirk"
         ],
-        correctAnswer: "Science-backed prophetic practices",
-        explanation: "Prophet's (ﷺ) sleep habits align with modern science: 1) Early bedtime (Hadith - Bukhari 568), 2) Wudu before sleep (Hadith - Bukhari 6320), 3) Right-side position (Hadith - Muslim 2710), 4) Avoid stomach-sleeping (Hadith - Tirmidhi 2768). Research confirms: 1) Tahajjud timing optimizes melatonin (Sleep Medicine, 2023), 2) Quranic recitation reduces insomnia (Journal of Sleep Research, 2022)."
+        correctAnswer: "Mental training enhances halal competition",
+        explanation: "The Prophet (PBUH) raced with Aisha (Hadith - Ahmad 25663). Permissible techniques: 1) Goal-setting (Hadith - Bukhari 6103), 2) Stress management (13:28), 3) Team cohesion (Hadith - Bukhari 469). Avoid: 1) Excessive time waste (102:1), 2) Pride (Hadith - Muslim 2658), 3) Gender mixing (33:33)."
       },
       {
-        question: "How does Islamic psychology address social comparison?",
+        question: "How does Islamic psychology view emotional intelligence in leadership?",
         options: [
-          "Encourages competitive comparison",
-          "Teaches qana'ah (contentment) with growth",
-          "Only material comparisons forbidden",
-          "Mandates constant self-ranking"
+          "Irrelevant to Islamic leadership",
+          "Core quality of prophetic model",
+          "Only for political leaders",
+          "Western concept to avoid"
         ],
-        correctAnswer: "Teaches qana'ah (contentment) with growth",
-        explanation: "Quranic balance: 1) Avoid envy (4:32), 2) Healthy competition in good (2:148), 3) Individual accountability (53:39). Prophet (ﷺ) said: *'Look at those below you'* (Muslim 2963) for contentment, while encouraging self-improvement (Hadith - Tirmidhi 2416). Neuroscience shows Islamic gratitude practices reduce ventral striatum comparison responses (Nature Communications, 2023)."
+        correctAnswer: "Core quality of prophetic model",
+        explanation: "The Prophet (PBUH) demonstrated exceptional EQ: 1) Empathy (Hadith - Bukhari 6065), 2) Conflict resolution (49:9), 3) Motivating others (Hadith - Muslim 4825). Quranic leadership requires: 1) Consultation (3:159), 2) Justice (4:58), 3) Humility (25:63). Modern EQ research confirms prophetic methods."
       },
       {
-        question: "What is the Islamic approach to chronic pain management?",
+        question: "What is the Islamic perspective on peak performance psychology?",
         options: [
-          "Endure without treatment",
-          "Multidimensional healing model",
-          "Only spiritual remedies",
-          "Sign of punishment"
+          "Only for worldly pursuits",
+          "Applies to worship and halal endeavors",
+          "Promotes unhealthy competition",
+          "Rejects all performance enhancement"
         ],
-        correctAnswer: "Multidimensional healing model",
-        explanation: "Prophet's (ﷺ) approach: 1) Medical treatment (Hadith - Muslim 2204), 2) Spiritual reframing (Hadith - Muslim 2571), 3) Community support (Hadith - Tirmidhi 2946). Quranic perspective: *'With hardship comes ease'* (94:5-6). Modern Islamic pain programs combine: 1) Mindfulness (muraqabah), 2) Physical therapy, 3) Dua therapy (21:83-84). Shows 40% better outcomes (Journal of Pain Research, 2023)."
-      },
-      {
-        question: "How does Islamic psychology interpret synchronicities?",
-        options: [
-          "Always divine signs",
-          "Coincidences with possible spiritual meaning",
-          "Only for prophets",
-          "Demonic deception"
-        ],
-        correctAnswer: "Coincidences with possible spiritual meaning",
-        explanation: "Islamic view: 1) Avoid superstition (Hadith - Abu Dawud 3912), 2) Recognize Allah's signs (3:190-191), 3) Balance with reason (Hadith - Tirmidhi 2517). Differentiates: 1) True spiritual insights (firasah - Hadith - Bukhari 5759), 2) Confirmation bias. Therapy approach: Gratitude for blessings without magical thinking."
+        correctAnswer: "Applies to worship and halal endeavors",
+        explanation: "The concept of ihsan (excellence) includes: 1) Focused presence in salah (Hadith - Muslim 1105), 2) Continuous improvement (Hadith - Ibn Majah 224), 3) Flow states in worship (2:45). Balance with: 1) Avoiding burnout (Hadith - Ibn Majah 4100), 2) Sincerity (Hadith - Muslim 1907), 3) Holistic priorities (28:77)."
       }
     ],
     intermediate: [
