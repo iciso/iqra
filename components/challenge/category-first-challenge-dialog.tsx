@@ -50,7 +50,7 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Category-first design with prominent visual categories - now with all categories
+// Deine all categories here for challenges
 const challengeCategories = [
   {
     id: "quran",
