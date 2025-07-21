@@ -190,12 +190,14 @@ export default function AboutPage() {
                 Meta
               </a>{" "}
           all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
-                 <div className="mt-2">
+                <div className="flex flex-wrap gap-4 mt-4 justify-center">
+                  <div className="mt-2">
                   <img src="/meta.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                    <div className="mt-2">
                   <img src="/meta.svg" alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
+                </div>
             </li>
           </ul>
         </section>
