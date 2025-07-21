@@ -207,7 +207,7 @@ export default function AboutPage() {
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+           <div className="flex flex-wrap gap-4 mt-4 justify-center">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
               <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
                 <Album className="mr-2 h-4 w-4" />
