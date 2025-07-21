@@ -218,10 +218,10 @@ const challengeCategories = [
     label: "Exploring peace in Middle East",
     description: "Explore peace in Middle East through Islamic principles",
     icon: Telescope,
-    color: "bg-orange-500 hover:bg-orange-600",
-    textColor: "text-orange-700",
-    bgLight: "bg-orange-50",
-    borderColor: "border-orange-300",
+    color: "bg-coral-500 hover:bg-coral-600",
+    textColor: "text-coral-700",
+    bgLight: "bg-coral-50",
+    borderColor: "border-coral-300",
   },
 ]
 
