@@ -22,6 +22,7 @@ import {
   Compass,
   Globe,
   ArrowRight,
+  Telescope,
   HandHeart,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
