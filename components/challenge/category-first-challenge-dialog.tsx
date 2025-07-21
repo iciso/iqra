@@ -26,6 +26,7 @@ import {
   History,
   Sparkles,
   User,
+  Users,
   Compass,
   Globe,
   AlertCircle,
