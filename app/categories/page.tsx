@@ -8,17 +8,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {
   Book,
   Scale,
-  BookOpen,
+  BookCopy,
   Brain,
   BriefcaseMedical,
   BookDashed,
   Church,
-  MessageSquare,
   Heart,
   User,
+  Users,
   Sparkles,
   History,
-  Share2,
+  Scroll,
   Compass,
   Globe,
   ArrowRight,
@@ -44,13 +44,13 @@ const categories = [
     id: "tafsir",
     title: "Tafsir",
     description: "Quranic Exegesis and Commentary",
-    icon: <BookOpen className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "hadeeth",
     title: "Hadeeth",
     description: "Prophetic Traditions",
-    icon: <MessageSquare className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Scroll className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "aqeedah",
@@ -80,7 +80,7 @@ const categories = [
     id: "dawah",
     title: "Dawah",
     description: "Inviting to Islam",
-    icon: <Share2 className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "new-muslims",
@@ -118,11 +118,17 @@ const categories = [
     description: "Explore mental health through Islamic teachings",
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
-  {
+    {
     id: "islamic-medical-ethics",
     title: "Islamic Medical Ethics",
     description: "Islamic Perspectives of Medical Ethics",
     icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "peace",
+    title: "Exploring Peace in Middle East",
+    description: "Explore peace in Middle East through Islamic principles",
+    icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
 ]
 
