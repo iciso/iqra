@@ -194,8 +194,9 @@ export default function AboutPage() {
                   <div className="mt-2">
                   <img src="/meta.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
-                     <img src="/Instagram.png" alt="Instagram" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
-                      </div>
+                      <div className="mt-2">
+                      <img src="/instagram.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                        </div>
                    <div className="mt-2">
                   <img src="/meta.svg" alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
