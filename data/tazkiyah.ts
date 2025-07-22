@@ -672,7 +672,16 @@ const tazkiyahCategory: QuizCategory = {
           "Khawf, balanced with hope, prevents sin and purifies the heart (Surah Al-Zumar 39:9).",
       },
     ],
-  },
-};
+    intermediate: [
+      // Copy the first 10 questions from easy level
+      // This is a temporary solution until proper intermediate questions are created
+    ]
+  }
+}
 
-export default tazkiyahCategory;
+// Add this line to copy questions to intermediate level if it doesn't exist
+if (!tazkiyahCategory.levels.intermediate || tazkiyahCategory.levels.intermediate.length === 0) {
+  tazkiyahCategory.levels.intermediate = [...tazkiyahCategory.levels.easy.slice(0, 10)]
+}
+
+export default tazkiyahCategory
