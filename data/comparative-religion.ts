@@ -700,7 +700,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Unlike Christianity's historical conflicts with science, classical Islamic civilization integrated religious and scientific inquiry",
         explanation:
           "The relationship between religion and science developed differently in Islamic and Christian contexts. While Western Christianity experienced notable conflicts with scientific advancement (e.g., Galileo affair), classical Islamic civilization generally integrated religious and scientific inquiry. From the 8th to 14th centuries, Muslim scientists made significant contributions to mathematics, astronomy, medicine, and other fields, often motivated by religious values encouraging the pursuit of knowledge. This integration was facilitated by a worldview that saw natural phenomena as signs (ayat) pointing to divine wisdom.",
-      }
+      },
     ],
     intermediate: [
       // Copy the first 10 questions from easy level
