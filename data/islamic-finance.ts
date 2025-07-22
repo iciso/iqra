@@ -651,9 +651,18 @@ const islamicFinanceCategory: QuizCategory = {
           "Risk-sharing means profits and losses should be shared among participants in financial transactions",
         explanation:
           "Risk-sharing is a fundamental principle in Islamic finance where financial transactions should involve the sharing of risks and rewards among all participants. This differs from conventional finance which often involves risk transfer through interest-based mechanisms where lenders are entitled to returns regardless of the outcome of the business venture being financed.",
-      },
+         },
+    ],
+    intermediate: [
+      // Copy the first 10 questions from easy or advanced level
+      // This is a temporary solution until proper intermediate questions are created
     ],
   },
+}
+
+// Add this line to copy questions to intermediate level if it doesn't exist
+if (!islamicFinanceCategory.levels.intermediate) {
+  islamicFinanceCategory.levels.intermediate = [...islamicFinanceCategory.levels.easy]
 }
 
 export default islamicFinanceCategory
