@@ -668,7 +668,7 @@ const hinduCategory: QuizCategory = {
         ],
         correctAnswer: "Existence originates from and relies on one supreme reality",
         explanation: "Islam unequivocally states that *'Allah is the Creator of all things, and He is over all things a Disposer of affairs.'* [Quran 39:62]. This absolute dependence of all creation on a singular divine source is a core tenet of Tawhid. While Hinduism has diverse schools, the Upanishadic concept of Brahman as the ultimate, singular reality from which all existence emanates and to which it returns, shares this foundational idea of a singular source of being [Chandogya Upanishad 6.2.1]. Both traditions, despite their differences in defining this ultimate reality, point to a universe fundamentally contingent upon a single, supreme power."
-      }
+      },
     ],
     intermediate: [
       // Copy the first 10 questions from easy level
