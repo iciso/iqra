@@ -668,7 +668,7 @@ const peaceCategory: QuizCategory = {
             ],
             correctAnswer: "Integrated spiritual-psychological care",
             explanation: "The Quran describes post-combat healing: 'Allah sent down tranquility' (48:4). Prophetic methods included: 1) Community storytelling (12:111), 2) Art therapy (Hadith - Bukhari 3046), 3) Nature retreats (Hadith - Muslim 7082). Modern Islamic psychology integrates CBT with dhikr (remembrance) and Quranic reflection therapies."
-        }
+        },
     ],
     intermediate: [
       // Copy the first 10 questions from easy level.
