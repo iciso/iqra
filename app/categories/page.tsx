@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 import {
   Book,
+  Bitcoin,
   Scale,
   BookCopy, 
   Brain,
@@ -113,6 +114,12 @@ const categories = [
     title: "Islamic Finance",
     description: "Principles and practices of Islamic economics",
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+    {
+    id: "crypto",
+    title: "Bitcoin, Crypto & Blockchain",
+    description: "Shariah perspectives on digital currencies",
+    icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
    {
     id: "psych",
