@@ -193,6 +193,16 @@ const challengeCategories = [
     bgLight: "bg-rose-50",
     borderColor: "border-rose-300",
   },
+   {
+    id: "crypto",
+    label: "Bitcoin, Crypto & Blockchain",
+    description: "Shariah perspectives on digital currencies",
+    icon: Bitcoin,
+    color: "bg-magenta-500 hover:bg-magenta-600",
+    textColor: "text-magenta-700",
+    bgLight: "bg-magenta-50",
+    borderColor: "border-magenta-300",
+  },
     {
     id: "psych",
     label: "Islamic Psychology",
