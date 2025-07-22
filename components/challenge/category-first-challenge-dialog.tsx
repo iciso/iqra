@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import {
   Gamepad2,
   Zap,
+  Bitcoin,
   Book,
   BookCopy,
   BookDashed,
