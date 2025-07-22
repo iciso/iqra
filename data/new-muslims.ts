@@ -666,7 +666,16 @@ const newMuslimsCategory: QuizCategory = {
           "Joining a Muslim community is crucial for new Muslims as it offers support, opportunities to learn from others, and fosters spiritual growth through collective worship and guidance.",
       },
     ],
-  },
-};
+    intermediate: [
+      // Copy the first 10 questions from easy level
+      // This is a temporary solution until proper intermediate questions are created
+    ]
+  }
+}
 
-export default newMuslimsCategory;
+// Add this line to copy questions to intermediate level if it doesn't exist
+if (!newMuslimsCategory.levels.intermediate || newMuslimsCategory.levels.intermediate.length === 0) {
+  newMuslimsCategory.levels.intermediate = [...newMuslimsCategory.levels.easy.slice(0, 10)]
+}
+
+export default newMuslimsCategory
