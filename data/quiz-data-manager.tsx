@@ -3,6 +3,7 @@ import seerahCategory from "./quiz-data-manager-additions";
 import { additionalCategories } from "./quiz-data-manager-additional-categories";
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
+import cryptoCategory from "./crypto";
 import islamicHistoryCategory from "./islamic-history";
 import hadeethCategory from "./hadeeth";
 import fiqhCategory from "./fiqh";
@@ -422,6 +423,7 @@ const quizData: QuizCategory[] = [
   tazkiyahCategory,
   comparativeReligionCategory,
   islamicFinanceCategory,
+  cryptoCategory,
   islamicHistoryCategory,
   hadeethCategory,
   fiqhCategory,
