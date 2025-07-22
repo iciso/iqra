@@ -661,7 +661,7 @@ const psychCategory: QuizCategory = {
         ],
         correctAnswer: "Applies to worship and halal endeavors",
         explanation: "The concept of ihsan (excellence) includes: 1) Focused presence in salah (Hadith - Muslim 1105), 2) Continuous improvement (Hadith - Ibn Majah 224), 3) Flow states in worship (2:45). Balance with: 1) Avoiding burnout (Hadith - Ibn Majah 4100), 2) Sincerity (Hadith - Muslim 1907), 3) Holistic priorities (28:77)."
-      }
+      },
     ],
     intermediate: [
       // Copy the first 10 questions from easy level
