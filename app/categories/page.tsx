@@ -24,7 +24,7 @@ import {
   Globe,
   ArrowRight,
   Telescope, 
-  Venus,
+  Circle,
   HandHeart,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -126,7 +126,7 @@ const categories = [
     id: "gender",
     title: "Rights of Women in Islam",
     description: "Perspectives of Gender in Islam",
-    icon: <Venus className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
    {
     id: "psych",
