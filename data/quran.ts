@@ -407,8 +407,8 @@ const quranCategory: QuizCategory = {
       }
       
       // Add this line to copy questions to intermediate level if it doesn't exist
-      if (!quranCategory.levels.intermediate || quranCategory.levels.intermediate.length === 0) {
-        quranCategory.levels.intermediate = [...quranCategory.levels.easy.slice(0, 10)]
+     if (!quranCategory.levels.intermediate) {
+        quranCategory.levels.intermediate = [...quranCategory.levels.easy]
       }
       
       export default quranCategory
