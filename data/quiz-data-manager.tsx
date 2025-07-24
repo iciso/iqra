@@ -16,6 +16,7 @@ import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
 import genderCategory from "./gender";
 import psychCategory from "./psych";
+import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
@@ -39,6 +40,7 @@ const quizData: QuizCategory[] = [
   dawahCategory,
   genderCategory,
   psychCategory,
+  parentingCategory,
   peaceCategory,
   medicalEthicsCategory,
 ];
