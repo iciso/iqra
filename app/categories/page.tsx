@@ -23,6 +23,7 @@ import {
   Compass,
   Globe,
   ArrowRight,
+  ScanFace,
   Telescope, 
   Circle,
   HandHeart,
@@ -133,6 +134,12 @@ const categories = [
     title: "Islamic Psychology",
     description: "Explore mental health through Islamic teachings",
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+     {
+    id: "parenting",
+    title: "Islamic Parenting",
+    description: "Islamic perspectives on parenting",
+    icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "islamic-medical-ethics",
