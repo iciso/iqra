@@ -5,7 +5,7 @@ import { IqraLogo } from "@/components/iqra-logo";
 
 /*
 IQRA To do list:
-Add categories like Sexual Health, using AI choosing form the list in G Docs
+Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs
 Break up quizzes for each category into sets of 10 each like in challenges
 Do we need to introduce for Challenges Surah Quizzes -> 1 to 114?
 Continously test to see all quizzes, and pages are Mobile Responsive
