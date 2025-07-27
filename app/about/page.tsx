@@ -3,6 +3,17 @@ import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock,
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
 
+/*
+IQRA To do list:
+Add categories like Sexual Health, using AI choosing form the list in G Docs
+Break up quizzes for each category into sets of 10 each like in challenges
+Do we need to introduce for Challenges Surah Quizzes -> 1 to 114?
+Continously test to see all quizzes, and pages are Mobile Responsive
+Maintain uniform UI and UX as if one AI did the entire project
+Cross-link IQRA & KALAM to guide users who want or do not want challenges 
+Acknowledge all other AI contributors like Grok, DeepSeek, and Gemini
+*/
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
