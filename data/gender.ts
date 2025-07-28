@@ -668,17 +668,6 @@ const genderCategory: QuizCategory = {
     ],
     correctAnswer: "Permitted if not excessive",
     explanation: "The Prophet (ﷺ) interacted with women who laughed in his presence (Bukhari 5766). Natural laughter is permitted, but loudness is discouraged."
-  },
-  {
-    question: "Which female companion was a skilled surgeon?",
-    options: [
-      "Rufayda al-Aslamiya (RA)",
-      "Umm Atiyya (RA)",
-      "Shifa bint Abdullah (RA)",
-      "Fatima bint Qays (RA)"
-    ],
-    correctAnswer: "Rufayda al-Aslamiya (RA)",
-    explanation: "Rufayda (RA) established the first mobile medical tent during battles and treated wounded soldiers. She is considered a pioneer in Islamic medicine."
   }
     ],
     intermediate: [
