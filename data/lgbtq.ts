@@ -356,186 +356,6 @@ const lgbtqCategory: QuizCategory = {
               references: "Islamic Fiqh Council resolutions"
             },
             {
-              question: "What is the Islamic teaching on the responsibility of a believer towards a person struggling with sin?",
-              options: [
-                "To ostracize them completely",
-                "To offer them guidance with wisdom and kindness",
-                "To ignore them and their struggles",
-                "To expose their sins to others"
-              ],
-              correctAnswer: "To offer them guidance with wisdom and kindness",
-              explanation: "The Quran instructs believers to invite to the way of their Lord with wisdom and good counsel. It also emphasizes the importance of not judging others, as only Allah knows the true state of a person's heart.",
-              references: "Quran 16:125"
-            },
-            {
-              question: "What is the meaning of the Quranic term 'al-Fahsha'?",
-              options: [
-                "A type of food",
-                "An act of charity",
-                "Indecency or lewdness",
-                "A form of prayer"
-              ],
-              correctAnswer: "Indecency or lewdness",
-              explanation: "The Quran uses 'al-Fahsha' to refer to a variety of immoral and indecent acts, including those committed by the people of Lut. It is a broad term for actions that are considered morally reprehensible.",
-              references: "Quran 7:80, 27:54"
-            },
-            {
-              question: "The prohibition of 'Tashabbuh' (imitation of the opposite sex) is mentioned in which source of Islamic law?",
-              options: [
-                "The Quran",
-                "The Sunnah",
-                "The Ijma (consensus of scholars)",
-                "All of the above"
-              ],
-              correctAnswer: "The Sunnah",
-              explanation: "The prohibition of men imitating women and vice versa is explicitly mentioned in several authentic hadith of the Prophet Muhammad (PBUH).",
-              references: "Sahih al-Bukhari, Hadith 5885"
-            },
-            {
-              question: "In the story of Lut, who was saved from the divine punishment?",
-              options: [
-                "Prophet Lut and his entire family",
-                "Only Prophet Lut",
-                "Prophet Lut and his family, except for his wife",
-                "No one was saved"
-              ],
-              correctAnswer: "Prophet Lut and his family, except for his wife",
-              explanation: "The Quran states that Allah saved Prophet Lut and his family from the destruction, but his wife was among those who were condemned.",
-              references: "Quran 27:57"
-            },
-            {
-              question: "What is the Islamic teaching on a person's inner thoughts and feelings?",
-              options: [
-                "They are all considered sins",
-                "They will be punished if not acted upon",
-                "They are not considered sins unless they are acted upon or spoken about",
-                "They are irrelevant"
-              ],
-              correctAnswer: "They are not considered sins unless they are acted upon or spoken about",
-              explanation: "A well-known hadith states that Allah has forgiven my Ummah for what crosses their minds so long as they do not act on it or speak of it. This highlights the importance of actions over passing thoughts.",
-              references: "Sahih al-Bukhari, Hadith 5269"
-            },
-            {
-              question: "According to Islamic ethics, what is the responsibility of a person with same-sex attraction?",
-              options: [
-                "To act on those attractions",
-                "To suppress those desires and seek a way of life in line with Islamic teachings",
-                "To leave Islam",
-                "To pretend the attractions do not exist"
-              ],
-              correctAnswer: "To suppress those desires and seek a way of life in line with Islamic teachings",
-              explanation: "Islamic teachings emphasize that while a person may have involuntary feelings or attractions, they are accountable for their actions and choices. The focus is on abstaining from prohibited acts and striving for righteousness, a concept that applies to all forms of temptation.",
-              references: "General principles of sin and repentance in Islam"
-            },
-            {
-              question: "The story of Lut is often used in Islamic discourse to teach about what?",
-              options: [
-                "The importance of social gatherings",
-                "The consequences of rejecting a Prophet's message and divine law",
-                "The need for strong military defense",
-                "The value of architecture"
-              ],
-              correctAnswer: "The consequences of rejecting a Prophet's message and divine law",
-              explanation: "The story of Lut is a key narrative in the Quran used to warn against moral depravity, disobedience to Allah's messengers, and the divine consequences of widespread sin.",
-              references: "Quran 29:34-35"
-            },
-            {
-              question: "What is the concept of 'Haya' in Islam?",
-              options: [
-                "Pride and arrogance",
-                "Modesty, shyness, and a sense of shame before Allah",
-                "Physical strength",
-                "Intellectual prowess"
-              ],
-              correctAnswer: "Modesty, shyness, and a sense of shame before Allah",
-              explanation: "Haya is a key virtue in Islam, described by the Prophet (PBUH) as a branch of faith. It is an internal sense of modesty and shame that restrains a person from committing indecent acts.",
-              references: "Sahih al-Bukhari, Hadith 24"
-            },
-            {
-              question: "What is the Islamic legal principle of 'al-daroorat tubeeh al-mahthoorat'?",
-              options: [
-                "The forbidden is always forbidden",
-                "Necessity makes the unlawful permissible",
-                "All things are permissible unless prohibited",
-                "The unlawful is always necessary"
-              ],
-              correctAnswer: "Necessity makes the unlawful permissible",
-              explanation: "This principle is used in Islamic jurisprudence to allow for exceptions to prohibitions in cases of extreme necessity or duress. However, it is not used to justify actions that are clearly and absolutely forbidden in the Quran and Sunnah.",
-              references: "Islamic Legal Maxims (al-Qawa'id al-Fiqhiyyah)"
-            },
-            {
-              question: "What does the Quran say about the nature of Allah's creation?",
-              options: [
-                "It is random and without order",
-                "It is perfected and in a balance",
-                "It is full of errors and flaws",
-                "It is constantly changing to fit human desires"
-              ],
-              correctAnswer: "It is perfected and in a balance",
-              explanation: "The Quran frequently refers to the perfect and balanced nature of Allah's creation as a sign for those who reflect. This concept is used by scholars to argue against deliberate changes to one's natural state.",
-              references: "Quran 67:3"
-            },
-            {
-              question: "The story of Prophet Yusuf (Joseph) is sometimes referenced in discussions about homosexuality. Why?",
-              options: [
-                "His brothers were condemned for it",
-                "He was attracted to another man",
-                "His story highlights the strength of resisting temptation, specifically illicit desires",
-                "He had multiple wives"
-              ],
-              correctAnswer: "His story highlights the strength of resisting temptation, specifically illicit desires",
-              explanation: "While the story of Yusuf (AS) is not directly about homosexuality, it serves as a powerful example of resisting intense temptation and unlawful sexual desire, as he resisted the advances of the wife of the noble of Egypt.",
-              references: "Quran 12:23-24"
-            },
-            {
-              question: "What is the broader Islamic purpose of all prohibitions (haram)?",
-              options: [
-                "To make life difficult for believers",
-                "To establish a legal system and protect human welfare",
-                "To test people's loyalty to the state",
-                "To demonstrate a person's intelligence"
-              ],
-              correctAnswer: "To establish a legal system and protect human welfare",
-              explanation: "Islamic law, or Sharia, is based on the principle of 'maslahah' (public interest). The prohibitions are believed to be for the protection of five core values: religion, life, intellect, lineage, and property.",
-              references: "General principles of Maqasid al-Shari'ah (Objectives of Islamic Law)"
-            },
-            {
-              question: "How does Islam view the concept of love and relationships outside of marriage?",
-              options: [
-                "They are encouraged as a form of social bonding",
-                "They are seen as a natural precursor to marriage",
-                "Any form of intimate relationship outside of marriage is forbidden",
-                "Love is not a concept in Islam"
-              ],
-              correctAnswer: "Any form of intimate relationship outside of marriage is forbidden",
-              explanation: "Islam provides the institution of marriage as the sole framework for sexual and intimate relationships. All other forms are considered unlawful (haram) and are viewed as undermining the family unit.",
-              references: "Quran 17:32"
-            },
-            {
-              question: "In the story of Lut, the angels appeared in what form?",
-              options: [
-                "As birds",
-                "As beautiful young men",
-                "As old, wise men",
-                "As children"
-              ],
-              correctAnswer: "As beautiful young men",
-              explanation: "The Quran mentions that the angels who came to Lut appeared as young men, which caused the people of the city to desire them, thus sealing their fate.",
-              references: "Quran 11:78"
-            },
-            {
-              question: "What is the general Islamic position on intersex individuals seeking surgery?",
-              options: [
-                "It is forbidden in all cases",
-                "It is permissible to correct the biological gender to one that is predominant",
-                "It is mandatory for all intersex people",
-                "It is only allowed for medical reasons that have no religious basis"
-              ],
-              correctAnswer: "It is permissible to correct the biological gender to one that is predominant",
-              explanation: "Scholars have differentiated between gender-affirming surgery for intersex individuals (khuntha), which is permitted to establish their natural sex, and for transgender individuals, which is generally considered an impermissible alteration of creation.",
-              references: "Al-Mawsu'ah Al-Fiqhiyyah Al-Kuwaitiyyah"
-            },
-            {
               question: "Which term is used for a man who is effeminate in his mannerisms?",
               options: [
                 "Dayaath",
@@ -549,7 +369,19 @@ const lgbtqCategory: QuizCategory = {
             }
     ],
     advanced: [
-      {
+            {
+              question: "What is the general Islamic position on intersex individuals seeking surgery?",
+              options: [
+                "It is forbidden in all cases",
+                "It is permissible to correct the biological gender to one that is predominant",
+                "It is mandatory for all intersex people",
+                "It is only allowed for medical reasons that have no religious basis"
+              ],
+              correctAnswer: "It is permissible to correct the biological gender to one that is predominant",
+              explanation: "Scholars have differentiated between gender-affirming surgery for intersex individuals (khuntha), which is permitted to establish their natural sex, and for transgender individuals, which is generally considered an impermissible alteration of creation.",
+              references: "Al-Mawsu'ah Al-Fiqhiyyah Al-Kuwaitiyyah"
+            },
+          {
         question: "Which of the following is not a primary source for the prohibition of homosexuality in Islam?",
         options: [
           "The story of the people of Lut in the Quran",
