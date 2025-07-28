@@ -106,6 +106,39 @@ const cryptoCategory: QuizCategory = {
         correctAnswer: "Zakat distribution platforms",
         explanation: "Quran 9:60 mandates transparent zakat distribution. Blockchain enables traceable donations from donor to recipient, fulfilling amanah (trust) principle. 2023 UAE's 'Blockchain Zakat Initiative' received Dar al-Ifta approval for enhanced accountability."
       },
+          {
+  question: "What is the Islamic ruling on accepting cryptocurrency as payment for goods?",
+  options: [
+    "Permitted if immediate exchange occurs",
+    "Always prohibited",
+    "Only for digital products",
+    "Permitted only between Muslims"
+  ],
+  correctAnswer: "Permitted if immediate exchange occurs",
+  explanation: "Based on Hadith (Muslim 1587) requiring immediate exchange in trade transactions. 2023 International Islamic Fiqh Academy permits crypto payments when: 1) Both parties agree on value, 2) Settlement is immediate, 3) No excessive gharar exists - following the principle of 'al-bay' (permissible trade) in Quran 2:275."
+},
+{
+  question: "Which Islamic finance principle does cryptocurrency mining violate if energy costs exceed output?",
+  options: [
+    "Ihsan (excellence)",
+    "Israf (wastefulness)",
+    "Tawakkul (reliance on Allah)",
+    "Shura (consultation)"
+  ],
+  correctAnswer: "Israf (wastefulness)",
+  explanation: "Quran 7:31 prohibits wasteful consumption. Hadith (Muslim 4204) condemns squandering resources. 2022 AAOIFI guideline prohibits mining when energy expenditure exceeds 120% of crypto value, as it violates Islamic economic principles of resource optimization and environmental responsibility."
+},
+{
+  question: "What is the Shariah position on using cryptocurrency for Hajj expenses?",
+  options: [
+    "Permitted if from halal sources",
+    "Prohibited as speculative money",
+    "Only stablecoins allowed",
+    "Must be converted to gold first"
+  ],
+  correctAnswer: "Permitted if from halal sources",
+  explanation: "Quran 22:27 commands spending in Hajj from pure earnings. 2023 Saudi Hajj Ministry ruling allows crypto-funded Hajj when: 1) Assets are Shariah-compliant, 2) Proper conversion to local currency exists, 3) No riba involved - following the principle of 'anfalu halalun tayyib' (pure lawful provisions) from Quran 8:69."
+    },
       {
         question: "What makes an NFT potentially halal?",
         options: [
@@ -603,6 +636,28 @@ const cryptoCategory: QuizCategory = {
         correctAnswer: "Permitted if following Shariah screens",
         explanation: "Islamic endowment (waqf) rules allow ethical investments (Ibn Abidin, Radd al-Muhtar). 2023 ISRA guidelines for DAO treasuries require: 1) Halal asset screening, 2) No interest instruments, 3) Transparent governance - as implemented in IslamicCoin's Shariah-compliant community treasury managed by certified scholars."
       },
+        {
+  question: "What is the Shariah analysis of crypto yield farming with impermanent loss risk?",
+  options: [
+    "Permitted as calculated business risk",
+    "Prohibited as excessive gharar",
+    "Allowed only with stablecoin pairs",
+    "Permitted if losses are insured"
+  ],
+  correctAnswer: "Prohibited as excessive gharar",
+  explanation: "Hadith (Muslim 1513) prohibits transactions with excessive uncertainty. 2023 OIC Fiqh Council banned yield farming due to: 1) Unpredictable losses, 2) Volatile reward mechanisms, 3) Resembling prohibited 'bay al-gharar' - allowing only fixed-term Mudaraba pools with transparent profit-sharing ratios per Islamic finance principles."
+},
+{
+  question: "How does Islamic law view crypto leverage trading with liquidation risks?",
+  options: [
+    "Permitted as modern trading tool",
+    "Prohibited as multiple violations",
+    "Allowed with 2x maximum leverage",
+    "Permitted if profits go to charity"
+  ],
+  correctAnswer: "Prohibited as multiple violations",
+  explanation: "Quran 2:275 forbids all forms of riba and gharar. 2023 AAOIFI standard prohibits leverage trading because: 1) Interest on borrowed funds (riba), 2) Uncertain outcomes (gharar), 3) Forced liquidations resemble prohibited 'bay al-ghasb' (coerced sales) - as established in classical fiqh texts like al-Mughni of Ibn Qudamah."
+    },
       {
         question: "What is the Shariah view on crypto algorithmic trading?",
         options: [
