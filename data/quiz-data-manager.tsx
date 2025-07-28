@@ -15,6 +15,7 @@ import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
 import tazkiyahCategory from "./tazkiyah";
 import genderCategory from "./gender";
+import lgbtqCategory from "./lgbtq";
 import psychCategory from "./psych";
 import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
@@ -39,6 +40,7 @@ const quizData: QuizCategory[] = [
   hinduCategory,
   dawahCategory,
   genderCategory,
+  lgbtqCategory,
   psychCategory,
   parentingCategory,
   peaceCategory,
