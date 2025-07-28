@@ -25,6 +25,7 @@ import {
   ArrowRight,
   ScanFace,
   Telescope, 
+  VenusAndMars,
   Circle,
   HandHeart,
 } from "lucide-react"
@@ -129,6 +130,12 @@ const categories = [
     description: "Perspectives of Gender in Islam",
     icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
+   {
+    id: "lgbtq",
+    title: "Islam and LGBTQIA+",
+    description: "Islamic perspective of LGBTQIA+",
+    icon: <VenusAndMars className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },   
    {
     id: "psych",
     title: "Islamic Psychology",
