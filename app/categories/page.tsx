@@ -37,7 +37,7 @@ const categories = [
   {
     id: "quran",
     title: "Quran",
-    description: "Test your knowledge of the Holy Quran",
+    description: "Quran Basics",
     icon: <Book className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
@@ -49,7 +49,7 @@ const categories = [
   {
     id: "tafsir",
     title: "Tafsir",
-    description: "Quranic Exegesis and Commentary",
+    description: "Quranic Exegesis",
     icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
@@ -79,7 +79,7 @@ const categories = [
   {
     id: "history",
     title: "Islamic History",
-    description: "History of Islam and Muslims",
+    description: "History of Islam",
     icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
@@ -97,67 +97,67 @@ const categories = [
   {
     id: "comparative",
     title: "Comparative Religion",
-    description: "Atheism, Science and Islamic Thought",
+    description: "Faiths, Non-Faiths & Islam",
     icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "christ",
     title: "Christianity",
-    description: "Commonalities between Islam and Christianity",
+    description: "Islam and Christianity",
     icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "hindu",
     title: "Hinduism",
-    description: "Commonalities between Islam and Hinduism",
+    description: "Islam and Hinduism",
     icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "islamic-finance",
     title: "Islamic Finance",
-    description: "Principles and practices of Islamic economics",
+    description: "Islamic Economics",
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "crypto",
-    title: "Bitcoin, Crypto & Blockchain",
-    description: "Shariah perspectives on digital currencies",
+    title: "Crypto & Blockchain",
+    description: "Shariah & digital currencies",
     icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
    {
     id: "gender",
-    title: "Rights of Women in Islam",
-    description: "Perspectives of Gender in Islam",
+    title: "Gender",
+    description: "Gender in Islam",
     icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
    {
     id: "lgbtq",
     title: "Islam and LGBTQIA+",
-    description: "Islamic perspective of LGBTQIA+",
+    description: "LGBTQIA+ & Islam",
     icon: <Rainbow className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },   
    {
     id: "psych",
     title: "Islamic Psychology",
-    description: "Explore mental health through Islamic teachings",
+    description: "Psychology & Islam",
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
      {
     id: "parenting",
     title: "Islamic Parenting",
-    description: "Islamic perspectives on parenting",
+    description: "Islam & parenting",
     icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "islamic-medical-ethics",
-    title: "Islamic Medical Ethics",
-    description: "Islamic Perspectives of Medical Ethics",
+    title: "Medical Ethics",
+    description: "Islamic Medical Ethics",
     icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "peace",
-    title: "Exploring Peace in Middle East",
-    description: "Explore peace in Middle East through Islamic principles",
+    title: "Peace",
+    description: "Peace in Middle East",
     icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
 ]
