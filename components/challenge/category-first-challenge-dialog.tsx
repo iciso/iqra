@@ -160,7 +160,7 @@ const challengeCategories = [
   {
     id: "comparative",
     label: "Comparative Religion",
-    description: "Comparing Faiths, Non-Faiths and Islam",
+    description: "Faiths, Non-Faiths & Islam",
     icon: Globe,
     color: "bg-violet-500 hover:bg-violet-600",
     textColor: "text-violet-700",
@@ -170,7 +170,7 @@ const challengeCategories = [
    {
     id: "christ",
     label: "Christianity",
-    description: "Commonalities between Islam and Christianity",
+    description: "Islam & Christianity",
     icon: Church,
     color: "bg-yellow-500 hover:bg-yellow-600",
     textColor: "text-yellow-700",
@@ -180,7 +180,7 @@ const challengeCategories = [
     {
     id: "hindu",
     label: "Hinduism",
-    description: "Commonalities between Islam and Hinduism",
+    description: "Islam & Hinduism",
     icon: BookDashed,
     color: "bg-fuchsia-500 hover:bg-fuchsia-600",
     textColor: "text-fuchsia-700",
@@ -190,7 +190,7 @@ const challengeCategories = [
   {
     id: "islamic-finance",
     label: "Islamic Finance",
-    description: "Principles of Islamic economics",
+    description: "Islamic Economics",
     icon: HandHeart,
     color: "bg-rose-500 hover:bg-rose-600",
     textColor: "text-rose-700",
@@ -199,8 +199,8 @@ const challengeCategories = [
   },
    {
     id: "crypto",
-    label: "Bitcoin, Crypto & Blockchain",
-    description: "Shariah perspectives on digital currencies",
+    label: "Crypto & Blockchain",
+    description: "Shariah & digital currencies",
     icon: Bitcoin,
     color: "bg-blue-500 hover:bg-blue-600",
     textColor: "text-blue-700",
@@ -209,8 +209,8 @@ const challengeCategories = [
   },
      {
     id: "gender",
-    label: "Rights of Women in Islam",
-    description: "Gender Perspectives in Islam",
+    label: "Gender",
+    description: "Gender in Islam",
     icon: Circle,
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
@@ -219,8 +219,8 @@ const challengeCategories = [
   },
      {
     id: "lgbtq",
-    label: "Islam and LGBTQIA+",
-    description: "Islamic perspective of LGBTQIA+",
+    label: "LGBTQIA+",
+    description: "LGBTQIA+ & Islam",
     icon: Rainbow,
     color: "bg-indigo-500 hover:bg-indigo-600",
     textColor: "text-indigo-700",
@@ -230,7 +230,7 @@ const challengeCategories = [
     {
     id: "psych",
     label: "Islamic Psychology",
-    description: "Explore mental health through Islamic teachings",
+    description: "Psychology & Islam",
     icon: Brain,
     color: "bg-lime-500 hover:bg-lime-600",
     textColor: "text-lime-700",
@@ -240,7 +240,7 @@ const challengeCategories = [
   {
     id: "parenting",
     label: "Islamic Parenting",
-    description: "Islamic perspectives on parenting",
+    description: "Islam & parenting",
     icon: ScanFace,
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
@@ -249,8 +249,8 @@ const challengeCategories = [
   },
   {
     id: "islamic-medical-ethics",
-    label: "Islamic Medical Ethics",
-    description: "Islamic Perspectives of Medical Ethics",
+    label: "Medical Ethics",
+    description: "Islamic Medical Ethics",
     icon: BriefcaseMedical,
     color: "bg-gray-500 hover:bg-gray-600",
     textColor: "text-gray-700",
@@ -259,8 +259,8 @@ const challengeCategories = [
   },
    {
     id: "peace",
-    label: "Exploring peace in Middle East",
-    description: "Explore peace in Middle East through Islamic principles",
+    label: "Peace",
+    description: "Peace in Middle East",
     icon: Telescope,
     color: "bg-teal-500 hover:bg-teal-600",
     textColor: "text-teal-700",
