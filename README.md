@@ -4,7 +4,7 @@ IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your
 
 ## Features
 
-- Quiz challenges across 12 major subjects in Islam
+- Quiz challenges across 25 major subjects in Islam
 - Interactive lessons to test and reinforce learning
 - Vocabulary matching games
 - Progress tracking
