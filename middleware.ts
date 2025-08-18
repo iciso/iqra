@@ -1,27 +1,11 @@
-import { createServerClient, type CookieOptions } from "@supabase/auth-helpers-nextjs";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { createClient } from './lib/supabase/server';
 
 export async function middleware(request: NextRequest) {
   try {
     // Initialize Supabase client
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          get(name: string) {
-            return request.cookies.get(name)?.value;
-          },
-          set(name: string, value: string, options: CookieOptions) {
-            request.cookies.set({ name, value, ...options });
-          },
-          remove(name: string, options: CookieOptions) {
-            request.cookies.set({ name, value: "", ...options });
-          },
-        },
-      }
-    );
+    const supabase = createClient();
 
     // Check for user session
     const { data: { session }, error } = await supabase.auth.getSession();
@@ -57,4 +41,5 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/challenge", "/quiz-challenges", "/challenges/:path*", "/categories/:path*"],
+  runtime: 'nodejs', // Force Node.js runtime to avoid Edge Runtime issues
 };
