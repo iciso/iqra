@@ -12,4 +12,4 @@ export default function Challenges() {
       </div>
     </main>
   )
-}
+}  
