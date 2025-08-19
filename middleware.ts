@@ -4,22 +4,16 @@ import { createClient } from './lib/supabase/server';
 
 export async function middleware(request: NextRequest) {
   try {
-    // Initialize Supabase client
     const supabase = createClient();
-
-    // Check for user session
     const { data: { session }, error } = await supabase.auth.getSession();
-    console.log(`Middleware: Path=${request.nextUrl.pathname}, Session=${!!session}, Error=${error || 'none'}`);
+    console.log(`Middleware: Path=${request.nextUrl.pathname}, Session=${!!session}, User=${session?.user?.email || 'none'}, Error=${error?.message || 'none'}`);
 
     if (error) {
       console.error("Supabase session error:", error);
       return NextResponse.next();
     }
 
-    // Define protected routes
     const protectedRoutes = ["/challenges", "/categories", "/quiz"];
-
-    // Check if the current path is a protected route
     if (protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route))) {
       if (!session) {
         console.log(`Redirecting to /login from ${request.nextUrl.pathname}`);
@@ -29,7 +23,6 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // Handle redirects for legacy routes
     if (request.nextUrl.pathname === "/challenge" || request.nextUrl.pathname === "/quiz-challenges") {
       console.log(`Redirecting legacy route ${request.nextUrl.pathname} to /challenges`);
       return NextResponse.redirect(new URL("/challenges", request.url));
