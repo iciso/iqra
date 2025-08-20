@@ -2,7 +2,7 @@ import SimpleTopPlayers from "@/components/challenge/simple-top-players";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function Challenges() {
+export default function Challenges({ locale }) {
   const { t } = useTranslation('common');
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-24">
@@ -17,10 +17,10 @@ export default function Challenges() {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   };
 }
