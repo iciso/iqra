@@ -1,9 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { useState, useEffect, Suspense } from 'react';
+import { createClient } from '@/lib/supabase/client'; // Adjust path if different
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function Login() {
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -61,5 +61,13 @@ export default function Login() {
       </form>
       {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
+  );
+}
+
+export default function Login() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
