@@ -1,18 +1,26 @@
-export default function ChallengePage() {
-  return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-2xl font-bold text-center mb-6">IQRA Challenge Mode</h1>
-      <p className="text-center mb-8">
-        Test your Islamic knowledge against time and compete with others on our leaderboards.
-      </p>
+import SimpleTopPlayers from "@/components/challenge/simple-top-players";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-      <div className="max-w-md mx-auto border border-gray-200 rounded-lg p-6 text-center">
-        <h2 className="text-xl font-semibold mb-4">Challenges Coming Soon</h2>
-        <p className="mb-6">We're preparing exciting Islamic knowledge challenges for you.</p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Learning Categories
-        </a>
+export default function Challenges() {
+  const { t } = useTranslation('common');
+  return (
+    <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-24">
+      <div className="w-full max-w-4xl mx-auto mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold mb-2">{t('challenges.title')}</h1>
+        <p className="text-muted-foreground">{t('challenges.description')}</p>
       </div>
-    </div>
-  )
+      <div className="w-full max-w-4xl">
+        <SimpleTopPlayers />
+      </div>
+    </main>
+  );
+}
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
 }
