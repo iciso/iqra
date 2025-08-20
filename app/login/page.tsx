@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -11,6 +11,18 @@ export default function Login() {
   const searchParams = useSearchParams();
   const redirect = searchParams.get('redirect') || '/challenges';
 
+  useEffect(() => {
+    async function checkSession() {
+      const supabase = createClient();
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        console.log(`Login: User already authenticated, redirecting to ${redirect}`);
+        router.push(redirect);
+      }
+    }
+    checkSession();
+  }, [router, redirect]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const supabase = createClient();
@@ -18,13 +30,14 @@ export default function Login() {
     if (error) {
       setError(error.message);
     } else {
+      console.log(`Login: Successful login, redirecting to ${redirect}`);
       router.push(redirect);
     }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-2xl font-bold mb-4">Login</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -32,6 +45,7 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
+          className="mb-4 p-2 border rounded w-full"
         />
         <input
           type="password"
@@ -39,10 +53,13 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
+          className="mb-4 p-2 border rounded w-full"
         />
-        <button type="submit">Sign In</button>
+        <button type="submit" className="py-2 px-4 bg-green-600 text-white rounded-md">
+          Sign In
+        </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
   );
 }
