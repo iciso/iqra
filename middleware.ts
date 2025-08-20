@@ -38,5 +38,4 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/challenge", "/quiz-challenges", "/challenges/:path*", "/categories/:path*", "/quiz/:path*"],
-  runtime: 'nodejs',
 };
