@@ -1,8 +1,9 @@
-import { redirect } from "next/navigation"; 
+"use client";
+
+import { redirect } from "next/navigation";
 import { getQuizQuestions, getCategory } from "@/data/quiz-data-manager";
 import QuizContainer from "@/components/quiz/quiz-container";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getI18n } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import type { DifficultyLevel, QuizQuestion } from "@/types/quiz";
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -14,7 +15,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export default async function QuizPage({
+export default function QuizPage({
   searchParams,
   params,
 }: {
@@ -22,8 +23,7 @@ export default async function QuizPage({
   params: { locale?: string };
 }) {
   const locale = params?.locale || 'en';
-  await serverSideTranslations(locale, ['common']);
-  const { t } = await getI18n();
+  const { t } = useTranslation('common', { lng: locale });
 
   const categoryId = searchParams.category as string;
   const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy";
