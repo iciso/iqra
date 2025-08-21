@@ -1,11 +1,9 @@
 import SimpleTopPlayers from "@/components/challenge/simple-top-players";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getI18n } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 
-export default async function Challenges({ params }: { params: { locale?: string } }) {
+export default function Challenges({ params }: { params: { locale?: string } }) {
   const locale = params?.locale || 'en';
-  await serverSideTranslations(locale, ['common']);
-  const { t } = await getI18n();
+  const { t } = useTranslation('common', { lng: locale });
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-24">
