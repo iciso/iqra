@@ -1483,8 +1483,8 @@ packages:
     resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
     engines: {node: '>=18'}
 
-  core-js@3.45.0:
-    resolution: {integrity: sha512-c2KZL9lP4DjkN3hk/an4pWn5b5ZefhRJnAc42n6LJ19kSnbeRbdQZE5dSeE2LBol1OwJD3X1BQvFTAsa8ReeDA==}
+  core-js@3.45.1:
+    resolution: {integrity: sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==}
 
   cose-base@1.0.3:
     resolution: {integrity: sha512-s9whTXInMSgAp/NVXVNuVxVKzGH2qck3aQlVHxDCdAEPgtMKwc4Wq6/QKhgdEdgbLSi9rBTAcPoRa6JpiG4ksg==}
@@ -3875,7 +3875,7 @@ snapshots:
 
   cookie@1.0.2: {}
 
-  core-js@3.45.0: {}
+  core-js@3.45.1: {}
 
   cose-base@1.0.3:
     dependencies:
@@ -4368,7 +4368,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.3
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.1.10)
-      core-js: 3.45.0
+      core-js: 3.45.1
       hoist-non-react-statics: 3.3.2
       i18next: 25.3.6(typescript@5.9.2)
       i18next-fs-backend: 2.6.0
