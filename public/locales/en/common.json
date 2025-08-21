@@ -1,0 +1,23 @@
+{
+  "home": {
+    "title": "Islamic Quiz Rivalry",
+    "description": "Test your Islamic knowledge!"
+  },
+  "challenges": {
+    "title": "Challenges",
+    "description": "Test your knowledge against other players"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "no_questions": "Sorry, no questions available for this category",
+    "back_to_categories": "Browse Categories",
+    "back_to_challenges": "Back to Challenges"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "sign_in": "Sign In",
+    "error": "Login failed: {{message}}"
+  }
+}
