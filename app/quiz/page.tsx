@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { redirect } from "next/navigation"; 
 import { getQuizQuestions, getCategory } from "@/data/quiz-data-manager";
 import QuizContainer from "@/components/quiz/quiz-container";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
