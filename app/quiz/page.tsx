@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getQuizQuestions, getCategory } from "@/data/quiz-data-manager";
 import QuizContainer from "@/components/quiz/quiz-container";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
+import { getI18n } from 'next-i18next';
 import type { DifficultyLevel, QuizQuestion } from "@/types/quiz";
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -16,13 +16,14 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export default async function QuizPage({
   searchParams,
-  params: { locale = 'en' },
+  params,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
   params: { locale?: string };
 }) {
-  const { t } = useTranslation('common', { lng: locale });
-  const { i18n } = await serverSideTranslations(locale, ['common']);
+  const locale = params?.locale || 'en';
+  await serverSideTranslations(locale, ['common']);
+  const { t } = await getI18n();
 
   const categoryId = searchParams.category as string;
   const difficulty = (searchParams.difficulty as DifficultyLevel) || "easy";
