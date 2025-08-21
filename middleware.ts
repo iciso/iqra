@@ -14,18 +14,21 @@ export async function middleware(request: NextRequest) {
     }
 
     const protectedRoutes = ["/challenges", "/categories", "/quiz"];
-    if (protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route))) {
+    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
+    const pathWithoutLocale = request.nextUrl.pathname.replace(/^\/(en|ta)/, '');
+
+    if (protectedRoutes.some((route) => pathWithoutLocale.startsWith(route))) {
       if (!user) {
-        console.log(`Middleware: Redirecting unauthenticated user from ${request.nextUrl.pathname} to /login`);
-        const redirectUrl = new URL("/login", request.url);
+        console.log(`Middleware: Redirecting unauthenticated user from ${request.nextUrl.pathname} to /${locale}/login`);
+        const redirectUrl = new URL(`/${locale}/login`, request.url);
         redirectUrl.searchParams.set("redirect", request.nextUrl.pathname + request.nextUrl.search);
         return NextResponse.redirect(redirectUrl);
       }
     }
 
-    if (request.nextUrl.pathname === "/challenge" || request.nextUrl.pathname === "/quiz-challenges") {
-      console.log(`Middleware: Redirecting legacy route ${request.nextUrl.pathname} to /challenges`);
-      return NextResponse.redirect(new URL("/challenges", request.url));
+    if (pathWithoutLocale === "/challenge" || pathWithoutLocale === "/quiz-challenges") {
+      console.log(`Middleware: Redirecting legacy route ${request.nextUrl.pathname} to /${locale}/challenges`);
+      return NextResponse.redirect(new URL(`/${locale}/challenges`, request.url));
     }
 
     console.log(`Middleware: Allowing access to ${request.nextUrl.pathname} for user ${user?.id || 'none'}`);
@@ -37,5 +40,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/challenge", "/quiz-challenges", "/challenges/:path*", "/categories/:path*", "/quiz/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
