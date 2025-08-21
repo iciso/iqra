@@ -1,3 +1,5 @@
+"use client";
+
 import SimpleTopPlayers from "@/components/challenge/simple-top-players";
 import { useTranslation } from 'next-i18next';
 
