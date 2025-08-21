@@ -6,4 +6,7 @@ module.exports = {
     locales: ['en', 'ta'],
   },
   localePath: path.resolve('./public/locales'),
+  backend: {
+    loadPath: '/locales/{{lng}}/{{ns}}.json',
+  },
 };
