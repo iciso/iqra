@@ -1,4 +1,4 @@
-import type React from "react";
+import type React from "react"; 
 import Head from "next/head";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
