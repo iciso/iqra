@@ -1,4 +1,4 @@
-// app/[locale]/challenges/page.tsx
+// app/[locale]/challenges/page.tsx 
 "use client";
 
 import SimpleTopPlayers from "@/components/challenge/simple-top-players";

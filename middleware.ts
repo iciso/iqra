@@ -15,10 +15,17 @@ export async function middleware(request: NextRequest) {
     }
 
     const protectedRoutes = ["/challenges", "/categories", "/quiz"];
-    const localeMatch = request.nextUrl.pathname.match(/^\/(en|ta)\//);
+    const localeMatch = request.nextUrl.pathname.match(/^\/(en|ta)(\/|$)/);
     const locale = localeMatch ? localeMatch[1] : 'en';
     const pathWithoutLocale = localeMatch ? request.nextUrl.pathname.replace(/^\/(en|ta)/, '') : request.nextUrl.pathname;
 
+    // Redirect root or invalid paths to /en
+    if (!localeMatch && request.nextUrl.pathname !== '/') {
+      console.log(`Middleware: Redirecting ${request.nextUrl.pathname} to /en${request.nextUrl.pathname}`);
+      return NextResponse.redirect(new URL(`/en${request.nextUrl.pathname}${request.nextUrl.search}`, request.url));
+    }
+
+    // Handle protected routes
     if (protectedRoutes.some((route) => pathWithoutLocale.startsWith(route))) {
       if (!user) {
         console.log(`Middleware: Redirecting unauthenticated user from ${request.nextUrl.pathname} to /${locale}/login`);
@@ -28,14 +35,10 @@ export async function middleware(request: NextRequest) {
       }
     }
 
+    // Handle legacy routes
     if (pathWithoutLocale === "/challenge" || pathWithoutLocale === "/quiz-challenges") {
       console.log(`Middleware: Redirecting legacy route ${request.nextUrl.pathname} to /${locale}/challenges`);
       return NextResponse.redirect(new URL(`/${locale}/challenges`, request.url));
-    }
-
-    if (!localeMatch && request.nextUrl.pathname !== '/') {
-      console.log(`Middleware: Redirecting ${request.nextUrl.pathname} to /en${request.nextUrl.pathname}`);
-      return NextResponse.redirect(new URL(`/en${request.nextUrl.pathname}`, request.url));
     }
 
     console.log(`Middleware: Allowing access to ${request.nextUrl.pathname} for user ${user?.id || 'none'}`);
