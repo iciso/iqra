@@ -3,6 +3,9 @@ import { NextResponse } from 'next/server';
 import { getQuizQuestions, getCategory } from '@/data/quiz-data-manager';
 import type { DifficultyLevel } from '@/types/quiz';
 
+// Force Node.js runtime
+export const runtime = 'nodejs';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const categoryId = searchParams.get('category') || '';
