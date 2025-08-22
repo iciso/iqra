@@ -1,3 +1,4 @@
+// app/i18n-provider.tsx
 "use client";
 
 import { I18nextProvider } from 'react-i18next';

@@ -1,3 +1,4 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -8,11 +9,6 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-  },
-  i18n: {
-    locales: ['en', 'ta'],
-    defaultLocale: 'en',
-    localeDetection: true,
   },
 };
 

@@ -1,3 +1,4 @@
+// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createClient } from './lib/supabase/server';
@@ -14,8 +15,9 @@ export async function middleware(request: NextRequest) {
     }
 
     const protectedRoutes = ["/challenges", "/categories", "/quiz"];
-    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
-    const pathWithoutLocale = request.nextUrl.pathname.replace(/^\/(en|ta)/, '');
+    const localeMatch = request.nextUrl.pathname.match(/^\/(en|ta)\//);
+    const locale = localeMatch ? localeMatch[1] : 'en';
+    const pathWithoutLocale = localeMatch ? request.nextUrl.pathname.replace(/^\/(en|ta)/, '') : request.nextUrl.pathname;
 
     if (protectedRoutes.some((route) => pathWithoutLocale.startsWith(route))) {
       if (!user) {
@@ -29,6 +31,11 @@ export async function middleware(request: NextRequest) {
     if (pathWithoutLocale === "/challenge" || pathWithoutLocale === "/quiz-challenges") {
       console.log(`Middleware: Redirecting legacy route ${request.nextUrl.pathname} to /${locale}/challenges`);
       return NextResponse.redirect(new URL(`/${locale}/challenges`, request.url));
+    }
+
+    if (!localeMatch && request.nextUrl.pathname !== '/') {
+      console.log(`Middleware: Redirecting ${request.nextUrl.pathname} to /en${request.nextUrl.pathname}`);
+      return NextResponse.redirect(new URL(`/en${request.nextUrl.pathname}`, request.url));
     }
 
     console.log(`Middleware: Allowing access to ${request.nextUrl.pathname} for user ${user?.id || 'none'}`);
