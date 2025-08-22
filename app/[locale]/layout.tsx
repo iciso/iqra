@@ -1,4 +1,4 @@
-// app/[locale]/layout.tsx
+// app/[locale]/layout.tsx 
 import type React from "react";
 import Head from "next/head";
 import type { Metadata, Viewport } from "next";
