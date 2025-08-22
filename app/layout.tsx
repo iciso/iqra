@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/auth-context";
 import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/toaster";
 import ChallengeNotification from "@/components/challenge/challenge-notification";
+import I18nProvider from "./i18n-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,31 +60,35 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { locale?: string };
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={params?.locale || 'en'} suppressHydrationWarning>
       <Head>
         <link rel="icon" href="/iqralogo.png" type="image/png" sizes="32x32" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <ChallengeNotification />
-              <Toaster />
-            </div>
-          </AuthProvider>
-        </ThemeProvider>
+        <I18nProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AuthProvider>
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <ChallengeNotification />
+                <Toaster />
+              </div>
+            </AuthProvider>
+          </ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );
