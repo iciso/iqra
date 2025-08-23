@@ -1,6 +1,6 @@
 // app/[locale]/challenges/page.tsx 
-"use client";
 
+"use client";
 import SimpleTopPlayers from "@/components/challenge/simple-top-players";
 import { useTranslation } from 'react-i18next';
 
