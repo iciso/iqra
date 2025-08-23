@@ -3,6 +3,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createClient } from './lib/supabase/server';
 
+// Force Node.js runtime
+export const runtime = 'nodejs';
+
 export async function middleware(request: NextRequest) {
   try {
     const supabase = createClient();
@@ -19,8 +22,14 @@ export async function middleware(request: NextRequest) {
     const locale = localeMatch ? localeMatch[1] : 'en';
     const pathWithoutLocale = localeMatch ? request.nextUrl.pathname.replace(/^\/(en|ta)/, '') : request.nextUrl.pathname;
 
-    // Redirect root or invalid paths to /en
-    if (!localeMatch && request.nextUrl.pathname !== '/') {
+    // Redirect root to /en
+    if (request.nextUrl.pathname === '/') {
+      console.log(`Middleware: Redirecting root to /en`);
+      return NextResponse.redirect(new URL('/en', request.url));
+    }
+
+    // Redirect non-locale paths to /en/<path>
+    if (!localeMatch) {
       console.log(`Middleware: Redirecting ${request.nextUrl.pathname} to /en${request.nextUrl.pathname}`);
       return NextResponse.redirect(new URL(`/en${request.nextUrl.pathname}${request.nextUrl.search}`, request.url));
     }
@@ -30,7 +39,7 @@ export async function middleware(request: NextRequest) {
       if (!user) {
         console.log(`Middleware: Redirecting unauthenticated user from ${request.nextUrl.pathname} to /${locale}/login`);
         const redirectUrl = new URL(`/${locale}/login`, request.url);
-        redirectUrl.searchParams.set("redirect", request.nextUrl.pathname + request.nextUrl.search);
+        redirectUrl.searchParams.set("redirect", pathWithoutLocale + request.nextUrl.search);
         return NextResponse.redirect(redirectUrl);
       }
     }
