@@ -3,52 +3,69 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createClient } from './lib/supabase/server';
 
-export async function middleware(request: NextRequest) {
-  try {
-    const supabase = createClient();
-    const { data: { user }, error } = await supabase.auth.getUser();
-    console.log(`Middleware: Path=${request.nextUrl.pathname}, Cookies=${request.cookies.size}, User=${user?.id || 'none'}, Email=${user?.email || 'none'}, Error=${error?.message || 'none'}`);
+const PUBLIC_FILE = /\.(.*)$/;
 
-    if (error) {
-      console.error("Supabase auth error:", error);
+export async function middleware(req: NextRequest) {
+  try {
+    // Skip public files
+    if (
+      req.nextUrl.pathname.startsWith('/_next') ||
+      req.nextUrl.pathname.includes('/api/') ||
+      PUBLIC_FILE.test(req.nextUrl.pathname)
+    ) {
       return NextResponse.next();
     }
 
-    const protectedRoutes = ["/challenges", "/categories", "/quiz"];
-    const localeMatch = request.nextUrl.pathname.match(/^\/(en|ta)(\/|$)/);
-    const locale = localeMatch ? localeMatch[1] : 'en';
-    const pathWithoutLocale = localeMatch ? request.nextUrl.pathname.replace(/^\/(en|ta)/, '') : request.nextUrl.pathname;
+    const supabase = createClient();
+    const { data: { user }, error } = await supabase.auth.getUser();
+    console.log(`Middleware: Path=${req.nextUrl.pathname}, Cookies=${req.cookies.size}, User=${user?.id || 'none'}, Email=${user?.email || 'none'}, Error=${error?.message || 'none'}`);
 
-    // Redirect root or invalid paths to /en
-    if (!localeMatch && request.nextUrl.pathname !== '/') {
-      console.log(`Middleware: Redirecting ${request.nextUrl.pathname} to /en${request.nextUrl.pathname}`);
-      return NextResponse.redirect(new URL(`/en${request.nextUrl.pathname}${request.nextUrl.search}`, request.url));
+    const url = req.nextUrl.clone();
+    const { pathname } = req.nextUrl;
+    const locale = req.cookies.get('NEXT_LOCALE')?.value || 'en';
+
+    // Public routes
+    const publicRoutes = ['/login', '/'];
+
+    // Protected routes
+    const protectedRoutes = ['/challenges', '/categories', '/quiz'];
+
+    // Redirect root to /en
+    if (pathname === '/') {
+      url.pathname = '/en';
+      return NextResponse.redirect(url);
+    }
+
+    // Redirect non-locale paths to include locale
+    if (!pathname.startsWith('/en') && !pathname.startsWith('/ta')) {
+      url.pathname = `/${locale}${pathname}`;
+      return NextResponse.redirect(url);
     }
 
     // Handle protected routes
+    const pathWithoutLocale = pathname.replace(/^\/(en|ta)/, '');
     if (protectedRoutes.some((route) => pathWithoutLocale.startsWith(route))) {
       if (!user) {
-        console.log(`Middleware: Redirecting unauthenticated user from ${request.nextUrl.pathname} to /${locale}/login`);
-        const redirectUrl = new URL(`/${locale}/login`, request.url);
-        redirectUrl.searchParams.set("redirect", request.nextUrl.pathname + request.nextUrl.search);
-        return NextResponse.redirect(redirectUrl);
+        url.pathname = `/${locale}/login`;
+        url.searchParams.set('redirect', pathWithoutLocale);
+        return NextResponse.redirect(url);
       }
     }
 
-    // Handle legacy routes
-    if (pathWithoutLocale === "/challenge" || pathWithoutLocale === "/quiz-challenges") {
-      console.log(`Middleware: Redirecting legacy route ${request.nextUrl.pathname} to /${locale}/challenges`);
-      return NextResponse.redirect(new URL(`/${locale}/challenges`, request.url));
+    // Set locale cookie if not present
+    if (!req.cookies.has('NEXT_LOCALE')) {
+      const response = NextResponse.next();
+      response.cookies.set('NEXT_LOCALE', locale, { path: '/' });
+      return response;
     }
 
-    console.log(`Middleware: Allowing access to ${request.nextUrl.pathname} for user ${user?.id || 'none'}`);
     return NextResponse.next();
   } catch (error) {
-    console.error("Middleware error:", error);
+    console.error('Middleware error:', error);
     return NextResponse.next();
   }
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|locales).*)"],
+  matcher: ['/((?!_next|api|favicon.ico|locales).*)'],
 };

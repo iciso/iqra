@@ -128,9 +128,6 @@ importers:
       embla-carousel-react:
         specifier: latest
         version: 8.6.0(react@19.1.1)
-      i18next:
-        specifier: ^25.3.6
-        version: 25.3.6(typescript@5.9.2)
       i18next-browser-languagedetector:
         specifier: ^8.2.0
         version: 8.2.0
@@ -167,9 +164,6 @@ importers:
       react-hook-form:
         specifier: latest
         version: 7.62.0(react@19.1.1)
-      react-i18next:
-        specifier: 15.7.1
-        version: 15.7.1(i18next@25.3.6(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
       react-resizable-panels:
         specifier: latest
         version: 3.0.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
