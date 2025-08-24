@@ -1,0 +1,16 @@
+// app/[lang]/page.tsx
+import { getDictionary } from '@/lib/get-dictionary';
+
+export default async function HomePage({ params }: { params: { lang: string } }) {
+  const dict = await getDictionary(params.lang);
+
+  return (
+    <div className="container mx-auto py-12 px-4 text-center">
+      <h1 className="text-2xl font-bold mb-4">{dict.home.title}</h1>
+      <p className="mb-6">{dict.home.description}</p>
+      <a href={`/${params.lang}/challenges`} className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+        {dict.challenges.title}
+      </a>
+    </div>
+  );
+}
