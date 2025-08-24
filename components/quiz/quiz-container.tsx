@@ -60,7 +60,7 @@ export default function QuizContainer({
   useEffect(() => {
     async function fetchDictionary() {
       try {
-        const response = await fetch(`/translations/${params.lang}/translation.json`);
+        const response = await fetch(`/translations/${params.lang}/translations.json`);
         if (!response.ok) throw new Error("Failed to load translations");
         const data = await response.json();
         setDict(data);
