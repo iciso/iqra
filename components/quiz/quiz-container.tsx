@@ -273,41 +273,41 @@ export default function QuizContainer({
                   </div>
                 )}
               </div>
-            </CardContent>
-            <CardFooter className="flex justify-between mt-auto">
-              <Button
-                variant="outline"
-                onClick={handlePrevious}
-                disabled={currentQuestion === 0 || isLoading}
-                className="dark:border-green-700 dark:text-green-400"
-              >
-                <ChevronLeft className="mr-1 h-4 w-4" /> {dict.quiz.previous}
-              </Button>
-              {!showExplanation ? (
-                <Button
-                  className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                  onClick={handleSubmitAnswer}
-                  disabled={!selectedAnswer || isLoading}
-                >
-                  {dict.quiz.submit_answer}
-                </Button>
-              ) : (
-                <Button
-                  className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                  onClick={handleNext}
-                  disabled={isLoading}
-                >
-                  {currentQuestion === questions.length - 1
-                    ? challengerTurn
-                      ? dict.quiz.send_challenge
-                      : dict.quiz.finish_quiz
-                    : dict.quiz.next}
-                  {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
-                </Button>
-              )}
-            </CardFooter>
-          </>
-        )}
+            </>
+          )}
+        </CardContent>
+        <CardFooter className="flex justify-between mt-auto">
+          <Button
+            variant="outline"
+            onClick={handlePrevious}
+            disabled={currentQuestion === 0 || isLoading}
+            className="dark:border-green-700 dark:text-green-400"
+          >
+            <ChevronLeft className="mr-1 h-4 w-4" /> {dict.quiz.previous}
+          </Button>
+          {!showExplanation ? (
+            <Button
+              className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+              onClick={handleSubmitAnswer}
+              disabled={!selectedAnswer || isLoading}
+            >
+              {dict.quiz.submit_answer}
+            </Button>
+          ) : (
+            <Button
+              className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+              onClick={handleNext}
+              disabled={isLoading}
+            >
+              {currentQuestion === questions.length - 1
+                ? challengerTurn
+                  ? dict.quiz.send_challenge
+                  : dict.quiz.finish_quiz
+                : dict.quiz.next}
+              {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
+            </Button>
+          )}
+        </CardFooter>
       </Card>
     </div>
   );
