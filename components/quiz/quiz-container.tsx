@@ -1,4 +1,3 @@
-// components/quiz/quiz-container.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -51,7 +50,7 @@ export default function QuizContainer({
   const [showExplanation, setShowExplanation] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [quizId, setQuizId] = useState("");
   const [opponent, setOpponent] = useState<any>(null);
@@ -72,17 +71,110 @@ export default function QuizContainer({
     fetchDictionary();
   }, [params.lang]);
 
-  // Generate a unique quiz ID when the component mounts
   useEffect(() => {
     setQuizId(`quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`);
-  }, []);
+    setAnswers(Array(questions.length).fill(""));
+    if (challengeMode) {
+      console.log("🎯 QUIZ CONTAINER: Challenge mode active");
+      console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId);
+      console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName);
+      console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn);
+    }
+  }, [challengeMode, opponentId, opponentName, challengerTurn, questions.length]);
 
-  // Rest of the original useEffect and logic remains unchanged...
+  useEffect(() => {
+    if (isTimerRunning && timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (timeLeft === 0 && isTimerRunning) {
+      handleSubmitAnswer();
+    }
+  }, [timeLeft, isTimerRunning]);
 
   const isFallbackChallenge = () => {
     return (
       challengeMode?.startsWith("demo-") || challengeMode?.startsWith("fallback-") || opponentId?.startsWith("demo-")
     );
+  };
+
+  const handleSubmitAnswer = async () => {
+    if (!selectedAnswer) return;
+    setIsLoading(true);
+    setIsTimerRunning(false);
+    const question = questions[currentQuestion];
+    const correct = selectedAnswer === question.correct_answer;
+    setIsCorrect(correct);
+    if (correct) setScore(score + 1);
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedAnswer;
+    setAnswers(newAnswers);
+    setShowExplanation(true);
+    setProgress(((currentQuestion + 1) / questions.length) * 100);
+    setTransitionType("submit");
+    setIsLoading(false);
+  };
+
+  const handleNext = async () => {
+    setIsLoading(true);
+    setTransitionType("next");
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer("");
+      setShowExplanation(false);
+      setIsCorrect(null);
+      setTimeLeft(30);
+      setIsTimerRunning(true);
+      setIsLoading(false);
+    } else {
+      setTransitionType("finish");
+      try {
+        if (user && !isFallbackChallenge()) {
+          const { error } = await supabase.from("quiz_results").insert({
+            user_id: user.id,
+            quiz_id: quizId,
+            score,
+            total_questions: questions.length,
+            category_id: category.id,
+            difficulty,
+            challenge_mode: challengeMode || null,
+            opponent_id: opponentId || null,
+          });
+          if (error) throw error;
+        }
+        if (challengeMode && challengerTurn && opponentId && !isFallbackChallenge()) {
+          const { error } = await supabase.from("challenges").insert({
+            challenger_id: user?.id,
+            opponent_id: opponentId,
+            quiz_id: quizId,
+            category_id: category.id,
+            difficulty,
+            challenger_score: score,
+            status: "pending",
+          });
+          if (error) throw error;
+          toast({ title: dict.quiz.send_challenge, description: "Challenge sent to opponent!" });
+          router.push(`/${params.lang}/challenges`);
+        } else {
+          router.push(`/${params.lang}/challenge-results?quizId=${quizId}`);
+        }
+      } catch (err) {
+        console.error("Error saving quiz results:", err);
+        toast({ title: "Error", description: "Failed to save quiz results" });
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setSelectedAnswer(answers[currentQuestion - 1] || "");
+      setShowExplanation(!!answers[currentQuestion - 1]);
+      setIsCorrect(answers[currentQuestion - 1] ? answers[currentQuestion - 1] === questions[currentQuestion - 1].correct_answer : null);
+      setIsTimerRunning(false);
+      setTimeLeft(30);
+    }
   };
 
   if (!dict) return <div>Loading...</div>;
@@ -110,18 +202,6 @@ export default function QuizContainer({
       </div>
     );
   }
-
-  const handleSubmitAnswer = async () => {
-    // Original submit answer logic...
-  };
-
-  const handleNext = () => {
-    // Original next question logic...
-  };
-
-  const handlePrevious = () => {
-    // Original previous question logic...
-  };
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
