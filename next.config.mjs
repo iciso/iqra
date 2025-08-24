@@ -1,7 +1,5 @@
-module.exports = {
-  experimental: {
-    // Add any existing experimental flags
-  },
+// next.config.mjs
+export default {
   async redirects() {
     return [
       {
@@ -12,5 +10,3 @@ module.exports = {
     ];
   },
 };
-
-export default nextConfig;
