@@ -1,4 +1,3 @@
-// app/[lang]/quiz/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -56,11 +55,14 @@ export default function Quiz({ params }: QuizPageProps) {
   if (loading || !dict) return <div>Loading...</div>;
 
   if (!questions.length) {
-    const redirectPath = `/challenges`;
+    const redirectPath = `/${params.lang}/challenges`;
     return (
       <div className="flex min-h-screen items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">{dict.quiz.no_questions}</h1>
+          <p className="mb-6">
+            {dict.quiz.no_questions.replace("{{category}}", searchParams.get("category") || "").replace("{{difficulty}}", searchParams.get("difficulty") || "easy")}
+          </p>
           <a
             href={redirectPath}
             className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
