@@ -1,4 +1,8 @@
 {
+  "home": {
+    "title": "Welcome to IQRA",
+    "description": "Test your Islamic knowledge with quizzes and challenges!"
+  },
   "login": {
     "title": "Login",
     "email": "Email",
