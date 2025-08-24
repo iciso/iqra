@@ -1,10 +1,9 @@
-// app/[locale]/quiz/page.tsx
+// app/[lang]/quiz/page.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import QuizContainer from '@/components/quiz/quiz-container';
-import { useTranslation } from 'react-i18next';
 import type { DifficultyLevel, QuizQuestion } from '@/types/quiz';
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -21,12 +20,13 @@ export default function QuizPage({
   params,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
-  params: { locale: string };
+  params: { lang: string };
 }) {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [category, setCategory] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation('common', { lng: params.locale });
+  const [dict, setDict] = useState<any>(null);
+  const router = useRouter();
 
   const categoryId = searchParams.category as string;
   const difficulty = (searchParams.difficulty as DifficultyLevel) || 'easy';
@@ -37,12 +37,27 @@ export default function QuizPage({
   const challengerTurn = searchParams.challengerTurn === 'true';
 
   useEffect(() => {
+    async function fetchDictionary() {
+      try {
+        const response = await fetch(`/locales/${params.lang}/translation.json`);
+        if (!response.ok) throw new Error('Failed to load translations');
+        const data = await response.json();
+        setDict(data);
+      } catch (err) {
+        console.error('Error loading translations:', err);
+      }
+    }
+    fetchDictionary();
+  }, [params.lang]);
+
+  useEffect(() => {
     async function fetchQuestions() {
       try {
         const response = await fetch(`/api/quiz-questions?category=${categoryId}&difficulty=${difficulty}`);
         const data = await response.json();
         if (data.error) {
-          redirect(`/${params.locale}/categories`);
+          router.push(`/${params.lang}/categories`);
+          return;
         }
         let fetchedQuestions = data.questions;
         fetchedQuestions = shuffleArray(fetchedQuestions);
@@ -53,26 +68,26 @@ export default function QuizPage({
         setCategory(data.category);
         setLoading(false);
       } catch (err) {
-        redirect(`/${params.locale}/categories`);
+        router.push(`/${params.lang}/categories`);
       }
     }
     fetchQuestions();
-  }, [categoryId, difficulty, questionCount, params.locale]);
+  }, [categoryId, difficulty, questionCount, params.lang, router]);
 
-  if (loading) {
+  if (loading || !dict) {
     return <div>Loading...</div>;
   }
 
   if (questions.length === 0) {
-    const redirectPath = challengeMode ? `/${params.locale}/challenges` : `/${params.locale}/categories`;
+    const redirectPath = challengeMode ? `/${params.lang}/challenges` : `/${params.lang}/categories`;
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">{t('quiz.no_questions')}</h1>
+        <h1 className="text-2xl font-bold mb-4">{dict.quiz.title}</h1>
         <p className="mb-6">
-          {t('quiz.no_questions', { category: category?.title, difficulty })}
+          {dict.quiz.no_questions.replace('{{category}}', category?.title || '').replace('{{difficulty}}', difficulty)}
         </p>
         <a href={redirectPath} className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          {t(challengeMode ? 'quiz.back_to_challenges' : 'quiz.back_to_categories')}
+          {dict[challengeMode ? 'quiz.back_to_challenges' : 'quiz.back_to_categories']}
         </a>
       </div>
     );

@@ -1,7 +1,11 @@
+// public/locales/en/translation.json
 {
-  "home": {
-    "title": "Islamic Quiz Rivalry",
-    "description": "Test your Islamic knowledge!"
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "sign_in": "Sign In",
+    "error": "Login failed: {{message}}"
   },
   "challenges": {
     "title": "Challenges",
@@ -12,12 +16,5 @@
     "no_questions": "Sorry, no questions available for this category",
     "back_to_categories": "Browse Categories",
     "back_to_challenges": "Back to Challenges"
-  },
-  "login": {
-    "title": "Login",
-    "email": "Email",
-    "password": "Password",
-    "sign_in": "Sign In",
-    "error": "Login failed: {{message}}"
   }
 }

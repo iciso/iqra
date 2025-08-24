@@ -1,7 +1,11 @@
+// public/locales/ta/translation.json
 {
-  "home": {
-    "title": "இஸ்லாமிய வினாடி வினா பரிட்சை",
-    "description": "உங்கள் இஸ்லாமிய அறிவை சோதிக்கவும்!"
+  "login": {
+    "title": "உள்நுழைவு",
+    "email": "மின்னஞ்சல்",
+    "password": "கடவுச்சொல்",
+    "sign_in": "உள்நுழை",
+    "error": "உள்நுழைவு தோல்வி: {{message}}"
   },
   "challenges": {
     "title": "சவால்கள்",
@@ -12,12 +16,5 @@
     "no_questions": "மன்னிக்கவும், இந்த பிரிவில் கேள்விகள் இல்லை",
     "back_to_categories": "பிரிவுகளுக்கு திரும்பு",
     "back_to_challenges": "சவால்களுக்கு திரும்பு"
-  },
-  "login": {
-    "title": "உள்நுழைவு",
-    "email": "மின்னஞ்சல்",
-    "password": "கடவுச்சொல்",
-    "sign_in": "உள்நுழை",
-    "error": "உள்நுழைவு தோல்வி: {{message}}"
   }
 }
