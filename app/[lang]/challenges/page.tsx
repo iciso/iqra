@@ -5,16 +5,17 @@ import SimpleTopPlayers from "@/components/challenge/simple-top-players";
 import type { NextPage } from "next";
 
 interface ChallengesPageProps {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
-const Challenges: NextPage<ChallengesPageProps> = ({ params }) => {
+const Challenges: NextPage<ChallengesPageProps> = async ({ params }) => {
+  const { lang } = await params;
   const [dict, setDict] = useState<any>(null);
 
   useEffect(() => {
     async function fetchDictionary() {
       try {
-        const response = await fetch(`/translations/${params.lang}/translation.json`);
+        const response = await fetch(`/translations/${lang}/translations.json`);
         if (!response.ok) throw new Error("Failed to load translations");
         const data = await response.json();
         setDict(data);
@@ -23,7 +24,7 @@ const Challenges: NextPage<ChallengesPageProps> = ({ params }) => {
       }
     }
     fetchDictionary();
-  }, [params.lang]);
+  }, [lang]);
 
   if (!dict) return <div>Loading...</div>;
 
@@ -34,7 +35,7 @@ const Challenges: NextPage<ChallengesPageProps> = ({ params }) => {
         <p className="text-muted-foreground">{dict.challenges.description}</p>
       </div>
       <div className="w-full max-w-4xl">
-        <SimpleTopPlayers params={params} />
+        <SimpleTopPlayers params={{ lang }} />
       </div>
     </main>
   );
