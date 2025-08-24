@@ -1,4 +1,3 @@
-// app/[lang]/challenges/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -35,7 +34,7 @@ const Challenges: NextPage<ChallengesPageProps> = ({ params }) => {
         <p className="text-muted-foreground">{dict.challenges.description}</p>
       </div>
       <div className="w-full max-w-4xl">
-        <SimpleTopPlayers />
+        <SimpleTopPlayers params={params} />
       </div>
     </main>
   );
