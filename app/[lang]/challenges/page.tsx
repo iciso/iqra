@@ -1,21 +1,26 @@
 // app/[lang]/challenges/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
-import SimpleTopPlayers from '@/components/challenge/simple-top-players';
+import { useState, useEffect } from "react";
+import SimpleTopPlayers from "@/components/challenge/simple-top-players";
+import type { NextPage } from "next";
 
-export default function Challenges({ params }: { params: { lang: string } }) {
+interface ChallengesPageProps {
+  params: { lang: string };
+}
+
+const Challenges: NextPage<ChallengesPageProps> = ({ params }) => {
   const [dict, setDict] = useState<any>(null);
 
   useEffect(() => {
     async function fetchDictionary() {
       try {
-        const response = await fetch(`/locales/${params.lang}/translation.json`);
-        if (!response.ok) throw new Error('Failed to load translations');
+        const response = await fetch(`/translations/${params.lang}/translation.json`);
+        if (!response.ok) throw new Error("Failed to load translations");
         const data = await response.json();
         setDict(data);
       } catch (err) {
-        console.error('Error loading translations:', err);
+        console.error("Error loading translations:", err);
       }
     }
     fetchDictionary();
@@ -34,4 +39,6 @@ export default function Challenges({ params }: { params: { lang: string } }) {
       </div>
     </main>
   );
-}
+};
+
+export default Challenges;
