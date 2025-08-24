@@ -1,25 +1,35 @@
-// app/[lang]/login/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from "@/lib/supabase-client";
 
-export default function LoginPage({ params }: { params: { lang: string } }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+interface LoginPageProps {
+  params: { lang: string };
+}
+
+export default function Login({ params }: LoginPageProps) {
   const [dict, setDict] = useState<any>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     async function fetchDictionary() {
       try {
-        const response = await fetch(`/locales/${params.lang}/translation.json`);
-        if (!response.ok) throw new Error('Failed to load translations');
+        const response = await fetch(`/translations/${params.lang}/translation.json`);
+        if (!response.ok) throw new Error("Failed to load translations");
         const data = await response.json();
         setDict(data);
       } catch (err) {
-        console.error('Error loading translations:', err);
+        console.error("Error loading translations:", err);
       }
     }
     fetchDictionary();
@@ -27,56 +37,58 @@ export default function LoginPage({ params }: { params: { lang: string } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
+
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (data.error) {
-        setError(dict?.login.error.replace('{{message}}', data.error));
-      } else {
-        router.push(`/${params.lang}/challenges`);
-      }
-    } catch (err) {
-      setError(dict?.login.error.replace('{{message}}', 'Network error'));
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      const redirect = searchParams.get("redirect") || "/";
+      router.push(`/${params.lang}${redirect}`);
+    } catch (err: any) {
+      setError(dict?.login.error.replace("{{message}}", err.message) || `Login failed: ${err.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   if (!dict) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto py-12 px-4 text-center">
-      <h1 className="text-2xl font-bold mb-4">{dict.login.title}</h1>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium">{dict.login.email}</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full border rounded-md p-2"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium">{dict.login.password}</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full border rounded-md p-2"
-            required
-          />
-        </div>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <button type="submit" className="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          {dict.login.sign_in}
-        </button>
-      </form>
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>{dict.login.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="email">{dict.login.email}</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="password">{dict.login.password}</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            {error && <p className="text-red-500">{error}</p>}
+            <Button type="submit" disabled={loading} className="w-full">
+              {dict.login.sign_in}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }

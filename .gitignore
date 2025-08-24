@@ -27,3 +27,5 @@ yarn-error.log*
 next-env.d.ts
 "package-lock.json" 
 "package-lock.json" 
+
+node_modules .next out .env .env.local .env.development.local .env.test.local .env.production.local public/locales/{en,ta}

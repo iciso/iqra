@@ -1,4 +1,3 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createClient } from './lib/supabase/server';
@@ -18,7 +17,6 @@ export async function middleware(req: NextRequest) {
 
     const supabase = createClient();
     const { data: { user }, error } = await supabase.auth.getUser();
-    console.log(`Middleware: Path=${req.nextUrl.pathname}, Cookies=${req.cookies.size}, User=${user?.id || 'none'}, Email=${user?.email || 'none'}, Error=${error?.message || 'none'}`);
 
     const url = req.nextUrl.clone();
     const { pathname } = req.nextUrl;
@@ -67,5 +65,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|favicon.ico|locales).*)'],
+  matcher: ['/((?!_next|api|favicon.ico|translations).*)'],
 };

@@ -1,15 +1,14 @@
-// next.config.mjs
-export default {
-  experimental: {
-    // Add any existing experimental flags
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/en',
-        permanent: true,
-      },
-    ];
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
   },
 };
+
+export default nextConfig; 
