@@ -6,25 +6,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/contexts/auth-context";
 import { supabase } from "@/lib/supabase-client";
+import type { NextPage } from "next";
 
 interface LoginPageProps {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
-export default function Login({ params }: LoginPageProps) {
+const Login: NextPage<LoginPageProps> = async ({ params }) => {
+  const { lang } = await params;
   const [dict, setDict] = useState<any>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const { signIn } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
 
   useEffect(() => {
     async function fetchDictionary() {
       try {
-        const response = await fetch(`/translations/${params.lang}/translation.json`);
+        const response = await fetch(`/translations/${lang}/translations.json`);
         if (!response.ok) throw new Error("Failed to load translations");
         const data = await response.json();
         setDict(data);
@@ -33,22 +37,18 @@ export default function Login({ params }: LoginPageProps) {
       }
     }
     fetchDictionary();
-  }, [params.lang]);
+  }, [lang]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
-
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      const redirect = searchParams.get("redirect") || "/";
-      router.push(`/${params.lang}${redirect}`);
+      await signIn();
+      router.push(`/${lang}${redirect}`);
     } catch (err: any) {
-      setError(dict?.login.error.replace("{{message}}", err.message) || `Login failed: ${err.message}`);
-    } finally {
-      setLoading(false);
+      setError(dict?.login?.error?.replace("{{message}}", err.message) || "Login failed");
     }
   };
 
@@ -83,7 +83,7 @@ export default function Login({ params }: LoginPageProps) {
               />
             </div>
             {error && <p className="text-red-500">{error}</p>}
-            <Button type="submit" disabled={loading} className="w-full">
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
               {dict.login.sign_in}
             </Button>
           </form>
@@ -91,4 +91,6 @@ export default function Login({ params }: LoginPageProps) {
       </Card>
     </div>
   );
-}
+};
+
+export default Login;
