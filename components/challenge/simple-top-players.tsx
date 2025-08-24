@@ -1,4 +1,3 @@
-// components/challenge/simple-top-players.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -92,18 +91,75 @@ export default function SimpleTopPlayers({ params }: SimpleTopPlayersProps) {
         console.error("❌ Error fetching auth users:", authError);
         throw authError;
       }
-      console.log("👥 Found auth users:", authUsers.users);
-      // ... (rest of syncMissingProfiles logic remains unchanged)
+      console.log("👥 Found auth users:", authUsers.users.length);
+
+      const { data: existingProfiles } = await supabase.from("user_profiles").select("user_id");
+      const existingIds = new Set(existingProfiles?.map((p) => p.user_id) || []);
+
+      const profilesToInsert = authUsers.users
+        .filter((u: any) => !existingIds.has(u.id))
+        .map((u: any) => ({
+          user_id: u.id,
+          username: u.email?.split("@")[0] || "user_" + u.id.slice(0, 8),
+          created_at: new Date().toISOString(),
+        }));
+
+      if (profilesToInsert.length > 0) {
+        const { error: insertError } = await supabase.from("user_profiles").insert(profilesToInsert);
+        if (insertError) throw insertError;
+        console.log("✅ Inserted new profiles:", profilesToInsert.length);
+      }
+
+      setSyncing(false);
+      setRetryCount(retryCount + 1);
     } catch (error) {
       console.error("❌ Sync failed:", error);
-      setError("Failed to sync profiles");
+      setError(dict?.challenges.error || "Failed to sync profiles");
       setSyncing(false);
     }
   };
 
   useEffect(() => {
-    // Original useEffect logic for fetching players...
-  }, [user, retryCount]);
+    async function fetchPlayers() {
+      if (!mountedRef.current || loadingRef.current) return;
+      loadingRef.current = true;
+      setLoading(true);
+
+      try {
+        const { data, error } = await supabase
+          .from("user_profiles")
+          .select("user_id, username, full_name, total_score, best_percentage")
+          .order("total_score", { ascending: false })
+          .limit(showAll ? 100 : 10);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          setPlayers(data as Player[]);
+          setDataSource("Supabase");
+          setIsUsingFallback(false);
+        } else {
+          setPlayers(fallbackPlayers);
+          setDataSource("Fallback");
+          setIsUsingFallback(true);
+        }
+      } catch (err) {
+        console.error("Error fetching players:", err);
+        setError(dict?.challenges.error || "Failed to load players");
+        setPlayers(fallbackPlayers);
+        setDataSource("Fallback");
+        setIsUsingFallback(true);
+      } finally {
+        setLoading(false);
+        loadingRef.current = false;
+      }
+    }
+
+    if (!authLoading) fetchPlayers();
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [authLoading, retryCount, showAll, dict]);
 
   if (!dict) return <div>Loading...</div>;
 
@@ -157,18 +213,19 @@ export default function SimpleTopPlayers({ params }: SimpleTopPlayersProps) {
                   {user && user.id !== player.id && (
                     <Button
                       size="sm"
-                      onClick={() =>
+                      onClick={() => {
                         setSelectedOpponent({
                           id: player.id,
                           username: player.username,
                           full_name: player.full_name,
                           total_score: player.total_score,
                           best_percentage: player.best_percentage,
-                        })
-                      }
+                        });
+                        setChallengeDialogOpen(true);
+                      }}
                       className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
                     >
-                      Challenge
+                      {dict.challenges.challenge}
                     </Button>
                   )}
                 </div>
@@ -178,13 +235,13 @@ export default function SimpleTopPlayers({ params }: SimpleTopPlayersProps) {
         )}
       </CardContent>
       {selectedOpponent && (
-        <CategoryFirstChallengeDialog
-          isOpen={challengeDialogOpen}
-          onClose={() => {
-            setChallengeDialogOpen(false);
-            setSelectedOpponent(null);
+        <ChallengeDialog
+          open={challengeDialogOpen}
+          onOpenChange={(open) => {
+            setChallengeDialogOpen(open);
+            if (!open) setSelectedOpponent(null);
           }}
-          opponent={selectedOpponent}
+          dict={dict}
         />
       )}
     </Card>
