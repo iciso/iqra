@@ -8,11 +8,27 @@
   },
   "challenges": {
     "title": "Challenges",
-    "description": "Test your knowledge against other players"
+    "description": "Test your knowledge against other players",
+    "no_players": "No players found",
+    "syncing": "Syncing...",
+    "sync_profiles": "Sync User Profiles",
+    "registered_user": "Registered User",
+    "player": "Player",
+    "create_challenge": "Create Challenge",
+    "challenge_player": "Challenge a player to a quiz",
+    "challenge": "Challenge",
+    "error": "Failed to load players"
   },
   "quiz": {
     "title": "Quiz",
     "no_questions": "Sorry, no questions available for this category",
     "back_to_categories": "Browse Categories",
-    "back_to_challenges": "Back to Challenges"
+    "back_to_challenges": "Back to Challenges",
+    "submit_answer": "Submit Answer",
+    "next": "Next",
+    "finish_quiz": "Finish Quiz",
+    "send_challenge": "Send Challenge",
+    "previous": "Previous",
+    "explanation": "Explanation"
   }
+}
