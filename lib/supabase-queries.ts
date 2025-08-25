@@ -41,6 +41,101 @@ export async function getQuizQuestions(category: string, difficulty: DifficultyL
   }
 }
 
+// Challenge functions
+export async function getChallenge(challengeId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_challenges')
+      .select(`
+        *,
+        challenger:user_profiles!challenger_id (username, full_name),
+        challenged:user_profiles!challenged_id (username, full_name)
+      `)
+      .eq('id', challengeId)
+      .single();
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error fetching challenge:', err);
+    return null;
+  }
+}
+
+export async function createChallenge(
+  challengerId: string,
+  opponentId: string,
+  quizId: string,
+  categoryId: string,
+  difficulty: DifficultyLevel
+) {
+  try {
+    const { data, error } = await supabase
+      .from('user_challenges')
+      .insert({
+        challenger_id: challengerId,
+        challenged_id: opponentId,
+        quiz_id: quizId,
+        category_id: categoryId,
+        difficulty,
+        status: 'pending',
+        created_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error creating challenge:', err);
+    return null;
+  }
+}
+
+export async function getPendingChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_challenges')
+      .select(`
+        *,
+        challenger:user_profiles!challenger_id (username, full_name),
+        challenged:user_profiles!challenged_id (username, full_name)
+      `)
+      .eq('challenged_id', userId)
+      .eq('status', 'pending');
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error fetching pending challenges:', err);
+    return [];
+  }
+}
+
+export async function getActiveChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_challenges')
+      .select(`
+        *,
+        challenger:user_profiles!challenger_id (username, full_name),
+        challenged:user_profiles!challenged_id (username, full_name)
+      `)
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`)
+      .eq('status', 'active');
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error fetching active challenges:', err);
+    return [];
+  }
+}
+
 // User profile functions
 export async function getUserProfile(userId: string) {
   const { data, error } = await supabase.from('user_profiles').select('*').eq('id', userId).single();
@@ -62,6 +157,82 @@ export async function updateUserProfile(userId: string, updates: any) {
   }
 
   return data;
+}
+
+export async function searchUsers(searchTerm: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .select('id, username, full_name')
+      .ilike('username', `%${searchTerm}%`)
+      .limit(10);
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error searching users:', err);
+    return [];
+  }
+}
+
+export async function getFriends(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('friends')
+      .select(`
+        friend_id,
+        user_profiles!friend_id (username, full_name)
+      `)
+      .eq('user_id', userId);
+
+    if (error) throw error;
+
+    return data.map((friend: any) => friend.user_profiles);
+  } catch (err) {
+    console.error('Error fetching friends:', err);
+    return [];
+  }
+}
+
+export async function getUserChallenges(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_challenges')
+      .select(`
+        *,
+        challenger:user_profiles!challenger_id (username, full_name),
+        challenged:user_profiles!challenged_id (username, full_name)
+      `)
+      .or(`challenger_id.eq.${userId},challenged_id.eq.${userId}`);
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error fetching user challenges:', err);
+    return [];
+  }
+}
+
+export async function getPendingFriendRequests(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('friend_requests')
+      .select(`
+        *,
+        sender:user_profiles!sender_id (username, full_name)
+      `)
+      .eq('receiver_id', userId)
+      .eq('status', 'pending');
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error('Error fetching pending friend requests:', err);
+    return [];
+  }
 }
 
 // Update user's total score
