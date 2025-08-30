@@ -12,7 +12,7 @@ i18next
     fallbackLng: 'en',
     supportedLngs: ['en', 'ta'],
     backend: {
-      loadPath: '/translations/{{lng}}/translations.json', // Updated path
+      loadPath: '/translations/{{lng}}/translations.json', // Matches public/translations/{lang}/translations.json
     },
     interpolation: {
       escapeValue: false,
