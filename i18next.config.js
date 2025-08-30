@@ -1,22 +1,32 @@
-// i18next.config.js
-const i18next = require('i18next');
-const HttpBackend = require('i18next-http-backend');
-const LanguageDetector = require('i18next-browser-languagedetector');
-const { initReactI18next } = require('react-i18next');
+import { ReactNode } from 'react';
+import './globals.css';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n'; // Import from root folder
 
-i18next
-  .use(HttpBackend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    supportedLngs: ['en', 'ta'],
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json', // Path to translation files
-    },
-    interpolation: {
-      escapeValue: false, // React handles XSS, so escaping is not needed
-    },
-  });
+interface RootLayoutProps {
+  children: ReactNode;
+  params: { lang: string };
+}
 
-module.exports = i18next;
+export default function RootLayout({ children, params }: RootLayoutProps) {
+  return (
+    <html lang={params.lang}>
+      <head>
+        <title>IQRA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body>
+        <I18nextProvider i18n={i18n}>
+          {children}
+        </I18nextProvider>
+      </body>
+    </html>
+  );
+}
+
+export async function generateStaticParams() {
+  return [
+    { lang: 'en' },
+    { lang: 'ta' },
+  ];
+}
