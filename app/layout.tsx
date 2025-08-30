@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import './globals.css'; // Assuming you have global styles
-import { i18n } from '@/i18next.config.js'; // Adjust path to your i18n config
+import './globals.css';
 import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18next.config'; // Import from root folder
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -27,6 +27,6 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
 export async function generateStaticParams() {
   return [
     { lang: 'en' },
-    { lang: 'ta' }, // Add other supported languages
+    { lang: 'ta' },
   ];
 }
