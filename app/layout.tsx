@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import './globals.css';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../i18next.config'; // Import from root folder
+import i18n from '../i18n'; // Update import
 
 interface RootLayoutProps {
   children: ReactNode;
