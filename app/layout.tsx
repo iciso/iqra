@@ -1,20 +1,32 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { AuthProvider } from "@/contexts/auth-context";
+import { ReactNode } from 'react';
+import './globals.css'; // Assuming you have global styles
+import { i18n } from '@/i18next.config.js'; // Adjust path to your i18n config
+import { I18nextProvider } from 'react-i18next';
 
-const inter = Inter({ subsets: ["latin"] });
+interface RootLayoutProps {
+  children: ReactNode;
+  params: { lang: string };
+}
 
-export const metadata = {
-  title: "IQRA - Islamic Quiz App",
-  description: "Test your Islamic knowledge with quizzes and challenges",
-};
-
-export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
+export default function RootLayout({ children, params }: RootLayoutProps) {
   return (
-    <html lang={params.lang || "en"}>
-      <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+    <html lang={params.lang}>
+      <head>
+        <title>IQRA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body>
+        <I18nextProvider i18n={i18n}>
+          {children}
+        </I18nextProvider>
       </body>
     </html>
   );
+}
+
+export async function generateStaticParams() {
+  return [
+    { lang: 'en' },
+    { lang: 'ta' }, // Add other supported languages
+  ];
 }
