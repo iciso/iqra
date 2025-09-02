@@ -49,11 +49,8 @@
     "date-fns": "4.1.0",
     "embla-carousel-react": "latest",
     "i18next": "^25.3.6",
-<<<<<<< HEAD
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
-=======
->>>>>>> bc18b74ae2d8ce2aea0bff33acb2a1f1a636841c
     "input-otp": "latest",
     "lucide-react": "^0.454.0",
     "mermaid": "latest",
