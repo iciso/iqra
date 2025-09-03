@@ -1,45 +1,23 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { createClient } from './lib/supabase/server';
+import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
-export async function middleware(request: NextRequest) {
-  try {
-    // Initialize Supabase client
-    const supabase = createClient();
+// Keep middleware lightweight and compatible with Edge runtime.
+// Avoid server-only clients here; enforce auth in server actions/route handlers instead.
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
 
-    // Check for user session
-    const { data: { session }, error } = await supabase.auth.getSession();
-    if (error) {
-      console.error("Supabase session error:", error);
-      return NextResponse.next();
-    }
-
-    // Define protected routes
-    const protectedRoutes = ["/challenges", "/categories"];
-
-    // Check if the current path is a protected route
-    if (protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route))) {
-      if (!session) {
-        // Redirect unauthenticated users to login page
-        const redirectUrl = new URL("/login", request.url);
-        redirectUrl.searchParams.set("redirect", request.nextUrl.pathname + request.nextUrl.search);
-        return NextResponse.redirect(redirectUrl);
-      }
-    }
-
-    // Handle redirects for legacy routes
-    if (request.nextUrl.pathname === "/challenge" || request.nextUrl.pathname === "/quiz-challenges") {
-      return NextResponse.redirect(new URL("/challenges", request.url));
-    }
-
-    return NextResponse.next();
-  } catch (error) {
-    console.error("Middleware error:", error);
-    return NextResponse.next();
+  // Redirect legacy routes
+  if (pathname === "/challenge" || pathname === "/quiz-challenges") {
+    return NextResponse.redirect(new URL("/challenges", request.url))
   }
+
+  return NextResponse.next()
 }
 
+// Only run on the routes we need
 export const config = {
-  matcher: ["/challenge", "/quiz-challenges", "/challenges/:path*", "/categories/:path*"],
-  runtime: 'nodejs', // Force Node.js runtime to avoid Edge Runtime issues
-};
+  matcher: ["/challenge", "/quiz-challenges"],
+}
+
+// Use the Edge runtime (default for middleware); explicit for clarity
+export const runtime = "edge"

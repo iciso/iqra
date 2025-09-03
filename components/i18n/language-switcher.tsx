@@ -1,50 +1,65 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import i18next from "i18next"
-import { useTranslation } from "react-i18next"
-import { Button } from "@/components/ui/button"
+import * as React from "react"
 
-type SupportedLang = "en" | "ta"
+// Minimal, framework-agnostic language switcher.
+// It stores the selection for later reads in your app (localStorage + cookie).
+// Replace with your i18n integration as needed.
+export type LanguageSwitcherProps = {
+  available?: string[]
+  labels?: Record<string, string>
+  storageKey?: string
+  className?: string
+}
 
-export function LanguageSwitcher({ align = "left" }: { align?: "left" | "right" }) {
-  const { i18n } = useTranslation()
-  const [lang, setLang] = useState<SupportedLang>((i18n.language as SupportedLang) || "en")
+function setCookie(name: string, value: string, days = 365) {
+  try {
+    const d = new Date()
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000)
+    const expires = "expires=" + d.toUTCString()
+    document.cookie = name + "=" + value + ";" + expires + ";path=/"
+  } catch {}
+}
 
-  useEffect(() => {
-    const handler = () => {
-      const current = (i18next.language as SupportedLang) || "en"
-      setLang(current)
-    }
-    i18next.on("languageChanged", handler)
-    return () => {
-      i18next.off("languageChanged", handler)
-    }
-  }, [])
+export function LanguageSwitcher({
+  available = ["en", "ta"],
+  labels = { en: "English", ta: "தமிழ்" },
+  storageKey = "iqra_locale",
+  className,
+}: LanguageSwitcherProps) {
+  const [lang, setLang] = React.useState<string>(() => {
+    if (typeof window === "undefined") return available[0]
+    const fromStorage = window.localStorage.getItem(storageKey)
+    if (fromStorage && available.includes(fromStorage)) return fromStorage
+    // Fallback: navigator language
+    const nav = navigator.language?.split("-")?.[0]
+    return available.includes(nav) ? nav : available[0]
+  })
 
-  async function changeLanguage(next: SupportedLang) {
-    await i18n.changeLanguage(next)
-    setLang(next)
-  }
+  React.useEffect(() => {
+    if (typeof window === "undefined") return
+    window.localStorage.setItem(storageKey, lang)
+    setCookie(storageKey, lang)
+  }, [lang, storageKey])
 
   return (
-    <div className={`flex items-center gap-2 ${align === "right" ? "justify-end" : "justify-start"}`}>
-      <Button
-        variant={lang === "en" ? "default" : "ghost"}
-        size="sm"
-        onClick={() => changeLanguage("en")}
-        aria-pressed={lang === "en"}
+    <div className={className}>
+      <label htmlFor="lang" className="sr-only">
+        Language
+      </label>
+      <select
+        id="lang"
+        value={lang}
+        onChange={(e) => setLang(e.target.value)}
+        className="border rounded px-2 py-1 text-sm"
+        aria-label="Select language"
       >
-        English
-      </Button>
-      <Button
-        variant={lang === "ta" ? "default" : "ghost"}
-        size="sm"
-        onClick={() => changeLanguage("ta")}
-        aria-pressed={lang === "ta"}
-      >
-        {"தமிழ்"}
-      </Button>
+        {available.map((code) => (
+          <option key={code} value={code}>
+            {labels[code] ?? code}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

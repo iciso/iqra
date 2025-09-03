@@ -1,64 +1,52 @@
 #!/usr/bin/env node
 /**
- * Sync ONLY the `data/` folder from a GitHub repo into the current project.
+ * Focused sync to import only the data/ folder from a GitHub repo.
  *
  * Usage:
- *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation
- *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch main --backup true --dry-run
+ *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch main [--dry-run true] [--backup true]
+ *
+ * This will bring in all categories/questions from upstream "data/**".
  */
 
-import { parseArgs } from 'node:util'
-import { syncFromGithub } from './sync-from-github.mjs'
+import { spawn } from 'node:child_process'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-function parseBoolean(val, defaultValue = false) {
-  if (val === undefined) return defaultValue
-  if (typeof val === 'boolean') return val
-  const v = String(val).toLowerCase().trim()
-  return v === 'true' || v === '1' || v === 'yes'
-}
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-async function main() {
-  const {
-    values: {
-      repo,
-      branch = 'main',
-      backup,
-      dryRun,
-      preserve,
-    },
-  } = parseArgs({
-    options: {
-      repo: { type: 'string', short: 'r' },
-      branch: { type: 'string', short: 'b' },
-      backup: { type: 'string' },
-      dryRun: { type: 'string' },
-      preserve: { type: 'string', short: 'p' }, // optional, comma-separated
-    },
-  })
+const args = process.argv.slice(2)
+const toKV = (arr) =>
+  arr.reduce((acc, cur, i) => {
+    if (cur.startsWith('--')) acc[cur.slice(2)] = arr[i + 1] ?? true
+    return acc
+  }, {})
 
-  if (!repo) {
-    console.error('Error: --repo is required. Example: --repo iciso/iqra')
-    process.exit(1)
-  }
+const opts = toKV(args)
+const repo = opts.repo || 'iciso/iqra'
+const branch = opts.branch || 'main'
+const dryRun = String(opts['dry-run'] ?? opts.dry_run ?? 'false') === 'true'
+const backup = String(opts.backup ?? 'true') === 'true'
 
-  const backupFlag = parseBoolean(backup, false)
-  const dryRunFlag = parseBoolean(dryRun, false)
-  const preserveList = (preserve ? String(preserve) : '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
+// Build args for sync-from-github.mjs
+const cmdArgs = [
+  path.join(__dirname, 'sync-from-github.mjs'),
+  '--repo',
+  repo,
+  '--branch',
+  branch,
+  '--onlyPaths',
+  'data/**',
+  '--preserve',
+  // Preserve the scripts and this demo/readme by default
+  'scripts/**,README-sync.md',
+  '--backup',
+  String(backup),
+  '--dry-run',
+  String(dryRun),
+]
 
-  await syncFromGithub({
-    repo,
-    branch,
-    preserve: preserveList,
-    onlyPaths: ['data/'],
-    backup: backupFlag,
-    dryRun: dryRunFlag,
-  })
-}
-
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
+const child = spawn('node', cmdArgs, { stdio: 'inherit' })
+child.on('close', (code) => {
+  process.exit(code ?? 0)
 })

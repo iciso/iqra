@@ -1,58 +1,66 @@
+#!/usr/bin/env node
 /**
- * Simple verification for the data/ folder:
- * - Lists .ts files in data/
- * - Roughly estimates easy/advanced question counts by regex
- *   (heuristic only; adjust patterns if your schema differs)
- *
- * Usage:
- *  node scripts/verify-data.mjs
+ * Verify imported data files: list categories & rough count of easy/advanced questions.
+ * Heuristic parser: counts occurrences of "easy" and "advanced" tokens in files.
  */
 
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import path from 'node:path'
 
-const dataDir = path.join(process.cwd(), 'data')
-
-function grepCount(text, patterns) {
-  const re = new RegExp(patterns.join('|'), 'gi')
-  const matches = text.match(re)
-  return matches ? matches.length : 0
+async function readAll(dir) {
+  const out = []
+  const entries = await fs.readdir(dir, { withFileTypes: true })
+  for (const e of entries) {
+    const p = path.join(dir, e.name)
+    if (e.isDirectory()) {
+      out.push(...(await readAll(p)))
+    } else if (/\.(ts|tsx|js|mjs)$/.test(e.name)) {
+      out.push(p)
+    }
+  }
+  return out
 }
 
-async function verify() {
-  if (!fs.existsSync(dataDir)) {
-    console.error('No data/ directory found.')
+function countOccurrences(text, needle) {
+  const re = new RegExp(needle, 'gi')
+  return (text.match(re) ?? []).length
+}
+
+async function main() {
+  const dataDir = path.join(process.cwd(), 'data')
+  try {
+    await fs.access(dataDir)
+  } catch {
+    console.error('Missing data/ directory. Run the sync script first.')
     process.exit(1)
   }
 
-  const files = (await fs.promises.readdir(dataDir)).filter((f) => f.endsWith('.ts') || f.endsWith('.tsx'))
-  console.log(`Found ${files.length} data file(s).`)
-
+  const files = await readAll(dataDir)
+  let categories = new Set()
   let totalEasy = 0
   let totalAdvanced = 0
 
   for (const file of files) {
-    const full = path.join(dataDir, file)
-    const content = await fs.promises.readFile(full, 'utf8')
+    const text = await fs.readFile(file, 'utf8')
+    // Heuristic: treat file stem as category
+    const stem = path.basename(file).replace(/\.(ts|tsx|js|mjs)$/, '')
+    categories.add(stem)
 
-    // Heuristics: adjust patterns to your schema
-    const easyCount = grepCount(content, ['"easy"', "'easy'", 'easyQuestions', 'easy:'])
-    const advancedCount = grepCount(content, ['"advanced"', "'advanced'", 'advancedQuestions', 'hardQuestions', 'advanced:'])
-
-    totalEasy += easyCount
-    totalAdvanced += advancedCount
-
-    console.log(`- ${file}: approx easy=${easyCount}, advanced=${advancedCount}`)
+    // Approximate counts
+    totalEasy += countOccurrences(text, 'easy')
+    totalAdvanced += countOccurrences(text, 'advanced')
   }
 
-  console.log('\nSummary:')
-  console.log(`Approx total easy markers: ${totalEasy}`)
-  console.log(`Approx total advanced markers: ${totalAdvanced}`)
+  console.log('Verification summary:')
+  console.log('- Categories (by file stem):', categories.size)
+  console.log('- Approx. "easy" token occurrences:', totalEasy)
+  console.log('- Approx. "advanced" token occurrences:', totalAdvanced)
 
-  console.log('\nNote: This is a heuristic count. Use domain-specific parsing if you need exact totals.')
+  console.log('\nSpot check (first 10 category stems):')
+  console.log(Array.from(categories).sort().slice(0, 10).join(', '))
 }
 
-verify().catch((err) => {
+main().catch((err) => {
   console.error(err)
   process.exit(1)
 })
