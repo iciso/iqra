@@ -1,144 +1,164 @@
-#!/usr/bin/env node
 /**
- * Sync files from a GitHub repo zipball into the current project.
+ * General-purpose GitHub zipball sync script.
+ * - Downloads a repository zipball and overwrites local files.
+ * - Supports:
+ *    --repo owner/name
+ *    --branch branchName (default: main)
+ *    --onlyPaths comma-separated prefixes to include (e.g. "data,public/locales")
+ *    --preserve comma-separated prefixes to skip overwriting (e.g. "scripts,README.md")
+ *    --backup true|false create .backup-sync/<timestamp> backups before overwrite (default: true)
+ *    --dry-run true|false (default: false)
  *
- * Usage:
- *   node scripts/sync-from-github.mjs --repo iciso/iqra --branch main [--dry-run true] [--backup true]
- *     [--preserve "scripts/**,README-sync.md"] [--onlyPaths "data/**,public/locales/**"]
- *
- * Notes:
- * - Requires Node 18+ (built-in fetch).
- * - Will create backups if --backup true (adds .bak timestamp files).
+ * Examples:
+ *  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --onlyPaths data,public/locales --preserve scripts --backup true
  */
 
-import fs from 'node:fs/promises'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import JSZip from 'jszip'
+import fs from "node:fs/promises"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+import JSZip from "jszip"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 function parseArgs() {
   const args = process.argv.slice(2)
-  const opts = {}
-  for (let i = 0; i < args.length; i += 2) {
-    const key = args[i]
-    const val = args[i + 1]
-    if (!key?.startsWith('--')) continue
-    const k = key.slice(2)
-    opts[k] = val ?? true
+  const out = {}
+  for (const arg of args) {
+    const [k, v = "true"] = arg.replace(/^--/, "").split("=")
+    out[k] = v
   }
-  // Defaults
-  opts.repo ??= 'iciso/iqra'
-  opts.branch ??= 'main'
-  opts.dryRun = String(opts.dry_run ?? opts.dryRun ?? 'false') === 'true'
-  opts.backup = String(opts.backup ?? 'false') === 'true'
-  opts.preserve = (opts.preserve ? String(opts.preserve) : '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-  opts.onlyPaths = (opts.onlyPaths ? String(opts.onlyPaths) : '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-  return opts
+  return out
 }
 
-function micromatchOne(target, patterns) {
-  // tiny glob check: supports prefix folders and ** wildcard, simple * within segments
-  const esc = (s) => s.replace(/[.+^${}()|[\]\\]/g, '\\$&')
-  const toRegex = (pat) => {
-    // convert patterns like "data/**" or "scripts/*.mjs"
-    let rx = esc(pat)
-      .replace(/\\\*\\\*/g, '.*')
-      .replace(/\\\*/g, '[^/]*')
-    if (!rx.startsWith('^')) rx = '^' + rx
-    if (!rx.endsWith('$')) rx = rx + '$'
-    return new RegExp(rx)
-  }
-  return patterns.some((p) => toRegex(p).test(target))
+function parseList(val) {
+  if (!val) return []
+  return val
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
 }
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true })
 }
 
-async function writeFileSafe(filePath, data, backup, dryRun) {
-  if (dryRun) {
-    console.log(`[dry-run] write ${filePath}`)
-    return
-  }
-  // backup
+async function backupFile(srcPath, backupRoot) {
+  const rel = path.relative(process.cwd(), srcPath)
+  const dest = path.join(backupRoot, rel)
+  await ensureDir(path.dirname(dest))
   try {
-    const existing = await fs.readFile(filePath)
-    if (backup && existing) {
-      const ts = new Date().toISOString().replace(/[:-]/g, '').replace(/\..+/, '')
-      await fs.writeFile(filePath + '.' + ts + '.bak', existing)
-    }
-  } catch {}
-  await ensureDir(path.dirname(filePath))
-  await fs.writeFile(filePath, data)
+    const content = await fs.readFile(srcPath)
+    await fs.writeFile(dest, content)
+  } catch {
+    // ignore (file might not exist yet)
+  }
+}
+
+function shouldInclude(relPath, onlyPaths) {
+  if (!onlyPaths.length) return true
+  return onlyPaths.some((p) => relPath.startsWith(p))
+}
+
+function shouldPreserve(relPath, preservePrefixes) {
+  if (!preservePrefixes.length) return false
+  return preservePrefixes.some((p) => relPath.startsWith(p))
 }
 
 async function downloadZip(repo, branch) {
   const url = `https://codeload.github.com/${repo}/zip/refs/heads/${branch}`
-  console.log(`Downloading ${url} ...`)
   const res = await fetch(url)
   if (!res.ok) {
-    throw new Error(`Failed to download zip: ${res.status} ${res.statusText}`)
+    throw new Error(`Failed to download zip: ${url} ${res.status} ${res.statusText}`)
   }
-  const buf = await res.arrayBuffer()
-  return Buffer.from(buf)
-}
-
-function stripRootFolder(entryName, rootPrefix) {
-  if (entryName.startsWith(rootPrefix)) {
-    return entryName.slice(rootPrefix.length)
-  }
-  return entryName
+  const arrayBuffer = await res.arrayBuffer()
+  return Buffer.from(arrayBuffer)
 }
 
 async function main() {
-  const opts = parseArgs()
-  const { repo, branch, preserve, onlyPaths, backup, dryRun } = opts
-  console.log('Sync options:', { repo, branch, preserve, onlyPaths, backup, dryRun })
+  const {
+    repo,
+    branch = "main",
+    onlyPaths: onlyPathsArg,
+    preserve: preserveArg,
+    backup: backupArg = "true",
+    dryRun: dryRunArg = "false",
+  } = parseArgs()
 
-  const zipBuf = await downloadZip(repo, branch)
-  const zip = await JSZip.loadAsync(zipBuf)
+  if (!repo) {
+    console.error('Missing required argument: --repo (e.g. "--repo iciso/iqra")')
+    process.exit(1)
+  }
 
-  // The zip root folder looks like "<repo>-<branch>/..."
-  const rootPrefix = Object.keys(zip.files)[0]?.split('/')[0] + '/'
-  let written = 0
+  const onlyPaths = parseList(onlyPathsArg)
+  const preservePrefixes = parseList(preserveArg)
+  const doBackup = backupArg === "true"
+  const dryRun = dryRunArg === "true"
 
-  for (const [entryName, entry] of Object.entries(zip.files)) {
+  console.log(`Syncing from ${repo}@${branch}`)
+  if (onlyPaths.length) console.log("Only paths:", onlyPaths.join(", "))
+  if (preservePrefixes.length) console.log("Preserve prefixes:", preservePrefixes.join(", "))
+  console.log("Backup:", doBackup, "Dry-run:", dryRun)
+
+  const buf = await downloadZip(repo, branch)
+
+  const zip = await JSZip.loadAsync(buf)
+  // The zip root usually contains a single directory named "<name>-<branch>/"
+  const rootDirName = Object.keys(zip.files).find((k) => zip.files[k].dir && !k.includes("/../"))
+  const rootPrefix = rootDirName ? rootDirName : ""
+
+  const backupRoot = path.join(process.cwd(), ".backup-sync", String(Date.now()))
+  if (doBackup && !dryRun) {
+    await ensureDir(backupRoot)
+  }
+
+  let changedCount = 0
+  let skippedCount = 0
+
+  for (const [zipPath, entry] of Object.entries(zip.files)) {
     if (entry.dir) continue
-    const rel = stripRootFolder(entryName, rootPrefix)
+    if (!zipPath.startsWith(rootPrefix)) continue
 
-    // skip top-level readme or empty name
-    if (!rel || rel === '/') continue
+    const relPath = zipPath.slice(rootPrefix.length)
+    if (!relPath) continue
 
-    // honor onlyPaths if provided
-    if (onlyPaths.length) {
-      const matchOnly = micromatchOne(rel, onlyPaths)
-      if (!matchOnly) continue
+    // Filter by onlyPaths and preserve
+    if (!shouldInclude(relPath, onlyPaths)) {
+      skippedCount++
+      continue
     }
-
-    // skip preserved paths
-    if (preserve.length && micromatchOne(rel, preserve)) {
-      console.log(`Preserve: ${rel}`)
+    if (shouldPreserve(relPath, preservePrefixes)) {
+      console.log(`Preserved: ${relPath}`)
+      skippedCount++
       continue
     }
 
-    const content = await entry.async('nodebuffer')
-    await writeFileSafe(rel, content, backup, dryRun)
-    written++
+    const destPath = path.join(process.cwd(), relPath)
+    if (dryRun) {
+      console.log(`[dry-run] Write: ${relPath}`)
+      changedCount++
+      continue
+    }
+
+    // Backup existing file
+    if (doBackup) {
+      await backupFile(destPath, backupRoot)
+    }
+
+    await ensureDir(path.dirname(destPath))
+    const content = await entry.async("nodebuffer")
+    await fs.writeFile(destPath, content)
+    console.log(`Wrote: ${relPath}`)
+    changedCount++
   }
 
-  console.log(`${dryRun ? '[dry-run] ' : ''}Sync complete. Files processed: ${written}`)
+  console.log(`Done. Changed: ${changedCount}, Skipped: ${skippedCount}`)
+  if (doBackup && !dryRun) {
+    console.log(`Backups saved under: ${backupRoot}`)
+  }
 }
 
 main().catch((err) => {
-  console.error('Sync failed:', err)
+  console.error("Sync failed:", err)
   process.exit(1)
 })

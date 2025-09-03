@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-// Keep middleware lightweight and compatible with Edge runtime.
-// Avoid server-only clients here; enforce auth in server actions/route handlers instead.
+// Keep middleware lightweight and compatible with Edge runtime (default).
+// Do NOT import server-only utilities or clients here.
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -14,10 +14,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Only run on the routes we need
+// Limit to needed routes
 export const config = {
   matcher: ["/challenge", "/quiz-challenges"],
 }
-
-// Use the Edge runtime (default for middleware); explicit for clarity
-export const runtime = "edge"
