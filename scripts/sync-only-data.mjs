@@ -1,65 +1,64 @@
 #!/usr/bin/env node
 /**
- * Sync ONLY the data/ folder from an upstream GitHub repo.
+ * Sync ONLY the `data/` folder from a GitHub repo into the current project.
  *
  * Usage:
- *   node scripts/sync-only-data.mjs --repo iciso/iqra --branch main --backup true
- *   node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true
+ *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation
+ *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch main --backup true --dry-run
  */
-import { execFile } from "node:child_process"
-import { fileURLToPath } from "node:url"
-import { dirname, resolve } from "node:path"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+import { parseArgs } from 'node:util'
+import { syncFromGithub } from './sync-from-github.mjs'
 
-const args = parseArgs(process.argv.slice(2))
-const repo = args.repo || "iciso/iqra"
-const branch = args.branch || "main"
-const backup = toBool(args.backup, true)
-const dryRun = toBool(args.dryRun, false)
+function parseBoolean(val, defaultValue = false) {
+  if (val === undefined) return defaultValue
+  if (typeof val === 'boolean') return val
+  const v = String(val).toLowerCase().trim()
+  return v === 'true' || v === '1' || v === 'yes'
+}
 
-// Build command to reuse the general-purpose script with filters
-const cmd = "node"
-const script = resolve(__dirname, "sync-from-github.mjs")
-const onlyPaths = "data"
-const preserve = [
-  "scripts", // keep our scripts
-  "README-sync.md",
-  ".sync-backup",
-].join(",")
+async function main() {
+  const {
+    values: {
+      repo,
+      branch = 'main',
+      backup,
+      dryRun,
+      preserve,
+    },
+  } = parseArgs({
+    options: {
+      repo: { type: 'string', short: 'r' },
+      branch: { type: 'string', short: 'b' },
+      backup: { type: 'string' },
+      dryRun: { type: 'string' },
+      preserve: { type: 'string', short: 'p' }, // optional, comma-separated
+    },
+  })
 
-const finalArgs = [
-  script,
-  `--repo=${repo}`,
-  `--branch=${branch}`,
-  `--onlyPaths=${onlyPaths}`,
-  `--preserve=${preserve}`,
-  `--backup=${backup}`,
-  `--dry-run=${dryRun}`,
-]
-
-console.log(`[sync-only-data] running: ${cmd} ${finalArgs.join(" ")}`)
-execFile(cmd, finalArgs, { stdio: "inherit" }, (err) => {
-  if (err) {
-    console.error(`[sync-only-data] failed:`, err.message)
+  if (!repo) {
+    console.error('Error: --repo is required. Example: --repo iciso/iqra')
     process.exit(1)
   }
-})
 
-function parseArgs(argv) {
-  const out = {}
-  for (const part of argv) {
-    const m = part.match(/^--([^=]+)(?:=(.*))?$/)
-    if (m) {
-      out[m[1]] = m[2] ?? true
-    }
-  }
-  return out
+  const backupFlag = parseBoolean(backup, false)
+  const dryRunFlag = parseBoolean(dryRun, false)
+  const preserveList = (preserve ? String(preserve) : '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  await syncFromGithub({
+    repo,
+    branch,
+    preserve: preserveList,
+    onlyPaths: ['data/'],
+    backup: backupFlag,
+    dryRun: dryRunFlag,
+  })
 }
-function toBool(v, def = false) {
-  if (v === undefined) return def
-  if (v === true) return true
-  const s = String(v).toLowerCase()
-  return s === "1" || s === "true" || s === "yes"
-}
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

@@ -1,40 +1,41 @@
-# GitHub Sync Scripts
+# GitHub Sync Utilities
 
-This project includes two Node scripts to synchronize files from a GitHub repository zipball.
+This project includes scripts to import files from a GitHub repository zipball into your current workspace.
 
-## 1) General-purpose sync
+## General Sync
 
-Sync any paths and optionally preserve some:
+Sync any part of a repo:
 
-- Dry run:
-  node scripts/sync-from-github.mjs --repo iciso/iqra --branch main --dry-run
+- Dry run (preview changes):
+  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --dry-run true
 
-- Sync data and locales, preserving scripts and this README:
-  node scripts/sync-from-github.mjs --repo iciso/iqra --branch main --onlyPaths data,public/locales --preserve "scripts,README-sync.md" --backup true
+- Sync with backup, preserving local scripts and lockfiles:
+  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true --preserve "scripts/,pnpm-lock.yaml,package-lock.json,yarn.lock"
 
-Options:
-- --repo=owner/repo (default iciso/iqra)
-- --branch=name (default main)
-- --onlyPaths=comma,separated,paths (optional)
-- --preserve=comma,separated,paths (optional)
-- --backup=true|false (default false)
-- --dry-run=true|false (default false)
+- Sync only specific paths (comma-separated):
+  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --onlyPaths "data/,public/locales/" --backup true
 
-Backups go to .sync-backup/YYYY-MM-DDTHH-mm-ssZ/
+Notes:
+- preserve and onlyPaths are path-prefix filters relative to project root.
+- Backups are written to .backup/<repo>@<branch>-<timestamp>/.
 
-## 2) Sync only data/
+## Data-Only Sync (Recommended)
 
-To pull in all upstream question sets (e.g., 21 categories with 30 easy/30 advanced):
+To import all upstream categories and questions (21 categories, 30 easy and 30 advanced each):
 
 - Dry run:
-  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --dry-run
+  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --dry-run true
 
-- Execute with backup:
+- Apply with backup:
   node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true
 
-## 3) Verify data
+## Verify Data
 
-Heuristic question count:
+Run a heuristic verification of question counts:
   node scripts/verify-data.mjs
 
-This counts "question:" occurrences and prints totals. It’s a quick sanity check, not a strict validator.
+This lists each data file and approximates easy/advanced markers.
+
+## Build Tips
+
+If a build keeps failing due to stale cache, redeploy without the build cache from the Vercel dashboard or CLI. See Vercel docs on managing build cache. [^1]

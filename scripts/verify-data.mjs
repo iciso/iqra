@@ -1,38 +1,58 @@
-#!/usr/bin/env node
 /**
- * Quick verification for data/ files:
- * - Lists category files under data/
- * - Heuristically counts questions by matching "question:" occurrences.
+ * Simple verification for the data/ folder:
+ * - Lists .ts files in data/
+ * - Roughly estimates easy/advanced question counts by regex
+ *   (heuristic only; adjust patterns if your schema differs)
+ *
+ * Usage:
+ *  node scripts/verify-data.mjs
  */
-import { readdir, readFile, stat } from "node:fs/promises"
-import path from "node:path"
 
-const dataDir = path.resolve("data")
-const files = await lsTsFiles(dataDir)
-let total = 0
+import fs from 'node:fs'
+import path from 'node:path'
 
-for (const f of files) {
-  const content = await readFile(f, "utf8")
-  const qMatches = content.match(/\bquestion\s*:/g) || []
-  total += qMatches.length
-  console.log(`${path.relative(process.cwd(), f)} -> ~${qMatches.length} question entries`)
+const dataDir = path.join(process.cwd(), 'data')
+
+function grepCount(text, patterns) {
+  const re = new RegExp(patterns.join('|'), 'gi')
+  const matches = text.match(re)
+  return matches ? matches.length : 0
 }
 
-console.log(`Total heuristic question entries: ~${total}`)
-console.log("Note: This is an approximation based on 'question:' occurrences in TS files.")
-
-async function lsTsFiles(dir) {
-  const out = []
-  const entries = await readdir(dir)
-  for (const name of entries) {
-    const full = path.join(dir, name)
-    const s = await stat(full)
-    if (s.isDirectory()) {
-      const sub = await lsTsFiles(full)
-      out.push(...sub)
-    } else if (name.endsWith(".ts") || name.endsWith(".tsx")) {
-      out.push(full)
-    }
+async function verify() {
+  if (!fs.existsSync(dataDir)) {
+    console.error('No data/ directory found.')
+    process.exit(1)
   }
-  return out
+
+  const files = (await fs.promises.readdir(dataDir)).filter((f) => f.endsWith('.ts') || f.endsWith('.tsx'))
+  console.log(`Found ${files.length} data file(s).`)
+
+  let totalEasy = 0
+  let totalAdvanced = 0
+
+  for (const file of files) {
+    const full = path.join(dataDir, file)
+    const content = await fs.promises.readFile(full, 'utf8')
+
+    // Heuristics: adjust patterns to your schema
+    const easyCount = grepCount(content, ['"easy"', "'easy'", 'easyQuestions', 'easy:'])
+    const advancedCount = grepCount(content, ['"advanced"', "'advanced'", 'advancedQuestions', 'hardQuestions', 'advanced:'])
+
+    totalEasy += easyCount
+    totalAdvanced += advancedCount
+
+    console.log(`- ${file}: approx easy=${easyCount}, advanced=${advancedCount}`)
+  }
+
+  console.log('\nSummary:')
+  console.log(`Approx total easy markers: ${totalEasy}`)
+  console.log(`Approx total advanced markers: ${totalAdvanced}`)
+
+  console.log('\nNote: This is a heuristic count. Use domain-specific parsing if you need exact totals.')
 }
+
+verify().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
