@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Iqra Tamil Demo",
+    "tagline": "Switch between English and Tamil using the Language Switcher."
+  },
+  "demo": {
+    "greeting": "Welcome, {{name}}!",
+    "instructions": "This page demonstrates client-side i18n without URL params."
+  }
+}
