@@ -1,54 +1,38 @@
-import fs from "node:fs"
+#!/usr/bin/env node
+/**
+ * Quick verification for data/ files:
+ * - Lists category files under data/
+ * - Heuristically counts questions by matching "question:" occurrences.
+ */
+import { readdir, readFile, stat } from "node:fs/promises"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const dataDir = path.join(__dirname, "..", "data")
+const dataDir = path.resolve("data")
+const files = await lsTsFiles(dataDir)
+let total = 0
 
-function listCategoryFiles() {
-  if (!fs.existsSync(dataDir)) {
-    console.error("data/ directory not found.")
-    process.exit(1)
-  }
-  const files = fs
-    .readdirSync(dataDir)
-    .filter((f) => f.endsWith(".ts") || f.endsWith(".tsx"))
-    .filter((f) => !f.includes("quran") && !f.includes("infographic") && !f.includes("quiz-data"))
-  return files
+for (const f of files) {
+  const content = await readFile(f, "utf8")
+  const qMatches = content.match(/\bquestion\s*:/g) || []
+  total += qMatches.length
+  console.log(`${path.relative(process.cwd(), f)} -> ~${qMatches.length} question entries`)
 }
 
-// Heuristic count: scan for arrays named easyQuestions and advancedQuestions.
-function countQuestionsInFile(filePath) {
-  const src = fs.readFileSync(filePath, "utf8")
-  const easyMatches = (src.match(/easyQuestions\s*:\s*\[/g) || []).length
-  const advMatches = (src.match(/advancedQuestions\s*:\s*\[/g) || []).length
-  // Fallback heuristics for some data shapes: count "level: 'easy'/'advanced'"
-  const easyAlt = (src.match(/level\s*:\s*['"]easy['"]/g) || []).length
-  const advAlt = (src.match(/level\s*:\s*['"]advanced['"]/g) || []).length
-  return {
-    easyBlocks: easyMatches,
-    advancedBlocks: advMatches,
-    easyAlt,
-    advancedAlt,
-  }
-}
+console.log(`Total heuristic question entries: ~${total}`)
+console.log("Note: This is an approximation based on 'question:' occurrences in TS files.")
 
-function main() {
-  const files = listCategoryFiles()
-  console.log(`Found ${files.length} potential category files in data/`)
-  const summary = []
-  for (const f of files) {
-    const p = path.join(dataDir, f)
-    const c = countQuestionsInFile(p)
-    summary.push({ file: f, ...c })
+async function lsTsFiles(dir) {
+  const out = []
+  const entries = await readdir(dir)
+  for (const name of entries) {
+    const full = path.join(dir, name)
+    const s = await stat(full)
+    if (s.isDirectory()) {
+      const sub = await lsTsFiles(full)
+      out.push(...sub)
+    } else if (name.endsWith(".ts") || name.endsWith(".tsx")) {
+      out.push(full)
+    }
   }
-  for (const row of summary) {
-    console.log(
-      `${row.file} -> easyBlocks=${row.easyBlocks}, advancedBlocks=${row.advancedBlocks}, easyAlt=${row.easyAlt}, advancedAlt=${row.advancedAlt}`,
-    )
-  }
-  console.log("Note: This is a heuristic. Use your app pages to verify exact counts visually.")
+  return out
 }
-
-main()

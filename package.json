@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "latest",
-    "@hookform/resolvers": "^3.10.0",
+    "@hookform/resolvers": "3.10.0",
     "@neondatabase/serverless": "latest",
     "@radix-ui/react-accordion": "latest",
     "@radix-ui/react-alert-dialog": "latest",
@@ -39,9 +39,10 @@
     "@radix-ui/react-toggle": "latest",
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
+    "@supabase/auth-helpers-nextjs": "latest",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "10.4.21",
     "canvas-confetti": "latest",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -54,9 +55,9 @@
     "input-otp": "latest",
     "jszip": "latest",
     "lucide-react": "^0.454.0",
-    "mermaid": "latest",
+    "mermaid": "11.10.1",
     "next": "15.2.4",
-    "next-i18next": "^15.4.2",
+    "next-i18next": "15.4.2",
     "next-themes": "latest",
     "react": "^19",
     "react-day-picker": "latest",
@@ -69,7 +70,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "latest",
-    "zod": "^3.25.76"
+    "zod": "3.25.76"
   },
   "devDependencies": {
     "@types/node": "^22",
