@@ -38,7 +38,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
-            {/* Language switcher - ALWAYS visible */}
+            {/* Language switcher - ALWAYS visible first */}
             <LanguageSwitcher />
 
             {user && (
@@ -78,7 +78,7 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* Language switcher - ALWAYS visible on mobile too */}
+            {/* Language switcher - ALWAYS visible on mobile */}
             <LanguageSwitcher />
 
             {user ? (
