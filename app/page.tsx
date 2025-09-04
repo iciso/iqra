@@ -81,7 +81,7 @@ export default function HomePage() {
             <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
           </div>
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">{t("appTitle")}</h1>
-          <p className="text-lg sm:text-xl text-green-700">{t("appDescription")}</p>
+          <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
           <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
             ما شاء الله (Masha Allah!) {t("welcome")} to {t("appTitle")}. Test your knowledge
             <br className="hidden sm:block" />
@@ -127,11 +127,11 @@ export default function HomePage() {
                 learn at your own pace.
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("quran")}</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("fiqh")}</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("tafsir")}</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("hadeeth")}</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("aqeedah")}</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Quran</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Fiqh</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Tafsir</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Aqeedah</span>
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
@@ -175,9 +175,7 @@ export default function HomePage() {
                   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
                 </svg>
               </div>
-              <CardTitle className="text-xl sm:text-2xl text-green-800">
-                {t("appTitle")} {t("challenge")}
-              </CardTitle>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">{t("appTitle")} Challenge</CardTitle>
               <CardDescription className="text-sm sm:text-base">Compete with others</CardDescription>
             </CardHeader>
             <CardContent className="text-center px-4 sm:px-6">
@@ -204,7 +202,7 @@ export default function HomePage() {
                     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
-                  Friend {t("challenge")}
+                  Friend Challenge
                 </span>
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
                   <svg
@@ -224,7 +222,7 @@ export default function HomePage() {
                     <line x1="8" x2="8" y1="2" y2="6" />
                     <line x1="3" x2="21" y1="10" y2="10" />
                   </svg>
-                  Daily {t("challenge")}
+                  Daily Challenge
                 </span>
               </div>
             </CardContent>
@@ -240,7 +238,7 @@ export default function HomePage() {
                   onClick={() => setShowAuthModal(true)}
                   className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
-                  {t("signIn")} to {t("challenge")}
+                  {t("signIn")} to Challenge
                 </Button>
               )}
             </CardFooter>
