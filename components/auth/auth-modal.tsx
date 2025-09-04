@@ -91,7 +91,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         </DialogHeader>
 
         <div className="space-y-4">
-          {/* OAuth Providers */}
           <div className="space-y-2">
             <Button
               type="button"
@@ -142,7 +141,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
           </div>
 
-          {/* Email Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
               <div className="space-y-2">

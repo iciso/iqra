@@ -50,7 +50,6 @@ export default function RootLayout({
               <div className="min-h-screen flex flex-col">
                 <Header />
                 <main className="flex-1">{children}</main>
-                {/* Footer removed for better UX during quiz play */}
               </div>
               <ChallengeNotification />
               <Toaster />

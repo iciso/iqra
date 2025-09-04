@@ -12,8 +12,6 @@ import { LanguageSelector } from "@/components/language-selector"
 export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
   const { t } = useLanguage()
-
-  // Add loading state for the sign out button
   const [signOutLoading, setSignOutLoading] = useState(false)
 
   const handleSignOut = async () => {
@@ -49,7 +47,6 @@ export function Header() {
                 <Link href="/about">
                   <Button variant="ghost">{t("about")}</Button>
                 </Link>
-                {/* Direct sign out button */}
                 <Button
                   variant="outline"
                   className="flex items-center space-x-1 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950 bg-transparent"
