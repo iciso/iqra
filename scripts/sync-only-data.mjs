@@ -1,58 +1,47 @@
-/**
- * Focused sync for the data/ folder from GitHub.
- *
- * Usage:
- *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true
- *  node scripts/sync-only-data.mjs --repo iciso/iqra --branch main --dry-run true
- */
+#!/usr/bin/env node
 
-import { fileURLToPath } from "node:url"
-import path from "node:path"
-import { spawn } from "node:child_process"
+import { syncFromGitHub } from './sync-from-github.mjs'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+async function syncOnlyData(options = {}) {
+  const {
+    repo = 'iciso/iqra',
+    branch = 'main',
+    backup = false,
+    dryRun = false
+  } = options
 
-function parseArgs() {
-  const args = process.argv.slice(2)
-  const out = {}
-  for (const arg of args) {
-    const [k, v = "true"] = arg.replace(/^--/, "").split("=")
-    out[k] = v
-  }
-  return out
-}
+  console.log('Syncing only data/ folder...')
 
-async function run() {
-  const args = parseArgs()
-  const repo = args.repo || "iciso/iqra"
-  const branch = args.branch || "main"
-  const backup = args.backup ?? "true"
-  const dryRun = args.dryRun ?? "false"
-  const preserve = args.preserve || "scripts,.backup-sync"
-
-  const script = path.join(__dirname, "sync-from-github.mjs")
-  const cliArgs = [
-    script,
-    `--repo=${repo}`,
-    `--branch=${branch}`,
-    `--onlyPaths=data`,
-    `--preserve=${preserve}`,
-    `--backup=${backup}`,
-    `--dry-run=${dryRun}`,
-  ]
-
-  console.log("Running:", ["node", ...cliArgs].join(" "))
-  await new Promise((resolve, reject) => {
-    const child = spawn("node", cliArgs, { stdio: "inherit" })
-    child.on("exit", (code) => {
-      if (code === 0) resolve()
-      else reject(new Error(`sync-from-github exited with code ${code}`))
-    })
+  await syncFromGitHub({
+    repo,
+    branch,
+    onlyPaths: ['data/'],
+    preserve: ['scripts/', 'README-sync.md', 'app/i18n-demo/'],
+    backup,
+    dryRun
   })
 }
 
-run().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+// CLI handling
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const args = process.argv.slice(2)
+  const options = {}
+  
+  for (let i = 0; i < args.length; i += 2) {
+    const key = args[i]?.replace('--', '')
+    const value = args[i + 1]
+    
+    if (key === 'dry-run') {
+      options.dryRun = value === 'true'
+      i-- // No value for this flag
+    } else if (key === 'backup') {
+      options.backup = value === 'true'
+    } else if (key && value) {
+      options[key] = value
+    }
+  }
+  
+  syncOnlyData(options)
+}
+
+export { syncOnlyData }

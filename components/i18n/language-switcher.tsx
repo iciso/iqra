@@ -13,11 +13,11 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={toggleLanguage} className="flex items-center gap-2 bg-transparent">
+    <Button variant="ghost" size="sm" onClick={toggleLanguage} className="flex items-center gap-2">
       <Globe className="h-4 w-4" />
       {i18n.language === "en" ? "தமிழ்" : "English"}
     </Button>
   )
 }
 
-export { LanguageSwitcher as default }
+export default LanguageSwitcher

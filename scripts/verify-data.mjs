@@ -1,64 +1,50 @@
-/**
- * Verifies data/ content by listing category files and estimating question counts.
- *
- * Heuristics:
- * - Counts 'difficulty: "easy"' and 'difficulty: "advanced"' occurrences per file.
- * - If structure differs, it still lists files and sizes.
- */
+#!/usr/bin/env node
 
-import fs from "node:fs/promises"
-import path from "node:path"
+import { readdirSync, readFileSync, statSync } from 'fs'
+import { join, extname } from 'path'
+import { dirname, fileURLToPath } from 'url'
 
-async function getAllTsFiles(dir) {
-  const out = []
-  async function walk(d) {
-    const entries = await fs.readdir(d, { withFileTypes: true })
-    for (const e of entries) {
-      const full = path.join(d, e.name)
-      if (e.isDirectory()) await walk(full)
-      else if (e.isFile() && full.endsWith(".ts")) out.push(full)
-    }
-  }
-  await walk(dir)
-  return out
-}
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const dataDir = join(__dirname, '..', 'data')
 
-function countOccurrences(str, re) {
-  let count = 0
-  for (const _ of str.matchAll(re)) count++
-  return count
-}
+function verifyData() {
+  console.log('Verifying data folder contents...\n')
 
-async function main() {
-  const dataDir = path.join(process.cwd(), "data")
   try {
-    await fs.access(dataDir)
-  } catch {
-    console.error("data/ directory not found.")
+    const files = readdirSync(dataDir)
+    const tsFiles = files.filter(f => extname(f) === '.ts' && !f.includes('quiz-data-manager'))
+    
+    console.log(`Found ${tsFiles.length} category files:`)
+    
+    let totalEasy = 0
+    let totalAdvanced = 0
+    
+    tsFiles.forEach(file => {
+      const filePath = join(dataDir, file)
+      const content = readFileSync(filePath, 'utf-8')
+      
+      // Simple regex to count questions (this is approximate)
+      const easyMatches = content.match(/difficulty:\s*['"]easy['"]/g) || []
+      const advancedMatches = content.match(/difficulty:\s*['"]advanced['"]/g) || []
+      
+      console.log(`  ${file}: ~${easyMatches.length} easy, ~${advancedMatches.length} advanced`)
+      
+      totalEasy += easyMatches.length
+      totalAdvanced += advancedMatches.length
+    })
+    
+    console.log(`\nTotal: ~${totalEasy} easy questions, ~${totalAdvanced} advanced questions`)
+    console.log(`Grand total: ~${totalEasy + totalAdvanced} questions`)
+    
+  } catch (error) {
+    console.error('Error verifying data:', error.message)
     process.exit(1)
   }
-
-  const files = await getAllTsFiles(dataDir)
-  console.log(`Found ${files.length} data files.`)
-
-  let totalEasy = 0
-  let totalAdvanced = 0
-
-  for (const file of files) {
-    const content = await fs.readFile(file, "utf8")
-    const easy = countOccurrences(content, /difficulty:\s*['"]easy['"]/g)
-    const adv = countOccurrences(content, /difficulty:\s*['"]advanced['"]/g)
-    totalEasy += easy
-    totalAdvanced += adv
-    console.log(
-      `${path.relative(process.cwd(), file)} -> easy: ${easy}, advanced: ${adv}, size: ${content.length} chars`
-    )
-  }
-
-  console.log(`Totals -> easy: ${totalEasy}, advanced: ${totalAdvanced}`)
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+// Run if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  verifyData()
+}
+
+export { verifyData }

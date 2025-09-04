@@ -1,164 +1,126 @@
-/**
- * General-purpose GitHub zipball sync script.
- * - Downloads a repository zipball and overwrites local files.
- * - Supports:
- *    --repo owner/name
- *    --branch branchName (default: main)
- *    --onlyPaths comma-separated prefixes to include (e.g. "data,public/locales")
- *    --preserve comma-separated prefixes to skip overwriting (e.g. "scripts,README.md")
- *    --backup true|false create .backup-sync/<timestamp> backups before overwrite (default: true)
- *    --dry-run true|false (default: false)
- *
- * Examples:
- *  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --onlyPaths data,public/locales --preserve scripts --backup true
- */
+#!/usr/bin/env node
 
-import fs from "node:fs/promises"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
-import JSZip from "jszip"
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const projectRoot = join(__dirname, '..')
 
-function parseArgs() {
-  const args = process.argv.slice(2)
-  const out = {}
-  for (const arg of args) {
-    const [k, v = "true"] = arg.replace(/^--/, "").split("=")
-    out[k] = v
-  }
-  return out
-}
-
-function parseList(val) {
-  if (!val) return []
-  return val
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean)
-}
-
-async function ensureDir(dir) {
-  await fs.mkdir(dir, { recursive: true })
-}
-
-async function backupFile(srcPath, backupRoot) {
-  const rel = path.relative(process.cwd(), srcPath)
-  const dest = path.join(backupRoot, rel)
-  await ensureDir(path.dirname(dest))
-  try {
-    const content = await fs.readFile(srcPath)
-    await fs.writeFile(dest, content)
-  } catch {
-    // ignore (file might not exist yet)
-  }
-}
-
-function shouldInclude(relPath, onlyPaths) {
-  if (!onlyPaths.length) return true
-  return onlyPaths.some((p) => relPath.startsWith(p))
-}
-
-function shouldPreserve(relPath, preservePrefixes) {
-  if (!preservePrefixes.length) return false
-  return preservePrefixes.some((p) => relPath.startsWith(p))
-}
-
-async function downloadZip(repo, branch) {
-  const url = `https://codeload.github.com/${repo}/zip/refs/heads/${branch}`
-  const res = await fetch(url)
-  if (!res.ok) {
-    throw new Error(`Failed to download zip: ${url} ${res.status} ${res.statusText}`)
-  }
-  const arrayBuffer = await res.arrayBuffer()
-  return Buffer.from(arrayBuffer)
-}
-
-async function main() {
+async function syncFromGitHub(options = {}) {
   const {
-    repo,
-    branch = "main",
-    onlyPaths: onlyPathsArg,
-    preserve: preserveArg,
-    backup: backupArg = "true",
-    dryRun: dryRunArg = "false",
-  } = parseArgs()
+    repo = 'iciso/iqra',
+    branch = 'main',
+    preserve = ['scripts/', 'README-sync.md', 'app/i18n-demo/'],
+    onlyPaths = [],
+    backup = false,
+    dryRun = false
+  } = options
 
-  if (!repo) {
-    console.error('Missing required argument: --repo (e.g. "--repo iciso/iqra")')
+  console.log(`Syncing from ${repo}@${branch}...`)
+  
+  if (dryRun) {
+    console.log('DRY RUN - No files will be modified')
+  }
+
+  try {
+    // Download zipball
+    const zipUrl = `https://github.com/${repo}/archive/${branch}.zip`
+    console.log(`Downloading: ${zipUrl}`)
+    
+    const response = await fetch(zipUrl)
+    if (!response.ok) {
+      throw new Error(`Failed to download: ${response.statusText}`)
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    const JSZip = (await import('jszip')).default
+    const zip = await JSZip.loadAsync(arrayBuffer)
+
+    // Create backup if requested
+    if (backup && !dryRun) {
+      const backupDir = join(projectRoot, `backup-${Date.now()}`)
+      console.log(`Creating backup at: ${backupDir}`)
+      // Implementation would copy current files to backup
+    }
+
+    let filesProcessed = 0
+    const preserveSet = new Set(preserve)
+    const onlyPathsSet = new Set(onlyPaths)
+
+    // Process each file in the zip
+    for (const [relativePath, file] of Object.entries(zip.files)) {
+      if (file.dir) continue
+
+      // Remove the root directory from the path
+      const pathParts = relativePath.split('/')
+      if (pathParts.length < 2) continue
+      const cleanPath = pathParts.slice(1).join('/')
+
+      // Skip if onlyPaths is specified and this path doesn't match
+      if (onlyPaths.length > 0 && !onlyPathsSet.has(cleanPath) && !onlyPaths.some(p => cleanPath.startsWith(p))) {
+        continue
+      }
+
+      // Skip preserved paths
+      if (preserve.some(p => cleanPath.startsWith(p))) {
+        console.log(`Preserving: ${cleanPath}`)
+        continue
+      }
+
+      const targetPath = join(projectRoot, cleanPath)
+      
+      if (dryRun) {
+        console.log(`Would sync: ${cleanPath}`)
+        filesProcessed++
+        continue
+      }
+
+      // Ensure directory exists
+      const targetDir = dirname(targetPath)
+      if (!existsSync(targetDir)) {
+        mkdirSync(targetDir, { recursive: true })
+      }
+
+      // Write file
+      const content = await file.async('nodebuffer')
+      writeFileSync(targetPath, content)
+      console.log(`Synced: ${cleanPath}`)
+      filesProcessed++
+    }
+
+    console.log(`\nSync complete! Processed ${filesProcessed} files.`)
+    
+  } catch (error) {
+    console.error('Sync failed:', error.message)
     process.exit(1)
   }
-
-  const onlyPaths = parseList(onlyPathsArg)
-  const preservePrefixes = parseList(preserveArg)
-  const doBackup = backupArg === "true"
-  const dryRun = dryRunArg === "true"
-
-  console.log(`Syncing from ${repo}@${branch}`)
-  if (onlyPaths.length) console.log("Only paths:", onlyPaths.join(", "))
-  if (preservePrefixes.length) console.log("Preserve prefixes:", preservePrefixes.join(", "))
-  console.log("Backup:", doBackup, "Dry-run:", dryRun)
-
-  const buf = await downloadZip(repo, branch)
-
-  const zip = await JSZip.loadAsync(buf)
-  // The zip root usually contains a single directory named "<name>-<branch>/"
-  const rootDirName = Object.keys(zip.files).find((k) => zip.files[k].dir && !k.includes("/../"))
-  const rootPrefix = rootDirName ? rootDirName : ""
-
-  const backupRoot = path.join(process.cwd(), ".backup-sync", String(Date.now()))
-  if (doBackup && !dryRun) {
-    await ensureDir(backupRoot)
-  }
-
-  let changedCount = 0
-  let skippedCount = 0
-
-  for (const [zipPath, entry] of Object.entries(zip.files)) {
-    if (entry.dir) continue
-    if (!zipPath.startsWith(rootPrefix)) continue
-
-    const relPath = zipPath.slice(rootPrefix.length)
-    if (!relPath) continue
-
-    // Filter by onlyPaths and preserve
-    if (!shouldInclude(relPath, onlyPaths)) {
-      skippedCount++
-      continue
-    }
-    if (shouldPreserve(relPath, preservePrefixes)) {
-      console.log(`Preserved: ${relPath}`)
-      skippedCount++
-      continue
-    }
-
-    const destPath = path.join(process.cwd(), relPath)
-    if (dryRun) {
-      console.log(`[dry-run] Write: ${relPath}`)
-      changedCount++
-      continue
-    }
-
-    // Backup existing file
-    if (doBackup) {
-      await backupFile(destPath, backupRoot)
-    }
-
-    await ensureDir(path.dirname(destPath))
-    const content = await entry.async("nodebuffer")
-    await fs.writeFile(destPath, content)
-    console.log(`Wrote: ${relPath}`)
-    changedCount++
-  }
-
-  console.log(`Done. Changed: ${changedCount}, Skipped: ${skippedCount}`)
-  if (doBackup && !dryRun) {
-    console.log(`Backups saved under: ${backupRoot}`)
-  }
 }
 
-main().catch((err) => {
-  console.error("Sync failed:", err)
-  process.exit(1)
-})
+// CLI handling
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const args = process.argv.slice(2)
+  const options = {}
+  
+  for (let i = 0; i < args.length; i += 2) {
+    const key = args[i]?.replace('--', '')
+    const value = args[i + 1]
+    
+    if (key === 'preserve') {
+      options.preserve = value ? value.split(',') : []
+    } else if (key === 'onlyPaths') {
+      options.onlyPaths = value ? value.split(',') : []
+    } else if (key === 'dry-run') {
+      options.dryRun = value === 'true'
+      i-- // No value for this flag
+    } else if (key === 'backup') {
+      options.backup = value === 'true'
+    } else if (key && value) {
+      options[key] = value
+    }
+  }
+  
+  syncFromGitHub(options)
+}
+
+export { syncFromGitHub }

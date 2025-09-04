@@ -1,29 +1,18 @@
-import i18n from "i18next"
-import { initReactI18next } from "react-i18next"
-import LanguageDetector from "i18next-browser-languagedetector"
-import Backend from "i18next-http-backend"
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import HttpBackend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
+i18next
   .use(initReactI18next)
+  .use(HttpBackend)
+  .use(LanguageDetector)
   .init({
-    lng: "en",
-    fallbackLng: "en",
-    debug: false,
+    fallbackLng: 'en',
+    supportedLngs: ['en', 'ta'],
+    debug: process.env.NODE_ENV === 'development',
+    interpolation: { escapeValue: false },
+    backend: { loadPath: '/locales/{{lng}}/{{ns}}.json' },
+  });
 
-    interpolation: {
-      escapeValue: false,
-    },
-
-    backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json",
-    },
-
-    detection: {
-      order: ["cookie", "localStorage", "navigator", "htmlTag"],
-      caches: ["cookie", "localStorage"],
-    },
-  })
-
-export default i18n
+export default i18next;

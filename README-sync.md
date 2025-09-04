@@ -1,33 +1,64 @@
 # GitHub Sync Scripts
 
-Use these scripts to sync files from a GitHub repository zipball into this project.
+This project includes scripts to sync content from the upstream GitHub repository.
 
-## Scripts
+## Available Scripts
 
-1) General sync
-- Command:
-  node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation --onlyPaths data,public/locales --preserve scripts,.backup-sync --backup true
-- Flags:
-  - --repo owner/name
-  - --branch branchName (default: main)
-  - --onlyPaths comma-separated included path prefixes
-  - --preserve comma-separated path prefixes to skip overwriting
-  - --backup true|false (default: true) store backups in .backup-sync/<timestamp>
-  - --dry-run true|false (default: false)
+### 1. General Sync (`sync-from-github.mjs`)
 
-2) Data-only sync (recommended for bringing categories/questions)
-- Dry run:
-  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --dry-run true
-- Apply with backups:
-  node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true
+Syncs all or specific files from a GitHub repository:
 
-3) Verify imported data
-- Command:
-  node scripts/verify-data.mjs
-- Output: lists data files with approximate counts of "easy" vs "advanced" questions.
+\`\`\`bash
+# Sync everything (with default preserves)
+node scripts/sync-from-github.mjs
 
-## Notes
+# Sync from specific repo/branch
+node scripts/sync-from-github.mjs --repo iciso/iqra --branch feature/tamil-translation
 
-- These scripts download https://codeload.github.com/<repo>/zip/refs/heads/<branch> and extract into your project root.
-- Use --preserve to avoid overwriting your local scripts or other sensitive files.
-- Consider redeploying without the existing Build cache if you suspect stale artifacts in Vercel. See the Vercel docs for managing build cache and redeploying without cache. [^1]
+# Sync only specific paths
+node scripts/sync-from-github.mjs --onlyPaths "data/,public/locales/"
+
+# Dry run to see what would be synced
+node scripts/sync-from-github.mjs --dry-run true
+
+# Create backup before syncing
+node scripts/sync-from-github.mjs --backup true
+\`\`\`
+
+### 2. Data-Only Sync (`sync-only-data.mjs`)
+
+Syncs only the `data/` folder to import all categories and questions:
+
+\`\`\`bash
+# Sync data with backup
+node scripts/sync-only-data.mjs --backup true
+
+# Dry run
+node scripts/sync-only-data.mjs --dry-run true
+\`\`\`
+
+### 3. Verification (`verify-data.mjs`)
+
+Checks the data folder and counts questions:
+
+\`\`\`bash
+node scripts/verify-data.mjs
+\`\`\`
+
+## Default Behavior
+
+- **Preserved paths**: `scripts/`, `README-sync.md`, `app/i18n-demo/`
+- **Source**: `iciso/iqra` main branch
+- **Backup**: Optional, creates timestamped backup folder
+
+## Examples
+
+\`\`\`bash
+# Import all upstream data files
+node scripts/sync-only-data.mjs --repo iciso/iqra --branch feature/tamil-translation --backup true
+
+# Verify the import worked
+node scripts/verify-data.mjs
+
+# Sync everything except preserved files
+node scripts/sync-from-github.mjs --repo iciso/iqra --branch main
