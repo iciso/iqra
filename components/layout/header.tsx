@@ -6,11 +6,14 @@ import { LogOut, Home, Menu } from "lucide-react"
 import { useState } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { LanguageSwitcher } from "@/components/i18n/language-switcher"
+import { useTranslation } from "react-i18next"
 
 export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
   const [signOutLoading, setSignOutLoading] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t } = useTranslation()
 
   const handleSignOut = async () => {
     setSignOutLoading(true)
@@ -35,43 +38,45 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             {user && (
               <>
                 <Link href="/categories">
-                  <Button variant="ghost">Quiz</Button>
+                  <Button variant="ghost">{t("nav.categories")}</Button>
                 </Link>
                 <Link href="/challenges">
-                  <Button variant="ghost">Challenges</Button>
+                  <Button variant="ghost">{t("nav.challenges")}</Button>
                 </Link>
                 <Link href="/leaderboard">
-                  <Button variant="ghost">Leaderboard</Button>
+                  <Button variant="ghost">{t("nav.leaderboard")}</Button>
+                </Link>
+                <Link href="/badges">
+                  <Button variant="ghost">{t("nav.badges")}</Button>
                 </Link>
                 <Link href="/profile">
-                  <Button variant="ghost">Profile</Button>
+                  <Button variant="ghost">{t("nav.profile")}</Button>
                 </Link>
                 <Link href="/about">
-                  <Button variant="ghost">About</Button>
+                  <Button variant="ghost">{t("nav.about")}</Button>
                 </Link>
                 <Button
                   variant="outline"
-                  className="flex items-center space-x-1 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+                  className="flex items-center space-x-1 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950 bg-transparent"
                   onClick={handleSignOut}
                   disabled={signOutLoading}
                 >
                   <LogOut className="h-4 w-4 mr-1" />
-                  <span>Sign Out</span>
+                  <span>{t("nav.signOut")}</span>
                 </Button>
               </>
             )}
 
-            {!user && <Button onClick={() => signInWithProvider("google")}>Sign In</Button>}
-
-           
+            {!user && <Button onClick={() => signInWithProvider("google")}>{t("nav.signIn")}</Button>}
           </nav>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
-         
+            <LanguageSwitcher />
 
             {user ? (
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -84,38 +89,43 @@ export function Header() {
                   <div className="flex flex-col space-y-4 mt-8">
                     <Link href="/categories" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        Quiz
+                        {t("nav.categories")}
                       </Button>
                     </Link>
                     <Link href="/challenges" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        Challenges
+                        {t("nav.challenges")}
                       </Button>
                     </Link>
                     <Link href="/leaderboard" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        Leaderboard
+                        {t("nav.leaderboard")}
+                      </Button>
+                    </Link>
+                    <Link href="/badges" onClick={closeMobileMenu}>
+                      <Button variant="ghost" className="w-full justify-start">
+                        {t("nav.badges")}
                       </Button>
                     </Link>
                     <Link href="/profile" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        Profile
+                        {t("nav.profile")}
                       </Button>
                     </Link>
                     <Link href="/about" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        About
+                        {t("nav.about")}
                       </Button>
                     </Link>
                     <div className="border-t pt-4">
                       <Button
                         variant="outline"
-                        className="w-full justify-start border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+                        className="w-full justify-start border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950 bg-transparent"
                         onClick={handleSignOut}
                         disabled={signOutLoading}
                       >
                         <LogOut className="h-4 w-4 mr-2" />
-                        <span>Sign Out</span>
+                        <span>{t("nav.signOut")}</span>
                       </Button>
                     </div>
                   </div>
@@ -123,7 +133,7 @@ export function Header() {
               </Sheet>
             ) : (
               <Button onClick={() => signInWithProvider("google")} size="sm">
-                Sign In
+                {t("nav.signIn")}
               </Button>
             )}
           </div>

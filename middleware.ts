@@ -1,20 +1,18 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-// Keep middleware lightweight and compatible with Edge runtime.
-// Avoid server-only clients here; enforce auth in server actions/route handlers instead.
 export function middleware(request: NextRequest) {
+  // Simple redirect logic - no Supabase auth in middleware to avoid Edge runtime issues
   const { pathname } = request.nextUrl
 
-  // Redirect legacy routes
-  if (pathname === "/challenge" || pathname === "/quiz-challenges") {
-    return NextResponse.redirect(new URL("/challenges", request.url))
+  // Redirect root to home for authenticated users (handled client-side)
+  if (pathname === "/") {
+    return NextResponse.next()
   }
 
   return NextResponse.next()
 }
 
-// Only run on the routes we need
 export const config = {
-  matcher: ["/challenge", "/quiz-challenges"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
 }

@@ -13,9 +13,14 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <Button variant="ghost" size="sm" onClick={toggleLanguage} className="flex items-center gap-2">
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={toggleLanguage}
+      className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+    >
       <Globe className="h-4 w-4" />
-      {i18n.language === "en" ? "தமிழ்" : "English"}
+      <span className="text-sm font-medium">{i18n.language === "en" ? "தமிழ்" : "English"}</span>
     </Button>
   )
 }

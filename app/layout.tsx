@@ -1,17 +1,18 @@
-import type React from "react";
-import Head from "next/head";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "@/contexts/auth-context";
-import { Header } from "@/components/layout/header";
-import { Toaster } from "@/components/ui/toaster";
-import ChallengeNotification from "@/components/challenge/challenge-notification";
+import type React from "react"
+import Head from "next/head"
+import type { Metadata, Viewport } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/contexts/auth-context"
+import { I18nProvider } from "@/components/i18n/i18n-provider"
+import { Header } from "@/components/layout/header"
+import { Toaster } from "@/components/ui/toaster"
+import ChallengeNotification from "@/components/challenge/challenge-notification"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
-// Metadata export 
+// Metadata export
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Increase & Test your Islamic knowledge through interactive quizzes and challenges",
@@ -48,19 +49,19 @@ export const metadata: Metadata = {
     ],
   },
   generator: "v0.dev",
-};
+}
 
 // Viewport export
 export const viewport: Viewport = {
   themeColor: "#15803D",
   width: "device-width",
   initialScale: 1,
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -69,22 +70,19 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <ChallengeNotification />
-              <Toaster />
-            </div>
-          </AuthProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <I18nProvider>
+            <AuthProvider>
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <ChallengeNotification />
+                <Toaster />
+              </div>
+            </AuthProvider>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
