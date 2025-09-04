@@ -1,46 +1,35 @@
 {
-  "nav": {
-    "home": "Home",
-    "categories": "Categories",
-    "challenges": "Challenges",
-    "leaderboard": "Leaderboard",
-    "badges": "Badges",
-    "profile": "Profile",
-    "about": "About",
-    "menu": "Menu"
-  },
-  "auth": {
-    "signIn": "Sign In",
-    "signOut": "Sign Out"
-  },
+  "home": "Home",
+  "categories": "Categories",
+  "challenges": "Challenges",
+  "leaderboard": "Leaderboard",
+  "badges": "Badges",
+  "profile": "Profile",
+  "about": "About",
+  "signIn": "Sign In",
+  "signOut": "Sign Out",
   "home": {
-    "hero": {
-      "title": "Welcome to the Islamic Knowledge Hub",
-      "subtitle": "Explore and enhance your understanding of Islam through our interactive learning and gaming."
-    },
-    "learning": {
+    "welcome": "Welcome to the Islamic Knowledge Hub",
+    "subtitle": "Explore and enhance your understanding of Islam through our interactive learning and gaming.",
+    "learningMode": {
       "title": "IQRA Learning Mode",
       "description": "Learn at your own pace with our comprehensive Islamic knowledge quiz system",
-      "body": "The IQRA learning mode provides a structured approach to learning about various aspects of Islam. Test your knowledge, learn from explanations, and track your progress across different categories.",
-      "points": {
-        "levels": "Multiple difficulty levels",
-        "explanations": "Detailed explanations for each answer",
-        "progress": "Track your learning progress",
-        "coverage": "Covers many Islamic knowledge categories"
-      },
-      "cta": "Start Learning"
+      "content": "The IQRA learning mode provides a structured approach to learning about various aspects of Islam. Test your knowledge, learn from explanations, and track your progress across different categories.",
+      "feature1": "Multiple difficulty levels",
+      "feature2": "Detailed explanations for each answer",
+      "feature3": "Track your learning progress",
+      "feature4": "Covers 21 Islamic knowledge categories",
+      "button": "Start Learning"
     },
-    "challenge": {
+    "challengeMode": {
       "title": "IQRA Challenge Mode",
       "description": "Test your knowledge and compete with others in timed challenges",
-      "body": "The IQRA challenge mode puts your Islamic knowledge to the test with timed quizzes and competitive leaderboards. Challenge yourself and others to see who has the best understanding of Islamic topics.",
-      "points": {
-        "timed": "Timed challenges for added pressure",
-        "leaderboards": "Compete on global leaderboards",
-        "badges": "Earn badges and achievements",
-        "themed": "Special themed challenges"
-      },
-      "cta": "Enter Challenges"
+      "content": "The IQRA challenge mode puts your Islamic knowledge to the test with timed quizzes and competitive leaderboards. Challenge yourself and others to see who has the best understanding of Islamic topics.",
+      "feature1": "Timed challenges for added pressure",
+      "feature2": "Compete on global leaderboards",
+      "feature3": "Earn badges and achievements",
+      "feature4": "Special themed challenges",
+      "button": "Enter Challenges"
     }
   }
 }

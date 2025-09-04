@@ -2,17 +2,18 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { LogOut, HomeIcon, Menu } from "lucide-react"
+import { LogOut, Home, Menu } from "lucide-react"
 import { useState } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { LanguageSwitcher } from "@/components/i18n/language-switcher"
 import { useTranslation } from "react-i18next"
 
 export function Header() {
-  const { t } = useTranslation("common")
   const { user, signInWithProvider, signOut } = useAuth()
   const [signOutLoading, setSignOutLoading] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t } = useTranslation()
 
   const handleSignOut = async () => {
     setSignOutLoading(true)
@@ -31,44 +32,31 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <HomeIcon className="h-5 w-5 text-green-600 dark:text-green-400" aria-hidden="true" />
+            <Home className="h-5 w-5 text-green-600 dark:text-green-400" />
             <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
-            <span className="sr-only">{t("nav.home")}</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <nav className="hidden md:flex items-center space-x-4">
             {user && (
               <>
                 <Link href="/categories">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.categories")}
-                  </Button>
+                  <Button variant="ghost">{t("categories")}</Button>
                 </Link>
                 <Link href="/challenges">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.challenges")}
-                  </Button>
+                  <Button variant="ghost">{t("challenges")}</Button>
                 </Link>
                 <Link href="/leaderboard">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.leaderboard")}
-                  </Button>
+                  <Button variant="ghost">{t("leaderboard")}</Button>
                 </Link>
                 <Link href="/badges">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.badges")}
-                  </Button>
+                  <Button variant="ghost">{t("badges")}</Button>
                 </Link>
                 <Link href="/profile">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.profile")}
-                  </Button>
+                  <Button variant="ghost">{t("profile")}</Button>
                 </Link>
                 <Link href="/about">
-                  <Button variant="ghost" className="px-2 lg:px-3">
-                    {t("nav.about")}
-                  </Button>
+                  <Button variant="ghost">{t("about")}</Button>
                 </Link>
                 <Button
                   variant="outline"
@@ -76,59 +64,58 @@ export function Header() {
                   onClick={handleSignOut}
                   disabled={signOutLoading}
                 >
-                  <LogOut className="h-4 w-4 mr-1" aria-hidden="true" />
-                  <span>{t("auth.signOut")}</span>
+                  <LogOut className="h-4 w-4 mr-1" />
+                  <span>{t("signOut")}</span>
                 </Button>
               </>
             )}
 
-            {!user && <Button onClick={() => signInWithProvider("google")}>{t("auth.signIn")}</Button>}
+            {!user && <Button onClick={() => signInWithProvider("google")}>{t("signIn")}</Button>}
+
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
+
             {user ? (
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm" aria-label={t("nav.menu")}>
-                    <Menu className="h-5 w-5" aria-hidden="true" />
+                  <Button variant="ghost" size="sm">
+                    <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-64">
-                  <div className="flex flex-col space-y-2 mt-8">
-                    <Link href="/" onClick={closeMobileMenu}>
-                      <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.home")}
-                      </Button>
-                    </Link>
+                  <div className="flex flex-col space-y-4 mt-8">
                     <Link href="/categories" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.categories")}
+                        {t("categories")}
                       </Button>
                     </Link>
                     <Link href="/challenges" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.challenges")}
+                        {t("challenges")}
                       </Button>
                     </Link>
                     <Link href="/leaderboard" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.leaderboard")}
+                        {t("leaderboard")}
                       </Button>
                     </Link>
                     <Link href="/badges" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.badges")}
+                        {t("badges")}
                       </Button>
                     </Link>
                     <Link href="/profile" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.profile")}
+                        {t("profile")}
                       </Button>
                     </Link>
                     <Link href="/about" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("nav.about")}
+                        {t("about")}
                       </Button>
                     </Link>
                     <div className="border-t pt-4">
@@ -138,8 +125,8 @@ export function Header() {
                         onClick={handleSignOut}
                         disabled={signOutLoading}
                       >
-                        <LogOut className="h-4 w-4 mr-2" aria-hidden="true" />
-                        <span>{t("auth.signOut")}</span>
+                        <LogOut className="h-4 w-4 mr-2" />
+                        <span>{t("signOut")}</span>
                       </Button>
                     </div>
                   </div>
@@ -147,7 +134,7 @@ export function Header() {
               </Sheet>
             ) : (
               <Button onClick={() => signInWithProvider("google")} size="sm">
-                {t("auth.signIn")}
+                {t("signIn")}
               </Button>
             )}
           </div>
