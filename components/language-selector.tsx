@@ -16,12 +16,12 @@ export function LanguageSelector() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
+        <Button variant="outline" size="sm" className="bg-transparent">
+          <Globe className="h-4 w-4 mr-2" />
+          {currentLanguage?.nativeName || "English"}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      <DropdownMenuContent align="end">
         {supportedLanguages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
@@ -29,12 +29,10 @@ export function LanguageSelector() {
               setLanguage(lang.code)
               setIsOpen(false)
             }}
-            className={`flex items-center justify-between ${
-              language === lang.code ? "bg-green-50 dark:bg-green-900/20" : ""
-            }`}
+            className={language === lang.code ? "bg-green-50 dark:bg-green-900" : ""}
           >
-            <span>{lang.nativeName}</span>
-            <span className="text-sm text-gray-500">{lang.name}</span>
+            <span className="font-medium">{lang.nativeName}</span>
+            <span className="text-sm text-gray-500 ml-2">({lang.name})</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

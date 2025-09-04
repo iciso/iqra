@@ -1,257 +1,259 @@
 "use client"
 
-import { useState } from "react"
-import Link from "next/link"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { IqraLogo } from "@/components/iqra-logo"
 import { AuthModal } from "@/components/auth/auth-modal"
-import { useAuth } from "@/contexts/auth-context"
+import Link from "next/link"
+import { supabase } from "@/lib/supabase"
+import SimpleTopPlayers from "@/components/challenge/simple-top-players"
+import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import { useLanguage } from "@/contexts/language-context"
-import { BookOpen, Users, Trophy, Zap, Star, Globe, Heart, Target, Award, Clock, CheckCircle } from "lucide-react"
 
 export default function HomePage() {
-  const { user } = useAuth()
-  const { t } = useLanguage()
+  const [user, setUser] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
   const [showAuthModal, setShowAuthModal] = useState(false)
+  const { t } = useLanguage()
 
-  const features = [
-    {
-      icon: BookOpen,
-      title: t("categories"),
-      description: t("selectCategory"),
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-    },
-    {
-      icon: Users,
-      title: t("challenges"),
-      description: t("findChallengers"),
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-    },
-    {
-      icon: Trophy,
-      title: t("leaderboard"),
-      description: "Compete with other players",
-      color: "text-yellow-600",
-      bgColor: "bg-yellow-50",
-    },
-    {
-      icon: Award,
-      title: t("badges"),
-      description: t("achievements"),
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
-    },
-  ]
+  useEffect(() => {
+    // Check for session
+    const checkSession = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession()
+        if (data?.session?.user) {
+          console.log("User found:", data.session.user)
+          setUser(data.session.user)
+        } else {
+          console.log("No user session found")
+        }
+      } catch (err) {
+        console.error("Error checking session:", err)
+      } finally {
+        // Always stop loading after 3 seconds max
+        setTimeout(() => setLoading(false), 3000)
+      }
+    }
 
-  const stats = [
-    { label: t("categories"), value: "12+", icon: BookOpen },
-    { label: t("totalQuestions"), value: "500+", icon: Target },
-    { label: "Active Players", value: "1000+", icon: Users },
-    { label: "Daily Challenges", value: "50+", icon: Zap },
-  ]
+    checkSession()
+
+    // Listen for auth changes
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state changed:", event, !!session)
+      setUser(session?.user || null)
+      setLoading(false)
+    })
+
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
+        <div className="text-center">
+          <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
+          <p className="text-green-700 text-sm sm:text-base">
+            {t("loading")} {t("appTitle")}...
+          </p>
+          <div className="mt-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-300">
-              <Star className="w-4 h-4 mr-1" />
-              {t("appTitle")} - Islamic Learning Platform
-            </Badge>
+    <div className="min-h-screen flex flex-col bg-[#e6f7eb]">
+      <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col">
+        {/* Challenge Notifications - Prominent at top */}
+        {user && (
+          <div className="mb-6 sm:mb-8">
+            <ProfileChallengeNotifications />
+          </div>
+        )}
 
-            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="text-green-600 dark:text-green-400">{t("appTitle")}</span>
-              <br />
-              <span className="text-3xl sm:text-5xl">Islamic Quiz Platform</span>
-            </h1>
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
+            <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
+          </div>
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">{t("appTitle")}</h1>
+          <p className="text-lg sm:text-xl text-green-700">{t("appDescription")}</p>
+          <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+            ما شاء الله (Masha Allah!) {t("welcome")} to {t("appTitle")}. Test your knowledge
+            <br className="hidden sm:block" />
+            <span className="block sm:inline"> of Islam through learning or challenges.</span>
+          </p>
+          {user && (
+            <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
+              <p className="text-green-800 font-medium text-sm sm:text-base">
+                🎉 You're signed in as {user.email || user.user_metadata?.full_name || "a believer"}!
+              </p>
+              <p className="text-green-600 text-xs sm:text-sm">
+                Your progress will be saved across IQRA and KALAM apps.
+              </p>
+            </div>
+          )}
+        </div>
 
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">{t("appDescription")}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto w-full">
+          <Card className="bg-white border-0 shadow-sm">
+            <CardHeader className="text-center pb-2">
+              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-green-600 sm:w-6 sm:h-6"
+                >
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+              </div>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">{t("appTitle")} Learn</CardTitle>
+              <CardDescription className="text-sm sm:text-base">Learn at your own pace</CardDescription>
+            </CardHeader>
+            <CardContent className="text-center px-4 sm:px-6">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
+                Browse through 12 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
+                learn at your own pace.
+              </p>
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("quran")}</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("fiqh")}</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("tafsir")}</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("hadeeth")}</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">{t("aqeedah")}</span>
+              </div>
+            </CardContent>
+            <CardFooter className="pt-0 flex justify-center">
               {user ? (
                 <Link href="/categories">
-                  <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    {t("quiz")} {t("categories")}
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start Learning
                   </Button>
                 </Link>
               ) : (
                 <Button
-                  size="lg"
                   onClick={() => setShowAuthModal(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
-                  <Zap className="mr-2 h-5 w-5" />
-                  {t("signIn")} & Start Learning
+                  {t("signIn")} to Start Learning
                 </Button>
               )}
+            </CardFooter>
+          </Card>
 
-              <Link href="/about">
-                <Button variant="outline" size="lg" className="px-8 py-3 text-lg bg-transparent">
-                  <Globe className="mr-2 h-5 w-5" />
-                  {t("about")} {t("appTitle")}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-green-200 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-20 w-24 h-24 bg-yellow-200 rounded-full opacity-20 animate-pulse delay-2000"></div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-green-100 dark:bg-green-900 rounded-full">
-                    <stat.icon className="w-6 h-6 text-green-600 dark:text-green-400" />
-                  </div>
-                </div>
-                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{stat.value}</div>
-                <div className="text-gray-600 dark:text-gray-300">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t("features")}</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Discover comprehensive Islamic knowledge through interactive quizzes, challenges, and community learning
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="text-center pb-4">
-                  <div
-                    className={`w-16 h-16 ${feature.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
-                  >
-                    <feature.icon className={`w-8 h-8 ${feature.color}`} />
-                  </div>
-                  <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <CardDescription className="text-gray-600 dark:text-gray-300">{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Preview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Islamic Knowledge {t("categories")}
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore various aspects of Islamic knowledge from Quran and Hadith to Islamic history and jurisprudence
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { name: t("quran"), desc: t("quranDesc"), icon: BookOpen, color: "green" },
-              { name: t("fiqh"), desc: t("fiqhDesc"), icon: Target, color: "blue" },
-              { name: t("hadeeth"), desc: t("hadeethDesc"), icon: Heart, color: "purple" },
-              { name: t("seerah"), desc: t("seerahDesc"), icon: Users, color: "orange" },
-              { name: t("aqeedah"), desc: t("aqeedahDesc"), icon: Star, color: "red" },
-              { name: t("history"), desc: t("historyDesc"), icon: Clock, color: "indigo" },
-            ].map((category, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className={`p-2 bg-${category.color}-100 dark:bg-${category.color}-900 rounded-lg`}>
-                      <category.icon className={`w-5 h-5 text-${category.color}-600 dark:text-${category.color}-400`} />
-                    </div>
-                    <CardTitle className="text-lg">{category.name}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{category.desc}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            {user ? (
-              <Link href="/categories">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Explore All {t("categories")}
-                </Button>
-              </Link>
-            ) : (
-              <Button size="lg" onClick={() => setShowAuthModal(true)} className="bg-green-600 hover:bg-green-700">
-                <CheckCircle className="mr-2 h-5 w-5" />
-                {t("signIn")} to Start Learning
-              </Button>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-green-600 dark:bg-green-700">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Begin Your Islamic Learning Journey?
-          </h2>
-          <p className="text-xl text-green-100 mb-8">
-            Join thousands of Muslims worldwide in expanding their knowledge of Islam through interactive learning
-          </p>
-
-          {user ? (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories">
-                <Button size="lg" variant="secondary" className="px-8 py-3">
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Start {t("quiz")}
-                </Button>
-              </Link>
-              <Link href="/challenges">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="px-8 py-3 text-white border-white hover:bg-white hover:text-green-600 bg-transparent"
+          <Card className="bg-white border-0 shadow-sm">
+            <CardHeader className="text-center pb-2">
+              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-green-600 sm:w-6 sm:h-6"
                 >
-                  <Users className="mr-2 h-5 w-5" />
-                  Find {t("challenges")}
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                  <path d="M4 22h16" />
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                </svg>
+              </div>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">
+                {t("appTitle")} {t("challenge")}
+              </CardTitle>
+              <CardDescription className="text-sm sm:text-base">Compete with others</CardDescription>
+            </CardHeader>
+            <CardContent className="text-center px-4 sm:px-6">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
+                Challenge your friends or join the daily challenge. Compete with others and test your Islamic knowledge
+                in a fun and engaging way.
+              </p>
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-1 sm:w-3 sm:h-3"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  Friend {t("challenge")}
+                </span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-1 sm:w-3 sm:h-3"
+                  >
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" x2="16" y1="2" y2="6" />
+                    <line x1="8" x2="8" y1="2" y2="6" />
+                    <line x1="3" x2="21" y1="10" y2="10" />
+                  </svg>
+                  Daily {t("challenge")}
+                </span>
+              </div>
+            </CardContent>
+            <CardFooter className="pt-0 flex justify-center">
+              {user ? (
+                <Link href="/challenges">
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                    Start {t("challenges")}
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
+                  {t("signIn")} to {t("challenge")}
                 </Button>
-              </Link>
-            </div>
-          ) : (
-            <Button size="lg" variant="secondary" onClick={() => setShowAuthModal(true)} className="px-8 py-3 text-lg">
-              <Zap className="mr-2 h-5 w-5" />
-              {t("signIn")} Now - It's Free!
-            </Button>
-          )}
+              )}
+            </CardFooter>
+          </Card>
         </div>
-      </section>
 
-      {/* Auth Modal */}
+        <div className="mt-8 max-w-md mx-auto w-full">
+          <SimpleTopPlayers />
+        </div>
+
+        <div className="mt-auto pt-8 sm:pt-12 text-center text-gray-600 text-xs sm:text-sm px-4"></div>
+      </div>
+
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
     </div>
   )
