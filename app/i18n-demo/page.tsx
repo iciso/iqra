@@ -1,17 +1,29 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"
 import { LanguageSwitcher } from "@/components/i18n/language-switcher"
+import { useEffect, useState } from "react"
 
 export default function I18nDemoPage() {
   const { t, i18n } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="container mx-auto px-4 py-8">Loading...</div>
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">i18n Demo Page</h1>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold mb-4">i18n Demo Page</h1>
+          <p className="text-gray-600 mb-4">Current language: {i18n.language}</p>
           <LanguageSwitcher />
         </div>
 
@@ -20,7 +32,7 @@ export default function I18nDemoPage() {
           <Card>
             <CardHeader>
               <CardTitle>Navigation Translations</CardTitle>
-              <CardDescription>Current language: {i18n.language}</CardDescription>
+              <CardDescription>All navigation menu items</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -28,7 +40,7 @@ export default function I18nDemoPage() {
                   <strong>Home:</strong> {t("nav.home")}
                 </div>
                 <div>
-                  <strong>Quiz:</strong> {t("nav.categories")}
+                  <strong>Categories:</strong> {t("nav.categories")}
                 </div>
                 <div>
                   <strong>Challenges:</strong> {t("nav.challenges")}
@@ -56,43 +68,51 @@ export default function I18nDemoPage() {
           <Card>
             <CardHeader>
               <CardTitle>Home Page Translations</CardTitle>
+              <CardDescription>Main content translations</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div>
-                  <strong>Title:</strong>
-                  <p className="text-lg">{t("home.title")}</p>
-                </div>
-                <div>
-                  <strong>Subtitle:</strong>
-                  <p>{t("home.subtitle")}</p>
-                </div>
-                <div>
-                  <strong>Learning Mode Title:</strong> {t("home.learningMode.title")}
-                </div>
-                <div>
-                  <strong>Challenge Mode Title:</strong> {t("home.challengeMode.title")}
-                </div>
+            <CardContent className="space-y-4">
+              <div>
+                <strong>Title:</strong>
+                <p className="text-lg">{t("home.title")}</p>
+              </div>
+              <div>
+                <strong>Subtitle:</strong>
+                <p>{t("home.subtitle")}</p>
+              </div>
+              <div>
+                <strong>Learning Mode Title:</strong>
+                <p>{t("home.learningMode.title")}</p>
+              </div>
+              <div>
+                <strong>Challenge Mode Title:</strong>
+                <p>{t("home.challengeMode.title")}</p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Language Info */}
+          {/* Language Test */}
           <Card>
             <CardHeader>
-              <CardTitle>Language Information</CardTitle>
+              <CardTitle>Language Test</CardTitle>
+              <CardDescription>Test language switching functionality</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <p>
-                  <strong>Current Language:</strong> {i18n.language}
+                  <strong>Current Language:</strong> {i18n.language === "en" ? "English" : "Tamil (தமிழ்)"}
                 </p>
                 <p>
-                  <strong>Available Languages:</strong> English (en), Tamil (ta)
+                  <strong>Sample Text:</strong> {t("home.signInPrompt")}
                 </p>
-                <p>
-                  <strong>Fallback Language:</strong> English (en)
-                </p>
+                <Button
+                  onClick={() => {
+                    const newLang = i18n.language === "en" ? "ta" : "en"
+                    i18n.changeLanguage(newLang)
+                    localStorage.setItem("language", newLang)
+                  }}
+                >
+                  Switch to {i18n.language === "en" ? "Tamil" : "English"}
+                </Button>
               </div>
             </CardContent>
           </Card>

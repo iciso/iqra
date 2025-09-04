@@ -1,111 +1,34 @@
 "use client"
 
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Users, Trophy, CheckCircle, Globe, Zap, Award } from "lucide-react"
+import { BookOpen, Users, Trophy, Star, ArrowRight, Play } from "lucide-react"
+import Link from "next/link"
 import { useAuth } from "@/contexts/auth-context"
 import { useTranslation } from "react-i18next"
+import { useEffect, useState } from "react"
 
 export default function HomePage() {
-  const { user, signInWithProvider } = useAuth()
-  const { t } = useTranslation()
+  const { user } = useAuth()
+  const { t, i18n } = useTranslation()
+  const [mounted, setMounted] = useState(false)
 
-  if (user) {
+  useEffect(() => {
+    setMounted(true)
+    // Load saved language from localStorage
+    const savedLanguage = localStorage.getItem("language")
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ta")) {
+      i18n.changeLanguage(savedLanguage)
+    }
+  }, [i18n])
+
+  // Show loading state until mounted to avoid hydration mismatch
+  if (!mounted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">{t("home.title")}</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t("home.subtitle")}</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Learning Mode Card */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <BookOpen className="h-8 w-8 text-green-600" />
-                  <CardTitle className="text-2xl">{t("home.learningMode.title")}</CardTitle>
-                </div>
-                <CardDescription className="text-lg">{t("home.learningMode.description")}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  {t("home.learningMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/categories">
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    <BookOpen className="mr-2 h-4 w-4" />
-                    {t("home.learningMode.button")}
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Challenge Mode Card */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <Users className="h-8 w-8 text-blue-600" />
-                  <CardTitle className="text-2xl">{t("home.challengeMode.title")}</CardTitle>
-                </div>
-                <CardDescription className="text-lg">{t("home.challengeMode.description")}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  {t("home.challengeMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-blue-500" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/challenges">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    <Trophy className="mr-2 h-4 w-4" />
-                    {t("home.challengeMode.button")}
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12">
-            <div className="text-center">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow">
-                <Globe className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">1000+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Questions</div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow">
-                <Users className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">500+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Active Users</div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow">
-                <Zap className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">50+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Categories</div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow">
-                <Award className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">25+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Badges</div>
-              </div>
-            </div>
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Loading...</h1>
           </div>
         </div>
       </div>
@@ -114,71 +37,116 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">{t("home.title")}</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">{t("home.subtitle")}</p>
-          <Button
-            onClick={() => signInWithProvider("google")}
-            size="lg"
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
-          >
-            {t("home.getStarted")}
-          </Button>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">{t("home.signInPrompt")}</p>
+      <div className="container mx-auto px-4 py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{t("home.title")}</h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto">
+            {t("home.subtitle")}
+          </p>
+
+          {!user && (
+            <div className="mb-12">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">{t("home.signInPrompt")}</p>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg">
+                {t("home.getStarted")}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          )}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Learning Mode Preview */}
-          <Card className="hover:shadow-lg transition-shadow opacity-90">
-            <CardHeader>
-              <div className="flex items-center space-x-2">
-                <BookOpen className="h-8 w-8 text-green-600" />
-                <CardTitle className="text-2xl">{t("home.learningMode.title")}</CardTitle>
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {/* Learning Mode Card */}
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl">
+            <CardHeader className="text-center pb-4">
+              <div className="mx-auto mb-4 p-3 bg-blue-100 dark:bg-blue-900 rounded-full w-fit">
+                <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <CardDescription className="text-lg">{t("home.learningMode.description")}</CardDescription>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                {t("home.learningMode.title")}
+              </CardTitle>
+              <CardDescription className="text-gray-600 dark:text-gray-300 text-lg">
+                {t("home.learningMode.description")}
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 mb-6">
+            <CardContent className="text-center">
+              <ul className="space-y-2 mb-6 text-gray-600 dark:text-gray-300">
                 {t("home.learningMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
-                    <span>{feature}</span>
+                  <li key={index} className="flex items-center justify-center">
+                    <Star className="h-4 w-4 text-yellow-500 mr-2" />
+                    {feature}
                   </li>
                 ))}
               </ul>
-              <Button className="w-full bg-green-600 hover:bg-green-700" onClick={() => signInWithProvider("google")}>
-                <BookOpen className="mr-2 h-4 w-4" />
-                {t("home.learningMode.button")}
-              </Button>
+              <Link href={user ? "/categories" : "/auth"}>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                  <Play className="mr-2 h-4 w-4" />
+                  {t("home.learningMode.button")}
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
-          {/* Challenge Mode Preview */}
-          <Card className="hover:shadow-lg transition-shadow opacity-90">
-            <CardHeader>
-              <div className="flex items-center space-x-2">
-                <Users className="h-8 w-8 text-blue-600" />
-                <CardTitle className="text-2xl">{t("home.challengeMode.title")}</CardTitle>
+          {/* Challenge Mode Card */}
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl">
+            <CardHeader className="text-center pb-4">
+              <div className="mx-auto mb-4 p-3 bg-green-100 dark:bg-green-900 rounded-full w-fit">
+                <Users className="h-8 w-8 text-green-600 dark:text-green-400" />
               </div>
-              <CardDescription className="text-lg">{t("home.challengeMode.description")}</CardDescription>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                {t("home.challengeMode.title")}
+              </CardTitle>
+              <CardDescription className="text-gray-600 dark:text-gray-300 text-lg">
+                {t("home.challengeMode.description")}
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 mb-6">
+            <CardContent className="text-center">
+              <ul className="space-y-2 mb-6 text-gray-600 dark:text-gray-300">
                 {t("home.challengeMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-blue-500" />
-                    <span>{feature}</span>
+                  <li key={index} className="flex items-center justify-center">
+                    <Trophy className="h-4 w-4 text-green-500 mr-2" />
+                    {feature}
                   </li>
                 ))}
               </ul>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={() => signInWithProvider("google")}>
-                <Trophy className="mr-2 h-4 w-4" />
-                {t("home.challengeMode.button")}
-              </Button>
+              <Link href={user ? "/challenges" : "/auth"}>
+                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                  <Users className="mr-2 h-4 w-4" />
+                  {t("home.challengeMode.button")}
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
+
+        {/* Quick Access for Signed-in Users */}
+        {user && (
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Quick Access</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/categories">
+                <Button variant="outline" size="lg" className="bg-white/80 dark:bg-gray-800/80">
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  {t("nav.categories")}
+                </Button>
+              </Link>
+              <Link href="/challenges">
+                <Button variant="outline" size="lg" className="bg-white/80 dark:bg-gray-800/80">
+                  <Users className="mr-2 h-5 w-5" />
+                  {t("nav.challenges")}
+                </Button>
+              </Link>
+              <Link href="/leaderboard">
+                <Button variant="outline" size="lg" className="bg-white/80 dark:bg-gray-800/80">
+                  <Trophy className="mr-2 h-5 w-5" />
+                  {t("nav.leaderboard")}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

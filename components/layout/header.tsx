@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { LogOut, Home, Menu } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/i18n/language-switcher"
@@ -13,7 +13,17 @@ export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
   const [signOutLoading, setSignOutLoading] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // Ensure language is loaded from localStorage
+    const savedLanguage = localStorage.getItem("language")
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ta")) {
+      i18n.changeLanguage(savedLanguage)
+    }
+  }, [i18n])
 
   const handleSignOut = async () => {
     setSignOutLoading(true)
@@ -24,6 +34,32 @@ export function Header() {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
+  }
+
+  // Don't render translations until mounted to avoid hydration issues
+  if (!mounted) {
+    return (
+      <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/" className="flex items-center space-x-2">
+              <Home className="h-5 w-5 text-green-600 dark:text-green-400" />
+              <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
+            </Link>
+            <div className="flex items-center space-x-4">
+              <LanguageSwitcher />
+              {user ? (
+                <Button variant="outline" disabled>
+                  Loading...
+                </Button>
+              ) : (
+                <Button onClick={() => signInWithProvider("google")}>Sign In</Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+    )
   }
 
   return (

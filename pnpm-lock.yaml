@@ -135,7 +135,7 @@ importers:
         specifier: latest
         version: 25.5.0(typescript@5.9.2)
       i18next-browser-languagedetector:
-        specifier: 8.2.0
+        specifier: latest
         version: 8.2.0
       i18next-http-backend:
         specifier: 3.0.2

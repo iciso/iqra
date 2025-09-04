@@ -51,7 +51,7 @@
     "embla-carousel-react": "latest",
     "fs": "0.0.1-security",
     "i18next": "latest",
-    "i18next-browser-languagedetector": "8.2.0",
+    "i18next-browser-languagedetector": "latest",
     "i18next-http-backend": "3.0.2",
     "input-otp": "latest",
     "jszip": "3.10.1",
