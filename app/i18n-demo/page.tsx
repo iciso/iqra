@@ -2,244 +2,298 @@
 
 import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { RefreshCw, Globe, Home, Trophy, Award, User, Info } from "lucide-react"
+import {
+  Home,
+  BookOpen,
+  Trophy,
+  Users,
+  Award,
+  User,
+  Info,
+  LogIn,
+  LogOut,
+  RefreshCw,
+  Globe,
+  CheckCircle,
+  XCircle,
+} from "lucide-react"
+import { LanguageSwitcher } from "@/components/i18n/language-switcher"
 import { useEffect, useState } from "react"
 
 export default function I18nDemoPage() {
   const { t, i18n } = useTranslation()
   const [mounted, setMounted] = useState(false)
-  const [currentLang, setCurrentLang] = useState("en")
+  const [storageLanguage, setStorageLanguage] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
-    setCurrentLang(i18n.language)
-
-    // Listen for language changes
-    const handleLanguageChange = (lng: string) => {
-      setCurrentLang(lng)
-    }
-
-    i18n.on("languageChanged", handleLanguageChange)
-
-    return () => {
-      i18n.off("languageChanged", handleLanguageChange)
-    }
-  }, [i18n])
+    setStorageLanguage(localStorage.getItem("language"))
+  }, [])
 
   const refreshPage = () => {
     window.location.reload()
   }
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === "en" ? "ta" : "en"
-    i18n.changeLanguage(newLang)
-    localStorage.setItem("language", newLang)
-  }
+  const navItems = [
+    { key: "home", icon: Home },
+    { key: "categories", icon: BookOpen },
+    { key: "challenges", icon: Trophy },
+    { key: "leaderboard", icon: Users },
+    { key: "badges", icon: Award },
+    { key: "profile", icon: User },
+    { key: "about", icon: Info },
+  ]
+
+  const authItems = [
+    { key: "signIn", icon: LogIn },
+    { key: "signOut", icon: LogOut },
+  ]
 
   if (!mounted) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">Loading i18n demo...</div>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading i18n Demo...</p>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-green-600">
-          {currentLang === "en" ? "i18n Translation Demo" : "i18n மொழிபெயர்ப்பு டெமோ"}
-        </h1>
-        <p className="text-lg text-gray-600">
-          {currentLang === "en" ? "Test language switching and persistence" : "மொழி மாற்றம் மற்றும் நிலைத்தன்மையை சோதிக்கவும்"}
-        </p>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">🌐 i18n Translation Demo</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            Test the complete internationalization system for IQRA
+          </p>
+
+          {/* Language Switcher */}
+          <div className="flex justify-center items-center gap-4 mb-6">
+            <LanguageSwitcher />
+            <Button onClick={refreshPage} variant="outline" className="flex items-center gap-2 bg-transparent">
+              <RefreshCw className="h-4 w-4" />
+              Refresh Page
+            </Button>
+          </div>
+
+          {/* Current Language Status */}
+          <div className="flex justify-center gap-4 mb-8">
+            <Badge variant="secondary" className="flex items-center gap-2">
+              <Globe className="h-4 w-4" />
+              Current: {i18n.language === "en" ? "English" : "தமிழ் (Tamil)"}
+            </Badge>
+            <Badge variant={storageLanguage ? "default" : "destructive"} className="flex items-center gap-2">
+              {storageLanguage ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
+              Storage: {storageLanguage || "None"}
+            </Badge>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Navigation Translations */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Home className="h-5 w-5" />
+                Navigation Translations
+              </CardTitle>
+              <CardDescription>All navigation items with their translations</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-3 text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  Main Navigation
+                </h4>
+                <div className="grid grid-cols-1 gap-2">
+                  {navItems.map(({ key, icon: Icon }) => (
+                    <div key={key} className="flex items-center gap-3 p-2 rounded-lg bg-gray-50 dark:bg-gray-800">
+                      <Icon className="h-4 w-4 text-green-600" />
+                      <span className="font-medium">{t(`nav.${key}`)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-semibold mb-3 text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  Authentication
+                </h4>
+                <div className="grid grid-cols-1 gap-2">
+                  {authItems.map(({ key, icon: Icon }) => (
+                    <div key={key} className="flex items-center gap-3 p-2 rounded-lg bg-gray-50 dark:bg-gray-800">
+                      <Icon className="h-4 w-4 text-blue-600" />
+                      <span className="font-medium">{t(`nav.${key}`)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Home Page Content */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Home Page Content
+              </CardTitle>
+              <CardDescription>Complete home page translations</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <h4 className="font-semibold mb-2 text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  Main Title & Subtitle
+                </h4>
+                <div className="space-y-2">
+                  <p className="font-bold text-lg">{t("home.title")}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{t("home.subtitle")}</p>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-semibold mb-2 text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  Learning Mode
+                </h4>
+                <div className="space-y-2">
+                  <p className="font-semibold">{t("home.learningMode.title")}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{t("home.learningMode.description")}</p>
+                  <Button size="sm" className="mt-2">
+                    {t("home.learningMode.button")}
+                  </Button>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-semibold mb-2 text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  Challenge Mode
+                </h4>
+                <div className="space-y-2">
+                  <p className="font-semibold">{t("home.challengeMode.title")}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{t("home.challengeMode.description")}</p>
+                  <Button size="sm" variant="outline" className="mt-2 bg-transparent">
+                    {t("home.challengeMode.button")}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Language Persistence Test */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <RefreshCw className="h-5 w-5" />
+                Language Persistence Test
+              </CardTitle>
+              <CardDescription>Test if language persists across page refreshes</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+                <h4 className="font-semibold mb-2">Test Steps:</h4>
+                <ol className="list-decimal list-inside space-y-1 text-sm">
+                  <li>Switch to Tamil using the language switcher</li>
+                  <li>Click "Refresh Page" button above</li>
+                  <li>Verify all content loads in Tamil</li>
+                  <li>Switch back to English and refresh again</li>
+                  <li>Verify all content loads in English</li>
+                </ol>
+              </div>
+
+              <div className="p-4 bg-green-50 dark:bg-green-950 rounded-lg">
+                <h4 className="font-semibold mb-2">Expected Behavior:</h4>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>Language choice should persist after refresh</li>
+                  <li>All navigation items should be translated</li>
+                  <li>Home page content should be translated</li>
+                  <li>Language switcher should show correct language</li>
+                </ul>
+              </div>
+
+              <Button onClick={refreshPage} className="w-full flex items-center justify-center gap-2">
+                <RefreshCw className="h-4 w-4" />
+                Test Refresh Now
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Debug Information */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Info className="h-5 w-5" />
+                Debug Information
+              </CardTitle>
+              <CardDescription>Technical details about i18n status</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="font-mono text-sm space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Current Language:</span>
+                  <Badge variant="outline">{i18n.language}</Badge>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Fallback Language:</span>
+                  <Badge variant="outline">{i18n.options.fallbackLng}</Badge>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Is Initialized:</span>
+                  <Badge variant={i18n.isInitialized ? "default" : "destructive"}>
+                    {i18n.isInitialized ? "Yes" : "No"}
+                  </Badge>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Storage Value:</span>
+                  <Badge variant={storageLanguage ? "default" : "secondary"}>{storageLanguage || "None"}</Badge>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Available Languages:</span>
+                  <div className="flex gap-1">
+                    <Badge variant="outline">en</Badge>
+                    <Badge variant="outline">ta</Badge>
+                  </div>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-semibold mb-2">Sample Translations:</h4>
+                <div className="space-y-1 text-sm">
+                  <div>
+                    <strong>nav.home:</strong> {t("nav.home")}
+                  </div>
+                  <div>
+                    <strong>nav.categories:</strong> {t("nav.categories")}
+                  </div>
+                  <div>
+                    <strong>home.title:</strong> {t("home.title")}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-12 text-center">
+          <p className="text-gray-600 dark:text-gray-400">🌐 Complete i18n system with English and Tamil support</p>
+          <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+            Language preference is saved in localStorage and persists across sessions
+          </p>
+        </div>
       </div>
-
-      {/* Language Controls */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Globe className="h-5 w-5" />
-            {currentLang === "en" ? "Language Controls" : "மொழி கட்டுப்பாடுகள்"}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-wrap gap-4">
-            <Button onClick={toggleLanguage} variant="outline">
-              <Globe className="h-4 w-4 mr-2" />
-              {currentLang === "en" ? "Switch to தமிழ்" : "Switch to English"}
-            </Button>
-            <Button onClick={refreshPage} variant="outline">
-              <RefreshCw className="h-4 w-4 mr-2" />
-              {currentLang === "en" ? "Refresh Page" : "பக்கத்தை புதுப்பிக்கவும்"}
-            </Button>
-          </div>
-          <div className="space-y-2">
-            <p>
-              <strong>{currentLang === "en" ? "Current Language:" : "தற்போதைய மொழி:"}</strong>
-              <Badge variant="secondary" className="ml-2">
-                {currentLang}
-              </Badge>
-            </p>
-            <p>
-              <strong>{currentLang === "en" ? "Stored in localStorage:" : "localStorage இல் சேமிக்கப்பட்டது:"}</strong>
-              <Badge variant="outline" className="ml-2">
-                {localStorage.getItem("language") || "none"}
-              </Badge>
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Navigation Translations */}
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            {t("nav.home")} - {currentLang === "en" ? "Navigation Translations" : "வழிசெலுத்தல் மொழிபெயர்ப்புகள்"}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex items-center gap-2">
-              <Home className="h-4 w-4" />
-              <span>{t("nav.home")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>📚</span>
-              <span>{t("nav.categories")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>⚔️</span>
-              <span>{t("nav.challenges")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Trophy className="h-4 w-4" />
-              <span>{t("nav.leaderboard")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Award className="h-4 w-4" />
-              <span>{t("nav.badges")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              <span>{t("nav.profile")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Info className="h-4 w-4" />
-              <span>{t("nav.about")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>🔐</span>
-              <span>{t("nav.signIn")}</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Home Page Content */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{currentLang === "en" ? "Home Page Content" : "முகப்பு பக்க உள்ளடக்கம்"}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">{t("home.title")}</h2>
-            <p className="text-gray-600">{t("home.subtitle")}</p>
-          </div>
-
-          <Separator />
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <h3 className="text-xl font-semibold">{t("home.learningMode.title")}</h3>
-              <p className="text-gray-600">{t("home.learningMode.description")}</p>
-              <ul className="list-disc list-inside space-y-1 text-sm">
-                {t("home.learningMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-              <Button>{t("home.learningMode.button")}</Button>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-xl font-semibold">{t("home.challengeMode.title")}</h3>
-              <p className="text-gray-600">{t("home.challengeMode.description")}</p>
-              <ul className="list-disc list-inside space-y-1 text-sm">
-                {t("home.challengeMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-              <Button>{t("home.challengeMode.button")}</Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Debug Information */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{currentLang === "en" ? "Debug Information" : "பிழைத்திருத்த தகவல்"}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2 text-sm font-mono">
-            <p>
-              <strong>i18n.language:</strong> {i18n.language}
-            </p>
-            <p>
-              <strong>i18n.isInitialized:</strong> {i18n.isInitialized.toString()}
-            </p>
-            <p>
-              <strong>localStorage language:</strong> {localStorage.getItem("language") || "null"}
-            </p>
-            <p>
-              <strong>Available languages:</strong> {i18n.languages.join(", ")}
-            </p>
-            <p>
-              <strong>Fallback language:</strong> {i18n.options.fallbackLng}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Test Instructions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{currentLang === "en" ? "Test Instructions" : "சோதனை வழிமுறைகள்"}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ol className="list-decimal list-inside space-y-2">
-            <li>
-              {currentLang === "en"
-                ? "Switch language using the button above"
-                : "மேலே உள்ள பொத்தானைப் பயன்படுத்தி மொழியை மாற்றவும்"}
-            </li>
-            <li>
-              {currentLang === "en"
-                ? "Observe all text changing to the selected language"
-                : "தேர்ந்தெடுக்கப்பட்ட மொழிக்கு அனைத்து உரையும் மாறுவதைக் கவனிக்கவும்"}
-            </li>
-            <li>
-              {currentLang === "en"
-                ? "Click 'Refresh Page' to test persistence"
-                : "நிலைத்தன்மையை சோதிக்க 'பக்கத்தை புதுப்பிக்கவும்' என்பதைக் கிளிக் செய்யவும்"}
-            </li>
-            <li>
-              {currentLang === "en"
-                ? "Verify the language persists after refresh"
-                : "புதுப்பித்த பிறகு மொழி நிலைத்திருப்பதை சரிபார்க்கவும்"}
-            </li>
-            <li>
-              {currentLang === "en"
-                ? "Navigate to other pages and verify language persists"
-                : "மற்ற பக்கங்களுக்குச் சென்று மொழி நிலைத்திருப்பதை சரிபார்க்கவும்"}
-            </li>
-          </ol>
-        </CardContent>
-      </Card>
     </div>
   )
 }

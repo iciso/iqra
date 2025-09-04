@@ -1,16 +1,16 @@
 "use client"
 
-import { useAuth } from "@/contexts/auth-context"
+import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Users, Trophy, Star, ArrowRight, Play } from "lucide-react"
+import { BookOpen, Trophy, Users, ArrowRight, Star, Target, Award } from "lucide-react"
 import Link from "next/link"
-import { useTranslation } from "react-i18next"
+import { useAuth } from "@/contexts/auth-context"
 import { useEffect, useState } from "react"
 
 export default function HomePage() {
-  const { user, signInWithProvider } = useAuth()
   const { t, i18n } = useTranslation()
+  const { user, signInWithProvider } = useAuth()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -28,10 +28,8 @@ export default function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center">
-            <div className="animate-pulse">
-              <div className="h-12 bg-gray-200 rounded w-3/4 mx-auto mb-4"></div>
-              <div className="h-6 bg-gray-200 rounded w-1/2 mx-auto"></div>
-            </div>
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
           </div>
         </div>
       </div>
@@ -42,40 +40,23 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">{t("home.title")}</h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              {t("home.subtitle")}
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{t("home.title")}</h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+            {t("home.subtitle")}
+          </p>
 
-          {user ? (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
-                  <Play className="mr-2 h-5 w-5" />
-                  {t("home.learningMode.button")}
-                </Button>
-              </Link>
-              <Link href="/challenges">
-                <Button size="lg" variant="outline">
-                  <Trophy className="mr-2 h-5 w-5" />
-                  {t("home.challengeMode.button")}
-                </Button>
-              </Link>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <p className="text-lg text-gray-600 dark:text-gray-300">{t("home.signInPrompt")}</p>
+          {!user && (
+            <div className="mb-12">
               <Button
-                size="lg"
                 onClick={() => signInWithProvider("google")}
-                className="bg-green-600 hover:bg-green-700 text-white"
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
               >
                 {t("home.getStarted")}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">{t("home.signInPrompt")}</p>
             </div>
           )}
         </div>
@@ -83,38 +64,43 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Learning Mode Card */}
-          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl">
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <BookOpen className="h-8 w-8 text-green-600" />
+              <div className="mx-auto mb-4 p-3 bg-blue-100 dark:bg-blue-900 rounded-full w-fit">
+                <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <CardTitle className="text-2xl font-bold text-gray-900">{t("home.learningMode.title")}</CardTitle>
-              <CardDescription className="text-lg text-gray-600">{t("home.learningMode.description")}</CardDescription>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                {t("home.learningMode.title")}
+              </CardTitle>
+              <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+                {t("home.learningMode.description")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <ul className="space-y-3">
+              <div className="grid grid-cols-2 gap-4">
                 {t("home.learningMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <Star className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
+                  <div key={index} className="flex items-center gap-2">
+                    <Star className="h-4 w-4 text-yellow-500" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
               {user ? (
-                <Link href="/categories" className="block">
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Link href="/categories">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                     {t("home.learningMode.button")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               ) : (
                 <Button
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
                   onClick={() => signInWithProvider("google")}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                 >
-                  {t("nav.signIn")} {t("home.learningMode.button")}
+                  {t("home.learningMode.button")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               )}
@@ -122,37 +108,42 @@ export default function HomePage() {
           </Card>
 
           {/* Challenge Mode Card */}
-          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl">
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Users className="h-8 w-8 text-blue-600" />
+              <div className="mx-auto mb-4 p-3 bg-orange-100 dark:bg-orange-900 rounded-full w-fit">
+                <Trophy className="h-8 w-8 text-orange-600 dark:text-orange-400" />
               </div>
-              <CardTitle className="text-2xl font-bold text-gray-900">{t("home.challengeMode.title")}</CardTitle>
-              <CardDescription className="text-lg text-gray-600">{t("home.challengeMode.description")}</CardDescription>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                {t("home.challengeMode.title")}
+              </CardTitle>
+              <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+                {t("home.challengeMode.description")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <ul className="space-y-3">
+              <div className="grid grid-cols-2 gap-4">
                 {t("home.challengeMode.features", { returnObjects: true }).map((feature: string, index: number) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <Trophy className="h-5 w-5 text-blue-500 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
+                  <div key={index} className="flex items-center gap-2">
+                    <Target className="h-4 w-4 text-orange-500" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
               {user ? (
-                <Link href="/challenges" className="block">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                <Link href="/challenges">
+                  <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
                     {t("home.challengeMode.button")}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <Users className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               ) : (
                 <Button
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                   onClick={() => signInWithProvider("google")}
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white"
                 >
-                  {t("nav.signIn")} {t("home.challengeMode.button")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {t("home.challengeMode.button")}
+                  <Users className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </CardContent>
@@ -161,28 +152,44 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-green-600">21+</div>
-              <div className="text-gray-600">{i18n.language === "en" ? "Categories" : "வகைகள்"}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600">1000+</div>
-              <div className="text-gray-600">{i18n.language === "en" ? "Questions" : "கேள்விகள்"}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">50+</div>
-              <div className="text-gray-600">{i18n.language === "en" ? "Badges" : "பதக்கங்கள்"}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600">∞</div>
-              <div className="text-gray-600">{i18n.language === "en" ? "Learning" : "கற்றல்"}</div>
+      {user && (
+        <section className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Quick Access</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Link href="/leaderboard">
+                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardContent className="text-center p-6">
+                    <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{t("nav.leaderboard")}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">See top performers</p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/badges">
+                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardContent className="text-center p-6">
+                    <Award className="h-12 w-12 text-yellow-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{t("nav.badges")}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Your achievements</p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/profile">
+                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardContent className="text-center p-6">
+                    <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{t("nav.profile")}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Your progress</p>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   )
 }
