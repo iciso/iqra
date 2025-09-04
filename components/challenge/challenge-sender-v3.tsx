@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Gamepad2, Users, BriefcaseMedical, Search, Trophy, Zap, RefreshCw } from "lucide-react"
+import { Gamepad2, Users, Search, Trophy, Zap, RefreshCw } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
@@ -230,8 +230,6 @@ export default function ChallengeSenderV3() {
     { value: "tafsir", label: "Tafsir" },
     { value: "comparative", label: "Comparative Religion" },
     { value: "islamic-finance", label: "Islamic Finance" },
-    { value: "new-muslims", label: "New Muslims" },
-    { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
     { value: "tazkiyah", label: "Tazkiyah" },
     { value: "history", label: "Islamic History" },
     { value: "dawah", label: "Dawah" },

@@ -59,9 +59,7 @@ export default function SocialChallengerSelector({
     { value: "islamic-finance", label: "Islamic Finance" },
     { value: "tazkiyah", label: "Tazkiyah (Spiritual Purification)" },
     { value: "history", label: "Islamic History & Civilization" },
-    { value: "new-muslims", label: "New Muslims" },
-    { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
-    { value: "dawah", label: "Dawah (Islamic Outreach)" }, 
+    { value: "dawah", label: "Dawah (Islamic Outreach)" },
   ]
 
   // Difficulty options

@@ -346,74 +346,68 @@ export default function ProfileChallengeNotifications() {
 
   return (
     <Card className={cardClasses}>
-      <CardHeader className={hasActiveChallenges ? "bg-red-100 dark:bg-red-900 p-3 md:p-4" : "p-3 md:p-4"}>
+      <CardHeader className={hasActiveChallenges ? "bg-red-100 dark:bg-red-900" : ""}>
         <CardTitle className="flex items-center justify-between">
           <div
-            className={`flex items-center gap-1 md:gap-2 ${hasActiveChallenges ? "text-red-800 dark:text-red-200" : "text-orange-800 dark:text-orange-200"}`}
+            className={`flex items-center gap-2 ${hasActiveChallenges ? "text-red-800 dark:text-red-200" : "text-orange-800 dark:text-orange-200"}`}
           >
-            <Bell className={`h-4 w-4 md:h-5 md:w-5 ${hasActiveChallenges ? "animate-bounce" : ""}`} />
+            <Bell className={`h-5 w-5 ${hasActiveChallenges ? "animate-bounce" : ""}`} />
             {hasActiveChallenges ? (
-              <span className="font-bold text-sm md:text-base">
+              <span className="font-bold">
                 URGENT: {challenges.length} Challenge{challenges.length !== 1 ? "s" : ""} Pending!
               </span>
             ) : (
-              <span className="text-sm md:text-base">Challenge Notifications ({challenges.length})</span>
+              <span>Challenge Notifications ({challenges.length})</span>
             )}
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={loadChallenges}
-            disabled={loading}
-            className="h-7 w-7 md:h-8 md:w-8 p-0"
-          >
-            <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
+          <Button variant="outline" size="sm" onClick={loadChallenges} disabled={loading} className="h-8 w-8 p-0">
+            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
           </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-3 md:p-4">
+      <CardContent>
         {loading ? (
-          <div className="flex justify-center py-6 md:py-8">
-            <div className="h-6 w-6 md:h-8 md:w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
-            <span className="ml-2 text-xs md:text-sm text-gray-500">Loading challenges...</span>
+          <div className="flex justify-center py-8">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
+            <span className="ml-2 text-sm text-gray-500">Loading challenges...</span>
           </div>
         ) : error && !usingFallback ? (
-          <div className="flex items-center gap-2 p-3 md:p-4 bg-red-50 border border-red-200 rounded">
-            <AlertCircle className="h-4 w-4 md:h-5 md:w-5 text-red-500" />
+          <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded">
+            <AlertCircle className="h-5 w-5 text-red-500" />
             <div>
-              <p className="text-red-800 font-medium text-sm">Error loading challenges</p>
-              <p className="text-red-600 text-xs md:text-sm">{error}</p>
-              <Button variant="outline" size="sm" onClick={loadChallenges} className="mt-2 text-xs h-7 md:h-8">
+              <p className="text-red-800 font-medium">Error loading challenges</p>
+              <p className="text-red-600 text-sm">{error}</p>
+              <Button variant="outline" size="sm" onClick={loadChallenges} className="mt-2">
                 Try Again
               </Button>
             </div>
           </div>
         ) : challenges.length === 0 ? (
-          <div className="text-center py-6 md:py-8 text-gray-500">
-            <Bell className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-gray-300" />
-            <p className="text-base md:text-lg font-medium mb-1 md:mb-2">No pending challenges</p>
-            <p className="text-xs md:text-sm">Challenge someone to get started!</p>
+          <div className="text-center py-8 text-gray-500">
+            <Bell className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+            <p className="text-lg font-medium mb-2">No pending challenges</p>
+            <p className="text-sm">Challenge someone to get started!</p>
           </div>
         ) : (
-          <div className="space-y-3 md:space-y-4">
+          <div className="space-y-4">
             {challenges.map((challenge) => (
-              <div key={challenge.id} className="bg-white dark:bg-gray-800 rounded-lg p-3 md:p-4 border">
-                <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 md:gap-4">
-                  <div className="flex items-center space-x-2 md:space-x-3">
-                    <Avatar className="h-8 w-8 md:h-10 md:w-10 flex-shrink-0">
+              <div key={challenge.id} className="bg-white dark:bg-gray-800 rounded-lg p-4 border">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex items-center space-x-3">
+                    <Avatar className="h-10 w-10 flex-shrink-0">
                       <AvatarImage src={challenge.challenger.avatar_url || "/placeholder.svg"} />
-                      <AvatarFallback className="bg-green-100 text-green-700 text-xs">
+                      <AvatarFallback className="bg-green-100 text-green-700">
                         {getUserInitials(challenge.challenger)}
                       </AvatarFallback>
                     </Avatar>
                     <div className="min-w-0">
-                      <p className="font-medium text-sm truncate">
+                      <p className="font-medium truncate">
                         <span className="text-green-600 dark:text-green-400">
                           {challenge.challenger.full_name || challenge.challenger.username}
                         </span>{" "}
                         challenged you!
                       </p>
-                      <div className="flex flex-wrap items-center gap-1 md:gap-2 text-xs md:text-sm text-gray-500">
+                      <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
                         <Badge variant="secondary" className="text-xs">
                           {categoryLabels[challenge.category] || challenge.category}
                         </Badge>
@@ -433,7 +427,7 @@ export default function ProfileChallengeNotifications() {
                       size="sm"
                       variant="outline"
                       onClick={() => declineChallenge(challenge.id)}
-                      className="h-7 md:h-8 w-7 md:w-8 p-0"
+                      className="h-8 w-8 p-0"
                     >
                       <X className="h-3 w-3" />
                     </Button>
@@ -447,7 +441,7 @@ export default function ProfileChallengeNotifications() {
                           challenge.challenger.full_name || challenge.challenger.username,
                         )
                       }
-                      className="h-7 md:h-8 px-2 md:px-3 bg-green-600 hover:bg-green-700 text-xs"
+                      className="h-8 px-3 bg-green-600 hover:bg-green-700"
                     >
                       <Check className="h-3 w-3 mr-1" />
                       Accept

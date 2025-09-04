@@ -4,16 +4,36 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/auth-context"
+import { LanguageProvider } from "@/contexts/language-context"
 import { Header } from "@/components/layout/header"
-import { I18nProvider } from "@/components/i18n/i18n-provider"
 import { Toaster } from "@/components/ui/toaster"
+import ChallengeNotification from "@/components/challenge/challenge-notification"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
-  description: "Test and enhance your Islamic knowledge through interactive quizzes and challenges",
-    generator: 'v0.app'
+  description: "Test your Islamic knowledge through interactive quizzes and challenges",
+  keywords: "Islamic quiz, Islamic knowledge, Quran quiz, Islamic education, Muslim learning",
+  authors: [{ name: "Mohamed Essa Rafique" }],
+  creator: "Mohamed Essa Rafique",
+  publisher: "IQRA",
+  robots: "index, follow",
+  openGraph: {
+    title: "IQRA - Islamic Quiz Rivalry App",
+    description: "Test your Islamic knowledge through interactive quizzes and challenges",
+    type: "website",
+    locale: "en_US",
+    siteName: "IQRA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IQRA - Islamic Quiz Rivalry App",
+    description: "Test your Islamic knowledge through interactive quizzes and challenges",
+  },
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#16a34a",
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -24,17 +44,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <I18nProvider>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <AuthProvider>
-              <div className="min-h-screen bg-background">
+              <div className="min-h-screen flex flex-col">
                 <Header />
-                <main>{children}</main>
+                <main className="flex-1">{children}</main>
+                {/* Footer removed for better UX during quiz play */}
               </div>
+              <ChallengeNotification />
               <Toaster />
             </AuthProvider>
-          </I18nProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

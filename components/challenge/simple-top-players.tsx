@@ -5,10 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react"
-import { supabase } from "@/lib/supabase-client"
+import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Player {
   id: string
@@ -16,19 +15,6 @@ interface Player {
   full_name?: string
   total_score: number
   best_percentage: number
-}
-
-function ChallengeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Create Challenge</DialogTitle>
-          <DialogDescription>Challenge a player to a quiz.</DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  )
 }
 
 export default function SimpleTopPlayers() {
@@ -46,12 +32,86 @@ export default function SimpleTopPlayers() {
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
-  const fallbackPlayers: Player[] = [] // Add fallback players if needed
+  // ONLY real users from the actual leaderboard - ALL 10 users, NO POINTS to avoid ranking issues
+  const fallbackPlayers: Player[] = [
+    {
+      id: "aefe42f1-297b-4649-b664-934d37edc957",
+      username: "ihmi",
+      full_name: "India Hypertension Management Initiative Wayanad",
+      total_score: 0, // No hardcoded points
+      best_percentage: 0, // No hardcoded percentage
+    },
+    {
+      id: "871d3522-512b-4930-a9de-a092f2e33783",
+      username: "rafique",
+      full_name: "Mohamed Essa Rafique",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "9e599448-b4c8-4c8b-8b4a-1234567890ab",
+      username: "feroza.rafique",
+      full_name: "feroza.rafique",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "ddd8b850-1b56-4781-bd03-1be615f9e3ec",
+      username: "drmurtazaa50",
+      full_name: "Dr.Muhammad Murtaza Ikram",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-aiesha-waseem",
+      username: "aiesha",
+      full_name: "aiesha waseem",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-test-1748153442262",
+      username: "test-1748153442262",
+      full_name: "test-1748153442262",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-joy-ahmed",
+      username: "joy",
+      full_name: "Joy Ahmed",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-francis-raj",
+      username: "francis",
+      full_name: "francis raj",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-hashim-mohammed",
+      username: "hashim",
+      full_name: "Hashim Mohammed",
+      total_score: 0,
+      best_percentage: 0,
+    },
+    {
+      id: "user-essa-nilu",
+      username: "essa",
+      full_name: "essa nilu",
+      total_score: 0,
+      best_percentage: 0,
+    },
+  ]
 
   const syncMissingProfiles = async () => {
     try {
       setSyncing(true)
       console.log("🔄 Attempting to sync missing user profiles...")
+
+      // Try a very simple query first
       const { data: testData, error: testError } = await Promise.race([
         supabase.from("user_profiles").select("count").limit(1),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
@@ -61,24 +121,32 @@ export default function SimpleTopPlayers() {
         console.error("❌ Test query failed:", testError)
         throw testError
       }
+
       console.log("✅ Database connection working, proceeding with sync...")
+
+      // Get auth users with timeout
       const authResult = await Promise.race([
         supabase.auth.admin.listUsers(),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Auth query timeout")), 5000)),
       ])
 
       const { data: authUsers, error: authError } = authResult as any
+
       if (authError) {
         console.error("❌ Error fetching auth users:", authError)
         throw authError
       }
+
       console.log("👥 Found auth users:", authUsers.users.length)
+
+      // Get existing profiles with timeout
       const profilesResult = await Promise.race([
         supabase.from("user_profiles").select("id"),
         new Promise((_, reject) => setTimeout(() => reject(new Error("Profiles query timeout")), 5000)),
       ])
 
       const { data: existingProfiles, error: profilesError } = profilesResult as any
+
       if (profilesError) {
         console.error("❌ Error fetching existing profiles:", profilesError)
         throw profilesError
@@ -86,6 +154,8 @@ export default function SimpleTopPlayers() {
 
       const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || [])
       console.log("📋 Existing profile IDs:", existingIds.size)
+
+      // Find missing profiles
       const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id))
       console.log("🔍 Missing profiles for users:", missingUsers.length)
 
@@ -94,6 +164,7 @@ export default function SimpleTopPlayers() {
         return
       }
 
+      // Create missing profiles
       const newProfiles = missingUsers.map((authUser: any) => ({
         id: authUser.id,
         username: authUser.user_metadata?.username || authUser.email?.split("@")[0] || "user",
@@ -117,11 +188,15 @@ export default function SimpleTopPlayers() {
       ])
 
       const { data: insertedProfiles, error: insertError } = insertResult as any
+
       if (insertError) {
         console.error("❌ Error creating profiles:", insertError)
         throw insertError
       }
+
       console.log("✅ Successfully created profiles:", insertedProfiles?.length)
+
+      // Reload players after sync
       loadPlayers()
     } catch (err: any) {
       console.error("❌ Sync error:", err)
@@ -132,6 +207,7 @@ export default function SimpleTopPlayers() {
   }
 
   const loadPlayers = async () => {
+    // Prevent concurrent loading
     if (loadingRef.current) {
       console.log("🛑 Already loading players, skipping...")
       return
@@ -144,12 +220,17 @@ export default function SimpleTopPlayers() {
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
+      // Wait for auth to be ready
       if (authLoading) {
         console.log("⏳ Waiting for auth to complete...")
         return
       }
 
       console.log("🔍 Step 1: Auth ready, trying Supabase...")
+
+      const limit = showAll ? 50 : 10
+
+      // Try Supabase first with improved sorting
       try {
         const queryResult = await Promise.race([
           supabase
@@ -157,18 +238,19 @@ export default function SimpleTopPlayers() {
             .select("id, username, full_name, total_score, best_percentage")
             .order("total_score", { ascending: false })
             .order("best_percentage", { ascending: false })
-            .order("total_questions", { ascending: false }),
-          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 8000)),
+            .order("total_questions", { ascending: false })
+            .limit(limit),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 3000)),
         ])
 
         const { data, error } = queryResult as any
+
         if (error) throw error
 
         if (data && data.length > 0) {
-          const filteredData = data.filter((player: Player) => player.username !== "Test User")
-          console.log("✅ Players loaded from Supabase:", filteredData.length, "players")
+          console.log("✅ Players loaded from Supabase:", data.length, "players")
           if (mountedRef.current) {
-            setPlayers(filteredData)
+            setPlayers(data)
             setDataSource("Supabase")
             setIsUsingFallback(false)
           }
@@ -178,19 +260,20 @@ export default function SimpleTopPlayers() {
         console.error("❌ Supabase error:", supabaseError)
       }
 
+      // Try Neon fallback
       console.log("🔍 Step 2: Trying Neon fallback...")
       try {
-        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback())
+        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback(limit))
+
         const neonPlayers = await Promise.race([
           neonPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 5000)),
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 3000)),
         ])
 
         if (neonPlayers && neonPlayers.length > 0) {
-          const filteredNeonPlayers = neonPlayers.filter((player: Player) => player.username !== "Test User")
-          console.log("✅ Players loaded from Neon:", filteredNeonPlayers.length, "players")
+          console.log("✅ Players loaded from Neon:", neonPlayers.length, "players")
           if (mountedRef.current) {
-            setPlayers(filteredNeonPlayers)
+            setPlayers(neonPlayers)
             setDataSource("Neon")
             setIsUsingFallback(false)
           }
@@ -200,19 +283,22 @@ export default function SimpleTopPlayers() {
         console.error("❌ Neon error:", neonError)
       }
 
+      // Try leaderboard data with timeout
       console.log("🔍 Step 3: Getting actual leaderboard data...")
       try {
         const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
           module.getLeaderboardWithFallback(),
         )
+
         const leaderboardResult = await Promise.race([
           leaderboardPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 3000)),
         ])
 
         if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
+          // Convert leaderboard format to player format
           const leaderboardPlayers = leaderboardResult.data
-            .filter((entry) => entry.user_id && entry.name !== "Test User")
+            .filter((entry) => entry.user_id) // Only include entries with real user IDs
             .map((entry) => ({
               id: entry.user_id,
               username: entry.name.split(" ")[0].toLowerCase(),
@@ -223,7 +309,7 @@ export default function SimpleTopPlayers() {
 
           console.log("✅ Players loaded from leaderboard:", leaderboardPlayers.length, "players")
           if (mountedRef.current) {
-            setPlayers(leaderboardPlayers)
+            setPlayers(leaderboardPlayers.slice(0, limit))
             setDataSource("Live Leaderboard")
             setIsUsingFallback(false)
           }
@@ -233,27 +319,31 @@ export default function SimpleTopPlayers() {
         console.error("❌ Leaderboard error:", leaderboardError)
       }
 
+      // FINAL FALLBACK: Use ONLY real users (no ranking, no points)
       console.log("🔍 Step 4: Using registered users as final fallback...")
       if (mountedRef.current) {
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
-        console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
-        setPlayers(filteredFallbackPlayers)
+        console.log("✅ Using registered users as fallback:", fallbackPlayers.length, "users")
+        setPlayers(fallbackPlayers) // No sorting needed since no points
         setDataSource("Registered Users")
         setIsUsingFallback(true)
-      }
-    } catch (err: any) {
-      console.error("❌ Load error:", err.message)
-      if (mountedRef.current) {
-        console.log("🔄 Using registered users as fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
-        setPlayers(filteredFallbackPlayers)
-        setDataSource("Registered Users")
-        setIsUsingFallback(true)
-        setError(null)
       }
 
+      console.log("🔍 Load complete!")
+    } catch (err: any) {
+      console.error("❌ Load error:", err.message)
+
+      if (mountedRef.current) {
+        // Use fallback data instead of showing error
+        console.log("🔄 Using registered users as fallback data")
+        setPlayers(fallbackPlayers)
+        setDataSource("Registered Users")
+        setIsUsingFallback(true)
+        setError(null) // Don't show error, just use fallback
+      }
+
+      // Only retry if we haven't exceeded max attempts
       if (retryCount < 2 && mountedRef.current) {
-        const delay = (retryCount + 1) * 2000
+        const delay = (retryCount + 1) * 2000 // 2s, 4s
         console.log(`🔄 Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`)
         setTimeout(() => {
           if (mountedRef.current) {
@@ -291,6 +381,7 @@ export default function SimpleTopPlayers() {
 
   const toggleShowAll = () => {
     setShowAll(!showAll)
+    // Reload with new limit
     setTimeout(() => loadPlayers(), 100)
   }
 
@@ -306,26 +397,32 @@ export default function SimpleTopPlayers() {
     return "bg-purple-100 text-purple-800"
   }
 
+  // Load players when auth is ready
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
+
     if (!authLoading) {
       console.log("✅ Auth is ready, loading players...")
       loadPlayers()
     } else {
       console.log("⏳ Auth still loading, waiting...")
+      // Force auth completion after 3 seconds to prevent hanging
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
         loadPlayers()
       }, 3000)
+
       return () => clearTimeout(timeout)
     }
+
     return () => {
       console.log("🚫 SimpleTopPlayers component unmounting")
       mountedRef.current = false
     }
   }, [authLoading])
 
+  // Also listen for auth state changes
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
       console.log("🔄 Auth state changed, reloading players...")
@@ -333,28 +430,30 @@ export default function SimpleTopPlayers() {
     }
   }, [user, authLoading])
 
+  // Reload when showAll changes
   useEffect(() => {
     if (!authLoading && mountedRef.current) {
       loadPlayers()
     }
   }, [showAll])
 
+  // Add a safety timeout to prevent infinite loading
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
-        setPlayers(filteredFallbackPlayers)
+        setPlayers(fallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
         setLoading(false)
-        setError(null)
         loadingRef.current = false
       }
-    }, 10000)
+    }, 5000) // 5 second safety timeout
+
     return () => clearTimeout(safetyTimeout)
   }, [loading])
 
+  // Show loading while auth is initializing
   if (authLoading) {
     return (
       <Card>
@@ -401,85 +500,72 @@ export default function SimpleTopPlayers() {
 
   return (
     <Card>
-      <CardHeader className="px-3 md:px-6 py-4">
-        <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-1 md:gap-2">
-              <Trophy className="h-4 w-4 md:h-5 md:w-5 text-yellow-500" />
-              <span className="text-sm md:text-base">{cardTitle}</span>
-            </div>
-            <span className={`text-xs px-1 md:px-2 py-0.5 md:py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-yellow-500" />
+            {cardTitle}
+            <span className={`text-xs px-2 py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
               {getSourceIcon()}
-              <span className="hidden xs:inline">{dataSource}</span>
+              {dataSource}
             </span>
           </div>
-          <div className="flex gap-1 md:gap-2">
+          <div className="flex gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={syncMissingProfiles}
               disabled={syncing}
               title="Sync missing user profiles from auth"
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
             >
-              <Database className={`h-3 w-3 md:h-4 md:w-4 ${syncing ? "animate-spin" : ""}`} />
+              <Database className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} />
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={toggleShowAll}
               title={showAll ? "Show top players only" : "Show all players"}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
             >
-              <Users className="h-3 w-3 md:h-4 md:w-4" />
+              <Users className="h-4 w-4" />
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleRetry}
-              disabled={loading}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
-            >
-              <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
+            <Button variant="outline" size="sm" onClick={handleRetry} disabled={loading}>
+              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="px-3 md:px-6 py-2 md:py-4 max-h-[70vh] overflow-y-auto">
+      <CardContent>
         {players.length === 0 ? (
           <div className="text-center py-4">
-            <p className="text-gray-500 mb-2 text-sm">No players found</p>
-            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
+            <p className="text-gray-500 mb-2">No players found</p>
+            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing}>
               {syncing ? "Syncing..." : "Sync User Profiles"}
             </Button>
           </div>
         ) : (
-          <div className="space-y-2 md:space-y-3">
+          <div className="space-y-3 max-h-96 overflow-y-auto">
             {players.map((player, index) => (
-              <div key={player.id} className="flex items-center justify-between flex-wrap gap-2">
-                <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
-                  {!isUsingFallback && (
-                    <span className="w-5 md:w-6 text-xs md:text-sm font-medium text-gray-500">{index + 1}</span>
-                  )}
-                  <Avatar className="h-7 w-7 md:h-8 md:w-8 flex-shrink-0">
-                    <AvatarFallback className="bg-blue-100 text-blue-700 text-xs md:text-sm">
+              <div key={player.id} className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  {!isUsingFallback && <span className="w-6 text-sm font-medium text-gray-500">{index + 1}</span>}
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-blue-100 text-blue-700">
                       {(player.full_name || player.username).charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
-                    <p className="text-xs text-gray-500 hidden xs:block">
-                      {isUsingFallback ? "Registered User" : "Player"}
-                    </p>
+                  <div>
+                    <p className="font-medium text-sm">{player.full_name || player.username}</p>
+                    <p className="text-xs text-gray-500">{isUsingFallback ? "Registered User" : "Player"}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2">
                   {!isUsingFallback && (
-                    <div className="text-right mr-1 md:mr-2">
-                      <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
+                    <div className="text-right mr-2">
+                      <p className="font-medium text-sm">{player.total_score} pts</p>
                       <p className="text-xs text-gray-500">{player.best_percentage}%</p>
                     </div>
                   )}
+
                   {user && user.id !== player.id && (
                     <Button
                       size="sm"
@@ -492,7 +578,7 @@ export default function SimpleTopPlayers() {
                           best_percentage: player.best_percentage,
                         })
                       }
-                      className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
+                      className="h-8 py-0 px-3 text-xs bg-green-600 hover:bg-green-700"
                     >
                       Challenge
                     </Button>

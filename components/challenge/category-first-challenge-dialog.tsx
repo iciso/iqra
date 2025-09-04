@@ -9,36 +9,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import {
   Gamepad2,
   Zap,
-  Bitcoin,
-  Book,
-  BookCopy,
-  BookDashed,
-  Brain,
-  BriefcaseMedical,
+  BookOpen,
   Scale,
   Scroll,
-  Church,
-  Telescope,
-  HandHeart,
+  MSquare as Mosque,
   Heart,
+  Star,
   Trophy,
   Clock,
   Target,
   History,
-  ScanFace,
   Sparkles,
-  User,
   Users,
-  Rainbow,
-  Circle,
-  Compass,
   Globe,
+  Landmark,
   AlertCircle,
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
+import { useLanguage } from "@/contexts/language-context"
 
 interface User {
   id: string
@@ -55,18 +46,8 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Deine all categories here for challenges
+// Category-first design with prominent visual categories - now with all 12 categories
 const challengeCategories = [
-  {
-    id: "quran",
-    label: "Quran",
-    description: "Quran Knowledge",
-    icon: Book,
-    color: "bg-green-500 hover:bg-green-600",
-    textColor: "text-green-700",
-    bgLight: "bg-green-50",
-    borderColor: "border-green-300",
-  },
   {
     id: "fiqh",
     label: "Fiqh",
@@ -78,14 +59,14 @@ const challengeCategories = [
     borderColor: "border-blue-300",
   },
   {
-    id: "tafsir",
-    label: "Tafsir",
-    description: "Quran Commentary",
-    icon: BookCopy,
-    color: "bg-indigo-500 hover:bg-indigo-600",
-    textColor: "text-indigo-700",
-    bgLight: "bg-indigo-50",
-    borderColor: "border-indigo-300",
+    id: "quran",
+    label: "Quran",
+    description: "Quran Knowledge",
+    icon: BookOpen,
+    color: "bg-green-500 hover:bg-green-600",
+    textColor: "text-green-700",
+    bgLight: "bg-green-50",
+    borderColor: "border-green-300",
   },
   {
     id: "hadeeth",
@@ -98,6 +79,16 @@ const challengeCategories = [
     borderColor: "border-amber-300",
   },
   {
+    id: "seerah",
+    label: "Seerah",
+    description: "Prophet's Biography",
+    icon: Mosque,
+    color: "bg-purple-500 hover:bg-purple-600",
+    textColor: "text-purple-700",
+    bgLight: "bg-purple-50",
+    borderColor: "border-purple-300",
+  },
+  {
     id: "aqeedah",
     label: "Aqeedah",
     description: "Islamic Creed",
@@ -108,15 +99,16 @@ const challengeCategories = [
     borderColor: "border-red-300",
   },
   {
-    id: "seerah",
-    label: "Seerah",
-    description: "Prophet's Biography",
-    icon: User,
-    color: "bg-purple-500 hover:bg-purple-600",
-    textColor: "text-purple-700",
-    bgLight: "bg-purple-50",
-    borderColor: "border-purple-300",
+    id: "tafsir",
+    label: "Tafsir",
+    description: "Quran Commentary",
+    icon: Star,
+    color: "bg-indigo-500 hover:bg-indigo-600",
+    textColor: "text-indigo-700",
+    bgLight: "bg-indigo-50",
+    borderColor: "border-indigo-300",
   },
+  // Adding the 6 missing categories
   {
     id: "tazkiyah",
     label: "Tazkiyah",
@@ -151,7 +143,7 @@ const challengeCategories = [
     id: "new-muslims",
     label: "New Muslims",
     description: "Essentials for New Muslims",
-    icon: Compass,
+    icon: Globe,
     color: "bg-emerald-500 hover:bg-emerald-600",
     textColor: "text-emerald-700",
     bgLight: "bg-emerald-50",
@@ -160,112 +152,22 @@ const challengeCategories = [
   {
     id: "comparative",
     label: "Comparative Religion",
-    description: "Faiths, Non-Faiths & Islam",
+    description: "Atheism, Science and Islamic Thought",
     icon: Globe,
     color: "bg-violet-500 hover:bg-violet-600",
     textColor: "text-violet-700",
     bgLight: "bg-violet-50",
     borderColor: "border-violet-300",
   },
-   {
-    id: "christ",
-    label: "Christianity",
-    description: "Islam & Christianity",
-    icon: Church,
-    color: "bg-yellow-500 hover:bg-yellow-600",
-    textColor: "text-yellow-700",
-    bgLight: "bg-yellow-50",
-    borderColor: "border-yellow-300",
-  },
-    {
-    id: "hindu",
-    label: "Hinduism",
-    description: "Islam & Hinduism",
-    icon: BookDashed,
-    color: "bg-fuchsia-500 hover:bg-fuchsia-600",
-    textColor: "text-fuchsia-700",
-    bgLight: "bg-fuchsia-50",
-    borderColor: "border-fuchsia-300",
-  },
   {
     id: "islamic-finance",
     label: "Islamic Finance",
-    description: "Islamic Economics",
-    icon: HandHeart,
+    description: "Principles of Islamic economics",
+    icon: Landmark,
     color: "bg-rose-500 hover:bg-rose-600",
     textColor: "text-rose-700",
     bgLight: "bg-rose-50",
     borderColor: "border-rose-300",
-  },
-   {
-    id: "crypto",
-    label: "Crypto & Blockchain",
-    description: "Shariah & digital currencies",
-    icon: Bitcoin,
-    color: "bg-blue-500 hover:bg-blue-600",
-    textColor: "text-blue-700",
-    bgLight: "bg-blue-50",
-    borderColor: "border-blue-300",
-  },
-     {
-    id: "gender",
-    label: "Gender",
-    description: "Gender in Islam",
-    icon: Circle,
-    color: "bg-green-500 hover:bg-green-600",
-    textColor: "text-green-700",
-    bgLight: "bg-green-50",
-    borderColor: "border-green-300",
-  },
-     {
-    id: "lgbtq",
-    label: "LGBTQIA+",
-    description: "LGBTQIA+ & Islam",
-    icon: Rainbow,
-    color: "bg-indigo-500 hover:bg-indigo-600",
-    textColor: "text-indigo-700",
-    bgLight: "bg-indigo-50",
-    borderColor: "border-indigo-300",
-  },
-    {
-    id: "psych",
-    label: "Islamic Psychology",
-    description: "Psychology & Islam",
-    icon: Brain,
-    color: "bg-lime-500 hover:bg-lime-600",
-    textColor: "text-lime-700",
-    bgLight: "bg-lime-50",
-    borderColor: "border-lime-300",
-  },
-  {
-    id: "parenting",
-    label: "Islamic Parenting",
-    description: "Islam & parenting",
-    icon: ScanFace,
-    color: "bg-purple-500 hover:bg-purple-600",
-    textColor: "text-purple-700",
-    bgLight: "bg-purple-50",
-    borderColor: "border-purple-300",
-  },
-  {
-    id: "islamic-medical-ethics",
-    label: "Medical Ethics",
-    description: "Islamic Medical Ethics",
-    icon: BriefcaseMedical,
-    color: "bg-gray-500 hover:bg-gray-600",
-    textColor: "text-gray-700",
-    bgLight: "bg-gray-50",
-    borderColor: "border-gray-300",
-  },
-   {
-    id: "peace",
-    label: "Peace",
-    description: "Peace in Middle East",
-    icon: Telescope,
-    color: "bg-teal-500 hover:bg-teal-600",
-    textColor: "text-teal-700",
-    bgLight: "bg-teal-50",
-    borderColor: "border-teal-300",
   },
 ]
 
@@ -279,6 +181,7 @@ const difficulties = [
 export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: CategoryFirstChallengeDialogProps) {
   const { user } = useAuth()
   const router = useRouter()
+  const { t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -299,8 +202,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   const handleSendChallenge = async () => {
     if (!user) {
       toast({
-        title: "Sign in required",
-        description: "Please sign in to challenge other players",
+        title: t("signInRequired"),
+        description: t("signInToChallenge"),
         variant: "destructive",
       })
       return
@@ -308,8 +211,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
     if (!selectedCategory) {
       toast({
-        title: "Select Category",
-        description: "Please select a category before sending the challenge",
+        title: t("selectCategory"),
+        description: t("selectCategoryBeforeSending"),
         variant: "destructive",
       })
       return
@@ -374,8 +277,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
       const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory
       toast({
-        title: "Challenge Created! 🎯",
-        description: `${categoryLabel} challenge sent to ${opponent.full_name || opponent.username}. Take your quiz now!`,
+        title: t("challengeCreated"),
+        description: `${categoryLabel} ${t("challengeSentTo")} ${opponent.full_name || opponent.username}. ${t("takeYourQuizNow")}`,
       })
 
       // Redirect to quiz immediately as the challenger
@@ -386,10 +289,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
       }, 1500)
     } catch (error: any) {
       console.error("❌ Error sending challenge:", error)
-      setError(error.message || "Failed to send challenge. Please try again.")
+      setError(error.message || t("failedToSendChallenge"))
       toast({
-        title: "Error",
-        description: error.message || "Failed to send challenge",
+        title: t("error"),
+        description: error.message || t("failedToSendChallenge"),
         variant: "destructive",
       })
     } finally {
@@ -412,7 +315,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-xl">
             <Gamepad2 className="h-6 w-6 text-green-600" />
-            Challenge {opponent.full_name || opponent.username}
+            {t("challenge")} {opponent.full_name || opponent.username}
           </DialogTitle>
         </DialogHeader>
 
@@ -422,11 +325,11 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               <div className="mx-auto w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
                 <Zap className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Challenge Created! 🎯</h3>
-              <p className="text-gray-600 mb-4">Taking you to your quiz now...</p>
+              <h3 className="text-xl font-semibold mb-2">{t("challengeCreated")}</h3>
+              <p className="text-gray-600 mb-4">{t("takingYouToQuiz")}</p>
               <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
                 <Clock className="h-4 w-4" />
-                <span>{opponent.full_name || opponent.username} will be notified and can accept when ready.</span>
+                <span>{t("opponentWillBeNotified")}</span>
               </div>
             </div>
           ) : (
@@ -445,22 +348,22 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                   <div className="flex items-center gap-2 mt-1">
                     {opponent.best_percentage && (
                       <Badge variant="secondary" className="text-xs">
-                        Best: {opponent.best_percentage}%
+                        {t("best")}: {opponent.best_percentage}%
                       </Badge>
                     )}
                     {opponent.total_score && (
                       <Badge variant="outline" className="text-xs">
-                        {opponent.total_score} pts
+                        {opponent.total_score} {t("points")}
                       </Badge>
                     )}
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm text-gray-500">Challenging in</div>
+                  <div className="text-sm text-gray-500">{t("challengingIn")}</div>
                   <div className="font-medium">
                     {selectedCategory
                       ? challengeCategories.find((c) => c.id === selectedCategory)?.label
-                      : "Select Category"}
+                      : t("selectCategory")}
                   </div>
                 </div>
               </div>
@@ -470,11 +373,9 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-red-800">Challenge Error</p>
+                    <p className="font-medium text-red-800">{t("challengeError")}</p>
                     <p className="text-red-700 text-sm">{error}</p>
-                    <p className="text-sm text-red-600 mt-1">
-                      Don't worry! You can still take the quiz and we'll try to save your results.
-                    </p>
+                    <p className="text-sm text-red-600 mt-1">{t("dontWorryYouCanStillTakeQuiz")}</p>
                   </div>
                 </div>
               )}
@@ -483,7 +384,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               <div>
                 <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                   <Target className="h-5 w-5 text-blue-600" />
-                  What do you want to challenge them in?
+                  {t("whatDoYouWantToChallengeThemIn")}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {challengeCategories.map((category) => {
@@ -512,7 +413,9 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                             {category.label}
                           </h4>
                           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                          {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                          {isSelected && (
+                            <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">{t("selected")}</Badge>
+                          )}
                         </div>
                       </div>
                     )
@@ -527,11 +430,11 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 >
                   <h4 className="font-medium mb-3 flex items-center gap-2">
                     <Trophy className="h-4 w-4" />
-                    Challenge Settings
+                    {t("challengeSettings")}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
+                      <label className="text-sm font-medium mb-2 block">{t("difficultyLevel")}</label>
                       <Select value={selectedDifficulty} onValueChange={setSelectedDifficulty}>
                         <SelectTrigger className="bg-white dark:bg-gray-800">
                           <SelectValue />
@@ -553,10 +456,12 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                     </div>
                     <div className="flex items-end">
                       <div className="text-sm text-gray-600 dark:text-gray-400">
-                        <div className="font-medium">Challenge Details:</div>
-                        <div>• 10 questions</div>
-                        <div>• 5 minutes time limit</div>
-                        <div>• Winner gets +2 points</div>
+                        <div className="font-medium">{t("challengeDetails")}</div>
+                        <div>• 10 {t("questions")}</div>
+                        <div>• 5 {t("minutesTimeLimit")}</div>
+                        <div>
+                          • {t("winnerGets")} +2 {t("points")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -573,12 +478,12 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                   {isSubmitting ? (
                     <>
                       <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                      Creating Challenge...
+                      {t("creatingChallenge")}
                     </>
                   ) : (
                     <>
                       <Zap className="h-5 w-5 mr-2" />
-                      Send Challenge
+                      {t("sendChallenge")}
                       {selectedCategory && (
                         <span className="ml-2 text-green-200">
                           in {challengeCategories.find((c) => c.id === selectedCategory)?.label}
@@ -587,8 +492,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                     </>
                   )}
                 </Button>
-                <Button variant="outline" onClick={handleClose} className="px-8 h-12" disabled={isSubmitting}>
-                  Cancel
+                <Button
+                  variant="outline"
+                  onClick={handleClose}
+                  className="px-8 h-12 bg-transparent"
+                  disabled={isSubmitting}
+                >
+                  {t("cancel")}
                 </Button>
               </div>
             </>

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Check, X, Trophy, BriefcaseMedical, Clock, AlertCircle, RefreshCw } from "lucide-react"
+import { Check, X, Trophy, Clock, AlertCircle, RefreshCw } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
@@ -51,11 +51,9 @@ export default function ChallengeNotification() {
     tafsir: "Tafsir (Quran Commentary)",
     comparative: "Comparative Religion",
     "islamic-finance": "Islamic Finance",
-    "new-muslims": "New Muslims",
     tazkiyah: "Tazkiyah (Spiritual Purification)",
     history: "Islamic History & Civilization",
     dawah: "Dawah (Islamic Outreach)",
-    "islamic-medical-ethics": "Islamic Medical Ethics",
   }
 
   // Difficulty mapping

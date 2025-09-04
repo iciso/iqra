@@ -34,7 +34,7 @@ export default function TopPlayersFixed() {
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
         .order("total_score", { ascending: false })
-        .limit(14)
+        .limit(10)
 
       if (error) throw error
 

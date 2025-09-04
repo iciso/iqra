@@ -4,40 +4,30 @@ import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Book,
-  Bitcoin,
   Scale,
-  BookCopy, 
-  Brain,
-  BriefcaseMedical,
-  BookDashed,
-  Church,
+  BookOpen,
+  MessageSquare,
   Heart,
   User,
-  Users,
   Sparkles,
   History,
-  Scroll,
+  Share2,
   Compass,
   Globe,
   ArrowRight,
-  ScanFace,
-  Telescope, 
-  Rainbow,
-  Circle,
   HandHeart,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 
-// Define all categories here for the quiz 
 const categories = [
   {
     id: "quran",
     title: "Quran",
-    description: "Quran Basics",
+    description: "Test your knowledge of the Holy Quran",
     icon: <Book className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
@@ -49,14 +39,14 @@ const categories = [
   {
     id: "tafsir",
     title: "Tafsir",
-    description: "Quranic Exegesis",
-    icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    description: "Quranic Exegesis and Commentary",
+    icon: <BookOpen className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "hadeeth",
     title: "Hadeeth",
     description: "Prophetic Traditions",
-    icon: <Scroll className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <MessageSquare className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "aqeedah",
@@ -73,20 +63,20 @@ const categories = [
   {
     id: "tazkiyah",
     title: "Tazkiyah",
-    description: "Spiritual Purification", 
+    description: "Spiritual Purification",
     icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "history",
     title: "Islamic History",
-    description: "History of Islam",
+    description: "History of Islam and Muslims",
     icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "dawah",
     title: "Dawah",
     description: "Inviting to Islam",
-    icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Share2 className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "new-muslims",
@@ -97,68 +87,14 @@ const categories = [
   {
     id: "comparative",
     title: "Comparative Religion",
-    description: "Faiths, Non-Faiths & Islam",
+    description: "Atheism, Science and Islamic Thought",
     icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "christ",
-    title: "Christianity",
-    description: "Islam and Christianity",
-    icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "hindu",
-    title: "Hinduism",
-    description: "Islam and Hinduism",
-    icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "islamic-finance",
     title: "Islamic Finance",
-    description: "Islamic Economics",
+    description: "Principles and practices of Islamic economics",
     icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "crypto",
-    title: "Crypto & Blockchain",
-    description: "Shariah & digital currencies",
-    icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "gender",
-    title: "Gender",
-    description: "Gender in Islam",
-    icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "lgbtq",
-    title: "Islam and LGBTQIA+",
-    description: "LGBTQIA+ & Islam",
-    icon: <Rainbow className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },   
-   {
-    id: "psych",
-    title: "Islamic Psychology",
-    description: "Psychology & Islam",
-    icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-     {
-    id: "parenting",
-    title: "Islamic Parenting",
-    description: "Islam & parenting",
-    icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "islamic-medical-ethics",
-    title: "Medical Ethics",
-    description: "Islamic Medical Ethics",
-    icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "peace",
-    title: "Peace",
-    description: "Peace in Middle East",
-    icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
 ]
 
@@ -208,7 +144,7 @@ export default function CategoriesPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       <div className="absolute top-4 right-4">
-     
+        <ThemeToggle />
       </div>
 
       <Card className="w-full max-w-3xl border-green-200 shadow-lg dark:border-green-800">
