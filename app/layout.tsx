@@ -1,17 +1,36 @@
 import type React from "react"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { AuthProvider } from "@/contexts/auth-context"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/sonner"
 import { I18nProvider } from "@/components/i18n/i18n-provider"
+import { Toaster } from "@/components/ui/sonner"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "IQRA - Islamic Knowledge Hub",
-  description: "Explore and enhance your understanding of Islam through interactive learning and gaming.",
+export const metadata: Metadata = {
+  title: "IQRA - Islamic Knowledge Quiz App",
+  description: "Test and enhance your Islamic knowledge with interactive quizzes and challenges",
+  keywords: "Islam, quiz, knowledge, learning, Quran, Hadith, Islamic education",
+  authors: [{ name: "IQRA Team" }],
+  openGraph: {
+    title: "IQRA - Islamic Knowledge Quiz App",
+    description: "Test and enhance your Islamic knowledge with interactive quizzes and challenges",
+    type: "website",
+    locale: "en_US",
+    siteName: "IQRA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IQRA - Islamic Knowledge Quiz App",
+    description: "Test and enhance your Islamic knowledge with interactive quizzes and challenges",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
     generator: 'v0.app'
 }
 
@@ -28,9 +47,9 @@ export default function RootLayout({
             <AuthProvider>
               <div className="min-h-screen bg-background">
                 <Header />
-                <main className="flex-1">{children}</main>
+                <main>{children}</main>
+                <Toaster />
               </div>
-              <Toaster />
             </AuthProvider>
           </I18nProvider>
         </ThemeProvider>

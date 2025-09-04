@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Globe } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 export function LanguageSwitcher() {
@@ -12,7 +13,8 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={toggleLanguage} className="ml-2 bg-transparent">
+    <Button variant="outline" size="sm" onClick={toggleLanguage} className="flex items-center gap-2 bg-transparent">
+      <Globe className="h-4 w-4" />
       {i18n.language === "en" ? "தமிழ்" : "English"}
     </Button>
   )

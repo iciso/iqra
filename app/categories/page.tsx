@@ -1,124 +1,134 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
 import {
-  Book,
-  Users,
-  Heart,
-  Scale,
-  MSquare as Mosque,
-  Scroll,
-  Globe,
-  DollarSign,
-  Baby,
-  Shield,
-  Zap,
   BookOpen,
-  Star,
-  Target,
-  Brain,
+  MSquare as Mosque,
+  Heart,
+  Users,
+  Scale,
   Lightbulb,
+  Star,
+  Globe,
+  Coins,
+  Cross,
+  Baby,
+  Stethoscope,
+  Rainbow,
+  UserCheck,
   Sparkles,
-  Trophy,
-  Crown,
-  Gem,
-  Diamond,
+  Palette,
+  Target,
+  Zap,
+  GraduationCap,
 } from "lucide-react"
 import { getAllCategories } from "@/data/quiz-data-manager"
 
-const iconMap: Record<string, any> = {
-  Book,
-  Users,
-  Heart,
-  Scale,
-  Mosque,
-  Scroll,
-  Globe,
-  DollarSign,
-  Baby,
-  Shield,
-  Zap,
-  BookOpen,
-  Star,
-  Target,
-  Brain,
-  Lightbulb,
-  Sparkles,
-  Trophy,
-  Crown,
-  Gem,
-  Diamond,
+// Icon mapping for categories
+const categoryIcons: Record<string, any> = {
+  quran: BookOpen,
+  hadeeth: Mosque,
+  tazkiyah: Heart,
+  dawah: Users,
+  fiqh: Scale,
+  tafsir: Lightbulb,
+  "islamic-history": Star,
+  "comparative-religion": Globe,
+  "islamic-finance": Coins,
+  christ: Cross,
+  parenting: Baby,
+  "islamic-medical-ethics": Stethoscope,
+  lgbtq: Rainbow,
+  "new-muslims": UserCheck,
+  peace: Sparkles,
+  hindu: Palette,
+  gender: Target,
+  crypto: Zap,
+  psych: GraduationCap,
 }
 
 export default function CategoriesPage() {
-  const router = useRouter()
   const [selectedDifficulty, setSelectedDifficulty] = useState<"easy" | "advanced">("easy")
-
+  const router = useRouter()
   const categories = getAllCategories()
 
   const handleCategorySelect = (categoryId: string) => {
     router.push(`/quiz?category=${categoryId}&difficulty=${selectedDifficulty}`)
   }
 
-  const getIconComponent = (iconName: string) => {
-    const IconComponent = iconMap[iconName] || Book
-    return <IconComponent className="h-8 w-8 mb-4 text-green-600" />
-  }
-
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-4">Choose Your Learning Path</h1>
-        <p className="text-lg text-muted-foreground mb-6">
+    <div className="container mx-auto py-8 px-4 space-y-8">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold tracking-tight mb-4">Choose Your Knowledge Category</h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
           Select a category and difficulty level to begin your Islamic knowledge journey
         </p>
 
+        {/* Difficulty Selection */}
         <div className="flex justify-center gap-4 mb-8">
           <Button
             variant={selectedDifficulty === "easy" ? "default" : "outline"}
             onClick={() => setSelectedDifficulty("easy")}
-            className="px-8"
+            size="lg"
           >
-            Easy
+            Easy Level
           </Button>
           <Button
             variant={selectedDifficulty === "advanced" ? "default" : "outline"}
             onClick={() => setSelectedDifficulty("advanced")}
-            className="px-8"
+            size="lg"
           >
-            Advanced
+            Advanced Level
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {categories.map((category) => (
-          <Card
-            key={category.id}
-            className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-[1.02] border-2 hover:border-green-200"
-            onClick={() => handleCategorySelect(category.id)}
-          >
-            <CardHeader className="text-center pb-4">
-              <div className="flex justify-center">{getIconComponent(category.icon)}</div>
-              <CardTitle className="text-xl">{category.name}</CardTitle>
-              <CardDescription className="text-sm">{category.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center pt-0">
-              <div className="flex justify-center gap-2 mb-4">
-                <Badge variant="secondary" className="text-xs">
-                  {selectedDifficulty === "easy"
-                    ? `${category.easyQuestions} Easy Questions`
-                    : `${category.advancedQuestions} Advanced Questions`}
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Categories Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.map((category) => {
+          const IconComponent = categoryIcons[category.id] || BookOpen
+          const questionsCount = category.questions?.filter((q) => q.difficulty === selectedDifficulty)?.length || 0
+
+          return (
+            <Card
+              key={category.id}
+              className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-primary/50"
+              onClick={() => handleCategorySelect(category.id)}
+            >
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <IconComponent className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
+                  <Badge variant="secondary">{questionsCount} questions</Badge>
+                </div>
+                <CardTitle className="text-xl group-hover:text-primary transition-colors">{category.name}</CardTitle>
+                <CardDescription className="text-sm">{category.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <Button
+                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all bg-transparent"
+                  variant="outline"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleCategorySelect(category.id)
+                  }}
+                >
+                  Start {selectedDifficulty === "easy" ? "Easy" : "Advanced"} Quiz
+                </Button>
+              </CardContent>
+            </Card>
+          )
+        })}
       </div>
+
+      {categories.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-lg text-muted-foreground">No categories available at the moment.</p>
+        </div>
+      )}
     </div>
   )
 }

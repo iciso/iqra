@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div className="container mx-auto py-8 md:py-12 px-4">
       <div className="text-center mb-8 md:mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">{t("home.welcome")}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">{t("home.title")}</h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">{t("home.subtitle")}</p>
       </div>
 
@@ -23,10 +23,10 @@ export default function HomePage() {
           <CardContent className="flex-grow px-4 py-4 md:px-6">
             <p>{t("home.learningMode.content")}</p>
             <ul className="list-disc list-inside mt-4 space-y-1">
-              <li>{t("home.learningMode.feature1")}</li>
-              <li>{t("home.learningMode.feature2")}</li>
-              <li>{t("home.learningMode.feature3")}</li>
-              <li>{t("home.learningMode.feature4")}</li>
+              <li>{t("home.learningMode.features.levels")}</li>
+              <li>{t("home.learningMode.features.explanations")}</li>
+              <li>{t("home.learningMode.features.progress")}</li>
+              <li>{t("home.learningMode.features.categories")}</li>
             </ul>
           </CardContent>
           <CardFooter className="px-4 pb-4 md:px-6">
@@ -46,10 +46,10 @@ export default function HomePage() {
           <CardContent className="flex-grow px-4 py-4 md:px-6">
             <p>{t("home.challengeMode.content")}</p>
             <ul className="list-disc list-inside mt-4 space-y-1">
-              <li>{t("home.challengeMode.feature1")}</li>
-              <li>{t("home.challengeMode.feature2")}</li>
-              <li>{t("home.challengeMode.feature3")}</li>
-              <li>{t("home.challengeMode.feature4")}</li>
+              <li>{t("home.challengeMode.features.timed")}</li>
+              <li>{t("home.challengeMode.features.compete")}</li>
+              <li>{t("home.challengeMode.features.badges")}</li>
+              <li>{t("home.challengeMode.features.themed")}</li>
             </ul>
           </CardContent>
           <CardFooter className="px-4 pb-4 md:px-6">

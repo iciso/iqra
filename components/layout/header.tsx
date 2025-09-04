@@ -38,25 +38,26 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             {user && (
               <>
                 <Link href="/categories">
-                  <Button variant="ghost">{t("categories")}</Button>
+                  <Button variant="ghost">{t("nav.categories")}</Button>
                 </Link>
                 <Link href="/challenges">
-                  <Button variant="ghost">{t("challenges")}</Button>
+                  <Button variant="ghost">{t("nav.challenges")}</Button>
                 </Link>
                 <Link href="/leaderboard">
-                  <Button variant="ghost">{t("leaderboard")}</Button>
+                  <Button variant="ghost">{t("nav.leaderboard")}</Button>
                 </Link>
                 <Link href="/badges">
-                  <Button variant="ghost">{t("badges")}</Button>
+                  <Button variant="ghost">{t("nav.badges")}</Button>
                 </Link>
                 <Link href="/profile">
-                  <Button variant="ghost">{t("profile")}</Button>
+                  <Button variant="ghost">{t("nav.profile")}</Button>
                 </Link>
                 <Link href="/about">
-                  <Button variant="ghost">{t("about")}</Button>
+                  <Button variant="ghost">{t("nav.about")}</Button>
                 </Link>
                 <Button
                   variant="outline"
@@ -65,14 +66,12 @@ export function Header() {
                   disabled={signOutLoading}
                 >
                   <LogOut className="h-4 w-4 mr-1" />
-                  <span>{t("signOut")}</span>
+                  <span>{t("nav.signOut")}</span>
                 </Button>
               </>
             )}
 
-            {!user && <Button onClick={() => signInWithProvider("google")}>{t("signIn")}</Button>}
-
-            <LanguageSwitcher />
+            {!user && <Button onClick={() => signInWithProvider("google")}>{t("nav.signIn")}</Button>}
           </nav>
 
           {/* Mobile Navigation */}
@@ -90,32 +89,32 @@ export function Header() {
                   <div className="flex flex-col space-y-4 mt-8">
                     <Link href="/categories" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("categories")}
+                        {t("nav.categories")}
                       </Button>
                     </Link>
                     <Link href="/challenges" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("challenges")}
+                        {t("nav.challenges")}
                       </Button>
                     </Link>
                     <Link href="/leaderboard" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("leaderboard")}
+                        {t("nav.leaderboard")}
                       </Button>
                     </Link>
                     <Link href="/badges" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("badges")}
+                        {t("nav.badges")}
                       </Button>
                     </Link>
                     <Link href="/profile" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("profile")}
+                        {t("nav.profile")}
                       </Button>
                     </Link>
                     <Link href="/about" onClick={closeMobileMenu}>
                       <Button variant="ghost" className="w-full justify-start">
-                        {t("about")}
+                        {t("nav.about")}
                       </Button>
                     </Link>
                     <div className="border-t pt-4">
@@ -126,7 +125,7 @@ export function Header() {
                         disabled={signOutLoading}
                       >
                         <LogOut className="h-4 w-4 mr-2" />
-                        <span>{t("signOut")}</span>
+                        <span>{t("nav.signOut")}</span>
                       </Button>
                     </div>
                   </div>
@@ -134,7 +133,7 @@ export function Header() {
               </Sheet>
             ) : (
               <Button onClick={() => signInWithProvider("google")} size="sm">
-                {t("signIn")}
+                {t("nav.signIn")}
               </Button>
             )}
           </div>
