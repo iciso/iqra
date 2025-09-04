@@ -1,14 +1,16 @@
 "use client"
 
-import type React from "react"
-
-import { useEffect } from "react"
+import { useEffect, type ReactNode } from "react"
 import { I18nextProvider } from "react-i18next"
 import i18n from "@/lib/i18n"
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
+interface I18nProviderProps {
+  children: ReactNode
+}
+
+export function I18nProvider({ children }: I18nProviderProps) {
   useEffect(() => {
-    // Load saved language from localStorage
+    // Initialize i18n and load saved language from localStorage
     const savedLanguage = localStorage.getItem("language")
     if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ta")) {
       i18n.changeLanguage(savedLanguage)
