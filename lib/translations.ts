@@ -126,7 +126,7 @@ export interface Translation {
   days: string
   ago: string
 
-  // Islamic Terms (keeping Arabic with Tamil explanations)
+  // Islamic Terms
   shahada: string
   salah: string
   zakat: string
@@ -323,8 +323,7 @@ export const translations: Record<string, Translation> = {
 
     // App Title & Branding
     appTitle: "இக்ரா",
-    appDescription:
-      "இஸ்லாமிய வினாடி வினா போட்டி செயலி - ஊடாடும் வினாடி வினாக்கள் மற்றும் சவால்கள் மூலம் உங்கள் இஸ்லாமிய அறிவை சோதிக்கவும் மேம்படுத்தவும் உதவுகிறது",
+    appDescription: "இஸ்லாமிய வினாடி வினா போட்டி செயலி - ஊடாடும் வினாடி வினாக்கள் மற்றும் சவால்கள் மூலம் உங்கள் இஸ்லாமிய அறிவை சோதிக்கவும்",
 
     // Categories
     categories: "பிரிவுகள்",
