@@ -38,7 +38,9 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
+            {/* Language switcher always visible */}
             <LanguageSwitcher />
+
             {user && (
               <>
                 <Link href="/categories">
@@ -76,6 +78,7 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
+            {/* Language switcher always visible on mobile */}
             <LanguageSwitcher />
 
             {user ? (
