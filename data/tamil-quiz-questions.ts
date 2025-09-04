@@ -1,259 +1,130 @@
 import type { QuizQuestion } from "@/types/quiz"
 
-// Tamil quiz questions for different categories
-export const tamilQuizQuestions: Record<string, QuizQuestion[]> = {
-  quran: [
-    {
-      id: "ta-quran-1",
-      question: "குர்ஆனில் எத்தனை சூராக்கள் உள்ளன?",
-      options: ["112", "113", "114", "115"],
-      correctAnswer: "114",
-      explanation: "குர்ஆனில் மொத்தம் 114 சூராக்கள் உள்ளன. இது அல்-ஃபாத்திஹாவிலிருந்து தொடங்கி அன்-நாஸ் வரை உள்ளது.",
-      difficulty: "easy",
-      category: "quran",
-    },
-    {
-      id: "ta-quran-2",
-      question: "குர்ஆனின் முதல் சூரா எது?",
-      options: ["அல்-பகரா", "அல்-ஃபாத்திஹா", "ஆல் இம்ரான்", "அன்-நிசா"],
-      correctAnswer: "அல்-ஃபாத்திஹா",
-      explanation: "அல்-ஃபாத்திஹா குர்ஆனின் முதல் சூராவாகும். இது 'திறப்பு' என்று பொருள்படும்.",
-      difficulty: "easy",
-      category: "quran",
-    },
-    {
-      id: "ta-quran-3",
-      question: "குர்ஆனின் மிக நீளமான சூரா எது?",
-      options: ["அல்-ஃபாத்திஹா", "அல்-பகரா", "ஆல் இம்ரான்", "அன்-நிசா"],
-      correctAnswer: "அல்-பகரா",
-      explanation: "அல்-பகரா குர்ஆனின் மிக நீளமான சூராவாகும். இதில் 286 வசனங்கள் உள்ளன.",
-      difficulty: "intermediate",
-      category: "quran",
-    },
-    {
-      id: "ta-quran-4",
-      question: "குர்ஆன் எந்த மொழியில் அருளப்பட்டது?",
-      options: ["உருது", "பாரசீகம்", "அரபு", "ஹீப்ரு"],
-      correctAnswer: "அரபு",
-      explanation: "குர்ஆன் அரபு மொழியில் அருளப்பட்டது. இது அல்லாஹ்வின் இறுதி வேதமாகும்.",
-      difficulty: "easy",
-      category: "quran",
-    },
-    {
-      id: "ta-quran-5",
-      question: "குர்ஆனின் கடைசி சூரா எது?",
-      options: ["அல்-இக்லாஸ்", "அல்-ஃபலக்", "அன்-நாஸ்", "அல்-கவ்தர்"],
-      correctAnswer: "அன்-நாஸ்",
-      explanation: "அன்-நாஸ் குர்ஆனின் கடைசி சூராவாகும். இது 114வது சூராவாகும்.",
-      difficulty: "easy",
-      category: "quran",
-    },
-  ],
+// Tamil translations for Quran category questions
+export const tamilQuranQuestions: QuizQuestion[] = [
+  {
+    id: "quran-ta-1",
+    question: "குர்ஆனின் முதல் சூரா (அத்தியாயம்) எது?",
+    options: ["அல்-ஃபாத்திஹா", "அல்-பகரா", "யூசுஃப்", "அர்-ரஹ்மான்"],
+    correctAnswer: "அல்-ஃபாத்திஹா",
+    explanation: "சூரா அல்-ஃபாத்திஹா, அதாவது 'தொடக்கம்', குர்ஆனின் முதல் அத்தியாயமாகும்.",
+  },
+  {
+    id: "quran-ta-2",
+    question: "குர்ஆனில் எத்தனை சூராக்கள் (அத்தியாயங்கள்) உள்ளன?",
+    options: ["110", "114", "120", "130"],
+    correctAnswer: "114",
+    explanation: "குர்ஆனில் 114 அத்தியாயங்கள் உள்ளன, அவை நீளம் மற்றும் கருப்பொருளில் வேறுபடுகின்றன.",
+  },
+  {
+    id: "quran-ta-3",
+    question: "குர்ஆனின் மிக நீளமான சூரா எது?",
+    options: ["ஆல் இம்ரான்", "அன்-நிசா", "அல்-கஹ்ஃப்", "அல்-பகரா"],
+    correctAnswer: "அல்-பகரா",
+    explanation: "சூரா அல்-பகரா, அதாவது 'பசு', குர்ஆனின் மிக நீளமான அத்தியாயமாகும்.",
+  },
+  {
+    id: "quran-ta-4",
+    question: "குர்ஆனின் மிகச் சிறிய சூரா எது?",
+    options: ["அல்-கவ்தர்", "அல்-அஸ்ர்", "அல்-இக்லாஸ்", "அன்-நஸ்ர்"],
+    correctAnswer: "அல்-கவ்தர்",
+    explanation: "சூரா அல்-கவ்தர், அதாவது 'சொர்க்கத்தின் நதி', குர்ஆனின் மிகச் சிறிய அத்தியாயமாகும், இதில் மூன்று வசனங்கள் உள்ளன.",
+  },
+  {
+    id: "quran-ta-5",
+    question: "எந்த சூரா 'குர்ஆனின் இதயம்' என்று அழைக்கப்படுகிறது?",
+    options: ["யாசீன்", "அல்-ஃபாத்திஹா", "அல்-இக்லாஸ்", "அர்-ரஹ்மான்"],
+    correctAnswer: "யாசீன்",
+    explanation: "சூரா யாசீன் அதன் மைய செய்தி மற்றும் முக்கியத்துவத்தின் காரணமாக 'குர்ஆனின் இதயம்' என்று அழைக்கப்படுகிறது.",
+  },
+]
 
-  fiqh: [
-    {
-      id: "ta-fiqh-1",
-      question: "இஸ்லாமின் ஐந்து தூண்களில் முதலாவது எது?",
-      options: ["ஸலாஹ்", "ஸகாத்", "ஷஹாதா", "ஹஜ்"],
-      correctAnswer: "ஷஹாதா",
-      explanation: "ஷஹாதா (நம்பிக்கை அறிக்கை) இஸ்லாமின் ஐந்து தூண்களில் முதலாவதாகும்.",
-      difficulty: "easy",
-      category: "fiqh",
-    },
-    {
-      id: "ta-fiqh-2",
-      question: "ஒரு நாளில் எத்தனை முறை ஃபர்ள் தொழுகை உள்ளது?",
-      options: ["3", "4", "5", "6"],
-      correctAnswer: "5",
-      explanation: "ஒரு நாளில் ஐந்து முறை ஃபர்ள் தொழுகை உள்ளது: ஃபஜ்ர், ழுஹர், அஸர், மக்ரிப், இஷா.",
-      difficulty: "easy",
-      category: "fiqh",
-    },
-    {
-      id: "ta-fiqh-3",
-      question: "ஸகாத் கொடுக்க வேண்டிய குறைந்தபட்ச தொகை (நிஸாப்) தங்கத்திற்கு எவ்வளவு?",
-      options: ["85 கிராம்", "87.48 கிராம்", "90 கிராம்", "100 கிராம்"],
-      correctAnswer: "87.48 கிராம்",
-      explanation: "தங்கத்திற்கான நிஸாப் 87.48 கிராம் ஆகும். இதற்கு மேல் இருந்தால் ஸகாத் கொடுக்க வேண்டும்.",
-      difficulty: "advanced",
-      category: "fiqh",
-    },
-    {
-      id: "ta-fiqh-4",
-      question: "வுழூவின் ஃபர்ள்கள் எத்தனை?",
-      options: ["3", "4", "5", "6"],
-      correctAnswer: "4",
-      explanation:
-        "வுழூவின் ஃபர்ள்கள் நான்கு: முகம் கழுவுதல், கைகளை முழங்கை வரை கழுவுதல், தலையை மஸ்ஹ் செய்தல், கால்களை கணுக்கால் வரை கழுவுதல்.",
-      difficulty: "intermediate",
-      category: "fiqh",
-    },
-    {
-      id: "ta-fiqh-5",
-      question: "ரமலான் மாதத்தில் நோன்பு வைப்பது எந்த வகை கடமையாகும்?",
-      options: ["ஸுன்னத்", "முஸ்தஹப்", "ஃபர்ள்", "நஃப்ல்"],
-      correctAnswer: "ஃபர்ள்",
-      explanation: "ரமலான் மாதத்தில் நோன்பு வைப்பது ஃபர்ள் (கட்டாய கடமை) ஆகும்.",
-      difficulty: "easy",
-      category: "fiqh",
-    },
-  ],
+// Tamil translations for Fiqh category questions
+export const tamilFiqhQuestions: QuizQuestion[] = [
+  {
+    id: "fiqh-ta-1",
+    question: "ஒரு முஸ்லிமின் முதல் கடமை என்ன?",
+    options: [
+      "நாளொன்றுக்கு ஐந்து முறை தொழுகை செய்வது",
+      "அல்லாஹ் மற்றும் அவனது தூதரை நம்புவது",
+      "ரமலானில் நோன்பு நோற்பது",
+      "ஸகாத் கொடுப்பது",
+    ],
+    correctAnswer: "அல்லாஹ் மற்றும் அவனது தூதரை நம்புவது",
+    explanation: "ஷஹாதா (நம்பிக்கை அறிக்கை) இஸ்லாமின் முதல் மற்றும் மிக அடிப்படையான தூணாகும்.",
+  },
+  {
+    id: "fiqh-ta-2",
+    question: "ஒரு நாளில் எத்தனை கட்டாய தொழுகைகள் உள்ளன?",
+    options: ["3", "4", "5", "6"],
+    correctAnswer: "5",
+    explanation: "ஒரு நாளில் ஐந்து கட்டாய தொழுகைகள் உள்ளன: ஃபஜ்ர், துஹர், அஸர், மஃக்ரிப் மற்றும் இஷா.",
+  },
+  {
+    id: "fiqh-ta-3",
+    question: "தங்கத்திற்கான ஸகாத்தின் குறைந்தபட்ச அளவு (நிஸாப்) என்ன?",
+    options: ["50 கிராம்", "85 கிராம்", "100 கிராம்", "200 கிராம்"],
+    correctAnswer: "85 கிராம்",
+    explanation: "தங்கத்திற்கான நிஸாப் 85 கிராம் (அல்லது நாணயத்தில் அதற்கு சமமான மதிப்பு).",
+  },
+]
 
-  hadeeth: [
-    {
-      id: "ta-hadeeth-1",
-      question: "ஹதீஸின் மிக நம்பகமான தொகுப்பு எது?",
-      options: ["ஸஹீஹ் புகாரி", "ஸஹீஹ் முஸ்லிம்", "சுனன் அபூ தாவூத்", "ஜாமி அத்-திர்மிதி"],
-      correctAnswer: "ஸஹீஹ் புகாரி",
-      explanation: "ஸஹீஹ் புகாரி இமாம் புகாரி (ரஹ்) அவர்களால் தொகுக்கப்பட்ட மிக நம்பகமான ஹதீஸ் தொகுப்பாகும்.",
-      difficulty: "intermediate",
-      category: "hadeeth",
-    },
-    {
-      id: "ta-hadeeth-2",
-      question: "'செயல்கள் நோக்கங்களைப் பொறுத்தே அமையும்' என்ற பிரபலமான ஹதீஸ் எந்த தொகுப்பில் உள்ளது?",
-      options: ["ஸஹீஹ் புகாரி", "ஸஹீஹ் முஸ்லிம்", "இரண்டிலும்", "சுனன் நஸாயி"],
-      correctAnswer: "இரண்டிலும்",
-      explanation: "இந்த பிரபலமான ஹதீஸ் ஸஹீஹ் புகாரி மற்றும் ஸஹீஹ் முஸ்லிம் இரண்டிலும் வந்துள்ளது.",
-      difficulty: "advanced",
-      category: "hadeeth",
-    },
-    {
-      id: "ta-hadeeth-3",
-      question: "ஹதீஸ் எத்தனை பாகங்களைக் கொண்டது?",
-      options: ["2", "3", "4", "5"],
-      correctAnswer: "2",
-      explanation: "ஹதீஸ் இரண்டு பாகங்களைக் கொண்டது: இஸ்னாத் (அறிவிப்பாளர் சங்கிலி) மற்றும் மத்ன் (உள்ளடக்கம்).",
-      difficulty: "intermediate",
-      category: "hadeeth",
-    },
-    {
-      id: "ta-hadeeth-4",
-      question: "ஸஹீஹ் சித்தா என்பது எத்தனை ஹதீஸ் தொகுப்புகளைக் குறிக்கும்?",
-      options: ["4", "5", "6", "7"],
-      correctAnswer: "6",
-      explanation:
-        "ஸஹீஹ் சித்தா என்பது ஆறு முக்கிய ஹதீஸ் தொகுப்புகளைக் குறிக்கும்: புகாரி, முஸ்லிம், அபூ தாவூத், திர்மிதி, நஸாயி, இப்ன் மாஜா.",
-      difficulty: "advanced",
-      category: "hadeeth",
-    },
-    {
-      id: "ta-hadeeth-5",
-      question: "ஹதீஸ் குத்ஸி என்றால் என்ன?",
-      options: [
-        "நபி (ஸல்) அவர்களின் சொந்த வார்த்தைகள்",
-        "அல்லாஹ்வின் வார்த்தைகள் நபி (ஸல்) மூலம்",
-        "ஸஹாபாக்களின் வார்த்தைகள்",
-        "தாபிஈன்களின் வார்த்தைகள்",
-      ],
-      correctAnswer: "அல்லாஹ்வின் வார்த்தைகள் நபி (ஸல்) மூலம்",
-      explanation: "ஹதீஸ் குத்ஸி என்பது அல்லாஹ்வின் வார்த்தைகள் நபி (ஸல்) அவர்கள் மூலம் அறிவிக்கப்பட்டவை.",
-      difficulty: "advanced",
-      category: "hadeeth",
-    },
-  ],
+// Tamil translations for Hadeeth category questions
+export const tamilHadeethQuestions: QuizQuestion[] = [
+  {
+    id: "hadeeth-ta-1",
+    question: "'ஹதீஸ்' என்ற சொல்லின் பொருள் என்ன?",
+    options: ["தொழுகை", "கதை", "புத்தகம்", "சட்டம்"],
+    correctAnswer: "கதை",
+    explanation:
+      "ஹதீஸ் என்பது ஒரு கதை, கணக்கு அல்லது அறிக்கை என்று பொருள். இஸ்லாமிய சூழலில், இது நபி முஹம்மது (ஸல்) அவர்களின் வாக்குகள், செயல்கள் அல்லது ஒப்புதல்களைக் குறிக்கிறது.",
+  },
+  {
+    id: "hadeeth-ta-2",
+    question: "ஹதீஸின் இரண்டு முக்கிய கூறுகள் என்ன?",
+    options: ["குர்ஆன் மற்றும் சுன்னா", "இஸ்னாத் மற்றும் மத்ன்", "ஸஹீஹ் மற்றும் தயீஃப்", "ஃபிக்ஹ் மற்றும் அகீதா"],
+    correctAnswer: "இஸ்னாத் மற்றும் மத்ன்",
+    explanation: "ஒரு ஹதீஸ் இஸ்னாத் (கதைசொல்பவர்களின் சங்கிலி) மற்றும் மத்ன் (கதையின் உண்மையான உரை அல்லது உள்ளடக்கம்) ஆகியவற்றைக் கொண்டுள்ளது.",
+  },
+]
 
-  seerah: [
-    {
-      id: "ta-seerah-1",
-      question: "நபி முஹம்மத் (ஸல்) அவர்கள் எந்த ஆண்டு பிறந்தார்கள்?",
-      options: ["570 CE", "571 CE", "572 CE", "573 CE"],
-      correctAnswer: "570 CE",
-      explanation: "நபி முஹம்மத் (ஸல்) அவர்கள் 570 CE ஆண்டு மக்காவில் பிறந்தார்கள். இது யானை ஆண்டு என்று அழைக்கப்படுகிறது.",
-      difficulty: "intermediate",
-      category: "seerah",
-    },
-    {
-      id: "ta-seerah-2",
-      question: "நபி (ஸல்) அவர்களின் தந்தையின் பெயர் என்ன?",
-      options: ["அப்துல் முத்தலிப்", "அப்துல்லாஹ்", "அபூ தாலிப்", "அல்-அப்பாஸ்"],
-      correctAnswer: "அப்துல்லாஹ்",
-      explanation: "நபி (ஸல்) அவர்களின் தந்தையின் பெயர் அப்துல்லாஹ் இப்ன் அப்துல் முத்தலிப்.",
-      difficulty: "easy",
-      category: "seerah",
-    },
-    {
-      id: "ta-seerah-3",
-      question: "நபி (ஸல்) அவர்களின் முதல் மனைவி யார்?",
-      options: ["ஆயிஷா (ரலி)", "கதீஜா (ரலி)", "ஹஃப்ஸா (ரலி)", "ஸைனப் (ரலி)"],
-      correctAnswer: "கதீஜா (ரலி)",
-      explanation: "கதீஜா (ரலி) நபி (ஸல்) அவர்களின் முதல் மனைவி ஆவார். அவர் ஒரு வெற்றிகரமான வணிகர் ஆவார்.",
-      difficulty: "easy",
-      category: "seerah",
-    },
-    {
-      id: "ta-seerah-4",
-      question: "ஹிஜ்ரா (மதீனாவுக்கு குடிபெயர்தல்) எந்த ஆண்டு நடந்தது?",
-      options: ["620 CE", "621 CE", "622 CE", "623 CE"],
-      correctAnswer: "622 CE",
-      explanation: "ஹிஜ்ரா 622 CE ஆண்டு நடந்தது. இது இஸ்லாமிய நாட்காட்டியின் தொடக்கமாக கருதப்படுகிறது.",
-      difficulty: "intermediate",
-      category: "seerah",
-    },
-    {
-      id: "ta-seerah-5",
-      question: "நபி (ஸல்) அவர்கள் எந்த வயதில் நபித்துவம் பெற்றார்கள்?",
-      options: ["35", "40", "45", "50"],
-      correctAnswer: "40",
-      explanation: "நபி (ஸல்) அவர்கள் 40 வயதில் ஹிரா குகையில் நபித்துவம் பெற்றார்கள்.",
-      difficulty: "easy",
-      category: "seerah",
-    },
-  ],
+// Tamil translations for Aqeedah category questions
+export const tamilAqeedahQuestions: QuizQuestion[] = [
+  {
+    id: "aqeedah-ta-1",
+    question: "'அகீதா' என்றால் என்ன?",
+    options: ["தொழுகை", "நம்பிக்கை", "தர்மம்", "நோன்பு"],
+    correctAnswer: "நம்பிக்கை",
+    explanation:
+      "அகீதா என்பது இஸ்லாமின் முக்கிய நம்பிக்கைகள் மற்றும் கொள்கைகளைக் குறிக்கிறது, அதில் ஒரு முஸ்லிம் உறுதியான நம்பிக்கை கொண்டிருக்க வேண்டும்.",
+  },
+  {
+    id: "aqeedah-ta-2",
+    question: "இஸ்லாமில் எத்தனை நம்பிக்கைக் கட்டுரைகள் உள்ளன?",
+    options: ["4", "5", "6", "7"],
+    correctAnswer: "6",
+    explanation:
+      "இஸ்லாமில் ஆறு நம்பிக்கைக் கட்டுரைகள் உள்ளன: அல்லாஹ், அவனது தேவதூதர்கள், அவனது புத்தகங்கள், அவனது தூதர்கள், நியாயத்தீர்ப்பு நாள் மற்றும் தெய்வீக விதி மீதான நம்பிக்கை.",
+  },
+]
 
-  aqeedah: [
-    {
-      id: "ta-aqeedah-1",
-      question: "இஸ்லாமின் ஆறு நம்பிக்கைகளில் முதலாவது எது?",
-      options: ["வேதங்களில் நம்பிக்கை", "அல்லாஹ்வில் நம்பிக்கை", "தூதர்களில் நம்பிக்கை", "மறுமையில் நம்பிக்கை"],
-      correctAnswer: "அல்லாஹ்வில் நம்பிக்கை",
-      explanation: "அல்லாஹ்வில் நம்பிக்கை இஸ்லாமின் ஆறு நம்பிக்கைகளில் முதலாவதாகும்.",
-      difficulty: "easy",
-      category: "aqeedah",
-    },
-    {
-      id: "ta-aqeedah-2",
-      question: "தவ்ஹீத் என்றால் என்ன?",
-      options: ["அல்லாஹ்வின் ஒற்றுமை", "நபிகளின் நம்பிக்கை", "மறுமை நம்பிக்கை", "விதி நம்பிக்கை"],
-      correctAnswer: "அல்லாஹ்வின் ஒற்றுமை",
-      explanation: "தவ்ஹீத் என்பது அல்லாஹ்வின் ஒற்றுமையில் நம்பிக்கை வைப்பதாகும்.",
-      difficulty: "easy",
-      category: "aqeedah",
-    },
-    {
-      id: "ta-aqeedah-3",
-      question: "இஸ்லாமின் ஆறு நம்பிக்கைகள் எத்தனை?",
-      options: ["5", "6", "7", "8"],
-      correctAnswer: "6",
-      explanation: "இஸ்லாமின் ஆறு நம்பிக்கைகள்: அல்லாஹ், மலக்குகள், வேதங்கள், தூதர்கள், மறுமை, விதி.",
-      difficulty: "easy",
-      category: "aqeedah",
-    },
-    {
-      id: "ta-aqeedah-4",
-      question: "ஷிர்க் என்றால் என்ன?",
-      options: ["அல்லாஹ்வை வணங்குதல்", "அல்லாஹ்வுக்கு இணை வைத்தல்", "நபிகளை நம்புதல்", "நல்ல செயல் செய்தல்"],
-      correctAnswer: "அல்லாஹ்வுக்கு இணை வைத்தல்",
-      explanation: "ஷிர்க் என்பது அல்லாஹ்வுக்கு இணை வைப்பதாகும். இது மிகப்பெரிய பாவமாகும்.",
-      difficulty: "intermediate",
-      category: "aqeedah",
-    },
-    {
-      id: "ta-aqeedah-5",
-      question: "கத்ர் (விதி) என்பது எதைக் குறிக்கும்?",
-      options: ["அல்லாஹ்வின் அறிவு மற்றும் விதி", "நபிகளின் செய்திகள்", "மலக்குகளின் பணிகள்", "மறுமையின் நிகழ்வுகள்"],
-      correctAnswer: "அல்லாஹ்வின் அறிவு மற்றும் விதி",
-      explanation: "கத்ர் என்பது அல்லாஹ்வின் முன்னறிவு மற்றும் விதியில் நம்பிக்கை வைப்பதாகும்.",
-      difficulty: "intermediate",
-      category: "aqeedah",
-    },
-  ],
-}
-
+// Function to get Tamil questions for a specific category
 export function getTamilQuestionsForCategory(categoryId: string): QuizQuestion[] {
-  return tamilQuizQuestions[categoryId] || []
+  switch (categoryId) {
+    case "quran":
+      return tamilQuranQuestions
+    case "fiqh":
+      return tamilFiqhQuestions
+    case "hadeeth":
+      return tamilHadeethQuestions
+    case "aqeedah":
+      return tamilAqeedahQuestions
+    default:
+      return []
+  }
 }
 
+// Function to get all Tamil questions
 export function getAllTamilQuestions(): QuizQuestion[] {
-  return Object.values(tamilQuizQuestions).flat()
+  return [...tamilQuranQuestions, ...tamilFiqhQuestions, ...tamilHadeethQuestions, ...tamilAqeedahQuestions]
 }

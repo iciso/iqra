@@ -86,6 +86,7 @@ export interface Translation {
   findChallengers: string
 
   // Authentication
+  welcome: string
   signInWithGoogle: string
   signInWithGithub: string
   email: string
@@ -104,6 +105,7 @@ export interface Translation {
   achievements: string
 
   // Common Actions
+  loading: string
   save: string
   cancel: string
   delete: string
@@ -147,10 +149,6 @@ export interface Translation {
   aboutDescription: string
   features: string
   contact: string
-
-  // Common terms
-  loading: string
-  welcome: string
 }
 
 export const translations: Record<string, Translation> = {
@@ -242,6 +240,7 @@ export const translations: Record<string, Translation> = {
     findChallengers: "Find Challengers",
 
     // Authentication
+    welcome: "Welcome",
     signInWithGoogle: "Sign in with Google",
     signInWithGithub: "Sign in with GitHub",
     email: "Email",
@@ -260,6 +259,7 @@ export const translations: Record<string, Translation> = {
     achievements: "Achievements",
 
     // Common Actions
+    loading: "Loading...",
     save: "Save",
     cancel: "Cancel",
     delete: "Delete",
@@ -304,10 +304,6 @@ export const translations: Record<string, Translation> = {
       "IQRA is an interactive Islamic learning platform that helps Muslims test and improve their knowledge of Islam through engaging quizzes and challenges.",
     features: "Features",
     contact: "Contact",
-
-    // Common terms
-    loading: "Loading...",
-    welcome: "Welcome",
   },
 
   ta: {
@@ -398,6 +394,7 @@ export const translations: Record<string, Translation> = {
     findChallengers: "சவால் விடுபவர்களை கண்டறியவும்",
 
     // Authentication
+    welcome: "வரவேற்கிறோம்",
     signInWithGoogle: "Google மூலம் உள்நுழையவும்",
     signInWithGithub: "GitHub மூலம் உள்நுழையவும்",
     email: "மின்னஞ்சல்",
@@ -416,6 +413,7 @@ export const translations: Record<string, Translation> = {
     achievements: "சாதனைகள்",
 
     // Common Actions
+    loading: "ஏற்றுகிறது...",
     save: "சேமிக்கவும்",
     cancel: "ரத்து செய்யவும்",
     delete: "நீக்கவும்",
@@ -460,10 +458,6 @@ export const translations: Record<string, Translation> = {
       "இக்ரா என்பது ஒரு ஊடாடும் இஸ்லாமிய கற்றல் தளமாகும், இது முஸ்லிம்கள் ஈர்க்கும் வினாடி வினாக்கள் மற்றும் சவால்கள் மூலம் இஸ்லாம் பற்றிய தங்கள் அறிவை சோதிக்கவும் மேம்படுத்தவும் உதவுகிறது.",
     features: "அம்சங்கள்",
     contact: "தொடர்பு",
-
-    // Common terms
-    loading: "ஏற்றுகிறது...",
-    welcome: "வரவேற்கிறோம்",
   },
 }
 
