@@ -7,7 +7,7 @@ import { useState } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-export function Header() {
+const Header = () => {
   const { user, signInWithProvider, signOut } = useAuth()
   const [signOutLoading, setSignOutLoading] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -65,14 +65,10 @@ export function Header() {
             )}
 
             {!user && <Button onClick={() => signInWithProvider("google")}>Sign In</Button>}
-
-           
           </nav>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
-         
-
             {user ? (
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild>
@@ -132,3 +128,5 @@ export function Header() {
     </header>
   )
 }
+
+export default Header
