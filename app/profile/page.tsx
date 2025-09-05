@@ -20,7 +20,7 @@ import {
   type Challenge,
   type Friendship,
 } from "@/lib/supabase-queries"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import Link from "next/link"
 import UserSearch from "@/components/profile/user-search"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
@@ -145,7 +145,7 @@ export default function ProfilePage() {
           <CardContent className="text-center py-8">
             <p>Please sign in to view your profile</p>
             <Link href="/">
-              <Button className="mt-4">Go Home</Button>
+              
             </Link>
           </CardContent>
         </Card>
@@ -165,61 +165,61 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-2 sm:p-4">
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
+     
       </div>
       <div className="absolute top-4 left-4">
         <Link href="/">
-          <Button variant="outline" size="icon" className="rounded-full">
-            <Home className="h-4 w-4" />
-          </Button>
+         
         </Link>
       </div>
 
-      <div className="max-w-4xl mx-auto pt-16">
+      <div className="max-w-4xl mx-auto pt-12 md:pt-16">
         {/* Profile Header */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center space-x-4">
-                <Avatar className="h-20 w-20">
+        <Card className="mb-4 md:mb-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
+                <Avatar className="h-16 w-16 md:h-20 md:w-20">
                   <AvatarImage src={profile?.avatar_url || "/placeholder.svg"} />
-                  <AvatarFallback className="bg-green-100 text-green-700 text-xl">
+                  <AvatarFallback className="bg-green-100 text-green-700 text-lg md:text-xl">
                     {profile ? getUserInitials(profile) : "U"}
                   </AvatarFallback>
                 </Avatar>
-                <div className="flex-1">
+                <div className="flex-1 text-center sm:text-left">
                   {editing ? (
                     <div className="space-y-2">
                       <Input
                         value={editForm.full_name}
                         onChange={(e) => setEditForm((prev) => ({ ...prev, full_name: e.target.value }))}
                         placeholder="Full name"
+                        className="text-sm"
                       />
                       <Input
                         value={editForm.username}
                         onChange={(e) => setEditForm((prev) => ({ ...prev, username: e.target.value }))}
                         placeholder="Username"
+                        className="text-sm"
                       />
                     </div>
                   ) : (
                     <>
-                      <h1 className="text-2xl font-bold">{profile?.full_name || profile?.username}</h1>
-                      <p className="text-gray-600">@{profile?.username}</p>
+                      <h1 className="text-xl md:text-2xl font-bold">{profile?.full_name || profile?.username}</h1>
+                      <p className="text-sm text-gray-600">@{profile?.username}</p>
                     </>
                   )}
 
-                  <div className="flex items-center gap-4 mt-2">
-                    <Badge variant="secondary">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 md:gap-4 mt-2">
+                    <Badge variant="secondary" className="text-xs">
                       <Trophy className="h-3 w-3 mr-1" />
                       Best: {profile?.best_percentage || 0}%
                     </Badge>
-                    <Badge variant="outline">
+                    <Badge variant="outline" className="text-xs">
                       <Users className="h-3 w-3 mr-1" />
                       {friends.length} friends
                     </Badge>
-                    <Badge variant="outline">
+                    <Badge variant="outline" className="text-xs">
                       <Gamepad2 className="h-3 w-3 mr-1" />
                       {challenges.length} challenges
                     </Badge>
@@ -227,21 +227,21 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-center sm:justify-end">
                 {editing ? (
                   <>
-                    <Button size="sm" onClick={handleSaveProfile}>
-                      <Save className="h-4 w-4 mr-1" />
+                    <Button size="sm" onClick={handleSaveProfile} className="text-xs h-8">
+                      <Save className="h-3 w-3 mr-1" />
                       Save
                     </Button>
-                    <Button size="sm" variant="outline" onClick={() => setEditing(false)}>
-                      <X className="h-4 w-4 mr-1" />
+                    <Button size="sm" variant="outline" onClick={() => setEditing(false)} className="text-xs h-8">
+                      <X className="h-3 w-3 mr-1" />
                       Cancel
                     </Button>
                   </>
                 ) : (
-                  <Button size="sm" variant="outline" onClick={() => setEditing(true)}>
-                    <Edit className="h-4 w-4 mr-1" />
+                  <Button size="sm" variant="outline" onClick={() => setEditing(true)} className="text-xs h-8">
+                    <Edit className="h-3 w-3 mr-1" />
                     Edit
                   </Button>
                 )}
@@ -254,11 +254,11 @@ export default function ProfilePage() {
                   value={editForm.bio}
                   onChange={(e) => setEditForm((prev) => ({ ...prev, bio: e.target.value }))}
                   placeholder="Tell us about yourself..."
-                  className="resize-none"
+                  className="resize-none text-sm"
                 />
               </div>
             ) : (
-              profile?.bio && <p className="mt-4 text-gray-700 dark:text-gray-300">{profile.bio}</p>
+              profile?.bio && <p className="mt-4 text-gray-700 dark:text-gray-300 text-sm">{profile.bio}</p>
             )}
           </CardContent>
         </Card>
@@ -270,14 +270,22 @@ export default function ProfilePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="statistics" className="w-full">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="statistics">Statistics</TabsTrigger>
-            <TabsTrigger value="challenges">Challenges</TabsTrigger>
-            <TabsTrigger value="friends">Friends</TabsTrigger>
-            <TabsTrigger value="requests">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 h-auto">
+            <TabsTrigger value="statistics" className="text-xs py-1.5">
+              Statistics
+            </TabsTrigger>
+            <TabsTrigger value="challenges" className="text-xs py-1.5">
+              Challenges
+            </TabsTrigger>
+            <TabsTrigger value="friends" className="text-xs py-1.5">
+              Friends
+            </TabsTrigger>
+            <TabsTrigger value="requests" className="text-xs py-1.5 hidden md:block">
               Requests {friendRequests.length > 0 && `(${friendRequests.length})`}
             </TabsTrigger>
-            <TabsTrigger value="search">Find Users</TabsTrigger>
+            <TabsTrigger value="search" className="text-xs py-1.5 hidden md:block">
+              Find Users
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="statistics" className="space-y-4">
@@ -286,25 +294,28 @@ export default function ProfilePage() {
 
           <TabsContent value="challenges" className="space-y-4">
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Gamepad2 className="h-5 w-5" />
+              <CardHeader className="p-4">
+                <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+                  <Gamepad2 className="h-4 w-4 md:h-5 md:w-5" />
                   Your Challenges
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4">
                 {challenges.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">
-                    <Gamepad2 className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                    <p>No challenges yet</p>
-                    <p className="text-sm">Challenge your friends to get started!</p>
+                  <div className="text-center py-6 md:py-8 text-gray-500">
+                    <Gamepad2 className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">No challenges yet</p>
+                    <p className="text-xs">Challenge your friends to get started!</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
                     {challenges.map((challenge) => (
-                      <div key={challenge.id} className="flex items-center justify-between p-3 border rounded-lg">
+                      <div
+                        key={challenge.id}
+                        className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border rounded-lg gap-2"
+                      >
                         <div className="flex items-center space-x-3">
-                          <Avatar className="h-8 w-8">
+                          <Avatar className="h-7 w-7 md:h-8 md:w-8">
                             <AvatarImage
                               src={
                                 challenge.challenger_id === user.id
@@ -312,20 +323,22 @@ export default function ProfilePage() {
                                   : challenge.challenger?.avatar_url
                               }
                             />
-                            <AvatarFallback>
+                            <AvatarFallback className="text-xs">
                               {challenge.challenger_id === user.id
                                 ? challenge.challenged?.username.charAt(0).toUpperCase()
                                 : challenge.challenger?.username.charAt(0).toUpperCase()}
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium">
+                            <p className="font-medium text-sm">
                               {challenge.challenger_id === user.id ? "vs " : "from "}
-                              {challenge.challenger_id === user.id
-                                ? challenge.challenged?.full_name || challenge.challenged?.username
-                                : challenge.challenger?.full_name || challenge.challenger?.username}
+                              <span className="truncate inline-block max-w-[150px] align-bottom">
+                                {challenge.challenger_id === user.id
+                                  ? challenge.challenged?.full_name || challenge.challenged?.username
+                                  : challenge.challenger?.full_name || challenge.challenger?.username}
+                              </span>
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-xs text-gray-500">
                               {challenge.category} • {challenge.difficulty} • {formatDate(challenge.created_at)}
                             </p>
                           </div>
@@ -338,6 +351,7 @@ export default function ProfilePage() {
                                 ? "destructive"
                                 : "secondary"
                           }
+                          className="text-xs self-end sm:self-auto"
                         >
                           {getChallengeStatus(challenge)}
                         </Badge>
@@ -351,49 +365,52 @@ export default function ProfilePage() {
 
           <TabsContent value="friends" className="space-y-4">
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="h-5 w-5" />
+              <CardHeader className="p-4">
+                <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+                  <Users className="h-4 w-4 md:h-5 md:w-5" />
                   Your Friends ({friends.length})
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4">
                 {friends.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">
-                    <Users className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                    <p>No friends yet</p>
-                    <p className="text-sm">Search for users to add as friends!</p>
+                  <div className="text-center py-6 md:py-8 text-gray-500">
+                    <Users className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">No friends yet</p>
+                    <p className="text-xs">Search for users to add as friends!</p>
                   </div>
                 ) : (
                   <div className="grid gap-3">
                     {friends.map((friend) => (
-                      <div key={friend.id} className="flex items-center justify-between p-3 border rounded-lg">
-                        <div className="flex items-center space-x-3">
+                      <div
+                        key={friend.id}
+                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 border rounded-lg gap-3"
+                      >
+                        <div className="flex items-center space-x-3 w-full sm:w-auto">
                           <div className="relative">
-                            <Avatar className="h-10 w-10">
+                            <Avatar className="h-8 w-8 md:h-10 md:w-10">
                               <AvatarImage src={friend.avatar_url || "/placeholder.svg"} />
-                              <AvatarFallback className="bg-green-100 text-green-700">
+                              <AvatarFallback className="bg-green-100 text-green-700 text-xs">
                                 {getUserInitials(friend)}
                               </AvatarFallback>
                             </Avatar>
                             {friend.is_online && (
-                              <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></div>
+                              <div className="absolute -bottom-1 -right-1 h-2 w-2 md:h-3 md:w-3 bg-green-500 rounded-full border-2 border-white"></div>
                             )}
                           </div>
                           <div>
-                            <p className="font-medium">{friend.full_name || friend.username}</p>
-                            <p className="text-sm text-gray-500">
+                            <p className="font-medium text-sm">{friend.full_name || friend.username}</p>
+                            <p className="text-xs text-gray-500">
                               {friend.is_online ? "Online" : `Last seen ${formatDate(friend.last_seen)}`}
                             </p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <Button size="sm" variant="outline">
-                            <MessageSquare className="h-4 w-4 mr-1" />
+                        <div className="flex gap-2 w-full sm:w-auto">
+                          <Button size="sm" variant="outline" className="flex-1 sm:flex-none text-xs h-8">
+                            <MessageSquare className="h-3 w-3 mr-1" />
                             Message
                           </Button>
-                          <Button size="sm">
-                            <Gamepad2 className="h-4 w-4 mr-1" />
+                          <Button size="sm" className="flex-1 sm:flex-none text-xs h-8">
+                            <Gamepad2 className="h-3 w-3 mr-1" />
                             Challenge
                           </Button>
                         </div>
@@ -407,39 +424,46 @@ export default function ProfilePage() {
 
           <TabsContent value="requests" className="space-y-4">
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <UserPlus className="h-5 w-5" />
+              <CardHeader className="p-4">
+                <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+                  <UserPlus className="h-4 w-4 md:h-5 md:w-5" />
                   Friend Requests ({friendRequests.length})
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4">
                 {friendRequests.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">
-                    <UserPlus className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                    <p>No pending friend requests</p>
+                  <div className="text-center py-6 md:py-8 text-gray-500">
+                    <UserPlus className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">No pending friend requests</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
                     {friendRequests.map((request) => (
-                      <div key={request.id} className="flex items-center justify-between p-3 border rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Avatar className="h-10 w-10">
+                      <div
+                        key={request.id}
+                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 border rounded-lg gap-3"
+                      >
+                        <div className="flex items-center space-x-3 w-full sm:w-auto">
+                          <Avatar className="h-8 w-8 md:h-10 md:w-10">
                             <AvatarImage src={request.requester?.avatar_url || "/placeholder.svg"} />
-                            <AvatarFallback className="bg-green-100 text-green-700">
+                            <AvatarFallback className="bg-green-100 text-green-700 text-xs">
                               {request.requester ? getUserInitials(request.requester) : "U"}
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium">{request.requester?.full_name || request.requester?.username}</p>
-                            <p className="text-sm text-gray-500">Sent {formatDate(request.created_at)}</p>
+                            <p className="font-medium text-sm">
+                              {request.requester?.full_name || request.requester?.username}
+                            </p>
+                            <p className="text-xs text-gray-500">Sent {formatDate(request.created_at)}</p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <Button size="sm" variant="outline">
+                        <div className="flex gap-2 w-full sm:w-auto">
+                          <Button size="sm" variant="outline" className="flex-1 sm:flex-none text-xs h-8">
                             Decline
                           </Button>
-                          <Button size="sm">Accept</Button>
+                          <Button size="sm" className="flex-1 sm:flex-none text-xs h-8">
+                            Accept
+                          </Button>
                         </div>
                       </div>
                     ))}
