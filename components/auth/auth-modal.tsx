@@ -1,16 +1,14 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { supabase } from "@/lib/supabase"
+import { Mail, Phone, Chrome } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { Loader2, Mail, Lock, User, Phone } from "lucide-react"
 
 interface AuthModalProps {
   isOpen: boolean
@@ -21,34 +19,99 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [fullName, setFullName] = useState("")
   const [phone, setPhone] = useState("")
+  const [otp, setOtp] = useState("")
+  const [otpSent, setOtpSent] = useState(false)
   const { toast } = useToast()
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleEmailAuth = async (type: "signin" | "signup") => {
     setLoading(true)
-
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
+      const { error } =
+        type === "signin"
+          ? await supabase.auth.signInWithPassword({ email, password })
+          : await supabase.auth.signUp({ email, password })
+
+      if (error) throw error
+
+      if (type === "signup") {
+        toast({
+          title: "Check your email",
+          description: "We've sent you a confirmation link.",
+        })
+      } else {
+        onClose()
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handlePhoneAuth = async () => {
+    setLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        phone: phone,
+      })
+
+      if (error) throw error
+
+      setOtpSent(true)
+      toast({
+        title: "OTP Sent",
+        description: "Check your phone for the verification code.",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleOtpVerification = async () => {
+    setLoading(true)
+    try {
+      const { error } = await supabase.auth.verifyOtp({
+        phone: phone,
+        token: otp,
+        type: "sms",
+      })
+
+      if (error) throw error
+
+      onClose()
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGoogleAuth = async () => {
+    setLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
         options: {
-          data: {
-            full_name: fullName,
-            phone: phone,
-          },
+          redirectTo: `${window.location.origin}/auth/callback`,
         },
       })
 
       if (error) throw error
-
-      toast({
-        title: "Success!",
-        description: "Please check your email to confirm your account.",
-      })
-
-      onClose()
     } catch (error: any) {
       toast({
         title: "Error",
@@ -58,191 +121,125 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     } finally {
       setLoading(false)
     }
-  }
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) throw error
-
-      toast({
-        title: "Welcome back!",
-        description: "You have successfully signed in.",
-      })
-
-      onClose()
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const resetForm = () => {
-    setEmail("")
-    setPassword("")
-    setFullName("")
-    setPhone("")
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-bold text-green-800">Welcome to IQRA</DialogTitle>
+          <DialogTitle>Welcome to IQRA</DialogTitle>
+          <DialogDescription>Sign in to start your Islamic learning journey</DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue="signin" className="w-full">
+        <Tabs defaultValue="email" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="signin" onClick={resetForm}>
-              Sign In
-            </TabsTrigger>
-            <TabsTrigger value="signup" onClick={resetForm}>
-              Sign Up
-            </TabsTrigger>
+            <TabsTrigger value="email">Email</TabsTrigger>
+            <TabsTrigger value="phone">Phone</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="signin" className="space-y-4">
-            <form onSubmit={handleSignIn} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signin-email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signin-email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="signin-password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signin-password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={loading}>
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing In...
-                  </>
-                ) : (
-                  "Sign In"
-                )}
+          <TabsContent value="email" className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <Button
+                onClick={() => handleEmailAuth("signin")}
+                disabled={loading || !email || !password}
+                className="w-full"
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                Sign In
               </Button>
-            </form>
+              <Button
+                variant="outline"
+                onClick={() => handleEmailAuth("signup")}
+                disabled={loading || !email || !password}
+                className="w-full"
+              >
+                Create Account
+              </Button>
+            </div>
           </TabsContent>
 
-          <TabsContent value="signup" className="space-y-4">
-            <form onSubmit={handleSignUp} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signup-name">Full Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+          <TabsContent value="phone" className="space-y-4">
+            {!otpSent ? (
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
                   <Input
-                    id="signup-name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="signup-email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="signup-phone">Phone (Optional)</Label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-phone"
+                    id="phone"
                     type="tel"
-                    placeholder="Enter your phone number"
+                    placeholder="+1234567890"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="pl-10"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="signup-password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Button onClick={handlePhoneAuth} disabled={loading || !phone} className="w-full">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Send OTP
+                </Button>
+              </>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="otp">Verification Code</Label>
                   <Input
-                    id="signup-password"
-                    type="password"
-                    placeholder="Create a password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                    minLength={6}
+                    id="otp"
+                    type="text"
+                    placeholder="Enter 6-digit code"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    maxLength={6}
                   />
                 </div>
-              </div>
-
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={loading}>
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Creating Account...
-                  </>
-                ) : (
-                  "Create Account"
-                )}
-              </Button>
-            </form>
+                <Button onClick={handleOtpVerification} disabled={loading || otp.length !== 6} className="w-full">
+                  Verify Code
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setOtpSent(false)
+                    setOtp("")
+                  }}
+                  className="w-full"
+                >
+                  Back
+                </Button>
+              </>
+            )}
           </TabsContent>
         </Tabs>
 
-        <div className="text-center text-sm text-gray-600">
-          By continuing, you agree to our Terms of Service and Privacy Policy.
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+          </div>
         </div>
+
+        <Button variant="outline" onClick={handleGoogleAuth} disabled={loading} className="w-full bg-transparent">
+          <Chrome className="w-4 h-4 mr-2" />
+          Google
+        </Button>
       </DialogContent>
     </Dialog>
   )
