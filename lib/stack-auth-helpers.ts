@@ -1,4 +1,4 @@
-"use server"
+"use server"  
 
 // Server-side only Stack Auth configuration
 export async function isStackAuthAvailable(): Promise<boolean> {
