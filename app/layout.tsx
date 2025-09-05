@@ -3,36 +3,33 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { AuthProvider } from "@/contexts/auth-context"
-import { Header } from "@/components/layout/header"
 import { Toaster } from "@/components/ui/toaster"
-import ChallengeNotification from "@/components/challenge/challenge-notification"
+import { AuthProvider } from "@/contexts/auth-context"
+import Header from "@/components/layout/header"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Test your Islamic knowledge through interactive quizzes and challenges",
-  keywords: "Islamic quiz, Islamic knowledge, Quran quiz, Islamic education, Muslim learning",
-  authors: [{ name: "Mohamed Essa Rafique" }],
-  creator: "Mohamed Essa Rafique",
-  publisher: "IQRA",
-  robots: "index, follow",
+  keywords: ["Islam", "Quiz", "Islamic Knowledge", "Quran", "Hadith", "Education"],
+  authors: [{ name: "IQRA Team" }],
   openGraph: {
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
     type: "website",
     locale: "en_US",
-    siteName: "IQRA",
   },
   twitter: {
     card: "summary_large_image",
     title: "IQRA - Islamic Quiz Rivalry App",
     description: "Test your Islamic knowledge through interactive quizzes and challenges",
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#16a34a",
-  generator: "v0.dev",
+  robots: {
+    index: true,
+    follow: true,
+  },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -43,13 +40,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <AuthProvider>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
             </div>
-            <ChallengeNotification />
             <Toaster />
           </AuthProvider>
         </ThemeProvider>
