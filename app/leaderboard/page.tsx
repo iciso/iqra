@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ThemeToggle } from "@/components/theme-toggle"
+
 import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,7 @@ import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
+import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
   name: string
@@ -35,6 +36,16 @@ export default function LeaderboardPage() {
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const { toast } = useToast()
+
+    // Helper function to abbreviate names with more than three words
+  const getDisplayName = (name: string) => {
+    const words = name.trim().split(/\s+/);
+    if (words.length > 4) {
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
+    }
+    return name;
+  }
+
 
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
@@ -106,7 +117,7 @@ export default function LeaderboardPage() {
       // If that fails, try Supabase directly
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(20)
+        const topPlayers = await getTopPlayers(40)
 
         if (topPlayers && topPlayers.length > 0) {
           // Format the data for the leaderboard
@@ -240,171 +251,184 @@ export default function LeaderboardPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
+    <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+      {/* Only show these buttons on larger screens where the header might not be visible */}
+      <div className="hidden sm:block absolute top-4 right-4">
+     
       </div>
-      <div className="absolute top-4 left-4">
-        <a
-          href="/"
-          className="inline-flex items-center justify-center rounded-full w-9 h-9 border border-gray-200 dark:border-green-700 dark:text-green-400"
-        >
-          <Home className="h-4 w-4" />
-          <span className="sr-only">Home</span>
-        </a>
+      <div className="hidden sm:block absolute top-4 left-4">
+       
       </div>
 
-      <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800">
-        <CardHeader className="text-center">
+      <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
+        <CardHeader className="text-center p-4 md:p-6">
           <div className="flex justify-center mb-2">
-            <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
+            <Trophy className="w-8 h-8 md:w-12 md:h-12 text-green-600 dark:text-green-400" />
           </div>
-          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
+          <CardTitle className="text-xl md:text-2xl font-bold text-green-800 dark:text-green-400">
             IQRA Quiz Hall of Fame
           </CardTitle>
           {lastRefresh && (
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
               <p>Last updated: {lastRefresh.toLocaleTimeString()}</p>
               <div className="flex justify-center mt-1">
-                <Badge variant="outline" className={`flex items-center gap-2 ${getSourceColor(dataSource)}`}>
+                <Badge variant="outline" className={`flex items-center gap-1 text-xs ${getSourceColor(dataSource)}`}>
                   {getSourceIcon(dataSource)}
-                  Data source: {dataSource}
+                  <span className="hidden xs:inline">Data source:</span> {dataSource}
                 </Badge>
               </div>
             </div>
           )}
         </CardHeader>
 
-        <CardContent>
-          <div className="mb-6">
+        <CardContent className="p-2 sm:p-4 md:p-6">
+          <div className="mb-4 md:mb-6">
             <Tabs defaultValue="all" onValueChange={setActiveChallengeType}>
-              <TabsList className="grid grid-cols-5 mb-4">
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="daily">Daily</TabsTrigger>
-                <TabsTrigger value="quiz">Quiz</TabsTrigger>
-                <TabsTrigger value="challenge">Challenge</TabsTrigger>
-                <TabsTrigger value="quran">Quran</TabsTrigger>
+              <TabsList className="grid grid-cols-3 sm:grid-cols-5 mb-4 h-auto">
+                <TabsTrigger value="all" className="py-1.5 px-2 text-xs md:text-sm">
+                  All
+                </TabsTrigger>
+                <TabsTrigger value="daily" className="py-1.5 px-2 text-xs md:text-sm">
+                  Daily
+                </TabsTrigger>
+                <TabsTrigger value="quiz" className="py-1.5 px-2 text-xs md:text-sm">
+                  Quiz
+                </TabsTrigger>
+                <TabsTrigger value="challenge" className="py-1.5 px-2 text-xs md:text-sm hidden sm:block">
+                  Challenge
+                </TabsTrigger>
+                <TabsTrigger value="quran" className="py-1.5 px-2 text-xs md:text-sm hidden sm:block">
+                  Quran
+                </TabsTrigger>
               </TabsList>
             </Tabs>
 
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 md:mb-6">
               <div className="relative flex-1">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
                 <Input
                   placeholder="Search by name..."
-                  className="pl-8"
+                  className="pl-7 text-sm h-9"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              <Button
-                variant="outline"
-                className="flex gap-2 dark:border-green-700 dark:text-green-400"
-                onClick={() => setFilter(filter ? "" : "Quran")}
-              >
-                <Filter className="h-4 w-4" />
-                {filter || "All Categories"}
-              </Button>
-              <Button
-                variant="outline"
-                className="flex gap-2 dark:border-green-700 dark:text-green-400"
-                onClick={loadLeaderboardData}
-                disabled={loading}
-              >
-                <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
-                {loading ? "Loading..." : "Refresh"}
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
+                  onClick={() => setFilter(filter ? "" : "Quran")}
+                >
+                  <Filter className="h-3.5 w-3.5" />
+                  <span className="truncate">{filter || "All Categories"}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
+                  onClick={loadLeaderboardData}
+                  disabled={loading}
+                >
+                  <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
+                  <span className="truncate">{loading ? "Loading..." : "Refresh"}</span>
+                </Button>
+              </div>
             </div>
           </div>
 
           {loading ? (
-            <div className="text-center py-12">
-              <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-green-600" />
-              <p className="text-gray-600 dark:text-gray-300">Loading leaderboard data...</p>
+            <div className="text-center py-8 md:py-12">
+              <RefreshCw className="h-6 w-6 md:h-8 md:w-8 animate-spin mx-auto mb-3 md:mb-4 text-green-600" />
+              <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
             </div>
           ) : getFilteredLeaderboard().length > 0 ? (
-            <Table>
-              <TableCaption>Top scores from IQRA Quiz participants</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-12">Rank</TableHead>
-                  <TableHead>Player</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead className="text-right">Score</TableHead>
-                  <TableHead className="text-right">%</TableHead>
-                  <TableHead className="text-right">Last Active</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {getFilteredLeaderboard().map((entry, index) => (
-                  <TableRow key={index} className={index < 3 ? "font-medium" : ""}>
-                    <TableCell className="flex items-center">
-                      {index + 1}
-                      <span className="ml-2">{getMedalIcon(index)}</span>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        {entry.name === "IQRA Bot" || entry.name === "QuizMaster" ? (
-                          <OpponentProfile
-                            opponent={{
-                              id: "bot-1",
-                              name: entry.name,
-                              type: "bot",
-                            }}
-                            size="sm"
-                          />
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <div className="h-6 w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
-                              {entry.name.charAt(0)}
-                            </div>
-                            {entry.name}
-                          </div>
-                        )}
-                      </div>
-                    </TableCell>
-                    <TableCell>{entry.category || "All Categories"}</TableCell>
-                    <TableCell>
-                      {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {entry.score}/{entry.totalQuestions}
-                    </TableCell>
-                    <TableCell className="text-right font-medium">
-                      <span
-                        className={
-                          entry.percentage >= 90
-                            ? "text-green-600 dark:text-green-400"
-                            : entry.percentage >= 70
-                              ? "text-blue-600 dark:text-blue-400"
-                              : "text-gray-600 dark:text-gray-400"
-                        }
-                      >
-                        {entry.percentage}%
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-right">{entry.date}</TableCell>
+            <div className="overflow-x-auto -mx-2 sm:mx-0">
+              <Table className="w-full">
+                <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-12 text-xs">Rank</TableHead>
+                    <TableHead className="text-xs">Player</TableHead>
+                    <TableHead className="text-xs hidden md:table-cell">Category</TableHead>
+                    <TableHead className="text-xs hidden sm:table-cell">Type</TableHead>
+                    <TableHead className="text-right text-xs">Score</TableHead>
+                    <TableHead className="text-right text-xs">%</TableHead>
+                    <TableHead className="text-right text-xs hidden sm:table-cell">Last Active</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {getFilteredLeaderboard().map((entry, index) => (
+                    <TableRow key={index} className={index < 3 ? "font-medium" : ""}>
+                      <TableCell className="flex items-center py-2 text-xs">
+                        {index + 1}
+                        <span className="ml-1 md:ml-2">{getMedalIcon(index)}</span>
+                      </TableCell>
+                      <TableCell className="py-2">
+                        <div className="flex items-center gap-1 md:gap-2">
+                          {entry.name === "IQRA Bot" || entry.name === "QuizMaster" ? (
+                            <OpponentProfile
+                              opponent={{
+                                id: "bot-1",
+                                name: entry.name,
+                                type: "bot",
+                              }}
+                              size="sm"
+                            />
+                          ) : (
+                            <div className="flex items-center gap-1 md:gap-2">
+                              <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
+                                {entry.name.charAt(0)}
+                              </div>
+                              <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
+                                {entry.name}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell className="py-2 text-xs hidden md:table-cell">
+                        {entry.category || "All Categories"}
+                      </TableCell>
+                      <TableCell className="py-2 text-xs hidden sm:table-cell">
+                        {entry.challenge ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1) : "All"}
+                      </TableCell>
+                      <TableCell className="text-right py-2 text-xs">
+                        {entry.score}/{entry.totalQuestions}
+                      </TableCell>
+                      <TableCell className="text-right py-2 text-xs font-medium">
+                        <span
+                          className={
+                            entry.percentage >= 90
+                              ? "text-green-600 dark:text-green-400"
+                              : entry.percentage >= 70
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-gray-600 dark:text-gray-400"
+                          }
+                        >
+                          {entry.percentage}%
+                        </span>
+                      </TableCell>
+                      <TableCell className="text-right py-2 text-xs hidden sm:table-cell">{entry.date}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           ) : (
-            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              <p>No entries match your search. Try adjusting your filters.</p>
+            <div className="text-center py-6 md:py-8 text-gray-500 dark:text-gray-400">
+              <p className="text-sm">No entries match your search. Try adjusting your filters.</p>
             </div>
           )}
         </CardContent>
-        <CardFooter className="flex justify-center gap-4">
+        <CardFooter className="flex justify-center gap-2 md:gap-4 p-4">
           <a
             href="/challenges"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-10 px-4 py-2"
+            className="inline-flex items-center justify-center rounded-md text-xs md:text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-8 md:h-10 px-3 md:px-4 py-2"
           >
             Back to Challenges
           </a>
           <a
             href="/badges"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 dark:border-green-700 dark:text-green-400"
+            className="inline-flex items-center justify-center rounded-md text-xs md:text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-8 md:h-10 px-3 md:px-4 py-2 dark:border-green-700 dark:text-green-400"
           >
             View Badges
           </a>
