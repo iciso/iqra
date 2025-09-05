@@ -9,13 +9,11 @@ import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
-import { useLanguage } from "@/contexts/language-context"
 
 export default function HomePage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [showAuthModal, setShowAuthModal] = useState(false)
-  const { t } = useLanguage()
 
   useEffect(() => {
     // Check for session
@@ -55,9 +53,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
         <div className="text-center">
           <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
-          <p className="text-green-700 text-sm sm:text-base">
-            {t("loading")} {t("appTitle")}...
-          </p>
+          <p className="text-green-700 text-sm sm:text-base">Loading IQRA...</p>
           <div className="mt-4">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto"></div>
           </div>
@@ -80,10 +76,10 @@ export default function HomePage() {
           <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
             <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">{t("appTitle")}</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
           <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
           <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
-            ما شاء الله (Masha Allah!) {t("welcome")} to {t("appTitle")}. Test your knowledge
+            ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
             <br className="hidden sm:block" />
             <span className="block sm:inline"> of Islam through learning or challenges.</span>
           </p>
@@ -118,7 +114,7 @@ export default function HomePage() {
                   <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
                 </svg>
               </div>
-              <CardTitle className="text-xl sm:text-2xl text-green-800">{t("appTitle")} Learn</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Learn</CardTitle>
               <CardDescription className="text-sm sm:text-base">Learn at your own pace</CardDescription>
             </CardHeader>
             <CardContent className="text-center px-4 sm:px-6">
@@ -146,7 +142,7 @@ export default function HomePage() {
                   onClick={() => setShowAuthModal(true)}
                   className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
-                  {t("signIn")} to Start Learning
+                  Sign In to Start Learning
                 </Button>
               )}
             </CardFooter>
@@ -175,7 +171,7 @@ export default function HomePage() {
                   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
                 </svg>
               </div>
-              <CardTitle className="text-xl sm:text-2xl text-green-800">{t("appTitle")} Challenge</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Challenge</CardTitle>
               <CardDescription className="text-sm sm:text-base">Compete with others</CardDescription>
             </CardHeader>
             <CardContent className="text-center px-4 sm:px-6">
@@ -230,7 +226,7 @@ export default function HomePage() {
               {user ? (
                 <Link href="/challenges">
                   <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                    Start {t("challenges")}
+                    Start Challenges
                   </Button>
                 </Link>
               ) : (
@@ -238,7 +234,7 @@ export default function HomePage() {
                   onClick={() => setShowAuthModal(true)}
                   className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
-                  {t("signIn")} to Challenge
+                  Sign In to Challenge
                 </Button>
               )}
             </CardFooter>
