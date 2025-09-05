@@ -1,8 +1,8 @@
 
 import type { QuizCategory } from "@/types/quiz"
 
-// Had Contained Quran, Fiqh, Tafseer, Hadeeth, and Aqeedah
-// Now only Expanded Quran Questions
+// Contains Quran, Fiqh, Tafseer, Hadeeth, and Aqeedah
+// Expanded Quran Questions
 export const expandedQuranQuestions: QuizCategory = {
   name: "Quran",
   description: "Test your knowledge of the Holy Quran",
