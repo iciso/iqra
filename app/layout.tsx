@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/auth-context"
-import { LanguageProvider } from "@/contexts/language-context"
 import { Header } from "@/components/layout/header"
 import { Toaster } from "@/components/ui/toaster"
 import ChallengeNotification from "@/components/challenge/challenge-notification"
@@ -44,18 +43,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <AuthProvider>
-              <div className="min-h-screen flex flex-col">
-                <Header />
-                <main className="flex-1">{children}</main>
-              </div>
-              <ChallengeNotification />
-              <Toaster />
-            </AuthProvider>
-          </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <AuthProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+            </div>
+            <ChallengeNotification />
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

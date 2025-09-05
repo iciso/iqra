@@ -6,12 +6,9 @@ import { Button } from "@/components/ui/button"
 import { LogOut, Home } from "lucide-react"
 import { useState } from "react"
 import { useAuth } from "@/contexts/auth-context"
-import { useLanguage } from "@/contexts/language-context"
-import { LanguageSelector } from "@/components/language-selector"
 
 export function Header() {
   const { user, signInWithProvider, signOut } = useAuth()
-  const { t } = useLanguage()
   const [signOutLoading, setSignOutLoading] = useState(false)
 
   const handleSignOut = async () => {
@@ -26,26 +23,26 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <Home className="h-5 w-5 text-green-600 dark:text-green-400" />
-            <span className="text-2xl font-bold text-green-600 dark:text-green-400">{t("appTitle")}</span>
+            <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
           </Link>
 
           <nav className="flex items-center space-x-4">
             {user && (
               <>
                 <Link href="/categories">
-                  <Button variant="ghost">{t("quiz")}</Button>
+                  <Button variant="ghost">Quiz</Button>
                 </Link>
                 <Link href="/challenges">
-                  <Button variant="ghost">{t("challenges")}</Button>
+                  <Button variant="ghost">Challenges</Button>
                 </Link>
                 <Link href="/leaderboard">
-                  <Button variant="ghost">{t("leaderboard")}</Button>
+                  <Button variant="ghost">Leaderboard</Button>
                 </Link>
                 <Link href="/profile">
-                  <Button variant="ghost">{t("profile")}</Button>
+                  <Button variant="ghost">Profile</Button>
                 </Link>
                 <Link href="/about">
-                  <Button variant="ghost">{t("about")}</Button>
+                  <Button variant="ghost">About</Button>
                 </Link>
                 <Button
                   variant="outline"
@@ -54,14 +51,13 @@ export function Header() {
                   disabled={signOutLoading}
                 >
                   <LogOut className="h-4 w-4 mr-1" />
-                  <span>{t("signOut")}</span>
+                  <span>Sign Out</span>
                 </Button>
               </>
             )}
 
-            {!user && <Button onClick={() => signInWithProvider("google")}>{t("signIn")}</Button>}
+            {!user && <Button onClick={() => signInWithProvider("google")}>Sign In</Button>}
 
-            <LanguageSelector />
             <ThemeToggle />
           </nav>
         </div>
