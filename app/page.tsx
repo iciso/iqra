@@ -241,8 +241,36 @@ export default function HomePage() {
           </Card>
         </div>
 
-        <div className="mt-8 max-w-md mx-auto w-full">
-          <SimpleTopPlayers />
+        <div className="mt-8 max-w-6xl mx-auto w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+            <Card className="bg-white border-0 shadow-sm">
+              <CardHeader className="text-center pb-2">
+                <CardTitle className="text-xl sm:text-2xl text-green-800">Noor Chat</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
+                  Explore faiths and CLCP with Noor
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="px-4 sm:px-6">
+                <iframe
+                  src="https://v0-noor-liard.vercel.app/chat-groq"
+                  className="w-full h-[400px] sm:h-[500px] rounded-lg border-0"
+                  title="Noor Chat Interface"
+                  allow="clipboard-write"
+                />
+              </CardContent>
+            </Card>
+            <Card className="bg-white border-0 shadow-sm">
+              <CardHeader className="text-center pb-2">
+                <CardTitle className="text-xl sm:text-2xl text-green-800">Top Players</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
+                  See who's leading the challenges
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="px-4 sm:px-6">
+                <SimpleTopPlayers />
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <div className="mt-auto pt-8 sm:pt-12 text-center text-gray-600 text-xs sm:text-sm px-4"></div>
