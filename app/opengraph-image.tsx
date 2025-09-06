@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og"
+import { IqraLogo } from "@/components/iqra-logo"
 
 // Route segment config
 export const runtime = "edge"
@@ -28,21 +29,7 @@ export default async function Image() {
         background: "linear-gradient(to bottom right, #DCFCE7, #FFFFFF)",
       }}
     >
-      <div
-        style={{
-          width: 300,
-          height: 300,
-          borderRadius: "50%",
-          background: "white",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          position: "relative",
-          background: "linear-gradient(to bottom right, #4ADE80, #15803D)",
-          opacity: 0.2,
-        }}
-      />
+      <IqraLogo size="lg" showText={true} isLink={false} />
       <div
         style={{
           marginTop: 40,
@@ -56,8 +43,6 @@ export default async function Image() {
     </div>,
     // ImageResponse options
     {
-      // For convenience, we can re-use the exported opengraph-image
-      // size config to also set the ImageResponse width and height.
       ...size,
     },
   )
