@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Test your Islamic knowledge through interactive quizzes and challenges",
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
