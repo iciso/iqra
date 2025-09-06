@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og"
-import { IqraLogo } from "@/components/iqra-logo"
 
 // Route segment config
 export const runtime = "edge"
@@ -29,7 +28,14 @@ export default async function Image() {
         background: "linear-gradient(to bottom right, #DCFCE7, #FFFFFF)",
       }}
     >
-      <IqraLogo size="lg" showText={true} isLink={false} />
+      <img
+        src="/iqralogo.png"
+        alt="IQRA Logo"
+        style={{
+          width: "300px",
+          height: "300px",
+        }}
+      />
       <div
         style={{
           marginTop: 40,
