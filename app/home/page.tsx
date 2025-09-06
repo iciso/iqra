@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
+ 
 export default function HomePage() {
   return (
     <div className="container mx-auto py-8 md:py-12 px-4">
