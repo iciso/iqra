@@ -283,20 +283,20 @@ export default function HomePage() {
 
               </CardContent>
                 <CardFooter className="pt-0 flex justify-center">
-              {user ? (
-                <Link href="https://v0-kalam.vercel.app/quizzes/surah">
+              
+                <Link href="https://v0-kalam.vercel.app/quizzes/surah" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
                      Start Surah Quiz without Sign-in 
                   </Button>
                 </Link>
               ) : (
                 <Button
-                  onClick={() => setShowAuthModal(false)}
+                
                   className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
                   Start Surah Quiz without Sign-in
                 </Button>
-              )}
+             
             </CardFooter>
             </Card>
             <Card className="bg-white border-0 shadow-sm">
