@@ -263,15 +263,15 @@ export default function HomePage() {
                 </svg>
               </div>
 
-                <CardTitle className="text-xl sm:text-2xl text-green-800">Surah-Specific Quran Quiz</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-green-800">Surah-Quiz</CardTitle>
                 <CardDescription className="text-sm sm:text-base">
                  Focus on vocabulary from a specific Surah
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
                <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Browse through the Surah's of the Quran to learn each one's reasons for Revealation, Tafsirs, the derived Fiqh and other nuances. Test your knowledge and
-                learn at your own pace of those 25 odd Surahs that we have completed with these.
+                Browse through the Surahs to learn the reasons for Revealation, the Tafsirs, the derived Fiqh, and other nuances. Test your knowledge and
+                learn at your own pace of those 25-odd Surahs of the total 114 that we have so far completed in this section. Insha Allah, We are fast adding Surahs and hope to complete in six-months time.
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
@@ -280,7 +280,9 @@ export default function HomePage() {
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Seerah & Context</span>
               </div>
-
+                 <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed"><i>
+                As K A L A M is an Open Source Freeware for learning Islam by fun and Games no sign-in is required for Surah-Quizzes, which is part of the KALAM web app!</i>
+              </p>
               </CardContent>
                 <CardFooter className="pt-0 flex justify-center">
                 <Link href="https://v0-kalam.vercel.app/quizzes/surah" target="_blank" rel="noopener noreferrer">
