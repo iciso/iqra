@@ -246,19 +246,58 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             <Card className="bg-white border-0 shadow-sm">
               <CardHeader className="text-center pb-2">
-                <CardTitle className="text-xl sm:text-2xl text-green-800">Noor Chat</CardTitle>
+                  <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-green-600 sm:w-6 sm:h-6"
+                >
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+              </div>
+
+                <CardTitle className="text-xl sm:text-2xl text-green-800">Surah-Specific Quran Quiz</CardTitle>
                 <CardDescription className="text-sm sm:text-base">
-                  Explore faiths and CLCP with Noor
+                 Focus on vocabulary from a specific Surah
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <iframe
-                  src="https://v0-noor-liard.vercel.app/chat-groq"
-                  className="w-full h-[400px] sm:h-[500px] rounded-lg border-0"
-                  title="Noor Chat Interface"
-                  allow="clipboard-write"
-                />
+               <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
+                Browse through the Surah's of the Quran to learn each one's reasons for Revealation, Tafsirs, the derived Fiqh and other nuances. Test your knowledge and
+                learn at your own pace of those 25 odd Surahs that we have completed with these.
+              </p>
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Reason for Revealation</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Tafsir</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
+                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Seerah & Context</span>
+              </div>
+
               </CardContent>
+                <CardFooter className="pt-0 flex justify-center">
+              {user ? (
+                <Link href="https://v0-kalam.vercel.app/quizzes/surah">
+                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                     Start Surah Quiz without Sign-in 
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
+                >
+                  Start Surah Quiz without Sign-in
+                </Button>
+              )}
+            </CardFooter>
             </Card>
             <Card className="bg-white border-0 shadow-sm">
               <CardHeader className="text-center pb-2">
