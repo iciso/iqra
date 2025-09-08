@@ -291,7 +291,7 @@ export default function HomePage() {
                 </Link>
               ) : (
                 <Button
-                  onClick={() => setShowAuthModal(true)}
+                  onClick={() => setShowAuthModal(false)}
                   className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
                 >
                   Start Surah Quiz without Sign-in
