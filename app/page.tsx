@@ -249,8 +249,8 @@ export default function HomePage() {
                   <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
+                  width="10"
+                  height="10"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -258,7 +258,6 @@ export default function HomePage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   className="text-green-600 sm:w-6 sm:h-6"
-                  class="lucide lucide-book-open-icon lucide-book-open"
                 >
                   <path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>
                 </svg>
