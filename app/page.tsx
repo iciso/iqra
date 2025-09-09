@@ -306,6 +306,22 @@ export default function HomePage() {
           </div>
         </div>
 
+              <section className="mb-12">
+       <div class="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-800">
+          <h2 className="text-2xl text-emerald-800 dark:text-emerald-300 font-bold mb-4">No Donations & Charity</h2>
+          <p class="text-emerald-700 dark:text-emerald-200 mb-3">
+            IQRA and KALAM apps are built without charity, zakat, or donations – a practice aligned with the true Sunnah of the Noble Prophets, and the Righteous.
+          </p>
+           <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-3xl">
+            قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ
+            </p>
+             <p className="mb-4 text-emerald-600 dark:text-emerald-300">
+          Say, "I do not ask you for this any payment, and I am not of the pretentious - Surah Sad 38:86. 
+          </p>
+       </div>
+        </section>
+
+
         <div className="border-t border-green-200 p-4 sm:p-6 text-center text-sm text-green-800 bg-green-50 dark:bg-green-900/20 dark:border-green-700/30 dark:text-green-300 w-full mt-8 rounded-lg">
           <div className="flex items-center justify-center mb-2 sm:mb-3">
             <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400" />
