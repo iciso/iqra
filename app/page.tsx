@@ -270,8 +270,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
                <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Browse through the Surahs to learn the reasons for Revealation, the Tafsirs, the derived Fiqh, and other nuances. Test your knowledge and
-                learn at your own pace of those 25-odd Surahs of the total 114 that we have so far completed in this section. Insha Allah, We are fast adding Surahs and hope to complete in six-months time.
+                Learn vocabulary from specific Surahs. Browse through Surahs to study their context, meaning, and rulings. Test your knowledge on the 25 completed Surahs in this section. We are rapidly adding more and aim to complete all 114 Surahs within six months.
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
@@ -281,7 +280,7 @@ export default function HomePage() {
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Seerah & Context</span>
               </div>
                  <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed"><i>
-                As K A L A M is an Open Source Freeware for learning Islam by fun and Games no sign-in is required for Surah-Quizzes, which is part of the KALAM web app!</i>
+                As a part of the open-source KALAM web app, Surah-Quizzes are completely free to use and require no sign-in.</i>
               </p>
               </CardContent>
                 <CardFooter className="pt-0 flex justify-center">
