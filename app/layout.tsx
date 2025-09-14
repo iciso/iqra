@@ -18,21 +18,21 @@ export const metadata: Metadata = {
   openGraph: {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
-  images: [{ url: "/iqralogo.png" }],
+  images: [{ url: "/logo.png" }],
   type: "website",
    },
   twitter: {
     card: "summary_large_image",
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
-  images: [{ url: "/iqralogo.png" }],
+  images: [{ url: "/logo.png" }],
    },
   icons: {
     icon: [
-      { url: "/iqralogo.png", type: "image/png" },
+      { url: "/logo.png", type: "image/png" },
       { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: { url: "/iqralogo.png", sizes: "180x180" },
+    apple: { url: "/logo.png", sizes: "180x180" },
   },
   generator: "v0.dev",
 };
