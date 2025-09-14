@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 import {
   Book,
+  ArrowUp,
   Bitcoin,
   Scale,
   BookCopy, 
@@ -75,6 +76,12 @@ const categories = [
     title: "Tazkiyah",
     description: "Spiritual Purification", 
     icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+   {
+    id: "salah",
+    title: "Salah",
+    description: "Prayers in Islam", 
+    icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "history",
