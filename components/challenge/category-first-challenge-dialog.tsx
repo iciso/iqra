@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Gamepad2,
+  ArrowUp,
   Zap,
   Bitcoin,
   Book,
@@ -21,7 +22,6 @@ import {
   Telescope,
   HandHeart,
   Heart,
-  HeartPlus,
   Trophy,
   Clock,
   Target,
@@ -132,7 +132,7 @@ const challengeCategories = [
     id: "salah",
     label: "Salah",
     description: "Prayers in Islam",
-    icon: HeartPlus,
+    icon: ArrowUp,
     color: "bg-teal-500 hover:bg-fuchsia-600",
     textColor: "text-fuchsia-700",
     bgLight: "bg-fuchsia-50",
