@@ -320,6 +320,10 @@ export default function HomePage() {
        </div>
         </section>
 
+         {/* Auth Modal Section */}
+      </div>
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
+    </div>
 
       {/* Footer Section */}
       <footer className="border-t border-green-200 p-4 sm:p-6 text-center text-sm text-green-800 bg-green-50 dark:bg-green-900/20 dark:border-green-700/30 dark:text-green-300 w-screen mt-8 mx-0">
@@ -378,9 +382,5 @@ export default function HomePage() {
       </footer>
     </div>
 
-        
-      </div>
-      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
-    </div>
   )
 }
