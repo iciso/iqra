@@ -10,9 +10,23 @@ import Header from "@/components/layout/header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://iqrar.vercel.app/'),
+  title: "IQRA - Islamic Quiz Rivalry App",
+  description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
+  keywords:
+    "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
+  openGraph: {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
   images: [{ url: "/iqra-logo.png" }],
+  type: "website",
+   },
+  twitter: {
+    card: "summary_large_image",
+  title: "IQRA - Islamic Quiz Rivalry App",
+  description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
+  images: [{ url: "/iqra-logo.png" }],
+   },
   icons: {
     icon: [
       { url: "/iqralogo.png", type: "image/png" },
