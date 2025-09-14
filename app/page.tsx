@@ -321,7 +321,6 @@ export default function HomePage() {
         </section>
 
          {/* Auth Modal Section */}
-      </div>
         <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
     </div>
 
