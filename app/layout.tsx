@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/iqralogo.png", type: "image/png" },
-      { url: "/logo.ico", sizes: "any" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
     apple: { url: "/iqralogo", sizes: "180x180" },
   },
