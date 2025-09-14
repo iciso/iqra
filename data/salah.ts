@@ -4,7 +4,7 @@ const salahCategory: QuizCategory = {
   id: "salah",
   title: "Salah",
   description: "The second pillar of Islam: Obligatory prayers and their performance",
-  icon: "",
+  icon: "ArrowUp",
   levels: {
     easy: [
       {
