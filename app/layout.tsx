@@ -47,7 +47,14 @@ export default function RootLayout({
       <meta property="og:title" content="IQRA - Islamic Quiz Rivalry App" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://iqrar.vercel.app/" />
+      <meta property="og:site_name" content="IQRA" />
+      <meta property="og:locale" content="en_GB" />
       <meta property="og:image" content="https://iqrar.vercel.app/logo.png" />
+      <meta property="og:image:secure_url" content="https://ichal.vercel.app/logo.png" />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="512" />
+      <meta property="og:image:height" content="512" />
+      <meta property="og:image:alt" content="A shiny green Trophy on a green base" />
      <head>
       <title>IQRA - Islamic Quiz Rivalry App</title>
         <link
