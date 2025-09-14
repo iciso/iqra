@@ -22,7 +22,7 @@ import peaceCategory from "./peace";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Define all quiz categories as Quran removed on 23 Jul 25
+// Define all quiz categories as Quran removed on 23 Jul 25  
 const quizData: QuizCategory[] = [
   quranCategory,
   seerahCategory,
