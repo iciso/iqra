@@ -12,8 +12,17 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Test your Islamic knowledge through interactive quizzes and challenges",
-  generator: 'v0.app'
-}
+      images: [{ url: "/iqra-logo.png" }],
+  },
+  icons: {
+    icon: [
+      { url: "/iqralogo.png", type: "image/png" },
+      { url: "/logo.ico", sizes: "any" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
+  },
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
