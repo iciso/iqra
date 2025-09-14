@@ -19,6 +19,7 @@ import lgbtqCategory from "./lgbtq";
 import psychCategory from "./psych";
 import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
+import peaceCategory from "./salah";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
@@ -44,6 +45,7 @@ const quizData: QuizCategory[] = [
   psychCategory,
   parentingCategory,
   peaceCategory,
+  salahCategory,
   medicalEthicsCategory,
 ];
 
