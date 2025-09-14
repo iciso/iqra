@@ -322,7 +322,7 @@ export default function HomePage() {
 
          {/* Auth Modal Section Commented out */}
       </div>
-       {/*<AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} /> */}
+      
     </div>
 
       {/* Footer Section */}
