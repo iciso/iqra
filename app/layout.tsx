@@ -43,8 +43,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="light" style={{ colorScheme: "light" }}>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className="light" style={{ colorScheme: "light" }}>
+      <meta property="og:title" content="IQRA - Islamic Quiz Rivalry App" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://iqrar.vercel.app/" />
+      <meta property="og:image" content="https://iqrar.vercel.app/logo.png" />
      <head>
+      <title>IQRA - Islamic Quiz Rivalry App</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
           rel="stylesheet"
