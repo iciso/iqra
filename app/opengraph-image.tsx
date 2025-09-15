@@ -29,7 +29,7 @@ export default async function Image() {
       }}
     >
       <img
-        src="/iqralogo.png"
+        src="/logo.png"
         alt="IQRA Logo"
         style={{
           width: "300px",
