@@ -1,5 +1,5 @@
 import type { QuizCategory } from "@/types/quiz";
-
+ 
 const lgbtqCategory: QuizCategory = {
   id: "lgbtq",
   title: "Islam and LGBTQIA+",
