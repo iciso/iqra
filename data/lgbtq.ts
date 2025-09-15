@@ -1,5 +1,5 @@
 import type { QuizCategory } from "@/types/quiz";
- 
+
 const lgbtqCategory: QuizCategory = {
   id: "lgbtq",
   title: "Islam and LGBTQIA+",
@@ -8,380 +8,814 @@ const lgbtqCategory: QuizCategory = {
   levels: {
     easy: [
       {
-              question: "Which Surah in the Quran mentions the story of the people of Lut (Lot)?",
-              options: [
-                "Surah Al-Baqarah",
-                "Surah An-Nisa",
-                "Surah Hud",
-                "Surah Al-Ikhlas"
-              ],
-              correctAnswer: "Surah Hud",
-              explanation: "The story of the people of Lut is narrated in several surahs, including Surah Hud (11:77-83), Surah Al-A'raf (7:80-84), and Surah An-Naml (27:54-58). These narrations describe the condemnation of their actions.",
-              references: "Quran 11:77-83"
-            },
-            {
-              question: "In the story of Lut, what was the primary sin for which his people were condemned?",
-              options: [
-                "Worshipping idols",
-                "Stealing from travelers",
-                "Committing male-on-male sexual acts",
-                "Disrespecting their elders"
-              ],
-              correctAnswer: "Committing male-on-male sexual acts",
-              explanation: "The Quran mentions that the people of Lut were condemned for engaging in indecent acts, specifically approaching men with desire instead of women, which was a perversion of the natural order.",
-              references: "Quran 27:55"
-            },
-            {
-              question: "The term 'liwat' in Islamic jurisprudence is commonly used to refer to what?",
-              options: [
-                "Lying",
-                "The act of sodomy, specifically male-on-male sexual acts",
-                "Stealing",
-                "Adultery"
-              ],
-              correctAnswer: "The act of sodomy, specifically male-on-male sexual acts",
-              explanation: "The term 'liwat' is derived from the name of Prophet Lut and is used in Islamic legal discourse to refer to the homosexual act of sodomy, based on the story of his people.",
-              references: "Al-Mawsu’ah Al-Fiqhiyyah Al-Kuwaitiyyah"
-            },
-            {
-              question: "According to the Quran, how did the people of Lut react when Prophet Lut advised them to abandon their practices?",
-              options: [
-                "They listened and repented",
-                "They ignored him but did not harm him",
-                "They mocked him and threatened to expel him and his family",
-                "They asked him to leave their city peacefully"
-              ],
-              correctAnswer: "They mocked him and threatened to expel him and his family",
-              explanation: "The Quran states that the people of Lut responded to his call for righteousness by mocking him and threatening to expel him and his followers from the city.",
-              references: "Quran 27:56"
-            },
-            {
-              question: "What is the Islamic legal term for illicit sexual relations outside of marriage?",
-              options: [
-                "Zina",
-                "Riba",
-                "Gheebah",
-                "Shirk"
-              ],
-              correctAnswer: "Zina",
-              explanation: "Zina is a term in Islamic jurisprudence referring to all sexual acts outside of a valid marriage, and its prohibition is a foundational aspect of Islamic law.",
-              references: "Quran 17:32"
-            },
-            {
-              question: "In the Islamic tradition, the concept of gender is generally understood to be what?",
-              options: [
-                "A social construct",
-                "Binary, male and female, as a sign of Allah's creation",
-                "Fluid and interchangeable",
-                "Irrelevant to a person's identity"
-              ],
-              correctAnswer: "Binary, male and female, as a sign of Allah's creation",
-              explanation: "The Quran mentions the creation of male and female as a sign of Allah's power and wisdom, indicating a binary understanding of gender.",
-              references: "Quran 49:13, 53:45"
-            },
-            {
-              question: "What term is used in hadith to describe men who imitate women?",
-              options: [
-                "Mukhannathun",
-                "Mutashabihun",
-                "Mubtada'un",
-                "Munaafiqun"
-              ],
-              correctAnswer: "Mukhannathun",
-              explanation: "The term 'mukhannathun' refers to men who imitate women in their mannerisms, speech, and appearance. Several hadiths mention a prohibition against this, and also against women who imitate men.",
-              references: "Sahih al-Bukhari, Book of Dress, Hadith 5885"
-            },
-            {
-              question: "The Quran mentions the creation of spouses (azwaj) for what purpose?",
-              options: [
-                "To gain wealth",
-                "To live in discord",
-                "To find tranquility and mercy",
-                "To compete with each other"
-              ],
-              correctAnswer: "To find tranquility and mercy",
-              explanation: "The Quran says, 'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.' This verse is foundational to the Islamic understanding of marriage.",
-              references: "Quran 30:21"
-            },
-            {
-              question: "What is the general Islamic ruling on changing one's gender, as a matter of jurisprudence?",
-              options: [
-                "It is encouraged for personal happiness",
-                "It is considered permissible if a doctor recommends it",
-                "It is generally prohibited as it interferes with Allah's creation",
-                "There is no consensus, and it is a matter of personal choice"
-              ],
-              correctAnswer: "It is generally prohibited as it interferes with Allah's creation",
-              explanation: "Islamic scholars generally hold that gender reassignment surgery is prohibited, as it is seen as an alteration of Allah’s creation. The exception would be for intersex individuals (khuntha) to correct their biological sex.",
-              references: "See Tafsir of Quran 4:119 regarding changing the creation of Allah; Fatwas from Al-Azhar"
-            },
-            {
-              question: "Which term is used for individuals who are born with ambiguous genitalia, having both male and female characteristics?",
-              options: [
-                "Mutashabih",
-                "Mukhannath",
-                "Khuntha",
-                "Mujannas"
-              ],
-              correctAnswer: "Khuntha",
-              explanation: "In Islamic jurisprudence, 'khuntha' refers to an intersex person. There are specific rulings concerning their identity and rights, and a distinction is made between a person born intersex and a person seeking to change their gender.",
-              references: "Fiqh literature on Khuntha"
-            },
-            {
-              question: "The prohibition of 'Zina' (fornication and adultery) in Islam is intended to protect what?",
-              options: [
-                "The economic stability of a society",
-                "The institution of family and lineage",
-                "The political power of a state",
-                "The freedom of personal choice"
-              ],
-              correctAnswer: "The institution of family and lineage",
-              explanation: "The prohibition of Zina is primarily to preserve the sanctity of the family unit, the clarity of lineage, and the moral fabric of society. Marriage is seen as the only valid framework for sexual relations.",
-              references: "Quran 17:32; Tafsir of Ibn Kathir"
-            },
-            {
-              question: "What is the general Islamic stance on showing compassion and kindness to all people, regardless of their background?",
-              options: [
-                "It is only for Muslims",
-                "It is a fundamental principle of Islam",
-                "It is discouraged if they are not righteous",
-                "It is only for one's family"
-              ],
-              correctAnswer: "It is a fundamental principle of Islam",
-              explanation: "The Prophet Muhammad (PBUH) was described as a 'mercy to the worlds' and compassion for all of Allah’s creation is a core Islamic teaching, which includes treating all individuals with dignity and respect.",
-              references: "Quran 21:107; Hadith on being kind to all of Allah's creation"
-            },
-            {
-              question: "According to the Quran, what is the role of Prophet Lut's wife in his story?",
-              options: [
-                "She was a devout believer",
-                "She was a compassionate helper to her husband",
-                "She was a supporter of her people's actions",
-                "She was neutral and did not take a side"
-              ],
-              correctAnswer: "She was a supporter of her people's actions",
-              explanation: "The Quran mentions that Prophet Lut's wife was among those who were destroyed because she was unfaithful and sided with her people in their perversion.",
-              references: "Quran 66:10"
-            },
-            {
-              question: "The story of the people of Lut is mentioned in the Quran as a warning against what?",
-              options: [
-                "Disobedience to parents",
-                "Consuming alcohol",
-                "Rebellion against Allah's laws and the natural order of creation",
-                "Accumulating wealth unjustly"
-              ],
-              correctAnswer: "Rebellion against Allah's laws and the natural order of creation",
-              explanation: "The story serves as a clear example of the consequences of rejecting Allah's commands and engaging in acts that are contrary to the natural purpose of creation.",
-              references: "Quran 29:34"
-            },
-            {
-              question: "What is the primary purpose of marriage in Islam?",
-              options: [
-                "For political alliances",
-                "For procreation and emotional companionship",
-                "To gain social status",
-                "To increase one's wealth"
-              ],
-              correctAnswer: "For procreation and emotional companionship",
-              explanation: "The Quran highlights marriage as a way to find peace, affection, and mercy, and to continue the human lineage through lawful means.",
-              references: "Quran 30:21"
-            },
-            {
-              question: "What is a general principle in Islam regarding a person's private life and sins?",
-              options: [
-                "They should be publicly exposed",
-                "It is obligatory to spy on people to discover their sins",
-                "A person's private sins should not be exposed or gossiped about",
-                "All sins must be reported to the authorities"
-              ],
-              correctAnswer: "A person's private sins should not be exposed or gossiped about",
-              explanation: "Islam places a strong emphasis on protecting the privacy and honor of individuals. The Prophet (PBUH) taught that whoever conceals the fault of a Muslim, Allah will conceal his fault on the Day of Judgment.",
-              references: "Sahih Muslim, Hadith 2590"
-            },
-            {
-              question: "What is the concept of fitrah (natural disposition) in Islam?",
-              options: [
-                "A person's social status",
-                "The inherent state of purity and innate inclination towards Islam with which all people are born",
-                "A person's financial situation",
-                "A person's intellectual capacity"
-              ],
-              correctAnswer: "The inherent state of purity and innate inclination towards Islam with which all people are born",
-              explanation: "The Prophet Muhammad (PBUH) said, 'Every child is born upon the fitrah, but his parents make him a Jew, a Christian, or a Magian.' This concept is used in Islamic discourse to explain the natural inclination towards certain values, including marriage between a man and a woman.",
-              references: "Sahih al-Bukhari, Hadith 1385"
-            },
-            {
-              question: "According to the Quran, what is the fate of those who repent for their sins?",
-              options: [
-                "They will be punished regardless",
-                "Their repentance is not accepted",
-                "Allah is forgiving and accepts their repentance",
-                "They must be publicly shamed"
-              ],
-              correctAnswer: "Allah is forgiving and accepts their repentance",
-              explanation: "The Quran emphasizes Allah's attributes of being Most Merciful (Ar-Rahman) and Oft-Forgiving (Al-Ghaffar), and encourages believers to turn to Him in sincere repentance for all sins.",
-              references: "Quran 39:53"
-            },
-            {
-              question: "What is the Islamic perspective on gender roles and responsibilities in marriage?",
-              options: [
-                "They are identical for both husband and wife",
-                "They are distinct but complementary",
-                "They are determined solely by social norms",
-                "The wife is solely responsible for all household duties"
-              ],
-              correctAnswer: "They are distinct but complementary",
-              explanation: "The Quran describes men as protectors and maintainers of women, while women are described as guardians of the household and their husbands' secrets, indicating a complementary partnership.",
-              references: "Quran 4:34"
-            },
-            {
-              question: "In the story of Lut, what was the reason for the punishment that befell his people?",
-              options: [
-                "A natural disaster",
-                "A plague that spread among them",
-                "It was a divine punishment for their transgression",
-                "They were conquered by a stronger army"
-              ],
-              correctAnswer: "It was a divine punishment for their transgression",
-              explanation: "The Quran clearly states that the punishment was a direct consequence of their rejection of Prophet Lut's message and their indecent acts, sent by Allah.",
-              references: "Quran 26:173"
-            },
-            {
-              question: "According to the Quran, how is the act of sexual intimacy between a husband and wife described?",
-              options: [
-                "As a necessary evil",
-                "As a source of spiritual and emotional peace",
-                "As a purely biological function",
-                "As something to be avoided"
-              ],
-              correctAnswer: "As a source of spiritual and emotional peace",
-              explanation: "The Quran describes the marital relationship as a source of mutual affection, mercy, and tranquility, which includes the physical and emotional intimacy between spouses.",
-              references: "Quran 30:21"
-            },
-            {
-              question: "What is the primary reason why Islamic law prohibits marriage between individuals of the same gender?",
-              options: [
-                "Because it is a recent social development",
-                "Because it goes against the purposes of marriage in Islam, such as procreation",
-                "Because it causes economic instability",
-                "Because it is not a part of any other religion"
-              ],
-              correctAnswer: "Because it goes against the purposes of marriage in Islam, such as procreation",
-              explanation: "Islamic legal theory holds that marriage is a divine institution designed for the continuation of humanity through procreation and for the companionship of a man and a woman. Same-sex unions do not fulfill these primary purposes.",
-              references: "Fiqh literature on marriage (Nikah)"
-            },
-            {
-              question: "In the story of Lut, which phrase is used by his people to describe their actions?",
-              options: [
-                "It is a new religion",
-                "It is a necessity",
-                "It is a custom of our fathers",
-                "It is the way we enjoy ourselves"
-              ],
-              correctAnswer: "It is the way we enjoy ourselves",
-              explanation: "The Quran describes the people of Lut as having a 'lust' that was directed towards men, indicating that their actions were driven by desire, which they considered to be a form of enjoyment.",
-              references: "Quran 7:81"
-            },
-            {
-              question: "What is the general Islamic teaching on the responsibility of a ruler or authority?",
-              options: [
-                "To punish all wrongdoers publicly",
-                "To enforce Islamic law and maintain order",
-                "To ignore all social issues",
-                "To allow all citizens to do as they please"
-              ],
-              correctAnswer: "To enforce Islamic law and maintain order",
-              explanation: "In Islam, a ruler's primary duty is to govern justly, uphold the law of Allah, and protect the moral and social well-being of the community, which includes addressing sins that become widespread.",
-              references: "Quran 4:58-59"
-            },
-            {
-              question: "What is the concept of 'tawbah' (repentance) in Islam?",
-              options: [
-                "A single act of asking for forgiveness",
-                "A sincere and permanent turning away from sin",
-                "A ritual performed once a year",
-                "An act only for major sins"
-              ],
-              correctAnswer: "A sincere and permanent turning away from sin",
-              explanation: "Tawbah involves feeling remorse, leaving the sin, and having a firm intention not to return to it. It is a continuous process for believers and Allah has promised to forgive those who sincerely repent.",
-              references: "Quran 66:8"
-            },
-            {
-              question: "In Islamic law, what is the status of the 'khuntha mushkil' (intersex person with ambiguous gender)?",
-              options: [
-                "They are considered to be of a third gender",
-                "They are treated as male in all matters",
-                "They are treated as female in all matters",
-                "Their gender is determined based on certain physical characteristics and legal procedures"
-              ],
-              correctAnswer: "Their gender is determined based on certain physical characteristics and legal procedures",
-              explanation: "Islamic jurisprudence has a detailed body of law concerning intersex individuals, with a focus on determining their predominant gender based on physical signs to establish their legal rights and obligations, such as inheritance and marriage.",
-              references: "Fiqh literature on inheritance and gender"
-            },
-            {
-              question: "What is the primary role of the institution of marriage in Islam?",
-              options: [
-                "To fulfill carnal desires",
-                "To establish a legal and social framework for procreation and family life",
-                "To gain wealth and status",
-                "To restrict personal freedoms"
-              ],
-              correctAnswer: "To establish a legal and social framework for procreation and family life",
-              explanation: "Marriage is not merely a contract but a sacred institution in Islam that provides a lawful context for a man and a woman to build a family and a foundation for society.",
-              references: "Quran 4:1"
-            },
-            {
-              question: "According to Islamic teachings, what is the proper form of attraction and love between two people?",
-              options: [
-                "Any form of attraction is valid",
-                "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
-                "Love and attraction are irrelevant in Islam",
-                "Love is only for Allah and not for people"
-              ],
-              correctAnswer: "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
-              explanation: "The Quran and Sunnah emphasize that romantic love and attraction, which are natural human emotions, are sanctified and protected within the institution of marriage between a man and a woman.",
-              references: "Quran 30:21"
-            },
-            {
-              question: "What is the general Islamic position on gender identity, as distinct from biological sex?",
-              options: [
-                "Gender identity is a matter of personal feeling",
-                "There is a strict adherence to biological sex as the basis for legal and social gender",
-                "Gender identity can be chosen by the individual",
-                "There are no clear rulings on this issue"
-              ],
-              correctAnswer: "There is a strict adherence to biological sex as the basis for legal and social gender",
-              explanation: "Islamic law and theology generally do not recognize a distinction between biological sex and gender identity. A person’s legal and social gender is determined by their biological sex at birth, with the exception of intersex individuals.",
-              references: "Islamic Fiqh Council resolutions"
-            },
-            {
-              question: "Which term is used for a man who is effeminate in his mannerisms?",
-              options: [
-                "Dayaath",
-                "Mukhannath",
-                "Murtadd",
-                "Zaani"
-              ],
-              correctAnswer: "Mukhannath",
-              explanation: "The term 'mukhannath' has a specific meaning in the Sunnah and refers to men who act like women. This is a behavior that was explicitly condemned by the Prophet (PBUH).",
-              references: "Sahih al-Bukhari, Hadith 5886"
-            }
+        question: "Which Surah in the Quran mentions the story of the people of Lut (Lot)?",
+        options: [
+          "Surah Al-Baqarah",
+          "Surah An-Nisa",
+          "Surah Hud",
+          "Surah Al-Ikhlas"
+        ],
+        correctAnswer: "Surah Hud",
+        explanation: "The story of the people of Lut is narrated in several surahs, including Surah Hud (11:77-83), Surah Al-A'raf (7:80-84), and Surah An-Naml (27:54-58). These narrations describe the condemnation of their actions.",
+        references: "Quran 11:77-83"
+      },
+      {
+        question: "In the story of Lut, what was the primary sin for which his people were condemned?",
+        options: [
+          "Worshipping idols",
+          "Stealing from travelers",
+          "Committing male-on-male sexual acts",
+          "Disrespecting their elders"
+        ],
+        correctAnswer: "Committing male-on-male sexual acts",
+        explanation: "The Quran mentions that the people of Lut were condemned for engaging in indecent acts, specifically approaching men with desire instead of women, which was a perversion of the natural order.",
+        references: "Quran 27:55"
+      },
+      {
+        question: "The term 'liwat' in Islamic jurisprudence is commonly used to refer to what?",
+        options: [
+          "Lying",
+          "The act of sodomy, specifically male-on-male sexual acts",
+          "Stealing",
+          "Adultery"
+        ],
+        correctAnswer: "The act of sodomy, specifically male-on-male sexual acts",
+        explanation: "The term 'liwat' is derived from the name of Prophet Lut and is used in Islamic legal discourse to refer to the homosexual act of sodomy, based on the story of his people.",
+        references: "Al-Mawsu’ah Al-Fiqhiyyah Al-Kuwaitiyyah"
+      },
+      {
+        question: "According to the Quran, how did the people of Lut react when Prophet Lut advised them to abandon their practices?",
+        options: [
+          "They listened and repented",
+          "They ignored him but did not harm him",
+          "They mocked him and threatened to expel him and his family",
+          "They asked him to leave their city peacefully"
+        ],
+        correctAnswer: "They mocked him and threatened to expel him and his family",
+        explanation: "The Quran states that the people of Lut responded to his call for righteousness by mocking him and threatening to expel him and his followers from the city.",
+        references: "Quran 27:56"
+      },
+      {
+        question: "What is the Islamic legal term for illicit sexual relations outside of marriage?",
+        options: [
+          "Zina",
+          "Riba",
+          "Gheebah",
+          "Shirk"
+        ],
+        correctAnswer: "Zina",
+        explanation: "Zina is a term in Islamic jurisprudence referring to all sexual acts outside of a valid marriage, and its prohibition is a foundational aspect of Islamic law.",
+        references: "Quran 17:32"
+      },
+      {
+        question: "In the Islamic tradition, the concept of gender is generally understood to be what?",
+        options: [
+          "A social construct",
+          "Binary, male and female, as a sign of Allah's creation",
+          "Fluid and interchangeable",
+          "Irrelevant to a person's identity"
+        ],
+        correctAnswer: "Binary, male and female, as a sign of Allah's creation",
+        explanation: "The Quran mentions the creation of male and female as a sign of Allah's power and wisdom, indicating a binary understanding of gender.",
+        references: "Quran 49:13, 53:45"
+      },
+      {
+        question: "What term is used in hadith to describe men who imitate women?",
+        options: [
+          "Mukhannathun",
+          "Mutashabihun",
+          "Mubtada'un",
+          "Munaafiqun"
+        ],
+        correctAnswer: "Mukhannathun",
+        explanation: "The term 'mukhannathun' refers to men who imitate women in their mannerisms, speech, and appearance. Several hadiths mention a prohibition against this, and also against women who imitate men.",
+        references: "Sahih al-Bukhari, Book of Dress, Hadith 5885"
+      },
+      {
+        question: "The Quran mentions the creation of spouses (azwaj) for what purpose?",
+        options: [
+          "To gain wealth",
+          "To live in discord",
+          "To find tranquility and mercy",
+          "To compete with each other"
+        ],
+        correctAnswer: "To find tranquility and mercy",
+        explanation: "The Quran says, 'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.' This verse is foundational to the Islamic understanding of marriage.",
+        references: "Quran 30:21"
+      },
+      {
+        question: "What is the general Islamic ruling on changing one's gender, as a matter of jurisprudence?",
+        options: [
+          "It is encouraged for personal happiness",
+          "It is considered permissible if a doctor recommends it",
+          "It is generally prohibited as it interferes with Allah's creation",
+          "There is no consensus, and it is a matter of personal choice"
+        ],
+        correctAnswer: "It is generally prohibited as it interferes with Allah's creation",
+        explanation: "Islamic scholars generally hold that gender reassignment surgery is prohibited, as it is seen as an alteration of Allah’s creation. The exception would be for intersex individuals (khuntha) to correct their biological sex.",
+        references: "See Tafsir of Quran 4:119 regarding changing the creation of Allah; Fatwas from Al-Azhar"
+      },
+      {
+        question: "Which term is used for individuals who are born with ambiguous genitalia, having both male and female characteristics?",
+        options: [
+          "Mutashabih",
+          "Mukhannath",
+          "Khuntha",
+          "Mujannas"
+        ],
+        correctAnswer: "Khuntha",
+        explanation: "In Islamic jurisprudence, 'khuntha' refers to an intersex person. There are specific rulings concerning their identity and rights, and a distinction is made between a person born intersex and a person seeking to change their gender.",
+        references: "Fiqh literature on Khuntha"
+      },
+      {
+        question: "The prohibition of 'Zina' (fornication and adultery) in Islam is intended to protect what?",
+        options: [
+          "The economic stability of a society",
+          "The institution of family and lineage",
+          "The political power of a state",
+          "The freedom of personal choice"
+        ],
+        correctAnswer: "The institution of family and lineage",
+        explanation: "The prohibition of Zina is primarily to preserve the sanctity of the family unit, the clarity of lineage, and the moral fabric of society. Marriage is seen as the only valid framework for sexual relations.",
+        references: "Quran 17:32; Tafsir of Ibn Kathir"
+      },
+      {
+        question: "What is the general Islamic stance on showing compassion and kindness to all people, regardless of their background?",
+        options: [
+          "It is only for Muslims",
+          "It is a fundamental principle of Islam",
+          "It is discouraged if they are not righteous",
+          "It is only for one's family"
+        ],
+        correctAnswer: "It is a fundamental principle of Islam",
+        explanation: "The Prophet Muhammad (PBUH) was described as a 'mercy to the worlds' and compassion for all of Allah’s creation is a core Islamic teaching, which includes treating all individuals with dignity and respect.",
+        references: "Quran 21:107; Hadith on being kind to all of Allah's creation"
+      },
+      {
+        question: "According to the Quran, what is the role of Prophet Lut's wife in his story?",
+        options: [
+          "She was a devout believer",
+          "She was a compassionate helper to her husband",
+          "She was a supporter of her people's actions",
+          "She was neutral and did not take a side"
+        ],
+        correctAnswer: "She was a supporter of her people's actions",
+        explanation: "The Quran mentions that Prophet Lut's wife was among those who were destroyed because she was unfaithful and sided with her people in their perversion.",
+        references: "Quran 66:10"
+      },
+      {
+        question: "The story of the people of Lut is mentioned in the Quran as a warning against what?",
+        options: [
+          "Disobedience to parents",
+          "Consuming alcohol",
+          "Rebellion against Allah's laws and the natural order of creation",
+          "Accumulating wealth unjustly"
+        ],
+        correctAnswer: "Rebellion against Allah's laws and the natural order of creation",
+        explanation: "The story serves as a clear example of the consequences of rejecting Allah's commands and engaging in acts that are contrary to the natural purpose of creation.",
+        references: "Quran 29:34"
+      },
+      {
+        question: "What is the primary purpose of marriage in Islam?",
+        options: [
+          "For political alliances",
+          "For procreation and emotional companionship",
+          "To gain social status",
+          "To increase one's wealth"
+        ],
+        correctAnswer: "For procreation and emotional companionship",
+        explanation: "The Quran highlights marriage as a way to find peace, affection, and mercy, and to continue the human lineage through lawful means.",
+        references: "Quran 30:21"
+      },
+      {
+        question: "What is a general principle in Islam regarding a person's private life and sins?",
+        options: [
+          "They should be publicly exposed",
+          "It is obligatory to spy on people to discover their sins",
+          "A person's private sins should not be exposed or gossiped about",
+          "All sins must be reported to the authorities"
+        ],
+        correctAnswer: "A person's private sins should not be exposed or gossiped about",
+        explanation: "Islam places a strong emphasis on protecting the privacy and honor of individuals. The Prophet (PBUH) taught that whoever conceals the fault of a Muslim, Allah will conceal his fault on the Day of Judgment.",
+        references: "Sahih Muslim, Hadith 2590"
+      },
+      {
+        question: "What is the concept of fitrah (natural disposition) in Islam?",
+        options: [
+          "A person's social status",
+          "The inherent state of purity and innate inclination towards Islam with which all people are born",
+          "A person's financial situation",
+          "A person's intellectual capacity"
+        ],
+        correctAnswer: "The inherent state of purity and innate inclination towards Islam with which all people are born",
+        explanation: "The Prophet Muhammad (PBUH) said, 'Every child is born upon the fitrah, but his parents make him a Jew, a Christian, or a Magian.' This concept is used in Islamic discourse to explain the natural inclination towards certain values, including marriage between a man and a woman.",
+        references: "Sahih al-Bukhari, Hadith 1385"
+      },
+      {
+        question: "According to the Quran, what is the fate of those who repent for their sins?",
+        options: [
+          "They will be punished regardless",
+          "Their repentance is not accepted",
+          "Allah is forgiving and accepts their repentance",
+          "They must be publicly shamed"
+        ],
+        correctAnswer: "Allah is forgiving and accepts their repentance",
+        explanation: "The Quran emphasizes Allah's attributes of being Most Merciful (Ar-Rahman) and Oft-Forgiving (Al-Ghaffar), and encourages believers to turn to Him in sincere repentance for all sins.",
+        references: "Quran 39:53"
+      },
+      {
+        question: "What is the Islamic perspective on gender roles and responsibilities in marriage?",
+        options: [
+          "They are identical for both husband and wife",
+          "They are distinct but complementary",
+          "They are determined solely by social norms",
+          "The wife is solely responsible for all household duties"
+        ],
+        correctAnswer: "They are distinct but complementary",
+        explanation: "The Quran describes men as protectors and maintainers of women, while women are described as guardians of the household and their husbands' secrets, indicating a complementary partnership.",
+        references: "Quran 4:34"
+      },
+      {
+        question: "In the story of Lut, what was the reason for the punishment that befell his people?",
+        options: [
+          "A natural disaster",
+          "A plague that spread among them",
+          "It was a divine punishment for their transgression",
+          "They were conquered by a stronger army"
+        ],
+        correctAnswer: "It was a divine punishment for their transgression",
+        explanation: "The Quran clearly states that the punishment was a direct consequence of their rejection of Prophet Lut's message and their indecent acts, sent by Allah.",
+        references: "Quran 26:173"
+      },
+      {
+        question: "According to the Quran, how is the act of sexual intimacy between a husband and wife described?",
+        options: [
+          "As a necessary evil",
+          "As a source of spiritual and emotional peace",
+          "As a purely biological function",
+          "As something to be avoided"
+        ],
+        correctAnswer: "As a source of spiritual and emotional peace",
+        explanation: "The Quran describes the marital relationship as a source of mutual affection, mercy, and tranquility, which includes the physical and emotional intimacy between spouses.",
+        references: "Quran 30:21"
+      },
+      {
+        question: "What is the primary reason why Islamic law prohibits marriage between individuals of the same gender?",
+        options: [
+          "Because it is a recent social development",
+          "Because it goes against the purposes of marriage in Islam, such as procreation",
+          "Because it causes economic instability",
+          "Because it is not a part of any other religion"
+        ],
+        correctAnswer: "Because it goes against the purposes of marriage in Islam, such as procreation",
+        explanation: "Islamic legal theory holds that marriage is a divine institution designed for the continuation of humanity through procreation and for the companionship of a man and a woman. Same-sex unions do not fulfill these primary purposes.",
+        references: "Fiqh literature on marriage (Nikah)"
+      },
+      {
+        question: "In the story of Lut, which phrase is used by his people to describe their actions?",
+        options: [
+          "It is a new religion",
+          "It is a necessity",
+          "It is a custom of our fathers",
+          "It is the way we enjoy ourselves"
+        ],
+        correctAnswer: "It is the way we enjoy ourselves",
+        explanation: "The Quran describes the people of Lut as having a 'lust' that was directed towards men, indicating that their actions were driven by desire, which they considered to be a form of enjoyment.",
+        references: "Quran 7:81"
+      },
+      {
+        question: "What is the general Islamic teaching on the responsibility of a ruler or authority?",
+        options: [
+          "To punish all wrongdoers publicly",
+          "To enforce Islamic law and maintain order",
+          "To ignore all social issues",
+          "To allow all citizens to do as they please"
+        ],
+        correctAnswer: "To enforce Islamic law and maintain order",
+        explanation: "In Islam, a ruler's primary duty is to govern justly, uphold the law of Allah, and protect the moral and social well-being of the community, which includes addressing sins that become widespread.",
+        references: "Quran 4:58-59"
+      },
+      {
+        question: "What is the concept of 'tawbah' (repentance) in Islam?",
+        options: [
+          "A single act of asking for forgiveness",
+          "A sincere and permanent turning away from sin",
+          "A ritual performed once a year",
+          "An act only for major sins"
+        ],
+        correctAnswer: "A sincere and permanent turning away from sin",
+        explanation: "Tawbah involves feeling remorse, leaving the sin, and having a firm intention not to return to it. It is a continuous process for believers and Allah has promised to forgive those who sincerely repent.",
+        references: "Quran 66:8"
+      },
+      {
+        question: "In Islamic law, what is the status of the 'khuntha mushkil' (intersex person with ambiguous gender)?",
+        options: [
+          "They are considered to be of a third gender",
+          "They are treated as male in all matters",
+          "They are treated as female in all matters",
+          "Their gender is determined based on certain physical characteristics and legal procedures"
+        ],
+        correctAnswer: "Their gender is determined based on certain physical characteristics and legal procedures",
+        explanation: "Islamic jurisprudence has a detailed body of law concerning intersex individuals, with a focus on determining their predominant gender based on physical signs to establish their legal rights and obligations, such as inheritance and marriage.",
+        references: "Fiqh literature on inheritance and gender"
+      },
+      {
+        question: "What is the primary role of the institution of marriage in Islam?",
+        options: [
+          "To fulfill carnal desires",
+          "To establish a legal and social framework for procreation and family life",
+          "To gain wealth and status",
+          "To restrict personal freedoms"
+        ],
+        correctAnswer: "To establish a legal and social framework for procreation and family life",
+        explanation: "Marriage is not merely a contract but a sacred institution in Islam that provides a lawful context for a man and a woman to build a family and a foundation for society.",
+        references: "Quran 4:1"
+      },
+      {
+        question: "According to Islamic teachings, what is the proper form of attraction and love between two people?",
+        options: [
+          "Any form of attraction is valid",
+          "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
+          "Love and attraction are irrelevant in Islam",
+          "Love is only for Allah and not for people"
+        ],
+        correctAnswer: "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
+        explanation: "The Quran and Sunnah emphasize that romantic love and attraction, which are natural human emotions, are sanctified and protected within the institution of marriage between a man and a woman.",
+        references: "Quran 30:21"
+      },
+      {
+        question: "What is the general Islamic position on gender identity, as distinct from biological sex?",
+        options: [
+          "Gender identity is a matter of personal feeling",
+          "There is a strict adherence to biological sex as the basis for legal and social gender",
+          "Gender identity can be chosen by the individual",
+          "There are no clear rulings on this issue"
+        ],
+        correctAnswer: "There is a strict adherence to biological sex as the basis for legal and social gender",
+        explanation: "Islamic law and theology generally do not recognize a distinction between biological sex and gender identity. A person’s legal and social gender is determined by their biological sex at birth, with the exception of intersex individuals.",
+        references: "Islamic Fiqh Council resolutions"
+      },
+      {
+        question: "Which term is used for a man who is effeminate in his mannerisms?",
+        options: [
+          "Dayaath",
+          "Mukhannath",
+          "Murtadd",
+          "Zaani"
+        ],
+        correctAnswer: "Mukhannath",
+        explanation: "The term 'mukhannath' has a specific meaning in the Sunnah and refers to men who act like women. This is a behavior that was explicitly condemned by the Prophet (PBUH).",
+        references: "Sahih al-Bukhari, Hadith 5886"
+      }
+    ],
+    intermediate: [
+      {
+        question: "What does 'Lesbian' mean in the context of LGBTQIA+?",
+        options: [
+          "A man who is sexually attracted to men",
+          "A woman who is sexually or romantically attracted exclusively to other women",
+          "A person attracted to both men and women",
+          "A person with no sexual attraction"
+        ],
+        correctAnswer: "A woman who is sexually or romantically attracted exclusively to other women",
+        explanation: "Lesbian: A woman who is sexually or romantically attracted exclusively to other women; a gay woman. This definition highlights exclusive same-gender attraction for women within the LGBTQIA+ framework.",
+        references: "Controversial Questions about Islam 2.pdf, Page 19"
+      },
+      {
+        question: "What is the definition of 'Gay' in the context of LGBTQIA+?",
+        options: [
+          "A woman attracted exclusively to women",
+          "A person who is sexually or romantically attracted to people of the same sex",
+          "A person attracted only to the opposite sex",
+          "A person whose gender identity differs from their birth sex"
+        ],
+        correctAnswer: "A person who is sexually or romantically attracted to people of the same sex",
+        explanation: "Gay: A person who is sexually or romantically attracted to people of one’s own sex; (used especially for a man). It is commonly used to describe homosexual orientation.",
+        references: "Controversial Questions about Islam 2.pdf, Page 19"
+      },
+      {
+        question: "What does 'Bisexual' refer to in LGBTQIA+ definitions?",
+        options: [
+          "Attraction to only one sex",
+          "A person who is sexually or romantically attracted to both men and women",
+          "A person with no sexual feelings",
+          "A person seeking gender reassignment"
+        ],
+        correctAnswer: "A person who is sexually or romantically attracted to both men and women",
+        explanation: "Bisexual: A person who is sexually or romantically attracted to both men and women, or to more than one sex or gender. This encompasses attraction beyond binary exclusivity.",
+        references: "Controversial Questions about Islam 2.pdf, Page 19"
+      },
+      {
+        question: "What is 'Transgender' according to LGBTQIA+ terminology?",
+        options: [
+          "Born with ambiguous genitalia",
+          "A person whose gender identity does not correspond with the sex registered at birth",
+          "A person with no romantic attraction",
+          "Exclusive same-sex attraction"
+        ],
+        correctAnswer: "A person whose gender identity does not correspond with the sex registered at birth",
+        explanation: "Transgender: denoting or relating to a person whose gender identity does not correspond with the sex registered for them at birth. This focuses on internal identity versus assigned sex.",
+        references: "Controversial Questions about Islam 2.pdf, Page 20"
+      },
+      {
+        question: "What is the meaning of 'Queer' in the LGBTQIA+ spectrum?",
+        options: [
+          "Strictly referring to gay men",
+          "An umbrella term for sexual and gender identities that are not straight",
+          "A biological intersex condition",
+          "Complete absence of sexual desire"
+        ],
+        correctAnswer: "An umbrella term for sexual and gender identities that are not straight",
+        explanation: "Queer: is an umbrella term used to describe sexual and gender identities that are not straight or it is an inclusive term that encompasses diverse sexual and gender identities, including lesbian, gay, bisexual, transgender, and others.",
+        references: "Controversial Questions about Islam 2.pdf, Page 20"
+      },
+      {
+        question: "What defines 'Intersex' in the LGBTQIA+ context?",
+        options: [
+          "A chosen gender identity",
+          "People born with sex characteristics that do not fit typical male or female binary definitions",
+          "Attraction to the same sex",
+          "Lack of sexual attraction to anyone"
+        ],
+        correctAnswer: "People born with sex characteristics that do not fit typical male or female binary definitions",
+        explanation: "Intersex: is an umbrella term for people born with sex characteristics, including genitals, reproductive organs, and chromosomes, that do not fit into typical male or female binary definitions. Intersex variations are a natural part of human diversity.",
+        references: "Controversial Questions about Islam 2.pdf, Page 21"
+      },
+      {
+        question: "What is 'Asexual' within LGBTQIA+ definitions?",
+        options: [
+          "Attraction to multiple genders",
+          "A person who experiences no sexual feelings or desires",
+          "A fluid gender identity",
+          "A transgender individual"
+        ],
+        correctAnswer: "A person who experiences no sexual feelings or desires",
+        explanation: "Asexual: a person who experiences no sexual feelings or desires, or who is not sexually attracted to anyone or want to pursue sexual relationships with other people.",
+        references: "Controversial Questions about Islam 2.pdf, Page 21"
+      },
+      {
+        question: "According to the presentation, are transgender feelings considered sinful in Islam if not acted upon?",
+        options: [
+          "Yes, all such feelings are inherently sinful",
+          "No, feelings over which a person has no control are not sinful if not acted upon",
+          "Only the feelings of men are sinful",
+          "Feelings are always blameworthy regardless of action"
+        ],
+        correctAnswer: "No, feelings over which a person has no control are not sinful if not acted upon",
+        explanation: "Feelings over which a person has no control are not sinful if not acted upon. If a man feels that he is actually a woman trapped in the body of a man or vice versa, these feelings in and of themselves are not blameworthy.",
+        references: "Controversial Questions about Islam 2.pdf, Page 23"
+      },
+      {
+        question: "What does Islamic Shari'ah explicitly forbid regarding gender expression?",
+        options: [
+          "Natural physiognomy and voice",
+          "Men deliberately acting or dressing effeminately, and women acting or dressing masculinely",
+          "All forms of clothing regardless of intent",
+          "Involuntary mannerisms"
+        ],
+        correctAnswer: "Men deliberately acting or dressing effeminately, and women acting or dressing masculinely",
+        explanation: "The Shari‘ah explicitly forbids men to deliberately act or dress effeminately, and for women to deliberately act or dress in a masculine manner. What is beyond one’s control... does not fall under the purview of the Shari‘ah.",
+        references: "Controversial Questions about Islam 2.pdf, Page 24"
+      },
+      {
+        question: "How does the presentation distinguish between Intersex conditions and Transgender identity?",
+        options: [
+          "Intersex is a behavioral choice, Transgender is biological",
+          "Intersex involves atypical anatomies noticed at birth, Transgender involves internal identity different from typical anatomy",
+          "No distinction is made between them",
+          "Both are considered the same condition"
+        ],
+        correctAnswer: "Intersex involves atypical anatomies noticed at birth, Transgender involves internal identity different from typical anatomy",
+        explanation: "Intersex Conditions: Anatomy not typically male or female... Contrast Between Transgender and Intersex: Transgender individuals have an internal gender identity different from societal norms. Intersex conditions involve atypical anatomies.",
+        references: "Controversial Questions about Islam 2.pdf, Page 25"
+      },
+      {
+        question: "Which Surah in the Quran (7:80–84) condemns the approach of men with desire in Lut's story?",
+        options: [
+          "Surah Al-Baqarah",
+          "Surah Al-A'raf",
+          "Surah An-Naml",
+          "Surah Al-Hijr"
+        ],
+        correctAnswer: "Surah Al-A'raf",
+        explanation: "Sūrah al-Aʿrāf (7:80–84) — ―Lot said to his people: ‘Do you approach men with desire...?‘‖ (condemns the act and describes punishment).",
+        references: "Controversial Questions about Islam 2.pdf, Page 26; Quran 7:80-84"
+      },
+      {
+        question: "In which Surah (15:61–77) is the narrative of angels visiting Lut and the divine destruction found?",
+        options: [
+          "Surah Hud",
+          "Surah Al-Hijr",
+          "Surah Ash-Shu'ara",
+          "Surah Al-Ankabut"
+        ],
+        correctAnswer: "Surah Al-Hijr",
+        explanation: "Sūrah al-Hijr (15:61–77) — Narrative of the angels visiting Lūṭ and divine destruction.",
+        references: "Controversial Questions about Islam 2.pdf, Page 26; Quran 15:61-77"
+      },
+      {
+        question: "Which hadith collection cites a narration on punishing the action of Lut's people (Ibn Majah 2561–2562)?",
+        options: [
+          "Sahih al-Bukhari",
+          "Sunan Ibn Majah",
+          "Sahih Muslim",
+          "Sunan Abu Dawud"
+        ],
+        correctAnswer: "Sunan Ibn Majah",
+        explanation: "A number of hadiths... Ibn Mājah (Kitāb al-Ḥudūd), hadith reported via Ibn ʿAbbās: ―Whoever you find doing the action of the people of Lūṭ, kill the one who does it and the one to whom it is done.‖",
+        references: "Controversial Questions about Islam 2.pdf, Page 27; Ibn Majah 2561-2562"
+      },
+      {
+        question: "In the Bible, which book recounts the story of Sodom and Gomorrah (Genesis 19:1–29)?",
+        options: [
+          "Leviticus",
+          "Genesis",
+          "1 Timothy",
+          "Romans"
+        ],
+        correctAnswer: "Genesis",
+        explanation: "Genesis 19:1–29 (Account of Sodom and Gomorrah) — Narrative of attempted sexual violence against Lot’s guests; city destroyed.",
+        references: "Controversial Questions about Islam 2.pdf, Page 28"
+      },
+      {
+        question: "What does Leviticus 20:13 state regarding a man lying with a male?",
+        options: [
+          "It is permissible in certain cases",
+          "It is an abomination; both shall be put to death",
+          "It requires repentance only",
+          "No penalty is prescribed"
+        ],
+        correctAnswer: "It is an abomination; both shall be put to death",
+        explanation: "Leviticus 20:13 — ―If a man lies with a male as with a woman, both of them have committed an abomination; they shall surely be put to death.‖ (Mosaic penal provision).",
+        references: "Controversial Questions about Islam 2.pdf, Page 28"
+      },
+      {
+        question: "Which New Testament book includes 'men who practice homosexuality' in a list of lawless behaviors (1 Timothy 1:9–10)?",
+        options: [
+          "Romans",
+          "1 Corinthians",
+          "1 Timothy",
+          "Genesis"
+        ],
+        correctAnswer: "1 Timothy",
+        explanation: "1 Timothy 1:9–10 — includes ―men who practice homosexuality‖ in a list of lawless behaviors.",
+        references: "Controversial Questions about Islam 2.pdf, Page 29"
+      },
+      {
+        question: "What pivotal event in 1969 marked a turning point for LGBTQ+ rights activism?",
+        options: [
+          "The Buggery Act repeal",
+          "The Stonewall Riots",
+          "Obergefell v. Hodges decision",
+          "Removal from DSM"
+        ],
+        correctAnswer: "The Stonewall Riots",
+        explanation: "1969: The Stonewall Riots marked a pivotal moment for LGBTQ+ rights, leading to increased activism.",
+        references: "Controversial Questions about Islam 2.pdf, Page 30"
+      },
+      {
+        question: "In which year did the American Psychiatric Association remove homosexuality from its list of mental disorders?",
+        options: [
+          "1967",
+          "1969",
+          "1973",
+          "2015"
+        ],
+        correctAnswer: "1973",
+        explanation: "1973: The American Psychiatric Association removed homosexuality from its list of mental disorders.",
+        references: "Controversial Questions about Islam 2.pdf, Page 30"
+      },
+      {
+        question: "What 2015 U.S. Supreme Court decision guaranteed same-sex marriage rights?",
+        options: [
+          "Lawrence v. Texas",
+          "Obergefell v. Hodges",
+          "Civil Partnership Act",
+          "Sexual Offences Act"
+        ],
+        correctAnswer: "Obergefell v. Hodges",
+        explanation: "2015: Obergefell v. Hodges Supreme Court decision guaranteed the right to marry for same-sex couples.",
+        references: "Controversial Questions about Islam 2.pdf, Page 30"
+      },
+      {
+        question: "Which 2003 U.S. ruling declared laws criminalizing same-sex activity unconstitutional?",
+        options: [
+          "Marriage (Same-Sex Couples) Act",
+          "Lawrence v. Texas",
+          "Offences Against the Person Act",
+          "Stonewall Riots"
+        ],
+        correctAnswer: "Lawrence v. Texas",
+        explanation: "2003: Lawrence v. Texas ruled that laws criminalizing same-sex sexual activity were unconstitutional.",
+        references: "Controversial Questions about Islam 2.pdf, Page 31"
+      },
+      {
+        question: "When was the Homosexual Law Reform Society founded to campaign for same-sex relationship recognition?",
+        options: [
+          "1969",
+          "1989",
+          "1958",
+          "1992"
+        ],
+        correctAnswer: "1958",
+        explanation: "1958: The Homosexual Law Reform Society was founded to campaign for legal recognition of same-sex relationships.",
+        references: "Controversial Questions about Islam 2.pdf, Page 32"
+      },
+      {
+        question: "In what year was the term 'homosexual' first used, framing sexual orientation as innate?",
+        options: [
+          "1948",
+          "1966",
+          "1869",
+          "1978"
+        ],
+        correctAnswer: "1869",
+        explanation: "1869: The term 'homosexual' was first used, framing sexual orientation as an innate characteristic.",
+        references: "Controversial Questions about Islam 2.pdf, Page 33"
+      },
+      {
+        question: "What 1948 report challenged binary views of sexuality by introducing a sexual continuum?",
+        options: [
+          "John Money's work",
+          "The Kinsey Report",
+          "Rainbow Flag introduction",
+          "Ellen DeGeneres' coming out"
+        ],
+        correctAnswer: "The Kinsey Report",
+        explanation: "1948: The Kinsey Report introduced a sexual continuum, challenging binary views of sexuality.",
+        references: "Controversial Questions about Islam 2.pdf, Page 33"
+      },
+      {
+        question: "In responding to LGBTQIA+ narratives, what should a Muslim start with according to the presentation?",
+        options: [
+          "Immediate judgment of actions",
+          "Respect and acknowledgment of human dignity",
+          "Emotional arguments against feelings",
+          "Silence to avoid conflict"
+        ],
+        correctAnswer: "Respect and acknowledgment of human dignity",
+        explanation: "Acknowledge Human Dignity: Start with Respect — “I respect your dignity as a human being, and Islam teaches me not to hate anyone.”",
+        references: "Controversial Questions about Islam 2.pdf, Page 36-37"
+      },
+      {
+        question: "According to the hadith cited in the presentation, what spreads among people when immorality is committed openly?",
+        options: [
+          "Wealth and prosperity",
+          "Plagues and diseases that were never known among predecessors",
+          "Peace and harmony",
+          "Knowledge and wisdom"
+        ],
+        correctAnswer: "Plagues and diseases that were never known among predecessors",
+        explanation: "Immorality never appears among a people to such an extent that they commit it openly, but plagues and diseases that were never known among the predecessors will spread among them. (Ibn Majah, Sahih)",
+        references: "Controversial Questions about Islam 2.pdf, Page 40; Ibn Majah"
+      },
+      {
+        question: "What is 'Gender Dysphoria' as described in the presentation?",
+        options: [
+          "Exclusive same-sex attraction",
+          "A sense of unease due to a mismatch between biological sex and gender identity",
+          "Complete absence of sexual desire",
+          "Biological ambiguity at birth"
+        ],
+        correctAnswer: "A sense of unease due to a mismatch between biological sex and gender identity",
+        explanation: "Gender Dysphoria is a term that describes a sense of unease that a person may have because of a mismatch between their biological sex and their gender identity. This sense... may lead to depression and anxiety.",
+        references: "Controversial Questions about Islam 2.pdf, Page 41"
+      },
+      {
+        question: "What is 'Rapid Onset Gender Dysphoria' according to the 2018 study cited?",
+        options: [
+          "A childhood-onset condition",
+          "A sudden development of gender dysphoria in adolescence or young adulthood",
+          "An adult-only phenomenon",
+          "A mythical condition with no basis"
+        ],
+        correctAnswer: "A sudden development of gender dysphoria in adolescence or young adulthood",
+        explanation: "Rapid onset gender dysphoria is 'a type of adolescent-onset or late-onset gender dysphoria where the development of gender dysphoria is observed to begin suddenly during or after puberty...' (Lisa Littman, 2018).",
+        references: "Controversial Questions about Islam 2.pdf, Page 42; PLOS One Journal, 2018"
+      },
+      {
+        question: "What example from the presentation illustrates serious social issues for transgender individuals in prisons?",
+        options: [
+          "The Stonewall Riots",
+          "Demi Minor's incarceration and mental health struggles",
+          "Pope's support for LGBTQ",
+          "Ellen DeGeneres' public coming out"
+        ],
+        correctAnswer: "Demi Minor's incarceration and mental health struggles",
+        explanation: "Demi Minor... is at the all-male Garden State Youth Correctional Facility. She says, 'I am approved for surgery... my mental health is a complete wreck.'",
+        references: "Controversial Questions about Islam 2.pdf, Page 43"
+      },
+      {
+        question: "According to the presentation, what major system is said to be totally destroyed by LGBTQIA+ influences?",
+        options: [
+          "The economic system",
+          "The family system",
+          "The political system",
+          "The educational system"
+        ],
+        correctAnswer: "The family system",
+        explanation: "Total destruction of Family system! The presentation highlights how LGBTQIA+ activism contributes to the breakdown of traditional family structures.",
+        references: "Controversial Questions about Islam 2.pdf, Page 45"
+      },
+      {
+        question: "What vulnerable group does the presentation claim is victimized by LGBTQIA+ trends?",
+        options: [
+          "Adults in workplaces",
+          "Children",
+          "Elderly in society",
+          "Political leaders"
+        ],
+        correctAnswer: "Children",
+        explanation: "Children are victimized! The presentation warns that future generations, especially children, are being spoiled and affected badly by these trends.",
+        references: "Controversial Questions about Islam 2.pdf, Page 46; Page 13"
+      },
+      {
+        question: "According to the presentation's 'Beware' section, which group is described as being on the forefront of LGBTQ activism?",
+        options: [
+          "Muslims",
+          "Jews",
+          "Hindus",
+          "Atheists"
+        ],
+        correctAnswer: "Jews",
+        explanation: "Beware, we are alone! Jews are on forefront! The presentation claims external influences, starting with Jewish involvement, are promoting LGBTQIA+ agendas.",
+        references: "Controversial Questions about Islam 2.pdf, Page 47"
+      },
+      {
+        question: "In the presentation, which religious group is said to be 'behind' LGBTQ support?",
+        options: [
+          "Jews",
+          "Christians",
+          "Muslims",
+          "Buddhists"
+        ],
+        correctAnswer: "Christians",
+        explanation: "Beware, we are alone! Christians are behind! The presentation asserts Christian communities and leaders are supporting LGBTQ causes.",
+        references: "Controversial Questions about Islam 2.pdf, Page 48"
+      },
+      {
+        question: "What does the presentation claim about the Pope's stance on LGBTQ issues?",
+        options: [
+          "Strong opposition",
+          "Neutral and silent",
+          "Backs and supports it",
+          "Ignores it completely"
+        ],
+        correctAnswer: "Backs and supports it",
+        explanation: "Beware, we are alone! Pope also backs! The presentation highlights papal endorsements as part of broader Christian support for LGBTQ.",
+        references: "Controversial Questions about Islam 2.pdf, Page 50"
+      },
+      {
+        question: "According to the presentation, how does Hinduism relate to LGBTQ concepts?",
+        options: [
+          "Strictly prohibits them",
+          "Already has it integrated",
+          "Remains neutral",
+          "Opposes through activism"
+        ],
+        correctAnswer: "Already has it integrated",
+        explanation: "Beware, we are alone! Hinduism already has it! The presentation suggests historical or cultural integration of such concepts in Hinduism.",
+        references: "Controversial Questions about Islam 2.pdf, Page 51"
+      },
+      {
+        question: "What warning does the presentation give about Muslims and LGBTQ influences?",
+        options: [
+          "They are immune",
+          "Misleading Muslims too",
+          "They lead the opposition",
+          "They ignore it"
+        ],
+        correctAnswer: "Misleading Muslims too",
+        explanation: "Beware, we are alone! Misleading Muslims too! The presentation cautions that even Muslim communities are being influenced and misled.",
+        references: "Controversial Questions about Islam 2.pdf, Page 52"
+      },
+      {
+        question: "What development in Muslim spaces does the presentation warn about?",
+        options: [
+          "Increased mosques",
+          "Gay Mosques are ready",
+          "More interfaith dialogues",
+          "Educational reforms"
+        ],
+        correctAnswer: "Gay Mosques are ready",
+        explanation: "Beware, we are alone! Gay Mosques are ready! The presentation alerts to the emergence of LGBTQ-inclusive Muslim worship spaces.",
+        references: "Controversial Questions about Islam 2.pdf, Page 53"
+      }
     ],
     advanced: [
-            {
-              question: "What is the general Islamic position on intersex individuals seeking surgery?",
-              options: [
-                "It is forbidden in all cases",
-                "It is permissible to correct the biological gender to one that is predominant",
-                "It is mandatory for all intersex people",
-                "It is only allowed for medical reasons that have no religious basis"
-              ],
-              correctAnswer: "It is permissible to correct the biological gender to one that is predominant",
-              explanation: "Scholars have differentiated between gender-affirming surgery for intersex individuals (khuntha), which is permitted to establish their natural sex, and for transgender individuals, which is generally considered an impermissible alteration of creation.",
-              references: "Al-Mawsu'ah Al-Fiqhiyyah Al-Kuwaitiyyah"
-            },
-          {
+      {
+        question: "What is the general Islamic position on intersex individuals seeking surgery?",
+        options: [
+          "It is forbidden in all cases",
+          "It is permissible to correct the biological gender to one that is predominant",
+          "It is mandatory for all intersex people",
+          "It is only allowed for medical reasons that have no religious basis"
+        ],
+        correctAnswer: "It is permissible to correct the biological gender to one that is predominant",
+        explanation: "Scholars have differentiated between gender-affirming surgery for intersex individuals (khuntha), which is permitted to establish their natural sex, and for transgender individuals, which is generally considered an impermissible alteration of creation.",
+        references: "Al-Mawsu'ah Al-Fiqhiyyah Al-Kuwaitiyyah"
+      },
+      {
         question: "Which of the following is not a primary source for the prohibition of homosexuality in Islam?",
         options: [
           "The story of the people of Lut in the Quran",
@@ -728,18 +1162,9 @@ const lgbtqCategory: QuizCategory = {
         correctAnswer: "It is a test from Allah that can involve various forms of hardship, including internal struggles",
         explanation: "The Quran mentions that all people will be tested in various ways. This includes internal struggles with desires and temptations, and a person's faith is measured by their ability to remain steadfast and seek Allah's help during such trials.",
         references: "Quran 2:155-157"
-      },
-    ],
-    intermediate: [
-      // Copy the first 10 questions from easy level
-      // This is a temporary solution until proper intermediate questions are created
-    ],
-  },
+      }
+    ]
+  }
 };
-
-// Initialize intermediate level with first 10 easy questions if empty
-if (!lgbtqCategory.levels.intermediate || lgbtqCategory.levels.intermediate.length === 0) {
-  lgbtqCategory.levels.intermediate = [...lgbtqCategory.levels.easy.slice(0, 10)];
-}
 
 export default lgbtqCategory;
