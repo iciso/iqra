@@ -9,7 +9,7 @@ export const size = {
   width: 1200,
   height: 630,
 }
-export const contentType = "image/png"
+export const contentType = "image/svg"
 
 // Image generation
 export default async function Image() {
@@ -29,7 +29,7 @@ export default async function Image() {
       }}
     >
       <img
-        src="/logo.png"
+        src="/logo.svg"
         alt="IQRA Logo"
         style={{
           width: "300px",
