@@ -58,10 +58,10 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "What is the Islamic legal term for illicit sexual relations outside of marriage?",
         options: [
-          "Zina",
+          "Shirk",
           "Riba",
           "Gheebah",
-          "Shirk"
+          "Zina"
         ],
         correctAnswer: "Zina",
         explanation: "Zina is a term in Islamic jurisprudence referring to all sexual acts outside of a valid marriage, and its prohibition is a foundational aspect of Islamic law.",
@@ -108,8 +108,8 @@ const lgbtqCategory: QuizCategory = {
         options: [
           "It is encouraged for personal happiness",
           "It is considered permissible if a doctor recommends it",
-          "It is generally prohibited as it interferes with Allah's creation",
-          "There is no consensus, and it is a matter of personal choice"
+          "There is no consensus, and it is a matter of personal choice",
+          "It is generally prohibited as it interferes with Allah's creation"
         ],
         correctAnswer: "It is generally prohibited as it interferes with Allah's creation",
         explanation: "Islamic scholars generally hold that gender reassignment surgery is prohibited, as it is seen as an alteration of Allah’s creation. The exception would be for intersex individuals (khuntha) to correct their biological sex.",
@@ -143,9 +143,9 @@ const lgbtqCategory: QuizCategory = {
         question: "What is the general Islamic stance on showing compassion and kindness to all people, regardless of their background?",
         options: [
           "It is only for Muslims",
-          "It is a fundamental principle of Islam",
+          "It is only for one's family",
           "It is discouraged if they are not righteous",
-          "It is only for one's family"
+          "It is a fundamental principle of Islam"
         ],
         correctAnswer: "It is a fundamental principle of Islam",
         explanation: "The Prophet Muhammad (PBUH) was described as a 'mercy to the worlds' and compassion for all of Allah’s creation is a core Islamic teaching, which includes treating all individuals with dignity and respect.",
@@ -178,8 +178,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "What is the primary purpose of marriage in Islam?",
         options: [
-          "For political alliances",
           "For procreation and emotional companionship",
+          "For political alliances",
           "To gain social status",
           "To increase one's wealth"
         ],
@@ -263,9 +263,9 @@ const lgbtqCategory: QuizCategory = {
         question: "What is the primary reason why Islamic law prohibits marriage between individuals of the same gender?",
         options: [
           "Because it is a recent social development",
-          "Because it goes against the purposes of marriage in Islam, such as procreation",
+          "Because it is not a part of any other religion",
           "Because it causes economic instability",
-          "Because it is not a part of any other religion"
+          "Because it goes against the purposes of marriage in Islam, such as procreation"
         ],
         correctAnswer: "Because it goes against the purposes of marriage in Islam, such as procreation",
         explanation: "Islamic legal theory holds that marriage is a divine institution designed for the continuation of humanity through procreation and for the companionship of a man and a woman. Same-sex unions do not fulfill these primary purposes.",
@@ -286,8 +286,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "What is the general Islamic teaching on the responsibility of a ruler or authority?",
         options: [
-          "To punish all wrongdoers publicly",
           "To enforce Islamic law and maintain order",
+          "To punish all wrongdoers publicly",
           "To ignore all social issues",
           "To allow all citizens to do as they please"
         ],
@@ -299,9 +299,9 @@ const lgbtqCategory: QuizCategory = {
         question: "What is the concept of 'tawbah' (repentance) in Islam?",
         options: [
           "A single act of asking for forgiveness",
-          "A sincere and permanent turning away from sin",
+          "An act only for major sins",
           "A ritual performed once a year",
-          "An act only for major sins"
+          "A sincere and permanent turning away from sin"
         ],
         correctAnswer: "A sincere and permanent turning away from sin",
         explanation: "Tawbah involves feeling remorse, leaving the sin, and having a firm intention not to return to it. It is a continuous process for believers and Allah has promised to forgive those who sincerely repent.",
@@ -335,9 +335,9 @@ const lgbtqCategory: QuizCategory = {
         question: "According to Islamic teachings, what is the proper form of attraction and love between two people?",
         options: [
           "Any form of attraction is valid",
-          "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
+          "Love is only for Allah and not for people",
           "Love and attraction are irrelevant in Islam",
-          "Love is only for Allah and not for people"
+          "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework"
         ],
         correctAnswer: "Love and attraction should be directed towards a spouse of the opposite gender within a marital framework",
         explanation: "The Quran and Sunnah emphasize that romantic love and attraction, which are natural human emotions, are sanctified and protected within the institution of marriage between a man and a woman.",
@@ -358,8 +358,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "Which term is used for a man who is effeminate in his mannerisms?",
         options: [
-          "Dayaath",
           "Mukhannath",
+          "Dayaath",
           "Murtadd",
           "Zaani"
         ],
@@ -385,8 +385,8 @@ const lgbtqCategory: QuizCategory = {
         question: "What is the definition of 'Gay' in the context of LGBTQIA+?",
         options: [
           "A woman attracted exclusively to women",
-          "A person who is sexually or romantically attracted to people of the same sex",
           "A person attracted only to the opposite sex",
+          "A person who is sexually or romantically attracted to people of the same sex",
           "A person whose gender identity differs from their birth sex"
         ],
         correctAnswer: "A person who is sexually or romantically attracted to people of the same sex",
@@ -409,8 +409,8 @@ const lgbtqCategory: QuizCategory = {
         question: "What is 'Transgender' according to LGBTQIA+ terminology?",
         options: [
           "Born with ambiguous genitalia",
-          "A person whose gender identity does not correspond with the sex registered at birth",
           "A person with no romantic attraction",
+          "A person whose gender identity does not correspond with the sex registered at birth",
           "Exclusive same-sex attraction"
         ],
         correctAnswer: "A person whose gender identity does not correspond with the sex registered at birth",
@@ -444,8 +444,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "What is 'Asexual' within LGBTQIA+ definitions?",
         options: [
-          "Attraction to multiple genders",
           "A person who experiences no sexual feelings or desires",
+          "Attraction to multiple genders",
           "A fluid gender identity",
           "A transgender individual"
         ],
@@ -454,12 +454,12 @@ const lgbtqCategory: QuizCategory = {
         references: "Controversial Questions about Islam 2.pdf, Page 21"
       },
       {
-        question: "According to the presentation, are transgender feelings considered sinful in Islam if not acted upon?",
+        question: "Are transgender feelings considered sinful in Islam if not acted upon?",
         options: [
           "Yes, all such feelings are inherently sinful",
           "No, feelings over which a person has no control are not sinful if not acted upon",
           "Only the feelings of men are sinful",
-          "Feelings are always blameworthy regardless of action"
+          "Yes. The feelings are always blameworthy regardless of whether they are acted upon or not."
         ],
         correctAnswer: "No, feelings over which a person has no control are not sinful if not acted upon",
         explanation: "Feelings over which a person has no control are not sinful if not acted upon. If a man feels that he is actually a woman trapped in the body of a man or vice versa, these feelings in and of themselves are not blameworthy.",
@@ -469,8 +469,8 @@ const lgbtqCategory: QuizCategory = {
         question: "What does Islamic Shari'ah explicitly forbid regarding gender expression?",
         options: [
           "Natural physiognomy and voice",
-          "Men deliberately acting or dressing effeminately, and women acting or dressing masculinely",
           "All forms of clothing regardless of intent",
+          "Men deliberately acting or dressing effeminately, and women acting or dressing masculinely",
           "Involuntary mannerisms"
         ],
         correctAnswer: "Men deliberately acting or dressing effeminately, and women acting or dressing masculinely",
@@ -481,9 +481,9 @@ const lgbtqCategory: QuizCategory = {
         question: "How does the presentation distinguish between Intersex conditions and Transgender identity?",
         options: [
           "Intersex is a behavioral choice, Transgender is biological",
-          "Intersex involves atypical anatomies noticed at birth, Transgender involves internal identity different from typical anatomy",
+          "Both are considered the same condition",
           "No distinction is made between them",
-          "Both are considered the same condition"
+          "Intersex involves atypical anatomies noticed at birth, Transgender involves internal identity different from typical anatomy"
         ],
         correctAnswer: "Intersex involves atypical anatomies noticed at birth, Transgender involves internal identity different from typical anatomy",
         explanation: "Intersex Conditions: Anatomy not typically male or female... Contrast Between Transgender and Intersex: Transgender individuals have an internal gender identity different from societal norms. Intersex conditions involve atypical anatomies.",
@@ -492,8 +492,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "Which Surah in the Quran (7:80–84) condemns the approach of men with desire in Lut's story?",
         options: [
-          "Surah Al-Baqarah",
           "Surah Al-A'raf",
+          "Surah Al-Baqarah",
           "Surah An-Naml",
           "Surah Al-Hijr"
         ],
@@ -514,7 +514,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Controversial Questions about Islam 2.pdf, Page 26; Quran 15:61-77"
       },
       {
-        question: "Which hadith collection cites a narration on punishing the action of Lut's people (Ibn Majah 2561–2562)?",
+        question: "Which hadith collection cites a narration on punishing the action of Lut's people?",
         options: [
           "Sahih al-Bukhari",
           "Sunan Ibn Majah",
@@ -522,11 +522,11 @@ const lgbtqCategory: QuizCategory = {
           "Sunan Abu Dawud"
         ],
         correctAnswer: "Sunan Ibn Majah",
-        explanation: "A number of hadiths... Ibn Mājah (Kitāb al-Ḥudūd), hadith reported via Ibn ʿAbbās: ―Whoever you find doing the action of the people of Lūṭ, kill the one who does it and the one to whom it is done.‖",
+        explanation: "A number of hadiths... Ibn Mājah (Kitāb al-Ḥudūd) (Ibn Majah 2561–2562), hadith reported via Ibn ʿAbbās: ―Whoever you find doing the action of the people of Lūṭ, kill the one who does it and the one to whom it is done.‖",
         references: "Controversial Questions about Islam 2.pdf, Page 27; Ibn Majah 2561-2562"
       },
       {
-        question: "In the Bible, which book recounts the story of Sodom and Gomorrah (Genesis 19:1–29)?",
+        question: "In the Bible, which book recounts the story of Sodom and Gomorrah?",
         options: [
           "Leviticus",
           "Genesis",
@@ -541,8 +541,8 @@ const lgbtqCategory: QuizCategory = {
         question: "What does Leviticus 20:13 state regarding a man lying with a male?",
         options: [
           "It is permissible in certain cases",
-          "It is an abomination; both shall be put to death",
           "It requires repentance only",
+          "It is an abomination; both shall be put to death",
           "No penalty is prescribed"
         ],
         correctAnswer: "It is an abomination; both shall be put to death",
@@ -601,9 +601,9 @@ const lgbtqCategory: QuizCategory = {
         question: "Which 2003 U.S. ruling declared laws criminalizing same-sex activity unconstitutional?",
         options: [
           "Marriage (Same-Sex Couples) Act",
-          "Lawrence v. Texas",
+          "Stonewall Riots",
           "Offences Against the Person Act",
-          "Stonewall Riots"
+          "Lawrence v. Texas"
         ],
         correctAnswer: "Lawrence v. Texas",
         explanation: "2003: Lawrence v. Texas ruled that laws criminalizing same-sex sexual activity were unconstitutional.",
@@ -637,9 +637,9 @@ const lgbtqCategory: QuizCategory = {
         question: "What 1948 report challenged binary views of sexuality by introducing a sexual continuum?",
         options: [
           "John Money's work",
-          "The Kinsey Report",
+          "Ellen DeGeneres' coming out",
           "Rainbow Flag introduction",
-          "Ellen DeGeneres' coming out"
+          "The Kinsey Report"
         ],
         correctAnswer: "The Kinsey Report",
         explanation: "1948: The Kinsey Report introduced a sexual continuum, challenging binary views of sexuality.",
@@ -661,8 +661,8 @@ const lgbtqCategory: QuizCategory = {
         question: "According to the hadith cited in the presentation, what spreads among people when immorality is committed openly?",
         options: [
           "Wealth and prosperity",
-          "Plagues and diseases that were never known among predecessors",
           "Peace and harmony",
+          "Plagues and diseases that were never known among predecessors",
           "Knowledge and wisdom"
         ],
         correctAnswer: "Plagues and diseases that were never known among predecessors",
@@ -684,8 +684,8 @@ const lgbtqCategory: QuizCategory = {
       {
         question: "What is 'Rapid Onset Gender Dysphoria' according to the 2018 study cited?",
         options: [
-          "A childhood-onset condition",
           "A sudden development of gender dysphoria in adolescence or young adulthood",
+          "A childhood-onset condition",
           "An adult-only phenomenon",
           "A mythical condition with no basis"
         ],
@@ -694,7 +694,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Controversial Questions about Islam 2.pdf, Page 42; PLOS One Journal, 2018"
       },
       {
-        question: "What example from the presentation illustrates serious social issues for transgender individuals in prisons?",
+        question: "What example from case studies illustrates serious social issues for transgender individuals in prisons?",
         options: [
           "The Stonewall Riots",
           "Demi Minor's incarceration and mental health struggles",
@@ -706,19 +706,19 @@ const lgbtqCategory: QuizCategory = {
         references: "Controversial Questions about Islam 2.pdf, Page 43"
       },
       {
-        question: "According to the presentation, what major system is said to be totally destroyed by LGBTQIA+ influences?",
+        question: "What major system is said to be totally destroyed by LGBTQIA+ influences?",
         options: [
           "The economic system",
-          "The family system",
+          "The educational system",
           "The political system",
-          "The educational system"
+          "The family system"
         ],
         correctAnswer: "The family system",
-        explanation: "Total destruction of Family system! The presentation highlights how LGBTQIA+ activism contributes to the breakdown of traditional family structures.",
+        explanation: "Total destruction of Family system! Many case studies and presentations highlight how LGBTQIA+ activism contributes to the breakdown of traditional family structures.",
         references: "Controversial Questions about Islam 2.pdf, Page 45"
       },
       {
-        question: "What vulnerable group does the presentation claim is victimized by LGBTQIA+ trends?",
+        question: "What vulnerable group is at times victimized by LGBTQIA+ trends?",
         options: [
           "Adults in workplaces",
           "Children",
@@ -730,15 +730,15 @@ const lgbtqCategory: QuizCategory = {
         references: "Controversial Questions about Islam 2.pdf, Page 46; Page 13"
       },
       {
-        question: "According to the presentation's 'Beware' section, which group is described as being on the forefront of LGBTQ activism?",
+        question: "According to several newspaper reports on 'Beware' section, which group is described as being on the forefront of LGBTQ activism?",
         options: [
-          "Muslims",
           "Jews",
+          "Muslims",
           "Hindus",
           "Atheists"
         ],
         correctAnswer: "Jews",
-        explanation: "Beware, we are alone! Jews are on forefront! The presentation claims external influences, starting with Jewish involvement, are promoting LGBTQIA+ agendas.",
+        explanation: "Beware, we are alone! Jews are on forefront! The  claims external influences, starting with Jewish involvement, are promoting LGBTQIA+ agendas.",
         references: "Controversial Questions about Islam 2.pdf, Page 47"
       },
       {
