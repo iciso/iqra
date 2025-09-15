@@ -18,21 +18,21 @@ export const metadata: Metadata = {
   openGraph: {
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
-  images: [{ url: "/logo.png" }],
+  images: [{ url: "/logo.svg" }],
   type: "website",
    },
   twitter: {
     card: "summary_large_image",
   title: "IQRA - Islamic Quiz Rivalry App",
   description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
-  images: [{ url: "/logo.png" }],
+  images: [{ url: "/logo.svg" }],
    },
   icons: {
     icon: [
-      { url: "/logo.png", type: "image/png" },
+      { url: "/logo.svg", type: "image/png" },
       { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: { url: "/logo.png", sizes: "180x180" },
+    apple: { url: "/logo.svg", sizes: "180x180" },
   },
   generator: "v0.dev",
 };
@@ -49,8 +49,8 @@ export default function RootLayout({
       <meta property="og:url" content="https://iqrar.vercel.app/" />
       <meta property="og:site_name" content="IQRA" />
       <meta property="og:locale" content="en_GB" />
-      <meta property="og:image" content="https://iqrar.vercel.app/logo.png" />
-      <meta property="og:image:secure_url" content="https://ichal.vercel.app/logo.png" />
+      <meta property="og:image" content="https://iqrar.vercel.app/logo.svg" />
+      <meta property="og:image:secure_url" content="https://ichal.vercel.app/logo.svg" />
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="512" />
       <meta property="og:image:height" content="512" />
