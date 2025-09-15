@@ -352,12 +352,6 @@ const salahCategory: QuizCategory = {
         explanation: "Qasr is shortening four-Rak'ah fard to two during valid travel.",
       },
       {
-        question: "In Shafi'i, does breaking wind invalidate Wudu?",
-        options: ["Yes", "No", "Only if sound", "Only if smell"],
-        correctAnswer: "Yes",
-        explanation: "Any emission of wind from private parts invalidates Wudu in Shafi'i school.",
-      },
-      {
         question: "What is the punishment for spying during Salah per Hadith?",
         options: ["Hypocrisy", "No reward", "Angels curse", "All above"],
         correctAnswer: "All above",
