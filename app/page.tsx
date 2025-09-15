@@ -87,10 +87,10 @@ export default function HomePage() {
           {user && (
             <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
               <p className="text-green-800 font-medium text-sm sm:text-base">
-                🎉 You're signed in as {user.email || user.user_metadata?.full_name || "a believer"}!
+                🎉 You're signed into IQRA as {user.email || user.user_metadata?.full_name || "a believer"}!
               </p>
               <p className="text-green-600 text-xs sm:text-sm">
-                Your progress will be saved across IQRA and KALAM apps.
+                Your progress in IQRA will be saved, unlike KALAM app which requires no sign-in.
               </p>
             </div>
           )}
