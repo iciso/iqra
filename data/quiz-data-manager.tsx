@@ -112,12 +112,15 @@ export function getAllCategories(): QuizCategory[] {
 // Verify all categories have questions or not 
 quizData.forEach((category) => {
   console.log(
-    `Category ${category.id} has ${category.levels.easy.length} easy questions and ${category.levels.advanced.length} advanced questions`,
+    `Category ${category.id} has ${category.levels.easy.length} easy questions, ${category.levels.intermediate?.length || 0} intermediate questions, and ${category.levels.advanced.length} advanced questions`,
   );
 
   // Check for any empty question arrays
   if (category.levels.easy.length === 0) {
     console.warn(`Warning: Category ${category.id} has no easy questions`);
+  }
+  if (category.levels.intermediate && category.levels.intermediate.length === 0) {
+    console.warn(`Warning: Category ${category.id} has no intermediate questions`);
   }
   if (category.levels.advanced.length === 0) {
     console.warn(`Warning: Category ${category.id} has no advanced questions`);
