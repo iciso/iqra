@@ -1,6 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
-// Contains only Aqeedah 
+// Contains only Aqeedah   
 export const additionalCategories: QuizCategory[] = [         
   {
     id: "aqeedah",
