@@ -1,5 +1,5 @@
 import type { QuizCategory } from "@/types/quiz"
-
+ 
 // Only Seerah category with questions
 const seerahCategory: QuizCategory = {
   id: "seerah",
