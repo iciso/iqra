@@ -120,7 +120,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="text-center px-4 sm:px-6">
               <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Browse through 12 Islamic categories with easy and advanced difficulty levels. Test your knowledge and
+                Browse 25 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and
                 learn at your own pace.
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
