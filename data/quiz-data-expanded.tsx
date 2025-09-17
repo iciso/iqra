@@ -1,4 +1,3 @@
-
 import type { QuizCategory } from "@/types/quiz"
 
 // Contains Quran, Fiqh, Tafseer, Hadeeth, and Aqeedah
