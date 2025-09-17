@@ -1,5 +1,5 @@
 import type { QuizCategory } from "@/types/quiz";
-  
+  // validated till line 220
 const sawmCategory: QuizCategory = {
   id: "sawm",
   title: "Fasting and Ramadan",
@@ -28,7 +28,7 @@ const sawmCategory: QuizCategory = {
           "Bab al-Jihad"
         ],
         correctAnswer: "Bab al-Rayyan",
-        explanation: "The Prophet (PBUH) mentioned that fasters will enter through the gate of al-Rayyan on the Day of Resurrection.",
+        explanation: "The Prophet (PBUH) mentioned that those who fast will enter through the gate of al-Rayyan on the Day of Resurrection.",
         references: "Sahih al-Bukhari 1896"
       },
       {
@@ -40,7 +40,7 @@ const sawmCategory: QuizCategory = {
           "Illness alone"
         ],
         correctAnswer: "Afflictions in property, family, and neighbors",
-        explanation: "Fasting, along with prayer and charity, expiates such afflictions.",
+        explanation: "Fasting, along with prayer and charity, expiates afflictions in property, family, and neighbors.",
         references: "Sahih Muslim 2750"
       },
       {
@@ -80,7 +80,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1970"
       },
       {
-        question: "What is recommended for suhur according to Anas bin Malik?",
+        question: "What are the Noble Prophet's advice for suhur according to Anas bin Malik?",
         options: [
           "Skip it to fast longer",
           "Take it as there is blessing in it",
@@ -92,7 +92,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1923"
       },
       {
-        question: "What should fasters hasten according to Sahl bin Sa'd?",
+        question: "What should those who fast hasten according to Sahl bin Sa'd?",
         options: [
           "Starting the fast",
           "Breaking the fast",
@@ -140,15 +140,15 @@ const sawmCategory: QuizCategory = {
         references: "Surah al-Qadr 97:3"
       },
       {
-        question: "Who is deprived of the goodness of Laylat al-Qadr?",
+        question: "Complete the hadeeth: In it Allah has a night which is better than a thousand months; whoever...?",
         options: [
-          "The sick",
-          "Whoever is deprived of its goodness",
-          "Travelers",
+          "is sick is deprived of its goodness",
+          "is deprived of its goodness is indeed deprived.",
+          "is travelling is deprived of its goodness",
           "Women"
         ],
-        correctAnswer: "Whoever is deprived of its goodness",
-        explanation: "The Prophet (PBUH) said whoever is deprived of it is indeed deprived.",
+        correctAnswer: "is deprived of its goodness is indeed deprived.",
+        explanation: "The Messenger of Allah said: 'There has come to you Ramadan, a blessed month, which Allah, the Mighty and Sublime, has enjoined you to fast. In it the gates of heavens are opened and the gates of Hell are closed, and every devil is chained up. In it Allah has a night which is better than a thousand months; whoever is deprived of its goodness is indeed deprived.",
         references: "Sunan an-Nasa'i 2106"
       },
       {
@@ -164,7 +164,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1151"
       },
       {
-        question: "What should a faster say if quarreled with?",
+        question: "What should the one who is fasting say if some one begins to quarrel with him or her?",
         options: [
           "I am right",
           "I am fasting",
@@ -178,12 +178,12 @@ const sawmCategory: QuizCategory = {
       {
         question: "What is sweeter to Allah than musk on the Day of Judgment?",
         options: [
-          "The breath of the faster",
-          "Good deeds",
-          "Prayer",
+          "The breath of those who fast",
+          "Good deeds done by the pious",
+          "Prayers",
           "Charity"
         ],
-        correctAnswer: "The breath of the faster",
+        correctAnswer: "The breath of those who fast",
         explanation: "The smell of the faster's mouth is better than musk.",
         references: "Sahih al-Bukhari 1904"
       },
@@ -212,7 +212,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1903"
       },
       {
-        question: "What month has gates of Heaven opened?",
+        question: "What month are the gates of Heaven opened?",
         options: [
           "Dhu al-Hijjah",
           "Ramadan",
@@ -244,30 +244,30 @@ const sawmCategory: QuizCategory = {
           "Monday"
         ],
         correctAnswer: "Arafah",
-        explanation: "Fasting Arafah expiates preceding and coming year.",
+        explanation: "Fasting Arafah expiates the sins of the preceding and coming year.",
         references: "Sahih Muslim 1162"
       },
       {
         question: "Why did the Prophet fast Mondays?",
         options: [
-          "It was his birthday",
-          "Deeds presented that day",
-          "It is sunnah only",
-          "To make up missed fasts"
+          "He was born on Monday, and revealation was sent to him first on that day",
+          "Deeds presented that day, so maximum rewards",
+          "It is sunnah only for the prophets",
+          "To make up missed fasts, and prepare for the next year"
         ],
-        correctAnswer: "It was his birthday",
-        explanation: "Among reasons, it was the day he was born.",
+        correctAnswer: "He was born on Monday, and revealation was sent to him first on that day",
+        explanation: "It was the day on which I was born. on which I was commissioned with prophethood or revelation was sent to me,",
         references: "Sahih Muslim 1162"
       },
       {
-        question: "What is the ruling on kissing during fasting for non-lustful?",
+        question: "What is the ruling on kissing without lust during fasting?",
         options: [
           "Always haram",
-          "Permissible if no fear of ejaculation",
+          "Permissible if there is no fear of ejaculation",
           "Only for married",
           "Prohibited for all"
         ],
-        correctAnswer: "Permissible if no fear of ejaculation",
+        correctAnswer: "Permissible if there is no fear of ejaculation",
         explanation: "For those who have self-control.",
         references: "Sunan Abi Dawud 2380"
       },
