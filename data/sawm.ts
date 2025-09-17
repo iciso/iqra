@@ -1,5 +1,5 @@
 import type { QuizCategory } from "@/types/quiz";
-
+  
 const sawmCategory: QuizCategory = {
   id: "sawm",
   title: "Fasting and Ramadan",
