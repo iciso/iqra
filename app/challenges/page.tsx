@@ -1,5 +1,5 @@
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
-
+ 
 export default function Challenges() {
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-24">
