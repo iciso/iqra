@@ -20,7 +20,7 @@ import psychCategory from "./psych";
 import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import salahCategory from "./salah";
-import sawmCategory from "./salah";
+import sawmCategory from "./sawm";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
