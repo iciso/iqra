@@ -14,6 +14,7 @@ import {
   Brain,
   BriefcaseMedical,
   BookDashed,
+  Calendar1,
   Church,
   Heart,
   User,
@@ -82,6 +83,12 @@ const categories = [
     title: "Salah",
     description: "Prayers in Islam", 
     icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "sawm",
+    title: "Sawm",
+    description: "Fasting & Ramadaan", 
+    icon: <Calendar1 className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "history",
@@ -275,7 +282,7 @@ export default function CategoriesPage() {
               </RadioGroup>
             </div>
           )}
-        </CardContent>
+        </CardContent>https://github.com/iciso/iqra/blob/main/app/categories/page.tsx
         <CardFooter className="flex justify-center">
           <Button
             className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
