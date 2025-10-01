@@ -282,7 +282,7 @@ export default function CategoriesPage() {
               </RadioGroup>
             </div>
           )}
-        </CardContent>https://github.com/iciso/iqra/blob/main/app/categories/page.tsx
+        </CardContent>
         <CardFooter className="flex justify-center">
           <Button
             className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
