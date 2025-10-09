@@ -97,8 +97,8 @@ export default function AboutPage() {
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <img src="https://supabase.com/images/logo-dark.png" alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
-            <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <img src="/images/design-mode/logo-dark.png" alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <img src="/images/design-mode/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
 
@@ -140,7 +140,7 @@ export default function AboutPage() {
               </a>{" "}
               and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.
               <div className="mt-2">
-                <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                <img src="/images/design-mode/Icon_light_background.png" alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
             <li>
