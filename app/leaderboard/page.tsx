@@ -1,105 +1,150 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import OpponentProfile from "@/components/challenge/opponent-profile";
-import { Badge } from "@/components/ui/badge";
-import { getTopPlayers } from "@/lib/supabase-queries";
-import { useToast } from "@/components/ui/use-toast";
-import { Header } from "@/components/layout/header";
+import { useEffect, useState } from "react"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
+import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import OpponentProfile from "@/components/challenge/opponent-profile"
+import { Badge } from "@/components/ui/badge"
+import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
+import { useToast } from "@/components/ui/use-toast"
+import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
-  name: string;
-  score: number;
-  totalQuestions: number;
-  percentage: number;
-  date: string;
-  category?: string;
-  difficulty?: string;
-  challenge?: string;
-  user_id?: string;
+  name: string
+  score: number
+  totalQuestions: number
+  percentage: number
+  date: string
+  category?: string
+  difficulty?: string
+  challenge?: string
+  user_id?: string
 }
 
 export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [isClient, setIsClient] = useState(false);
-  const [filter, setFilter] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [activeChallengeType, setActiveChallengeType] = useState<string>("all");
-  const [loading, setLoading] = useState(true);
-  const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
-  const [dataSource, setDataSource] = useState<string>("Loading...");
-  const { toast } = useToast();
-  const searchParams = useSearchParams();
-  const shouldRefresh = searchParams.get("refresh") === "true";
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
+  const [isClient, setIsClient] = useState(false)
+  const [filter, setFilter] = useState<string>("")
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
+  const [loading, setLoading] = useState(true) // Start with loading true
+  const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
+  const [dataSource, setDataSource] = useState<string>("Loading...")
+  const { toast } = useToast()
 
+    // Helper function to abbreviate names with more than three words
   const getDisplayName = (name: string) => {
     const words = name.trim().split(/\s+/);
     if (words.length > 4) {
-      return words.map((word) => word.charAt(0).toUpperCase()).join("");
+      return words.map(word => word.charAt(0).toUpperCase()).join('');
     }
     return name;
-  };
+  }
 
+
+  // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
     return leaderboard
       .filter((entry) => {
-        if (entry.name === "Test User") return false;
-        if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) return false;
-        if (filter && entry.category !== filter) return false;
-        if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
-        return true;
+        // Apply challenge type filter
+        if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) {
+          return false
+        }
+
+        // Apply category filter if selected
+        if (filter && entry.category !== filter) {
+          return false
+        }
+
+        // Apply search
+        if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return false
+        }
+
+        return true
       })
       .sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        if (b.percentage !== a.percentage) return b.percentage - a.percentage;
-        return b.totalQuestions - a.totalQuestions;
-      });
-  };
+        // First sort by score (descending)
+        if (b.score !== a.score) {
+          return b.score - a.score
+        }
 
+        // If scores are tied, sort by percentage (descending)
+        if (b.percentage !== a.percentage) {
+          return b.percentage - a.percentage
+        }
+
+        // If both are tied, sort by total questions (more questions = higher rank)
+        return b.totalQuestions - a.totalQuestions
+      })
+  }
+
+  // Get the user's best rank
   const getUserRank = (userName: string) => {
-    if (!userName) return null;
-    const sortedEntries = leaderboard.sort((a, b) => b.percentage - a.percentage);
-    const userEntry = sortedEntries.findIndex((entry) => entry.name === userName);
-    return userEntry !== -1 ? userEntry + 1 : null;
-  };
+    if (!userName) return null
 
+    const sortedEntries = leaderboard.sort((a, b) => b.percentage - a.percentage)
+    const userEntry = sortedEntries.findIndex((entry) => entry.name === userName)
+
+    return userEntry !== -1 ? userEntry + 1 : null
+  }
+
+  // Load leaderboard data with fallback mechanisms
   const loadLeaderboardData = async () => {
     try {
-      setLoading(true);
-      console.log("🏆 Loading leaderboard data directly...");
+      setLoading(true)
+      console.log("🏆 Loading leaderboard data directly...")
 
-      const topPlayers = await getTopPlayers(50); // Increased limit for more data
-      if (topPlayers && topPlayers.length > 0) {
-        const filteredData = topPlayers
-          .filter((player) => player.username !== "Test User")
-          .map((player) => ({
+      // First try the database-with-fallback system
+      try {
+        const result = await getLeaderboardWithFallback()
+        if (result && result.data && result.data.length > 0) {
+          console.log(`✅ Retrieved ${result.data.length} entries from ${result.source}`)
+          setLeaderboard(result.data)
+          setDataSource(result.source)
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (fallbackError) {
+        console.error("❌ Fallback system error:", fallbackError)
+      }
+
+      // If that fails, try Supabase directly
+      try {
+        const { getTopPlayers } = await import("@/lib/supabase-queries")
+        const topPlayers = await getTopPlayers(40)
+
+        if (topPlayers && topPlayers.length > 0) {
+          // Format the data for the leaderboard
+          const formattedData = topPlayers.map((player) => ({
             name: player.full_name || player.username || "Unknown User",
             score: player.total_score || 0,
-            totalQuestions: player.total_questions || 1,
+            totalQuestions: player.total_questions || 0,
             percentage:
               player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
             date: new Date().toLocaleDateString(),
             category: "All Categories",
             challenge: "all",
             user_id: player.id,
-          }));
+          }))
 
-        console.log(`✅ Retrieved ${filteredData.length} entries from Supabase User Profiles`);
-        setLeaderboard(filteredData);
-        setDataSource("Supabase User Profiles");
-        setLastRefresh(new Date());
-        return;
+          setLeaderboard(formattedData)
+          setDataSource("Supabase User Profiles")
+          setLastRefresh(new Date())
+          return
+        }
+      } catch (supabaseError) {
+        console.error("❌ Supabase direct error:", supabaseError)
       }
 
-      console.log("⚠️ Supabase fetch failed, using demo data");
-      const demoData = [
+      // Final fallback to demo data
+      console.log("⚠️ All data sources failed, using demo data")
+      setLeaderboard([
         {
           name: "Dr. Muhammad Murtaza Ikram",
           score: 10,
@@ -131,61 +176,68 @@ export default function LeaderboardPage() {
           difficulty: "Medium",
           challenge: "quiz",
         },
-      ].filter((entry) => entry.name !== "Test User");
-      setLeaderboard(demoData);
-      setDataSource("Demo Data");
+      ])
+      setDataSource("Demo Data (All Sources Failed)")
     } catch (error) {
-      console.error("❌ Critical error loading leaderboard:", error);
+      console.error("❌ Critical error loading leaderboard:", error)
       toast({
         title: "Error loading leaderboard",
         description: "Please try refreshing the page",
         variant: "destructive",
-      });
-      setLeaderboard([]);
-      setDataSource("Error");
+      })
+      setLeaderboard([])
+      setDataSource("Error")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
+  // Initialize on component mount
   useEffect(() => {
-    setIsClient(true);
-    loadLeaderboardData();
-  }, []);
+    setIsClient(true)
+    loadLeaderboardData() // Load data immediately on mount
 
-  useEffect(() => {
-    if (shouldRefresh) {
-      console.log("🔄 Refresh triggered, reloading leaderboard...");
-      loadLeaderboardData();
-    }
-  }, [shouldRefresh]);
+    // Set up a refresh interval (every 5 minutes)
+    const refreshInterval = setInterval(
+      () => {
+        loadLeaderboardData()
+      },
+      5 * 60 * 1000,
+    )
 
+    return () => clearInterval(refreshInterval)
+  }, [])
+
+  // Function to get medal icon based on position
   const getMedalIcon = (position: number) => {
     switch (position) {
       case 0:
-        return <Trophy className="h-5 w-5 text-yellow-500" />;
+        return <Trophy className="h-5 w-5 text-yellow-500" />
       case 1:
-        return <Medal className="h-5 w-5 text-gray-400" />;
+        return <Medal className="h-5 w-5 text-gray-400" />
       case 2:
-        return <Medal className="h-5 w-5 text-amber-700" />;
+        return <Medal className="h-5 w-5 text-amber-700" />
       default:
-        return null;
+        return null
     }
-  };
+  }
 
+  // Function to get source icon
   const getSourceIcon = (source: string) => {
-    if (source.includes("Supabase")) return <Cloud className="h-4 w-4" />;
-    if (source.includes("Neon")) return <Database className="h-4 w-4" />;
-    return <HardDrive className="h-4 w-4" />;
-  };
+    if (source.includes("Supabase")) return <Cloud className="h-4 w-4" />
+    if (source.includes("Neon")) return <Database className="h-4 w-4" />
+    return <HardDrive className="h-4 w-4" />
+  }
 
+  // Function to get source color
   const getSourceColor = (source: string) => {
-    if (source.includes("Supabase")) return "bg-green-100 text-green-800";
-    if (source.includes("Neon")) return "bg-blue-100 text-blue-800";
-    if (source.includes("Demo")) return "bg-yellow-100 text-yellow-800";
-    return "bg-gray-100 text-gray-800";
-  };
+    if (source.includes("Supabase")) return "bg-green-100 text-green-800"
+    if (source.includes("Neon")) return "bg-blue-100 text-blue-800"
+    if (source.includes("Demo")) return "bg-yellow-100 text-yellow-800"
+    return "bg-gray-100 text-gray-800"
+  }
 
+  // If we're not on the client yet, show a simple loading state
   if (!isClient) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
@@ -195,13 +247,18 @@ export default function LeaderboardPage() {
           </CardContent>
         </Card>
       </main>
-    );
+    )
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div className="hidden sm:block absolute top-4 right-4"></div>
-      <div className="hidden sm:block absolute top-4 left-4"></div>
+      {/* Only show these buttons on larger screens where the header might not be visible */}
+      <div className="hidden sm:block absolute top-4 right-4">
+     
+      </div>
+      <div className="hidden sm:block absolute top-4 left-4">
+       
+      </div>
 
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
@@ -284,7 +341,7 @@ export default function LeaderboardPage() {
               <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
             </div>
           ) : getFilteredLeaderboard().length > 0 ? (
-            <div className="max-h-[70vh] overflow-y-auto">
+            <div className="overflow-x-auto -mx-2 sm:mx-0">
               <Table className="w-full">
                 <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
                 <TableHeader>
@@ -319,10 +376,10 @@ export default function LeaderboardPage() {
                           ) : (
                             <div className="flex items-center gap-1 md:gap-2">
                               <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
-                                {getDisplayName(entry.name).charAt(0)}
+                                {entry.name.charAt(0)}
                               </div>
                               <span className="text-xs md:text-sm truncate max-w-[80px] sm:max-w-none">
-                                {getDisplayName(entry.name)}
+                                {entry.name}
                               </span>
                             </div>
                           )}
@@ -343,8 +400,8 @@ export default function LeaderboardPage() {
                             entry.percentage >= 90
                               ? "text-green-600 dark:text-green-400"
                               : entry.percentage >= 70
-                              ? "text-blue-600 dark:text-blue-400"
-                              : "text-gray-600 dark:text-gray-400"
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-gray-600 dark:text-gray-400"
                           }
                         >
                           {entry.percentage}%
@@ -378,5 +435,5 @@ export default function LeaderboardPage() {
         </CardFooter>
       </Card>
     </main>
-  );
+  )
 }
