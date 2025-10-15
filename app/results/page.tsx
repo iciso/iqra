@@ -361,26 +361,24 @@ export default function ResultsPage() {
                 respond.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 w-full">
-                <Button
-                  onClick={viewLeaderboard}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
-                >
-                  <Trophy className="mr-2 h-4 w-4" />
-                  View Leaderboard
-                </Button>
-                <Button
-                  onClick={viewChallenges}
-                  className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                >
-                  <Users className="mr-2 h-4 w-4" />
-                  View Challenges
-                </Button>
+                <Link href="/leaderboard" className="flex-1">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">
+                    <Trophy className="mr-2 h-4 w-4" />
+                    View Leaderboard
+                  </Button>
+                </Link>
+                <Link href="/challenges" className="flex-1">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                    <Users className="mr-2 h-4 w-4" />
+                    View Challenges
+                  </Button>
+                </Link>
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
             <Link href="/categories">
-              <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+              <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Categories
               </Button>
@@ -474,21 +472,19 @@ export default function ResultsPage() {
                           </p>
                         )}
                         <div className="flex flex-col sm:flex-row gap-3 w-full">
-                          <Button
-                            onClick={viewLeaderboard}
-                            className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
-                          >
-                            <Trophy className="mr-2 h-4 w-4" />
-                            View Leaderboard
-                          </Button>
-                          {challenge && (
-                            <Button
-                              onClick={viewChallenges}
-                              className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                            >
-                              <Users className="mr-2 h-4 w-4" />
-                              View Challenges
+                          <Link href="/leaderboard" className="flex-1">
+                            <Button className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">
+                              <Trophy className="mr-2 h-4 w-4" />
+                              View Leaderboard
                             </Button>
+                          </Link>
+                          {challenge && (
+                            <Link href="/challenges" className="flex-1">
+                              <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                                <Users className="mr-2 h-4 w-4" />
+                                View Challenges
+                              </Button>
+                            </Link>
                           )}
                         </div>
                       </div>
@@ -527,7 +523,7 @@ export default function ResultsPage() {
               </CardContent>
               <CardFooter className="flex justify-center gap-4">
                 <Link href={challenge ? "/challenges" : "/categories"}>
-                  <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+                  <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     {challenge ? "Challenges" : "Categories"}
                   </Button>
