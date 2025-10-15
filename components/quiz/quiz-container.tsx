@@ -88,6 +88,43 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
       console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
 
+      // New: if we have a challenge id but no opponent info, fetch it
+      if (!opponentId && challengeMode) {
+        const fetchOpponentFromChallenge = async () => {
+          try {
+            const { data: ch, error: chError } = await supabase
+              .from("user_challenges")
+              .select(`
+                id, challenger_id,
+                challenger_profile:user_profiles!user_challenges_challenger_id_fkey ( id, full_name, username, avatar_url )
+              `)
+              .eq("id", challengeMode)
+              .single()
+
+            if (chError || !ch) {
+              console.error("🎯 QUIZ CONTAINER: Failed to fetch challenge for opponent:", chError)
+              return
+            }
+
+            const oppInfo = {
+              id: ch.challenger_profile?.id || ch.challenger_id,
+              name: ch.challenger_profile?.full_name || ch.challenger_profile?.username || "Challenger",
+              avatar_url: ch.challenger_profile?.avatar_url || null,
+              level: challengerTurn ? "Waiting for your quiz" : "Challenger",
+            }
+
+            setOpponent(oppInfo)
+            localStorage.setItem("quizOpponentId", oppInfo.id || "")
+            localStorage.setItem("quizOpponent", JSON.stringify(oppInfo))
+            return
+          } catch (err) {
+            console.error("🎯 QUIZ CONTAINER: Error fetching opponent from challenge:", err)
+          }
+        }
+
+        fetchOpponentFromChallenge()
+      }
+
       if (opponentId && opponentName) {
         console.log("🎯 QUIZ CONTAINER: Using opponent info from URL")
         const opponentInfo = {
