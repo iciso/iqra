@@ -1,5 +1,5 @@
 "use client"
- 
+
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -38,6 +38,15 @@ export default function QuizContainer({
   opponentName,
   challengerTurn,
 }: QuizContainerProps) {
+  console.log("🎯 QUIZ CONTAINER PROPS:", {
+    category,
+    difficulty,
+    challengeMode,
+    opponentId,
+    opponentName,
+    challengerTurn,
+  })
+
   const router = useRouter()
   const { user } = useAuth()
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -56,8 +65,9 @@ export default function QuizContainer({
 
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
-    return (
-      challengeMode?.startsWith("demo-") || challengeMode?.startsWith("fallback-") || opponentId?.startsWith("demo-")
+    return Boolean(
+      (challengeMode && (challengeMode.startsWith("demo-") || challengeMode.startsWith("fallback-"))) ||
+        (opponentId && opponentId.startsWith("demo-")),
     )
   }
 
@@ -485,7 +495,11 @@ export default function QuizContainer({
     <div className="w-full max-w-md mx-auto">
       <div className="absolute top-4 left-4">
         <Link href={challengeMode ? "/challenges" : "/categories"}>
-          <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-full dark:border-green-700 dark:text-green-400 bg-transparent"
+          >
             <Home className="h-4 w-4" />
             <span className="sr-only">{challengeMode ? "Challenges" : "Categories"}</span>
           </Button>
@@ -613,7 +627,7 @@ export default function QuizContainer({
                 variant="outline"
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0 || isLoading}
-                className="dark:border-green-700 dark:text-green-400"
+                className="dark:border-green-700 dark:text-green-400 bg-transparent"
               >
                 <ChevronLeft className="mr-1 h-4 w-4" /> Previous
               </Button>

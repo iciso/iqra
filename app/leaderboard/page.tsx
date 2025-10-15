@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { Trophy, Medal, Home, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
+import { Trophy, Medal, Filter, Search, RefreshCw, Database, Cloud, HardDrive } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -12,7 +12,6 @@ import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
-import { Header } from "@/components/layout/header"
 
 interface LeaderboardEntry {
   name: string
@@ -37,15 +36,14 @@ export default function LeaderboardPage() {
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const { toast } = useToast()
 
-    // Helper function to abbreviate names with more than three words
+  // Helper function to abbreviate names with more than three words
   const getDisplayName = (name: string) => {
-    const words = name.trim().split(/\s+/);
+    const words = name.trim().split(/\s+/)
     if (words.length > 4) {
-      return words.map(word => word.charAt(0).toUpperCase()).join('');
+      return words.map((word) => word.charAt(0).toUpperCase()).join("")
     }
-    return name;
+    return name
   }
-
 
   // Add a function to filter and search the leaderboard
   const getFilteredLeaderboard = () => {
@@ -251,14 +249,10 @@ export default function LeaderboardPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+    <main className="flex min-h-screen flex-col items-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       {/* Only show these buttons on larger screens where the header might not be visible */}
-      <div className="hidden sm:block absolute top-4 right-4">
-     
-      </div>
-      <div className="hidden sm:block absolute top-4 left-4">
-       
-      </div>
+      <div className="hidden sm:block absolute top-4 right-4"></div>
+      <div className="hidden sm:block absolute top-4 left-4"></div>
 
       <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-hidden mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
@@ -316,7 +310,7 @@ export default function LeaderboardPage() {
               <div className="flex gap-2">
                 <Button
                   variant="outline"
-                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
+                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400 bg-transparent"
                   onClick={() => setFilter(filter ? "" : "Quran")}
                 >
                   <Filter className="h-3.5 w-3.5" />
@@ -324,7 +318,7 @@ export default function LeaderboardPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400"
+                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400 bg-transparent"
                   onClick={loadLeaderboardData}
                   disabled={loading}
                 >
@@ -341,7 +335,7 @@ export default function LeaderboardPage() {
               <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
             </div>
           ) : getFilteredLeaderboard().length > 0 ? (
-            <div className="overflow-x-auto -mx-2 sm:mx-0">
+            <div className="overflow-x-auto -mx-2 sm:mx-0 max-h-[70vh] overflow-y-auto">
               <Table className="w-full">
                 <TableCaption className="text-xs">Top scores from IQRA Quiz participants</TableCaption>
                 <TableHeader>
