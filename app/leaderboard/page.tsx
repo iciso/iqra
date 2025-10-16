@@ -110,7 +110,7 @@ export default function LeaderboardPage() {
 
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(500) // broaden list so newcomers appear
+        const topPlayers = await getTopPlayers(500)
 
         if (topPlayers && topPlayers.length > 0) {
           const formattedData: LeaderboardEntry[] = topPlayers.map((player: any) => ({
@@ -271,7 +271,6 @@ export default function LeaderboardPage() {
             IQRA Quiz Hall of Fame
           </CardTitle>
 
-          {/* Motivation strip: current user summary (buttons removed) */}
           <div className="mt-3 grid gap-2 sm:grid-cols-2 text-left">
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
@@ -341,7 +340,6 @@ export default function LeaderboardPage() {
         </CardHeader>
 
         <CardContent className="p-2 sm:p-4 md:p-6">
-          {/* Top controls (tabs removed) */}
           <div className="mb-4 md:mb-6">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
               <div className="relative flex-1">
@@ -401,13 +399,10 @@ export default function LeaderboardPage() {
                   </TableCaption>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-12 text-xs">Rank</TableHead>
+                      <TableHead className="w-14 text-xs">Rank</TableHead>
                       <TableHead className="text-xs">Player</TableHead>
-                      <TableHead className="text-xs hidden md:table-cell">Category</TableHead>
-                      <TableHead className="text-xs hidden sm:table-cell">Type</TableHead>
                       <TableHead className="text-right text-xs">Score</TableHead>
                       <TableHead className="text-right text-xs">%</TableHead>
-                      <TableHead className="text-right text-xs hidden sm:table-cell">Last Active</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -437,7 +432,7 @@ export default function LeaderboardPage() {
                                   <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-xs font-medium">
                                     {entry.name.charAt(0)}
                                   </div>
-                                  <span className="text-xs md:text-sm truncate max-w-[140px] sm:max-w-none">
+                                  <span className="text-xs md:text-sm truncate max-w-[200px] sm:max-w-none">
                                     {entry.name}
                                   </span>
                                   {isMe && (
@@ -448,14 +443,6 @@ export default function LeaderboardPage() {
                                 </div>
                               )}
                             </div>
-                          </TableCell>
-                          <TableCell className="py-2 text-xs hidden md:table-cell">
-                            {entry.category || "All Categories"}
-                          </TableCell>
-                          <TableCell className="py-2 text-xs hidden sm:table-cell">
-                            {entry.challenge
-                              ? entry.challenge.charAt(0).toUpperCase() + entry.challenge.slice(1)
-                              : "All"}
                           </TableCell>
                           <TableCell className="text-right py-2 text-xs">
                             {entry.score}/{entry.totalQuestions}
@@ -473,7 +460,6 @@ export default function LeaderboardPage() {
                               {entry.percentage}%
                             </span>
                           </TableCell>
-                          <TableCell className="text-right py-2 text-xs hidden sm:table-cell">{entry.date}</TableCell>
                         </TableRow>
                       )
                     })}
