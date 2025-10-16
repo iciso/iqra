@@ -75,26 +75,14 @@ export default function LeaderboardPage() {
     try {
       setLoading(true)
 
-      // 1) database-with-fallback
+      // 1) Try Supabase first with a high limit so newcomers appear
       try {
-        const result = await getLeaderboardWithFallback()
-        if (result && result.data && result.data.length > 0) {
-          setLeaderboard(result.data)
-          setDataSource(result.source)
-          setLastRefresh(new Date())
-          return
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback system error:", fallbackError)
-      }
-
-      // 2) Supabase direct with larger limit so newcomers appear
-      try {
+        console.log("🏆 Leaderboard: trying Supabase first...")
         const { getTopPlayers } = await import("@/lib/supabase-queries")
         const topPlayers = await getTopPlayers(1000)
-
         if (topPlayers && topPlayers.length > 0) {
-          const formattedData: LeaderboardEntry[] = topPlayers.map((player: any) => ({
+          console.log(`✅ Supabase returned ${topPlayers.length} players`)
+          const formattedData = topPlayers.map((player: any) => ({
             name: player.full_name || player.username || "Unknown User",
             score: player.total_score || 0,
             totalQuestions: player.total_questions || 0,
@@ -106,15 +94,33 @@ export default function LeaderboardPage() {
             user_id: player.id,
           }))
           setLeaderboard(formattedData)
-          setDataSource("Supabase User Profiles")
+          setDataSource(`Supabase User Profiles`)
+          setLastRefresh(new Date())
+          return
+        } else {
+          console.warn("⚠️ Supabase returned no players, trying fallback...")
+        }
+      } catch (err) {
+        console.error("❌ Supabase direct error:", err)
+      }
+
+      // 2) Fallback (may return fewer rows, e.g., 20)
+      try {
+        console.log("📊 Leaderboard: trying fallback...")
+        const result = await getLeaderboardWithFallback()
+        if (result && result.data && result.data.length > 0) {
+          console.log(`✅ Fallback returned ${result.data.length} players from ${result.source}`)
+          setLeaderboard(result.data)
+          setDataSource(result.source)
           setLastRefresh(new Date())
           return
         }
-      } catch (supabaseError) {
-        console.error("❌ Supabase direct error:", supabaseError)
+      } catch (fallbackError) {
+        console.error("❌ Fallback system error:", fallbackError)
       }
 
-      // 3) Demo fallback
+      // 3) Demo data if everything fails
+      console.log("⚠️ All data sources failed, using demo data")
       setLeaderboard([
         {
           name: "Dr. Muhammad Murtaza Ikram",
