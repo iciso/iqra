@@ -17,7 +17,6 @@ import {
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
 import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
@@ -38,12 +37,11 @@ interface LeaderboardEntry {
 
 export default function LeaderboardPage() {
   const { toast } = useToast()
-  const { user, profile } = useAuth()
+  const { user } = useAuth()
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
   const [isClient, setIsClient] = useState(false)
   const [filter, setFilter] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState<string>("")
-  const [activeChallengeType, setActiveChallengeType] = useState<string>("all")
   const [loading, setLoading] = useState(true)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
@@ -51,32 +49,25 @@ export default function LeaderboardPage() {
   const [findingMe, setFindingMe] = useState(false)
   const listContainerRef = useRef<HTMLDivElement>(null)
 
-  // Utility: consistent sorting for ranks
   const sortLeaderboard = (entries: LeaderboardEntry[]) => {
     return [...entries].sort((a, b) => {
-      // First sort by score (descending)
       if (b.score !== a.score) return b.score - a.score
-      // Then by percentage (descending)
       if (b.percentage !== a.percentage) return b.percentage - a.percentage
-      // Then by total questions (descending)
       return b.totalQuestions - a.totalQuestions
     })
   }
 
-  // Filter + sort with current UI state
   const filteredSorted = useMemo(() => {
     const filtered = leaderboard.filter((entry) => {
-      if (activeChallengeType !== "all" && entry.challenge !== activeChallengeType) return false
       if (filter && entry.category !== filter) return false
       if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) return false
       return true
     })
     return sortLeaderboard(filtered)
-  }, [leaderboard, activeChallengeType, filter, searchTerm])
+  }, [leaderboard, filter, searchTerm])
 
   const visibleRows = useMemo(() => filteredSorted.slice(0, visibleCount), [filteredSorted, visibleCount])
 
-  // Compute current user’s rank (in the fully filtered+sorted list, not just visible slice)
   const myRank = useMemo(() => {
     if (!user) return null
     const idx = filteredSorted.findIndex((e) => e.user_id === user.id)
@@ -91,7 +82,7 @@ export default function LeaderboardPage() {
   const nextMilestone = useMemo(() => {
     if (!myRank || !myEntry) return null
     if (myRank <= 1) return null
-    const above = filteredSorted[myRank - 2] // player directly above me
+    const above = filteredSorted[myRank - 2]
     if (!above) return null
     const pointsBehind = Math.max(0, above.score - myEntry.score)
     return {
@@ -101,11 +92,10 @@ export default function LeaderboardPage() {
     }
   }, [filteredSorted, myRank, myEntry])
 
-  // Data load with fallbacks; fetch more than 40 from Supabase so new users appear
   const loadLeaderboardData = async () => {
     try {
       setLoading(true)
-      // First try the database-with-fallback system
+
       try {
         const result = await getLeaderboardWithFallback()
         if (result && result.data && result.data.length > 0) {
@@ -118,10 +108,9 @@ export default function LeaderboardPage() {
         console.error("❌ Fallback system error:", fallbackError)
       }
 
-      // If that fails, try Supabase directly with larger limit
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(500) // increase limit to include more users
+        const topPlayers = await getTopPlayers(500) // broaden list so newcomers appear
 
         if (topPlayers && topPlayers.length > 0) {
           const formattedData: LeaderboardEntry[] = topPlayers.map((player: any) => ({
@@ -144,7 +133,6 @@ export default function LeaderboardPage() {
         console.error("❌ Supabase direct error:", supabaseError)
       }
 
-      // Final demo fallback
       setLeaderboard([
         {
           name: "Dr. Muhammad Murtaza Ikram",
@@ -229,11 +217,9 @@ export default function LeaderboardPage() {
     return "bg-gray-100 text-gray-800"
   }
 
-  // Load more pagination
   const handleLoadMore = () => setVisibleCount((c) => c + 20)
   const handleLoadAll = () => setVisibleCount(filteredSorted.length)
 
-  // Find me: expand list if necessary and scroll to my row
   const handleFindMe = () => {
     if (!user) {
       toast({ title: "Not signed in", description: "Sign in to locate your rank.", variant: "default" })
@@ -250,7 +236,6 @@ export default function LeaderboardPage() {
     setFindingMe(true)
     if (idx + 1 > visibleCount) {
       setVisibleCount(idx + 1)
-      // wait for render, then scroll
       setTimeout(() => {
         const el = document.getElementById(`leader-row-${user.id}`)
         el?.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -286,7 +271,7 @@ export default function LeaderboardPage() {
             IQRA Quiz Hall of Fame
           </CardTitle>
 
-          {/* Motivation strip: current user summary */}
+          {/* Motivation strip: current user summary (buttons removed) */}
           <div className="mt-3 grid gap-2 sm:grid-cols-2 text-left">
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
@@ -321,21 +306,7 @@ export default function LeaderboardPage() {
               ) : (
                 <div className="mt-1">
                   <div className="text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
-                    New here? Let’s get you on the board!
-                  </div>
-                  <div className="mt-2 flex gap-2">
-                    <a
-                      href="/quiz"
-                      className="inline-flex items-center justify-center rounded-md text-xs font-medium bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-8 px-3"
-                    >
-                      Start a quiz
-                    </a>
-                    <a
-                      href="/challenges"
-                      className="inline-flex items-center justify-center rounded-md text-xs font-medium border dark:border-green-700 dark:text-green-400 h-8 px-3"
-                    >
-                      Daily challenge
-                    </a>
+                    New here? Play a quiz to appear on the board.
                   </div>
                 </div>
               )}
@@ -370,28 +341,9 @@ export default function LeaderboardPage() {
         </CardHeader>
 
         <CardContent className="p-2 sm:p-4 md:p-6">
+          {/* Top controls (tabs removed) */}
           <div className="mb-4 md:mb-6">
-            <Tabs defaultValue="all" onValueChange={setActiveChallengeType}>
-              <TabsList className="grid grid-cols-3 sm:grid-cols-5 mb-4 h-auto">
-                <TabsTrigger value="all" className="py-1.5 px-2 text-xs md:text-sm">
-                  All
-                </TabsTrigger>
-                <TabsTrigger value="daily" className="py-1.5 px-2 text-xs md:text-sm">
-                  Daily
-                </TabsTrigger>
-                <TabsTrigger value="quiz" className="py-1.5 px-2 text-xs md:text-sm">
-                  Quiz
-                </TabsTrigger>
-                <TabsTrigger value="challenge" className="py-1.5 px-2 text-xs md:text-sm hidden sm:block">
-                  Challenge
-                </TabsTrigger>
-                <TabsTrigger value="quran" className="py-1.5 px-2 text-xs md:text-sm hidden sm:block">
-                  Quran
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 md:mb-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
               <div className="relative flex-1">
                 <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
                 <Input
@@ -459,8 +411,7 @@ export default function LeaderboardPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {visibleRows.map((entry, index) => {
-                      const globalIndex = index // within visible slice
+                    {visibleRows.map((entry) => {
                       const overallIndex = filteredSorted.findIndex((e) => e === entry)
                       const isMe = user && entry.user_id === user.id
                       return (
@@ -530,7 +481,6 @@ export default function LeaderboardPage() {
                 </Table>
               </div>
 
-              {/* Pagination controls */}
               {visibleRows.length < filteredSorted.length && (
                 <div className="mt-3 flex items-center justify-center gap-2">
                   <Button
