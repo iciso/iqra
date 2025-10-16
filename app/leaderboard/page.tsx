@@ -1,21 +1,9 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Trophy,
-  Medal,
-  Filter,
-  Search,
-  RefreshCw,
-  Database,
-  Cloud,
-  HardDrive,
-  Target,
-  UserRoundSearch,
-} from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { Trophy, Medal, RefreshCw, Database, Cloud, HardDrive, Target, UserRoundSearch } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
@@ -38,17 +26,14 @@ interface LeaderboardEntry {
 export default function LeaderboardPage() {
   const { toast } = useToast()
   const { user } = useAuth()
+
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
   const [isClient, setIsClient] = useState(false)
-  const [filter, setFilter] = useState<string>("")
-  const [searchTerm, setSearchTerm] = useState<string>("")
   const [loading, setLoading] = useState(true)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
-  const [visibleCount, setVisibleCount] = useState<number>(20)
-  const [findingMe, setFindingMe] = useState(false)
-  const listContainerRef = useRef<HTMLDivElement>(null)
 
+  // Sort for consistent ranks
   const sortLeaderboard = (entries: LeaderboardEntry[]) => {
     return [...entries].sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score
@@ -57,32 +42,25 @@ export default function LeaderboardPage() {
     })
   }
 
-  const filteredSorted = useMemo(() => {
-    const filtered = leaderboard.filter((entry) => {
-      if (filter && entry.category !== filter) return false
-      if (searchTerm && !entry.name.toLowerCase().includes(searchTerm.toLowerCase())) return false
-      return true
-    })
-    return sortLeaderboard(filtered)
-  }, [leaderboard, filter, searchTerm])
+  // Show ALL players; no filters, no slicing
+  const sorted = useMemo(() => sortLeaderboard(leaderboard), [leaderboard])
 
-  const visibleRows = useMemo(() => filteredSorted.slice(0, visibleCount), [filteredSorted, visibleCount])
-
+  // Current user details
   const myRank = useMemo(() => {
     if (!user) return null
-    const idx = filteredSorted.findIndex((e) => e.user_id === user.id)
+    const idx = sorted.findIndex((e) => e.user_id === user.id)
     return idx >= 0 ? idx + 1 : null
-  }, [filteredSorted, user])
+  }, [sorted, user])
 
   const myEntry = useMemo(() => {
     if (!user) return null
-    return filteredSorted.find((e) => e.user_id === user.id) || null
-  }, [filteredSorted, user])
+    return sorted.find((e) => e.user_id === user.id) || null
+  }, [sorted, user])
 
   const nextMilestone = useMemo(() => {
     if (!myRank || !myEntry) return null
     if (myRank <= 1) return null
-    const above = filteredSorted[myRank - 2]
+    const above = sorted[myRank - 2]
     if (!above) return null
     const pointsBehind = Math.max(0, above.score - myEntry.score)
     return {
@@ -90,12 +68,14 @@ export default function LeaderboardPage() {
       targetRank: myRank - 1,
       pointsBehind,
     }
-  }, [filteredSorted, myRank, myEntry])
+  }, [sorted, myRank, myEntry])
 
+  // Load data (try fallback first, then Supabase with a high limit)
   const loadLeaderboardData = async () => {
     try {
       setLoading(true)
 
+      // 1) database-with-fallback
       try {
         const result = await getLeaderboardWithFallback()
         if (result && result.data && result.data.length > 0) {
@@ -108,9 +88,10 @@ export default function LeaderboardPage() {
         console.error("❌ Fallback system error:", fallbackError)
       }
 
+      // 2) Supabase direct with larger limit so newcomers appear
       try {
         const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(500)
+        const topPlayers = await getTopPlayers(1000)
 
         if (topPlayers && topPlayers.length > 0) {
           const formattedData: LeaderboardEntry[] = topPlayers.map((player: any) => ({
@@ -133,6 +114,7 @@ export default function LeaderboardPage() {
         console.error("❌ Supabase direct error:", supabaseError)
       }
 
+      // 3) Demo fallback
       setLeaderboard([
         {
           name: "Dr. Muhammad Murtaza Ikram",
@@ -186,7 +168,6 @@ export default function LeaderboardPage() {
   useEffect(() => {
     setIsClient(true)
     loadLeaderboardData()
-
     const refreshInterval = setInterval(() => loadLeaderboardData(), 5 * 60 * 1000)
     return () => clearInterval(refreshInterval)
   }, [])
@@ -217,35 +198,17 @@ export default function LeaderboardPage() {
     return "bg-gray-100 text-gray-800"
   }
 
-  const handleLoadMore = () => setVisibleCount((c) => c + 20)
-  const handleLoadAll = () => setVisibleCount(filteredSorted.length)
-
   const handleFindMe = () => {
     if (!user) {
       toast({ title: "Not signed in", description: "Sign in to locate your rank.", variant: "default" })
       return
     }
-    const idx = filteredSorted.findIndex((e) => e.user_id === user.id)
-    if (idx === -1) {
-      toast({
-        title: "No games yet",
-        description: "Play a quiz to appear on the leaderboard.",
-      })
+    const el = document.getElementById(`leader-row-${user.id}`)
+    if (!el) {
+      toast({ title: "No games yet", description: "Play a quiz to appear on the leaderboard." })
       return
     }
-    setFindingMe(true)
-    if (idx + 1 > visibleCount) {
-      setVisibleCount(idx + 1)
-      setTimeout(() => {
-        const el = document.getElementById(`leader-row-${user.id}`)
-        el?.scrollIntoView({ behavior: "smooth", block: "center" })
-        setFindingMe(false)
-      }, 100)
-    } else {
-      const el = document.getElementById(`leader-row-${user.id}`)
-      el?.scrollIntoView({ behavior: "smooth", block: "center" })
-      setFindingMe(false)
-    }
+    el.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
   if (!isClient) {
@@ -271,6 +234,7 @@ export default function LeaderboardPage() {
             IQRA Quiz Hall of Fame
           </CardTitle>
 
+          {/* Simple motivation summary */}
           <div className="mt-3 grid gap-2 sm:grid-cols-2 text-left">
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
@@ -295,7 +259,6 @@ export default function LeaderboardPage() {
                     size="sm"
                     variant="outline"
                     onClick={handleFindMe}
-                    disabled={findingMe}
                     className="h-8 px-2 text-xs dark:border-green-700 dark:text-green-400 bg-transparent"
                   >
                     <UserRoundSearch className="h-3.5 w-3.5 mr-1" />
@@ -303,17 +266,15 @@ export default function LeaderboardPage() {
                   </Button>
                 </div>
               ) : (
-                <div className="mt-1">
-                  <div className="text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
-                    New here? Play a quiz to appear on the board.
-                  </div>
+                <div className="mt-1 text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
+                  New here? Play a quiz to appear on the board.
                 </div>
               )}
             </div>
 
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
-                <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Progress to next spot</span>
+                <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Data source</span>
                 <Badge
                   variant="outline"
                   className={`flex items-center gap-1 text-[10px] ${getSourceColor(dataSource)}`}
@@ -340,63 +301,16 @@ export default function LeaderboardPage() {
         </CardHeader>
 
         <CardContent className="p-2 sm:p-4 md:p-6">
-          <div className="mb-4 md:mb-6">
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
-                <Input
-                  placeholder="Search by name..."
-                  className="pl-7 text-sm h-9"
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value)
-                    setVisibleCount(20)
-                  }}
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400 bg-transparent"
-                  onClick={() => {
-                    setFilter(filter ? "" : "Quran")
-                    setVisibleCount(20)
-                  }}
-                >
-                  <Filter className="h-3.5 w-3.5" />
-                  <span className="truncate">{filter || "All Categories"}</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex gap-1 text-xs h-9 flex-1 sm:flex-none dark:border-green-700 dark:text-green-400 bg-transparent"
-                  onClick={() => {
-                    setVisibleCount(20)
-                    loadLeaderboardData()
-                  }}
-                  disabled={loading}
-                >
-                  <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-                  <span className="truncate">{loading ? "Loading..." : "Refresh"}</span>
-                </Button>
-              </div>
-            </div>
-          </div>
-
           {loading ? (
             <div className="text-center py-8 md:py-12">
               <RefreshCw className="h-6 w-6 md:h-8 md:w-8 animate-spin mx-auto mb-3 md:mb-4 text-green-600" />
               <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
             </div>
-          ) : filteredSorted.length > 0 ? (
+          ) : sorted.length > 0 ? (
             <>
-              <div
-                ref={listContainerRef}
-                className="overflow-x-auto -mx-2 sm:mx-0 max-h-[70vh] overflow-y-auto rounded-md"
-              >
+              <div className="overflow-x-auto -mx-2 sm:mx-0 max-h-[70vh] overflow-y-auto rounded-md">
                 <Table className="w-full">
-                  <TableCaption className="text-xs">
-                    Showing {visibleRows.length} of {filteredSorted.length} players
-                  </TableCaption>
+                  <TableCaption className="text-xs">Total players: {sorted.length}</TableCaption>
                   <TableHeader>
                     <TableRow>
                       <TableHead className="w-14 text-xs">Rank</TableHead>
@@ -406,8 +320,7 @@ export default function LeaderboardPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {visibleRows.map((entry) => {
-                      const overallIndex = filteredSorted.findIndex((e) => e === entry)
+                    {sorted.map((entry, overallIndex) => {
                       const isMe = user && entry.user_id === user.id
                       return (
                         <TableRow
@@ -466,30 +379,21 @@ export default function LeaderboardPage() {
                   </TableBody>
                 </Table>
               </div>
-
-              {visibleRows.length < filteredSorted.length && (
-                <div className="mt-3 flex items-center justify-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleLoadMore}
-                    className="h-8 px-3 text-xs dark:border-green-700 dark:text-green-400 bg-transparent"
-                  >
-                    Load 20 more
-                  </Button>
-                  <Button
-                    size="sm"
-                    onClick={handleLoadAll}
-                    className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-                  >
-                    Load all ({filteredSorted.length})
-                  </Button>
-                </div>
-              )}
+              <div className="mt-3 flex items-center justify-center">
+                <Button
+                  variant="outline"
+                  className="flex gap-1 text-xs h-9 dark:border-green-700 dark:text-green-400 bg-transparent"
+                  onClick={loadLeaderboardData}
+                  disabled={loading}
+                >
+                  <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
+                  <span className="truncate">{loading ? "Refreshing..." : "Refresh"}</span>
+                </Button>
+              </div>
             </>
           ) : (
             <div className="text-center py-6 md:py-8 text-gray-500 dark:text-gray-400">
-              <p className="text-sm">No entries match your search. Try adjusting your filters.</p>
+              <p className="text-sm">No players yet. Play a quiz to appear on the leaderboard.</p>
             </div>
           )}
         </CardContent>
