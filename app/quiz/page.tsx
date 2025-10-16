@@ -142,6 +142,46 @@ function buildQuestionsForDifficulty(
       combined = [...combined, ...fillers]
     }
 
+    // Ensure we always have the right number of questions
+    // For challenge mode: enforce the challenge's question count or default to 10
+    const desiredCount = count
+
+    if (desiredCount) {
+      // If we don't have enough questions, top up from any available difficulty pools
+      if (combined.length < desiredCount) {
+        const easy = pools.easy
+        const intermediate = pools.intermediate
+        const advanced = pools.advanced
+
+        const all = shuffleArray([...easy, ...intermediate, ...advanced])
+
+        // Deduplicate by question id (or by question text if id is missing)
+        const seen = new Set<string>()
+        const unique: typeof combined = []
+
+        const addUnique = (arr: typeof combined) => {
+          for (const q of arr) {
+            const key = q.id || (q as any).question || JSON.stringify(q)
+            if (!seen.has(key)) {
+              seen.add(key)
+              unique.push(q)
+              if (unique.length >= desiredCount) break
+            }
+          }
+        }
+
+        // Preserve existing picks first, then top up
+        addUnique(combined)
+        if (unique.length < desiredCount) {
+          addUnique(all)
+        }
+
+        combined = unique.slice(0, desiredCount)
+      } else if (combined.length > desiredCount) {
+        combined = combined.slice(0, desiredCount)
+      }
+    }
+
     return takeN(shuffleArray(combined), count)
   }
 
