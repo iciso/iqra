@@ -1,14 +1,28 @@
 import QuizContainer from "@/components/quiz/quiz-container"
 
-// Server imports
-import { createClient } from "@supabase/supabase-js"
+// Types (use a local alias to handle synonyms safely)
+type BaseDifficulty = "easy" | "medium" | "hard"
+type DifficultyLike = BaseDifficulty | "intermediate" | "advanced" | "mixed"
 
-// Types
-import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
+type QuizQuestion = {
+  id?: string
+  question?: string
+  // other fields are not required here
+}
 
-// Utilities
-function shuffleArray<T>(arr: T[]): T[] {
-  const a = [...arr]
+// Normalize query difficulty (accepts synonyms), but preserves "mixed"
+function normalizeDifficulty(d: string | undefined): DifficultyLike {
+  const val = (d || "").toLowerCase()
+  if (val === "mixed") return "mixed"
+  if (val === "intermediate" || val === "medium") return "medium"
+  if (val === "advanced" || val === "hard") return "hard"
+  if (val === "easy") return "easy"
+  // default
+  return "easy"
+}
+
+function shuffle<T>(array: T[]): T[] {
+  const a = [...array]
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[a[i], a[j]] = [a[j], a[i]]
@@ -16,271 +30,180 @@ function shuffleArray<T>(arr: T[]): T[] {
   return a
 }
 
-function takeN<T>(arr: T[], n: number): T[] {
+function dedupeQuestions(arr: QuizQuestion[]): QuizQuestion[] {
+  const seen = new Set<string>()
+  const out: QuizQuestion[] = []
+  for (const q of arr) {
+    const key = q.id || q.question || JSON.stringify(q)
+    if (!seen.has(key)) {
+      seen.add(key)
+      out.push(q)
+    }
+  }
+  return out
+}
+
+function take<T>(arr: T[], n: number): T[] {
   return arr.slice(0, n)
 }
 
-type Pools = {
-  easy: QuizQuestion[]
-  intermediate: QuizQuestion[]
-  advanced: QuizQuestion[]
-}
-
-async function getCategoryAndPools(categoryId: string): Promise<{ category: QuizCategory; pools: Pools } | null> {
-  // Load quiz data manager dynamically to avoid build coupling
+async function loadCategoryAndQuestions(categoryId: string) {
+  // Dynamically import the existing data manager you already use everywhere else
   const mod: any = await import("@/data/quiz-data-manager")
-
-  if (!mod || typeof mod.getCategory !== "function") {
-    console.error("quiz-data-manager.getCategory() not found")
-    return null
+  if (!mod || typeof mod.getCategory !== "function" || typeof mod.getQuizQuestions !== "function") {
+    throw new Error("quiz-data-manager exports not found")
   }
+  const getCategory = mod.getCategory as (id: string) => any
+  const getQuizQuestions = mod.getQuizQuestions as (id: string, diff: BaseDifficulty) => QuizQuestion[]
 
-  const category: QuizCategory | null = mod.getCategory(categoryId)
-  if (!category) {
-    console.error(`Category not found: ${categoryId}`)
-    return null
-  }
-
-  // Extract difficulty pools defensively (support different shapes)
-  const pools: Pools = {
-    easy: [],
-    intermediate: [],
-    advanced: [],
-  }
-
-  // Common shapes we support:
-  // - category.easyQuestions / intermediateQuestions / advancedQuestions
-  // - category.easy / intermediate / advanced
-  // - category.questions[] with each item having a difficulty field
-  // - category.questions_easy / questions_intermediate / questions_advanced
-  const tryArray = (val: any) => (Array.isArray(val) ? (val as QuizQuestion[]) : [])
-
-  const easyCandidates = [(category as any).easyQuestions, (category as any).easy, (category as any).questions_easy]
-  const intermediateCandidates = [
-    (category as any).intermediateQuestions,
-    (category as any).intermediate,
-    (category as any).questions_intermediate,
-  ]
-  const advancedCandidates = [
-    (category as any).advancedQuestions,
-    (category as any).advanced,
-    (category as any).questions_advanced,
-  ]
-
-  // Direct arrays by key
-  for (const c of easyCandidates) pools.easy.push(...tryArray(c))
-  for (const c of intermediateCandidates) pools.intermediate.push(...tryArray(c))
-  for (const c of advancedCandidates) pools.advanced.push(...tryArray(c))
-
-  // Partition from a flat questions array if present
-  const flat = tryArray((category as any).questions)
-  if (flat.length > 0) {
-    for (const q of flat) {
-      const d = (q as any).difficulty?.toLowerCase?.()
-      if (d === "easy") pools.easy.push(q)
-      else if (d === "intermediate" || d === "medium" || d === "moderate") pools.intermediate.push(q)
-      else if (d === "advanced" || d === "hard") pools.advanced.push(q)
-      else {
-        // If no difficulty, treat as easy by default
-        pools.easy.push(q)
-      }
-    }
-  }
-
-  // Deduplicate by question text to avoid duplicates when multiple sources fill pools
-  const dedupe = (arr: QuizQuestion[]) => {
-    const seen = new Set<string>()
-    const out: QuizQuestion[] = []
-    for (const q of arr) {
-      const key = (q as any).question || JSON.stringify(q)
-      if (!seen.has(key)) {
-        seen.add(key)
-        out.push(q)
-      }
-    }
-    return out
-  }
-
-  pools.easy = dedupe(pools.easy)
-  pools.intermediate = dedupe(pools.intermediate)
-  pools.advanced = dedupe(pools.advanced)
-
-  return { category, pools }
+  const category = getCategory(categoryId)
+  return { category, getQuizQuestions }
 }
 
-function buildQuestionsForDifficulty(
-  pools: Pools,
-  difficulty: DifficultyLevel | "mixed",
+/**
+ * Always returns exactly `count` questions if the category has enough total,
+ * even if some difficulty pools are missing.
+ */
+function buildQuestionsFor(
+  getQuizQuestions: (id: string, diff: BaseDifficulty) => QuizQuestion[],
+  categoryId: string,
+  difficulty: DifficultyLike,
   count: number,
 ): QuizQuestion[] {
+  const easy = getQuizQuestions(categoryId, "easy") || []
+  const medium = getQuizQuestions(categoryId, "medium") || []
+  const hard = getQuizQuestions(categoryId, "hard") || []
+
+  const totalAvailable = dedupeQuestions([...easy, ...medium, ...hard])
+
+  if (totalAvailable.length === 0) {
+    // Nothing available in this category
+    return []
+  }
+
   if (difficulty === "mixed") {
-    // Try to spread across available pools
+    // Try to spread across pools, then top-up from any available
     const thirds = Math.max(1, Math.floor(count / 3))
-    const remainder = count - thirds * 3
+    const easyPick = take(shuffle(easy), Math.min(thirds, easy.length))
+    const medPick = take(shuffle(medium), Math.min(thirds, medium.length))
+    const hardPick = take(shuffle(hard), Math.min(thirds, hard.length))
 
-    const easyPick = takeN(shuffleArray(pools.easy), Math.min(thirds, pools.easy.length))
-    const interPick = takeN(shuffleArray(pools.intermediate), Math.min(thirds, pools.intermediate.length))
-    const advPick = takeN(shuffleArray(pools.advanced), Math.min(thirds, pools.advanced.length))
+    const combined = dedupeQuestions([...easyPick, ...medPick, ...hardPick])
 
-    let combined = [...easyPick, ...interPick, ...advPick]
-
-    // If we still need more (e.g., category lacks some difficulty), fill from any available pool
-    const all = shuffleArray([...pools.easy, ...pools.intermediate, ...pools.advanced].filter(Boolean))
-    if (combined.length < count && all.length > 0) {
-      const missing = count - combined.length
-      // Avoid duplicating items we already picked
-      const chosenSet = new Set<string>(combined.map((q: any) => q.question))
-      const fillers: QuizQuestion[] = []
+    if (combined.length < count) {
+      // Top-up across all available
+      const all = shuffle(totalAvailable)
+      const chosen = new Set(combined.map((q) => q.id || q.question || ""))
       for (const q of all) {
-        if (fillers.length >= missing) break
-        const key = (q as any).question
-        if (!chosenSet.has(key)) {
-          fillers.push(q)
-          chosenSet.add(key)
+        if (combined.length >= count) break
+        const key = q.id || q.question || ""
+        if (!chosen.has(key)) {
+          combined.push(q)
+          chosen.add(key)
         }
-      }
-      combined = [...combined, ...fillers]
-    }
-
-    // Ensure we always have the right number of questions
-    // For challenge mode: enforce the challenge's question count or default to 10
-    const desiredCount = count
-
-    if (desiredCount) {
-      // If we don't have enough questions, top up from any available difficulty pools
-      if (combined.length < desiredCount) {
-        const easy = pools.easy
-        const intermediate = pools.intermediate
-        const advanced = pools.advanced
-
-        const all = shuffleArray([...easy, ...intermediate, ...advanced])
-
-        // Deduplicate by question id (or by question text if id is missing)
-        const seen = new Set<string>()
-        const unique: typeof combined = []
-
-        const addUnique = (arr: typeof combined) => {
-          for (const q of arr) {
-            const key = q.id || (q as any).question || JSON.stringify(q)
-            if (!seen.has(key)) {
-              seen.add(key)
-              unique.push(q)
-              if (unique.length >= desiredCount) break
-            }
-          }
-        }
-
-        // Preserve existing picks first, then top up
-        addUnique(combined)
-        if (unique.length < desiredCount) {
-          addUnique(all)
-        }
-
-        combined = unique.slice(0, desiredCount)
-      } else if (combined.length > desiredCount) {
-        combined = combined.slice(0, desiredCount)
       }
     }
 
-    return takeN(shuffleArray(combined), count)
+    return take(shuffle(combined), Math.min(count, totalAvailable.length))
   }
 
-  // Single difficulty
-  const source =
-    difficulty === "easy" ? pools.easy : difficulty === "intermediate" ? pools.intermediate : pools.advanced
+  // Single-difficulty selection with top-up from others
+  const normalized = difficulty as BaseDifficulty // already normalized above
+  const primary = normalized === "easy" ? easy : normalized === "medium" ? medium : hard
 
-  if (source.length >= count) {
-    return takeN(shuffleArray(source), count)
+  if (primary.length >= count) {
+    return take(shuffle(primary), count)
   }
 
-  // Not enough questions in selected difficulty; top up from others
-  const needed = count - source.length
-  const otherPools =
-    difficulty === "easy"
-      ? [...pools.intermediate, ...pools.advanced]
-      : difficulty === "intermediate"
-        ? [...pools.easy, ...pools.advanced]
-        : [...pools.easy, ...pools.intermediate]
+  // Not enough in primary; top-up from other pools
+  const others =
+    normalized === "easy"
+      ? dedupeQuestions([...medium, ...hard])
+      : normalized === "medium"
+        ? dedupeQuestions([...easy, ...hard])
+        : dedupeQuestions([...easy, ...medium])
 
-  const topUp = takeN(shuffleArray(otherPools), Math.min(needed, otherPools.length))
+  const base = dedupeQuestions([...primary, ...others])
+  if (base.length === 0) return []
 
-  return takeN(shuffleArray([...source, ...topUp]), count)
+  const filled = base.length >= count ? take(shuffle(base), count) : take(shuffle(base), base.length)
+
+  // If still fewer than requested, just return all unique available (we won't duplicate questions)
+  return filled
 }
 
-type ChallengeResolved = {
-  category: string
-  difficulty: DifficultyLevel | "mixed"
-  questionCount: number
-  opponentId?: string
-  opponentName?: string
-  challengerTurn?: boolean
-  timeLimit?: number // seconds
-}
-
-async function resolveChallengeServerSide(params: URLSearchParams): Promise<ChallengeResolved> {
-  // From URL if present
+/**
+ * Optional server-side challenge resolver.
+ * If the URL includes challenge=..., but omits details, we fill them from DB.
+ * We keep this minimal and data-safe (no client exposure of secrets).
+ */
+async function resolveChallengeParams(params: URLSearchParams) {
   let category = params.get("category") || "quran"
-  let difficulty = (params.get("difficulty") || "easy").toLowerCase() as DifficultyLevel | "mixed"
+  let difficulty = normalizeDifficulty(params.get("difficulty") || "easy")
   let questionCount = Number.parseInt(params.get("questions") || "10", 10)
   let opponentId = params.get("opponent") || undefined
   let opponentName = params.get("opponentName") || undefined
   let challengerTurn = params.get("challengerTurn") === "true"
   const challengeId = params.get("challenge") || undefined
 
-  // If challenge is specified but URL is missing metadata, fetch from DB
-  if (challengeId) {
-    try {
-      const url = process.env.SUPABASE_URL as string
-      const key = (process.env.SUPABASE_SERVICE_ROLE_KEY as string) || (process.env.SUPABASE_ANON_KEY as string)
-      const supabase = createClient(url, key)
+  // If everything we need is present, skip DB
+  const needsResolve = !!challengeId && (!category || !difficulty || !questionCount || !opponentId || !opponentName)
 
-      const { data: challenge, error } = await supabase
-        .from("user_challenges")
-        .select(`
-          id,
-          challenger_id,
-          challenged_id,
-          category,
-          difficulty,
-          question_count,
-          time_limit,
-          challenger:user_profiles!user_challenges_challenger_id_fkey ( id, full_name, username )
-        `)
-        .eq("id", challengeId)
-        .single()
-
-      if (!error && challenge) {
-        // Fill blanks from DB
-        category = challenge.category || category
-        difficulty = (challenge.difficulty || difficulty) as DifficultyLevel | "mixed"
-        questionCount = Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
-
-        // If accepting a challenge, opponent is the challenger
-        opponentId = opponentId || challenge.challenger?.id || challenge.challenger_id || opponentId
-        opponentName = opponentName || challenge.challenger?.full_name || challenge.challenger?.username || opponentName
-
-        // If not explicitly stated, default to accepting mode
-        if (params.get("challengerTurn") === null) {
-          challengerTurn = false
-        }
-
-        // time_limit is typically seconds in DB; if you store in minutes, adjust here
-        const timeLimit = Number.isFinite(challenge.time_limit) ? challenge.time_limit : undefined
-        return { category, difficulty, questionCount, opponentId, opponentName, challengerTurn, timeLimit }
-      }
-    } catch (e) {
-      console.error("Error resolving challenge server-side:", e)
-    }
+  if (!needsResolve) {
+    return { category, difficulty, questionCount, opponentId, opponentName, challengerTurn, challengeId }
   }
 
-  return { category, difficulty, questionCount, opponentId, opponentName, challengerTurn }
+  // Resolve from Supabase only if needed
+  try {
+    const { createClient } = await import("@supabase/supabase-js")
+    const url = process.env.SUPABASE_URL as string
+    const key = (process.env.SUPABASE_SERVICE_ROLE_KEY as string) || (process.env.SUPABASE_ANON_KEY as string)
+    const supabase = createClient(url, key)
+
+    const { data: challenge, error } = await supabase
+      .from("user_challenges")
+      .select(
+        `
+        id,
+        challenger_id,
+        challenged_id,
+        category,
+        difficulty,
+        question_count,
+        challenger:user_profiles!user_challenges_challenger_id_fkey ( id, full_name, username )
+      `,
+      )
+      .eq("id", challengeId)
+      .single()
+
+    if (!error && challenge) {
+      category = challenge.category || category
+      difficulty = normalizeDifficulty(challenge.difficulty || (difficulty as string))
+      questionCount = Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
+
+      // On acceptance, opponent is the challenger
+      opponentId = opponentId || challenge.challenger?.id || challenge.challenger_id || opponentId
+      opponentName = opponentName || challenge.challenger?.full_name || challenge.challenger?.username || opponentName
+
+      // Default accepting side to challengerTurn=false if unspecified
+      if (params.get("challengerTurn") === null) {
+        challengerTurn = false
+      }
+    }
+  } catch (e) {
+    // Non-fatal: we will continue with whatever we have
+    console.error("Challenge resolve error:", e)
+  }
+
+  return { category, difficulty, questionCount, opponentId, opponentName, challengerTurn, challengeId }
 }
 
-export default async function Page({
+export default async function QuizPage({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
+  // Normalize search params
   const params = new URLSearchParams(
     Object.entries(searchParams || {}).reduce(
       (acc, [k, v]) => {
@@ -292,49 +215,81 @@ export default async function Page({
     ),
   )
 
-  // 1) Resolve the challenge context (fills in missing URL fields)
-  const resolved = await resolveChallengeServerSide(params)
-  const { category, difficulty, questionCount, opponentId, opponentName, challengerTurn } = resolved
+  // Resolve challenge context (fills any missing details)
+  const { category, difficulty, questionCount, opponentId, opponentName, challengerTurn, challengeId } =
+    await resolveChallengeParams(params)
 
-  // 2) Load category and build difficulty pools
-  const catAndPools = await getCategoryAndPools(category)
-  if (!catAndPools) {
-    // Graceful fallback with link back to categories
+  // Load the category and question function
+  const { category: cat, getQuizQuestions } = await loadCategoryAndQuestions(category)
+
+  if (!cat) {
+    // Category truly not available
     return (
-      <main className="flex min-h-screen items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-        <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold text-green-800 dark:text-green-300 mb-2">Category not found</h1>
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The requested category "{category}" could not be loaded. Please choose another category.
-          </p>
-          <a
-            href="/categories"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-10 px-4 py-2"
-          >
-            Back to Categories
-          </a>
-        </div>
-      </main>
+      <div className="container mx-auto py-12 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-4">Category Not Found</h1>
+        <p className="mb-6">The requested category "{category}" could not be loaded. Please choose another category.</p>
+        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Categories
+        </a>
+      </div>
     )
   }
 
-  const { category: cat, pools } = catAndPools
+  // Always attempt to build exactly questionCount questions
+  const desiredCount = Math.max(1, questionCount || 10)
+  const finalQuestions = buildQuestionsFor(getQuizQuestions, category, difficulty, desiredCount)
 
-  // 3) Build the actual questions set (enforce exact count)
-  const finalQuestions = buildQuestionsForDifficulty(pools, difficulty, Math.max(1, questionCount))
+  if (!finalQuestions || finalQuestions.length === 0) {
+    // As a last resort, try to top-up from any difficulty even if the requested difficulty failed
+    const easy = getQuizQuestions(category, "easy") || []
+    const medium = getQuizQuestions(category, "medium") || []
+    const hard = getQuizQuestions(category, "hard") || []
+    const any = dedupeQuestions([...easy, ...medium, ...hard])
 
-  // 4) Render the client container
+    if (any.length > 0) {
+      // Use whatever we have, up to desiredCount
+      const fallbackQuestions = take(shuffle(any), Math.min(desiredCount, any.length))
+      return (
+        <div className="container mx-auto py-8 px-4">
+          <QuizContainer
+            questions={fallbackQuestions}
+            category={cat}
+            difficulty={typeof difficulty === "string" && difficulty !== "mixed" ? (difficulty as any) : "easy"}
+            challengeMode={challengeId || params.get("challenge") || undefined}
+            opponentId={opponentId}
+            opponentName={opponentName}
+            challengerTurn={Boolean(challengerTurn)}
+          />
+        </div>
+      )
+    }
+
+    // Truly nothing available
+    return (
+      <div className="container mx-auto py-12 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
+        <p className="mb-6">
+          Sorry, there are no questions available for {cat.title} in {String(difficulty)} mode at this time.
+        </p>
+        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Categories
+        </a>
+      </div>
+    )
+  }
+
+  // Render with the guaranteed set
   return (
-    <main className="flex min-h-screen items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+    <div className="container mx-auto py-8 px-4">
       <QuizContainer
         questions={finalQuestions}
         category={cat}
-        difficulty={difficulty as DifficultyLevel}
-        challengeMode={params.get("challenge") || undefined}
+        difficulty={difficulty === "mixed" ? "easy" : (difficulty as any)}
+        challengeMode={challengeId || params.get("challenge") || undefined}
         opponentId={opponentId}
-        opponentName={opponentName}
+        opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
         challengerTurn={Boolean(challengerTurn)}
       />
-    </main>
+    </div>
   )
 }
