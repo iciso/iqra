@@ -41,6 +41,7 @@ export default function ResultsPage() {
   const [challengeData, setChallengeData] = useState<any>(null)
   const [isChallenger, setIsChallenger] = useState(false)
   const [challengerTurn, setChallengerTurn] = useState(false)
+  const [authReady, setAuthReady] = useState(false)
 
   // Get localStorage values directly for render decision
   const getLocalStorageValues = () => {
@@ -53,16 +54,28 @@ export default function ResultsPage() {
     }
   }
 
+  // Wait for auth to fully initialize (not just "not loading")
+  useEffect(() => {
+    if (!loading) {
+      // Give it a tiny extra moment to ensure profile fetch completes
+      const timer = setTimeout(() => {
+        setAuthReady(true)
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [loading])
+
   // Debug authentication state
   useEffect(() => {
     console.log("🔍 Results page auth state:", {
       user: !!user,
       profile: !!profile,
       loading,
+      authReady,
       userEmail: user?.email,
       profileUsername: profile?.username,
     })
-  }, [user, profile, loading])
+  }, [user, profile, loading, authReady])
 
   useEffect(() => {
     setIsClient(true)
@@ -182,7 +195,7 @@ export default function ResultsPage() {
     }
   }, [user])
 
-  // Auto-save when user and profile are available
+  // Auto-save with retry logic
   useEffect(() => {
     const autoSave = async () => {
       console.log("💾 RESULTS AUTO-SAVE: Starting check...", {
@@ -193,11 +206,17 @@ export default function ResultsPage() {
         submitted,
         saving,
         loading,
+        authReady,
         challenge,
         challengerTurn,
       })
 
-      if (user && profile && score !== null && totalQuestions !== null && !submitted && !saving && !loading) {
+      // Only attempt save if:
+      // 1. Auth is ready (not loading AND authReady is true)
+      // 2. We have user, profile, score, and totalQuestions
+      // 3. We haven't already submitted
+      // 4. We're not currently saving
+      if (authReady && user && profile && score !== null && totalQuestions !== null && !submitted && !saving) {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
@@ -215,6 +234,7 @@ export default function ResultsPage() {
         } catch (error) {
           console.error("❌ RESULTS AUTO-SAVE: Error saving to database:", error)
           // Don't set submitted to true if there was an error
+          // The user can retry or navigate manually
         } finally {
           setSaving(false)
         }
@@ -222,7 +242,7 @@ export default function ResultsPage() {
     }
 
     autoSave()
-  }, [user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge, loading])
+  }, [authReady, user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
 
   // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
@@ -233,10 +253,6 @@ export default function ResultsPage() {
     if (percentage >= 80) return "Excellent! MashaAllah!"
     if (percentage >= 60) return "Good job! Keep learning! Alhamdulilah!"
     return "Keep studying. You can improve! Astaghufiruallah!"
-  }
-
-  const viewLeaderboard = () => {
-    router.push("/leaderboard")
   }
 
   const viewChallenges = () => {
@@ -264,12 +280,12 @@ export default function ResultsPage() {
   }
 
   // Show loading state while auth is loading
-  if (!isClient || loading) {
+  if (!isClient || !authReady) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
-            <p>Loading results...</p>
+            <p>Loading your results...</p>
           </CardContent>
         </Card>
       </main>
@@ -292,6 +308,7 @@ export default function ResultsPage() {
   console.log("🎯 FINAL Render decision:", {
     isAuthenticated,
     loading,
+    authReady,
     user: !!user,
     profile: !!profile,
     isChallenger,
@@ -452,7 +469,7 @@ export default function ResultsPage() {
                     <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
                     {isAuthenticated ? (
-                      // 🎉 Authenticated user - SUCCESS CASE!
+                      // Authenticated user - show results with links
                       <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-center mb-2">
                           <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
