@@ -177,8 +177,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="text-center px-4 sm:px-6">
               <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Challenge your friends or join the daily challenge. Compete with others and test your Islamic knowledge
-                in a fun and engaging way.
+                Challenge your friends or compete with others and test your Islamic knowledge in a fun and engaging way. Top the leaderboards and win Badges!
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
@@ -270,7 +269,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
                <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Learn vocabulary from specific Surahs. Browse through Surahs to study their context, meaning, and rulings. Test your knowledge on the 25 completed Surahs in this section. We are rapidly adding more and aim to complete all 114 Surahs within six months.
+                Learn vocabulary from specific Surahs. Browse through Surahs to study their context, meaning, and rulings. Test your knowledge on the nearly 40 completed Surahs in this section. We are rapidly adding more and aim to complete all 114 Surahs. Insha Allah!
               </p>
               <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                 <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
