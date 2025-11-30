@@ -97,7 +97,7 @@ const quranCategory: QuizCategory = {
       },
       {
         question: "Which Surah is named after a small creature?",
-        options: ["Al-Naml", "Al-Fil", "Al-Humazah", "Al-Ankabut"],
+        options: ["Al-Naml", "Al-Fil", "Al-Humazah", "Al-An'am"],
         correctAnswer: "Al-Naml",
         explanation: "Surah Al-Naml (The Ant) is named after the ants mentioned in verse 18.",
       },
@@ -133,7 +133,7 @@ const quranCategory: QuizCategory = {
       },
       {
         question: "Which Surah is named after a star?",
-        options: ["An-Najm", "Ash-Shams", "Al-Layl", "Ad-Duha"],
+        options: ["An-Najm", "Al-Qamar", "Al-Layl", "Ad-Duha"],
         correctAnswer: "An-Najm",
         explanation: "Surah An-Najm (The Star) begins with an oath by the star when it sets.",
       },
