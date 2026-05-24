@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/contexts/auth-context"
 import { Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface AuthModalProps {
   isOpen: boolean
@@ -16,33 +17,29 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
-  const { signInWithProvider, signInWithEmail, signUpWithEmail } = useAuth()
+  const { signIn, signUp } = useAuth()
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [usernameOrEmail, setUsernameOrEmail] = useState("")
+  const [signupUsername, setSignupUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [fullName, setFullName] = useState("")
   const [error, setError] = useState("")
 
-  const handleGoogleSignIn = async () => {
-    setLoading(true)
-    setError("")
-    try {
-      await signInWithProvider("google")
-      onClose()
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in with Google")
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleEmailSignIn = async (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError("")
     try {
-      await signInWithEmail(email, password)
-      onClose()
+      const { error: signInError } = await signIn(usernameOrEmail, password)
+      if (signInError) {
+        setError(signInError.message || "Failed to sign in")
+      } else {
+        onClose()
+        router.push("/categories")
+      }
     } catch (err: any) {
       setError(err.message || "Failed to sign in")
     } finally {
@@ -50,17 +47,37 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   }
 
-  const handleEmailSignUp = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError("")
+
+    // Validation
+    if (!signupUsername.trim()) {
+      setError("Username is required")
+      return
+    }
+    if (!email.trim()) {
+      setError("Email is required")
+      return
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters")
+      return
+    }
     if (password !== confirmPassword) {
       setError("Passwords do not match")
       return
     }
+
     setLoading(true)
-    setError("")
     try {
-      await signUpWithEmail(email, password)
-      onClose()
+      const { error: signUpError } = await signUp(signupUsername, email, password, fullName)
+      if (signUpError) {
+        setError(signUpError.message || "Failed to sign up")
+      } else {
+        onClose()
+        router.push("/categories")
+      }
     } catch (err: any) {
       setError(err.message || "Failed to sign up")
     } finally {
@@ -83,34 +100,24 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </TabsList>
 
           <TabsContent value="signin" className="space-y-4">
-            <Button
-              onClick={handleGoogleSignIn}
-              disabled={loading}
-              className="w-full bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
-            >
-              {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-              Continue with Google
-            </Button>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <form onSubmit={handleEmailSignIn} className="space-y-4">
+            <form onSubmit={handleSignIn} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="username">Username or Email</Label>
                 <Input
-                  id="password"
+                  id="username"
+                  type="text"
+                  placeholder="Enter your username or email"
+                  value={usernameOrEmail}
+                  onChange={(e) => setUsernameOrEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="signin-password">Password</Label>
+                <Input
+                  id="signin-password"
                   type="password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -124,33 +131,37 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </TabsContent>
 
           <TabsContent value="signup" className="space-y-4">
-            <Button
-              onClick={handleGoogleSignIn}
-              disabled={loading}
-              className="w-full bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
-            >
-              {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-              Continue with Google
-            </Button>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+            <form onSubmit={handleSignUp} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="signup-username">Username</Label>
+                <Input
+                  id="signup-username"
+                  type="text"
+                  placeholder="Choose a username"
+                  value={signupUsername}
+                  onChange={(e) => setSignupUsername(e.target.value)}
+                  required
+                />
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <form onSubmit={handleEmailSignUp} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="signup-email">Email</Label>
                 <Input
                   id="signup-email"
                   type="email"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="signup-fullname">Full Name (Optional)</Label>
+                <Input
+                  id="signup-fullname"
+                  type="text"
+                  placeholder="Your full name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
@@ -158,6 +169,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <Input
                   id="signup-password"
                   type="password"
+                  placeholder="At least 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -168,6 +180,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <Input
                   id="confirm-password"
                   type="password"
+                  placeholder="Re-enter your password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
@@ -175,7 +188,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
               <Button type="submit" disabled={loading} className="w-full bg-green-600 hover:bg-green-700">
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-                Sign Up
+                Create Account
               </Button>
             </form>
           </TabsContent>

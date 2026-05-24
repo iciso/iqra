@@ -2,9 +2,14 @@
 
 import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import type { User } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
 import { useRouter, usePathname } from "next/navigation";
+
+interface CustomUser {
+  id: string;
+  username: string;
+  email: string;
+  fullName?: string;
+}
 
 interface UserProfile {
   id: string;
@@ -23,13 +28,13 @@ interface UserProfile {
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: CustomUser | null;
   profile: UserProfile | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, fullName?: string) => Promise<{ error: any }>;
+  authInitialized: boolean;
+  signIn: (usernameOrEmail: string, password: string) => Promise<{ error: any }>;
+  signUp: (username: string, email: string, password: string, fullName?: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
-  signInWithProvider: (provider: "google" | "github") => Promise<{ error: any }>;
   refreshProfile: () => Promise<void>;
 }
  
@@ -37,15 +42,15 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   profile: null,
   loading: true,
+  authInitialized: false,
   signIn: async () => ({ error: null }),
   signUp: async () => ({ error: null }),
   signOut: async () => {},
-  signInWithProvider: async () => ({ error: null }),
   refreshProfile: async () => {},
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<CustomUser | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [authInitialized, setAuthInitialized] = useState(false);
@@ -53,26 +58,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // Define public routes
-  const publicRoutes = ["/", "/leaderboard", "/about", "/why", "/toc", "/login"];
+  const publicRoutes = ["/", "/leaderboard", "/about", "/why", "/toc", "/auth"];
 
   const fetchProfile = async (userId: string) => {
     try {
-      console.log("Fetching profile for user:", userId);
-      const { data, error } = await supabase
-        .from("user_profiles")
-        .select("*")
-        .eq("id", userId)
-        .single();
+      const response = await fetch("/api/auth/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: localStorage.getItem("authToken") }),
+      });
 
-      if (error) {
-        console.error("Error fetching profile:", error);
-        return null;
-      }
+      if (!response.ok) return null;
 
-      console.log("Profile fetched successfully:", data);
-      return data;
+      const data = await response.json();
+      return data.profile || null;
     } catch (error) {
-      console.error("Error in fetchProfile:", error);
+      console.error("Error fetching profile:", error);
       return null;
     }
   };
@@ -80,7 +81,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const refreshProfile = async () => {
     if (user) {
       const profileData = await fetchProfile(user.id);
-      setProfile(profileData);
+      if (profileData) {
+        setProfile(profileData);
+      }
     }
   };
 
@@ -100,38 +103,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     console.log("AuthProvider: Initializing...");
     let mounted = true;
 
-    // Get initial session
+    // Get initial session from localStorage token
     const getInitialSession = async () => {
       try {
         console.log("Getting initial session...");
-        const {
-          data: { session },
-          error,
-        } = await supabase.auth.getSession();
+        const token = localStorage.getItem("authToken");
+        const userData = localStorage.getItem("user");
 
-        console.log("Initial session result:", {
-          hasSession: !!session,
-          userId: session?.user?.id,
-          error: error?.message,
-        });
-
-        if (!mounted) return;
-
-        if (session?.user) {
-          console.log("Setting user from session:", session.user.id);
-          setUser(session.user);
-          const profileData = await fetchProfile(session.user.id);
-          if (mounted) {
-            setProfile(profileData);
+        if (token && userData) {
+          try {
+            const user = JSON.parse(userData);
+            console.log("Setting user from localStorage:", user.id);
+            setUser(user);
+            const profileData = await fetchProfile(user.id);
+            if (mounted) {
+              setProfile(profileData);
+            }
+          } catch (e) {
+            console.error("Error parsing user data:", e);
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("user");
+            setUser(null);
+            setProfile(null);
           }
         } else {
-          console.log("No session found");
+          console.log("No session found in localStorage");
           setUser(null);
           setProfile(null);
-          // Only redirect to login for non-public routes
+          // Only redirect to auth for non-public routes
           if (!publicRoutes.includes(pathname)) {
-            console.log("Redirecting to /login from:", pathname);
-            router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+            console.log("Redirecting to /auth from:", pathname);
+            router.push(`/auth?redirect=${encodeURIComponent(pathname)}`);
           }
         }
       } catch (error) {
@@ -140,8 +142,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(null);
           setProfile(null);
           if (!publicRoutes.includes(pathname)) {
-            console.log("Redirecting to /login from:", pathname);
-            router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+            console.log("Redirecting to /auth from:", pathname);
+            router.push(`/auth?redirect=${encodeURIComponent(pathname)}`);
           }
         }
       } finally {
@@ -154,49 +156,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     getInitialSession();
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("Auth state changed:", {
-        event,
-        hasSession: !!session,
-        userId: session?.user?.id,
-      });
-
-      if (!mounted) return;
-
-      if (session?.user) {
-        setUser(session.user);
-        const profileData = await fetchProfile(session.user.id);
-        if (mounted) {
-          setProfile(profileData);
-        }
-      } else {
-        setUser(null);
-        setProfile(null);
-        if (!publicRoutes.includes(pathname)) {
-          console.log("Redirecting to /login from:", pathname);
-          router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
-        }
-      }
-
-      if (mounted) {
-        setLoading(false);
-      }
-    });
-
     return () => {
       mounted = false;
-      subscription.unsubscribe();
     };
   }, [pathname, router]);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (usernameOrEmail: string, password: string) => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      return { error };
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: usernameOrEmail, password }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        return { error: new Error(data.error || "Failed to sign in") };
+      }
+
+      const data = await response.json();
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      setUser(data.user);
+      setProfile(data.profile || null);
+      return { error: null };
     } catch (error) {
       console.error("Error signing in:", error);
       return { error };
@@ -205,39 +190,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signUp = async (email: string, password: string, fullName?: string) => {
+  const signUp = async (username: string, email: string, password: string, fullName?: string) => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-          },
-        },
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password, fullName: fullName || username }),
       });
-      return { error };
+
+      if (!response.ok) {
+        const data = await response.json();
+        return { error: new Error(data.error || "Failed to sign up") };
+      }
+
+      const data = await response.json();
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      setUser(data.user);
+      setProfile(null);
+      return { error: null };
     } catch (error) {
       console.error("Error signing up:", error);
-      return { error };
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const signInWithProvider = async (provider: "google" | "github") => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-      return { error };
-    } catch (error) {
-      console.error("Error signing in with provider:", error);
       return { error };
     } finally {
       setLoading(false);
@@ -247,7 +222,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     try {
       setLoading(true);
-      await supabase.auth.signOut();
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("user");
       setUser(null);
       setProfile(null);
       router.push("/");
@@ -262,10 +238,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     user,
     profile,
     loading,
+    authInitialized,
     signIn,
     signUp,
     signOut,
-    signInWithProvider,
     refreshProfile,
   };
 
