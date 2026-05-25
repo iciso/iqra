@@ -16,6 +16,8 @@ import type { Opponent } from "@/components/challenge/opponent-profile"
 import ChallengeResultsComparison from "@/components/challenge/challenge-results-comparison"
 import { useAuth } from "@/contexts/auth-context"
 import { submitQuizResult, getChallenge } from "@/lib/supabase-queries"
+import { NameInputModal } from "@/components/quiz/name-input-modal"
+import { addToLeaderboard } from "@/utils/leaderboard"
 
 export default function ResultsPage() {
   const router = useRouter()
@@ -42,6 +44,8 @@ export default function ResultsPage() {
   const [isChallenger, setIsChallenger] = useState(false)
   const [challengerTurn, setChallengerTurn] = useState(false)
   const [authReady, setAuthReady] = useState(false)
+  const [showNameModal, setShowNameModal] = useState(false)
+  const [nameModalSubmitted, setNameModalSubmitted] = useState(false)
 
   // Get localStorage values directly for render decision
   const getLocalStorageValues = () => {
@@ -194,6 +198,54 @@ export default function ResultsPage() {
       console.error("❌ Error accessing localStorage:", error)
     }
   }, [user])
+
+  // Show name modal when results load (no auth required)
+  useEffect(() => {
+    if (score !== null && totalQuestions !== null && !nameModalSubmitted && !showNameModal) {
+      // Check if user already submitted their name in this session
+      const alreadySubmitted = localStorage.getItem("nameModalSubmittedThisSession")
+      if (!alreadySubmitted) {
+        setShowNameModal(true)
+      }
+    }
+  }, [score, totalQuestions, nameModalSubmitted, showNameModal])
+
+  // Handle name submission to leaderboard
+  const handleNameSubmit = async (name: string) => {
+    if (score === null || totalQuestions === null) return
+
+    try {
+      const percentage = Math.round((score / totalQuestions) * 100)
+
+      // Add to leaderboard
+      await addToLeaderboard({
+        name,
+        score,
+        totalQuestions,
+        percentage,
+        category: categoryTitle || undefined,
+        difficulty: difficulty || undefined,
+        challenge: challenge || undefined,
+        date: new Date().toLocaleString(),
+      })
+
+      // Mark as submitted in this session
+      localStorage.setItem("nameModalSubmittedThisSession", "true")
+
+      setNameModalSubmitted(true)
+      setShowNameModal(false)
+    } catch (error) {
+      console.error("[v0] Error submitting name:", error)
+      throw error
+    }
+  }
+
+  // Handle name modal skip
+  const handleNameSkip = () => {
+    localStorage.setItem("nameModalSubmittedThisSession", "true")
+    setNameModalSubmitted(true)
+    setShowNameModal(false)
+  }
 
   // Auto-save with retry logic
   useEffect(() => {
@@ -569,6 +621,16 @@ export default function ResultsPage() {
           </div>
         </>
       )}
+
+      {/* Name Input Modal for Leaderboard */}
+      <NameInputModal
+        isOpen={showNameModal}
+        onSubmit={handleNameSubmit}
+        onSkip={handleNameSkip}
+        score={score || 0}
+        totalQuestions={totalQuestions || 0}
+        percentage={score && totalQuestions ? Math.round((score / totalQuestions) * 100) : 0}
+      />
     </main>
   )
 }
