@@ -8,7 +8,7 @@ import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const Header = () => {
-  const { user, signInWithProvider, signOut } = useAuth()
+  const { user, signOut } = useAuth()
   const [signOutLoading, setSignOutLoading] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -64,7 +64,11 @@ const Header = () => {
               </>
             )}
 
-            {!user && <Button onClick={() => signInWithProvider("google")}>Sign In</Button>}
+            {!user && (
+              <Link href="/auth">
+                <Button>Sign In</Button>
+              </Link>
+            )}
           </nav>
 
           {/* Mobile Navigation */}
@@ -118,9 +122,11 @@ const Header = () => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <Button onClick={() => signInWithProvider("google")} size="sm">
-                Sign In
-              </Button>
+              <Link href="/auth">
+                <Button size="sm">
+                  Sign In
+                </Button>
+              </Link>
             )}
           </div>
         </div>
