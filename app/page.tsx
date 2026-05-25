@@ -1,77 +1,21 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IqraLogo } from "@/components/iqra-logo"
-import { AuthModal } from "@/components/auth/auth-modal"
 import Link from "next/link"
-import { supabase } from "@/lib/supabase"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import { MessageSquare } from "lucide-react"
 
 export default function HomePage() {
-  const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-  const [showAuthModal, setShowAuthModal] = useState(false)
-
-  useEffect(() => {
-    // Check for session
-    const checkSession = async () => {
-      try {
-        const { data, error } = await supabase.auth.getSession()
-        if (data?.session?.user) {
-          console.log("User found:", data.session.user)
-          setUser(data.session.user)
-        } else {
-          console.log("No user session found")
-        }
-      } catch (err) {
-        console.error("Error checking session:", err)
-      } finally {
-        // Always stop loading after 3 seconds max
-        setTimeout(() => setLoading(false), 3000)
-      }
-    }
-
-    checkSession()
-
-    // Listen for auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Auth state changed:", event, !!session)
-      setUser(session?.user || null)
-      setLoading(false)
-    })
-
-    return () => {
-      authListener.subscription.unsubscribe()
-    }
-  }, [])
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#e6f7eb] px-4">
-        <div className="text-center">
-          <IqraLogo className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-green-700" />
-          <p className="text-green-700 text-sm sm:text-base">Loading IQRA...</p>
-          <div className="mt-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-700 mx-auto"></div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen flex flex-col bg-[#e6f7eb]">
       <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col">
-        {/* Challenge Notifications - Prominent at top */}
-        {user && (
-          <div className="mb-6 sm:mb-8">
-            <ProfileChallengeNotifications />
-          </div>
-        )}
+        {/* Challenge Notifications - Always visible now */}
+        <div className="mb-6 sm:mb-8">
+          <ProfileChallengeNotifications />
+        </div>
 
         <div className="text-center mb-6 sm:mb-8">
           <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
@@ -84,16 +28,6 @@ export default function HomePage() {
             <br className="hidden sm:block" />
             <span className="block sm:inline"> of Islam through learning or challenges.</span>
           </p>
-          {user && (
-            <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 mx-2 sm:mx-0">
-              <p className="text-green-800 font-medium text-sm sm:text-base">
-                🎉 You're signed into IQRA as {user.email || user.user_metadata?.full_name || "a believer"}!
-              </p>
-              <p className="text-green-600 text-xs sm:text-sm">
-                Your progress in IQRA will be saved, unlike KALAM app which requires no sign-in.
-              </p>
-            </div>
-          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto w-full">
@@ -132,20 +66,11 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              {user ? (
-                <Link href="/categories">
-                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                    Start Learning
-                  </Button>
-                </Link>
-              ) : (
-                <Button
-                  onClick={() => setShowAuthModal(true)}
-                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-                >
-                  Sign In to Start Learning
+              <Link href="/categories">
+                <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                  Start Learning
                 </Button>
-              )}
+              </Link>
             </CardFooter>
           </Card>
 
@@ -223,20 +148,11 @@ export default function HomePage() {
               </div>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              {user ? (
-                <Link href="/challenges">
-                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                    Start Challenges
-                  </Button>
-                </Link>
-              ) : (
-                <Button
-                  onClick={() => setShowAuthModal(true)}
-                  className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2"
-                >
-                  Sign In to Challenge
+              <Link href="/challenges">
+                <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+                  Start Challenges
                 </Button>
-              )}
+              </Link>
             </CardFooter>
           </Card>
         </div>
@@ -319,8 +235,7 @@ export default function HomePage() {
        </div>
         </section>
 
-         {/* Auth Modal Section */}
-        <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
+
     </div>
 
       {/* Footer Section */}
