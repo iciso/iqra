@@ -450,23 +450,21 @@ export default function SimpleTopPlayers() {
                       <p className="text-xs text-gray-500">{player.best_percentage}%</p>
                     </div>
                   )}
-                  {user && user.id !== player.id && (
-                    <Button
-                      size="sm"
-                      onClick={() =>
-                        handleChallenge({
-                          id: player.id,
-                          username: player.username,
-                          full_name: player.full_name,
-                          total_score: player.total_score,
-                          best_percentage: player.best_percentage,
-                        })
-                      }
-                      className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
-                    >
-                      Challenge
-                    </Button>
-                  )}
+                  <Button
+                    size="sm"
+                    onClick={() =>
+                      handleChallenge({
+                        id: player.id,
+                        username: player.username,
+                        full_name: player.full_name,
+                        total_score: player.total_score,
+                        best_percentage: player.best_percentage,
+                      })
+                    }
+                    className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
+                  >
+                    Challenge
+                  </Button>
                 </div>
               </div>
             ))}
