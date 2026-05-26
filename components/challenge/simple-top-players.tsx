@@ -144,96 +144,66 @@ export default function SimpleTopPlayers() {
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
-      if (authLoading) {
-        console.log("⏳ Waiting for auth to complete...")
-        return
-      }
-
-      console.log("🔍 Step 1: Auth ready, trying Supabase...")
+      // Try the API endpoint first
+      console.log("🔍 Step 1: Trying API endpoint for challenge players...")
       try {
-        const queryResult = await Promise.race([
-          supabase
-            .from("user_profiles")
-            .select("id, username, full_name, total_score, best_percentage")
-            .order("total_score", { ascending: false })
-            .order("best_percentage", { ascending: false })
-            .order("total_questions", { ascending: false }),
-          new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase query timeout")), 8000)),
+        const response = await Promise.race([
+          fetch("/api/challenges/players"),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("API timeout")), 5000)),
         ])
 
-        const { data, error } = queryResult as any
-        if (error) throw error
-
-        if (data && data.length > 0) {
-          const filteredData = data.filter((player: Player) => player.username !== "Test User")
-          console.log("✅ Players loaded from Supabase:", filteredData.length, "players")
+        const data = await response.json()
+        if (data.success && data.players && data.players.length > 0) {
+          const filteredData = data.players.filter((player: Player) => player.username !== "Test User")
+          console.log("✅ Players loaded from API:", filteredData.length, "players")
           if (mountedRef.current) {
             setPlayers(filteredData)
-            setDataSource("Supabase")
+            setDataSource("Neon Database")
             setIsUsingFallback(false)
           }
           return
         }
-      } catch (supabaseError) {
-        console.error("❌ Supabase error:", supabaseError)
+      } catch (apiError) {
+        console.error("❌ API error:", apiError)
       }
 
-      console.log("🔍 Step 2: Trying Neon fallback...")
+      console.log("🔍 Step 2: Trying localStorage for challenge data...")
       try {
-        const neonPromise = import("@/lib/neon-fallback").then((module) => module.getTopPlayersFromFallback())
-        const neonPlayers = await Promise.race([
-          neonPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Neon query timeout")), 5000)),
-        ])
+        if (typeof window !== "undefined") {
+          const stored = localStorage.getItem("quranQuizLeaderboard")
+          if (stored) {
+            const leaderboardData = JSON.parse(stored)
+            const storagePlayersMap = new Map<string, any>()
+            leaderboardData.forEach((entry: any) => {
+              if (!storagePlayersMap.has(entry.name)) {
+                storagePlayersMap.set(entry.name, {
+                  id: `player-${Math.random()}`,
+                  username: entry.name.split(" ")[0].toLowerCase(),
+                  full_name: entry.name,
+                  total_score: entry.score,
+                  best_percentage: entry.percentage,
+                })
+              }
+            })
 
-        if (neonPlayers && neonPlayers.length > 0) {
-          const filteredNeonPlayers = neonPlayers.filter((player: Player) => player.username !== "Test User")
-          console.log("✅ Players loaded from Neon:", filteredNeonPlayers.length, "players")
-          if (mountedRef.current) {
-            setPlayers(filteredNeonPlayers)
-            setDataSource("Neon")
-            setIsUsingFallback(false)
+            if (storagePlayersMap.size > 0) {
+              const storagePlayers = Array.from(storagePlayersMap.values())
+                .sort((a, b) => b.best_percentage - a.best_percentage || b.total_score - a.total_score)
+              console.log("✅ Players loaded from localStorage:", storagePlayers.length, "players")
+              if (mountedRef.current) {
+                setPlayers(storagePlayers)
+                setDataSource("Quiz Leaderboard")
+                setIsUsingFallback(false)
+              }
+              return
+            }
           }
-          return
         }
-      } catch (neonError) {
-        console.error("❌ Neon error:", neonError)
+      } catch (storageError) {
+        console.error("❌ localStorage error:", storageError)
       }
 
-      console.log("🔍 Step 3: Getting actual leaderboard data...")
-      try {
-        const leaderboardPromise = import("@/lib/database-with-fallback").then((module) =>
-          module.getLeaderboardWithFallback(),
-        )
-        const leaderboardResult = await Promise.race([
-          leaderboardPromise,
-          new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Leaderboard query timeout")), 5000)),
-        ])
-
-        if (leaderboardResult && leaderboardResult.data && leaderboardResult.data.length > 0) {
-          const leaderboardPlayers = leaderboardResult.data
-            .filter((entry) => entry.user_id && entry.name !== "Test User")
-            .map((entry) => ({
-              id: entry.user_id,
-              username: entry.name.split(" ")[0].toLowerCase(),
-              full_name: entry.name,
-              total_score: entry.score,
-              best_percentage: entry.percentage,
-            }))
-
-          console.log("✅ Players loaded from leaderboard:", leaderboardPlayers.length, "players")
-          if (mountedRef.current) {
-            setPlayers(leaderboardPlayers)
-            setDataSource("Live Leaderboard")
-            setIsUsingFallback(false)
-          }
-          return
-        }
-      } catch (leaderboardError) {
-        console.error("❌ Leaderboard error:", leaderboardError)
-      }
-
-      console.log("🔍 Step 4: Using registered users as final fallback...")
+      console.log("🔍 Step 3: Using registered users as final fallback...")
       if (mountedRef.current) {
         const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
         console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
@@ -252,9 +222,9 @@ export default function SimpleTopPlayers() {
         setError(null)
       }
 
-      if (retryCount < 2 && mountedRef.current) {
-        const delay = (retryCount + 1) * 2000
-        console.log(`🔄 Will retry in ${delay}ms... (attempt ${retryCount + 1}/2)`)
+      if (retryCount < 1 && mountedRef.current) {
+        const delay = 2000
+        console.log(`🔄 Will retry in ${delay}ms... (attempt ${retryCount + 1}/1)`)
         setTimeout(() => {
           if (mountedRef.current) {
             setRetryCount(retryCount + 1)
