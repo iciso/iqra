@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,6 +26,20 @@ export function NameInputModal({
   const [name, setName] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
+  // Load previously saved name from localStorage when modal opens
+  useEffect(() => {
+    if (isOpen && typeof window !== "undefined") {
+      try {
+        const savedName = localStorage.getItem("userNameForLeaderboard")
+        if (savedName) {
+          setName(savedName)
+        }
+      } catch (e) {
+        console.warn("[v0] Could not load saved name from localStorage:", e)
+      }
+    }
+  }, [isOpen])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

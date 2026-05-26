@@ -70,14 +70,57 @@ export default function LeaderboardPage() {
     }
   }, [sorted, myRank, myEntry])
 
-  // Load data (try fallback first, then Supabase with a high limit)
+  // Load data (try Neon + localStorage first, then Supabase fallback)
   const loadLeaderboardData = async () => {
     try {
       setLoading(true)
 
-      // 1) Try Supabase first with a high limit so newcomers appear
+      // 1) Try Neon database for leaderboard entries (from quiz submissions)
       try {
-        console.log("🏆 Leaderboard: trying Supabase first...")
+        console.log("🏆 Leaderboard: fetching from Neon database...")
+        const response = await fetch("/api/leaderboard/entries")
+        if (response.ok) {
+          const neonData = await response.json()
+          const neonEntries = neonData.entries || []
+          console.log(`✅ Neon returned ${neonEntries.length} entries`)
+
+          // Also get localStorage entries (client-side submissions)
+          let localStorageEntries: LeaderboardEntry[] = []
+          if (isClient) {
+            try {
+              const stored = localStorage.getItem("quranQuizLeaderboard")
+              localStorageEntries = stored ? JSON.parse(stored) : []
+              console.log(`📱 localStorage returned ${localStorageEntries.length} entries`)
+            } catch (e) {
+              console.error("[v0] Error reading localStorage:", e)
+            }
+          }
+
+          // Merge both sources: combine entries and deduplicate by name + score + date
+          const allEntries = [...neonEntries, ...localStorageEntries]
+          const seen = new Set<string>()
+          const mergedEntries = allEntries.filter((entry) => {
+            const key = `${entry.name}-${entry.score}-${entry.totalQuestions}`
+            if (seen.has(key)) return false
+            seen.add(key)
+            return true
+          })
+
+          if (mergedEntries.length > 0) {
+            console.log(`✅ Merged ${mergedEntries.length} unique entries from Neon + localStorage`)
+            setLeaderboard(mergedEntries)
+            setDataSource(`Neon Database + localStorage (${neonEntries.length} + ${localStorageEntries.length} entries)`)
+            setLastRefresh(new Date())
+            return
+          }
+        }
+      } catch (err) {
+        console.error("❌ Neon error:", err)
+      }
+
+      // 2) Fallback to Supabase or demo if Neon fails
+      try {
+        console.log("📊 Leaderboard: trying Supabase fallback...")
         const { getTopPlayers } = await import("@/lib/supabase-queries")
         const topPlayers = await getTopPlayers(1000)
         if (topPlayers && topPlayers.length > 0) {
@@ -97,26 +140,9 @@ export default function LeaderboardPage() {
           setDataSource(`Supabase User Profiles`)
           setLastRefresh(new Date())
           return
-        } else {
-          console.warn("⚠️ Supabase returned no players, trying fallback...")
         }
       } catch (err) {
-        console.error("❌ Supabase direct error:", err)
-      }
-
-      // 2) Fallback (may return fewer rows, e.g., 20)
-      try {
-        console.log("📊 Leaderboard: trying fallback...")
-        const result = await getLeaderboardWithFallback()
-        if (result && result.data && result.data.length > 0) {
-          console.log(`✅ Fallback returned ${result.data.length} players from ${result.source}`)
-          setLeaderboard(result.data)
-          setDataSource(result.source)
-          setLastRefresh(new Date())
-          return
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback system error:", fallbackError)
+        console.error("❌ Supabase error:", err)
       }
 
       // 3) Demo data if everything fails

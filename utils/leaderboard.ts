@@ -42,6 +42,15 @@ export async function addToLeaderboard(entry: LeaderboardEntry): Promise<void> {
       submittedAt: new Date().toISOString(),
     }
 
+    // Save user's name to localStorage for persistence across sessions
+    if (entry.name) {
+      try {
+        localStorage.setItem("userNameForLeaderboard", entry.name)
+      } catch (e) {
+        console.warn("[v0] Could not save name to localStorage:", e)
+      }
+    }
+
     // Add new entry
     leaderboard.push(newEntry)
 
@@ -69,6 +78,7 @@ export async function addToLeaderboard(entry: LeaderboardEntry): Promise<void> {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEntry),
       })
+      console.log("[v0] Quiz result submitted to Neon database")
     } catch (error) {
       console.error("[v0] Error submitting to API:", error)
       // Continue anyway - localStorage is already updated
