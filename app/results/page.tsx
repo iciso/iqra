@@ -234,6 +234,11 @@ export default function ResultsPage() {
 
       setNameModalSubmitted(true)
       setShowNameModal(false)
+      
+      // Navigate to leaderboard after successful submission
+      setTimeout(() => {
+        router.push("/leaderboard")
+      }, 500)
     } catch (error) {
       console.error("[v0] Error submitting name:", error)
       throw error
@@ -357,7 +362,7 @@ export default function ResultsPage() {
   // Special case for challenger who just completed their turn
   const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
 
-  console.log("🎯 FINAL Render decision:", {
+  console.log("�� FINAL Render decision:", {
     isAuthenticated,
     loading,
     authReady,
