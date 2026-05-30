@@ -319,15 +319,6 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   }
 
   const handleSendChallenge = async () => {
-    if (!user) {
-      toast({
-        title: "Sign in required",
-        description: "Please sign in to challenge other players",
-        variant: "destructive",
-      })
-      return
-    }
-
     if (!selectedCategory) {
       toast({
         title: "Select Category",
@@ -349,9 +340,25 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         timeLimit: 300,
       })
 
+      // Get or create a temporary challenger ID for non-authenticated users
+      let challengerId = user?.id
+      if (!challengerId) {
+        // Generate or retrieve temporary ID for anonymous challenges
+        if (typeof window !== "undefined") {
+          let tempId = localStorage.getItem("tempChallengerId")
+          if (!tempId) {
+            tempId = `anonymous-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
+            localStorage.setItem("tempChallengerId", tempId)
+          }
+          challengerId = tempId
+        } else {
+          challengerId = `temp-${Date.now()}`
+        }
+      }
+
       // Create the challenge with timeout
       const challengeData = {
-        challenger_id: user.id,
+        challenger_id: challengerId,
         challenged_id: opponent.id,
         category: selectedCategory,
         difficulty: selectedDifficulty,

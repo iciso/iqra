@@ -112,20 +112,18 @@ export default function CategoryFirstChallengeSender() {
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
 
   useEffect(() => {
-    if (user && !authLoading) {
+    if (!authLoading) {
       loadTopPlayers()
     }
-  }, [user, authLoading])
+  }, [authLoading])
 
   const loadTopPlayers = async () => {
-    if (!user) return
     setTopPlayersLoading(true)
 
     try {
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .neq("id", user.id)
         .order("total_score", { ascending: false })
         .order("best_percentage", { ascending: false })
         .limit(8)
@@ -150,14 +148,12 @@ export default function CategoryFirstChallengeSender() {
       return
     }
 
-    if (!user) return
     setSearchLoading(true)
 
     try {
       const { data, error } = await supabase
         .from("user_profiles")
         .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .neq("id", user.id)
         .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
         .limit(10)
 
@@ -181,15 +177,6 @@ export default function CategoryFirstChallengeSender() {
   }
 
   const sendChallenge = async (challengedUser: User) => {
-    if (!user) {
-      toast({
-        title: "Error",
-        description: "You must be signed in to send challenges",
-        variant: "destructive",
-      })
-      return
-    }
-
     if (!selectedCategory) {
       toast({
         title: "Select Category",
@@ -202,8 +189,24 @@ export default function CategoryFirstChallengeSender() {
     setSendingChallenge(challengedUser.id)
 
     try {
+      // Get or create a temporary challenger ID for non-authenticated users
+      let challengerId = user?.id
+      if (!challengerId) {
+        // Generate or retrieve temporary ID for anonymous challenges
+        if (typeof window !== "undefined") {
+          let tempId = localStorage.getItem("tempChallengerId")
+          if (!tempId) {
+            tempId = `anonymous-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
+            localStorage.setItem("tempChallengerId", tempId)
+          }
+          challengerId = tempId
+        } else {
+          challengerId = `temp-${Date.now()}`
+        }
+      }
+
       const challengeData = {
-        challenger_id: user.id,
+        challenger_id: challengerId,
         challenged_id: challengedUser.id,
         category: selectedCategory,
         difficulty: selectedDifficulty,
@@ -256,18 +259,6 @@ export default function CategoryFirstChallengeSender() {
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-green-500 border-t-transparent"></div>
               <span className="ml-2 text-sm text-gray-500">Loading...</span>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
-  if (!user) {
-    return (
-      <div className="space-y-6">
-        <Card>
-          <CardContent className="py-8">
-            <p className="text-center text-gray-500">Please sign in to use challenge features</p>
           </CardContent>
         </Card>
       </div>
