@@ -370,7 +370,7 @@ export default function ProfileChallengeNotifications() {
             <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
           </Button>
         </CardTitle>
-      </CardHeader>
+      </CardHeader> 
       <CardContent className="p-3 md:p-4">
         {loading ? (
           <div className="flex justify-center py-6 md:py-8">
