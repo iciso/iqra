@@ -124,7 +124,7 @@ export default function SimpleChallengeNotifications() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-4">Please sign in</div>
+          <div className="text-center py-4">No sign in is required</div>
         </CardContent>
       </Card>
     )
