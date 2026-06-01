@@ -143,7 +143,7 @@ export default function ProfilePage() {
       <div className="min-h-screen flex items-center justify-center">
         <Card className="w-full max-w-md">
           <CardContent className="text-center py-8">
-            <p>Please sign in to view your profile</p>
+            <p>You can view your profile</p>
             <Link href="/">
               
             </Link>
