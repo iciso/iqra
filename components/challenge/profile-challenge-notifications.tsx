@@ -332,7 +332,7 @@ export default function ProfileChallengeNotifications() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-500">Please sign in to view challenges</p>
+          <p className="text-gray-500">No sign in to view challenges</p>
         </CardContent>
       </Card>
     )
