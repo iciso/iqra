@@ -137,7 +137,7 @@ export default function ProfileChallengeNotificationsFixed() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-500">Please sign in to view challenges</p>
+          <p className="text-gray-500">Please view your challenges here</p>
         </CardContent>
       </Card>
     )
