@@ -96,20 +96,15 @@ export default function LeaderboardPage() {
             }
           }
 
-          // Merge both sources: combine entries and deduplicate by name + score + date
+          // Merge both sources: combine entries and deduplicate by player name (keeping highest score)
+          const { deduplicateAndMergeLeaderboard } = await import("@/utils/leaderboard")
           const allEntries = [...neonEntries, ...localStorageEntries]
-          const seen = new Set<string>()
-          const mergedEntries = allEntries.filter((entry) => {
-            const key = `${entry.name}-${entry.score}-${entry.totalQuestions}`
-            if (seen.has(key)) return false
-            seen.add(key)
-            return true
-          })
+          const mergedEntries = deduplicateAndMergeLeaderboard(allEntries)
 
           if (mergedEntries.length > 0) {
-            console.log(`✅ Merged ${mergedEntries.length} unique entries from Neon + localStorage`)
+            console.log(`✅ Merged and deduplicated ${mergedEntries.length} unique players from Neon + localStorage`)
             setLeaderboard(mergedEntries)
-            setDataSource(`Neon Database + localStorage (${neonEntries.length} + ${localStorageEntries.length} entries)`)
+            setDataSource(`Neon Database + localStorage (${neonEntries.length} + ${localStorageEntries.length} raw entries → ${mergedEntries.length} unique players)`)
             setLastRefresh(new Date())
             return
           }

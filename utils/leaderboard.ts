@@ -20,11 +20,46 @@ export function getLeaderboard(): LeaderboardEntry[] {
 
   try {
     const leaderboard = localStorage.getItem("quranQuizLeaderboard")
-    return leaderboard ? JSON.parse(leaderboard) : []
+    const entries = leaderboard ? JSON.parse(leaderboard) : []
+    return deduplicateAndMergeLeaderboard(entries)
   } catch (error) {
     console.error("[v0] Error getting leaderboard:", error)
     return []
   }
+}
+
+// Deduplicate and merge leaderboard entries by name
+// Keeps the highest score for each unique player
+export function deduplicateAndMergeLeaderboard(entries: LeaderboardEntry[]): LeaderboardEntry[] {
+  const playerMap = new Map<string, LeaderboardEntry>()
+
+  entries.forEach((entry) => {
+    const playerName = entry.name.toLowerCase().trim()
+    const existing = playerMap.get(playerName)
+
+    if (!existing) {
+      playerMap.set(playerName, entry)
+    } else {
+      // Keep the entry with higher percentage/score
+      if (entry.percentage > existing.percentage || (entry.percentage === existing.percentage && entry.score > existing.score)) {
+        playerMap.set(playerName, entry)
+      }
+    }
+  })
+
+  // Convert back to array and sort
+  const deduplicated = Array.from(playerMap.values())
+  deduplicated.sort((a, b) => {
+    if (b.percentage !== a.percentage) {
+      return b.percentage - a.percentage
+    }
+    if (b.score !== a.score) {
+      return b.score - a.score
+    }
+    return new Date(b.submittedAt || b.date).getTime() - new Date(a.submittedAt || a.date).getTime()
+  })
+
+  return deduplicated
 }
 
 // Add entry to leaderboard (both localStorage and submit to API)
