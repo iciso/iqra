@@ -216,9 +216,15 @@ export default function CategoryFirstChallengeSender() {
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      const { data, error } = await supabase.from("user_challenges").insert(challengeData).select().single()
+      const apiResponse = await fetch("/api/challenges/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(challengeData),
+      })
 
-      if (error) throw error
+      if (!apiResponse.ok) {
+        throw new Error("Failed to create challenge")
+      }
 
       const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory
       toast({

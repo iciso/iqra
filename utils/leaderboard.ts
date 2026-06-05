@@ -29,26 +29,47 @@ export function getLeaderboard(): LeaderboardEntry[] {
 }
 
 // Deduplicate and merge leaderboard entries by name
-// Keeps the highest score for each unique player
+// Aggregates scores and total questions for the same player
 export function deduplicateAndMergeLeaderboard(entries: LeaderboardEntry[]): LeaderboardEntry[] {
-  const playerMap = new Map<string, LeaderboardEntry>()
+  const playerMap = new Map<string, {
+    entries: LeaderboardEntry[]
+    totalScore: number
+    totalQuestions: number
+  }>()
 
   entries.forEach((entry) => {
     const playerName = entry.name.toLowerCase().trim()
     const existing = playerMap.get(playerName)
 
     if (!existing) {
-      playerMap.set(playerName, entry)
+      playerMap.set(playerName, {
+        entries: [entry],
+        totalScore: entry.score,
+        totalQuestions: entry.totalQuestions,
+      })
     } else {
-      // Keep the entry with higher percentage/score
-      if (entry.percentage > existing.percentage || (entry.percentage === existing.percentage && entry.score > existing.score)) {
-        playerMap.set(playerName, entry)
-      }
+      existing.entries.push(entry)
+      existing.totalScore += entry.score
+      existing.totalQuestions += entry.totalQuestions
     }
   })
 
-  // Convert back to array and sort
-  const deduplicated = Array.from(playerMap.values())
+  // Convert to array with aggregated scores
+  const deduplicated = Array.from(playerMap.values()).map(({ entries, totalScore, totalQuestions }) => {
+    const firstEntry = entries[0]
+    const aggregatedPercentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+    
+    return {
+      ...firstEntry,
+      name: firstEntry.name, // Keep original case
+      score: totalScore,
+      totalQuestions,
+      percentage: aggregatedPercentage,
+      submittedAt: new Date().toISOString(), // Update timestamp
+    }
+  })
+
+  // Sort by aggregated percentage, then score
   deduplicated.sort((a, b) => {
     if (b.percentage !== a.percentage) {
       return b.percentage - a.percentage

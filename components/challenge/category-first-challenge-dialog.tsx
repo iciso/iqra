@@ -368,30 +368,35 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       }
 
-      // Add timeout to prevent hanging
-      const challengePromise = supabase.from("user_challenges").insert(challengeData).select().single()
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Challenge creation timed out after 5 seconds")), 5000),
-      )
+      // Use the API endpoint to create challenges (works without auth)
+      const apiResponse = await fetch("/api/challenges/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(challengeData),
+      })
 
-      const { data: challenge, error } = await Promise.race([challengePromise, timeoutPromise])
-        .then((result) => result as any)
-        .catch((error) => {
-          console.error("❌ Challenge creation timeout or error:", error)
+      let challenge: any = null
+      let error: any = null
 
-          // Create a fallback challenge directly
-          console.log("🔄 Using fallback challenge creation...")
+      if (apiResponse.ok) {
+        const result = await apiResponse.json()
+        challenge = result.challenge
+        console.log("✅ Challenge created successfully via API")
+      } else {
+        error = new Error("Failed to create challenge")
+        console.error("❌ Challenge creation error:", error)
 
-          // Generate a unique ID for the challenge
-          const fallbackChallengeId = `fallback-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
+        // Create a fallback challenge directly
+        console.log("🔄 Using fallback challenge creation...")
 
-          return {
-            data: {
-              id: fallbackChallengeId,
-              ...challengeData,
-              created_at: new Date().toISOString(),
-            },
-            error: null,
+        // Generate a unique ID for the challenge
+        const fallbackChallengeId = `fallback-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
+
+        challenge = {
+          id: fallbackChallengeId,
+          ...challengeData,
+          created_at: new Date().toISOString(),
+        }
           }
         })
 
