@@ -397,6 +397,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
           ...challengeData,
           created_at: new Date().toISOString(),
         }
+      }
 
       if (error) throw error
 
