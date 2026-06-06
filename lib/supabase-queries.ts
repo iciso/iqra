@@ -529,7 +529,7 @@ export async function submitQuizResult(
 
     try {
       const insertData = {
-        user_id: user.id,
+        user_id: userId,
         score,
         total_questions: totalQuestions,
         percentage,
@@ -569,7 +569,7 @@ export async function submitQuizResult(
         console.log('🔄 SUBMIT QUIZ RESULT: Trying Neon fallback...');
         await ensureFallbackInitialized();
         await saveQuizResultToFallback(
-          user.id,
+          userId,
           score,
           totalQuestions,
           percentage,
@@ -587,7 +587,7 @@ export async function submitQuizResult(
     }
 
     console.log('🏆 SUBMIT QUIZ RESULT: Updating user\'s total score');
-    await updateUserTotalScore(user.id, score, totalQuestions, percentage);
+    await updateUserTotalScore(userId, score, totalQuestions, percentage);
 
     if (challengeId) {
       console.log('🏆 SUBMIT QUIZ RESULT: Processing challenge completion');
@@ -606,15 +606,15 @@ export async function submitQuizResult(
       console.log('📋 SUBMIT QUIZ RESULT: Fresh challenge data:', challenge);
 
       if (challenge) {
-        const isChallenger = challenge.challenger_id === user.id;
-        const isChallenged = challenge.challenged_id === user.id;
+        const isChallenger = challenge.challenger_id === userId;
+        const isChallenged = challenge.challenged_id === userId;
 
         console.log('👤 SUBMIT QUIZ RESULT: User role analysis:', {
           isChallenger,
           isChallenged,
           challengerId: challenge.challenger_id,
           challengedId: challenge.challenged_id,
-          currentUserId: user.id,
+          currentUserId: userId,
         });
 
         let updateData: any = {};
