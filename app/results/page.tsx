@@ -277,6 +277,12 @@ export default function ResultsPage() {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
+          // Get userName from state or localStorage
+          let userName = playerName;
+          if (!userName && typeof window !== 'undefined') {
+            userName = localStorage.getItem('playerName') || undefined;
+          }
+
           const result = await submitQuizResult(
             score,
             totalQuestions,
@@ -285,6 +291,7 @@ export default function ResultsPage() {
             timeLeft || undefined,
             undefined, // answers - can be added later
             challenge || undefined, // challenge_id for challenges
+            userName, // userName for free access
           )
           setSubmitted(true)
           console.log("✅ RESULTS AUTO-SAVE: Quiz result saved successfully!", result)

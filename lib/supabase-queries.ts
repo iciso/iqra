@@ -502,16 +502,19 @@ export async function submitQuizResult(
   timeLeft: number = 0,
   answers?: any,
   challengeId?: string,
+  userName?: string,
 ) {
   try {
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-      throw new Error('User not authenticated');
+    // For free access without authentication, use provided userName or generate temporary ID
+    let userId = userName || 'anonymous';
+    if (typeof window !== 'undefined') {
+      const tempId = localStorage.getItem('tempChallengerId');
+      userId = userName || tempId || `user-${Date.now()}`;
     }
 
     console.log('💾 SUBMIT QUIZ RESULT: Starting submission', {
-      userId: user.id,
+      userId,
+      userName,
       score,
       totalQuestions,
       challengeId,

@@ -274,6 +274,13 @@ export default function QuizContainer({
 
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
+    
+    // Get playerName from localStorage
+    let playerName = 'Anonymous'
+    if (typeof window !== 'undefined') {
+      playerName = localStorage.getItem('playerName') || 'Anonymous'
+    }
+    
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs)
     })
@@ -285,6 +292,7 @@ export default function QuizContainer({
       timeLeft,
       answers,
       challengeMode,
+      playerName, // Pass playerName for free access
     )
     return Promise.race([submitPromise, timeoutPromise])
   }
