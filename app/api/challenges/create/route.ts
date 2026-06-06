@@ -2,11 +2,20 @@ import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
-    const { challengedId, category, difficulty, questionCount, timeLimit, challengerId } = await request.json()
+    const body = await request.json()
+    
+    // Accept both camelCase and snake_case parameter names
+    const challengedId = body.challengedId || body.challenged_id
+    const challengerId = body.challengerId || body.challenger_id
+    const category = body.category
+    const difficulty = body.difficulty
+    const questionCount = body.question_count || body.questionCount
+    const timeLimit = body.time_limit || body.timeLimit
 
     // Validate input
     if (!challengedId || !category || !challengerId) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+      console.error("[v0] Missing required fields:", { challengedId, category, challengerId })
+      return NextResponse.json({ error: "Missing required fields: challengedId, category, challengerId" }, { status: 400 })
     }
 
     // For now, we'll return a success response without storing in the database
