@@ -525,162 +525,55 @@ export async function submitQuizResult(
 
     const percentage = Math.round((score / totalQuestions) * 100);
 
-    let quizResultSaved = false;
+    console.log('📊 SUBMIT QUIZ RESULT: Calling API endpoint with:', {
+      userId,
+      score,
+      totalQuestions,
+      percentage,
+      category,
+      difficulty,
+      userName,
+      challengeId,
+    });
 
     try {
-      const insertData = {
-        user_id: userId,
-        score,
-        total_questions: totalQuestions,
-        percentage,
-        category,
-        difficulty,
-        time_left: timeLeft,
-        answers: answers ? JSON.stringify(answers) : null,
-        challenge_id: challengeId || null,
-        created_at: new Date().toISOString(),
-      };
-
-      console.log('📊 SUBMIT QUIZ RESULT: Insert data:', insertData);
-
-      const { data: quizResult, error: quizError } = await supabase
-        .from('quiz_results')
-        .insert(insertData)
-        .select()
-        .single();
-
-      if (quizError) {
-        console.error('❌ SUBMIT QUIZ RESULT: Detailed quiz result error:', {
-          message: quizError.message,
-          details: quizError.details,
-          hint: quizError.hint,
-          code: quizError.code,
-        });
-      } else {
-        console.log('✅ SUBMIT QUIZ RESULT: Quiz result saved to leaderboard:', quizResult);
-        quizResultSaved = true;
-      }
-    } catch (error) {
-      console.error('❌ SUBMIT QUIZ RESULT: Exception saving quiz result:', error);
-    }
-
-    if (!quizResultSaved) {
-      try {
-        console.log('🔄 SUBMIT QUIZ RESULT: Trying Neon fallback...');
-        await ensureFallbackInitialized();
-        await saveQuizResultToFallback(
-          userId,
+      const response = await fetch('/api/quiz/submit-result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: userId,
+          user_name: userName,
           score,
-          totalQuestions,
+          total_questions: totalQuestions,
           percentage,
           category,
           difficulty,
-          timeLeft,
-          answers,
-          challengeId || null,
-        );
-        console.log('✅ SUBMIT QUIZ RESULT: Saved to Neon fallback successfully');
-        quizResultSaved = true;
-      } catch (fallbackError) {
-        console.error('❌ SUBMIT QUIZ RESULT: Fallback also failed:', fallbackError);
+          time_left: timeLeft,
+          answers: answers ? JSON.stringify(answers) : null,
+          challenge_id: challengeId || null,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('❌ SUBMIT QUIZ RESULT: API error:', errorData);
+        throw new Error(`API error: ${errorData.error || response.statusText}`);
       }
+
+      const result = await response.json();
+      console.log('✅ SUBMIT QUIZ RESULT: API submission successful:', result);
+
+      return {
+        success: true,
+        finalScore: score,
+        bonusPoints: 0,
+        originalScore: score,
+        saved: true,
+      };
+    } catch (error) {
+      console.error('❌ SUBMIT QUIZ RESULT: Error submitting to API:', error);
+      throw error;
     }
-
-    console.log('🏆 SUBMIT QUIZ RESULT: Updating user\'s total score');
-    await updateUserTotalScore(userId, score, totalQuestions, percentage);
-
-    if (challengeId) {
-      console.log('🏆 SUBMIT QUIZ RESULT: Processing challenge completion');
-
-      const { data: challenge, error: fetchError } = await supabase
-        .from('user_challenges')
-        .select('*')
-        .eq('id', challengeId)
-        .single();
-
-      if (fetchError) {
-        console.error('❌ SUBMIT QUIZ RESULT: Error fetching challenge:', fetchError);
-        throw fetchError;
-      }
-
-      console.log('📋 SUBMIT QUIZ RESULT: Fresh challenge data:', challenge);
-
-      if (challenge) {
-        const isChallenger = challenge.challenger_id === userId;
-        const isChallenged = challenge.challenged_id === userId;
-
-        console.log('👤 SUBMIT QUIZ RESULT: User role analysis:', {
-          isChallenger,
-          isChallenged,
-          challengerId: challenge.challenger_id,
-          challengedId: challenge.challenged_id,
-          currentUserId: userId,
-        });
-
-        let updateData: any = {};
-        let statusUpdate = challenge.status;
-
-        if (isChallenger) {
-          console.log('🎯 SUBMIT QUIZ RESULT: User is the challenger');
-          updateData = {
-            challenger_score: score,
-            challenger_completed_at: new Date().toISOString(),
-          };
-        } else if (isChallenged) {
-          console.log('🎯 SUBMIT QUIZ RESULT: User is the challenged');
-          updateData = {
-            challenged_score: score,
-            challenged_completed_at: new Date().toISOString(),
-          };
-          if (challenge.challenger_completed_at) {
-            statusUpdate = 'completed';
-            updateData.status = 'completed';
-          }
-        }
-
-        console.log('📝 SUBMIT QUIZ RESULT: Update data:', updateData);
-
-        const { data: updatedChallenge, error: updateError } = await supabase
-          .from('user_challenges')
-          .update(updateData)
-          .eq('id', challengeId)
-          .select()
-          .single();
-
-        if (updateError) {
-          console.error('❌ SUBMIT QUIZ RESULT: Error updating challenge:', updateError);
-          throw updateError;
-        }
-
-        console.log('✅ SUBMIT QUIZ RESULT: Challenge updated successfully:', updatedChallenge);
-
-        if (statusUpdate === 'completed' && !isChallenger) {
-          const opponentId = challenge.challenger_id;
-          const opponentScore = challenge.challenger_score;
-
-          if (opponentScore !== null && opponentId) {
-            console.log(
-              `🏆 SUBMIT QUIZ RESULT: Updating challenger's total score: ${opponentId} +${opponentScore} points`,
-            );
-            await updateUserTotalScore(
-              opponentId,
-              opponentScore,
-              totalQuestions,
-              Math.round((opponentScore / totalQuestions) * 100),
-            );
-          }
-        }
-      }
-    }
-
-    console.log('✅ SUBMIT QUIZ RESULT: Submission completed successfully');
-    return {
-      success: true,
-      finalScore: score,
-      bonusPoints: 0,
-      originalScore: score,
-      saved: quizResultSaved,
-    };
   } catch (error) {
     console.error('❌ SUBMIT QUIZ RESULT: Error in submission:', error);
     throw error;
