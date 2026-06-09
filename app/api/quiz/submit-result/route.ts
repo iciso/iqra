@@ -40,14 +40,22 @@ async function ensureLeaderboardTable(pool: Pool) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, score, totalQuestions, percentage, category, difficulty, challenge } = body
+    // Accept both 'name' and 'user_name' parameters
+    const name = body.name || body.user_name
+    const { score, total_questions, totalQuestions, percentage, category, difficulty, challenge } = body
 
-    // Validate input
-    if (!name || typeof name !== "string" || name.trim().length < 2) {
-      return NextResponse.json({ error: "Invalid name" }, { status: 400 })
+    // Validate input - name is optional (player may not have entered it yet)
+    const playerName = name && typeof name === "string" ? name.trim() : "Anonymous"
+    
+    if (playerName === "Anonymous" && (!name || name.trim().length < 2)) {
+      // If they provided a name, it must be at least 2 chars, otherwise use Anonymous
+      if (name && name.trim().length > 0 && name.trim().length < 2) {
+        return NextResponse.json({ error: "Name must be at least 2 characters" }, { status: 400 })
+      }
     }
 
-    if (score === undefined || !totalQuestions || percentage === undefined) {
+    const totalQuestionsValue = total_questions || totalQuestions
+    if (score === undefined || !totalQuestionsValue || percentage === undefined) {
       return NextResponse.json({ error: "Missing quiz data" }, { status: 400 })
     }
 
@@ -57,15 +65,15 @@ export async function POST(request: NextRequest) {
       // Return success anyway - localStorage will handle it on client side
       const result = {
         id: Date.now().toString(),
-        name: name.trim(),
+        name: playerName,
         score,
-        totalQuestions,
+        total_questions: totalQuestionsValue,
         percentage,
         category,
         difficulty,
         challenge,
         date: new Date().toISOString(),
-        submittedAt: new Date().toISOString(),
+        submitted_at: new Date().toISOString(),
       }
       return NextResponse.json({ success: true, message: "Saved locally", result }, { status: 200 })
     }
@@ -87,9 +95,9 @@ export async function POST(request: NextRequest) {
       const client = await pool.connect()
       try {
         const result = await client.query(query, [
-          name.trim(),
+          playerName,
           score,
-          totalQuestions,
+          totalQuestionsValue,
           percentage,
           category || null,
           difficulty || null,
