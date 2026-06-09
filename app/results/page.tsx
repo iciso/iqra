@@ -270,10 +270,10 @@ export default function ResultsPage() {
 
       // Only attempt save if:
       // 1. Auth is ready (not loading AND authReady is true)
-      // 2. We have user, profile, score, and totalQuestions
+      // 2. We have score and totalQuestions
       // 3. We haven't already submitted
       // 4. We're not currently saving
-      if (authReady && user && profile && score !== null && totalQuestions !== null && !submitted && !saving) {
+      if (authReady && score !== null && totalQuestions !== null && !submitted && !saving) {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
@@ -356,8 +356,8 @@ export default function ResultsPage() {
     )
   }
 
-  // Determine if user is authenticated
-  const isAuthenticated = user && profile && !loading
+  // Determine if we have valid results (authentication removed)
+  const isAuthenticated = score !== null && totalQuestions !== null && !loading
 
   // Get current localStorage values for render decision
   const {
