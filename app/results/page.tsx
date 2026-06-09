@@ -277,9 +277,9 @@ export default function ResultsPage() {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
-          // Get userName from state or localStorage
-          let userName = playerName;
-          if (!userName && typeof window !== 'undefined') {
+          // Get userName from localStorage
+          let userName = undefined;
+          if (typeof window !== 'undefined') {
             userName = localStorage.getItem('playerName') || undefined;
           }
 
