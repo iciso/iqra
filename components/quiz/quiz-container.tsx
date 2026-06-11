@@ -38,15 +38,6 @@ export default function QuizContainer({
   opponentName,
   challengerTurn,
 }: QuizContainerProps) {
-  console.log("🎯 QUIZ CONTAINER PROPS:", {
-    category,
-    difficulty,
-    challengeMode,
-    opponentId,
-    opponentName,
-    challengerTurn,
-  })
-
   const router = useRouter()
   const { user } = useAuth()
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -346,24 +337,9 @@ export default function QuizContainer({
       if (challengerTurn && challengeMode) {
         console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
         try {
-          console.log("🎯 QUIZ CONTAINER: Attempting real challenge update with timeout...")
+          console.log("🎯 QUIZ CONTAINER: Submitting challenger quiz result...")
           await submitQuizWithTimeout(5000)
           console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
-          const { error } = await supabase
-            .from("user_challenges")
-            .update({
-              status: "pending",
-              challenger_score: score,
-              challenger_completed_at: new Date().toISOString(),
-              challenge_questions: JSON.stringify(questions),
-            })
-            .eq("id", challengeMode)
-
-          if (error) {
-            console.error("🎯 QUIZ CONTAINER: Error updating challenge status:", error)
-            throw error
-          }
-          console.log("🎯 QUIZ CONTAINER: Challenge status updated to pending successfully")
           toast({
             title: "Challenge Sent Successfully!",
             description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
@@ -372,7 +348,7 @@ export default function QuizContainer({
           router.push("/results")
           return
         } catch (error) {
-          console.error("🎯 QUIZ CONTAINER: Challenge update failed or timed out:", error)
+          console.error("🎯 QUIZ CONTAINER: Quiz submission error:", error)
           toast({
             title: "Challenge Sent!",
             description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
@@ -382,78 +358,14 @@ export default function QuizContainer({
           return
         }
       } else if (challengeMode) {
-        console.log("🏆 QUIZ CONTAINER: Challenge completion - updating leaderboard with both scores...")
+        console.log("🏆 QUIZ CONTAINER: Challenge completion - submitting challenged player score...")
         try {
-          const { data: challenge, error: challengeError } = await supabase
-            .from("user_challenges")
-            .select(`
-              *,
-              challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name),
-              challenged:user_profiles!user_challenges_challenged_id_fkey(id, username, full_name)
-            `)
-            .eq("id", challengeMode)
-            .single()
-
-          if (challengeError) {
-            console.error("🏆 Error fetching challenge:", challengeError)
-            throw challengeError
-          }
-          console.log("🏆 Challenge data:", challenge)
-
-          const isChallenger = challenge.challenger_id === user?.id
-          const currentUserScore = score
-          const opponentScore = isChallenger ? challenge.challenged_score : challenge.challenger_score
-          console.log("🏆 Score details:", {
-            isChallenger,
-            currentUserScore,
-            opponentScore,
-            challengerId: challenge.challenger_id,
-            challengedId: challenge.challenged_id,
-          })
-
-          console.log("💾 Saving current user score to leaderboard...")
+          console.log("💾 Submitting your score to leaderboard...")
           await submitQuizWithTimeout(5000)
-
-          if (opponentScore !== null && opponentScore !== undefined) {
-            console.log("💾 Saving opponent score to leaderboard...")
-            const opponentId = isChallenger ? challenge.challenged_id : challenge.challenger_id
-            const { error: opponentError } = await supabase.from("quiz_results").insert({
-              user_id: opponentId,
-              score: opponentScore,
-              total_questions: questions.length,
-              percentage: Math.round((opponentScore / questions.length) * 100),
-              category: category.id,
-              difficulty: difficulty,
-              time_left: timeLeft,
-              challenge_id: challengeMode,
-              created_at: new Date().toISOString(),
-            })
-
-            if (opponentError) {
-              console.error("❌ Error saving opponent score:", opponentError)
-            } else {
-              console.log("✅ Opponent score saved to leaderboard")
-            }
-          }
-
-          const updateData = isChallenger
-            ? {
-                challenger_score: score,
-                challenger_completed_at: new Date().toISOString(),
-                status: opponentScore !== null ? "completed" : "pending",
-              }
-            : {
-                challenged_score: score,
-                challenged_completed_at: new Date().toISOString(),
-                status: "completed",
-              }
-
-          await supabase.from("user_challenges").update(updateData).eq("id", challengeMode)
-          console.log("✅ Challenge updated successfully")
-          console.log("🏆 Both scores should now be in leaderboard")
+          console.log("✅ Challenge score submitted successfully")
           toast({
             title: "Challenge Completed!",
-            description: `Both scores updated in leaderboard. Check your ranking!`,
+            description: `Your score (${score}/${questions.length}) has been recorded!`,
             duration: 5000,
           })
           router.push("/results")
