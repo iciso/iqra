@@ -406,16 +406,20 @@ export default function LeaderboardPage() {
                   </TableBody>
                 </Table>
               </div>
-              <div className="mt-3 flex items-center justify-center">
+              <div className="mt-3 flex flex-col items-center justify-center gap-2">
                 <Button
                   variant="outline"
-                  className="flex gap-1 text-xs h-9 dark:border-green-700 dark:text-green-400 bg-transparent"
+                  className="flex gap-1 text-xs h-9 dark:border-green-700 dark:text-green-400 bg-transparent hover:bg-green-50 dark:hover:bg-green-950/50"
                   onClick={loadLeaderboardData}
                   disabled={loading}
+                  title="Merge and update scores from all your quiz attempts"
                 >
                   <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-                  <span className="truncate">{loading ? "Refreshing..." : "Refresh"}</span>
+                  <span className="truncate">{loading ? "Merging scores..." : "Update My Scores"}</span>
                 </Button>
+                <p className="text-xs text-gray-500 dark:text-gray-400 text-center max-w-xs">
+                  Combines all your quiz attempts to calculate your final score and ranking
+                </p>
               </div>
             </>
           ) : (
