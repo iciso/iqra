@@ -201,14 +201,12 @@ export default function ResultsPage() {
 
   // Show name modal when results load (no auth required)
   useEffect(() => {
-    if (score !== null && totalQuestions !== null && !nameModalSubmitted && !showNameModal) {
-      // Check if user already submitted their name in this session
-      const alreadySubmitted = localStorage.getItem("nameModalSubmittedThisSession")
-      if (!alreadySubmitted) {
-        setShowNameModal(true)
-      }
+    if (score !== null && totalQuestions !== null && !nameModalSubmitted) {
+      // Always show the name modal for each quiz, don't check session flag
+      // This ensures players can register their name for each attempt
+      setShowNameModal(true)
     }
-  }, [score, totalQuestions, nameModalSubmitted, showNameModal])
+  }, [score, totalQuestions, nameModalSubmitted])
 
   // Handle name submission to leaderboard
   const handleNameSubmit = async (name: string) => {
@@ -472,6 +470,16 @@ export default function ResultsPage() {
             </Button>
           </CardFooter>
         </Card>
+
+        {/* Show name modal for challenges too */}
+        <NameInputModal
+          isOpen={showNameModal}
+          onSubmit={handleNameSubmit}
+          onSkip={handleNameSkip}
+          score={score || 0}
+          totalQuestions={totalQuestions || 10}
+          percentage={percentage || 0}
+        />
       ) : (
         // Regular results view
         <>
