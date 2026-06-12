@@ -367,22 +367,6 @@ export default function ResultsPage() {
   // Special case for challenger who just completed their turn
   const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
 
-  console.log("�� FINAL Render decision:", {
-    isAuthenticated,
-    loading,
-    authReady,
-    user: !!user,
-    profile: !!profile,
-    isChallenger,
-    challengerTurn,
-    challenge: !!challenge,
-    score,
-    currentChallenge,
-    currentChallengerTurn,
-    currentScore,
-    showChallengeSubmitted,
-  })
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
