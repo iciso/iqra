@@ -454,16 +454,6 @@ export default function ResultsPage() {
             </Button>
           </CardFooter>
         </Card>
-
-        {/* Show name modal for challenges too */}
-        <NameInputModal
-          isOpen={showNameModal}
-          onSubmit={handleNameSubmit}
-          onSkip={handleNameSkip}
-          score={score || 0}
-          totalQuestions={totalQuestions || 10}
-          percentage={percentage || 0}
-        />
       ) : (
         // Regular results view
         <>
