@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Check, X, Trophy, Clock, AlertCircle, RefreshCw } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { supabase } from "@/lib/supabase"
@@ -321,6 +321,9 @@ export default function ChallengeNotification() {
               <Trophy className="h-5 w-5" />
               Challenge from {selectedChallenge?.challenger?.full_name || selectedChallenge?.challenger?.username}
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Challenge details and acceptance options
+            </DialogDescription>
           </DialogHeader>
 
           {selectedChallenge && (

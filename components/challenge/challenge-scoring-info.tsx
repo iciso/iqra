@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Info, Trophy, Clock, X, CheckCircle } from "lucide-react"
@@ -23,6 +23,9 @@ export default function ChallengeScoringInfo() {
             <Trophy className="h-5 w-5" />
             Challenge Scoring System
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Information about how challenge scoring and bonuses work
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
