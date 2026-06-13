@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import type { Badge } from "@/data/badges-data"
 import BadgeItem from "./badge-item"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import confetti from "canvas-confetti"
 
@@ -38,6 +38,9 @@ export default function BadgeNotification({ badges, onClose }: BadgeNotification
           <DialogTitle className="text-center text-2xl">
             {badges.length > 1 ? "New Badges Earned!" : "New Badge Earned!"}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Congratulations on earning new badges for your achievements!
+          </DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-col items-center p-4">
