@@ -3,10 +3,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Dialog,
   DialogContent,
@@ -16,209 +12,120 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Users, Gamepad2, Trophy, Star, UserPlus, Zap, Target, Clock } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
-import { searchUsers, getFriends, sendFriendRequest, type UserProfile } from "@/lib/supabase-queries"
+import { Gamepad2, Zap } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
-import { supabase } from "@/lib/supabase"
+
+// Kept for compatibility with whatever still imports this type from elsewhere.
+// Not used to look up real accounts any more - there are none.
+export interface UserProfile {
+  id: string
+  username: string
+  full_name?: string
+  avatar_url?: string
+}
 
 interface SocialChallengerSelectorProps {
-  onChallengerSelect: (challenger: UserProfile) => void
+  onChallengerSelect?: (challenger: UserProfile) => void
   currentChallenger?: UserProfile | null
 }
 
-export default function SocialChallengerSelector({
-  onChallengerSelect,
-  currentChallenger,
-}: SocialChallengerSelectorProps) {
-  const { user } = useAuth()
-  const [isOpen, setIsOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [searchResults, setSearchResults] = useState<UserProfile[]>([])
-  const [friends, setFriends] = useState<UserProfile[]>([])
-  const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState("friends")
+const NAME_STORAGE_KEY = "userNameForLeaderboard"
 
-  // Challenge creation state
-  const [challengeDialog, setChallengeDialog] = useState(false)
-  const [selectedUser, setSelectedUser] = useState<UserProfile | null>(null)
-  const [challengeCategory, setChallengeCategory] = useState("quran")
-  const [challengeDifficulty, setChallengeDifficulty] = useState("mixed")
+const categoryOptions = [
+  { value: "quran", label: "Quran Knowledge" },
+  { value: "seerah", label: "Seerah (Prophet's Biography)" },
+  { value: "fiqh", label: "Fiqh (Islamic Jurisprudence)" },
+  { value: "hadeeth", label: "Hadeeth" },
+  { value: "aqeedah", label: "Aqeedah (Islamic Creed)" },
+  { value: "tafsir", label: "Tafsir (Quran Commentary)" },
+  { value: "comparative", label: "Comparative Religion" },
+  { value: "islamic-finance", label: "Islamic Finance" },
+  { value: "tazkiyah", label: "Tazkiyah (Spiritual Purification)" },
+  { value: "history", label: "Islamic History & Civilization" },
+  { value: "new-muslims", label: "New Muslims" },
+  { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
+  { value: "dawah", label: "Dawah (Islamic Outreach)" },
+]
+
+const difficultyOptions = [
+  { value: "easy", label: "Easy" },
+  { value: "intermediate", label: "Intermediate" },
+  { value: "advanced", label: "Advanced" },
+  { value: "mixed", label: "Mixed" },
+]
+
+export default function SocialChallengerSelector({ onChallengerSelect, currentChallenger }: SocialChallengerSelectorProps) {
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [yourName, setYourName] = useState("")
+  const [opponentName, setOpponentName] = useState("")
+  const [category, setCategory] = useState("quran")
+  const [difficulty, setDifficulty] = useState("mixed")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [challengeSent, setChallengeSent] = useState(false)
 
-  // Category options
-  const categoryOptions = [
-    { value: "quran", label: "Quran Knowledge" },
-    { value: "seerah", label: "Seerah (Prophet's Biography)" },
-    { value: "fiqh", label: "Fiqh (Islamic Jurisprudence)" },
-    { value: "hadeeth", label: "Hadeeth" },
-    { value: "aqeedah", label: "Aqeedah (Islamic Creed)" },
-    { value: "tafsir", label: "Tafsir (Quran Commentary)" },
-    { value: "comparative", label: "Comparative Religion" },
-    { value: "islamic-finance", label: "Islamic Finance" },
-    { value: "tazkiyah", label: "Tazkiyah (Spiritual Purification)" },
-    { value: "history", label: "Islamic History & Civilization" },
-    { value: "new-muslims", label: "New Muslims" },
-    { value: "islamic-medical-ethics", label: "Islamic Medical Ethics" },
-    { value: "dawah", label: "Dawah (Islamic Outreach)" }, 
-  ]
-
-  // Difficulty options
-  const difficultyOptions = [
-    { value: "easy", label: "Easy" },
-    { value: "intermediate", label: "Intermediate" },
-    { value: "advanced", label: "Advanced" },
-    { value: "mixed", label: "Mixed" },
-  ]
-
   useEffect(() => {
-    if (isOpen && user) {
-      loadFriends()
+    if (typeof window !== "undefined") {
+      const savedName = localStorage.getItem(NAME_STORAGE_KEY)
+      if (savedName) setYourName(savedName)
     }
-  }, [isOpen, user])
+  }, [dialogOpen])
 
-  useEffect(() => {
-    const searchTimeout = setTimeout(async () => {
-      if (searchQuery.trim().length > 2) {
-        setLoading(true)
-        try {
-          const users = await searchUsers(searchQuery)
-          setSearchResults(users.filter((u) => u.id !== user?.id))
-        } catch (error) {
-          console.error("Search error:", error)
-        } finally {
-          setLoading(false)
-        }
-      } else {
-        setSearchResults([])
-      }
-    }, 300)
+  const handleSendChallenge = async () => {
+    const trimmedYourName = yourName.trim()
+    const trimmedOpponentName = opponentName.trim()
 
-    return () => clearTimeout(searchTimeout)
-  }, [searchQuery, user?.id])
-
-  const loadFriends = async () => {
-    if (!user) return
-    try {
-      const friendsData = await getFriends(user.id)
-      setFriends(friendsData)
-    } catch (error) {
-      console.error("Error loading friends:", error)
+    if (!trimmedYourName || trimmedYourName.length < 2) {
+      toast({ title: "Enter your name", description: "Your name must be at least 2 characters", variant: "destructive" })
+      return
     }
-  }
-
-  const handleSendFriendRequest = async (userId: string) => {
-    try {
-      await sendFriendRequest(userId)
-      toast({
-        title: "Friend Request Sent",
-        description: "Your friend request has been sent successfully!",
-      })
-      // Remove user from search results
-      setSearchResults((prev) => prev.filter((u) => u.id !== userId))
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to send friend request",
-        variant: "destructive",
-      })
-    }
-  }
-
-  const handleCreateChallenge = async () => {
-    console.log("🚨 NEW COMPONENT CODE RUNNING - NO API CALLS!")
-
-    if (!selectedUser || !user) {
-      console.error("Missing selectedUser or user:", { selectedUser, user })
-      toast({
-        title: "Error",
-        description: "Missing user information. Please try signing in again.",
-        variant: "destructive",
-      })
+    if (!trimmedOpponentName || trimmedOpponentName.length < 2) {
+      toast({ title: "Enter opponent's name", description: "Opponent name must be at least 2 characters", variant: "destructive" })
       return
     }
 
-    console.log("🎯 Starting DIRECT SUPABASE challenge creation:", {
-      selectedUser: selectedUser.id,
-      category: challengeCategory,
-      difficulty: challengeDifficulty,
-      user: user.id,
-    })
-
     setIsSubmitting(true)
-
     try {
-      // First, verify we have a valid session
-      const {
-        data: { session },
-        error: sessionError,
-      } = await supabase.auth.getSession()
+      // Remember the challenger's name for next time, same key used by the leaderboard flow
+      localStorage.setItem(NAME_STORAGE_KEY, trimmedYourName)
+      localStorage.setItem("tempChallengerId", trimmedYourName)
 
-      if (sessionError || !session?.user) {
-        console.error("❌ Session error:", sessionError)
-        throw new Error("Please sign in again to send challenges")
-      }
-
-      console.log("✅ Valid session found for user:", session.user.id)
-
-      // Calculate expiry date (24 hours from now)
-      const expiresAt = new Date()
-      expiresAt.setHours(expiresAt.getHours() + 24)
-
-      console.log("📝 Creating challenge with DIRECT SUPABASE:", {
-        challenger_id: session.user.id,
-        challenged_id: selectedUser.id,
-        category: challengeCategory,
-        difficulty: challengeDifficulty,
-        question_count: 10,
-        time_limit: 300,
-        status: "pending",
-        expires_at: expiresAt.toISOString(),
-      })
-
-      // Create the challenge directly with Supabase - NO API CALLS
-      const { data, error } = await supabase
-        .from("user_challenges")
-        .insert({
-          challenger_id: session.user.id,
-          challenged_id: selectedUser.id,
-          category: challengeCategory,
-          difficulty: challengeDifficulty,
+      const response = await fetch("/api/challenges/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          challengerName: trimmedYourName,
+          challengedName: trimmedOpponentName,
+          category,
+          difficulty,
           question_count: 10,
           time_limit: 300,
-          status: "pending",
-          expires_at: expiresAt.toISOString(),
-        })
-        .select()
-        .single()
+        }),
+      })
 
-      if (error) {
-        console.error("❌ Database error creating challenge:", error)
-        throw new Error(`Failed to create challenge: ${error.message}`)
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to create challenge")
       }
 
-      console.log("🎉 Challenge created successfully with DIRECT SUPABASE:", data)
-
       setChallengeSent(true)
-
-      setTimeout(() => {
-        setChallengeDialog(false)
-        setSelectedUser(null)
-        setChallengeSent(false)
-      }, 2000)
-
       toast({
         title: "Challenge Sent! 🎯",
-        description: `You've challenged ${selectedUser.full_name || selectedUser.username} to a ${
-          categoryOptions.find((c) => c.value === challengeCategory)?.label
-        } quiz!`,
+        description: `You've challenged ${trimmedOpponentName} to a ${categoryOptions.find((c) => c.value === category)?.label} quiz!`,
       })
+
+      if (onChallengerSelect) {
+        onChallengerSelect({ id: trimmedOpponentName, username: trimmedOpponentName, full_name: trimmedOpponentName })
+      }
+
+      setTimeout(() => {
+        setDialogOpen(false)
+        setChallengeSent(false)
+        setOpponentName("")
+      }, 2000)
     } catch (error: any) {
-      console.error("❌ Challenge creation error:", error)
       toast({
         title: "Error",
-        description: error.message || "Failed to send challenge. Please try again.",
+        description: error.message || "Failed to send challenge",
         variant: "destructive",
       })
     } finally {
@@ -226,272 +133,99 @@ export default function SocialChallengerSelector({
     }
   }
 
-  const getUserInitials = (profile: UserProfile) => {
-    if (profile.full_name) {
-      return profile.full_name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-    }
-    return profile.username.charAt(0).toUpperCase()
-  }
-
-  const getOnlineStatus = (profile: UserProfile) => {
-    if (profile.is_online) return "online"
-    const lastSeen = profile.last_seen ? new Date(profile.last_seen) : null
-    if (!lastSeen) return "unknown"
-
-    const now = new Date()
-    const diffMinutes = Math.floor((now.getTime() - lastSeen.getTime()) / (1000 * 60))
-
-    if (diffMinutes < 5) return "recently"
-    if (diffMinutes < 60) return `${diffMinutes}m ago`
-    if (diffMinutes < 1440) return `${Math.floor(diffMinutes / 60)}h ago`
-    return `${Math.floor(diffMinutes / 1440)}d ago`
-  }
-
-  const UserCard = ({ profile, showAddFriend = false }: { profile: UserProfile; showAddFriend?: boolean }) => (
-    <Card className="hover:shadow-md transition-shadow">
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="relative">
-              <Avatar className="h-12 w-12">
-                <AvatarImage src={profile.avatar_url || "/placeholder.svg"} />
-                <AvatarFallback className="bg-green-100 text-green-700">{getUserInitials(profile)}</AvatarFallback>
-              </Avatar>
-              {profile.is_online && (
-                <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
-              )}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <h3 className="font-medium">{profile.full_name || profile.username}</h3>
-                {profile.best_percentage > 80 && <Star className="h-4 w-4 text-yellow-500" />}
-              </div>
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {getOnlineStatus(profile)}
-                </span>
-                {profile.best_percentage > 0 && (
-                  <Badge variant="secondary" className="text-xs">
-                    Best: {profile.best_percentage}%
-                  </Badge>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            {showAddFriend && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => handleSendFriendRequest(profile.id)}
-                className="h-8 w-8 p-0"
-              >
-                <UserPlus className="h-3 w-3" />
-              </Button>
-            )}
-            <Button
-              size="sm"
-              onClick={() => {
-                setSelectedUser(profile)
-                setChallengeDialog(true)
-              }}
-              className="h-8 px-3 bg-green-600 hover:bg-green-700"
-            >
-              <Gamepad2 className="h-3 w-3 mr-1" />
-              Challenge
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                onChallengerSelect(profile)
-                setIsOpen(false)
-              }}
-              className="h-8 px-3"
-            >
-              <Target className="h-3 w-3 mr-1" />
-              Select
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  )
-
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
-            <Users className="h-4 w-4 mr-2" />
-            Find Challengers
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              Find Your Next Challenger
-            </DialogTitle>
-            <DialogDescription>Search for users to challenge or select from your friends list.</DialogDescription>
-          </DialogHeader>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
+          <Gamepad2 className="h-4 w-4 mr-2" />
+          Challenge Someone
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Gamepad2 className="h-5 w-5" />
+            Send a Challenge
+          </DialogTitle>
+          <DialogDescription>No sign-in needed. Just enter names and pick a quiz.</DialogDescription>
+        </DialogHeader>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="friends">Friends ({friends.length})</TabsTrigger>
-              <TabsTrigger value="search">Search Users</TabsTrigger>
-              <TabsTrigger value="leaderboard">Top Players</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="friends" className="space-y-4">
-              {friends.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <Users className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>No friends yet</p>
-                  <p className="text-sm">Search for users to add as friends!</p>
-                </div>
-              ) : (
-                <div className="space-y-3">
-                  {friends.map((friend) => (
-                    <UserCard key={friend.id} profile={friend} />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="search" className="space-y-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search for users to challenge..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-
-              {loading && <div className="text-center py-4 text-gray-500">Searching...</div>}
-
-              {searchResults.length > 0 && (
-                <div className="space-y-3">
-                  {searchResults.map((user) => (
-                    <UserCard key={user.id} profile={user} showAddFriend={true} />
-                  ))}
-                </div>
-              )}
-
-              {searchQuery.length > 2 && !loading && searchResults.length === 0 && (
-                <div className="text-center py-8 text-gray-500">
-                  <Users className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>No users found matching "{searchQuery}"</p>
-                  <p className="text-sm">Try a different search term</p>
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="leaderboard" className="space-y-4">
-              <div className="text-center py-8 text-gray-500">
-                <Trophy className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                <p>Top Players Coming Soon</p>
-                <p className="text-sm">Challenge the best IQRA players!</p>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </DialogContent>
-      </Dialog>
-
-      {/* Challenge Creation Dialog */}
-      <Dialog open={challengeDialog} onOpenChange={setChallengeDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Gamepad2 className="h-5 w-5" />
-              Challenge {selectedUser?.full_name || selectedUser?.username}
-            </DialogTitle>
-            <DialogDescription>Select the category and difficulty for your challenge.</DialogDescription>
-          </DialogHeader>
-
-          <div className="space-y-4">
-            {challengeSent ? (
-              <div className="text-center py-6">
-                <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-green-600" />
-                </div>
-                <h3 className="text-lg font-medium mb-2">Challenge Sent! 🎯</h3>
-                <p className="text-gray-500 mb-4">
-                  {selectedUser?.full_name || selectedUser?.username} will be notified of your challenge.
-                </p>
-                <p className="text-sm text-gray-500">
-                  They can accept your challenge even when offline and you'll be notified when they complete it.
-                </p>
-              </div>
-            ) : (
-              <>
-                <div>
-                  <label className="text-sm font-medium">Category</label>
-                  <Select value={challengeCategory} onValueChange={setChallengeCategory}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categoryOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium">Difficulty</label>
-                  <Select value={challengeDifficulty} onValueChange={setChallengeDifficulty}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {difficultyOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="flex gap-2">
-                  <Button
-                    onClick={handleCreateChallenge}
-                    className="flex-1 bg-green-600 hover:bg-green-700"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Zap className="h-4 w-4 mr-2" />
-                        Send Challenge
-                      </>
-                    )}
-                  </Button>
-                  <Button variant="outline" onClick={() => setChallengeDialog(false)} className="flex-1">
-                    Cancel
-                  </Button>
-                </div>
-              </>
-            )}
+        {challengeSent ? (
+          <div className="text-center py-6">
+            <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+              <Zap className="h-6 w-6 text-green-600" />
+            </div>
+            <h3 className="text-lg font-medium mb-2">Challenge Sent! 🎯</h3>
+            <p className="text-gray-500">{opponentName} will see this on their homepage next time they visit.</p>
           </div>
-        </DialogContent>
-      </Dialog>
-    </>
+        ) : (
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium">Your Name</label>
+              <Input
+                placeholder="Enter your name"
+                value={yourName}
+                onChange={(e) => setYourName(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Opponent's Name</label>
+              <Input
+                placeholder="Who are you challenging?"
+                value={opponentName}
+                onChange={(e) => setOpponentName(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Category</label>
+              <Select value={category} onValueChange={setCategory}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {categoryOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Difficulty</label>
+              <Select value={difficulty} onValueChange={setDifficulty}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {difficultyOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <Button onClick={handleSendChallenge} className="w-full bg-green-600 hover:bg-green-700" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Zap className="h-4 w-4 mr-2" />
+                  Send Challenge
+                </>
+              )}
+            </Button>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   )
 }
