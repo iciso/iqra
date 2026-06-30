@@ -340,33 +340,37 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         timeLimit: 300,
       })
 
-      // Get or create a temporary challenger ID for non-authenticated users
-      let challengerId = user?.id
-      if (!challengerId) {
-        // Generate or retrieve temporary ID for anonymous challenges
-        if (typeof window !== "undefined") {
-          let tempId = localStorage.getItem("tempChallengerId")
-          if (!tempId) {
-            tempId = `anonymous-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
-            localStorage.setItem("tempChallengerId", tempId)
-          }
-          challengerId = tempId
-        } else {
-          challengerId = `temp-${Date.now()}`
-        }
-      }
+      // Get the challenger's display name - same key the leaderboard name-entry uses
+let challengerName =
+  typeof window !== "undefined" ? localStorage.getItem("userNameForLeaderboard") : null
 
-      // Create the challenge with timeout
-      const challengeData = {
-        challenger_id: challengerId,
-        challenged_id: opponent.id,
-        category: selectedCategory,
-        difficulty: selectedDifficulty,
-        question_count: 10,
-        time_limit: 300,
-        status: "pending",
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-      }
+if (!challengerName) {
+  const entered = typeof window !== "undefined" ? window.prompt("Enter your name to send this challenge:") : null
+  challengerName = entered?.trim() || ""
+  if (challengerName.length < 2) {
+    toast({
+      title: "Name required",
+      description: "Please enter your name (at least 2 characters) to send a challenge.",
+      variant: "destructive",
+    })
+    setIsSubmitting(false)
+    return
+  }
+  localStorage.setItem("userNameForLeaderboard", challengerName)
+  localStorage.setItem("tempChallengerId", challengerName)
+}
+
+// Opponent's real name (not the synthetic player-N id)
+const challengedName = opponent.full_name || opponent.username
+
+const challengeData = {
+  challengerName,
+  challengedName,
+  category: selectedCategory,
+  difficulty: selectedDifficulty,
+  question_count: 10,
+  time_limit: 300,
+}
 
       // Use the API endpoint to create challenges (works without auth)
       const apiResponse = await fetch("/api/challenges/create", {
@@ -413,7 +417,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
       // Redirect to quiz immediately as the challenger
       setTimeout(() => {
-        const challengeUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${challenge.id}&questions=10&opponent=${opponent.id}&opponentName=${encodeURIComponent(opponent.full_name || opponent.username)}&challengerTurn=true`
+        const challengeUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${challenge.id}&questions=10&opponentName=${encodeURIComponent(challengedName)}&challengerTurn=true`
         console.log(`🔗 Redirecting challenger to:`, challengeUrl)
         router.push(challengeUrl)
       }, 1500)
