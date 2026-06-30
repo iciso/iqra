@@ -513,7 +513,7 @@ export default function QuizContainer({
                     </div>
                   </div>
                 </div>
-              )}
+              )} 
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto">
               <div className="h-full flex flex-col justify-between">
