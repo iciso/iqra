@@ -16,6 +16,7 @@ import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
+import { toast } from "@/components/ui/use-toast"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
@@ -77,53 +78,17 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
       console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
 
-      // New: if we have a challenge id but no opponent info, fetch it
+      // Use opponentName from URL — no Supabase lookup needed
       if (opponentName) {
-        const fetchOpponentFromChallenge = async () => {
-          try {
-            const { data: ch, error: chError } = await supabase
-              .from("user_challenges")
-              .select(`
-                id, challenger_id,
-                challenger_profile:user_profiles!user_challenges_challenger_id_fkey ( id, full_name, username, avatar_url )
-              `)
-              .eq("id", challengeMode)
-              .single()
-
-            if (chError || !ch) {
-              console.error("🎯 QUIZ CONTAINER: Failed to fetch challenge for opponent:", chError)
-              return
-            }
-
-            const oppInfo = {
-              id: ch.challenger_profile?.id || ch.challenger_id,
-              name: ch.challenger_profile?.full_name || ch.challenger_profile?.username || "Challenger",
-              avatar_url: ch.challenger_profile?.avatar_url || null,
-              level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-            }
-
-            setOpponent(oppInfo)
-            localStorage.setItem("quizOpponentId", oppInfo.id || "")
-            localStorage.setItem("quizOpponent", JSON.stringify(oppInfo))
-            return
-          } catch (err) {
-            console.error("🎯 QUIZ CONTAINER: Error fetching opponent from challenge:", err)
-          }
-        }
-
-        fetchOpponentFromChallenge()
-      }
-
-      if (opponentId && opponentName) {
-        console.log("🎯 QUIZ CONTAINER: Using opponent info from URL")
+        console.log("🎯 QUIZ CONTAINER: Using opponent name from URL")
         const opponentInfo = {
-          id: opponentId,
+          id: opponentId || opponentName,
           name: opponentName,
           avatar_url: null,
           level: challengerTurn ? "Waiting for your quiz" : "Challenger",
         }
         setOpponent(opponentInfo)
-        localStorage.setItem("quizOpponentId", opponentId)
+        localStorage.setItem("quizOpponentId", opponentInfo.id)
         localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
       } else if (opponentId && !isFallbackChallenge()) {
         console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
@@ -178,7 +143,7 @@ export default function QuizContainer({
       }
 
       // Set up timer for challenge mode
-      let minutes = 5 // Default
+      let minutes = 5
       if (challengeMode === "daily") minutes = 5
       else if (challengeMode === "quran") minutes = 7
       else if (challengeMode === "seerah") minutes = 6
@@ -263,15 +228,16 @@ export default function QuizContainer({
 
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
-    
-    // Get playerName from localStorage
-    let playerName = 'Anonymous'
-    if (typeof window !== 'undefined') {
-      playerName = localStorage.getItem('userNameForLeaderboard') 
-          || localStorage.getItem('playerName') 
-          || 'Anonymous'
+
+    // Read player name from localStorage — same key used everywhere
+    let playerName = "Anonymous"
+    if (typeof window !== "undefined") {
+      playerName =
+        localStorage.getItem("userNameForLeaderboard") ||
+        localStorage.getItem("playerName") ||
+        "Anonymous"
     }
-    
+
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs)
     })
@@ -283,7 +249,7 @@ export default function QuizContainer({
       timeLeft,
       answers,
       challengeMode,
-      playerName, // Pass playerName for free access
+      playerName,
     )
     return Promise.race([submitPromise, timeoutPromise])
   }
@@ -351,7 +317,7 @@ export default function QuizContainer({
           console.error("🎯 QUIZ CONTAINER: Quiz submission error:", error)
           toast({
             title: "Challenge Sent!",
-            description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+            description: `Your score (${score}/${questions.length}) has been recorded.`,
             duration: 5000,
           })
           router.push("/results")
@@ -381,7 +347,7 @@ export default function QuizContainer({
           return
         }
       } else {
-        console.log("🎯 QUIZ CONTAINER: Regular quiz completion - saving to localStorage only...")
+        console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
         toast({
           title: "Quiz Completed!",
           description: `Saving your score (${score}/${questions.length}) to the leaderboard...`,
@@ -513,7 +479,7 @@ export default function QuizContainer({
                     </div>
                   </div>
                 </div>
-              )} 
+              )}
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto">
               <div className="h-full flex flex-col justify-between">
