@@ -16,8 +16,6 @@ import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
-import { toast } from "@/components/ui/use-toast"
-import { supabase } from "@/lib/supabase-client"
 
 interface QuizContainerProps {
   questions: QuizQuestion[]
