@@ -78,7 +78,7 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
 
       // New: if we have a challenge id but no opponent info, fetch it
-      if (!opponentId && challengeMode) {
+      if (opponentName) {
         const fetchOpponentFromChallenge = async () => {
           try {
             const { data: ch, error: chError } = await supabase
