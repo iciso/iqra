@@ -182,7 +182,7 @@ export default function AboutPage() {
                   </div>
             </li>
              <li>
-              <strong>Debugging & Refactoring:</strong> Deep gratitude to{" "}
+              <strong>Debugging & Refactoring:</strong> Sincere thanks also go to {" "}
               <a
                 href="https://www.deepseek.com"
                 target="_blank"
@@ -191,7 +191,7 @@ export default function AboutPage() {
               >
                 Claude AI
               </a>{" "}
-              for their invaluable assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, to those without email.
+              for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, to those without email.
               <div className="mt-2">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
