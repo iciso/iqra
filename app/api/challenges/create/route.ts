@@ -10,7 +10,7 @@ async function ensureChallengesTable(pool: Pool) {
   try {
     await client.query(`
       CREATE TABLE IF NOT EXISTS challenges (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id TEXT PRIMARY KEY,
         challenger_name VARCHAR(255) NOT NULL,
         challenged_name VARCHAR(255) NOT NULL,
         category VARCHAR(255) NOT NULL,
@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
-    // Accept multiple naming conventions from older callers
     const challengerName = body.challengerName || body.challenger_name
     const challengedName = body.challengedName || body.challenged_name
     const category = body.category
@@ -62,16 +61,26 @@ export async function POST(request: NextRequest) {
     try {
       await ensureChallengesTable(pool)
 
+      const challengeId = crypto.randomUUID()
       const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000)
 
       const client = await pool.connect()
       try {
         const result = await client.query(
           `INSERT INTO challenges
-            (challenger_name, challenged_name, category, difficulty, question_count, time_limit, status, expires_at)
-           VALUES ($1, $2, $3, $4, $5, $6, 'pending', $7)
+            (id, challenger_name, challenged_name, category, difficulty, question_count, time_limit, status, expires_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending', $8)
            RETURNING *`,
-          [challengerName, challengedName, category, difficulty, questionCount, timeLimit, expiresAt.toISOString()],
+          [
+            challengeId,
+            challengerName,
+            challengedName,
+            category,
+            difficulty,
+            questionCount,
+            timeLimit,
+            expiresAt.toISOString(),
+          ],
         )
 
         const challenge = result.rows[0]
