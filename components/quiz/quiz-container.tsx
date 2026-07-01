@@ -269,7 +269,9 @@ export default function QuizContainer({
     // Get playerName from localStorage
     let playerName = 'Anonymous'
     if (typeof window !== 'undefined') {
-      playerName = localStorage.getItem('playerName') || 'Anonymous'
+      playerName = localStorage.getItem('userNameForLeaderboard') 
+          || localStorage.getItem('playerName') 
+          || 'Anonymous'
     }
     
     const timeoutPromise = new Promise((_, reject) => {
