@@ -181,6 +181,22 @@ export default function AboutPage() {
                   <img src="/deepseek.svg" alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
+             <li>
+              <strong>Debugging & Refactoring:</strong> Deep gratitude to{" "}
+              <a
+                href="https://www.deepseek.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
+                Claude AI
+              </a>{" "}
+              for their invaluable assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, to those without email.
+              <div className="mt-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  </div>
+            </li>
+
             <li>
               <strong>Content Creation:</strong> Heartfelt thanks to{" "}
               <a
