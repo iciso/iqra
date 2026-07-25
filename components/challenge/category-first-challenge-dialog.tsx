@@ -37,7 +37,7 @@ import {
   Globe,
   AlertCircle,
 } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+// supabase removed — using API routes instead
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
@@ -340,28 +340,28 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         timeLimit: 300,
       })
 
-      // Get the challenger's display name - same key the leaderboard name-entry uses
-let challengerName =
-  typeof window !== "undefined" ? localStorage.getItem("userNameForLeaderboard") : null
+      // Get the challenger's display name - same key used everywhere in the app
+      const challengerName =
+        typeof window !== "undefined"
+          ? localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId")
+          : null
 
-if (!challengerName) {
-  const entered = typeof window !== "undefined" ? window.prompt("Enter your name to send this challenge:") : null
-  challengerName = entered?.trim() || ""
-  if (challengerName.length < 2) {
-    toast({
-      title: "Name required",
-      description: "Please enter your name (at least 2 characters) to send a challenge.",
-      variant: "destructive",
-    })
-    setIsSubmitting(false)
-    return
-  }
-  localStorage.setItem("userNameForLeaderboard", challengerName)
-  localStorage.setItem("tempChallengerId", challengerName)
-}
+      if (!challengerName || challengerName.length < 2) {
+        toast({
+          title: "Name required",
+          description: "Please enter your name in the Challenge Notifications box on the homepage first.",
+          variant: "destructive",
+        })
+        setIsSubmitting(false)
+        return
+      }
 
-// Opponent's real name (not the synthetic player-N id)
-const challengedName = opponent.full_name || opponent.username
+      // Keep both keys in sync so quiz-container and leaderboard always find the name
+      localStorage.setItem("userNameForLeaderboard", challengerName)
+      localStorage.setItem("tempChallengerId", challengerName)
+
+      // Opponent's real name (not the synthetic player-N id)
+      const challengedName = opponent.full_name || opponent.username
 
 const challengeData = {
   challengerName,
@@ -386,24 +386,11 @@ const challengeData = {
         const result = await apiResponse.json()
         challenge = result.challenge
         console.log("✅ Challenge created successfully via API")
+        console.log("✅ Challenge created successfully:", challenge)
       } else {
-        error = new Error("Failed to create challenge")
-        console.error("❌ Challenge creation error:", error)
-
-        // Create a fallback challenge directly
-        console.log("🔄 Using fallback challenge creation...")
-
-        // Generate a unique ID for the challenge
-        const fallbackChallengeId = `fallback-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
-
-        challenge = {
-          id: fallbackChallengeId,
-          ...challengeData,
-          created_at: new Date().toISOString(),
-        }
+        const errData = await apiResponse.json().catch(() => ({}))
+        throw new Error(errData.error || "Failed to create challenge")
       }
-
-      if (error) throw error
 
       console.log(`✅ Challenge created successfully:`, challenge)
 
