@@ -24,6 +24,7 @@ function ChallengeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: 
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create Challenge</DialogTitle>
+            <DialogDescription className="sr-only">Select a category to challenge this player.</DialogDescription>
           <DialogDescription>Challenge a player to a quiz.</DialogDescription>
         </DialogHeader>
       </DialogContent>
