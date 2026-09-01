@@ -277,7 +277,12 @@ export default function ResultsPage() {
       // 2. We have score and totalQuestions
       // 3. We haven't already submitted
       // 4. We're not currently saving
-      if (authReady && score !== null && totalQuestions !== null && !submitted && !saving) {
+     const savedChallenge = typeof window !== 'undefined' 
+  ? localStorage.getItem('quizChallenge') 
+  : null
+
+// Skip auto-save for challenge plays — quiz-container already submitted the score
+if (authReady && score !== null && totalQuestions !== null && !submitted && !saving && !savedChallenge) {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
