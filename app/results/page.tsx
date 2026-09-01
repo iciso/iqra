@@ -199,12 +199,18 @@ export default function ResultsPage() {
     }
   }, [user])
 
-  // Show name modal when results load (no auth required)
+  // Show name modal only for non-challenge quizzes.
+  // Challenge scores are already saved by the quiz-container with the correct name —
+  // showing the modal again would cause a duplicate Neon write.
   useEffect(() => {
     if (score !== null && totalQuestions !== null && !nameModalSubmitted) {
-      // Always show the name modal for each quiz, don't check session flag
-      // This ensures players can register their name for each attempt
-      setShowNameModal(true)
+      const savedChallenge = typeof window !== 'undefined' 
+        ? localStorage.getItem('quizChallenge') 
+        : null
+      // Only show modal for regular (non-challenge) quizzes
+      if (!savedChallenge) {
+        setShowNameModal(true)
+      }
     }
   }, [score, totalQuestions, nameModalSubmitted])
 
@@ -275,10 +281,12 @@ export default function ResultsPage() {
         console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
         setSaving(true)
         try {
-          // Get userName from localStorage
+          // Get userName from localStorage — same key used everywhere in the app
           let userName = undefined;
           if (typeof window !== 'undefined') {
-            userName = localStorage.getItem('playerName') || undefined;
+            userName = localStorage.getItem('userNameForLeaderboard') 
+                    || localStorage.getItem('playerName') 
+                    || undefined;
           }
 
           const result = await submitQuizResult(
