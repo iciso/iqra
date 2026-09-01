@@ -71,7 +71,7 @@ export default function ResultsPage() {
 
   // Debug authentication state
   useEffect(() => {
-    console.log("🔍 Results page auth state:", {
+    console.log("🔍  Results page auth state:", {
       user: !!user,
       profile: !!profile,
       loading,
