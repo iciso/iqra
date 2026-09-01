@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
             submitted_at as "submittedAt"
           FROM leaderboard_entries
           ORDER BY percentage DESC, score DESC, submitted_at DESC
-          LIMIT 100
+          LIMIT 10000
         `
 
         const result = await client.query(query)
