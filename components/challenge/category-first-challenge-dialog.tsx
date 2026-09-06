@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -437,7 +437,8 @@ const challengeData = {
           <DialogTitle className="flex items-center gap-3 text-xl">
             <Gamepad2 className="h-6 w-6 text-green-600" />
             Challenge {opponent.full_name || opponent.username}
-          </DialogTitle>
+          </DialogTitle> 
+          <DialogDescription className="sr-only">Select a category and difficulty to challenge this player.</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
