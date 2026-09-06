@@ -99,11 +99,11 @@ export default function AboutPage() {
             <li>Next.js - React framework for server-rendered applications</li>
             <li>TypeScript - For type safety and better developer experience</li>
             <li>Tailwind CSS - For responsive and customizable styling</li>
-            <li>Supabase - For authentication and real-time database</li>
+            <li>Neon - For authentication and real-time database</li>
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <img src="/images/design-mode/logo-dark.png" alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <img src="/images/design-mode/logo-dark.png" alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
             <img src="/images/design-mode/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
