@@ -53,7 +53,7 @@ IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your
 
 ## Contributing
 
-We welcome contributions from developers, Arabic linguists, Quran scholars, and anyone passionate about making Quranic knowledge more accessible. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+We welcome contributions from developers, Arabic linguists, Quran scholars, and anyone passionate about making Quranic knowledge more accessible. See [contributing.md](contributing.md) for details.
 
 ## License
 
