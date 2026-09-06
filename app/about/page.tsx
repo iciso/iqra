@@ -78,8 +78,19 @@ export default function AboutPage() {
                 GitHub IQRA Repository
               </Button>
             </Link>
-            <Link href="https://github.com/iciso/iqra/blob/main/contribute.md" target="_blank" rel="noopener noreferrer">
+
               <Button variant="outline" className="w-full sm:w-auto" asChild>
+                  <a href="https://github.com/iciso/iqra/blob/main/contribute.md" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    How to Contribute
+                  </a>
+              </Button>
+
+          
+            <Button variant="outline" className="w-full sm:w-auto" asChild>
+               <Link href="https://github.com/iciso/iqra/blob/main/contribute.md" target="_blank" rel="noopener noreferrer">
                 How to Contribute
               </Button>
             </Link>
