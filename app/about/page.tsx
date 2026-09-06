@@ -85,6 +85,7 @@ export default function AboutPage() {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
+                     <Github className="mr-2 h-4 w-4" />
                     How to Contribute
                   </a>
                 </Button>
