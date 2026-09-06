@@ -78,7 +78,7 @@ export default function AboutPage() {
                 GitHub IQRA Repository
               </Button>
             </Link>
-            <Link href="/contribute">
+            <Link href="./contribute.md">
               <Button variant="outline" className="w-full sm:w-auto">
                 How to Contribute
               </Button>
