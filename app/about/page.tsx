@@ -79,9 +79,15 @@ export default function AboutPage() {
               </Button>
             </Link>
 
-            <Link href="https://github.com/iciso/iqra/blob/main/contribute.md" target="_blank" rel="noopener noreferrer"> 
-              <Button variant="outline" className="w-full sm:w-auto" asChild> How to Contribute </Button> 
-            </Link>
+            <Button variant="outline" className="w-full sm:w-auto" asChild> 
+                  <a 
+                    href="https://github.com/iciso/iqra/blob/main/contribute.md" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    How to Contribute
+                  </a>
+                </Button>
               
             <Link href="/why">
               <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
