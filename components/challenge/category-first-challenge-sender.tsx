@@ -188,22 +188,20 @@ export default function CategoryFirstChallengeSender() {
 
     setSendingChallenge(challengedUser.id)
 
-    try {
-      // Get or create a temporary challenger ID for non-authenticated users
-      let challengerId = user?.id
-      if (!challengerId) {
-        // Generate or retrieve temporary ID for anonymous challenges
-        if (typeof window !== "undefined") {
-          let tempId = localStorage.getItem("tempChallengerId")
-          if (!tempId) {
-            tempId = `anonymous-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
-            localStorage.setItem("tempChallengerId", tempId)
-          }
-          challengerId = tempId
-        } else {
-          challengerId = `temp-${Date.now()}`
-        }
-      }
+         const challengerName =
+        typeof window !== "undefined"
+          ? localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("playerName")
+          : null
+      
+      if (!challengerName || challengerName.length < 2) {
+        toast({
+          title: "Name required",
+          description: "Please enter your name in the Challenge Notifications box on the homepage first.",
+          variant: "destructive",
+        })
+  setIsSubmitting(false)
+  return
+}
 
       const challengeData = {
         challenger_id: challengerId,
