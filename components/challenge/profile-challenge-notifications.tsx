@@ -103,13 +103,18 @@ export default function ProfileChallengeNotifications() {
 
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
-      if (action === "decline") {
+            if (action === "decline") {
         toast({ title: "Challenge Declined" })
         return
       }
-
+      
       toast({ title: "Challenge Accepted! 🎯", description: "Starting your quiz now..." })
       const c = result.challenge
+      
+      // Ensure name persists into the quiz session before navigating
+      localStorage.setItem("userNameForLeaderboard", playerName)
+      localStorage.setItem("tempChallengerId", playerName)
+      
       router.push(
         `/quiz?category=${c.category}&difficulty=${c.difficulty}&challenge=${c.id}&questions=${c.question_count}&opponentName=${encodeURIComponent(c.challenger_name)}&challengerTurn=false`
       )
