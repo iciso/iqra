@@ -45,13 +45,10 @@ export async function POST(request: NextRequest) {
     const { score, total_questions, totalQuestions, percentage, category, difficulty, challenge } = body
 
     // Validate input - name is optional (player may not have entered it yet)
-    const playerName = name && typeof name === "string" ? name.trim() : "Anonymous"
+        const playerName = name && typeof name === "string" ? name.trim() : ""
     
-    if (playerName === "Anonymous" && (!name || name.trim().length < 2)) {
-      // If they provided a name, it must be at least 2 chars, otherwise use Anonymous
-      if (name && name.trim().length > 0 && name.trim().length < 2) {
-        return NextResponse.json({ error: "Name must be at least 2 characters" }, { status: 400 })
-      }
+    if (!playerName || playerName.length < 2) {
+      return NextResponse.json({ error: "Name must be at least 2 characters" }, { status: 400 })
     }
 
     const totalQuestionsValue = total_questions || totalQuestions
