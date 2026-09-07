@@ -277,7 +277,7 @@ export default function HomePage() {
             <Link href="/about" className="text-emerald-600 hover:text-emerald-700">
               About
             </Link>
-            <Link href="/contribute" className="text-emerald-600 hover:text-emerald-700">
+            <Link href="https://github.com/iciso/iqra/blob/main/contribute.md" className="text-emerald-600 hover:text-emerald-700">
               Contribute
             </Link>
             <Link href="https://github.com/iciso/iqra" className="text-emerald-600 hover:text-emerald-700">
