@@ -230,13 +230,16 @@ export default function QuizContainer({
     const { submitQuizResult } = await import("@/lib/supabase-queries")
 
     // Read player name from localStorage — same key used everywhere
-    let playerName = "Anonymous"
-    if (typeof window !== "undefined") {
-      playerName =
-        localStorage.getItem("userNameForLeaderboard") ||
-        localStorage.getItem("playerName") ||
-        "Anonymous"
-    }
+           let playerName = ""
+        if (typeof window !== "undefined") {
+          playerName =
+            localStorage.getItem("userNameForLeaderboard") ||
+            localStorage.getItem("playerName") ||
+            ""
+        }
+        if (!playerName || playerName.length < 2) {
+          throw new Error("No player name found — please enter your name with more than 2 characters on the homepage first.")
+        }
 
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs)
