@@ -184,8 +184,8 @@ const salahCategory: QuizCategory = {
       },
       {
         question: "How many pillars (Arkan) are there in Salah?",
-        options: ["Five", "Six", "Seven", "Eight"],
-        correctAnswer: "Sixteen",
+        options: ["Five", "Six", "Seven", "Fourteen"],
+        correctAnswer: "Fourteen",
         explanation: "Salah has fourteen major pillars according to most scholars, but varies slightly.",
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
