@@ -92,10 +92,10 @@ export default function AboutPage() {
                   </a>
                 </Button>
               
-            <Link href="/why">
+            <Link href="https://docs.google.com/document/d/1CusV5xAsgXDFZGapQ-b9j1fw1YBGG5MKIlXRuCEhllY/edit?usp=sharing">
               <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
                 <Trophy className="mr-2 h-4 w-4" />
-                Why IQRA than KALAM
+                Why IQRA and KALAM?
               </Button>
             </Link>
           </div>
