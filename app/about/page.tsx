@@ -13,10 +13,11 @@ iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx
 ------
 Break up quizzes for each category into sets of 10 each like in challenges
-Do the Badges Page, and remove or re-link broken link of "why" page
+Do the Badges Page, 
 ------
 Do we need to introduce Challenges for Surah Quizzes -> 1 to 114?
 Continously test to see all quizzes, and pages are Mobile Responsive
+Mobilize Volunteers to play the Quizzes and find out errors in content
 Maintain uniform UI and UX as if one AI did the entire project
 Cross-link IQRA & KALAM to guide users who want or do not want challenges 
 Acknowledge all other AI contributors like Grok, DeepSeek, and Gemini
@@ -95,7 +96,7 @@ export default function AboutPage() {
             <Link href="https://docs.google.com/document/d/1CusV5xAsgXDFZGapQ-b9j1fw1YBGG5MKIlXRuCEhllY/edit?usp=sharing">
               <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white">
                 <Trophy className="mr-2 h-4 w-4" />
-                Why IQRA and KALAM?
+                 Why IQRA and KALAM?
               </Button>
             </Link>
           </div>
