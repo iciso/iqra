@@ -34,6 +34,9 @@ const Header = () => {
             <Link href="/leaderboard">
               <Button variant="ghost">Leaderboard</Button>
             </Link>
+            <Link href="/profile">
+              <Button variant="ghost">Profile</Button>
+            </Link>
             <Link href="/about">
               <Button variant="ghost">About</Button>
             </Link>
@@ -62,6 +65,11 @@ const Header = () => {
                   <Link href="/leaderboard" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
                       Leaderboard
+                    </Button>
+                  </Link>
+                   <Link href="/profile" onClick={closeMobileMenu}>
+                    <Button variant="ghost" className="w-full justify-start">
+                      Profile
                     </Button>
                   </Link>
                   <Link href="/about" onClick={closeMobileMenu}>
