@@ -13,7 +13,9 @@ iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx
 ------
 Break up quizzes for each category into sets of 10 each like in challenges
-Do we need to introduce for Challenges Surah Quizzes -> 1 to 114?
+Do the Badges Page, and remove or re-link broken link of "why" page
+------
+Do we need to introduce Challenges for Surah Quizzes -> 1 to 114?
 Continously test to see all quizzes, and pages are Mobile Responsive
 Maintain uniform UI and UX as if one AI did the entire project
 Cross-link IQRA & KALAM to guide users who want or do not want challenges 
