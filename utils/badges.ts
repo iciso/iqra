@@ -3,6 +3,43 @@ import badgesData from "@/data/badges-data"
 // Check if code is running in browser
 const isBrowser = typeof window !== "undefined"
 
+// List of all 23 categories normalized for comparison
+export const ALL_23_CATEGORIES = [
+  "quran",
+  "fiqh",
+  "tafsir",
+  "hadeeth",
+  "aqeedah",
+  "seerah",
+  "tazkiyah",
+  "salah",
+  "sawm",
+  "islamic-history",
+  "dawah",
+  "new-muslims",
+  "comparative-religion",
+  "christianity",
+  "hinduism",
+  "islamic-finance",
+  "crypto-and-blockchain",
+  "gender",
+  "islam-and-lgbtqia+",
+  "islamic-psychology",
+  "islamic-parenting",
+  "medical-ethics",
+  "peace",
+]
+
+// Normalize string for consistent matching
+export function normalizeCategorySlug(category: string): string {
+  return category
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/\s+/g, "-")
+    .replace(/_+/g, "-")
+}
+
 // Get earned badges from localStorage
 export function getEarnedBadges(): string[] {
   if (!isBrowser) return []
@@ -76,8 +113,11 @@ export function checkForBadges(result: {
 
   // Challenge badges
   if (result.challenge) {
+    const normalizedChallenge = normalizeCategorySlug(result.challenge)
     const challengeBadge = badgesData.find(
-      (badge) => badge.criteria.type === "challenge" && badge.criteria.value === result.challenge,
+      (badge) =>
+        badge.criteria.type === "challenge" &&
+        normalizeCategorySlug(String(badge.criteria.value)) === normalizedChallenge
     )
 
     if (challengeBadge) {
@@ -93,28 +133,42 @@ export function checkForBadges(result: {
   }
 
   // Speed badge (if completed in half the time with at least 80% accuracy)
-  if (result.timeLeft && result.timeTotal && percentage >= 80) {
+  if (result.timeLeft !== undefined && result.timeTotal !== undefined && percentage >= 80) {
     const timeUsed = result.timeTotal - result.timeLeft
     if (timeUsed <= result.timeTotal / 2) {
       badgesToAward.push("speed_demon")
     }
   }
 
-  // Check for all categories badge
+  // Category badges & Knowledge Explorer tracking
   if (result.category) {
-    const allCategories = ["quran", "fiqh", "tafsir", "hadeeth", "aqeedah", "seerah"]
+    const normalizedCat = normalizeCategorySlug(result.category)
+
+    // Find and award category specific badge
+    const categoryBadge = badgesData.find(
+      (badge) =>
+        badge.criteria.type === "category" &&
+        normalizeCategorySlug(String(badge.criteria.value)) === normalizedCat
+    )
+
+    if (categoryBadge) {
+      badgesToAward.push(categoryBadge.id)
+    }
 
     // Get completed categories from localStorage
-    const completedCategories: string[] = JSON.parse(localStorage.getItem("quranQuizCompletedCategories") || "[]")
+    const completedCategories: string[] = JSON.parse(
+      localStorage.getItem("quranQuizCompletedCategories") || "[]"
+    )
 
-    if (!completedCategories.includes(result.category)) {
-      completedCategories.push(result.category)
+    if (!completedCategories.includes(normalizedCat)) {
+      completedCategories.push(normalizedCat)
       localStorage.setItem("quranQuizCompletedCategories", JSON.stringify(completedCategories))
+    }
 
-      // If all categories completed, award the badge
-      if (allCategories.every((cat) => completedCategories.includes(cat))) {
-        badgesToAward.push("explorer")
-      }
+    // Check if all 23 categories are completed
+    const hasCompletedAll = ALL_23_CATEGORIES.every((cat) => completedCategories.includes(cat))
+    if (hasCompletedAll) {
+      badgesToAward.push("explorer")
     }
   }
 
@@ -125,11 +179,11 @@ export function checkForBadges(result: {
   if (!quizDates.includes(today)) {
     quizDates.push(today)
     localStorage.setItem("quranQuizDates", JSON.stringify(quizDates))
+  }
 
-    // Check for 7-day streak
-    if (isConsecutiveStreak(quizDates, 7)) {
-      badgesToAward.push("weekly_streak")
-    }
+  // Check for 7-day streak
+  if (isConsecutiveStreak(quizDates, 7)) {
+    badgesToAward.push("weekly_streak")
   }
 
   // Award the earned badges
