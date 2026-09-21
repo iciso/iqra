@@ -7,9 +7,10 @@ import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Trophy, Gamepad2, Home, BarChart2, RefreshCw, Edit, Save, X } from "lucide-react"
+import { Trophy, Gamepad2, Home, BarChart2, RefreshCw, Edit, Save, X, Shield } from "lucide-react"
 import Link from "next/link"
 import { toast } from "@/hooks/use-toast"
+import BadgesProfile from "@/components/badges/badges-profile"
 
 const NAME_KEY = "userNameForLeaderboard"
 
@@ -196,6 +197,7 @@ export default function ProfilePage() {
               <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />Stats</TabsTrigger>
               <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />History</TabsTrigger>
               <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />Challenges</TabsTrigger>
+              <TabsTrigger value="badges" className="flex-1"><Shield className="h-4 w-4 mr-1" />Badges</TabsTrigger>
             </TabsList>
 
             <TabsContent value="stats" className="space-y-4">
@@ -299,6 +301,10 @@ export default function ProfilePage() {
                   )}
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            <TabsContent value="badges">
+              <BadgesProfile />
             </TabsContent>
           </Tabs>
         )}
