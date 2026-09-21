@@ -1,7 +1,7 @@
 import { 
   Award, Zap, Star, Trophy, BookOpen, Crown, Medal, Clock, Sparkles, Target,
   Scale, Book, Heart, Compass, Shield, Users, Globe, Landmark, Coins,
-  Cpu, Transgender, Brain, Baby, Stethoscope, Peace, UserCheck
+  Cpu, Brain, Baby, Stethoscope, Peace, UserCheck
 } from "lucide-react"
 
 export interface Badge {
@@ -313,7 +313,7 @@ const badgesData: Badge[] = [
     id: "badge_gender",
     name: "Gender & Ethics Thinker",
     description: "Completed a quiz in the Gender category",
-    icon: Transgender,
+    icon: Users,
     color: "text-purple-400",
     criteria: {
       type: "category",
