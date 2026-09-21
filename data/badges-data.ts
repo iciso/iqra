@@ -1,7 +1,7 @@
 import { 
   Award, Zap, Star, Trophy, BookOpen, Crown, Medal, Clock, Sparkles, Target,
   Scale, Book, Heart, Compass, Shield, Users, Globe, Landmark, Coins,
-  Cpu, Brain, Baby, Stethoscope, Peace, UserCheck
+  Cpu, Brain, Baby, Stethoscope, HeartHandshake, UserCheck
 } from "lucide-react"
 
 export interface Badge {
@@ -373,7 +373,7 @@ const badgesData: Badge[] = [
     id: "badge_peace",
     name: "Ambassador of Peace",
     description: "Completed a quiz in the Peace category",
-    icon: Peace,
+    icon: HeartHandshake,
     color: "text-sky-400",
     criteria: {
       type: "category",
