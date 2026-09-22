@@ -277,22 +277,75 @@ export default function ProfilePage() {
                       {challenges.map((c) => {
                         const isChallenger = c.challenger_name.toLowerCase() === playerName.toLowerCase()
                         const opponent = isChallenger ? c.challenged_name : c.challenger_name
+                        const myScore = isChallenger ? c.challenger_score : c.challenged_score
+                        const myTotal = isChallenger ? c.challenger_total : c.challenged_total
+                        const oppScore = isChallenger ? c.challenged_score : c.challenger_score
+                        const oppTotal = isChallenger ? c.challenged_total : c.challenger_total
+                        const myPct = myTotal > 0 ? Math.round((myScore / myTotal) * 100) : null
+                        const oppPct = oppTotal > 0 ? Math.round((oppScore / oppTotal) * 100) : null
+                        const bothPlayed = myScore !== null && oppScore !== null
+                        const iWon = bothPlayed && myScore > oppScore
+                        const iLost = bothPlayed && myScore < oppScore
+                        const isTie = bothPlayed && myScore === oppScore
+
                         return (
-                          <div key={c.id} className="flex items-center justify-between p-3 border rounded-lg">
-                            <div>
-                              <p className="text-sm font-medium">
-                                {isChallenger ? "You challenged " : "Challenge from "}
-                                <span className="text-green-700 dark:text-green-400">{opponent}</span>
-                              </p>
-                              <p className="text-xs text-gray-500">{categoryLabels[c.category] || c.category} · {c.difficulty} · {fmtDate(c.created_at)}</p>
+                          <div key={c.id} className="p-3 border rounded-lg space-y-2">
+                            {/* Row 1: who challenged whom + category */}
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <p className="text-sm font-medium">
+                                  {isChallenger ? "You challenged " : "Challenge from "}
+                                  <span className="text-green-700 dark:text-green-400">{opponent}</span>
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {categoryLabels[c.category] || c.category} · {c.difficulty} · {fmtDate(c.created_at)}
+                                </p>
+                              </div>
+                              <div className="flex flex-col items-end gap-1">
+                                <Badge
+                                  variant={c.status === "accepted" ? "default" : c.status === "pending" ? "secondary" : "outline"}
+                                  className="text-xs"
+                                >
+                                  {c.status}
+                                </Badge>
+                                {bothPlayed && (
+                                  <Badge
+                                    className={`text-xs ${iWon ? "bg-green-100 text-green-800" : iLost ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800"}`}
+                                  >
+                                    {iWon ? "Won 🏆" : iLost ? "Lost" : "Tie 🤝"}
+                                  </Badge>
+                                )}
+                              </div>
                             </div>
-                            <div className="flex flex-col items-end gap-1">
-                              <Badge variant={c.status === "accepted" ? "default" : c.status === "pending" ? "secondary" : "outline"} className="text-xs">
-                                {c.status}
-                              </Badge>
-                              <Link href={`/challenge-results/${c.id}`}>
-                                <Button variant="ghost" size="sm" className="h-6 text-xs px-2">View →</Button>
-                              </Link>
+
+                            {/* Row 2: scores */}
+                            <div className="flex gap-3 text-xs">
+                              {/* My score */}
+                              <div className="flex-1 bg-green-50 dark:bg-green-900/30 rounded p-2 text-center">
+                                <p className="text-gray-500 mb-1">You</p>
+                                {myScore !== null ? (
+                                  <>
+                                    <p className="font-bold text-base text-green-700">{myScore}/{myTotal}</p>
+                                    <p className={`font-medium ${pctColor(myPct)}`}>{myPct}%</p>
+                                  </>
+                                ) : (
+                                  <p className="text-gray-400 italic">Not played</p>
+                                )}
+                              </div>
+                              {/* Opponent score */}
+                              <div className="flex-1 bg-blue-50 dark:bg-blue-900/30 rounded p-2 text-center">
+                                <p className="text-gray-500 mb-1">{opponent}</p>
+                                {oppScore !== null ? (
+                                  <>
+                                    <p className="font-bold text-base text-blue-700">{oppScore}/{oppTotal}</p>
+                                    <p className={`font-medium ${pctColor(oppPct)}`}>{oppPct}%</p>
+                                  </>
+                                ) : (
+                                  <p className="text-gray-400 italic">
+                                    {c.status === "pending" ? "Awaiting" : "Not played"}
+                                  </p>
+                                )}
+                              </div>
                             </div>
                           </div>
                         )
