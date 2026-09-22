@@ -11,7 +11,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Trophy, Gamepad2, Home, BarChart2, RefreshCw, Edit, Save, X, Shield } from "lucide-react"
 import Link from "next/link"
 import { toast } from "@/hooks/use-toast"
-import BadgesProfile from "@/components/badges/badges-profile"
 
 const NAME_KEY = "userNameForLeaderboard"
 
@@ -358,8 +357,16 @@ export default function ProfilePage() {
               </Card>
             </TabsContent>
 
-            <TabsContent value="badges">
-              <BadgesProfile />
+            <TabsContent value="badges" className="text-center py-8">
+              <Card>
+                <CardContent className="p-6">
+                  <Shield className="h-12 w-12 text-green-600 mx-auto mb-2" />
+                  <p className="text-gray-600 mb-4">Redirecting to your Badges Collection...</p>
+                  <Link href="/badges">
+                    <Button className="bg-green-600 hover:bg-green-700">Go to Badges Page</Button>
+                  </Link>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         )}
