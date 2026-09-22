@@ -18,14 +18,31 @@ export async function GET(request: NextRequest) {
       const client = await pool.connect()
       try {
         const result = await client.query(
-          `SELECT id, challenger_name, challenged_name, category, difficulty,
-                  question_count, status, created_at
-           FROM challenges
-           WHERE LOWER(challenger_name) = LOWER($1)
-              OR LOWER(challenged_name) = LOWER($1)
-           ORDER BY created_at DESC
+          `SELECT
+             c.id,
+             c.challenger_name,
+             c.challenged_name,
+             c.category,
+             c.difficulty,
+             c.question_count,
+             c.status,
+             c.created_at,
+             ch.score             AS challenger_score,
+             ch.total_questions   AS challenger_total,
+             cd.score             AS challenged_score,
+             cd.total_questions   AS challenged_total
+           FROM challenges c
+           LEFT JOIN leaderboard_entries ch
+             ON ch.challenge = c.id::text
+             AND LOWER(ch.name) = LOWER(c.challenger_name)
+           LEFT JOIN leaderboard_entries cd
+             ON cd.challenge = c.id::text
+             AND LOWER(cd.name) = LOWER(c.challenged_name)
+           WHERE LOWER(c.challenger_name) = LOWER($1)
+              OR LOWER(c.challenged_name)  = LOWER($1)
+           ORDER BY c.created_at DESC
            LIMIT 50`,
-          [name]
+          [name],
         )
         return NextResponse.json({ challenges: result.rows })
       } finally { client.release() }
