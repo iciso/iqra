@@ -42,7 +42,7 @@ export default function BadgesPage() {
         </Link>
       </div>
 
-      <h1 className="text-3xl font-bold text-center mb-6 text-green-800 dark:text-green-400">IQRA Badge Collection</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 text-green-800 dark:text-green-400">Your Badge Collection</h1>
       <p className="text-center mb-8 text-gray-600 dark:text-gray-400 max-w-2xl">
         Earn badges by completing challenges, achieving high scores, and maintaining learning streaks. Each badge
         represents a milestone in your Islamic knowledge journey.
