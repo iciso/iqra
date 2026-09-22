@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,6 +27,7 @@ const categoryLabels: Record<string, string> = {
 }
 
 export default function ProfilePage() {
+  const router = useRouter()
   const [playerName, setPlayerName] = useState(null)
   const [nameInput, setNameInput] = useState("")
   const [editingName, setEditingName] = useState(false)
@@ -197,7 +199,7 @@ export default function ProfilePage() {
               <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />Stats</TabsTrigger>
               <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />History</TabsTrigger>
               <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />Challenges</TabsTrigger>
-              <TabsTrigger value="badges" className="flex-1"><Shield className="h-4 w-4 mr-1" />Badges</TabsTrigger>
+              <TabsTrigger value="badges" className="flex-1" onClick={() => router.push("/badges")}><Shield className="h-4 w-4 mr-1" />Badges</TabsTrigger>
             </TabsList>
 
             <TabsContent value="stats" className="space-y-4">
