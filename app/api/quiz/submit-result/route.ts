@@ -42,7 +42,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     // Accept both 'name' and 'user_name' parameters
     const name = body.name || body.user_name
-    const { score, total_questions, totalQuestions, percentage, category, difficulty, challenge } = body
+    const { score, total_questions, totalQuestions, percentage, category, difficulty } = body
+    const challenge = body.challenge || body.challenge_id || null
+
 
     // Validate input - name is optional (player may not have entered it yet)
         const playerName = name && typeof name === "string" ? name.trim() : ""
