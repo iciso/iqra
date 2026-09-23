@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import BadgesCollection from "@/components/badges/badges-collection"
@@ -33,14 +32,7 @@ export default function BadgesPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <div className="absolute top-4 left-4">
-        <Link href="/">
-          <Button variant="outline" size="icon" className="rounded-full dark:border-green-700 dark:text-green-400">
-            <Home className="h-4 w-4" />
-            <span className="sr-only">Home</span>
-          </Button>
-        </Link>
-      </div>
+      
 
       <h1 className="text-3xl font-bold text-center mb-6 text-green-800 dark:text-green-400">Your Badge Collection</h1>
       <p className="text-center mb-8 text-gray-600 dark:text-gray-400 max-w-2xl">
