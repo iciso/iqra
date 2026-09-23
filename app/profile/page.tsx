@@ -198,7 +198,12 @@ export default function ProfilePage() {
               <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />Stats</TabsTrigger>
               <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />History</TabsTrigger>
               <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />Challenges</TabsTrigger>
-              <TabsTrigger value="badges" className="flex-1" onClick={() => router.push("/badges")}><Shield className="h-4 w-4 mr-1" />Badges</TabsTrigger>
+              <Link 
+                    href="/badges" 
+                    className="flex-1 inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all hover:bg-white/50"
+                  >
+                    <Shield className="h-4 w-4 mr-1" />Badges
+                  </Link>           
             </TabsList>
 
             <TabsContent value="stats" className="space-y-4">
