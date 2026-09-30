@@ -9,7 +9,6 @@ import { AuthProvider } from "@/contexts/auth-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
-// Export Viewport for theme color and mobile responsive scaling
 export const viewport: Viewport = {
   themeColor: "#10b981",
   width: "device-width",
@@ -17,7 +16,6 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-// Export Metadata including PWA Manifest & Apple Web App configuration
 export const metadata: Metadata = {
   metadataBase: new URL("https://iqrar.vercel.app/"),
   title: "IQRA - Islamic Quiz Rivalry App",
@@ -25,6 +23,10 @@ export const metadata: Metadata = {
   keywords:
     "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
   manifest: "/manifest.json",
+  // Modern web app metadata
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -60,6 +62,8 @@ export default function RootLayout({
   return (
     <html prefix="og: https://ogp.me/ns#" lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
+        {/* Modern Mobile Web App Capable Tag to resolve deprecation warning */}
+        <meta name="mobile-web-app-capable" content="yes" />
         <link
           href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
           rel="stylesheet"
