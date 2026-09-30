@@ -138,7 +138,7 @@ const hinduCategory: QuizCategory = {
           ],
           correctAnswer: "Pongal (charity)",
           explanation: "Islamic *zakat* (obligatory charity, 2.5% of wealth) [Quran 9:60] closely parallels the spirit of generosity seen in harvest festivals like Pongal, where farmers traditionally give a portion of their yield to the community. While Ganesh Chaturthi focuses on the public installations of clay idols (*murtis*) and communal harmony (*sarvajanik* festivals started by Tilak to unite people), Pongal centers directly on the ethical duty of sharing food and wealth from the new harvest."
-        }
+        },
       {
         question: "How does Quranic creation narrative compare to Puranic accounts?",
         options: [
