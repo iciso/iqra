@@ -128,17 +128,17 @@ const hinduCategory: QuizCategory = {
         correctAnswer: "Rejects all human manifestations of God",
         explanation: "The Quran states: *'Nothing is like Him'* [Quran 42:11], firmly rejecting the concept of divine incarnation. This contrasts Vishnu's avatars [Bhagavata Purana]. Islam views prophets (like Jesus in Islam) as fully human messengers [Quran 3:79, 3:59], not God incarnate. Allah *'begets not nor is begotten'* [Quran 112:3]."
       },
-      {
-        question: "Which Hindu festival has an Islamic ethical parallel?",
-        options: [
-          "Diwali (lights)",
-          "Holi (colors)",
-          "Navratri (fasting)",
-          "Pongal (charity)"
-        ],
-        correctAnswer: "Pongal (charity)",
-        explanation: "Islamic *zakat* (obligatory charity, 2.5% of wealth) [Quran 9:60] parallels the spirit of generosity seen in harvest festivals like Pongal. This practice of giving shares a common ethical ground with the charitable aspects of some Hindu festivals. Eid al-Fitr in Islam also shares a communal feasting aspect, but with *takbir* (glorification of Allah) instead of deity thanks."
-      },
+             {
+          question: "Which Hindu festival has an Islamic ethical parallel?",
+          options: [
+            "Diwali (lights)",
+            "Holi (colors)",
+            "Ganesh Chaturthi (community)",
+            "Pongal (charity)"
+          ],
+          correctAnswer: "Pongal (charity)",
+          explanation: "Islamic *zakat* (obligatory charity, 2.5% of wealth) [Quran 9:60] closely parallels the spirit of generosity seen in harvest festivals like Pongal, where farmers traditionally give a portion of their yield to the community. While Ganesh Chaturthi focuses on the public installations of clay idols (*murtis*) and communal harmony (*sarvajanik* festivals started by Tilak to unite people), Pongal centers directly on the ethical duty of sharing food and wealth from the new harvest."
+        }
       {
         question: "How does Quranic creation narrative compare to Puranic accounts?",
         options: [
