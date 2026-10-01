@@ -6,25 +6,6 @@ import { Trophy, Menu } from "lucide-react"
 import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-export default function Header() {
-  return (
-    <header className="w-full bg-white border-b sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between overflow-x-auto">
-        <Link href="/" className="flex items-center space-x-2 shrink-0">
-          <span className="font-bold text-xl text-emerald-600">🏆 IQRA</span>
-        </Link>
-        <nav className="flex items-center space-x-2 sm:space-x-6 text-xs sm:text-sm font-medium">
-          <Link href="/quiz" className="hover:text-emerald-600 px-1">Quiz</Link>
-          <Link href="/challenges" className="hover:text-emerald-600 px-1">Challenges</Link>
-          <Link href="/leaderboard" className="hover:text-emerald-600 px-1">Leaderboard</Link>
-          <Link href="/profile" className="hover:text-emerald-600 px-1">Profile</Link>
-          <Link href="/about" className="hover:text-emerald-600 px-1">About</Link>
-        </nav>
-      </div>
-    </header>
-  )
-}
-
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -33,11 +14,11 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800">
+    <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800 w-full overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 shrink-0">
             <Trophy className="h-5 w-5 text-green-600 dark:text-green-400" />
             <span className="text-2xl font-bold text-green-600 dark:text-green-400">IQRA</span>
           </Link>
@@ -86,7 +67,7 @@ const Header = () => {
                       Leaderboard
                     </Button>
                   </Link>
-                   <Link href="/profile" onClick={closeMobileMenu}>
+                  <Link href="/profile" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
                       Profile
                     </Button>
