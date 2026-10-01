@@ -23,14 +23,15 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#e6f7eb]">
-      <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#e6f7eb] w-full overflow-x-hidden">
+      <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col w-full max-w-full">
         {/* Challenge Notifications */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-6 sm:mb-8 w-full">
           <ProfileChallengeNotifications />
         </div>
 
-        <div className="text-center mb-6 sm:mb-8">
+        {/* Hero Section */}
+        <div className="text-center mb-6 sm:mb-8 w-full">
           <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
             <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
           </div>
@@ -43,8 +44,9 @@ export default function HomePage() {
           </p>
         </div>
 
+        {/* Feature Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto w-full">
-          <Card className="bg-white border-0 shadow-sm">
+          <Card className="bg-white border-0 shadow-sm w-full">
             <CardHeader className="text-center pb-2">
               <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                 <svg
@@ -87,7 +89,7 @@ export default function HomePage() {
             </CardFooter>
           </Card>
 
-          <Card className="bg-white border-0 shadow-sm">
+          <Card className="bg-white border-0 shadow-sm w-full">
             <CardHeader className="text-center pb-2">
               <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                 <svg
@@ -170,15 +172,16 @@ export default function HomePage() {
           </Card>
         </div>
 
+        {/* Secondary Cards & Leaderboard Section */}
         <div className="mt-8 max-w-6xl mx-auto w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-            <Card className="bg-white border-0 shadow-sm">
+            <Card className="bg-white border-0 shadow-sm w-full">
               <CardHeader className="text-center pb-2">
                 <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -203,7 +206,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
                   <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Reason for Revealation</span>
+                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Reason for Revelation</span>
                   <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Tafsir</span>
                   <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
                   <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Seerah & Context</span>
@@ -221,40 +224,44 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            <Card className="bg-white border-0 shadow-sm">
+            <Card className="bg-white border-0 shadow-sm w-full">
               <CardHeader className="text-center pb-2">
                 <CardTitle className="text-xl sm:text-2xl text-green-800">Top Players</CardTitle>
                 <CardDescription className="text-sm sm:text-base">
                   See who's leading the challenges
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-4 sm:px-6">
-                <SimpleTopPlayers />
+              <CardContent className="px-2 sm:px-6">
+                {/* Scroll container prevents table component from pushing screen width on mobile */}
+                <div className="w-full overflow-x-auto">
+                  <SimpleTopPlayers />
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        <section className="mb-12">
-          <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-800">
-            <h2 className="text-2xl text-emerald-800 dark:text-emerald-300 font-bold mb-4">No Donations & Charity</h2>
-            <p className="text-emerald-700 dark:text-emerald-200 mb-3">
+        {/* No Donations Banner */}
+        <section className="mb-12 w-full max-w-6xl mx-auto mt-8">
+          <div className="p-4 sm:p-6 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-800">
+            <h2 className="text-xl sm:text-2xl text-emerald-800 dark:text-emerald-300 font-bold mb-4">No Donations & Charity</h2>
+            <p className="text-emerald-700 dark:text-emerald-200 mb-3 text-sm sm:text-base">
               IQRA and KALAM apps are built without charity, zakat, or donations – a practice aligned with the true Sunnah of the Noble Prophets, and the Righteous.
             </p>
-            <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-3xl">
+            <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-xl sm:text-3xl font-arabic dir-rtl">
               قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ
             </p>
-            <p className="mb-4 text-emerald-600 dark:text-emerald-300">
+            <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-sm sm:text-base">
               Say, "I do not ask you for this any payment, and I am not of the pretentious - Surah Sad 38:86.
             </p>
           </div>
         </section>
       </div>
 
-      {/* Footer Section */}
-      <footer className="border-t border-green-200 p-4 sm:p-6 text-center text-sm text-green-800 bg-green-50 dark:bg-green-900/20 dark:border-green-700/30 dark:text-green-300 w-screen mt-8 mx-0">
+      {/* Footer Section - Fixed w-screen to w-full to avoid horizontal scrollbar bug */}
+      <footer className="border-t border-green-200 p-4 sm:p-6 text-center text-sm text-green-800 bg-green-50 dark:bg-green-900/20 dark:border-green-700/30 dark:text-green-300 w-full mt-8">
         <div className="flex items-center justify-center mb-2 sm:mb-3">
-          <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400" />
+          <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400 shrink-0" />
           <span>
             For suggestions, WhatsApp{" "}
             <a
@@ -268,10 +275,10 @@ export default function HomePage() {
             at +91 7558845528
           </span>
         </div>
-        <div className="flex justify-center space-x-4 mt-4">
+        <div className="flex flex-wrap justify-center items-center space-x-2 sm:space-x-4 mt-4 gap-y-2">
           <svg
             viewBox="0 0 496.08 512"
-            className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400"
+            className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400 shrink-0"
           >
             <path
               fill="currentColor"
