@@ -9,11 +9,12 @@ import { AuthProvider } from "@/contexts/auth-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
+// Fix for auto-fit / auto-zoom issue on mobile web views
 export const viewport: Viewport = {
   themeColor: "#10b981",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  minimumScale: 1,
 }
 
 export const metadata: Metadata = {
@@ -23,7 +24,6 @@ export const metadata: Metadata = {
   keywords:
     "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
   manifest: "/manifest.json",
-  // Modern web app metadata
   other: {
     "mobile-web-app-capable": "yes",
   },
@@ -62,7 +62,6 @@ export default function RootLayout({
   return (
     <html prefix="og: https://ogp.me/ns#" lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
-        {/* Modern Mobile Web App Capable Tag to resolve deprecation warning */}
         <meta name="mobile-web-app-capable" content="yes" />
         <link
           href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
@@ -70,12 +69,12 @@ export default function RootLayout({
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <AuthProvider>
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 w-full">{children}</main>
             </div>
             <Toaster />
           </AuthProvider>
