@@ -14,7 +14,8 @@ export const viewport: Viewport = {
   themeColor: "#10b981",
   width: "device-width",
   initialScale: 1,
-  minimumScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export const metadata: Metadata = {
@@ -61,14 +62,15 @@ export default function RootLayout({
 }) {
   return (
     <html prefix="og: https://ogp.me/ns#" lang="en" className="light" style={{ colorScheme: "light" }}>
-      <head>
-        <meta name="mobile-web-app-capable" content="yes" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" href="/logo.png" />
-      </head>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta name="mobile-web-app-capable" content="yes" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
+              rel="stylesheet"
+            />
+            <link rel="apple-touch-icon" href="/logo.png" />
+        </head>
       <body className={`${inter.className} overflow-x-hidden w-full min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <AuthProvider>
