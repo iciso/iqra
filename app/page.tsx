@@ -174,7 +174,7 @@ export default function HomePage() {
 
         {/* Secondary Cards & Leaderboard Section */}
         <div className="mt-8 max-w-6xl mx-auto w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
             <Card className="bg-white border-0 shadow-sm w-full">
               <CardHeader className="text-center pb-2">
                 <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
