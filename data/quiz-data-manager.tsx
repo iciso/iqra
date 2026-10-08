@@ -22,7 +22,7 @@ import peaceCategory from "./peace";
 import salahCategory from "./salah";
 import sawmCategory from "./sawm";
 import medicalEthicsCategory from "./islamic-medical-ethics";
-import { islamicEschatologyData } from './islamic-eschatology';
+import islamicEschatologyCategory from './islamic-eschatology';
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Define all quiz categories as Quran removed on 23 Jul 25  
