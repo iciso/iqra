@@ -279,6 +279,16 @@ const challengeCategories = [
     bgLight: "bg-gray-50",
     borderColor: "border-gray-300",
   },
+    {
+    id: "islamic-eschatology",
+    label: "Islamic End-Days",
+    description: "Islamic End-Days",
+    icon: Megaphone,
+    color: "bg-blue-500 hover:bg-blue-600",
+    textColor: "text-blue-700",
+    bgLight: "bg-blue-50",
+    borderColor: "border-blue-300",
+  },
    {
     id: "peace",
     label: "Peace",
