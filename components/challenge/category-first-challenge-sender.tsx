@@ -15,6 +15,7 @@ import {
   Zap,
   RefreshCw,
   BookOpen,
+  Megaphone,
   Scale,
   Scroll,
   ChurchIcon as Mosque,
@@ -81,6 +82,15 @@ const challengeCategories = [
     color: "bg-red-500 hover:bg-red-600",
     textColor: "text-red-700",
     bgLight: "bg-red-50",
+  },
+   {
+    id: "islamic-eschatology",
+    label: "Islamic End-Days",
+    description: "Islamic End Days",
+    icon: Megaphone,
+    color: "bg-blue-500 hover:bg-blue-600",
+    textColor: "text-blue-700",
+    bgLight: "bg-blue-50",
   },
   {
     id: "tafsir",
