@@ -16,6 +16,7 @@ import {
   BookDashed,
   Brain,
   BriefcaseMedical,
+  Megaphone,
   Scale,
   Scroll,
   Calendar1,
