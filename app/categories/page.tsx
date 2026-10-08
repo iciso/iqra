@@ -27,7 +27,8 @@ import {
   Globe,
   ArrowRight,
   ScanFace,
-  Telescope, 
+  Telescope,
+  Percent,
   Rainbow,
   Circle,
   HandHeart,
@@ -126,6 +127,12 @@ const categories = [
     title: "Hinduism",
     description: "Islam and Hinduism",
     icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "riba",
+    title: "Usury or interest",
+    description: "Usury or interest",
+    icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "islamic-finance",
