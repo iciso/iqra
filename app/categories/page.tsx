@@ -17,6 +17,7 @@ import {
   Calendar1,
   Church,
   Heart,
+  Megaphone,
   User,
   Users,
   Sparkles,
@@ -167,6 +168,12 @@ const categories = [
     title: "Medical Ethics",
     description: "Islamic Medical Ethics",
     icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+  {
+    id: "islamic-eschatology",
+    title: "Islalmic End-Days",
+    description: "Islamic End Days",
+    icon: <Megaphone className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "peace",
