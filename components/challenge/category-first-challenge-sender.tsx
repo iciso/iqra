@@ -16,6 +16,7 @@ import {
   RefreshCw,
   BookOpen,
   Megaphone,
+  Music,
   Percent,
   Scale,
   Scroll,
@@ -83,6 +84,15 @@ const challengeCategories = [
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
+  },
+  {
+    id: "music",
+    label: "Music in Islam",
+    description: "Music in Islam",
+    icon: Music,
+    color: "bg-yellow-500 hover:bg-yellow-600",
+    textColor: "text-yellow-700",
+    bgLight: "bg-yellow-50",
   },
   {
     id: "aqeedah",
