@@ -17,6 +17,7 @@ import {
   Calendar1,
   Church,
   Heart,
+  Infinity,
   Megaphone,
   Music,
   User,
@@ -67,7 +68,7 @@ const categories = [
     id: "aqeedah",
     title: "Aqeedah",
     description: "Islamic Monotheism",
-    icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Infinity className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
   {
     id: "seerah",
@@ -166,16 +167,22 @@ const categories = [
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
-    id: "parenting",
-    title: "Islamic Parenting",
-    description: "Islam & parenting",
-    icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
     id: "music",
     title: "Music in Islam",
     description: "Music in Islam",
     icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+    {
+    id: "dating",
+    title: "Dating",
+    description: "Dating in Islam",
+    icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+   {
+    id: "parenting",
+    title: "Islamic Parenting",
+    description: "Islam & parenting",
+    icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "islamic-medical-ethics",
