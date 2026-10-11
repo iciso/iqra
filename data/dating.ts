@@ -1,6 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
-const datingCategory: QuizCategory = {
+export const datingCategory: QuizCategory = {
   id: "dating",
   title: "Dating",
   description: "Islamic rulings on pre-marital relationships, modesty, and courtship",
@@ -404,7 +404,7 @@ const datingCategory: QuizCategory = {
          explanation: "Character and religious devotion ensure a stable, respectful, and loving home environment based on mutual rights and responsibilities."
       }
     ],
-    medium: [
+    intermediate: [
       {
          id: 34,
          question: "Is it permissible for a man to shake hands with an unrelated (non-Mahram) woman during courtship or general meetings?",
@@ -814,7 +814,7 @@ const datingCategory: QuizCategory = {
          explanation: "Explicit media violates the command to lower the gaze, feeds lustful desires unlawfully, and creates unrealistic, harmful expectations."
       }
     ],
-    hard: [
+    advanced: [
       {
          id: 68,
          question: "What does the phrase 'Prevention is better than cure' reflect in Islamic jurisprudence regarding Zina?",
