@@ -38,7 +38,7 @@ interface User {
   best_percentage?: number
 }
 
-// Category-first design with prominent visual categories made
+// Category design with prominent visual categories made
 const challengeCategories = [
   {
     id: "fiqh",
