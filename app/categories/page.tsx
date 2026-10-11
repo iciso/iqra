@@ -18,6 +18,7 @@ import {
   Church,
   Heart,
   Megaphone,
+  Music,
   User,
   Users,
   Sparkles,
@@ -164,11 +165,17 @@ const categories = [
     description: "Psychology & Islam",
     icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
-     {
+    {
     id: "parenting",
     title: "Islamic Parenting",
     description: "Islam & parenting",
     icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+    {
+    id: "music",
+    title: "Music in Islam",
+    description: "Music in Islam,
+    icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "islamic-medical-ethics",
