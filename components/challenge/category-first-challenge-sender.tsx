@@ -22,9 +22,9 @@ import {
   Scroll,
   ChurchIcon as Mosque,
   Heart,
+  Infinity,
   Star,
 } from "lucide-react"
-import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
 import { useAuth } from "@/contexts/auth-context"
@@ -98,7 +98,7 @@ const challengeCategories = [
     id: "aqeedah",
     label: "Aqeedah",
     description: "Islamic Creed",
-    icon: Heart,
+    icon: Infinity,
     color: "bg-red-500 hover:bg-red-600",
     textColor: "text-red-700",
     bgLight: "bg-red-50",
@@ -111,6 +111,15 @@ const challengeCategories = [
     color: "bg-blue-500 hover:bg-blue-600",
     textColor: "text-blue-700",
     bgLight: "bg-blue-50",
+  },
+  {
+    id: "dating",
+    label: "Dating",
+    description: "Dating in Islam",
+    icon: Heart,
+    color: "bg-red-500 hover:bg-red-600",
+    textColor: "text-red-700",
+    bgLight: "bg-red-50",
   },
   {
     id: "tafsir",
