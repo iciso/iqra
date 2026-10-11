@@ -1,12 +1,12 @@
-export interface QuizQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: string; // 'A', 'B', 'C', or 'D'
-  explanation: string;
-}
+import type { QuizCategory } from "@/types/quiz"
 
-export const datingQuestions: QuizQuestion[] = [
+export const datingCategory: QuizCategory = {
+  id: "dating",
+  title: "Dating",
+  description: "Dating in Islam",
+  icon: "heart",
+  levels: {
+    easy: [
   {
      id: 1,
      question: "What is the direct ruling of Islamic Shariah regarding modern pre-marital 'dating' and romantic boyfriend-girlfriend relationships?",
@@ -1214,5 +1214,9 @@ export const datingQuestions: QuizQuestion[] = [
      ],
      correctAnswer: "A",
      explanation: "Islam does not suppress love; rather, it channels romantic love into its proper, dignified, and blessed container—marriage—protecting hearts, families, and society."
-  }
-];
+       },
+    ],
+  },
+}
+
+export default datingCategory
