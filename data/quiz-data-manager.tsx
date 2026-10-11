@@ -18,6 +18,7 @@ import tazkiyahCategory from "./tazkiyah";
 import genderCategory from "./gender";
 import lgbtqCategory from "./lgbtq";
 import psychCategory from "./psych";
+import musicCategory from "./music";
 import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import salahCategory from "./salah";
@@ -47,6 +48,7 @@ const quizData: QuizCategory[] = [
   genderCategory,
   lgbtqCategory,
   psychCategory,
+  musicCategory,
   parentingCategory,
   peaceCategory,
   salahCategory,
