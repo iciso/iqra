@@ -292,7 +292,7 @@ const challengeCategories = [
     textColor: "text-red-700",
     bgLight: "bg-red-50",
     borderColor: "border-red-300",
-  },
+  }, 
   {
     id: "parenting",
     label: "Islamic Parenting",
