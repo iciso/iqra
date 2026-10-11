@@ -60,7 +60,7 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Deine all categories here for challenges
+// Deine all categories here for challenges 
 const challengeCategories = [
   {
     id: "quran",
