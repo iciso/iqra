@@ -13,7 +13,7 @@ import {
   Search,
   Trophy,
   Zap,
-  RefreshCw,
+  RefreshCw, 
   BookOpen,
   Megaphone,
   Music,
@@ -38,7 +38,7 @@ interface User {
   best_percentage?: number
 }
 
-// Category-first design with prominent visual categories
+// Category-first design with prominent visual categories made
 const challengeCategories = [
   {
     id: "fiqh",
