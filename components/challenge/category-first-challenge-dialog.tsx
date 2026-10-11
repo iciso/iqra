@@ -41,7 +41,6 @@ import {
   Globe,
   AlertCircle,
 } from "lucide-react"
-// supabase removed — using API routes instead
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
