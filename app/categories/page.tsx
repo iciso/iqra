@@ -174,7 +174,7 @@ const categories = [
     {
     id: "music",
     title: "Music in Islam",
-    description: "Music in Islam,
+    description: "Music in Islam",
     icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
