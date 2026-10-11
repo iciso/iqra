@@ -1,6 +1,6 @@
 import type { QuizCategory } from "@/types/quiz"
 
-export const datingCategory: QuizCategory = {
+const datingCategory: QuizCategory = {
   id: "dating",
   title: "Dating",
   description: "Dating in Islam",
