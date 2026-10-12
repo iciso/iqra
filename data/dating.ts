@@ -16,7 +16,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged only if parents are aware of the meetings",
             "Permissible provided there is no physical intimacy"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Strictly prohibited as it opens doors to major sins like Zina",
          explanation: "Islam strictly prohibits pre-marital romantic dating because it violates boundaries set by Allah and serves as a pathway ('sad ad-dharaai') to unlawful intimacy (Zina). Reference: Quran 17:32."
       },
       {
@@ -28,7 +28,7 @@ export const datingCategory: QuizCategory = {
             "Tell the believing men to lower their gaze... (An-Nur 24:30)",
             "O you who have believed, do not enter houses other than your own... (An-Nur 24:27)"
          ],
-         correctAnswer: "A",
+         correctAnswer: "And do not approach unlawful sexual intercourse. Indeed, it is ever an immorality and is evil as a way. (Al-Isra 17:32)",
          explanation: "Surah Al-Isra 17:32 does not merely say 'do not commit Zina', it commands 'do not approach it', forbidding all preliminary steps like dating, inappropriate touching, and seclusion."
       },
       {
@@ -40,7 +40,7 @@ export const datingCategory: QuizCategory = {
             "Thinking about marriage constantly",
             "Meeting in a public marketplace"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Looking with lustful desire at what is forbidden",
          explanation: "The Prophet Muhammad (peace be upon him) taught that the eyes commit Zina through a lustful glance, the ears through listening, the tongue through speech, the hand through seizing, and the foot through walking towards sin."
       },
       {
@@ -52,7 +52,7 @@ export const datingCategory: QuizCategory = {
             "Strictly forbidden unless accompanied by a Mahram",
             "Permissible during daylight hours only"
          ],
-         correctAnswer: "C",
+         correctAnswer: "Strictly forbidden unless accompanied by a Mahram",
          explanation: "The Prophet (ﷺ) stated: 'No man is alone with a woman but the Shaytan is the third among them' (Tirmidhi). Seclusion (Khlwah) with a non-Mahram is strictly forbidden in Islam."
       },
       {
@@ -64,7 +64,7 @@ export const datingCategory: QuizCategory = {
             "Nothing until after the formal wedding contract (Nikah)",
             "Whatever he desires as long as they are in a public space"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Her face and hands only, to evaluate what encourages him to marry her",
          explanation: "Sunan accounts indicate the Prophet (ﷺ) instructed prospective grooms to look at what will encourage him to proceed with marriage, which mainstream scholars define as the face and hands."
       },
       {
@@ -76,7 +76,7 @@ export const datingCategory: QuizCategory = {
             "Living together under trial conditions for a week",
             "Exchanging intimate text messages late at night"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Meeting in the presence of a Mahram or in a safe public environment with clear boundaries",
          explanation: "Meeting for marriage assessment must respect Shariah limits—ensuring no seclusion, no physical touch, and maintaining lowered gazes while discussing core compatibility values."
       },
       {
@@ -88,7 +88,7 @@ export const datingCategory: QuizCategory = {
             "Marry early, as it guards the gaze and preserves chastity",
             "Avoid marriage entirely to focus solely on voluntary worship"
          ],
-         correctAnswer: "C",
+         correctAnswer: "Marry early, as it guards the gaze and preserves chastity",
          explanation: "The Prophet (ﷺ) said: 'O young people, whoever among you can afford the ba'ah (marriage), let him marry, for it is more effective in lowering the gaze and guarding chastity...' (Bukhari & Muslim)."
       },
       {
@@ -100,7 +100,7 @@ export const datingCategory: QuizCategory = {
             "As an obligatory prerequisite for a valid marriage",
             "As completely harmless as long as it remains online"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As a natural trap that often leads individuals to compromise Islamic morals and ethics",
          explanation: "Unregulated emotional attachments before marriage cloud sound judgment, often lead to emotional heartbreak or disobedience to Allah, and bypass parental and familial safeguards."
       },
       {
@@ -112,7 +112,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged to build modern relationship chemistry",
             "Permissible if they promise to marry each other eventually"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Haram (prohibited) if it involves soft speech, flirtation, or leads to emotional attachment without a Mahram's oversight",
          explanation: "Communication between non-Mahrams must remain formal, objective, necessary, and free of flirtatious or alluring speech, as warned in Quran 33:32 ('...then do not be soft in speech [to men]...')."
       },
       {
@@ -124,7 +124,7 @@ export const datingCategory: QuizCategory = {
             "To fast every Monday and Thursday",
             "To give generous charity to orphans"
          ],
-         correctAnswer: "B",
+         correctAnswer: "To lower their gazes and guard their private parts",
          explanation: "Allah commands both men and women to lower their gazes first, because the eyes are the gateway to desire and the primary instigator of inappropriate pre-marital attachments."
       },
       {
@@ -136,7 +136,7 @@ export const datingCategory: QuizCategory = {
             "It is optional and only cultural tradition",
             "Only if she is under the age of 18"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Yes, the presence of a Wali (guardian) is a required condition for a valid marriage in mainstream jurisprudence",
          explanation: "The Prophet (ﷺ) said: 'There is no marriage without a Wali' (Abu Dawud, Tirmidhi). Protecting family involvement prevents secret, impulsive relationships."
       },
       {
@@ -148,7 +148,7 @@ export const datingCategory: QuizCategory = {
             "Only a sin if society condemns it",
             "A cultural transgression rather than a religious one"
          ],
-         correctAnswer: "B",
+         correctAnswer: "One of the greatest destructive major sins (Kaba'ir)",
          explanation: "Zina is ranked among the gravest major sins right after shirk and unjustified murder, due to its devastating impact on lineage, family structures, and spiritual purity."
       },
       {
@@ -160,7 +160,7 @@ export const datingCategory: QuizCategory = {
             "Continue the relationship secretly until marriage is finalized",
             "Abandon all religious practices as they are beyond forgiveness"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Turn to Allah in sincere repentance (Tawbah Nasuha), resolve never to return, and cover their sins",
          explanation: "Allah loves those who repent. Sincere Tawbah requires regret, stopping the sin immediately, and resolving never to repeat it, while concealing what Allah has concealed."
       },
       {
@@ -172,7 +172,7 @@ export const datingCategory: QuizCategory = {
             "No, physical touch between non-Mahrams is strictly haram under all circumstances before Nikah",
             "Permissible if they intend to marry within a month"
          ],
-         correctAnswer: "C",
+         correctAnswer: "No, physical touch between non-Mahrams is strictly haram under all circumstances before Nikah",
          explanation: "An engagement (Khuthbah) is merely a promise to marry; it does not change the status of the man and woman to Mahrams. All rules of modesty and prohibitions of touching remain in full effect."
       },
       {
@@ -184,7 +184,7 @@ export const datingCategory: QuizCategory = {
             "Satan has no power over people who are in love",
             "Satan only influences married couples"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Satan is their third companion, whispering and pushing them toward immorality",
          explanation: "As stated in authentic narrations, when a man and woman are secluded, Satan acts as their third companion, working to break down their moral boundaries."
       },
       {
@@ -196,7 +196,7 @@ export const datingCategory: QuizCategory = {
             "Because human beings are incapable of talking to each other",
             "To make marriage unnecessarily difficult"
          ],
-         correctAnswer: "B",
+         correctAnswer: "To protect individual honor, uphold family stability, and block the avenues leading to indecency",
          explanation: "Islamic rulings are designed to protect human dignity, prevent emotional and physical harm, and safeguard the sanctity of family lineage."
       },
       {
@@ -208,7 +208,7 @@ export const datingCategory: QuizCategory = {
             "It is culturally permissible as a custom as long as it does not involve un-Islamic practices like free mixing or touching",
             "It replaces the Nikah contract legally"
          ],
-         correctAnswer: "C",
+         correctAnswer: "It is culturally permissible as a custom as long as it does not involve un-Islamic practices like free mixing or touching",
          explanation: "An engagement is simply an announcement of a mutual promise to marry. Customs surrounding it are permissible provided they avoid extravagance, unlawful mixing, and physical intimacy."
       },
       {
@@ -220,7 +220,7 @@ export const datingCategory: QuizCategory = {
             "Isolate completely from society forever",
             "Force an immediate marriage regardless of compatibility"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Fast frequently and busy oneself with righteous deeds and lawful companionship",
          explanation: "Fasting curbs physical desires, and replacing bad habits with righteous company and acts of worship helps cleanse the heart from unlawful attachments."
       },
       {
@@ -232,7 +232,7 @@ export const datingCategory: QuizCategory = {
             "A secret romantic relationship",
             "A divorce settlement agreement"
          ],
-         correctAnswer: "B",
+         correctAnswer: "A formal marriage proposal and mutual agreement to marry",
          explanation: "Khuthbah refers to a marriage proposal where a man asks a woman (or her guardian) for her hand in marriage, which forms the precursor to the Nikah contract."
       },
       {
@@ -244,7 +244,7 @@ export const datingCategory: QuizCategory = {
             "As something required only for women",
             "As optional for modern youth"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As an essential branch of faith that protects character and dignity",
          explanation: "The Prophet (ﷺ) said: 'Modesty is part of faith' (Bukhari & Muslim). Haya' restrains both men and women from immodest speech, dress, and behavior."
       },
       {
@@ -256,7 +256,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged if the second suitor is wealthier",
             "Permissible if they met secretly"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Forbidden, unless the first suitor has withdrawn or given explicit permission",
          explanation: "The Prophet (ﷺ) prohibited a Muslim from proposing over the proposal of his brother until the first suitor gives up or withdraws (Bukhari)."
       },
       {
@@ -268,7 +268,7 @@ export const datingCategory: QuizCategory = {
             "Surah Al-Imran",
             "Surah At-Tawbah"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Surah An-Nur",
          explanation: "Surah An-Nur (Chapter 24) is foundational for Islamic social ethics, family law, modesty, and the protection of chastity."
       },
       {
@@ -280,7 +280,7 @@ export const datingCategory: QuizCategory = {
             "Physical appearance and popularity",
             "Family political background"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Religious commitment and character (Deen)",
          explanation: "The Prophet (ﷺ) advised: 'A woman is married for four things: her wealth, her family status, her beauty and her religion. So you should marry the religious woman; otherwise you will be a loser' (Bukhari & Muslim)."
       },
       {
@@ -292,7 +292,7 @@ export const datingCategory: QuizCategory = {
             "Yes, if they plan to marry within a year",
             "Permissible only during daytime"
          ],
-         correctAnswer: "B",
+         correctAnswer: "No, because it stirs desires and opens doors to unlawful temptation and emotional dependency",
          explanation: "Engaging in romantic or flirtatious correspondence before marriage violates the boundaries of modest speech and incites desires that cannot lawfully be fulfilled yet."
       },
       {
@@ -304,7 +304,7 @@ export const datingCategory: QuizCategory = {
             "Null, void, and tantamount to living in sin (Zina)",
             "Permissible in Western countries"
          ],
-         correctAnswer: "C",
+         correctAnswer: "Null, void, and tantamount to living in sin (Zina)",
          explanation: "A valid Islamic marriage requires specific pillars: mutual consent, the Wali (guardian), witnesses, and the Mahr (dowry). Cohabitation without Nikah is forbidden Zina."
       },
       {
@@ -316,7 +316,7 @@ export const datingCategory: QuizCategory = {
             "He negotiated terms with the woman",
             "He ignored the situation completely"
          ],
-         correctAnswer: "B",
+         correctAnswer: "He immediately sought refuge in Allah and fled from unlawful temptation when approached",
          explanation: "Prophet Yusuf (AS) declared 'I seek refuge in Allah' and rushed toward the door when faced with unlawful seduction, exemplifying supreme moral fortitude."
       },
       {
@@ -328,7 +328,7 @@ export const datingCategory: QuizCategory = {
             "A refundable deposit for the wedding venue",
             "A cultural tax on marriage"
          ],
-         correctAnswer: "B",
+         correctAnswer: "A mandatory financial gift given by the groom to the bride as a token of respect and security",
          explanation: "The Mahr is an obligation from Allah given directly to the bride to honor her and provide her with financial independence and security."
       },
       {
@@ -340,7 +340,7 @@ export const datingCategory: QuizCategory = {
             "Harass them publicly",
             "Ignore it and participate in the sin"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Advise them privately with wisdom, kindness, and gentle admonition",
          explanation: "Islam encourages concealing faults where possible and giving sincere, confidential advice (Nasihah) with wisdom and good counsel rather than public exposure."
       },
       {
@@ -352,7 +352,7 @@ export const datingCategory: QuizCategory = {
             "Refusing to speak to anyone of the opposite gender ever",
             "Covering the face under all circumstances"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Lowering the gaze, dressing modestly, and avoiding unnecessary familiarity with non-Mahrams",
          explanation: "Modesty encompasses behavior, speech, interactions, and attire for both genders, fostering a pure and respectful societal environment."
       },
       {
@@ -364,7 +364,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if booked through a registered travel agency",
             "Permissible if they are engaged"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Strictly prohibited based on authentic Hadith prohibitions",
          explanation: "The Prophet (ﷺ) stated that a woman should not travel except with a Mahram (Bukhari & Muslim), closing doors to temptation and ensuring her safety."
       },
       {
@@ -376,7 +376,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged even if it involves secret chatting without family knowledge",
             "Mandatory for all youth"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Permissible and useful as a modern tool, provided Islamic boundaries of modesty and guardian involvement are maintained",
          explanation: "Using modern platforms to find compatible spouses is permissible as a means, provided interactions remain public, respectful, and observant of Shariah limits."
       },
       {
@@ -388,7 +388,7 @@ export const datingCategory: QuizCategory = {
             "It has no impact on faith",
             "It purifies the soul"
          ],
-         correctAnswer: "A",
+         correctAnswer: "It hardens the heart and makes major sins feel acceptable over time",
          explanation: "Satan leads people astray in steps ( خطوات الشياطين ). Small compromises pave the way for bigger sins until moral barriers collapse entirely."
       },
       {
@@ -400,7 +400,7 @@ export const datingCategory: QuizCategory = {
             "Their professional career title",
             "Their physical fitness level"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Their religious commitment, character, and integrity",
          explanation: "Character and religious devotion ensure a stable, respectful, and loving home environment based on mutual rights and responsibilities."
       }
     ],
@@ -414,7 +414,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if they are engaged",
             "Permissible in professional environments only"
          ],
-         correctAnswer: "B",
+         correctAnswer: "No, physical contact between unrelated men and women is strictly prohibited in authentic traditions",
          explanation: "The Prophet (ﷺ) never touched the hand of a non-Mahram woman, even when taking pledges of allegiance (Bukhari), establishing a clear prohibition on non-Mahram handshakes."
       },
       {
@@ -426,7 +426,7 @@ export const datingCategory: QuizCategory = {
             "Jealousy over wealth and material possessions",
             "Complete indifference to moral conduct"
          ],
-         correctAnswer: "B",
+         correctAnswer: "A natural, noble protective zeal for the honor and modesty of one's family members",
          explanation: "Gheerah in Islam is a praiseworthy trait meaning a believer cares deeply about protecting their family's modesty and dignity from indecency."
       },
       {
@@ -438,7 +438,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if childhood friends",
             "Mandatory in university settings"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Not recognized in Islamic framework, as close personal friendships between non-Mahrams invariably lead to emotional or physical transgression",
          explanation: "Human nature is such that prolonged close association between unrelated genders naturally breeds romantic and physical inclinations, which Islam preemptively blocks."
       },
       {
@@ -450,7 +450,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged to help fellow Muslims",
             "Permissible under emergency laws"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Invalid (Batil) or unlawful deception if entered into as a fraudulent contract",
          explanation: "Marriage in Islam is a sacred covenant with serious rights and responsibilities, not a legal loophole for administrative convenience."
       },
       {
@@ -462,7 +462,7 @@ export const datingCategory: QuizCategory = {
             "As an optional burden",
             "As a trial without reward"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As a sign of Allah where He placed between spouses love (Mawaddah) and mercy (Rahmah)",
          explanation: "Allah states: 'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy...' (30:21)."
       },
       {
@@ -474,7 +474,7 @@ export const datingCategory: QuizCategory = {
             "Despair of Allah's mercy",
             "Repeat the sin to test forgiveness"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Trust in Allah's infinite forgiveness, conceal the sin, and focus on righteous good deeds",
          explanation: "Once sincere repentance is made, the sin is wiped clean. Allah conceals the repentant believer, and one must move forward in hope and righteousness."
       },
       {
@@ -486,7 +486,7 @@ export const datingCategory: QuizCategory = {
             "To enforce ancient tribal customs",
             "To eliminate all social gatherings"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Because Allah, as the Creator, knows human psychology and legislates what protects individuals from emotional trauma, broken families, and societal corruption",
          explanation: "Divine laws are designed for human welfare, protecting society from the psychological, social, and spiritual harms associated with unrestrained desires."
       },
       {
@@ -498,7 +498,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if the family is wealthy",
             "Encouraged to maintain tribal alliances"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Harand unlawful; forced marriage contradicts Islamic law which requires the explicit consent of both bride and groom",
          explanation: "The Prophet (ﷺ) invalidated a forced marriage when a woman complained that her father married her off without her consent (Bukhari)."
       },
       {
@@ -510,7 +510,7 @@ export const datingCategory: QuizCategory = {
             "Post about it on social media",
             "Blame destiny for the temptation"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Seek refuge in Allah, remember His watchfulness, and distract oneself with righteous actions",
          explanation: "Consciousness of Allah (Taqwa) and seeking His refuge empower a believer to overcome base desires and satanic whispers."
       },
       {
@@ -522,7 +522,7 @@ export const datingCategory: QuizCategory = {
             "It replaces the need to check the person's character",
             "It is only performed after the wedding"
          ],
-         correctAnswer: "B",
+         correctAnswer: "It is a supplication asking Allah to guide one's decision toward what is best in religious and worldly matters",
          explanation: "Istikharah is seeking divine guidance when making important life decisions like marriage, entrusting the outcome to Allah's infinite wisdom."
       },
       {
@@ -534,7 +534,7 @@ export const datingCategory: QuizCategory = {
             "Yes, if flights are expensive",
             "Permissible during holiday seasons"
          ],
-         correctAnswer: "B",
+         correctAnswer: "No, traveling without a Mahram violates established prohibitions in prophetic traditions",
          explanation: "The rule regarding Mahram accompaniment during travel applies strictly, preventing vulnerability to exploitation and safeguarding personal safety."
       },
       {
@@ -546,7 +546,7 @@ export const datingCategory: QuizCategory = {
             "Race and nationality are absolute barriers to marriage",
             "Compatibility is completely irrelevant"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Religious commitment and moral integrity are the primary and most important standards of compatibility",
          explanation: "While various factors can be considered, Islam places primary emphasis on religious compatibility and character to ensure harmony."
       },
       {
@@ -558,7 +558,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory for community leaders",
             "Permissible if done anonymously"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Forbidden (Gheebah/Scandal); Muslims are commanded to conceal faults and guide sinners privately",
          explanation: "Spreading indecency or exposing people's private sins is a major sin. The Prophet (ﷺ) taught that whoever conceals a Muslim's fault, Allah will conceal his faults on the Day of Resurrection."
       },
       {
@@ -570,7 +570,7 @@ export const datingCategory: QuizCategory = {
             "As innocent bystanders",
             "As leaders of society"
          ],
-         correctAnswer: "B",
+         correctAnswer: "With a severe painful punishment in this world and the hereafter (Surah An-Nur 24:19)",
          explanation: "Surah An-Nur 24:19 warns: 'Indeed, those who like that immorality should be spread [or publicized] among those who have believed will have a painful punishment in this world and the Hereafter.'"
       },
       {
@@ -582,7 +582,7 @@ export const datingCategory: QuizCategory = {
             "Demand public explanations",
             "Harass the family until they reconsider"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Accept it with grace, maintain dignity, and strictly keep confidential any personal matters discussed",
          explanation: "Dignity, respect, and the confidentiality of private meetings must be maintained by both sides even if the proposal does not move forward."
       },
       {
@@ -594,7 +594,7 @@ export const datingCategory: QuizCategory = {
             "They have no role whatsoever",
             "They are responsible only for wedding financing"
          ],
-         correctAnswer: "B",
+         correctAnswer: "They provide a supportive safety net of accountability, guidance, and emotional stability",
          explanation: "Family involvement ensures that marriages are built on transparent foundations with community and familial support rather than isolation."
       },
       {
@@ -606,7 +606,7 @@ export const datingCategory: QuizCategory = {
             "To eliminate all social interaction",
             "To focus exclusively on material wealth"
          ],
-         correctAnswer: "A",
+         correctAnswer: "To create a pure, righteous society where individuals, families, and morality are protected and flourish",
          explanation: "Every ruling in Shariah regarding modesty and marriage aims to protect human dignity, foster spiritual growth, and build strong, peaceful families."
       },
       {
@@ -618,7 +618,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory for all widows",
             "Forbidden under any circumstance forever"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Explicit proposals are forbidden during 'Iddah, though indirect allusions may be permissible in certain divorce cases",
          explanation: "Islamic law protects the sanctity of the waiting period by forbidding direct marriage proposals while a woman is in 'Iddah, avoiding confusion regarding lineage."
       },
       {
@@ -630,7 +630,7 @@ export const datingCategory: QuizCategory = {
             "As a seasonal fashion choice",
             "As optional advice"
          ],
-         correctAnswer: "A",
+         correctAnswer: "As a means to be recognized and protected from molestation or annoyance",
          explanation: "Modest dress and Hijab serve as a shield of dignity, signaling modesty and protecting women from disrespectful advances."
       },
       {
@@ -642,7 +642,7 @@ export const datingCategory: QuizCategory = {
             "Acquiring free labor in the household",
             "Gaining social media attention"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Completing half of one's religion, seeking chastity, and building a righteous family for the sake of Allah",
          explanation: "Marriage in Islam is an act of worship and spiritual completion, undertaken to please Allah, protect chastity, and nurture future generations of believers."
       },
       {
@@ -654,7 +654,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory in all cultures",
             "Forbidden under all conditions"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Scholars advise avoiding lavish or intimate gifts before Nikah to prevent emotional obligation or complications if the marriage does not happen",
          explanation: "While small tokens of mutual respect can occur with family knowledge, excessive gifting before marriage creates undue pressure and blurs proper boundaries."
       },
       {
@@ -666,7 +666,7 @@ export const datingCategory: QuizCategory = {
             "That it should be delayed until old age",
             "That it requires massive worldly debt"
          ],
-         correctAnswer: "A",
+         correctAnswer: "That Allah assists those who marry seeking to keep themselves chaste",
          explanation: "The Prophet (ﷺ) noted that three types of people have a specific promise of help from Allah, including the one who marries desiring to maintain chastity (Tirmidhi)."
       },
       {
@@ -678,7 +678,7 @@ export const datingCategory: QuizCategory = {
             "As a sign of good communication skills",
             "As encouraged for singles"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As a violation of Islamic modesty and a stepping stone toward moral corruption",
          explanation: "Flirtatious banter between non-Mahrams crosses the boundaries of respectful speech and stirs desires outside the lawful bond of marriage."
       },
       {
@@ -690,7 +690,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged for young couples",
             "Permissible if kept secret for a month"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Invalid (Batil) in mainstream jurisprudence, as publicity and witnesses are required to protect rights and lineage",
          explanation: "Islam rejects clandestine relationships and secret marriages without proper witnesses and guardian oversight, as publicity distinguishes legitimate marriage from illicit affairs."
       },
       {
@@ -702,7 +702,7 @@ export const datingCategory: QuizCategory = {
             "Despair of God's provision",
             "Ignore moral bounds completely"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Fast frequently, as fasting acts as a shield against overwhelming desires, alongside focusing on righteous endeavors",
          explanation: "The Prophet (ﷺ) advised those unable to marry to observe fasting, which subdues physical passions and strengthens self-control."
       },
       {
@@ -714,7 +714,7 @@ export const datingCategory: QuizCategory = {
             "It makes weddings cheaper",
             "It eliminates all future disagreements"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Physical attraction fades; without shared faith, character, and values, the marriage often collapses under pressure",
          explanation: "While physical compatibility matters, lasting marriages depend primarily on moral character, shared spiritual values, and emotional maturity."
       },
       {
@@ -726,7 +726,7 @@ export const datingCategory: QuizCategory = {
             "Complain against divine decrees",
             "Isolate from all human contact"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Turn to Allah in supplication, engage in community service, focus on self-improvement, and maintain patience",
          explanation: "Patience (Sabr), prayer, productive activity, and reliance on Allah are the prophetic remedies for navigating times of loneliness before marriage."
       },
       {
@@ -738,7 +738,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged for inspiration",
             "Permissible if online"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Forbidden; the first accidental glance is pardoned, but subsequent intentional glances are sinful",
          explanation: "The Prophet (ﷺ) told Ali (ra): 'Do not follow a glance with another, for the first is for you [forgiven if accidental] and the second is against you' (Tirmidhi)."
       },
       {
@@ -750,7 +750,7 @@ export const datingCategory: QuizCategory = {
             "Economic prosperity",
             "Universal peace"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Erosion of family structures, rise in broken homes, loss of modesty, and spread of social ills",
          explanation: "When societal guardrails of modesty and chastity are discarded, social breakdown, broken trust, and emotional trauma inevitably follow."
       },
       {
@@ -762,7 +762,7 @@ export const datingCategory: QuizCategory = {
             "Yes, if approved by local judges",
             "Permissible in emergency cases"
          ],
-         correctAnswer: "B",
+         correctAnswer: "No, consent is an absolute pillar of Islamic marriage; a forced marriage is invalid",
          explanation: "Consent is mandatory in Islam. Any marriage contracted without the free and clear consent of both parties lacks legal and moral validity."
       },
       {
@@ -774,7 +774,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory for modern dating",
             "Encouraged for speed"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Equivalent to virtual Khlwah (seclusion) and discouraged or prohibited as it invites temptation",
          explanation: "Private, unmonitored digital communication mirrors physical seclusion (Khlwah) and opens doors to whispering doubts and inappropriate intimacy."
       },
       {
@@ -786,7 +786,7 @@ export const datingCategory: QuizCategory = {
             "They consider them a personal choice",
             "They ignore moral laws"
          ],
-         correctAnswer: "B",
+         correctAnswer: "They do not commit Zina, knowing the grave consequences (Furqan 25:68)",
          explanation: "Surah Al-Furqan 25:68 praises those who do not invoke any other deity alongside Allah, do not take life unjustly, and do not commit Zina."
       },
       {
@@ -798,7 +798,7 @@ export const datingCategory: QuizCategory = {
             "They should meet outside the house secretly",
             "The suitor should only speak to the father"
          ],
-         correctAnswer: "B",
+         correctAnswer: "They must meet in a shared family space in the presence of her guardian or family members",
          explanation: "Meetings for marriage must be respectful and transparent, taking place in family settings to maintain proper Islamic boundaries."
       },
       {
@@ -810,7 +810,7 @@ export const datingCategory: QuizCategory = {
             "It consumes internet data",
             "It is culturally unpopular"
          ],
-         correctAnswer: "B",
+         correctAnswer: "It corrupts the heart, devalues human beings, normalizes indecency, and ruins real marital intimacy",
          explanation: "Explicit media violates the command to lower the gaze, feeds lustful desires unlawfully, and creates unrealistic, harmful expectations."
       }
     ],
@@ -824,7 +824,7 @@ export const datingCategory: QuizCategory = {
             "Medicine is more important than law",
             "Prevention is a modern Western concept"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Islam bans all preliminary steps (dating, seclusion, immodesty) to prevent people from ever falling into Zina",
          explanation: "Islamic law blocks every avenue leading to major sins—establishing a preventative framework rather than just punishing outcomes."
       },
       {
@@ -836,7 +836,7 @@ export const datingCategory: QuizCategory = {
             "Discouraged by scholars",
             "Temporary"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Blessed, enduring, and a source of tranquility in this life and the hereafter",
          explanation: "Love built upon faith, purity, and lawful marriage is blessed by Allah and yields lasting peace and mutual mercy."
       },
       {
@@ -848,7 +848,7 @@ export const datingCategory: QuizCategory = {
             "By using harsh insults and threats",
             "By encouraging modern dating habits"
          ],
-         correctAnswer: "A",
+         correctAnswer: "With openness, wisdom, Islamic guidance, and proactive mentorship",
          explanation: "Parents have a duty to guide their children with wisdom and care, equipping them with spiritual knowledge to navigate worldly temptations successfully."
       },
       {
@@ -860,7 +860,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged to date coworkers",
             "Forbidden for women only"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Permissible when necessary, provided professional boundaries, modest dress, lowered gazes, and absence of seclusion are maintained",
          explanation: "Professional and public interactions are permissible out of necessity, provided Islamic etiquette regarding modesty and boundaries is strictly observed."
       },
       {
@@ -872,7 +872,7 @@ export const datingCategory: QuizCategory = {
             "It has no spiritual weight",
             "It is only valued culturally"
          ],
-         correctAnswer: "A",
+         correctAnswer: "It brings immense reward and places the believer under the shade of Allah's throne on Judgment Day",
          explanation: "A youth who grows up worshipping Allah and guarding chastity is among the seven categories of people promised shade under Allah's throne on the Day of Judgment (Bukhari & Muslim)."
       },
       {
@@ -884,7 +884,7 @@ export const datingCategory: QuizCategory = {
             "Only if approved by tribal elders",
             "Permissible only within the same city"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Yes, Islam emphasizes piety and character over race, ethnicity, or nationality",
          explanation: "The Quran affirms: 'Indeed, the most noble of you in the sight of Allah is the most righteous of you' (49:13). Piety and character outweigh ethnicity."
       },
       {
@@ -896,7 +896,7 @@ export const datingCategory: QuizCategory = {
             "Enter into illegal loans with high interest",
             "Abandon all hope of marriage"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Keep chaste until Allah enriches them from His bounty (An-Nur 24:33)",
          explanation: "Surah An-Nur 24:33 instructs: 'And let those who find not the financial means for marriage keep themselves chaste until Allah enriches them of His bounty.'"
       },
       {
@@ -908,7 +908,7 @@ export const datingCategory: QuizCategory = {
             "It requires a formal court divorce decree",
             "It is strictly forbidden under all circumstances"
          ],
-         correctAnswer: "B",
+         correctAnswer: "It is permissible if valid reasons arise (e.g., incompatibility, lack of religious commitment), though it should be done respectfully",
          explanation: "An engagement is a promise, not a binding marriage contract. Either party may withdraw if legitimate concerns about compatibility or character emerge."
       },
       {
@@ -920,7 +920,7 @@ export const datingCategory: QuizCategory = {
             "Soulmates never encounter obstacles",
             "Destiny applies only to wealth"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Everything is written in Al-Lawh al-Mahfuz, while individuals still exercise free will and responsibility in choosing righteous partners",
          explanation: "While spouses are decreed by Allah's infinite knowledge, individuals are accountable for their choices, efforts, and adherence to moral laws."
       },
       {
@@ -932,7 +932,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory for social etiquette",
             "Permissible at all times"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Discouraged or prohibited if intended to attract attention, as highlighted in prophetic warnings",
          explanation: "Prophetic traditions caution against women wearing strong perfumes in public spaces in ways that attract unlawful attention."
       },
       {
@@ -944,7 +944,7 @@ export const datingCategory: QuizCategory = {
             "Political alliance",
             "Social isolation"
          ],
-         correctAnswer: "B",
+         correctAnswer: "To cultivate a nurturing environment of faith, love, mutual respect, and moral upbringing for children",
          explanation: "The Islamic family is the foundational brick of a healthy society, designed to foster spiritual peace, moral training, and emotional security."
       },
       {
@@ -956,7 +956,7 @@ export const datingCategory: QuizCategory = {
             "Isolate from all humans permanently",
             "Mock religious teachings"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Stand firm in Islamic identity, prioritize pleasing Allah over peer approval, and seek righteous companionship",
          explanation: "A Muslim's primary allegiance is to Allah. Standing firm against peer pressure in matters of modesty is a hallmark of true faith and character."
       },
       {
@@ -968,7 +968,7 @@ export const datingCategory: QuizCategory = {
             "It is required only once in a lifetime",
             "It replaces the wedding ceremony"
          ],
-         correctAnswer: "A",
+         correctAnswer: "It protects the union and any resulting offspring from harmful influences",
          explanation: "The Prophet (ﷺ) taught a specific supplication before marital intimacy seeking protection from Satan, sanctifying the act as an act of worship."
       },
       {
@@ -980,7 +980,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged for privacy",
             "Permissible after sunset"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Forbidden as it constitutes Khlwah (seclusion) with a non-Mahram",
          explanation: "Seclusion is determined by isolation from public view or access, regardless of whether the location is a room, a car, or an isolated outdoor spot."
       },
       {
@@ -992,7 +992,7 @@ export const datingCategory: QuizCategory = {
             "As temporary roommates",
             "As rivals in competition"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As garments for one another—providing comfort, protection, warmth, and concealment (Al-Baqarah 2:187)",
          explanation: "Quran 2:187 states: 'They are clothing for you and you are clothing for them,' illustrating deep emotional closeness, mutual protection, and intimacy."
       },
       {
@@ -1004,7 +1004,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory for scholars",
             "A requirement for spiritual purity"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Not legislated in Islam; the Prophet (ﷺ) encouraged marriage and rejected permanent monastic isolation",
          explanation: "The Prophet (ﷺ) explicitly corrected those who vowed lifelong celibacy, affirming that marriage is his Sunnah and practice."
       },
       {
@@ -1016,7 +1016,7 @@ export const datingCategory: QuizCategory = {
             "Publicly defame them",
             "Accept betrayal as normal"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Investigate with wisdom, seek counsel, and seriously reevaluate the compatibility and trustworthiness of the individual before contracting Nikah",
          explanation: "Trust and honesty are pillars of a successful marriage. Discovering major deception before Nikah is a vital warning sign to reassess suitability."
       },
       {
@@ -1028,7 +1028,7 @@ export const datingCategory: QuizCategory = {
             "Total isolation from society",
             "Loss of happiness"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Peace of heart, spiritual elevation, and immense reward in the hereafter",
          explanation: "Refraining from sin out of Taqwa (consciousness of Allah) purifies the heart and draws immense divine reward and inner tranquility."
       },
       {
@@ -1040,7 +1040,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if accounts are public",
             "Required for networking"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Forbidden, as it violates the command to lower the gaze and feeds unlawful desires",
          explanation: "Digital gaze is subject to the same moral principles as physical gaze. Lustful browsing of unrelated individuals online violates modesty."
       },
       {
@@ -1052,7 +1052,7 @@ export const datingCategory: QuizCategory = {
             "It is an outdated tradition with no value",
             "It slows down decision making unnecessarily"
          ],
-         correctAnswer: "B",
+         correctAnswer: "It brings wisdom, objectivity, and life experience to help evaluate character beyond superficial attraction",
          explanation: "Elders often spot compatibility red flags or character traits that youth blinded by infatuation might overlook."
       },
       {
@@ -1064,7 +1064,7 @@ export const datingCategory: QuizCategory = {
             "Permissible if they are engaged for over a year",
             "Permissible in private"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Strictly forbidden (Haram) as pre-marital intimacy is a major sin",
          explanation: "Testing compatibility through physical touch or intimacy before marriage is entirely forbidden in Shariah."
       },
       {
@@ -1076,7 +1076,7 @@ export const datingCategory: QuizCategory = {
             "Financial accumulation",
             "Public speaking eloquence"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Chastity, moral restraint, and self-preservation from unlawful desires",
          explanation: "Iffah is a noble virtue representing moral purity, dignity, and self-restraint against illicit temptations."
       },
       {
@@ -1088,7 +1088,7 @@ export const datingCategory: QuizCategory = {
             "To enforce tribal isolation",
             "Because human beings cannot speak to each other"
          ],
-         correctAnswer: "A",
+         correctAnswer: "To prevent moral decay, preserve family sanctity, and maintain a respectful public sphere",
          explanation: "Unregulated mixing naturally leads to emotional and physical entanglements that undermine personal chastity and family stability."
       },
       {
@@ -1100,7 +1100,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory in modern law",
             "Permissible if done online"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Improper and invalid in schools of law that mandate the Wali, as proposals should go through proper family channels",
          explanation: "Proper marriage procedures respect family oversight and guardian involvement to protect the rights and well-being of the bride."
       },
       {
@@ -1112,7 +1112,7 @@ export const datingCategory: QuizCategory = {
             "As badges of honor to share publicly",
             "As proof that religion is too difficult"
          ],
-         correctAnswer: "B",
+         correctAnswer: "As closed chapters forgiven by the Most Merciful, motivating them to walk forward in righteousness",
          explanation: "Allah's mercy encompasses all sins for those who truly repent. A believer should look forward with hope and righteous deeds."
       },
       {
@@ -1124,7 +1124,7 @@ export const datingCategory: QuizCategory = {
             "To eliminate joy",
             "To enforce ancient folklore"
          ],
-         correctAnswer: "A",
+         correctAnswer: "To protect human dignity, hearts, and society from corruption while facilitating lawful, blessed families",
          explanation: "Shariah boundaries protect individuals from the emotional and societal damage of illicit relationships while promoting healthy, stable families."
       },
       {
@@ -1136,7 +1136,7 @@ export const datingCategory: QuizCategory = {
             "Encouraged as community news",
             "Permissible if true"
          ],
-         correctAnswer: "B",
+         correctAnswer: "A major sin involving backbiting and spreading indecency, strictly forbidden in Islam",
          explanation: "Backbiting (Gheebah) and spreading scandals violate the honor and privacy of fellow believers, which Islam guards fiercely."
       },
       {
@@ -1148,7 +1148,7 @@ export const datingCategory: QuizCategory = {
             "Marriage requires no lawful contract",
             "All restrictions on relationships are lifted"
          ],
-         correctAnswer: "A",
+         correctAnswer: "Chaste women from among the believers and chaste women from among those who were given the Scripture before you are lawful when wed with proper dowries and chastity",
          explanation: "Surah Al-Ma'idah highlights the lawfulness of chaste believing women and chaste women of the People of the Book under proper lawful marriage contracts with Mahr."
       },
       {
@@ -1160,7 +1160,7 @@ export const datingCategory: QuizCategory = {
             "Mandatory in office buildings",
             "Encouraged for business"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Avoidable as it constitutes temporary seclusion (Khlwah)",
          explanation: "Being enclosed alone in a private space where no one else can enter constitutes Khlwah, which should be avoided."
       },
       {
@@ -1172,7 +1172,7 @@ export const datingCategory: QuizCategory = {
             "It makes temptation impossible to feel",
             "It encourages testing limits"
          ],
-         correctAnswer: "A",
+         correctAnswer: "It strengthens self-control and instills awareness that Allah sees all hidden and open actions",
          explanation: "Ihsan—worshiping Allah as though you see Him, for even if you do not see Him, He sees you—deters believers from secret sins."
       },
       {
@@ -1184,7 +1184,7 @@ export const datingCategory: QuizCategory = {
             "Post it online for fame",
             "Encouraged to test options"
          ],
-         correctAnswer: "B",
+         correctAnswer: "Turn away, respond with firm dignity or polite refusal, and avoid unnecessary further engagement",
          explanation: "Believers maintain dignity and modesty, rejecting improper advances firmly and avoiding situations that compromise their character."
       },
       {
@@ -1196,7 +1196,7 @@ export const datingCategory: QuizCategory = {
             "It has no impact on the hereafter",
             "It guarantees financial wealth"
          ],
-         correctAnswer: "B",
+         correctAnswer: "It creates a partnership of mutual spiritual growth, making the journey to Jannah easier and more joyful",
          explanation: "A righteous spouse is one of the greatest blessings in this world, supporting their partner in faith, worship, and moral excellence."
       },
       {
@@ -1208,7 +1208,7 @@ export const datingCategory: QuizCategory = {
             "Pre-marital dating is required for happiness",
             "Marriage has no spiritual significance"
          ],
-         correctAnswer: "A",
+         correctAnswer: "True love and romance are fully honored and fulfilled within the sacred, protected bond of lawful marriage, guarded by modesty and faith",
          explanation: "Islam does not suppress love; rather, it channels romantic love into its proper, dignified, and blessed container—marriage—protecting hearts, families, and society."
       }
     ]
