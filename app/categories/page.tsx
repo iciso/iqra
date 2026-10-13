@@ -176,7 +176,7 @@ const categories = [
      {
     id: "islamic-alcohol-drugs",
     title: "Alcohol & Drugs in Islam",
-    description: "Alcohol & Drugs in Islam"",
+    description: "Alcohol & Drugs in Islam",
     icon: <WineOff className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
