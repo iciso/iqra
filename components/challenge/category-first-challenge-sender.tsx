@@ -24,6 +24,7 @@ import {
   Heart,
   Infinity,
   Star,
+  WineOff,
 } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
@@ -111,6 +112,15 @@ const challengeCategories = [
     color: "bg-blue-500 hover:bg-blue-600",
     textColor: "text-blue-700",
     bgLight: "bg-blue-50",
+  },
+  {
+    id: "islamic-alcohol-drugs",
+    label: "Alcohol & Drugs in Islam",
+    description: "Alcohol & Drugs in Islam",
+    icon: WineOff,
+    color: "bg-purple-500 hover:bg-purple-600",
+    textColor: "text-purple-700",
+    bgLight: "bg-purple-50",
   },
   {
     id: "dating",
