@@ -25,6 +25,7 @@ import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import salahCategory from "./salah";
 import sawmCategory from "./sawm";
+import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
@@ -52,6 +53,7 @@ const quizData: QuizCategory[] = [
   psychCategory,
   musicCategory,
   islamicAlcoholDrugsCategory,
+  imageryCategory,
   datingCategory,
   parentingCategory,
   peaceCategory,
