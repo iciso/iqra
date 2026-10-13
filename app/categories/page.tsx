@@ -17,6 +17,7 @@ import {
   Calendar1,
   Church,
   Heart,
+  Image,
   Infinity,
   Megaphone,
   Music,
@@ -178,6 +179,12 @@ const categories = [
     title: "Alcohol & Drugs in Islam",
     description: "Alcohol & Drugs in Islam",
     icon: <WineOff className="h-8 w-8 text-green-600 dark:text-green-400" />,
+  },
+     {
+    id: "imagery",
+    title: "Images & Animation in Islam",
+    description: "Images & Animation in Islam", 
+    icon: <Image className="h-8 w-8 text-green-600 dark:text-green-400" />,
   },
     {
     id: "dating",
