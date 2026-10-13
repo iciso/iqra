@@ -40,6 +40,7 @@ import {
   Compass,
   Globe,
   AlertCircle,
+  WineOff,
 } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
@@ -281,6 +282,16 @@ const challengeCategories = [
     textColor: "text-yellow-700",
     bgLight: "bg-yellow-50",
     borderColor: "border-yellow-300",
+  },
+    {
+    id: "islamic-alcohol-drugs",
+    label: "Alcohol & Drugs in Islam",
+    description: "Alcohol & Drugs in Islam",
+    icon: WineOff,
+    color: "bg-purple-500 hover:bg-purple-600",
+    textColor: "text-purple-700",
+    bgLight: "bg-purple-50",
+    borderColor: "border-purple-300",
   },
    {
     id: "dating",
