@@ -1,5 +1,5 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
-import quranCategory from "./quran";
+import quranCategory from "./quran"; 
 import seerahCategory from "./quiz-data-manager-additions";
 import { additionalCategories } from "./quiz-data-manager-additional-categories";
 import comparativeReligionCategory from "./comparative-religion";
