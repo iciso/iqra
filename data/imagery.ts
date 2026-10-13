@@ -770,3 +770,5 @@ export const imageryCategory: QuizCategory = {
     ],
   },
 }
+
+export default imageryCategory
