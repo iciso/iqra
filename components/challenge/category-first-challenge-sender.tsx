@@ -22,6 +22,7 @@ import {
   Scroll,
   ChurchIcon as Mosque,
   Heart,
+  Image,
   Infinity,
   Star,
   WineOff,
@@ -121,6 +122,15 @@ const challengeCategories = [
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
+  },
+    {
+    id: "imagery",
+    label: "Images in Islam",
+    description: "Images & Animation in Islam",
+    icon: Images,
+    color: "bg-green-500 hover:bg-green-600",
+    textColor: "text-green-700",
+    bgLight: "bg-green-50",
   },
   {
     id: "dating",
