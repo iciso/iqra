@@ -4,10 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw, Users, Database, Cloud } from "lucide-react" 
+import { Trophy, RefreshCw, Users, Database } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Player {
   id: string
@@ -17,27 +16,12 @@ interface Player {
   best_percentage: number
 }
 
-function ChallengeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Create Challenge</DialogTitle>
-          <DialogDescription>Select a category to challenge this player.</DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  )
-}
-
 export default function SimpleTopPlayers() {
   const { user, loading: authLoading } = useAuth()
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const [retryCount, setRetryCount] = useState(0)
   const [showAll, setShowAll] = useState(false)
-  const [syncing, setSyncing] = useState(false)
   const [dataSource, setDataSource] = useState<string>("Loading...")
   const [isUsingFallback, setIsUsingFallback] = useState(false)
   const mountedRef = useRef(true)
@@ -46,89 +30,6 @@ export default function SimpleTopPlayers() {
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
 
   const fallbackPlayers: Player[] = [] // Add fallback players if needed
-
-  const syncMissingProfiles = async () => {
-    try {
-      setSyncing(true)
-      console.log("🔄 Attempting to sync missing user profiles...")
-      const { data: testData, error: testError } = await Promise.race([
-        supabase.from("user_profiles").select("count").limit(1),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Test query timeout")), 3000)),
-      ])
-
-      if (testError) {
-        console.error("❌ Test query failed:", testError)
-        throw testError
-      }
-      console.log("✅ Database connection working, proceeding with sync...")
-      const authResult = await Promise.race([
-        supabase.auth.admin.listUsers(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Auth query timeout")), 5000)),
-      ])
-
-      const { data: authUsers, error: authError } = authResult as any
-      if (authError) {
-        console.error("❌ Error fetching auth users:", authError)
-        throw authError
-      }
-      console.log("👥 Found auth users:", authUsers.users.length)
-      const profilesResult = await Promise.race([
-        supabase.from("user_profiles").select("id"),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Profiles query timeout")), 5000)),
-      ])
-
-      const { data: existingProfiles, error: profilesError } = profilesResult as any
-      if (profilesError) {
-        console.error("❌ Error fetching existing profiles:", profilesError)
-        throw profilesError
-      }
-
-      const existingIds = new Set(existingProfiles?.map((p: any) => p.id) || [])
-      console.log("📋 Existing profile IDs:", existingIds.size)
-      const missingUsers = authUsers.users.filter((authUser: any) => !existingIds.has(authUser.id))
-      console.log("🔍 Missing profiles for users:", missingUsers.length)
-
-      if (missingUsers.length === 0) {
-        console.log("✅ All users already have profiles")
-        return
-      }
-
-      const newProfiles = missingUsers.map((authUser: any) => ({
-        id: authUser.id,
-        username: authUser.user_metadata?.username || authUser.email?.split("@")[0] || "user",
-        full_name: authUser.user_metadata?.full_name || authUser.user_metadata?.name || null,
-        email: authUser.email,
-        total_score: 0,
-        best_percentage: 0,
-        quiz_count: 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      }))
-
-      console.log(
-        "➕ Creating profiles for:",
-        newProfiles.map((p) => p.full_name || p.username),
-      )
-
-      const insertResult = await Promise.race([
-        supabase.from("user_profiles").insert(newProfiles).select(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Insert query timeout")), 10000)),
-      ])
-
-      const { data: insertedProfiles, error: insertError } = insertResult as any
-      if (insertError) {
-        console.error("❌ Error creating profiles:", insertError)
-        throw insertError
-      }
-      console.log("✅ Successfully created profiles:", insertedProfiles?.length)
-      loadPlayers()
-    } catch (err: any) {
-      console.error("❌ Sync error:", err)
-      alert(`Sync failed: ${err.message}. Using fallback data.`)
-    } finally {
-      setSyncing(false)
-    }
-  }
 
   const loadPlayers = async () => {
     if (loadingRef.current) {
@@ -139,7 +40,6 @@ export default function SimpleTopPlayers() {
     try {
       loadingRef.current = true
       setLoading(true)
-      setError(null)
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
@@ -218,8 +118,7 @@ export default function SimpleTopPlayers() {
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
-        setError(null)
-      }
+        }
 
       if (retryCount < 1 && mountedRef.current) {
         const delay = 2000
@@ -264,14 +163,14 @@ export default function SimpleTopPlayers() {
   }
 
   const getSourceIcon = () => {
-    if (dataSource.includes("Supabase")) return <Cloud className="h-4 w-4" />
     if (dataSource.includes("Neon")) return <Database className="h-4 w-4" />
+    if (dataSource.includes("Quiz Leaderboard")) return <Trophy className="h-4 w-4" />
     return <Users className="h-4 w-4" />
   }
 
   const getSourceColor = () => {
-    if (dataSource.includes("Supabase")) return "bg-green-100 text-green-800"
     if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
+    if (dataSource.includes("Quiz Leaderboard")) return "bg-green-100 text-green-800"
     return "bg-purple-100 text-purple-800"
   }
 
@@ -317,8 +216,7 @@ export default function SimpleTopPlayers() {
         setDataSource("Registered Users")
         setIsUsingFallback(true)
         setLoading(false)
-        setError(null)
-        loadingRef.current = false
+          loadingRef.current = false
       }
     }, 10000)
     return () => clearTimeout(safetyTimeout)
@@ -386,16 +284,6 @@ export default function SimpleTopPlayers() {
             <Button
               variant="outline"
               size="sm"
-              onClick={syncMissingProfiles}
-              disabled={syncing}
-              title="Sync missing user profiles from auth"
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
-            >
-              <Database className={`h-3 w-3 md:h-4 md:w-4 ${syncing ? "animate-spin" : ""}`} />
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
               onClick={toggleShowAll}
               title={showAll ? "Show top players only" : "Show all players"}
               className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
@@ -418,9 +306,6 @@ export default function SimpleTopPlayers() {
         {players.length === 0 ? (
           <div className="text-center py-4">
             <p className="text-gray-500 mb-2 text-sm">No players found</p>
-            <Button size="sm" onClick={syncMissingProfiles} disabled={syncing} className="text-xs">
-              {syncing ? "Syncing..." : "Sync User Profiles"}
-            </Button>
           </div>
         ) : (
           <div className="space-y-2 md:space-y-3">
