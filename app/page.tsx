@@ -186,59 +186,6 @@ export default function HomePage() {
           />
         </section>
 
-        {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
-        <section
-          aria-labelledby="arabic-vocabulary-heading"
-          className="mx-auto mt-8 w-full max-w-6xl"
-        >
-          <div className="mb-4 text-center">
-            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700">
-              New learning tracks
-            </p>
-            <h2
-              id="arabic-vocabulary-heading"
-              className="text-xl font-bold text-green-900 sm:text-2xl"
-            >
-              Arabic Vocabulary
-            </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
-              Choose the vocabulary that matches your learning goal. Each track
-              opens the Vocabulary section on the Categories page.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
-            <FeatureCard
-              icon={
-                <ScrollText className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
-              }
-              title="Quranic Arabic Vocabulary"
-              subtitle="Understand the words of the Qur’an"
-              description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
-              tags={["Quranic words", "Meanings", "Quran references"]}
-              href="/categories#Vocab"
-              buttonText="Explore Quranic Vocabulary"
-            />
-
-            <FeatureCard
-              icon={
-                <Languages className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
-              }
-              title="Modern Arabic Vocabulary"
-              subtitle="Build contemporary Arabic vocabulary"
-              description="Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added."
-              tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
-              href="/categories#Vocab"
-              buttonText="Explore Modern Vocabulary"
-            />
-          </div>
-          <p className="mt-3 text-center text-xs text-gray-500">
-            Both buttons currently lead to the Vocabulary bookmark. The
-            Categories page must contain an element with id="Vocab" for the
-            browser to scroll directly to that section.
-          </p>
-        </section>
-
         {/* Existing Surah Quiz and Top Players cards are retained. */}
         <section
           aria-label="More IQRA features and players"
@@ -328,6 +275,60 @@ export default function HomePage() {
             </Card>
           </div>
         </section>
+
+                {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
+        <section
+          aria-labelledby="arabic-vocabulary-heading"
+          className="mx-auto mt-8 w-full max-w-6xl"
+        >
+          <div className="mb-4 text-center">
+            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700">
+              New learning tracks
+            </p>
+            <h2
+              id="arabic-vocabulary-heading"
+              className="text-xl font-bold text-green-900 sm:text-2xl"
+            >
+              Arabic Vocabulary
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+              Choose the vocabulary that matches your learning goal. Each track
+              opens the Vocabulary section on the Categories page.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
+            <FeatureCard
+              icon={
+                <ScrollText className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
+              }
+              title="Quranic Arabic Vocabulary"
+              subtitle="Understand the words of the Qur’an"
+              description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
+              tags={["Quranic words", "Meanings", "Quran references"]}
+              href="/categories#Vocab"
+              buttonText="Explore Quranic Vocabulary"
+            />
+
+            <FeatureCard
+              icon={
+                <Languages className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
+              }
+              title="Modern Arabic Vocabulary"
+              subtitle="Build contemporary Arabic vocabulary"
+              description="Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added."
+              tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
+              href="/categories#Vocab"
+              buttonText="Explore Modern Vocabulary"
+            />
+          </div>
+          <p className="mt-3 text-center text-xs text-gray-500">
+            Both buttons currently lead to the Vocabulary bookmark. The
+            Categories page must contain an element with id="Vocab" for the
+            browser to scroll directly to that section.
+          </p>
+        </section>
+        
 
         {/* Existing no-donations statement retained. */}
         <section className="mx-auto mb-12 mt-8 w-full max-w-6xl">
