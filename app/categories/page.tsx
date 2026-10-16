@@ -257,6 +257,76 @@ export default function CategoriesPage() {
             <p>Loading categories...</p>
           </CardContent>
         </Card>
+        
+      {/* Arabic Vocabulary section */}
+      <section
+        id="Vocab"
+        className="w-full max-w-3xl mt-8 scroll-mt-6"
+      >
+        <Card className="border-green-200 shadow-lg dark:border-green-800">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
+              Arabic Vocabulary
+            </CardTitle>
+            <CardDescription className="text-green-600 dark:text-green-500">
+              Choose the vocabulary track you want to practise
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              {/* First card: Quranic Arabic */}
+              <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+                <CardHeader className="items-center text-center">
+                  <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  <CardTitle className="text-lg">
+                    Quranic Arabic
+                  </CardTitle>
+                  <CardDescription>
+                    Learn words and meanings found in the Quran
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() =>
+                      router.push("/arabic-vocabulary?quranic")
+                    }
+                  >
+                    Practise Quranic Vocabulary
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Second card: Modern Standard Arabic */}
+              <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+                <CardHeader className="items-center text-center">
+                  <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  <CardTitle className="text-lg">
+                    Modern Standard Arabic (MSA)
+                  </CardTitle>
+                  <CardDescription>
+                    Learn vocabulary used in contemporary Arabic
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() =>
+                      router.push("/arabic-vocabulary?msa")
+                    }
+                  >
+                    Practise Modern Arabic
+                  </Button>
+                </CardContent>
+              </Card>
+
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       </main>
     )
   }
