@@ -263,6 +263,7 @@ export default function CategoriesPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+      <div id="Vocab" className="scroll-mt-6" />
       <div className="absolute top-4 right-4">
      
       </div>
