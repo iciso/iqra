@@ -1,291 +1,374 @@
 "use client"
 
 import { useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { IqraLogo } from "@/components/iqra-logo"
+import type { ReactNode } from "react"
 import Link from "next/link"
+import {
+  BookOpen,
+  Languages,
+  MessageSquare,
+  ScrollText,
+  Trophy,
+  Users,
+} from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { IqraLogo } from "@/components/iqra-logo"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
-import { MessageSquare } from "lucide-react"
+
+function FeatureCard({
+  icon,
+  title,
+  subtitle,
+  description,
+  tags,
+  href,
+  buttonText,
+  prominent = false,
+}: {
+  icon: ReactNode
+  title: string
+  subtitle: string
+  description: React.ReactNode
+  tags?: string[]
+  href: string
+  buttonText: string
+  prominent?: boolean
+}) {
+  return (
+    <Card
+      className={`w-full border-0 bg-white shadow-sm ${
+        prominent
+          ? "ring-2 ring-green-500 shadow-md"
+          : ""
+      }`}
+    >
+      <CardHeader className="pb-2 text-center">
+        <div
+          className={`mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full sm:h-16 sm:w-16 ${
+            prominent ? "bg-green-100" : "bg-green-50"
+          }`}
+        >
+          {icon}
+        </div>
+        <CardTitle className="text-xl text-green-800 sm:text-2xl">
+          {title}
+        </CardTitle>
+        <CardDescription className="text-sm sm:text-base">
+          {subtitle}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="px-4 text-center sm:px-6">
+        <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+          {description}
+        </p>
+        {tags && tags.length > 0 && (
+          <div className="mb-4 flex flex-wrap justify-center gap-1 sm:gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded bg-green-50 px-2 py-1 text-xs text-green-700"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </CardContent>
+
+      <CardFooter className="flex justify-center pt-0">
+        <Button
+          asChild
+          className={`px-6 py-2 text-sm sm:text-base ${
+            prominent
+              ? "bg-green-700 hover:bg-green-800"
+              : "bg-green-600 hover:bg-green-700"
+          }`}
+        >
+          <Link href={href}>{buttonText}</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
 
 export default function HomePage() {
-  // Service Worker Registration
+  // Preserve the existing service-worker registration.
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
+      const registerServiceWorker = () => {
         navigator.serviceWorker
           .register("/sw.js")
-          .then((reg) => console.log("IQRA Service Worker registered with scope:", reg.scope))
-          .catch((err) => console.error("IQRA Service Worker registration failed:", err))
-      })
+          .then((registration) =>
+            console.log(
+              "IQRA Service Worker registered with scope:",
+              registration.scope,
+            ),
+          )
+          .catch((error) =>
+            console.error(
+              "IQRA Service Worker registration failed:",
+              error,
+            ),
+          )
+      }
+
+      window.addEventListener("load", registerServiceWorker)
+      return () => window.removeEventListener("load", registerServiceWorker)
     }
   }, [])
 
+  const tagClass =
+    "rounded bg-green-50 px-2 py-1 text-xs text-green-700"
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#e6f7eb] w-full overflow-x-hidden">
-      <div className="container mx-auto py-6 sm:py-12 px-4 flex-grow flex flex-col w-full max-w-full">
-        {/* Challenge Notifications */}
-        <div className="mb-6 sm:mb-8 w-full">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb]">
+      <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
+        {/* Keep challenge notifications easy to find for returning players. */}
+        <div className="mb-6 w-full sm:mb-8">
           <ProfileChallengeNotifications />
         </div>
 
-        {/* Hero Section */}
-        <div className="text-center mb-6 sm:mb-8 w-full">
-          <div className="mx-auto w-16 h-16 sm:w-24 sm:h-24 bg-[#e0f2e3] rounded-full flex items-center justify-center mb-4">
-            <IqraLogo className="w-8 h-8 sm:w-12 sm:h-12 text-green-700" />
+        {/* IQRA welcome / hero */}
+        <header className="mb-6 w-full text-center sm:mb-8">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24">
+            <IqraLogo className="h-8 w-8 text-green-700 sm:h-12 sm:w-12" />
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-green-800 mb-2">IQRA</h1>
-          <p className="text-lg sm:text-xl text-green-700">Islamic Quiz Rivalry App</p>
-          <p className="mt-2 sm:mt-4 text-sm sm:text-base text-gray-600 px-2">
+          <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl">
+            IQRA
+          </h1>
+          <p className="text-lg text-green-700 sm:text-xl">
+            Islamic Quiz Rivalry App
+          </p>
+          <p className="mt-2 px-2 text-sm text-gray-600 sm:mt-4 sm:text-base">
             ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
             <br className="hidden sm:block" />
-            <span className="block sm:inline"> of Islam through learning or challenges.</span>
+            <span className="block sm:inline">
+              {" "}of Islam through learning or challenges.
+            </span>
           </p>
-        </div>
+        </header>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto w-full">
-          <Card className="bg-white border-0 shadow-sm w-full">
-            <CardHeader className="text-center pb-2">
-              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-green-600 sm:w-6 sm:h-6"
-                >
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                </svg>
-              </div>
-              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Learn</CardTitle>
-              <CardDescription className="text-sm sm:text-base">Learn at your own pace</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center px-4 sm:px-6">
-              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Browse 25 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and
-                learn at your own pace.
-              </p>
-              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Quran</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Fiqh</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Tafsir</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Aqeedah</span>
-              </div>
-            </CardContent>
-            <CardFooter className="pt-0 flex justify-center">
-              <Link href="/categories">
-                <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                  Start Learning
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
+        {/* Main destinations. Keep Challenge prominent for returning players. */}
+        <section
+          aria-label="Main IQRA features"
+          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2"
+        >
+          <FeatureCard
+            icon={<BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />}
+            title="IQRA Learn"
+            subtitle="Learn at your own pace"
+            description="Browse 25 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
+            tags={["Quran", "Fiqh", "Tafsir", "Hadeeth", "Aqeedah"]}
+            href="/categories"
+            buttonText="Start Learning"
+          />
 
-          <Card className="bg-white border-0 shadow-sm w-full">
-            <CardHeader className="text-center pb-2">
-              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-green-600 sm:w-6 sm:h-6"
-                >
-                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                  <path d="M4 22h16" />
-                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-                </svg>
-              </div>
-              <CardTitle className="text-xl sm:text-2xl text-green-800">IQRA Challenge</CardTitle>
-              <CardDescription className="text-sm sm:text-base">Compete with others</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center px-4 sm:px-6">
-              <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                Challenge your friends or compete with others and test your Islamic knowledge in a fun and engaging way. Top the leaderboards and win Badges!
-              </p>
-              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="mr-1 sm:w-3 sm:h-3"
-                  >
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                  Friend Challenge
-                </span>
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="mr-1 sm:w-3 sm:h-3"
-                  >
-                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                    <line x1="16" x2="16" y1="2" y2="6" />
-                    <line x1="8" x2="8" y1="2" y2="6" />
-                    <line x1="3" x2="21" y1="10" y2="10" />
-                  </svg>
-                  Daily Challenge
-                </span>
-              </div>
-            </CardContent>
-            <CardFooter className="pt-0 flex justify-center">
-              <Link href="/challenges">
-                <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
-                  Start Challenges
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
+          <FeatureCard
+            prominent
+            icon={<Trophy className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />}
+            title="IQRA Challenge"
+            subtitle="Your next challenge is only a click away"
+            description="Challenge your friends or compete with other IQRA players. Test your knowledge, climb the leaderboard, and earn badges."
+            tags={["Friend Challenge", "Daily Challenge", "Player Rivalry"]}
+            href="/challenges"
+            buttonText="Start Challenges"
+          />
+        </section>
 
-        {/* Secondary Cards & Leaderboard Section */}
-        <div className="mt-8 max-w-6xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
-            <Card className="bg-white border-0 shadow-sm w-full">
-              <CardHeader className="text-center pb-2">
-                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-green-50 rounded-full flex items-center justify-center mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-green-600 sm:w-6 sm:h-6"
-                  >
-                    <path d="M12 7v14" />
-                    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-                  </svg>
+        {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
+        <section
+          aria-labelledby="arabic-vocabulary-heading"
+          className="mx-auto mt-8 w-full max-w-6xl"
+        >
+          <div className="mb-4 text-center">
+            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700">
+              New learning tracks
+            </p>
+            <h2
+              id="arabic-vocabulary-heading"
+              className="text-xl font-bold text-green-900 sm:text-2xl"
+            >
+              Arabic Vocabulary
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+              Choose the vocabulary that matches your learning goal. Each track
+              opens the Vocabulary section on the Categories page.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
+            <FeatureCard
+              icon={
+                <ScrollText className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
+              }
+              title="Quranic Arabic Vocabulary"
+              subtitle="Understand the words of the Qur’an"
+              description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
+              tags={["Quranic words", "Meanings", "Quran references"]}
+              href="/categories#Vocab"
+              buttonText="Explore Quranic Vocabulary"
+            />
+
+            <FeatureCard
+              icon={
+                <Languages className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
+              }
+              title="Modern Arabic Vocabulary"
+              subtitle="Build contemporary Arabic vocabulary"
+              description="Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added."
+              tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
+              href="/categories#Vocab"
+              buttonText="Explore Modern Vocabulary"
+            />
+          </div>
+          <p className="mt-3 text-center text-xs text-gray-500">
+            Both buttons currently lead to the Vocabulary bookmark. The
+            Categories page must contain an element with id="Vocab" for the
+            browser to scroll directly to that section.
+          </p>
+        </section>
+
+        {/* Existing Surah Quiz and Top Players cards are retained. */}
+        <section
+          aria-label="More IQRA features and players"
+          className="mx-auto mt-8 w-full max-w-6xl"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+            <Card className="w-full border-0 bg-white shadow-sm">
+              <CardHeader className="pb-2 text-center">
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 sm:h-16 sm:w-16">
+                  <BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
                 </div>
-
-                <CardTitle className="text-xl sm:text-2xl text-green-800">Surah-Quiz</CardTitle>
+                <CardTitle className="text-xl text-green-800 sm:text-2xl">
+                  Surah-Quiz
+                </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
                   Focus on vocabulary from a specific Surah
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                  Learn vocabulary from specific Surahs. Browse through Surahs to study their context, meaning, and rulings. Test your knowledge on the nearly 40 completed Surahs in this section. We are rapidly adding more and aim to complete all 114 Surahs. Insha Allah!
+                <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                  Learn vocabulary from specific Surahs. Browse through Surahs
+                  to study their context, meaning, and rulings. Test your
+                  knowledge on the nearly 40 completed Surahs in this section.
+                  We are rapidly adding more and aim to complete all 114
+                  Surahs. Insha Allah!
                 </p>
-                <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Quiz</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Reason for Revelation</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Surah Tafsir</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Hadeeth</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Seerah & Context</span>
+                <div className="mb-4 flex flex-wrap justify-center gap-1 sm:gap-2">
+                  <span className={tagClass}>Surah Quiz</span>
+                  <span className={tagClass}>Reason for Revelation</span>
+                  <span className={tagClass}>Surah Tafsir</span>
+                  <span className={tagClass}>Hadeeth</span>
+                  <span className={tagClass}>Seerah &amp; Context</span>
                 </div>
-                <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed">
-                  <i>As a part of the open-source KALAM web app, Surah-Quizzes are completely free to use and require no sign-in.</i>
+                <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                  <i>
+                    As a part of the open-source KALAM web app, Surah-Quizzes
+                    are completely free to use and require no sign-in.
+                  </i>
                 </p>
               </CardContent>
-              <CardFooter className="pt-0 flex justify-center">
-                <Link href="https://v0-kalam.vercel.app/quizzes/surah" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 py-2">
+              <CardFooter className="flex justify-center pt-0">
+                <Button
+                  asChild
+                  className="bg-green-600 px-6 py-2 text-sm hover:bg-green-700 sm:text-base"
+                >
+                  <Link
+                    href="https://v0-kalam.vercel.app/quizzes/surah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Start Surah Quiz without Sign-in
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </CardFooter>
             </Card>
 
-            <Card className="bg-white border-0 shadow-sm w-full">
-              <CardHeader className="text-center pb-2">
-                <CardTitle className="text-xl sm:text-2xl text-green-800">Top Players</CardTitle>
+            {/* Keep the live player/challenge list on the home page. */}
+            <Card className="w-full border-2 border-green-200 bg-white shadow-md">
+              <CardHeader className="pb-2 text-center">
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16">
+                  <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
+                </div>
+                <CardTitle className="text-xl text-green-800 sm:text-2xl">
+                  IQRA Players
+                </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
-                  See who's leading the challenges
+                  Find a player and challenge them
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-2 sm:px-6">
-                {/* Scroll container prevents table component from pushing screen width on mobile */}
+                <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800">
+                  <Trophy className="h-4 w-4" />
+                  Available players and top scores
+                </div>
                 <div className="w-full overflow-x-auto">
                   <SimpleTopPlayers />
                 </div>
               </CardContent>
+              <CardFooter className="flex justify-center pt-0">
+                <Button
+                  asChild
+                  className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
+                >
+                  <Link href="/challenges">View All Challenges</Link>
+                </Button>
+              </CardFooter>
             </Card>
           </div>
-        </div>
+        </section>
 
-        {/* No Donations Banner */}
-        <section className="mb-12 w-full max-w-6xl mx-auto mt-8">
-          <div className="p-4 sm:p-6 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-800">
-            <h2 className="text-xl sm:text-2xl text-emerald-800 dark:text-emerald-300 font-bold mb-4">No Donations & Charity</h2>
-            <p className="text-emerald-700 dark:text-emerald-200 mb-3 text-sm sm:text-base">
-              IQRA and KALAM apps are built without charity, zakat, or donations – a practice aligned with the true Sunnah of the Noble Prophets, and the Righteous.
+        {/* Existing no-donations statement retained. */}
+        <section className="mx-auto mb-12 mt-8 w-full max-w-6xl">
+          <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
+            <h2 className="mb-4 text-xl font-bold text-emerald-800 sm:text-2xl dark:text-emerald-300">
+              No Donations &amp; Charity
+            </h2>
+            <p className="mb-3 text-sm text-emerald-700 sm:text-base dark:text-emerald-200">
+              IQRA and KALAM apps are built without charity, zakat, or
+              donations – a practice aligned with the true Sunnah of the Noble
+              Prophets, and the Righteous.
             </p>
-            <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-xl sm:text-3xl font-arabic dir-rtl">
+            <p className="mb-4 font-arabic text-xl text-emerald-600 sm:text-3xl dark:text-emerald-300" dir="rtl">
               قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ
             </p>
-            <p className="mb-4 text-emerald-600 dark:text-emerald-300 text-sm sm:text-base">
-              Say, "I do not ask you for this any payment, and I am not of the pretentious - Surah Sad 38:86.
+            <p className="mb-4 text-sm text-emerald-600 sm:text-base dark:text-emerald-300">
+              Say, "I do not ask you for this any payment, and I am not of the
+              pretentious" — Surah Sad 38:86.
             </p>
           </div>
         </section>
-      </div>
+      </main>
 
-      {/* Footer Section - Fixed w-screen to w-full to avoid horizontal scrollbar bug */}
-      <footer className="border-t border-green-200 p-4 sm:p-6 text-center text-sm text-green-800 bg-green-50 dark:bg-green-900/20 dark:border-green-700/30 dark:text-green-300 w-full mt-8">
-        <div className="flex items-center justify-center mb-2 sm:mb-3">
-          <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400 shrink-0" />
+      {/* Existing footer links retained. */}
+      <footer className="mt-8 w-full border-t border-green-200 bg-green-50 p-4 text-center text-sm text-green-800 sm:p-6 dark:border-green-700/30 dark:bg-green-900/20 dark:text-green-300">
+        <div className="mb-2 flex items-center justify-center sm:mb-3">
+          <MessageSquare className="mr-1 h-4 w-4 shrink-0 text-green-600 sm:h-5 sm:w-5 dark:text-green-400" />
           <span>
             For suggestions, WhatsApp{" "}
             <a
               href="https://cvemrafi.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-700 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 underline"
+              className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
             >
               Rafique
             </a>{" "}
             at +91 7558845528
           </span>
         </div>
-        <div className="flex flex-wrap justify-center items-center space-x-2 sm:space-x-4 mt-4 gap-y-2">
-          <svg
-            viewBox="0 0 496.08 512"
-            className="h-4 w-4 sm:h-5 sm:w-5 mr-1 text-green-600 dark:text-green-400 shrink-0"
-          >
-            <path
-              fill="currentColor"
-              d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"
-            />
-          </svg>
-
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           <a
             href="https://creativecommons.org/licenses/by/4.0/"
             target="_blank"
@@ -297,12 +380,18 @@ export default function HomePage() {
           <Link href="/about" className="text-emerald-600 hover:text-emerald-700">
             About
           </Link>
-          <Link href="https://github.com/iciso/iqra/blob/main/contribute.md" className="text-emerald-600 hover:text-emerald-700">
+          <Link
+            href="https://github.com/iciso/iqra/blob/main/contribute.md"
+            className="text-emerald-600 hover:text-emerald-700"
+          >
             Contribute
           </Link>
-          <Link href="https://github.com/iciso/iqra" className="text-emerald-600 hover:text-emerald-700">
+          <Link
+            href="https://github.com/iciso/iqra"
+            className="text-emerald-600 hover:text-emerald-700"
+          >
             GitHub
-          </Link>{" "}
+          </Link>
           <a
             href="/about"
             target="_blank"
