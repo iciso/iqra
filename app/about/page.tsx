@@ -13,9 +13,11 @@ iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx
 ------
 Break up quizzes for each category into sets of 10 each like in challenges
-Do the Badges Page, 
+Enhance the Badges Page with bigger badges, and better logic, 
+Animated Flowchart to explain workflow of challenge to player.
 ------
-Do we need to introduce Challenges for Surah Quizzes -> 1 to 114?
+Complete the work begun on Challenges for Surah Quizzes -> 78 to 114
+Complete the work begun on Challenges for Quranic Arabic and MSA
 Continously test to see all quizzes, and pages are Mobile Responsive
 Mobilize Volunteers to play the Quizzes and find out errors in content
 Maintain uniform UI and UX as if one AI did the entire project
