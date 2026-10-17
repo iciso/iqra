@@ -150,11 +150,14 @@ const challengeCategories = [
     textColor: "text-indigo-700",
     bgLight: "bg-indigo-50",
   },
+]
+
+const arabicVocabularyCategories = [
   {
     id: "quranic-arabic-01",
     label: "Quranic Arabic - Level 1",
     description: "Quranic Arabic - Level 1",
-    icon: Book,
+    icon: Book,   
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
