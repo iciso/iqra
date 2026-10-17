@@ -1,8 +1,8 @@
 import type { QuizCategory } from "@/types/quiz";
 
 export const modernArabic01Category: QuizCategory = {
-  id: "modern-standard-arabic",
-  name: "Modern Standard Arabic (MSA)",
+  id: "modern-arabic-01",
+  title: "Modern Standard Arabic",
   description: "Master Modern Standard Arabic (Fusha) vocabulary, everyday communication phrases, reading terms, and practical sentence structures used in media and daily life.",
   icon: "Languages",
   levels: {
