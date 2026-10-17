@@ -46,7 +46,15 @@ const categories = [
 ]
 
 // Extracted so it renders identically in both loading and loaded states
-function ArabicVocabSection({ router }: { router: ReturnType<typeof useRouter> }) {
+function ArabicVocabSection({
+  router,
+  selectedCategory,
+  setSelectedCategory,
+}: {
+  router: ReturnType<typeof useRouter>
+  selectedCategory: string | null
+  setSelectedCategory: (id: string) => void
+}) {
   return (
     <section id="Vocab" className="w-full max-w-3xl mt-8 scroll-mt-6">
       <Card className="border-green-200 shadow-lg dark:border-green-800">
@@ -60,24 +68,40 @@ function ArabicVocabSection({ router }: { router: ReturnType<typeof useRouter> }
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+            {/* Quranic Arabic */}
+            <Card
+              className={`border-green-200 hover:border-green-500 transition-colors dark:border-green-800 cursor-pointer ${
+                selectedCategory === "quranic-arabic-01"
+                  ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
+                  : ""
+              }`}
+              onClick={() => {
+                console.log("Selected category: quranic-arabic-01")
+                setSelectedCategory("quranic-arabic-01")
+              }}
+            >
               <CardHeader className="items-center text-center">
                 <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Quranic Arabic</CardTitle>
                 <CardDescription>Learn Quranic Vocabulary</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
-                
+                {selectedCategory === "quranic-arabic-01" && (
+                  <span className="text-xs font-medium text-green-700 dark:text-green-300">
+                    Selected ✓
+                  </span>
+                )}
               </CardContent>
             </Card>
-            <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+
+            {/* Modern Standard Arabic – keep disabled / placeholder for now */}
+            <Card className="border-green-200 opacity-60 dark:border-green-800 cursor-not-allowed">
               <CardHeader className="items-center text-center">
                 <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Modern Standard Arabic (MSA)</CardTitle>
-                <CardDescription>Learn Modern Arabic</CardDescription>
+                <CardDescription>Coming soon</CardDescription>
               </CardHeader>
-              <CardContent className="text-center">
-              </CardContent>
+              <CardContent className="text-center" />
             </Card>
           </div>
         </CardContent>
@@ -120,7 +144,11 @@ export default function CategoriesPage() {
             <p>Loading categories...</p>
           </CardContent>
         </Card>
-        <ArabicVocabSection router={router} />
+        <ArabicVocabSection
+  router={router}
+  selectedCategory={null}
+  setSelectedCategory={() => {}}
+/>
       </main>
     )
   }
@@ -196,7 +224,11 @@ export default function CategoriesPage() {
       </Card>
 
       {/* Arabic Vocabulary section — always visible, anchored at #Vocab */}
-      <ArabicVocabSection router={router} />
+     <ArabicVocabSection
+  router={router}
+  selectedCategory={selectedCategory}
+  setSelectedCategory={setSelectedCategory}
+/>
 
     </main>
   )
