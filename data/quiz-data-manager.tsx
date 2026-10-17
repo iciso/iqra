@@ -29,6 +29,7 @@ import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
 import quranicArabic01Category from "./quranic-arabic-01";
+import modernArabic01Category from "./modern-arabic-01";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
 // Define all quiz categories as Quran removed on 23 Jul 25  
@@ -62,6 +63,7 @@ const quizData: QuizCategory[] = [
   sawmCategory,
   islamicEschatologyCategory,
   quranicArabic01Category,
+  modernArabic01Category,
   medicalEthicsCategory,
 ];
 
