@@ -354,16 +354,20 @@ const challengeCategories = [
     bgLight: "bg-teal-50",
     borderColor: "border-teal-300",
   },
-     {
+]
+
+const arabicVocabularyCategories = [
+  {
     id: "quranic-arabic-01",
     label: "Quranic Arabic 01",
     description: "Quranic Arabic - Level 1",
-    icon: Book,
+    icon: Book,          // already imported
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
     borderColor: "border-purple-300",
   },
+  // Future: add Modern Arabic levels here later
 ]
 
 const difficulties = [
