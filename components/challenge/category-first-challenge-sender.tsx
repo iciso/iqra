@@ -15,6 +15,7 @@ import {
   Zap,
   RefreshCw, 
   BookOpen,
+  BookCopy,
   Megaphone,
   Music,
   Percent,
@@ -161,6 +162,15 @@ const arabicVocabularyCategories = [
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
+  },
+  {
+    id: "modern-arabic-01",
+    label: "Modern Arabic - Level 1",
+    description: "Modern Arabic - Level 1",
+    icon: BookCopy,   
+    color: "bg-lime-500 hover:bg-lime-600",
+    textColor: "text-lime-700",
+    bgLight: "bg-lime-50",
   },
 ]
 
