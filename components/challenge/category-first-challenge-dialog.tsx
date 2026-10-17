@@ -367,7 +367,16 @@ const arabicVocabularyCategories = [
     bgLight: "bg-purple-50",
     borderColor: "border-purple-300",
   },
-  // Future: add Modern Arabic levels here later
+      {
+    id: "modern-arabic-01",
+    label: "Modern Arabic 01",
+    description: "Modern Arabic - Level 1",
+    icon: BookCopy,
+    color: "bg-lime-500 hover:bg-lime-600",
+    textColor: "text-lime-700",
+    bgLight: "bg-lime-50",
+    borderColor: "border-lime-300",
+  },
 ]
 
 const difficulties = [
