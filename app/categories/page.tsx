@@ -64,30 +64,19 @@ function ArabicVocabSection({ router }: { router: ReturnType<typeof useRouter> }
               <CardHeader className="items-center text-center">
                 <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Quranic Arabic</CardTitle>
-                <CardDescription>Learn words and meanings found in the Quran</CardDescription>
+                <CardDescription>Learn Quranic Vocabulary</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
-                <Button
-                  className="bg-green-600 hover:bg-green-700"
-                  onClick={() => router.push("/arabic-vocabulary?quranic")}
-                >
-                  Practise Quranic Vocabulary
-                </Button>
+                
               </CardContent>
             </Card>
             <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
               <CardHeader className="items-center text-center">
                 <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Modern Standard Arabic (MSA)</CardTitle>
-                <CardDescription>Learn vocabulary used in contemporary Arabic</CardDescription>
+                <CardDescription>Learn Modern Arabic</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
-                <Button
-                  className="bg-green-600 hover:bg-green-700"
-                  onClick={() => router.push("/arabic-vocabulary?msa")}
-                >
-                  Practise Modern Arabic
-                </Button>
               </CardContent>
             </Card>
           </div>
