@@ -4,219 +4,98 @@ import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
 import {
-  Book,
-  ArrowUp,
-  Bitcoin,
-  Scale,
-  BookCopy, 
-  Brain,
-  BriefcaseMedical,
-  BookDashed,
-  Calendar1,
-  Church,
-  Heart,
-  Image,
-  Infinity,
-  Megaphone,
-  Music,
-  User,
-  Users,
-  Sparkles,
-  History,
-  Scroll,
-  Compass,
-  Globe,
-  ArrowRight,
-  ScanFace,
-  Telescope,
-  Percent,
-  Rainbow,
-  Circle,
-  HandHeart,
-  WineOff,
+  Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
+  Calendar1, Church, Heart, Image, Infinity, Megaphone, Music, User, Users,
+  Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Telescope,
+  Percent, Rainbow, Circle, HandHeart, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 
-// Define all categories here for the quiz 
 const categories = [
-  {
-    id: "quran",
-    title: "Quran",
-    description: "Quran Basics",
-    icon: <Book className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "fiqh",
-    title: "Fiqh",
-    description: "Islamic Jurisprudence",
-    icon: <Scale className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "tafsir",
-    title: "Tafsir",
-    description: "Quranic Exegesis",
-    icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "hadeeth",
-    title: "Hadeeth",
-    description: "Prophetic Traditions",
-    icon: <Scroll className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "aqeedah",
-    title: "Aqeedah",
-    description: "Islamic Monotheism",
-    icon: <Infinity className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "seerah",
-    title: "Seerah",
-    description: "Prophet's Biography",
-    icon: <User className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "tazkiyah",
-    title: "Tazkiyah",
-    description: "Spiritual Purification", 
-    icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "salah",
-    title: "Salah",
-    description: "Prayers in Islam", 
-    icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "sawm",
-    title: "Sawm",
-    description: "Fasting & Ramadaan", 
-    icon: <Calendar1 className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "history",
-    title: "Islamic History",
-    description: "History of Islam",
-    icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "dawah",
-    title: "Dawah",
-    description: "Inviting to Islam",
-    icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "new-muslims",
-    title: "New Muslims",
-    description: "Essentials for New Muslims",
-    icon: <Compass className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "comparative",
-    title: "Comparative Religion",
-    description: "Faiths, Non-Faiths & Islam",
-    icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "christ",
-    title: "Christianity",
-    description: "Islam and Christianity",
-    icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "hindu",
-    title: "Hinduism",
-    description: "Islam and Hinduism",
-    icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "riba",
-    title: "Usury or interest",
-    description: "Usury or interest",
-    icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "islamic-finance",
-    title: "Islamic Finance",
-    description: "Islamic Economics",
-    icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "crypto",
-    title: "Crypto & Blockchain",
-    description: "Shariah & digital currencies",
-    icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "gender",
-    title: "Gender",
-    description: "Gender in Islam",
-    icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "lgbtq",
-    title: "Islam and LGBTQIA+",
-    description: "LGBTQIA+ & Islam",
-    icon: <Rainbow className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },   
-   {
-    id: "psych",
-    title: "Islamic Psychology",
-    description: "Psychology & Islam",
-    icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "music",
-    title: "Music in Islam",
-    description: "Music in Islam",
-    icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-     {
-    id: "islamic-alcohol-drugs",
-    title: "Alcohol & Drugs in Islam",
-    description: "Alcohol & Drugs in Islam",
-    icon: <WineOff className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-     {
-    id: "imagery",
-    title: "Images & Animation in Islam",
-    description: "Images & Animation in Islam", 
-    icon: <Image className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "dating",
-    title: "Dating",
-    description: "Dating in Islam",
-    icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-   {
-    id: "parenting",
-    title: "Islamic Parenting",
-    description: "Islam & parenting",
-    icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-    {
-    id: "islamic-medical-ethics",
-    title: "Medical Ethics",
-    description: "Islamic Medical Ethics",
-    icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "islamic-eschatology",
-    title: "Islalmic End-Days",
-    description: "Islamic End Days",
-    icon: <Megaphone className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
-  {
-    id: "peace",
-    title: "Peace",
-    description: "Peace in Middle East",
-    icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" />,
-  },
+  { id: "quran", title: "Quran", description: "Quran Basics", icon: <Book className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "fiqh", title: "Fiqh", description: "Islamic Jurisprudence", icon: <Scale className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "tafsir", title: "Tafsir", description: "Quranic Exegesis", icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "hadeeth", title: "Hadeeth", description: "Prophetic Traditions", icon: <Scroll className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "aqeedah", title: "Aqeedah", description: "Islamic Monotheism", icon: <Infinity className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "seerah", title: "Seerah", description: "Prophet's Biography", icon: <User className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "tazkiyah", title: "Tazkiyah", description: "Spiritual Purification", icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "salah", title: "Salah", description: "Prayers in Islam", icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "sawm", title: "Sawm", description: "Fasting & Ramadaan", icon: <Calendar1 className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "history", title: "Islamic History", description: "History of Islam", icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "dawah", title: "Dawah", description: "Inviting to Islam", icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "new-muslims", title: "New Muslims", description: "Essentials for New Muslims", icon: <Compass className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "comparative", title: "Comparative Religion", description: "Faiths, Non-Faiths & Islam", icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "christ", title: "Christianity", description: "Islam and Christianity", icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "riba", title: "Usury or interest", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "islamic-finance", title: "Islamic Finance", description: "Islamic Economics", icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "crypto", title: "Crypto & Blockchain", description: "Shariah & digital currencies", icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "gender", title: "Gender", description: "Gender in Islam", icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "lgbtq", title: "Islam and LGBTQIA+", description: "LGBTQIA+ & Islam", icon: <Rainbow className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "psych", title: "Islamic Psychology", description: "Psychology & Islam", icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "music", title: "Music in Islam", description: "Music in Islam", icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "islamic-alcohol-drugs", title: "Alcohol & Drugs in Islam", description: "Alcohol & Drugs in Islam", icon: <WineOff className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "imagery", title: "Images & Animation in Islam", description: "Images & Animation in Islam", icon: <Image className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "dating", title: "Dating", description: "Dating in Islam", icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "parenting", title: "Islamic Parenting", description: "Islam & parenting", icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "islamic-medical-ethics", title: "Medical Ethics", description: "Islamic Medical Ethics", icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "islamic-eschatology", title: "Islamic End-Days", description: "Islamic End Days", icon: <Megaphone className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
 ]
+
+// Extracted so it renders identically in both loading and loaded states
+function ArabicVocabSection({ router }: { router: ReturnType<typeof useRouter> }) {
+  return (
+    <section id="Vocab" className="w-full max-w-3xl mt-8 scroll-mt-6">
+      <Card className="border-green-200 shadow-lg dark:border-green-800">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
+            Arabic Vocabulary
+          </CardTitle>
+          <CardDescription className="text-green-600 dark:text-green-500">
+            Choose the vocabulary track you want to practise
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+              <CardHeader className="items-center text-center">
+                <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <CardTitle className="text-lg">Quranic Arabic</CardTitle>
+                <CardDescription>Learn words and meanings found in the Quran</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button
+                  className="bg-green-600 hover:bg-green-700"
+                  onClick={() => router.push("/arabic-vocabulary?quranic")}
+                >
+                  Practise Quranic Vocabulary
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
+              <CardHeader className="items-center text-center">
+                <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <CardTitle className="text-lg">Modern Standard Arabic (MSA)</CardTitle>
+                <CardDescription>Learn vocabulary used in contemporary Arabic</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button
+                  className="bg-green-600 hover:bg-green-700"
+                  onClick={() => router.push("/arabic-vocabulary?msa")}
+                >
+                  Practise Modern Arabic
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  )
+}
 
 export default function CategoriesPage() {
   const router = useRouter()
@@ -229,15 +108,10 @@ export default function CategoriesPage() {
     setIsClient(true)
   }, [])
 
-  // Add effect to scroll to difficulty section when category is selected
   useEffect(() => {
     if (selectedCategory && difficultyRef.current) {
-      // Add a small delay to ensure the section is rendered
       setTimeout(() => {
-        difficultyRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        })
+        difficultyRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
       }, 100)
     }
   }, [selectedCategory])
@@ -248,7 +122,7 @@ export default function CategoriesPage() {
     }
   }
 
-  // If we're not on the client yet, show a simple loading state
+  // Loading state — show skeleton categories card + vocab section
   if (!isClient) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
@@ -257,86 +131,13 @@ export default function CategoriesPage() {
             <p>Loading categories...</p>
           </CardContent>
         </Card>
-        
-      {/* Arabic Vocabulary section */}
-      <section
-        id="Vocab"
-        className="w-full max-w-3xl mt-8 scroll-mt-6"
-      >
-        <Card className="border-green-200 shadow-lg dark:border-green-800">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
-              Arabic Vocabulary
-            </CardTitle>
-            <CardDescription className="text-green-600 dark:text-green-500">
-              Choose the vocabulary track you want to practise
-            </CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-              {/* First card: Quranic Arabic */}
-              <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
-                <CardHeader className="items-center text-center">
-                  <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
-                  <CardTitle className="text-lg">
-                    Quranic Arabic
-                  </CardTitle>
-                  <CardDescription>
-                    Learn words and meanings found in the Quran
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button
-                    className="bg-green-600 hover:bg-green-700"
-                    onClick={() =>
-                      router.push("/arabic-vocabulary?quranic")
-                    }
-                  >
-                    Practise Quranic Vocabulary
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Second card: Modern Standard Arabic */}
-              <Card className="border-green-200 hover:border-green-500 transition-colors dark:border-green-800">
-                <CardHeader className="items-center text-center">
-                  <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
-                  <CardTitle className="text-lg">
-                    Modern Standard Arabic (MSA)
-                  </CardTitle>
-                  <CardDescription>
-                    Learn vocabulary used in contemporary Arabic
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button
-                    className="bg-green-600 hover:bg-green-700"
-                    onClick={() =>
-                      router.push("/arabic-vocabulary?msa")
-                    }
-                  >
-                    Practise Modern Arabic
-                  </Button>
-                </CardContent>
-              </Card>
-
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
+        <ArabicVocabSection router={router} />
       </main>
     )
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <div id="Vocab" className="scroll-mt-6" />
-      <div className="absolute top-4 right-4">
-     
-      </div>
 
       <Card className="w-full max-w-3xl border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
@@ -350,12 +151,11 @@ export default function CategoriesPage() {
             {categories.map((category) => (
               <div
                 key={category.id}
-                className={`p-4 rounded-lg border cursor-pointer transition-colors
-                 ${
-                   selectedCategory === category.id
-                     ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
-                     : "border-gray-200 hover:border-green-300 dark:border-gray-700 dark:hover:border-green-700"
-                 }`}
+                className={`p-4 rounded-lg border cursor-pointer transition-colors ${
+                  selectedCategory === category.id
+                    ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
+                    : "border-gray-200 hover:border-green-300 dark:border-gray-700 dark:hover:border-green-700"
+                }`}
                 onClick={() => {
                   console.log(`Selected category: ${category.id}`)
                   setSelectedCategory(category.id)
@@ -386,9 +186,7 @@ export default function CategoriesPage() {
                     <RadioGroupItem value="advanced" id="advanced" />
                     <Label htmlFor="advanced" className="flex flex-col cursor-pointer">
                       <span className="font-medium dark:text-white">Advanced</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        Challenging questions for those with deeper knowledge
-                      </span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">Challenging questions for those with deeper knowledge</span>
                     </Label>
                   </div>
                 </div>
@@ -407,6 +205,10 @@ export default function CategoriesPage() {
           </Button>
         </CardFooter>
       </Card>
+
+      {/* Arabic Vocabulary section — always visible, anchored at #Vocab */}
+      <ArabicVocabSection router={router} />
+
     </main>
   )
 }
