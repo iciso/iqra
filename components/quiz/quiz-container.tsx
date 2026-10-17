@@ -29,7 +29,7 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 interface QuizContainerProps {
-  questions: QuizQuestion[]
+  shuffledQuestions: QuizQuestion[]
   category: QuizCategory
   difficulty: DifficultyLevel
   challengeMode?: string
@@ -39,7 +39,7 @@ interface QuizContainerProps {
 }
 
 export default function QuizContainer({
-  questions,
+  shuffledQuestions,
   category,
   difficulty,
   challengeMode,
@@ -66,7 +66,7 @@ export default function QuizContainer({
 // Shuffle the options of every question once when the quiz starts
   // so the correct answer is not always in the same position
   const [shuffledQuestions] = useState(() =>
-    questions.map((q) => ({
+    shuffledQuestions.map((q) => ({
       ...q,
       options: shuffleArray(q.options),
     })),
@@ -87,7 +87,7 @@ export default function QuizContainer({
 
   useEffect(() => {
     // Initialize answers array
-    setAnswers(Array(questions.length).fill(""))
+    setAnswers(Array(shuffledQuestions.length).fill(""))
 
     // Set up opponent for challenge mode
     if (challengeMode) {
@@ -175,8 +175,8 @@ export default function QuizContainer({
     }
 
     console.log("🎯 QUIZ CONTAINER: Setup complete")
-    console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length)
-  }, [questions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn])
+    console.log("🎯 QUIZ CONTAINER: Questions loaded:", shuffledQuestions.length)
+  }, [shuffledQuestions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn])
 
   // Timer effect
   useEffect(() => {
@@ -209,12 +209,12 @@ export default function QuizContainer({
   }
 
   const handleSubmitAnswer = () => {
-    if (!questions[currentQuestion]) return
+    if (!shuffledQuestions[currentQuestion]) return
     setTransitionType("submit")
     setIsLoading(true)
 
     setTimeout(() => {
-      const correct = selectedAnswer === questions[currentQuestion].correctAnswer
+      const correct = selectedAnswer === shuffledQuestions[currentQuestion].correctAnswer
       setIsCorrect(correct)
       if (correct) {
         setScore(score + 1)
@@ -232,7 +232,7 @@ export default function QuizContainer({
     setTimeout(() => {
       setShowExplanation(false)
       setIsCorrect(null)
-      if (currentQuestion < questions.length - 1) {
+      if (currentQuestion < shuffledQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1)
         setSelectedAnswer(answers[currentQuestion + 1] || "")
       } else {
@@ -265,7 +265,7 @@ export default function QuizContainer({
     })
     const submitPromise = submitQuizResult(
       score,
-      questions.length,
+      shuffledQuestions.length,
       category.id,
       difficulty,
       timeLeft,
@@ -283,7 +283,7 @@ export default function QuizContainer({
 
     try {
       localStorage.setItem("quizScore", score.toString())
-      localStorage.setItem("totalQuestions", questions.length.toString())
+      localStorage.setItem("totalQuestions", shuffledQuestions.length.toString())
       localStorage.setItem("quizCategory", category.id)
       localStorage.setItem("quizDifficulty", difficulty)
       localStorage.setItem("quizChallenge", challengeMode || "")
@@ -308,7 +308,7 @@ export default function QuizContainer({
       console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations")
       toast({
         title: "Challenge Sent!",
-        description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+        description: `Your score (${score}/${shuffledQuestions.length}) has been recorded. Your opponent will be notified.`,
         duration: 5000,
       })
       router.push("/results")
@@ -330,7 +330,7 @@ export default function QuizContainer({
           console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
           toast({
             title: "Challenge Sent Successfully!",
-            description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+            description: `Your score (${score}/${shuffledQuestions.length}) has been recorded. Your opponent will be notified.`,
             duration: 5000,
           })
           router.push("/results")
@@ -339,7 +339,7 @@ export default function QuizContainer({
           console.error("🎯 QUIZ CONTAINER: Quiz submission error:", error)
           toast({
             title: "Challenge Sent!",
-            description: `Your score (${score}/${questions.length}) has been recorded.`,
+            description: `Your score (${score}/${shuffledQuestions.length}) has been recorded.`,
             duration: 5000,
           })
           router.push("/results")
@@ -353,7 +353,7 @@ export default function QuizContainer({
           console.log("✅ Challenge score submitted successfully")
           toast({
             title: "Challenge Completed!",
-            description: `Your score (${score}/${questions.length}) has been recorded!`,
+            description: `Your score (${score}/${shuffledQuestions.length}) has been recorded!`,
             duration: 5000,
           })
           router.push("/results")
@@ -362,7 +362,7 @@ export default function QuizContainer({
           console.error("❌ Error in challenge completion:", error)
           toast({
             title: "Challenge Completed!",
-            description: `Your score: ${score}/${questions.length}. Great job!`,
+            description: `Your score: ${score}/${shuffledQuestions.length}. Great job!`,
             duration: 5000,
           })
           router.push("/results")
@@ -372,7 +372,7 @@ export default function QuizContainer({
         console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
         toast({
           title: "Quiz Completed!",
-          description: `Saving your score (${score}/${questions.length}) to the leaderboard...`,
+          description: `Saving your score (${score}/${shuffledQuestions.length}) to the leaderboard...`,
           duration: 3000,
         })
         router.push("/results")
@@ -382,7 +382,7 @@ export default function QuizContainer({
       console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error)
       toast({
         title: "Quiz Completed!",
-        description: `Your score: ${score}/${questions.length}. Great job!`,
+        description: `Your score: ${score}/${shuffledQuestions.length}. Great job!`,
         duration: 3000,
       })
       router.push("/results")
@@ -409,15 +409,15 @@ export default function QuizContainer({
   }, [currentQuestion, answers])
 
   useEffect(() => {
-    const progressValue = (currentQuestion / questions.length) * 100
+    const progressValue = (currentQuestion / shuffledQuestions.length) * 100
     setProgress(progressValue)
-  }, [currentQuestion, questions.length])
+  }, [currentQuestion, shuffledQuestions.length])
 
-  if (questions.length === 0) {
+  if (shuffledQuestions.length === 0) {
     return (
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">
-          <p className="dark:text-white mb-4">No questions available for this category and difficulty level.</p>
+          <p className="dark:text-white mb-4">No shuffledQuestions available for this category and difficulty level.</p>
           <Link href="/categories">
             <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
               Return to Categories
@@ -428,7 +428,7 @@ export default function QuizContainer({
     )
   }
 
-  const question = questions[currentQuestion]
+  const question = shuffledQuestions[currentQuestion]
   const getLoadingText = () => {
     if (transitionType === "submit") return "Checking answer..."
     if (transitionType === "next") return "Loading next question..."
@@ -459,7 +459,7 @@ export default function QuizContainer({
             {challengeMode && !challengerTurn && ` Challenge`}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} of {shuffledQuestions.length}
           </span>
         </div>
         <Progress value={progress} className="h-2 bg-green-100 dark:bg-green-800" />
@@ -590,12 +590,12 @@ export default function QuizContainer({
                   onClick={handleNext}
                   disabled={isLoading}
                 >
-                  {currentQuestion === questions.length - 1
+                  {currentQuestion === shuffledQuestions.length - 1
                     ? challengerTurn
                       ? "Send Challenge"
                       : "Finish Quiz"
                     : "Next"}
-                  {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
+                  {currentQuestion !== shuffledQuestions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>
               )}
             </CardFooter>
