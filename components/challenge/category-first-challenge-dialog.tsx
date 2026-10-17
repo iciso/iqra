@@ -583,46 +583,84 @@ const challengeData = {
                 </div>
               )}
 
-              {/* Category Selection - Most Prominent */}
-              <div>
-                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                  <Target className="h-5 w-5 text-blue-600" />
-                  What do you want to challenge them in?
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {challengeCategories.map((category) => {
-                    const IconComponent = category.icon
-                    const isSelected = selectedCategory === category.id
-
-                    return (
-                      <div
-                        key={category.id}
-                        className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
-                          isSelected
-                            ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
-                            : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
-                        }`}
-                        onClick={() => setSelectedCategory(category.id)}
-                      >
-                        <div className="text-center">
-                          <div
-                            className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}
-                          >
-                            <IconComponent className="h-5 w-5 text-white" />
-                          </div>
-                          <h4
-                            className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}
-                          >
-                            {category.label}
+                              {/* Category Selection - Most Prominent */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                          <Target className="h-5 w-5 text-blue-600" />
+                          What do you want to challenge them in?
+                        </h3>
+                      
+                        {/* Islamic Topics */}
+                        <div className="mb-6">
+                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                            Islamic Knowledge Topics
                           </h4>
-                          <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                          {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {challengeCategories.map((category) => {
+                              const IconComponent = category.icon
+                              const isSelected = selectedCategory === category.id
+                              return (
+                                <div
+                                  key={category.id}
+                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                                    isSelected
+                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                                  }`}
+                                  onClick={() => setSelectedCategory(category.id)}
+                                >
+                                  <div className="text-center">
+                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                                      <IconComponent className="h-5 w-5 text-white" />
+                                    </div>
+                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                                      {category.label}
+                                    </h4>
+                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                                    {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      
+                        {/* Arabic Vocabulary - Distinctive Section */}
+                        <div>
+                          <h4 className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3 uppercase tracking-wide flex items-center gap-2">
+                            <Book className="h-4 w-4" />
+                            Arabic Vocabulary
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {arabicVocabularyCategories.map((category) => {
+                              const IconComponent = category.icon
+                              const isSelected = selectedCategory === category.id
+                              return (
+                                <div
+                                  key={category.id}
+                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                                    isSelected
+                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-purple-500`
+                                      : "border-purple-200 dark:border-purple-700 hover:border-purple-400"
+                                  }`}
+                                  onClick={() => setSelectedCategory(category.id)}
+                                >
+                                  <div className="text-center">
+                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                                      <IconComponent className="h-5 w-5 text-white" />
+                                    </div>
+                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                                      {category.label}
+                                    </h4>
+                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                                    {isSelected && <Badge className="mt-2 bg-purple-100 text-purple-800 text-xs">Selected ✓</Badge>}
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
-              </div>
 
               {/* Difficulty Selection - Only show if category is selected */}
               {selectedCategory && (
