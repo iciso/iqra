@@ -94,31 +94,34 @@ function ArabicVocabSection({
               </CardContent>
             </Card>
 
-                {/* Modern Standard Arabic */}
-<Card
-  className={`border-green-200 hover:border-green-500 transition-colors dark:border-green-800 cursor-pointer ${
-    selectedCategory === "modern-standard-arabic"
-      ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
-      : ""
-  }`}
-  onClick={() => {
-    console.log("Selected category: modern-standard-arabic")
-    setSelectedCategory("modern-standard-arabic")
-  }}
->
-  <CardHeader className="items-center text-center">
-    <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
-    <CardTitle className="text-lg">Modern Standard Arabic (MSA)</CardTitle>
-    <CardDescription>Learn everyday & formal Arabic</CardDescription>
-  </CardHeader>
-  <CardContent className="text-center">
-    {selectedCategory === "modern-standard-arabic" && (
-      <span className="text-xs font-medium text-green-700 dark:text-green-300">
-        Selected ✓
-      </span>
-    )}
-  </CardContent>
-</Card>
+            {/* Modern Standard Arabic */}
+            <Card
+              className={`border-green-200 hover:border-green-500 transition-colors dark:border-green-800 cursor-pointer ${
+                selectedCategory === "modern-standard-arabic"
+                  ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
+                  : ""
+              }`}
+              onClick={() => {
+                console.log("Selected category: modern-standard-arabic")
+                setSelectedCategory("modern-standard-arabic")
+              }}
+            >
+              <CardHeader className="items-center text-center">
+                <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <CardTitle className="text-lg">Modern Standard Arabic (MSA)</CardTitle>
+                <CardDescription>Learn everyday & formal Arabic</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                {selectedCategory === "modern-standard-arabic" && (
+                  <span className="text-xs font-medium text-green-700 dark:text-green-300">
+                    Selected ✓
+                  </span>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </CardContent>
+      </Card>
     </section>
   )
 }
