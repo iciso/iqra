@@ -18,6 +18,16 @@ import { getUserProfile } from "@/lib/supabase-queries"
 import { useAuth } from "@/contexts/auth-context"
 import { toast } from "@/components/ui/use-toast"
 
+// Fisher–Yates shuffle – returns a new array
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
 interface QuizContainerProps {
   questions: QuizQuestion[]
   category: QuizCategory
@@ -53,6 +63,15 @@ export default function QuizContainer({
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
+// Shuffle the options of every question once when the quiz starts
+  // so the correct answer is not always in the same position
+  const [shuffledQuestions] = useState(() =>
+    questions.map((q) => ({
+      ...q,
+      options: shuffleArray(q.options),
+    })),
+  )
+  
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
     return Boolean(
