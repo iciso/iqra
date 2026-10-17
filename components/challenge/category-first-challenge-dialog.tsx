@@ -354,6 +354,16 @@ const challengeCategories = [
     bgLight: "bg-teal-50",
     borderColor: "border-teal-300",
   },
+     {
+    id: "quranic-arabic-01",
+    label: "Quranic Arabic 01",
+    description: "Quranic Arabic - Level 1",
+    icon: Book,
+    color: "bg-purple-500 hover:bg-purple-600",
+    textColor: "text-purple-700",
+    bgLight: "bg-purple-50",
+    borderColor: "border-purple-300",
+  },
 ]
 
 const difficulties = [
