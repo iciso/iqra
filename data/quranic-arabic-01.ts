@@ -102,6 +102,6 @@ const quranicArabic01Category: QuizCategory = {
       },
     ],
   },
-};
+}
 
 export default quranicArabic01Category;
