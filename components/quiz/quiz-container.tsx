@@ -506,7 +506,16 @@ export default function QuizContainer({
             <CardContent className="flex-1 overflow-y-auto">
               <div className="h-full flex flex-col justify-between">
                 <div className="mb-6 flex-1">
-                  <h2 className="text-lg font-medium mb-4 dark:text-white min-h-[3rem]">{question.question}</h2>
+                    <h2
+                      className="text-lg font-medium mb-4 dark:text-white min-h-[3rem] leading-relaxed"
+                      style={{
+                        // Make Arabic letters ~2× larger so vowels (tashkīl) are readable
+                        fontSize: /[\u0600-\u06FF]/.test(question.question) ? "1.65rem" : undefined,
+                        lineHeight: /[\u0600-\u06FF]/.test(question.question) ? "2.1" : undefined,
+                      }}
+                    >
+                      {question.question}
+                    </h2>
                   <div className="min-h-[200px]">
                     <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
                       {question.options.map((option, index) => (
@@ -539,7 +548,12 @@ export default function QuizContainer({
                     <div className="mt-4 max-h-[150px] overflow-y-auto">
                       {question.explanation && (
                         <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-                          <AlertDescription className="text-blue-800 dark:text-blue-300">
+                          <AlertDescription className="text-blue-800 dark:text-blue-300"
+                                  style={{
+                                    fontSize: /[\u0600-\u06FF]/.test(question.explanation || "") ? "1.15rem" : undefined,
+                                    lineHeight: 1.8,
+                                  }}
+                                >
                             <div className="flex items-start">
                               <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
                               <div>
