@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, Heart, Image, Infinity, Megaphone, Music, User, Users,
+  Calendar1, Church, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Telescope,
   Percent, Rainbow, Circle, HandHeart, WineOff,
 } from "lucide-react"
@@ -81,7 +81,7 @@ function ArabicVocabSection({
               }}
             >
               <CardHeader className="items-center text-center">
-                <Book className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <Languages className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Quranic Arabic</CardTitle>
                 <CardDescription>Learn Quranic Vocabulary</CardDescription>
               </CardHeader>
@@ -107,7 +107,7 @@ function ArabicVocabSection({
               }}
             >
               <CardHeader className="items-center text-center">
-                <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <Languages className="h-8 w-8 text-green-600 dark:text-green-400" />
                 <CardTitle className="text-lg">Modern Standard Arabic</CardTitle>
                 <CardDescription>Learn everyday & formal Arabic</CardDescription>
               </CardHeader>
