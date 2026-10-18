@@ -2008,6 +2008,636 @@ const quranicArabic01Category: QuizCategory = {
         correctAnswer: "Footstool / chair (of Allah)",
         explanation: "كُرْسِيّ (kursī) refers to the Footstool of Allah. The famous Āyat al-Kursī contains وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ (wasiʿa kursiyyuhu-s-samāwāti wa-l-arḍ – “His Kursī extends over the heavens and the earth”) in Surah Al-Baqarah (2:255). Five Arabic letters."
       },
+       {
+        id: "qav-advanced-036",
+        question: "What does لَوْح (lawḥ) mean in Quranic usage?",
+        options: ["A type of food", "Tablet / board (e.g. the Preserved Tablet)", "A mountain", "A river"],
+        correctAnswer: "Tablet / board (e.g. the Preserved Tablet)",
+        explanation: "لَوْح (lawḥ) means tablet. The phrase فِي لَوْحٍ مَحْفُوظٍ (fī lawḥin maḥfūẓ – “in a Preserved Tablet”) is in Surah Al-Buruj (85:22)."
+      },
+      {
+        id: "qav-advanced-037",
+        question: "What does قَلَم (qalam) mean?",
+        options: ["Sword", "Pen", "Shield", "Scroll only"],
+        correctAnswer: "Pen",
+        explanation: "قَلَم (qalam) means pen. The phrase نْ وَالْقَلَمِ وَمَا يَسْطُرُونَ (nūn wa-l-qalami wa mā yasṭurūn – “Nun. By the pen and what they inscribe”) is in Surah Al-Qalam (68:1)."
+      },
+      {
+        id: "qav-advanced-038",
+        question: "What does سِجِّين (sijjīn) mean?",
+        options: ["A level of Paradise", "A register / place for the record of the wicked", "A type of angel", "A mountain in this world"],
+        correctAnswer: "A register / place for the record of the wicked",
+        explanation: "سِجِّين (sijjīn) is the register of the wicked. The phrase كَلَّا إِنَّ كِتَابَ الْفُجَّارِ لَفِي سِجِّينٍ (kallā inna kitāba-l-fujjāri la-fī sijjīn – “No! Indeed, the record of the wicked is in Sijjin”) is in Surah Al-Mutaffifin (83:7)."
+      },
+      {
+        id: "qav-advanced-039",
+        question: "What does عِلِّيِّين (ʿilliyyīn) mean?",
+        options: ["A place of punishment", "A high register / place for the record of the righteous", "A desert", "A type of cloud"],
+        correctAnswer: "A high register / place for the record of the righteous",
+        explanation: "عِلِّيِّين (ʿilliyyīn) is the high register of the righteous. The phrase كَلَّا إِنَّ كِتَابَ الْأَبْرَارِ لَفِي عِلِّيِّينَ (kallā inna kitāba-l-abrāri la-fī ʿilliyyīn – “No! Indeed, the record of the righteous is in Illiyyun”) is in Surah Al-Mutaffifin (83:18)."
+      },
+      {
+        id: "qav-advanced-040",
+        question: "What does صِرَاط (ṣirāṭ) mean on the Day of Judgment?",
+        options: ["A market", "The bridge / path over Hell", "A garden", "A throne"],
+        correctAnswer: "The bridge / path over Hell",
+        explanation: "صِرَاط (ṣirāṭ) is the path; on the Last Day it is understood as the bridge over Hell. In this life: اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (ihdinā-ṣ-ṣirāṭa-l-mustaqīm) in Surah Al-Fatihah (1:6)."
+      },
+      {
+        id: "qav-advanced-041",
+        question: "What does حَشْر (ḥashr) mean?",
+        options: ["Dispersion only", "Gathering / assembly (for Judgment)", "Sleep", "Travel for trade"],
+        correctAnswer: "Gathering / assembly (for Judgment)",
+        explanation: "حَشْر (ḥashr) means gathering. The phrase وَحَشَرْنَاهُمْ فَلَمْ نُغَادِرْ مِنْهُمْ أَحَدًا (wa ḥasharnāhum fa-lam nughādir minhum aḥadā – “And We will gather them and not leave behind from them anyone”) is in Surah Al-Kahf (18:47)."
+      },
+      {
+        id: "qav-advanced-042",
+        question: "What does نَشْر (nashr) mean in eschatological context?",
+        options: ["Folding only", "Spreading / resurrection unfolding", "Hiding", "Destroying"],
+        correctAnswer: "Spreading / resurrection unfolding",
+        explanation: "نَشْر (nashr) means spreading out. The phrase وَإِذَا الصُّحُفُ نُشِرَتْ (wa idhā-ṣ-ṣuḥufu nushirat – “And when the pages are spread”) is in Surah At-Takwir (81:10)."
+      },
+      {
+        id: "qav-advanced-043",
+        question: "What does بَعْث (baʿth) mean?",
+        options: ["Burial only", "Resurrection / raising (from the dead)", "Birth", "Travel"],
+        correctAnswer: "Resurrection / raising (from the dead)",
+        explanation: "بَعْث (baʿth) means resurrection. The phrase ثُمَّ إِنَّكُمْ يَوْمَ الْقِيَامَةِ تُبْعَثُونَ (thumma innakum yawma-l-qiyāmati tubʿathūn – “Then indeed you, on the Day of Resurrection, will be resurrected”) is in Surah Al-Mu’minun (23:16)."
+      },
+      {
+        id: "qav-advanced-044",
+        question: "What does نُشُور (nushūr) mean?",
+        options: ["Sleep", "Rising / resurrection", "Decay only", "Forgetfulness"],
+        correctAnswer: "Rising / resurrection",
+        explanation: "نُشُور (nushūr) means rising (from death). The phrase ثُمَّ إِذَا شَاءَ أَنْشَرَهُ (thumma idhā shāʾa ansharah – “Then when He wills, He will resurrect him”) is in Surah Abasa (80:22)."
+      },
+      {
+        id: "qav-advanced-045",
+        question: "What does صُحُف (ṣuḥuf) mean?",
+        options: ["Buildings", "Scrolls / scriptures / pages", "Weapons", "Clothes"],
+        correctAnswer: "Scrolls / scriptures / pages",
+        explanation: "صُحُف (ṣuḥuf) means scrolls or scriptures. The phrase صُحُفِ إِبْرَاهِيمَ وَمُوسَىٰ (ṣuḥufi Ibrāhīma wa Mūsā – “the scriptures of Abraham and Moses”) is in Surah Al-A’la (87:19)."
+      },
+      {
+        id: "qav-advanced-046",
+        question: "What does زُبُر (zubur) mean?",
+        options: ["Songs", "Scriptures / Psalms (as revealed books)", "Markets", "Tribes"],
+        correctAnswer: "Scriptures / Psalms (as revealed books)",
+        explanation: "زُبُر (zubur) means scriptures. The phrase وَآتَيْنَا دَاوُودَ زَبُورًا (wa ātaynā Dāwūda zabūrā – “And We gave David the Zabur [Psalms]”) is in Surah An-Nisa (4:163)."
+      },
+      {
+        id: "qav-advanced-047",
+        question: "What does تَوْرَاة (Tawrāh) mean?",
+        options: ["The Gospel", "The Torah (revealed to Moses)", "The Psalms", "The Quran only"],
+        correctAnswer: "The Torah (revealed to Moses)",
+        explanation: "تَوْرَاة (Tawrāh) is the Torah. The phrase إِنَّا أَنْزَلْنَا التَّوْرَاةَ فِيهَا هُدًى وَنُورٌ (innā anzalnā-t-Tawrāta fīhā hudan wa nūr – “Indeed, We sent down the Torah, in which was guidance and light”) is in Surah Al-Ma’idah (5:44)."
+      },
+      {
+        id: "qav-advanced-048",
+        question: "What does إِنْجِيل (Injīl) mean?",
+        options: ["The Torah", "The Gospel (revealed to Jesus)", "The Psalms", "A commentary"],
+        correctAnswer: "The Gospel (revealed to Jesus)",
+        explanation: "إِنْجِيل (Injīl) is the Gospel. The phrase وَآتَيْنَاهُ الْإِنْجِيلَ (wa ātaynāhu-l-Injīl – “And We gave him the Gospel”) is in Surah Al-Hadid (57:27)."
+      },
+      {
+        id: "qav-advanced-049",
+        question: "What does فُرْقَان (furqān) mean?",
+        options: ["Confusion", "Criterion / that which distinguishes truth from falsehood", "A type of prayer", "A mountain"],
+        correctAnswer: "Criterion / that which distinguishes truth from falsehood",
+        explanation: "فُرْقَان (furqān) means criterion. The phrase تَبَارَكَ الَّذِي نَزَّلَ الْفُرْقَانَ عَلَىٰ عَبْدِهِ (tabāraka-lladhī nazzala-l-furqāna ʿalā ʿabdih – “Blessed is He who sent down the Criterion upon His Servant”) is in Surah Al-Furqan (25:1)."
+      },
+      {
+        id: "qav-advanced-050",
+        question: "What does ذِكْر (dhikr) can also mean as a name for revelation?",
+        options: ["Only silent thought", "Reminder / the Message (the Quran)", "Only a rosary", "Only history"],
+        correctAnswer: "Reminder / the Message (the Quran)",
+        explanation: "ذِكْر (dhikr) also means the Reminder (revelation). The phrase إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ (innā naḥnu nazzalnā-dh-dhikra wa innā lahu la-ḥāfiẓūn – “Indeed, it is We who sent down the Reminder, and indeed, We will be its guardian”) is in Surah Al-Hijr (15:9)."
+      },
+      {
+        id: "qav-advanced-051",
+        question: "What does مُحْكَم (muḥkam) mean regarding Quranic verses?",
+        options: ["Ambiguous", "Clear / decisive in meaning", "Abrogated only", "Poetic only"],
+        correctAnswer: "Clear / decisive in meaning",
+        explanation: "مُحْكَم (muḥkam) means clear and decisive. The phrase مِنْهُ آيَاتٌ مُحْكَمَاتٌ هُنَّ أُمُّ الْكِتَابِ (minhu āyātun muḥkamātun hunna ummu-l-kitāb – “within it are verses [that are] precise – they are the foundation of the Book”) is in Surah Aal-Imran (3:7)."
+      },
+      {
+        id: "qav-advanced-052",
+        question: "What does مُتَشَابِه (mutashābih) mean regarding Quranic verses?",
+        options: ["Always clear", "Ambiguous / similar (unspecific in meaning)", "Abrogating", "Historical only"],
+        correctAnswer: "Ambiguous / similar (unspecific in meaning)",
+        explanation: "مُتَشَابِه (mutashābih) means unspecific or allegorical. The phrase وَأُخَرُ مُتَشَابِهَاتٌ (wa ukharu mutashābihāt – “and others unspecific”) is in Surah Aal-Imran (3:7)."
+      },
+      {
+        id: "qav-advanced-053",
+        question: "What does نَسْخ (naskh) mean in Quranic sciences?",
+        options: ["Copying a book only", "Abrogation (of a ruling by a later one)", "Memorization only", "Translation"],
+        correctAnswer: "Abrogation (of a ruling by a later one)",
+        explanation: "نَسْخ (naskh) means abrogation. The phrase مَا نَنْسَخْ مِنْ آيَةٍ أَوْ نُنْسِهَا نَأْتِ بِخَيْرٍ مِنْهَا (mā nansakh min āyatin aw nunsihā naʾti bi-khayrin minhā – “We do not abrogate a verse or cause it to be forgotten except that We bring forth [one] better than it”) is in Surah Al-Baqarah (2:106)."
+      },
+      {
+        id: "qav-advanced-054",
+        question: "What does تَأْوِيل (taʾwīl) mean?",
+        options: ["Ignoring a text", "Interpretation / ultimate explanation", "Deletion", "Recitation only"],
+        correctAnswer: "Interpretation / ultimate explanation",
+        explanation: "تَأْوِيل (taʾwīl) means interpretation or final meaning. The phrase وَمَا يَعْلَمُ تَأْوِيلَهُ إِلَّا اللَّهُ (wa mā yaʿlamu taʾwīlahu illā-llāh – “But no one knows its [true] interpretation except Allah”) is in Surah Aal-Imran (3:7)."
+      },
+      {
+        id: "qav-advanced-055",
+        question: "What does غَيْب (ghayb) mean?",
+        options: ["What is witnessed", "The unseen", "The marketplace", "The past only"],
+        correctAnswer: "The unseen",
+        explanation: "غَيْب (ghayb) means the unseen. The phrase عَالِمُ الْغَيْبِ وَالشَّهَادَةِ (ʿālimu-l-ghaybi wa-sh-shahādah – “Knower of the unseen and the witnessed”) is in Surah Al-An’am (6:73)."
+      },
+      {
+        id: "qav-advanced-056",
+        question: "What does شَهَادَة (shahādah) mean besides testimony?",
+        options: ["Only martyrdom", "The seen / witnessed realm (as opposite of ghayb)", "Only a court case", "Only the shahada formula"],
+        correctAnswer: "The seen / witnessed realm (as opposite of ghayb)",
+        explanation: "شَهَادَة can mean the witnessed realm. The phrase عَالِمُ الْغَيْبِ وَالشَّهَادَةِ is in Surah Al-An’am (6:73)."
+      },
+      {
+        id: "qav-advanced-057",
+        question: "What does قَدَر (qadar) mean?",
+        options: ["Chance only", "Divine decree / measure", "Human guess", "Randomness"],
+        correctAnswer: "Divine decree / measure",
+        explanation: "قَدَر (qadar) means decree or measure. The phrase إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ (innā kulla shayʾin khalaqnāhu bi-qadar – “Indeed, all things We created with predestination”) is in Surah Al-Qamar (54:49)."
+      },
+      {
+        id: "qav-advanced-058",
+        question: "What does قَضَاء (qaḍāʾ) mean in theological usage?",
+        options: ["Suggestion", "Divine judgment / decree", "Advice", "Delay"],
+        correctAnswer: "Divine judgment / decree",
+        explanation: "قَضَاء (qaḍāʾ) means decree or judgment. The phrase وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ (wa qaḍā rabbuka allā taʿbudū illā iyyāh – “And your Lord has decreed that you not worship except Him”) is in Surah Al-Isra (17:23)."
+      },
+      {
+        id: "qav-advanced-059",
+        question: "What does أَجَل (ajal) mean?",
+        options: ["Beginning only", "Appointed term / deadline", "Infinity", "Delay without limit"],
+        correctAnswer: "Appointed term / deadline",
+        explanation: "أَجَل (ajal) means appointed term. The phrase فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً (fa-idhā jāʾa ajaluhum lā yastaʾkhirūna sāʿah – “And when their time has come, they will not remain behind an hour”) is in Surah Yunus (10:49)."
+      },
+      {
+        id: "qav-advanced-060",
+        question: "What does سَاعَة (sāʿah) mean in many eschatological verses?",
+        options: ["A short nap", "The Hour (of Judgment)", "A festival", "A prayer time only"],
+        correctAnswer: "The Hour (of Judgment)",
+        explanation: "سَاعَة (sāʿah) often means the Hour. The phrase يَسْأَلُونَكَ عَنِ السَّاعَةِ أَيَّانَ مُرْسَاهَا (yasʾalūnaka ʿani-s-sāʿati ayyāna mursāhā – “They ask you about the Hour: when is its arrival?”) is in Surah Al-A’raf (7:187)."
+      },
+      {
+        id: "qav-advanced-061",
+        question: "What does آخِرَة (ākhirah) mean?",
+        options: ["The present world only", "The Hereafter", "Childhood", "History"],
+        correctAnswer: "The Hereafter",
+        explanation: "آخِرَة (ākhirah) means the Hereafter. The phrase وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ (wa-l-ākhiratu khayrun wa abqā – “And the Hereafter is better and more enduring”) is in Surah Al-A’la (87:17)."
+      },
+      {
+        id: "qav-advanced-062",
+        question: "What does دُنْيَا (dunyā) mean?",
+        options: ["The Hereafter", "This world / worldly life", "Paradise", "The sky"],
+        correctAnswer: "This world / worldly life",
+        explanation: "دُنْيَا (dunyā) means this world. The phrase وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ (wa mā-l-ḥayātu-d-dunyā illā matāʿu-l-ghurūr – “And the worldly life is not but enjoyment of delusion”) is in Surah Aal-Imran (3:185)."
+      },
+      {
+        id: "qav-advanced-063",
+        question: "What does مَتَاع (matāʿ) mean?",
+        options: ["Eternal reward", "Temporary provision / enjoyment", "Punishment", "Knowledge"],
+        correctAnswer: "Temporary provision / enjoyment",
+        explanation: "مَتَاع (matāʿ) means temporary provision. The phrase وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ is in Surah Aal-Imran (3:185)."
+      },
+      {
+        id: "qav-advanced-064",
+        question: "What does غُرُور (ghurūr) mean?",
+        options: ["Sincerity", "Delusion / deception", "Certainty", "Guidance"],
+        correctAnswer: "Delusion / deception",
+        explanation: "غُرُور (ghurūr) means delusion. The phrase وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ is in Surah Aal-Imran (3:185)."
+      },
+      {
+        id: "qav-advanced-065",
+        question: "What does زُخْرُف (zukhruf) mean?",
+        options: ["Plain truth", "Ornament / adornment (often of this world)", "Poverty", "Silence"],
+        correctAnswer: "Ornament / adornment (often of this world)",
+        explanation: "زُخْرُف (zukhruf) means adornment. The phrase وَكَذَٰلِكَ زَيَّنَ لِكَثِيرٍ مِنَ الْمُشْرِكِينَ contexts; see زُخْرُفَ الْقَوْلِ in Surah Al-An’am (6:112)."
+      },
+      {
+        id: "qav-advanced-066",
+        question: "What does زِينَة (zīnah) mean?",
+        options: ["Ugliness", "Adornment / beauty", "Hunger", "Fear"],
+        correctAnswer: "Adornment / beauty",
+        explanation: "زِينَة (zīnah) means adornment. The phrase زُيِّنَ لِلنَّاسِ حُبُّ الشَّهَوَاتِ (zuyyina li-n-nāsi ḥubbu-sh-shahawāt – “Beautified for people is the love of that which they desire”) is in Surah Aal-Imran (3:14)."
+      },
+      {
+        id: "qav-advanced-067",
+        question: "What does شَهْوَة (shahwah) mean?",
+        options: ["Dislike", "Desire / lust", "Wisdom", "Patience"],
+        correctAnswer: "Desire / lust",
+        explanation: "شَهْوَة (shahwah) means desire. The phrase زُيِّنَ لِلنَّاسِ حُبُّ الشَّهَوَاتِ is in Surah Aal-Imran (3:14)."
+      },
+      {
+        id: "qav-advanced-068",
+        question: "What does هَوَى (hawā) mean?",
+        options: ["Guidance", "Caprice / base desire", "Revelation", "Law"],
+        correctAnswer: "Caprice / base desire",
+        explanation: "هَوَى (hawā) means caprice. The phrase وَلَا تَتَّبِعِ الْهَوَىٰ فَيُضِلَّكَ عَنْ سَبِيلِ اللَّهِ (wa lā tattabiʿi-l-hawā fa-yuḍillaka ʿan sabīli-llāh – “and do not follow [your own] desire, as it will lead you astray from the way of Allah”) is in Surah Sad (38:26)."
+      },
+      {
+        id: "qav-advanced-069",
+        question: "What does غَفْلَة (ghaflah) mean?",
+        options: ["Alertness", "Heedlessness / negligence", "Remembrance", "Scholarship"],
+        correctAnswer: "Heedlessness / negligence",
+        explanation: "غَفْلَة (ghaflah) means heedlessness. The phrase اقْتَرَبَ لِلنَّاسِ حِسَابُهُمْ وَهُمْ فِي غَفْلَةٍ مُعْرِضُونَ (iqtaraba li-n-nāsi ḥisābuhum wa hum fī ghaflatin muʿriḍūn – “Mankind’s reckoning has drawn near, while they are in heedlessness, turning away”) is in Surah Al-Anbiya (21:1)."
+      },
+      {
+        id: "qav-advanced-070",
+        question: "What does إِعْرَاض (iʿrāḍ) mean?",
+        options: ["Turning toward", "Turning away / avoidance", "Greeting", "Support"],
+        correctAnswer: "Turning away / avoidance",
+        explanation: "إِعْرَاض (iʿrāḍ) means turning away. The phrase وَهُمْ فِي غَفْلَةٍ مُعْرِضُونَ is in Surah Al-Anbiya (21:1)."
+      },
+      {
+        id: "qav-advanced-071",
+        question: "What does اسْتِكْبَار (istikbār) mean?",
+        options: ["Humility", "Arrogance / refusing the truth out of pride", "Generosity", "Patience"],
+        correctAnswer: "Arrogance / refusing the truth out of pride",
+        explanation: "اسْتِكْبَار (istikbār) means arrogance. The phrase إِلَّا إِبْلِيسَ أَبَىٰ وَاسْتَكْبَرَ (illā Iblīsa abā wa-stakbar – “except Iblis; he refused and was arrogant”) is in Surah Al-Baqarah (2:34)."
+      },
+      {
+        id: "qav-advanced-072",
+        question: "What does تَوَاضُع related sense (خُشُوع) mean?",
+        options: ["Pride", "Humility / humble submission", "Noise", "Argument"],
+        correctAnswer: "Humility / humble submission",
+        explanation: "خُشُوع (khushūʿ) means humble submission. The phrase الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ (alladhīna hum fī ṣalātihim khāshiʿūn – “They who are during their prayer humbly submissive”) is in Surah Al-Mu’minun (23:2)."
+      },
+      {
+        id: "qav-advanced-073",
+        question: "What does خَشْيَة (khashyah) mean?",
+        options: ["Carelessness", "Awe-filled fear (of Allah)", "Hatred", "Jealousy"],
+        correctAnswer: "Awe-filled fear (of Allah)",
+        explanation: "خَشْيَة (khashyah) means reverent fear. The phrase إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ (innamā yakhshā-llāha min ʿibādihi-l-ʿulamāʾ – “Only those fear Allah, from among His servants, who have knowledge”) is in Surah Fatir (35:28)."
+      },
+      {
+        id: "qav-advanced-074",
+        question: "What does رَهْبَة (rahbah) mean?",
+        options: ["Love only", "Fear / dread", "Joy", "Sleep"],
+        correctAnswer: "Fear / dread",
+        explanation: "رَهْبَة (rahbah) means fear. The phrase وَادْعُوهُ خَوْفًا وَطَمَعًا (related); see لَأَنْتُمْ أَشَدُّ رَهْبَةً in Surah Al-Hashr (59:13)."
+      },
+      {
+        id: "qav-advanced-075",
+        question: "What does رَغْبَة (raghbah) mean?",
+        options: ["Aversion", "Desire / longing", "Hatred", "Indifference"],
+        correctAnswer: "Desire / longing",
+        explanation: "رَغْبَة (raghbah) means desire. The phrase وَإِلَىٰ رَبِّكَ فَارْغَبْ (wa ilā rabbika fa-rghab – “And to your Lord direct [your] longing”) is in Surah Ash-Sharh (94:8)."
+      },
+      {
+        id: "qav-advanced-076",
+        question: "What does إِنَابَة (inābah) mean?",
+        options: ["Turning away", "Turning back to Allah in repentance", "Arguing", "Delaying"],
+        correctAnswer: "Turning back to Allah in repentance",
+        explanation: "إِنَابَة (inābah) means turning back to Allah. The phrase وَأَنِيبُوا إِلَىٰ رَبِّكُمْ (wa anībū ilā rabbikum – “And return [in repentance] to your Lord”) is in Surah Az-Zumar (39:54)."
+      },
+      {
+        id: "qav-advanced-077",
+        question: "What does أَوَّاب (awwāb) mean?",
+        options: ["One who turns away", "One who frequently turns back to Allah", "One who argues", "One who forgets"],
+        correctAnswer: "One who frequently turns back to Allah",
+        explanation: "أَوَّاب (awwāb) means one who turns back often. The phrase نِعْمَ الْعَبْدُ إِنَّهُ أَوَّابٌ (niʿma-l-ʿabdu innahu awwāb – “How excellent a servant! Indeed, he was one repeatedly turning back [to Allah]”) is in Surah Sad (38:30)."
+      },
+      {
+        id: "qav-advanced-078",
+        question: "What does مُنِيب (munīb) mean?",
+        options: ["Stubborn rejecter", "One who turns to Allah", "Careless person", "Silent observer"],
+        correctAnswer: "One who turns to Allah",
+        explanation: "مُنِيب (munīb) means one who turns to Allah. The phrase مَنْ خَشِيَ الرَّحْمَٰنَ بِالْغَيْبِ وَجَاءَ بِقَلْبٍ مُنِيبٍ (man khashiya-r-Raḥmāna bi-l-ghaybi wa jāʾa bi-qalbin munīb – “Who feared the Most Merciful unseen and came with a heart returning [in repentance]”) is in Surah Qaf (50:33)."
+      },
+      {
+        id: "qav-advanced-079",
+        question: "What does إِخْبَات (ikhbāt) related sense mean?",
+        options: ["Pride", "Humble submission / soft-heartedness toward Allah", "Harshness", "Doubt"],
+        correctAnswer: "Humble submission / soft-heartedness toward Allah",
+        explanation: "Related: وَبَشِّرِ الْمُخْبِتِينَ (wa bashshiri-l-mukhbitīn – “And give good tidings to the humble”) is in Surah Al-Hajj (22:34)."
+      },
+      {
+        id: "qav-advanced-080",
+        question: "What does تَضَرُّع (taḍarruʿ) mean?",
+        options: ["Arrogant demand", "Humble earnest supplication", "Casual talk", "Silence"],
+        correctAnswer: "Humble earnest supplication",
+        explanation: "تَضَرُّع (taḍarruʿ) means humble supplication. The phrase ادْعُوا رَبَّكُمْ تَضَرُّعًا وَخُفْيَةً (udʿū rabbakum taḍarruʿan wa khufyah – “Call upon your Lord in humility and privately”) is in Surah Al-A’raf (7:55)."
+      },
+      {
+        id: "qav-advanced-081",
+        question: "What does خُفْيَة (khufyah) mean in that verse?",
+        options: ["Publicly only", "Privately / secretly", "Loudly", "Never"],
+        correctAnswer: "Privately / secretly",
+        explanation: "خُفْيَة (khufyah) means privately. The phrase ادْعُوا رَبَّكُمْ تَضَرُّعًا وَخُفْيَةً is in Surah Al-A’raf (7:55)."
+      },
+      {
+        id: "qav-advanced-082",
+        question: "What does ابْتِلَاء (ibtilāʾ) mean?",
+        options: ["Permanent comfort", "Trial / testing", "Reward without test", "Ignore"],
+        correctAnswer: "Trial / testing",
+        explanation: "ابْتِلَاء (ibtilāʾ) means trial. The phrase وَلَنَبْلُوَنَّكُمْ بِشَيْءٍ مِنَ الْخَوْفِ وَالْجُوعِ (wa la-nabluwannakum bi-shayʾin mina-l-khawfi wa-l-jūʿ – “And We will surely test you with something of fear and hunger”) is in Surah Al-Baqarah (2:155)."
+      },
+      {
+        id: "qav-advanced-083",
+        question: "What does تَمْحِيص (tamḥīṣ) mean?",
+        options: ["Mixing truth and falsehood", "Purification / sifting (of believers)", "Abandonment", "Punishment only"],
+        correctAnswer: "Purification / sifting (of believers)",
+        explanation: "تَمْحِيص (tamḥīṣ) means purification. The phrase وَلِيُمَحِّصَ اللَّهُ الَّذِينَ آمَنُوا (wa li-yumaḥḥiṣa-llāhu-lladhīna āmanū – “and that Allah may purify those who believe”) is in Surah Aal-Imran (3:141)."
+      },
+      {
+        id: "qav-advanced-084",
+        question: "What does تَمْيِيز (tamyīz) related eschatological sense mean?",
+        options: ["Confusion", "Distinction / separation (of groups)", "Merging", "Hiding"],
+        correctAnswer: "Distinction / separation (of groups)",
+        explanation: "Related separation: the phrase وَامْتَازُوا الْيَوْمَ أَيُّهَا الْمُجْرِمُونَ (wa-mtāzū-l-yawma ayyuhā-l-mujrimūn – “But stand apart today, you criminals”) is in Surah Yasin (36:59)."
+      },
+      {
+        id: "qav-advanced-085",
+        question: "What does فَوْز (fawz) mean?",
+        options: ["Loss", "Success / triumph", "Draw", "Delay"],
+        correctAnswer: "Success / triumph",
+        explanation: "فَوْز (fawz) means success. The phrase ذَٰلِكَ الْفَوْزُ الْعَظِيمُ (dhālika-l-fawzu-l-ʿaẓīm – “That is the great attainment”) is frequent, e.g. Surah At-Tawbah (9:72)."
+      },
+      {
+        id: "qav-advanced-086",
+        question: "What does خُسْرَان (khusrān) mean?",
+        options: ["Profit", "Loss / ruin", "Balance", "Neutral outcome"],
+        correctAnswer: "Loss / ruin",
+        explanation: "خُسْرَان (khusrān) means loss. The phrase إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ (inna-l-insāna la-fī khusr – “Indeed, mankind is in loss”) is in Surah Al-Asr (103:2)."
+      },
+      {
+        id: "qav-advanced-087",
+        question: "What does فَلَاح (falāḥ) mean?",
+        options: ["Failure", "Prosperity / success (especially lasting)", "Temporary gain", "Fame only"],
+        correctAnswer: "Prosperity / success (especially lasting)",
+        explanation: "فَلَاح (falāḥ) means success. The phrase قَدْ أَفْلَحَ الْمُؤْمِنُونَ (qad aflaḥa-l-muʾminūn – “Certainly will the believers have succeeded”) is in Surah Al-Mu’minun (23:1)."
+      },
+      {
+        id: "qav-advanced-088",
+        question: "What does نَجَاة (najāh) mean?",
+        options: ["Destruction", "Salvation / deliverance", "Punishment", "Delay"],
+        correctAnswer: "Salvation / deliverance",
+        explanation: "نَجَاة (najāh) means salvation. The phrase وَنَجَّيْنَا الَّذِينَ آمَنُوا (wa najjaynā-lladhīna āmanū – “And We saved those who believed”) appears e.g. in Surah Fussilat (41:18)."
+      },
+      {
+        id: "qav-advanced-089",
+        question: "What does هَلَاك (halāk) mean?",
+        options: ["Salvation", "Destruction / perishing", "Growth", "Healing"],
+        correctAnswer: "Destruction / perishing",
+        explanation: "هَلَاك (halāk) means destruction. The phrase وَكَمْ أَهْلَكْنَا قَبْلَهُمْ مِنْ قَرْنٍ (wa kam ahlaknā qablahum min qarn – “And how many a generation before them did We destroy”) is in Surah Maryam (19:74)."
+      },
+      {
+        id: "qav-advanced-090",
+        question: "What does عَذَاب (ʿadhāb) mean?",
+        options: ["Comfort", "Punishment / torment", "Reward", "Rest"],
+        correctAnswer: "Punishment / torment",
+        explanation: "عَذَاب (ʿadhāb) means punishment. The phrase وَلَهُمْ عَذَابٌ عَظِيمٌ (wa lahum ʿadhābun ʿaẓīm – “and for them is a great punishment”) is in Surah Al-Baqarah (2:7)."
+      },
+      {
+        id: "qav-advanced-091",
+        question: "What does عِقَاب (ʿiqāb) mean?",
+        options: ["Pardon", "Penalty / retribution", "Gift", "Delay"],
+        correctAnswer: "Penalty / retribution",
+        explanation: "عِقَاب (ʿiqāb) means penalty. The phrase وَاللَّهُ شَدِيدُ الْعِقَابِ (wa-llāhu shadīdu-l-ʿiqāb – “And Allah is severe in penalty”) is in Surah Al-Baqarah (2:196)."
+      },
+      {
+        id: "qav-advanced-092",
+        question: "What does نَكَال (nakāl) mean?",
+        options: ["Reward", "Exemplary punishment / deterrent", "Forgiveness", "Advice"],
+        correctAnswer: "Exemplary punishment / deterrent",
+        explanation: "نَكَال (nakāl) means exemplary punishment. The phrase فَجَعَلْنَاهَا نَكَالًا لِمَا بَيْنَ يَدَيْهَا وَمَا خَلْفَهَا (fa-jaʿalnāhā nakālan li-mā bayna yadayhā wa mā khalfahā – “So We made it a deterrent punishment for those who were present and those who succeeded them”) is in Surah Al-Baqarah (2:66)."
+      },
+      {
+        id: "qav-advanced-093",
+        question: "What does لَعْنَة (laʿnah) mean?",
+        options: ["Blessing", "Curse / exclusion from mercy", "Praise", "Greeting"],
+        correctAnswer: "Curse / exclusion from mercy",
+        explanation: "لَعْنَة (laʿnah) means curse. The phrase أُولَٰئِكَ عَلَيْهِمْ لَعْنَةُ اللَّهِ (ulāʾika ʿalayhim laʿnatu-llāh – “Those – upon them is the curse of Allah”) is in Surah Al-Baqarah (2:161)."
+      },
+      {
+        id: "qav-advanced-094",
+        question: "What does رِضْوَان (riḍwān) mean?",
+        options: ["Anger of Allah", "Pleasure / good pleasure of Allah", "Silence", "Neutral state"],
+        correctAnswer: "Pleasure / good pleasure of Allah",
+        explanation: "رِضْوَان (riḍwān) means Allah’s good pleasure. The phrase وَرِضْوَانٌ مِنَ اللَّهِ أَكْبَرُ (wa riḍwānun mina-llāhi akbar – “But the good pleasure of Allah is greater”) is in Surah At-Tawbah (9:72)."
+      },
+      {
+        id: "qav-advanced-095",
+        question: "What does سَكِينَة (sakīnah) mean?",
+        options: ["Chaos", "Divine tranquility / calm sent into hearts", "Fear", "Noise"],
+        correctAnswer: "Divine tranquility / calm sent into hearts",
+        explanation: "سَكِينَة (sakīnah) means tranquility. The phrase هُوَ الَّذِي أَنْزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ (huwa-lladhī anzala-s-sakīnata fī qulūbi-l-muʾminīn) is in Surah Al-Fath (48:4)."
+      },
+      {
+        id: "qav-advanced-096",
+        question: "What does طُمَأْنِينَة (ṭumaʾnīnah) mean?",
+        options: ["Anxiety", "Peace and reassurance of the heart", "Doubt", "Restlessness"],
+        correctAnswer: "Peace and reassurance of the heart",
+        explanation: "طُمَأْنِينَة (ṭumaʾnīnah) means reassurance. The phrase أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ is in Surah Ar-Ra’d (13:28)."
+      },
+      {
+        id: "qav-advanced-097",
+        question: "What does بَصِيرَة (baṣīrah) mean?",
+        options: ["Blindness", "Insight / clear inner vision", "Physical eye only", "Guesswork"],
+        correctAnswer: "Insight / clear inner vision",
+        explanation: "بَصِيرَة (baṣīrah) means insight. The phrase قَدْ جَاءَكُمْ بَصَائِرُ مِنْ رَبِّكُمْ (qad jāʾakum baṣāʾiru min rabbikum – “There has come to you enlightenment from your Lord”) is in Surah Al-An’am (6:104)."
+      },
+      {
+        id: "qav-advanced-098",
+        question: "What does نُور (nūr) mean as a spiritual term?",
+        options: ["Only physical light", "Light (including guidance and faith)", "Darkness", "Fire only"],
+        correctAnswer: "Light (including guidance and faith)",
+        explanation: "نُور (nūr) means light. The phrase اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ is in Surah An-Nur (24:35)."
+      },
+      {
+        id: "qav-advanced-099",
+        question: "What does ظُلْمَة (ẓulmah) mean spiritually?",
+        options: ["Guidance", "Darkness (including misguidance)", "Clarity", "Knowledge"],
+        correctAnswer: "Darkness (including misguidance)",
+        explanation: "ظُلْمَة (ẓulmah) means darkness. The phrase يُخْرِجُهُمْ مِنَ الظُّلُمَاتِ إِلَى النُّورِ is in Surah Al-Baqarah (2:257)."
+      },
+      {
+        id: "qav-advanced-100",
+        question: "What does هُدًى (hudā) mean?",
+        options: ["Misguidance", "Guidance", "Punishment", "Wealth"],
+        correctAnswer: "Guidance",
+        explanation: "هُدًى (hudā) means guidance. The phrase ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ is in Surah Al-Baqarah (2:2)."
+      },
+      {
+        id: "qav-advanced-101",
+        question: "What does رُشْد (rushd) mean?",
+        options: ["Error", "Right guidance / maturity of judgment", "Childhood", "Confusion"],
+        correctAnswer: "Right guidance / maturity of judgment",
+        explanation: "رُشْد (rushd) means right guidance. The phrase فَمَنْ أَسْلَمَ فَأُولَٰئِكَ تَحَرَّوْا رَشَدًا (related); see لَا إِكْرَاهَ فِي الدِّينِ قَدْ تَبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ in Surah Al-Baqarah (2:256)."
+      },
+      {
+        id: "qav-advanced-102",
+        question: "What does غَيّ (ghayy) mean?",
+        options: ["Right guidance", "Error / deviation", "Balance", "Wisdom"],
+        correctAnswer: "Error / deviation",
+        explanation: "غَيّ (ghayy) means error. The phrase قَدْ تَبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ (qad tabayyana-r-rushdu mina-l-ghayy – “The right course has become clear from the wrong”) is in Surah Al-Baqarah (2:256)."
+      },
+      {
+        id: "qav-advanced-103",
+        question: "What does ضَلَال (ḍalāl) mean?",
+        options: ["Guidance", "Misguidance", "Certainty", "Success"],
+        correctAnswer: "Misguidance",
+        explanation: "ضَلَال (ḍalāl) means misguidance. The phrase وَلَا الضَّالِّينَ in Surah Al-Fatihah (1:7)."
+      },
+      {
+        id: "qav-advanced-104",
+        question: "What does إِضْلَال (iḍlāl) mean?",
+        options: ["Guiding others", "Leading astray", "Teaching", "Protecting"],
+        correctAnswer: "Leading astray",
+        explanation: "إِضْلَال (iḍlāl) means leading astray. The phrase وَيُضِلُّ اللَّهُ الظَّالِمِينَ (wa yuḍillu-llāhu-ẓ-ẓālimīn – “And Allah leaves the wrongdoers astray”) is in Surah Ibrahim (14:27)."
+      },
+      {
+        id: "qav-advanced-105",
+        question: "What does تَوْفِيق (tawfīq) mean?",
+        options: ["Abandonment", "Divine enabling / success granted by Allah", "Human effort only", "Chance"],
+        correctAnswer: "Divine enabling / success granted by Allah",
+        explanation: "تَوْفِيق (tawfīq) means divine enabling. The phrase وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ (wa mā tawfīqī illā bi-llāh – “And my success is not but through Allah”) is in Surah Hud (11:88)."
+      },
+      {
+        id: "qav-advanced-106",
+        question: "What does خِذْلَان (khidhlān) mean?",
+        options: ["Support", "Abandonment / withdrawal of help", "Victory", "Friendship"],
+        correctAnswer: "Abandonment / withdrawal of help",
+        explanation: "خِذْلَان means abandonment. The phrase وَإِنْ يَخْذُلْكُمْ فَمَنْ ذَا الَّذِي يَنْصُرُكُمْ مِنْ بَعْدِهِ (wa in yakhdhulkum fa-man dhā-lladhī yanṣurukum min baʿdih – “But if He should forsake you, who is there that can aid you after Him?”) is in Surah Aal-Imran (3:160)."
+      },
+      {
+        id: "qav-advanced-107",
+        question: "What does نَصْر (naṣr) mean?",
+        options: ["Defeat", "Help / victory from Allah", "Neutrality", "Delay"],
+        correctAnswer: "Help / victory from Allah",
+        explanation: "نَصْر (naṣr) means help or victory. The phrase إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ (idhā jāʾa naṣru-llāhi wa-l-fatḥ – “When the victory of Allah has come and the conquest”) is in Surah An-Nasr (110:1)."
+      },
+      {
+        id: "qav-advanced-108",
+        question: "What does فَتْح (fatḥ) mean?",
+        options: ["Closing", "Opening / conquest / victory", "Loss", "Secret only"],
+        correctAnswer: "Opening / conquest / victory",
+        explanation: "فَتْح (fatḥ) means opening or conquest. The phrase إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ is in Surah An-Nasr (110:1)."
+      },
+      {
+        id: "qav-advanced-109",
+        question: "What does فُرْقَان (furqān) mean as given at Badr?",
+        options: ["A weapon", "Criterion / decisive distinction (day of Badr)", "A book only", "A mountain"],
+        correctAnswer: "Criterion / decisive distinction (day of Badr)",
+        explanation: "The phrase يَوْمَ الْفُرْقَانِ يَوْمَ الْتَقَى الْجَمْعَانِ (yawma-l-furqāni yawma-l-taqā-l-jamʿān – “on the Day of Criterion, the day the two forces met”) is in Surah Al-Anfal (8:41)."
+      },
+      {
+        id: "qav-advanced-110",
+        question: "What does مِحْرَاب (miḥrāb) mean?",
+        options: ["Marketplace", "Prayer niche / private chamber", "Battlefield only", "Kitchen"],
+        correctAnswer: "Prayer niche / private chamber",
+        explanation: "مِحْرَاب (miḥrāb) means a chamber or niche. The phrase كُلَّمَا دَخَلَ عَلَيْهَا زَكَرِيَّا الْمِحْرَابَ (kullamā dakhala ʿalayhā Zakariyyā-l-miḥrāb – “Every time Zechariah entered upon her in the prayer chamber”) is in Surah Aal-Imran (3:37)."
+      },
+      {
+        id: "qav-advanced-111",
+        question: "What does مَقَام (maqām) mean?",
+        options: ["Flight", "Station / standing place / rank", "Food", "Clothing"],
+        correctAnswer: "Station / standing place / rank",
+        explanation: "مَقَام (maqām) means station. The phrase فِيهِ آيَاتٌ بَيِّنَاتٌ مَقَامُ إِبْرَاهِيمَ (fīhi āyātun bayyinātun maqāmu Ibrāhīm – “In it are clear signs [such as] the standing place of Abraham”) is in Surah Aal-Imran (3:97)."
+      },
+      {
+        id: "qav-advanced-112",
+        question: "What does مَشْعَر (mashʿar) mean?",
+        options: ["A random place", "A ritual site / place of observance (e.g. Muzdalifah)", "A market", "A house only"],
+        correctAnswer: "A ritual site / place of observance (e.g. Muzdalifah)",
+        explanation: "The phrase فَاذْكُرُوا اللَّهَ عِنْدَ الْمَشْعَرِ الْحَرَامِ (fa-dhkurū-llāha ʿinda-l-mashʿari-l-ḥarām – “Then remember Allah at al-Mashʿar al-Haram”) is in Surah Al-Baqarah (2:198)."
+      },
+      {
+        id: "qav-advanced-113",
+        question: "What does مَنَاسِك (manāsik) mean?",
+        options: ["Ordinary habits", "Rites of pilgrimage / ritual acts", "Songs", "Clothes only"],
+        correctAnswer: "Rites of pilgrimage / ritual acts",
+        explanation: "مَنَاسِك (manāsik) means rites. The phrase فَإِذَا قَضَيْتُمْ مَنَاسِكَكُمْ (fa-idhā qaḍaytum manāsikakum – “And when you have completed your rites”) is in Surah Al-Baqarah (2:200)."
+      },
+      {
+        id: "qav-advanced-114",
+        question: "What does نُسُك (nusuk) mean?",
+        options: ["Idle talk", "Ritual sacrifice / act of worship", "Trade", "Sleep"],
+        correctAnswer: "Ritual sacrifice / act of worship",
+        explanation: "نُسُك (nusuk) means ritual sacrifice or worship. The phrase قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ (qul inna ṣalātī wa nusukī wa maḥyāya wa mamātī li-llāh – “Say: Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah”) is in Surah Al-An’am (6:162)."
+      },
+      {
+        id: "qav-advanced-115",
+        question: "What does قُرْبَان (qurbān) mean?",
+        options: ["A distant gift", "Offering / sacrifice brought near to Allah", "A fine", "A tax only"],
+        correctAnswer: "Offering / sacrifice brought near to Allah",
+        explanation: "قُرْبَان (qurbān) means offering. The phrase إِذْ قَرَّبَا قُرْبَانًا (idh qarrabā qurbānā – “when they both offered a sacrifice”) is in Surah Al-Ma’idah (5:27)."
+      },
+      {
+        id: "qav-advanced-116",
+        question: "What does نَذْر (nadhr) mean?",
+        options: ["A casual wish", "Vow / solemn pledge", "A joke", "A debt to people only"],
+        correctAnswer: "Vow / solemn pledge",
+        explanation: "نَذْر (nadhr) means vow. The phrase إِنِّي نَذَرْتُ لِلرَّحْمَٰنِ صَوْمًا (innī nadhartu li-r-Raḥmāni ṣawmā – “Indeed, I have vowed to the Most Merciful abstention”) is in Surah Maryam (19:26)."
+      },
+      {
+        id: "qav-advanced-117",
+        question: "What does كَفَّارَة (kaffārah) mean?",
+        options: ["Extra sin", "Expiation / atonement", "Reward", "Ignore"],
+        correctAnswer: "Expiation / atonement",
+        explanation: "كَفَّارَة (kaffārah) means expiation. The phrase فَكَفَّارَتُهُ إِطْعَامُ عَشَرَةِ مَسَاكِينَ (fa-kaffāratuhu iṭʿāmu ʿasharati masākīn – “its expiation is the feeding of ten needy people”) is in Surah Al-Ma’idah (5:89)."
+      },
+      {
+        id: "qav-advanced-118",
+        question: "What does فِدْيَة (fidyah) mean?",
+        options: ["A free gift with no reason", "Ransom / compensation (e.g. for missed fast)", "A fine for fun", "Interest"],
+        correctAnswer: "Ransom / compensation (e.g. for missed fast)",
+        explanation: "فِدْيَة (fidyah) means ransom or compensation. The phrase وَعَلَى الَّذِينَ يُطِيقُونَهُ فِدْيَةٌ طَعَامُ مِسْكِينٍ (wa ʿalā-lladhīna yuṭīqūnahu fidyatun ṭaʿāmu miskīn – “And upon those who are able [to fast, but with hardship] – a ransom [as substitute] of feeding a poor person”) is in Surah Al-Baqarah (2:184)."
+      },
+      {
+        id: "qav-advanced-119",
+        question: "What does طَهُور (ṭahūr) mean?",
+        options: ["Something impure", "Pure / purifying", "Mixed", "Neutral"],
+        correctAnswer: "Pure / purifying",
+        explanation: "طَهُور (ṭahūr) means pure and purifying. The phrase وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً طَهُورًا (wa anzalnā mina-s-samāʾi māʾan ṭahūrā – “And We have sent down from the sky pure water”) is in Surah Al-Furqan (25:48)."
+      },
+      {
+        id: "qav-advanced-120",
+        question: "What does نَجَس (najas) mean?",
+        options: ["Pure", "Impure / filth", "Sacred", "Neutral"],
+        correctAnswer: "Impure / filth",
+        explanation: "نَجَس (najas) means impure. The phrase إِنَّمَا الْمُشْرِكُونَ نَجَسٌ (innamā-l-mushrikūna najas – “Indeed, the polytheists are unclean”) is in Surah At-Tawbah (9:28)."
+      },
+      {
+        id: "qav-advanced-121",
+        question: "What does زَكَاة (zakāh) mean at root?",
+        options: ["Decrease only", "Purification / growth (obligatory alms)", "Tax for rulers only", "Optional gift only"],
+        correctAnswer: "Purification / growth (obligatory alms)",
+        explanation: "زَكَاة (zakāh) means purification and the obligatory alms. The phrase وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ (wa aqīmū-ṣ-ṣalāta wa ātū-z-zakāh – “And establish prayer and give zakah”) is in Surah Al-Baqarah (2:43)."
+      },
+      {
+        id: "qav-advanced-122",
+        question: "What does صَدَقَة (ṣadaqah) mean?",
+        options: ["A lie", "Charity / truthful giving", "A forced tax only", "A loan"],
+        correctAnswer: "Charity / truthful giving",
+        explanation: "صَدَقَة (ṣadaqah) means charity. The phrase إِنْ تُبْدُوا الصَّدَقَاتِ فَنِعِمَّا هِيَ (in tubdū-ṣ-ṣadaqāti fa-niʿimmā hiya – “If you disclose your charitable expenditures, they are good”) is in Surah Al-Baqarah (2:271)."
+      },
+      {
+        id: "qav-advanced-123",
+        question: "What does قَرْض (qarḍ) mean in “qarḍ ḥasan”?",
+        options: ["Interest-bearing loan", "A good loan (to Allah: sincere spending)", "A bribe", "A gift with pride"],
+        correctAnswer: "A good loan (to Allah: sincere spending)",
+        explanation: "قَرْض حَسَن is a good loan. The phrase مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا (man dhā-lladhī yuqriḍu-llāha qarḍan ḥasanā – “Who is it that would loan Allah a goodly loan?”) is in Surah Al-Baqarah (2:245)."
+      },
+      {
+        id: "qav-advanced-124",
+        question: "What does رِبَا (ribā) mean?",
+        options: ["Fair trade", "Usury / interest", "Charity", "Gift"],
+        correctAnswer: "Usury / interest",
+        explanation: "رِبَا (ribā) means usury. The phrase وَأَحَلَّ اللَّهُ الْبَيْعَ وَحَرَّمَ الرِّبَا (wa aḥalla-llāhu-l-bayʿa wa ḥarrama-r-ribā – “But Allah has permitted trade and has forbidden interest”) is in Surah Al-Baqarah (2:275)."
+      },
+      {
+        id: "qav-advanced-125",
+        question: "What does مِيثَاق (mīthāq) mean?",
+        options: ["A casual agreement", "A solemn covenant", "A rumour", "A temporary truce only"],
+        correctAnswer: "A solemn covenant",
+        explanation: "مِيثَاق (mīthāq) means solemn covenant. The phrase وَإِذْ أَخَذَ اللَّهُ مِيثَاقَ النَّبِيِّينَ (wa idh akhadha-llāhu mīthāqa-n-nabiyyīn – “And [recall] when Allah took the covenant of the prophets”) is in Surah Aal-Imran (3:81)."
+      },
     ],
   },
 }
