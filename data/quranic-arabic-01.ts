@@ -253,6 +253,636 @@ const quranicArabic01Category: QuizCategory = {
         options: ["Health", "Poverty", "Knowledge", "Wealth / property"],
         correctAnswer: "Wealth / property",
         explanation: "مَال (māl) means “wealth” or “property”. The phrase وَتُحِبُّونَ الْمَالَ حُبًّا جَمًّا (wa tuḥibbūna-l-māla ḥubban jammā – “And you love wealth with immense love”) is in Surah Al-Fajr (89:20). Three Arabic letters."
+      },
+      {
+        id: "qav-easy-036",
+        question: "What does قَالَ (qāla) mean?",
+        options: ["He created", "He said", "He believed", "He went"],
+        correctAnswer: "He said",
+        explanation: "قَالَ (qāla) means “he said”. Extremely frequent in the Quran (e.g. 2:30). Root ق-و-ل."
+      },
+      {
+        id: "qav-easy-037",
+        question: "What does كَانَ (kāna) mean?",
+        options: ["He said", "He was / it was", "He knew", "He came"],
+        correctAnswer: "He was / it was",
+        explanation: "كَانَ (kāna) means “he was” or “it was”. One of the most common verbs in the Quran. Root ك-و-ن."
+      },
+      {
+        id: "qav-easy-038",
+        question: "What does آمَنَ (āmana) mean?",
+        options: ["He disbelieved", "He believed", "He denied", "He forgot"],
+        correctAnswer: "He believed",
+        explanation: "آمَنَ (āmana) means “he believed”. See الَّذِينَ آمَنُوا. Root أ-م-ن."
+      },
+      {
+        id: "qav-easy-039",
+        question: "What does عَمِلَ (ʿamila) mean?",
+        options: ["He spoke", "He did / worked", "He slept", "He wrote"],
+        correctAnswer: "He did / worked",
+        explanation: "عَمِلَ (ʿamila) means “he did” or “he worked”. Common with الصَّالِحَات. Root ع-م-ل."
+      },
+      {
+        id: "qav-easy-040",
+        question: "What does جَعَلَ (jaʿala) mean?",
+        options: ["He destroyed", "He made / placed", "He took", "He hid"],
+        correctAnswer: "He made / placed",
+        explanation: "جَعَلَ (jaʿala) means “he made” or “he placed”. Very frequent. Root ج-ع-ل."
+      },
+      {
+        id: "qav-easy-041",
+        question: "What does خَلَقَ (khalaqa) mean?",
+        options: ["He created", "He ate", "He ran", "He opened"],
+        correctAnswer: "He created",
+        explanation: "خَلَقَ (khalaqa) means “he created”. See خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ. Root خ-ل-ق."
+      },
+      {
+        id: "qav-easy-042",
+        question: "What does أَنزَلَ (anzala) mean?",
+        options: ["He raised", "He sent down / revealed", "He delayed", "He closed"],
+        correctAnswer: "He sent down / revealed",
+        explanation: "أَنزَلَ (anzala) means “he sent down” or “revealed”. Often used of the Quran. Root ن-ز-ل."
+      },
+      {
+        id: "qav-easy-043",
+        question: "What does كَفَرَ (kafara) mean?",
+        options: ["He believed", "He disbelieved / covered the truth", "He thanked", "He travelled"],
+        correctAnswer: "He disbelieved / covered the truth",
+        explanation: "كَفَرَ (kafara) means “he disbelieved” (literally “covered” the truth). Root ك-ف-ر."
+      },
+      {
+        id: "qav-easy-044",
+        question: "What does جَاءَ (jāʾa) mean?",
+        options: ["He left", "He came", "He sat", "He slept"],
+        correctAnswer: "He came",
+        explanation: "جَاءَ (jāʾa) means “he came”. Very common narrative verb. Root ج-ي-ء."
+      },
+      {
+        id: "qav-easy-045",
+        question: "What does شَاءَ (shāʾa) mean?",
+        options: ["He feared", "He willed / wished", "He saw", "He heard"],
+        correctAnswer: "He willed / wished",
+        explanation: "شَاءَ (shāʾa) means “he willed” or “he wished”. See إِنْ شَاءَ اللَّهُ. Root ش-ي-ء."
+      },
+      {
+        id: "qav-easy-046",
+        question: "What does عَلِمَ (ʿalima) mean?",
+        options: ["He forgot", "He knew", "He wrote", "He spoke"],
+        correctAnswer: "He knew",
+        explanation: "عَلِمَ (ʿalima) means “he knew”. Related to عِلْم. Root ع-ل-م."
+      },
+      {
+        id: "qav-easy-047",
+        question: "What does رَأَى (raʾā) mean?",
+        options: ["He heard", "He saw", "He touched", "He smelled"],
+        correctAnswer: "He saw",
+        explanation: "رَأَى (raʾā) means “he saw”. Root ر-أ-ي."
+      },
+      {
+        id: "qav-easy-048",
+        question: "What does سَمِعَ (samiʿa) mean?",
+        options: ["He saw", "He heard", "He tasted", "He walked"],
+        correctAnswer: "He heard",
+        explanation: "سَمِعَ (samiʿa) means “he heard”. Root س-م-ع."
+      },
+      {
+        id: "qav-easy-049",
+        question: "What does أَتَى (atā) mean?",
+        options: ["He left", "He came / brought", "He slept", "He wrote"],
+        correctAnswer: "He came / brought",
+        explanation: "أَتَى (atā) means “he came” or “he brought”. Root أ-ت-ي."
+      },
+      {
+        id: "qav-easy-050",
+        question: "What does هُوَ (huwa) mean?",
+        options: ["She", "He", "They", "We"],
+        correctAnswer: "He",
+        explanation: "هُوَ (huwa) means “he”. Common personal pronoun."
+      },
+      {
+        id: "qav-easy-051",
+        question: "What does هِيَ (hiya) mean?",
+        options: ["He", "She", "You", "I"],
+        correctAnswer: "She",
+        explanation: "هِيَ (hiya) means “she”. Common personal pronoun."
+      },
+      {
+        id: "qav-easy-052",
+        question: "What does هُمْ (hum) mean?",
+        options: ["We", "They (masculine)", "You (singular)", "She"],
+        correctAnswer: "They (masculine)",
+        explanation: "هُمْ (hum) means “they” (masculine). Very frequent."
+      },
+      {
+        id: "qav-easy-053",
+        question: "What does نَحْنُ (naḥnu) mean?",
+        options: ["You", "They", "We", "He"],
+        correctAnswer: "We",
+        explanation: "نَحْنُ (naḥnu) means “we”. Often used for the divine “We” in the Quran."
+      },
+      {
+        id: "qav-easy-054",
+        question: "What does أَنْتَ (anta) mean?",
+        options: ["I", "You (singular masculine)", "He", "They"],
+        correctAnswer: "You (singular masculine)",
+        explanation: "أَنْتَ (anta) means “you” (singular masculine)."
+      },
+      {
+        id: "qav-easy-055",
+        question: "What does أَنَا (ana) mean?",
+        options: ["You", "He", "I", "We"],
+        correctAnswer: "I",
+        explanation: "أَنَا (ana) means “I”."
+      },
+      {
+        id: "qav-easy-056",
+        question: "What does فَ (fa) mean?",
+        options: ["Or", "Then / so", "But", "If"],
+        correctAnswer: "Then / so",
+        explanation: "فَ (fa) is a particle meaning “then” or “so”. Extremely frequent connector."
+      },
+      {
+        id: "qav-easy-057",
+        question: "What does ثُمَّ (thumma) mean?",
+        options: ["Before", "Then / thereafter", "Never", "Only"],
+        correctAnswer: "Then / thereafter",
+        explanation: "ثُمَّ (thumma) means “then” or “thereafter”, often with a slight delay."
+      },
+      {
+        id: "qav-easy-058",
+        question: "What does أَوْ (aw) mean?",
+        options: ["And", "Or", "But", "If"],
+        correctAnswer: "Or",
+        explanation: "أَوْ (aw) means “or”."
+      },
+      {
+        id: "qav-easy-059",
+        question: "What does إِنَّ (inna) mean?",
+        options: ["If", "Indeed / verily", "Except", "When"],
+        correctAnswer: "Indeed / verily",
+        explanation: "إِنَّ (inna) is an emphatic particle meaning “indeed” or “verily”. Very common."
+      },
+      {
+        id: "qav-easy-060",
+        question: "What does إِنْ (in) mean?",
+        options: ["Indeed", "If", "Except", "Until"],
+        correctAnswer: "If",
+        explanation: "إِنْ (in) often means “if” (conditional particle)."
+      },
+      {
+        id: "qav-easy-061",
+        question: "What does إِلَّا (illā) mean?",
+        options: ["And", "Except / unless", "Before", "After"],
+        correctAnswer: "Except / unless",
+        explanation: "إِلَّا (illā) means “except” or “unless”. Restriction particle."
+      },
+      {
+        id: "qav-easy-062",
+        question: "What does عَنْ (ʿan) mean?",
+        options: ["In", "About / from / away from", "With", "Under"],
+        correctAnswer: "About / from / away from",
+        explanation: "عَنْ (ʿan) is a preposition meaning “about”, “from”, or “away from”."
+      },
+      {
+        id: "qav-easy-063",
+        question: "What does مَعَ (maʿa) mean?",
+        options: ["Without", "With", "Against", "Before"],
+        correctAnswer: "With",
+        explanation: "مَعَ (maʿa) means “with”."
+      },
+      {
+        id: "qav-easy-064",
+        question: "What does بَعْدَ (baʿda) mean?",
+        options: ["Before", "After", "During", "Above"],
+        correctAnswer: "After",
+        explanation: "بَعْدَ (baʿda) means “after”."
+      },
+      {
+        id: "qav-easy-065",
+        question: "What does قَبْلَ (qabla) mean?",
+        options: ["After", "Before", "Beside", "Inside"],
+        correctAnswer: "Before",
+        explanation: "قَبْلَ (qabla) means “before”."
+      },
+      {
+        id: "qav-easy-066",
+        question: "What does عِنْدَ (ʿinda) mean?",
+        options: ["Far from", "With / at / near", "Under", "Above"],
+        correctAnswer: "With / at / near",
+        explanation: "عِنْدَ (ʿinda) means “with”, “at”, or “near” (often of possession or presence)."
+      },
+      {
+        id: "qav-easy-067",
+        question: "What does بَيْنَ (bayna) mean?",
+        options: ["Outside", "Between / among", "Behind", "Above"],
+        correctAnswer: "Between / among",
+        explanation: "بَيْنَ (bayna) means “between” or “among”."
+      },
+      {
+        id: "qav-easy-068",
+        question: "What does كُلّ (kull) mean?",
+        options: ["Some", "Every / all", "None", "Few"],
+        correctAnswer: "Every / all",
+        explanation: "كُلّ (kull) means “every” or “all”."
+      },
+      {
+        id: "qav-easy-069",
+        question: "What does بَعْض (baʿḍ) mean?",
+        options: ["All", "Some / part", "None", "Many"],
+        correctAnswer: "Some / part",
+        explanation: "بَعْض (baʿḍ) means “some” or “part of”."
+      },
+      {
+        id: "qav-easy-070",
+        question: "What does شَيْء (shayʾ) mean?",
+        options: ["Person", "Thing", "Place", "Time"],
+        correctAnswer: "Thing",
+        explanation: "شَيْء (shayʾ) means “thing”. Extremely common. Root ش-ي-ء."
+      },
+      {
+        id: "qav-easy-071",
+        question: "What does أَمْر (amr) mean?",
+        options: ["News", "Command / matter", "Food", "Path"],
+        correctAnswer: "Command / matter",
+        explanation: "أَمْر (amr) means “command” or “matter / affair”. Root أ-م-ر."
+      },
+      {
+        id: "qav-easy-072",
+        question: "What does قَوْل (qawl) mean?",
+        options: ["Action", "Speech / saying", "Thought", "Silence"],
+        correctAnswer: "Speech / saying",
+        explanation: "قَوْل (qawl) means “speech” or “saying”. Root ق-و-ل."
+      },
+      {
+        id: "qav-easy-073",
+        question: "What does حَيَاة (ḥayāh) mean?",
+        options: ["Death", "Life", "Sleep", "Dream"],
+        correctAnswer: "Life",
+        explanation: "حَيَاة (ḥayāh) means “life”. See الْحَيَاةُ الدُّنْيَا. Root ح-ي-ي."
+      },
+      {
+        id: "qav-easy-074",
+        question: "What does مَوْت (mawt) mean?",
+        options: ["Life", "Death", "Sleep", "Birth"],
+        correctAnswer: "Death",
+        explanation: "مَوْت (mawt) means “death”. Root م-و-ت."
+      },
+      {
+        id: "qav-easy-075",
+        question: "What does سَاعَة (sāʿah) mean?",
+        options: ["Day", "Hour / the Hour (of Judgment)", "Year", "Month"],
+        correctAnswer: "Hour / the Hour (of Judgment)",
+        explanation: "سَاعَة (sāʿah) means “hour”; in many verses it refers to the Hour of Judgment."
+      },
+      {
+        id: "qav-easy-076",
+        question: "What does رِيح (rīḥ) mean?",
+        options: ["Water", "Wind", "Fire", "Earth"],
+        correctAnswer: "Wind",
+        explanation: "رِيح (rīḥ) means “wind”. Root ر-و-ح / ر-ي-ح."
+      },
+      {
+        id: "qav-easy-077",
+        question: "What does بَحْر (baḥr) mean?",
+        options: ["Mountain", "Sea / large body of water", "River only", "Desert"],
+        correctAnswer: "Sea / large body of water",
+        explanation: "بَحْر (baḥr) means “sea” or a large body of water."
+      },
+      {
+        id: "qav-easy-078",
+        question: "What does جَبَل (jabal) mean?",
+        options: ["Valley", "Mountain", "Plain", "River"],
+        correctAnswer: "Mountain",
+        explanation: "جَبَل (jabal) means “mountain”."
+      },
+      {
+        id: "qav-easy-079",
+        question: "What does شَجَر (shajar) mean?",
+        options: ["Stone", "Tree / trees", "Flower", "Grass"],
+        correctAnswer: "Tree / trees",
+        explanation: "شَجَر (shajar) means “tree” or “trees”."
+      },
+      {
+        id: "qav-easy-080",
+        question: "What does ثَمَر (thamar) mean?",
+        options: ["Leaf", "Fruit", "Root", "Branch"],
+        correctAnswer: "Fruit",
+        explanation: "ثَمَر (thamar) means “fruit”."
+      },
+      {
+        id: "qav-easy-081",
+        question: "What does طَعَام (ṭaʿām) mean?",
+        options: ["Drink", "Food", "Clothing", "Shelter"],
+        correctAnswer: "Food",
+        explanation: "طَعَام (ṭaʿām) means “food”."
+      },
+      {
+        id: "qav-easy-082",
+        question: "What does لَبَن (laban) mean?",
+        options: ["Honey", "Milk", "Water", "Oil"],
+        correctAnswer: "Milk",
+        explanation: "لَبَن (laban) means “milk”."
+      },
+      {
+        id: "qav-easy-083",
+        question: "What does عَسَل (ʿasal) mean?",
+        options: ["Milk", "Honey", "Wine", "Oil"],
+        correctAnswer: "Honey",
+        explanation: "عَسَل (ʿasal) means “honey”."
+      },
+      {
+        id: "qav-easy-084",
+        question: "What does خَمْر (khamr) mean?",
+        options: ["Milk", "Wine / intoxicant", "Water", "Juice"],
+        correctAnswer: "Wine / intoxicant",
+        explanation: "خَمْر (khamr) means “wine” or intoxicating drink. Forbidden in Islamic law."
+      },
+      {
+        id: "qav-easy-085",
+        question: "What does لَحْم (laḥm) mean?",
+        options: ["Bread", "Meat / flesh", "Fish only", "Bone"],
+        correctAnswer: "Meat / flesh",
+        explanation: "لَحْم (laḥm) means “meat” or “flesh”."
+      },
+      {
+        id: "qav-easy-086",
+        question: "What does دَم (dam) mean?",
+        options: ["Water", "Blood", "Milk", "Oil"],
+        correctAnswer: "Blood",
+        explanation: "دَم (dam) means “blood”."
+      },
+      {
+        id: "qav-easy-087",
+        question: "What does عَظْم (ʿaẓm) mean?",
+        options: ["Skin", "Bone", "Muscle", "Hair"],
+        correctAnswer: "Bone",
+        explanation: "عَظْم (ʿaẓm) means “bone”."
+      },
+      {
+        id: "qav-easy-088",
+        question: "What does جِلْد (jild) mean?",
+        options: ["Bone", "Skin", "Blood", "Hair"],
+        correctAnswer: "Skin",
+        explanation: "جِلْد (jild) means “skin”."
+      },
+      {
+        id: "qav-easy-089",
+        question: "What does عَيْن (ʿayn) mean?",
+        options: ["Ear", "Eye / spring", "Nose", "Mouth"],
+        correctAnswer: "Eye / spring",
+        explanation: "عَيْن (ʿayn) means “eye”; it can also mean a spring of water."
+      },
+      {
+        id: "qav-easy-090",
+        question: "What does أُذُن (udhun) mean?",
+        options: ["Eye", "Ear", "Nose", "Tongue"],
+        correctAnswer: "Ear",
+        explanation: "أُذُن (udhun) means “ear”."
+      },
+      {
+        id: "qav-easy-091",
+        question: "What does لِسَان (lisān) mean?",
+        options: ["Hand", "Tongue / language", "Foot", "Eye"],
+        correctAnswer: "Tongue / language",
+        explanation: "لِسَان (lisān) means “tongue” and also “language”."
+      },
+      {
+        id: "qav-easy-092",
+        question: "What does يَد (yad) mean?",
+        options: ["Foot", "Hand", "Head", "Back"],
+        correctAnswer: "Hand",
+        explanation: "يَد (yad) means “hand”."
+      },
+      {
+        id: "qav-easy-093",
+        question: "What does رِجْل (rijl) mean?",
+        options: ["Hand", "Foot / leg", "Arm", "Neck"],
+        correctAnswer: "Foot / leg",
+        explanation: "رِجْل (rijl) means “foot” or “leg”."
+      },
+      {
+        id: "qav-easy-094",
+        question: "What does وَجْه (wajh) mean?",
+        options: ["Back", "Face", "Side", "Top"],
+        correctAnswer: "Face",
+        explanation: "وَجْه (wajh) means “face”. Also used for “direction” or “sake” (e.g. لِوَجْهِ اللَّهِ)."
+      },
+      {
+        id: "qav-easy-095",
+        question: "What does رَأْس (raʾs) mean?",
+        options: ["Foot", "Head", "Hand", "Heart"],
+        correctAnswer: "Head",
+        explanation: "رَأْس (raʾs) means “head”."
+      },
+      {
+        id: "qav-easy-096",
+        question: "What does أَب (ab) mean?",
+        options: ["Mother", "Father", "Brother", "Son"],
+        correctAnswer: "Father",
+        explanation: "أَب (ab) means “father”."
+      },
+      {
+        id: "qav-easy-097",
+        question: "What does أُمّ (umm) mean?",
+        options: ["Father", "Mother", "Sister", "Daughter"],
+        correctAnswer: "Mother",
+        explanation: "أُمّ (umm) means “mother”."
+      },
+      {
+        id: "qav-easy-098",
+        question: "What does اِبْن (ibn) mean?",
+        options: ["Daughter", "Son", "Uncle", "Nephew"],
+        correctAnswer: "Son",
+        explanation: "اِبْن (ibn) means “son”."
+      },
+      {
+        id: "qav-easy-099",
+        question: "What does بِنْت (bint) mean?",
+        options: ["Son", "Daughter", "Wife", "Sister"],
+        correctAnswer: "Daughter",
+        explanation: "بِنْت (bint) means “daughter”."
+      },
+      {
+        id: "qav-easy-100",
+        question: "What does أَخ (akh) mean?",
+        options: ["Sister", "Brother", "Father", "Friend only"],
+        correctAnswer: "Brother",
+        explanation: "أَخ (akh) means “brother”. Also used for fellow believer."
+      },
+      {
+        id: "qav-easy-101",
+        question: "What does أُخْت (ukht) mean?",
+        options: ["Brother", "Sister", "Mother", "Aunt"],
+        correctAnswer: "Sister",
+        explanation: "أُخْت (ukht) means “sister”."
+      },
+      {
+        id: "qav-easy-102",
+        question: "What does زَوْج (zawj) mean?",
+        options: ["Child", "Spouse / pair", "Parent", "Friend"],
+        correctAnswer: "Spouse / pair",
+        explanation: "زَوْج (zawj) means “spouse” or “pair / mate”."
+      },
+      {
+        id: "qav-easy-103",
+        question: "What does وَلَد (walad) mean?",
+        options: ["Parent", "Child / offspring", "Uncle", "Grandparent"],
+        correctAnswer: "Child / offspring",
+        explanation: "وَلَد (walad) means “child” or “offspring”."
+      },
+      {
+        id: "qav-easy-104",
+        question: "What does قَرْيَة (qaryah) mean?",
+        options: ["City only", "Town / village", "Country", "House"],
+        correctAnswer: "Town / village",
+        explanation: "قَرْيَة (qaryah) means “town” or “village” (sometimes a city in Quranic usage)."
+      },
+      {
+        id: "qav-easy-105",
+        question: "What does مَدِينَة (madīnah) mean?",
+        options: ["Village", "City", "Desert", "Mountain"],
+        correctAnswer: "City",
+        explanation: "مَدِينَة (madīnah) means “city”. Also the name of the Prophet’s city."
+      },
+      {
+        id: "qav-easy-106",
+        question: "What does طَرِيق (ṭarīq) mean?",
+        options: ["Door", "Road / way", "Bridge", "Wall"],
+        correctAnswer: "Road / way",
+        explanation: "طَرِيق (ṭarīq) means “road” or “way”."
+      },
+      {
+        id: "qav-easy-107",
+        question: "What does بَاب (bāb) mean?",
+        options: ["Window", "Door / gate", "Roof", "Floor"],
+        correctAnswer: "Door / gate",
+        explanation: "بَاب (bāb) means “door” or “gate”."
+      },
+      {
+        id: "qav-easy-108",
+        question: "What does سُور (sūr) mean?",
+        options: ["Door", "Wall / chapter (of Quran)", "Road", "House"],
+        correctAnswer: "Wall / chapter (of Quran)",
+        explanation: "سُور (sūr) can mean “wall”; سُورَة (sūrah) is a chapter of the Quran."
+      },
+      {
+        id: "qav-easy-109",
+        question: "What does كَلِمَة (kalimah) mean?",
+        options: ["Letter", "Word", "Book", "Sentence only"],
+        correctAnswer: "Word",
+        explanation: "كَلِمَة (kalimah) means “word”. See كَلِمَةُ اللَّهِ."
+      },
+      {
+        id: "qav-easy-110",
+        question: "What does اِسْم (ism) mean?",
+        options: ["Verb", "Name", "Number", "Place"],
+        correctAnswer: "Name",
+        explanation: "اِسْم (ism) means “name”. See بِسْمِ اللَّهِ."
+      },
+      {
+        id: "qav-easy-111",
+        question: "What does عَدَد (ʿadad) mean?",
+        options: ["Name", "Number / count", "Colour", "Size"],
+        correctAnswer: "Number / count",
+        explanation: "عَدَد (ʿadad) means “number” or “count”."
+      },
+      {
+        id: "qav-easy-112",
+        question: "What does يَوْمَئِذٍ (yawmaʾidhin) mean?",
+        options: ["Yesterday", "On that day", "Tomorrow", "Every day"],
+        correctAnswer: "On that day",
+        explanation: "يَوْمَئِذٍ (yawmaʾidhin) means “on that day” — very common in descriptions of the Last Day."
+      },
+      {
+        id: "qav-easy-113",
+        question: "What does الْيَوْم (al-yawm) mean?",
+        options: ["Yesterday", "Today / the Day", "Tomorrow", "Night"],
+        correctAnswer: "Today / the Day",
+        explanation: "الْيَوْم (al-yawm) means “today” or “the Day” (often the Day of Judgment)."
+      },
+      {
+        id: "qav-easy-114",
+        question: "What does غَد (ghad) mean?",
+        options: ["Yesterday", "Tomorrow", "Today", "Evening"],
+        correctAnswer: "Tomorrow",
+        explanation: "غَد (ghad) means “tomorrow”."
+      },
+      {
+        id: "qav-easy-115",
+        question: "What does أَمْس (ams) mean?",
+        options: ["Tomorrow", "Yesterday", "Today", "Morning"],
+        correctAnswer: "Yesterday",
+        explanation: "أَمْس (ams) means “yesterday”."
+      },
+      {
+        id: "qav-easy-116",
+        question: "What does صَبَاح (ṣabāḥ) mean?",
+        options: ["Evening", "Morning", "Night", "Noon"],
+        correctAnswer: "Morning",
+        explanation: "صَبَاح (ṣabāḥ) means “morning”."
+      },
+      {
+        id: "qav-easy-117",
+        question: "What does مَسَاء (masāʾ) mean?",
+        options: ["Morning", "Evening", "Midnight", "Dawn"],
+        correctAnswer: "Evening",
+        explanation: "مَسَاء (masāʾ) means “evening”."
+      },
+      {
+        id: "qav-easy-118",
+        question: "What does قَدْ (qad) mean?",
+        options: ["Never", "Indeed / already (particle of certainty)", "Perhaps", "Only"],
+        correctAnswer: "Indeed / already (particle of certainty)",
+        explanation: "قَدْ (qad) is a particle that affirms or indicates that something has already occurred."
+      },
+      {
+        id: "qav-easy-119",
+        question: "What does لَمَّا (lammā) mean?",
+        options: ["Before", "When / after (something happened)", "Never", "Always"],
+        correctAnswer: "When / after (something happened)",
+        explanation: "لَمَّا (lammā) often means “when” or “after” a past event."
+      },
+      {
+        id: "qav-easy-120",
+        question: "What does حَتَّى (ḥattā) mean?",
+        options: ["From", "Until / so that", "Without", "Instead of"],
+        correctAnswer: "Until / so that",
+        explanation: "حَتَّى (ḥattā) means “until” or “so that”."
+      },
+      {
+        id: "qav-easy-121",
+        question: "What does لَكِنَّ (lākinna) mean?",
+        options: ["And", "But / however", "Or", "If"],
+        correctAnswer: "But / however",
+        explanation: "لَكِنَّ (lākinna) means “but” or “however”."
+      },
+      {
+        id: "qav-easy-122",
+        question: "What does بَلْ (bal) mean?",
+        options: ["And", "Rather / but", "Or", "If"],
+        correctAnswer: "Rather / but",
+        explanation: "بَلْ (bal) means “rather” or “but” (correcting or contrasting)."
+      },
+      {
+        id: "qav-easy-123",
+        question: "What does هَلْ (hal) mean?",
+        options: ["Who", "Question particle (yes/no)", "What", "Where"],
+        correctAnswer: "Question particle (yes/no)",
+        explanation: "هَلْ (hal) introduces a yes/no question."
+      },
+      {
+        id: "qav-easy-124",
+        question: "What does مَا (mā) mean? (common senses)",
+        options: ["Only “water”", "What / that which / not (depending on context)", "Only “who”", "Only “when”"],
+        correctAnswer: "What / that which / not (depending on context)",
+        explanation: "مَا (mā) is highly versatile: relative “what/that which”, interrogative “what”, or negative “not”."
+      },
+      {
+        id: "qav-easy-125",
+        question: "What does مَنْ (man) mean?",
+        options: ["What", "Who / whoever", "Where", "When"],
+        correctAnswer: "Who / whoever",
+        explanation: "مَنْ (man) means “who” or “whoever”. Very frequent relative/interrogative pronoun."
       }
     ],
     medium: [
