@@ -259,630 +259,630 @@ const quranicArabic01Category: QuizCategory = {
         question: "What does قَالَ (qāla) mean?",
         options: ["He created", "He said", "He believed", "He went"],
         correctAnswer: "He said",
-        explanation: "قَالَ (qāla) means “he said”. Extremely frequent in the Quran (e.g. 2:30). Root ق-و-ل."
+        explanation: "قَالَ (qāla) means “he said”. The phrase وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ (wa idh qāla rabbuka li-l-malāʾikah – “And when your Lord said to the angels”) is in Surah Al-Baqarah (2:30). Root ق-و-ل."
       },
       {
         id: "qav-easy-037",
         question: "What does كَانَ (kāna) mean?",
         options: ["He said", "He was / it was", "He knew", "He came"],
         correctAnswer: "He was / it was",
-        explanation: "كَانَ (kāna) means “he was” or “it was”. One of the most common verbs in the Quran. Root ك-و-ن."
+        explanation: "كَانَ (kāna) means “he was” or “it was”. The phrase وَكَانَ اللَّهُ غَفُورًا رَحِيمًا (wa kāna-llāhu ghafūran raḥīmā – “And Allah is ever Forgiving and Merciful”) is in Surah An-Nisa (4:96). Root ك-و-ن."
       },
       {
         id: "qav-easy-038",
         question: "What does آمَنَ (āmana) mean?",
         options: ["He disbelieved", "He believed", "He denied", "He forgot"],
         correctAnswer: "He believed",
-        explanation: "آمَنَ (āmana) means “he believed”. See الَّذِينَ آمَنُوا. Root أ-م-ن."
+        explanation: "آمَنَ (āmana) means “he believed”. The phrase الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ (alladhīna āmanū wa ʿamilū-ṣ-ṣāliḥāt – “those who believe and do righteous deeds”) is frequent, e.g. Surah Al-Baqarah (2:25). Root أ-م-ن."
       },
       {
         id: "qav-easy-039",
         question: "What does عَمِلَ (ʿamila) mean?",
         options: ["He spoke", "He did / worked", "He slept", "He wrote"],
         correctAnswer: "He did / worked",
-        explanation: "عَمِلَ (ʿamila) means “he did” or “he worked”. Common with الصَّالِحَات. Root ع-م-ل."
+        explanation: "عَمِلَ (ʿamila) means “he did” or “he worked”. The phrase وَعَمِلُوا الصَّالِحَاتِ (wa ʿamilū-ṣ-ṣāliḥāt – “and they did righteous deeds”) is in Surah Al-Baqarah (2:25). Root ع-م-ل."
       },
       {
         id: "qav-easy-040",
         question: "What does جَعَلَ (jaʿala) mean?",
         options: ["He destroyed", "He made / placed", "He took", "He hid"],
         correctAnswer: "He made / placed",
-        explanation: "جَعَلَ (jaʿala) means “he made” or “he placed”. Very frequent. Root ج-ع-ل."
+        explanation: "جَعَلَ (jaʿala) means “he made” or “he placed”. The phrase جَعَلَ لَكُمُ الْأَرْضَ فِرَاشًا (jaʿala lakumu-l-arḍa firāshā – “He made the earth a bed for you”) is in Surah Al-Baqarah (2:22). Root ج-ع-ل."
       },
       {
         id: "qav-easy-041",
         question: "What does خَلَقَ (khalaqa) mean?",
         options: ["He created", "He ate", "He ran", "He opened"],
         correctAnswer: "He created",
-        explanation: "خَلَقَ (khalaqa) means “he created”. See خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ. Root خ-ل-ق."
+        explanation: "خَلَقَ (khalaqa) means “he created”. The phrase خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ (khalaqa-s-samāwāti wa-l-arḍ – “He created the heavens and the earth”) is in Surah Al-An’am (6:1). Root خ-ل-ق."
       },
       {
         id: "qav-easy-042",
         question: "What does أَنزَلَ (anzala) mean?",
         options: ["He raised", "He sent down / revealed", "He delayed", "He closed"],
         correctAnswer: "He sent down / revealed",
-        explanation: "أَنزَلَ (anzala) means “he sent down” or “revealed”. Often used of the Quran. Root ن-ز-ل."
+        explanation: "أَنزَلَ (anzala) means “he sent down” or “revealed”. The phrase نَزَّلَ عَلَيْكَ الْكِتَابَ (nazzala ʿalayka-l-kitāb – “He sent down the Book upon you”) is in Surah Aal-Imran (3:3). Root ن-ز-ل."
       },
       {
         id: "qav-easy-043",
         question: "What does كَفَرَ (kafara) mean?",
         options: ["He believed", "He disbelieved / covered the truth", "He thanked", "He travelled"],
         correctAnswer: "He disbelieved / covered the truth",
-        explanation: "كَفَرَ (kafara) means “he disbelieved” (literally “covered” the truth). Root ك-ف-ر."
+        explanation: "كَفَرَ (kafara) means “he disbelieved” (covered the truth). The phrase إِنَّ الَّذِينَ كَفَرُوا (inna-lladhīna kafarū – “Indeed, those who disbelieve”) is in Surah Al-Baqarah (2:6). Root ك-ف-ر."
       },
       {
         id: "qav-easy-044",
         question: "What does جَاءَ (jāʾa) mean?",
         options: ["He left", "He came", "He sat", "He slept"],
         correctAnswer: "He came",
-        explanation: "جَاءَ (jāʾa) means “he came”. Very common narrative verb. Root ج-ي-ء."
+        explanation: "جَاءَ (jāʾa) means “he came”. The phrase وَجَاءَ مِنْ أَقْصَى الْمَدِينَةِ رَجُلٌ (wa jāʾa min aqṣā-l-madīnati rajul – “And there came from the farthest end of the city a man”) is in Surah Yasin (36:20). Root ج-ي-ء."
       },
       {
         id: "qav-easy-045",
         question: "What does شَاءَ (shāʾa) mean?",
         options: ["He feared", "He willed / wished", "He saw", "He heard"],
         correctAnswer: "He willed / wished",
-        explanation: "شَاءَ (shāʾa) means “he willed” or “he wished”. See إِنْ شَاءَ اللَّهُ. Root ش-ي-ء."
+        explanation: "شَاءَ (shāʾa) means “he willed” or “wished”. The phrase إِنْ شَاءَ اللَّهُ (in shāʾa-llāh – “if Allah wills”) is in Surah Al-Kahf (18:69). Root ش-ي-ء."
       },
       {
         id: "qav-easy-046",
         question: "What does عَلِمَ (ʿalima) mean?",
         options: ["He forgot", "He knew", "He wrote", "He spoke"],
         correctAnswer: "He knew",
-        explanation: "عَلِمَ (ʿalima) means “he knew”. Related to عِلْم. Root ع-ل-م."
+        explanation: "عَلِمَ (ʿalima) means “he knew”. The phrase عَلِمَ اللَّهُ أَنَّكُمْ (ʿalima-llāhu annakum – “Allah knew that you…”) appears e.g. in Surah Al-Baqarah (2:187). Root ع-ل-م."
       },
       {
         id: "qav-easy-047",
         question: "What does رَأَى (raʾā) mean?",
         options: ["He heard", "He saw", "He touched", "He smelled"],
         correctAnswer: "He saw",
-        explanation: "رَأَى (raʾā) means “he saw”. Root ر-أ-ي."
+        explanation: "رَأَى (raʾā) means “he saw”. The phrase لَقَدْ رَأَى مِنْ آيَاتِ رَبِّهِ الْكُبْرَىٰ (laqad raʾā min āyāti rabbihi-l-kubrā – “He certainly saw of the greatest signs of his Lord”) is in Surah An-Najm (53:18). Root ر-أ-ي."
       },
       {
         id: "qav-easy-048",
         question: "What does سَمِعَ (samiʿa) mean?",
         options: ["He saw", "He heard", "He tasted", "He walked"],
         correctAnswer: "He heard",
-        explanation: "سَمِعَ (samiʿa) means “he heard”. Root س-م-ع."
+        explanation: "سَمِعَ (samiʿa) means “he heard”. The phrase قَدْ سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ (qad samiʿa-llāhu qawla-llatī tujādiluka – “Allah has certainly heard the statement of the one who argues with you”) is in Surah Al-Mujadila (58:1). Root س-م-ع."
       },
       {
         id: "qav-easy-049",
         question: "What does أَتَى (atā) mean?",
         options: ["He left", "He came / brought", "He slept", "He wrote"],
         correctAnswer: "He came / brought",
-        explanation: "أَتَى (atā) means “he came” or “he brought”. Root أ-ت-ي."
+        explanation: "أَتَى (atā) means “he came” or “brought”. The phrase هَلْ أَتَىٰ عَلَى الْإِنْسَانِ (hal atā ʿalā-l-insāni – “Has there come upon man…”) is in Surah Al-Insan (76:1). Root أ-ت-ي."
       },
       {
         id: "qav-easy-050",
         question: "What does هُوَ (huwa) mean?",
         options: ["She", "He", "They", "We"],
         correctAnswer: "He",
-        explanation: "هُوَ (huwa) means “he”. Common personal pronoun."
+        explanation: "هُوَ (huwa) means “he”. The phrase قُلْ هُوَ اللَّهُ أَحَدٌ (qul huwa-llāhu aḥad – “Say: He is Allah, the One”) is in Surah Al-Ikhlas (112:1)."
       },
       {
         id: "qav-easy-051",
         question: "What does هِيَ (hiya) mean?",
         options: ["He", "She", "You", "I"],
         correctAnswer: "She",
-        explanation: "هِيَ (hiya) means “she”. Common personal pronoun."
+        explanation: "هِيَ (hiya) means “she”. The phrase وَهِيَ تَجْرِي بِهِمْ (wa hiya tajrī bihim – “and it sailed with them”) is in Surah Hud (11:42)."
       },
       {
         id: "qav-easy-052",
         question: "What does هُمْ (hum) mean?",
         options: ["We", "They (masculine)", "You (singular)", "She"],
         correctAnswer: "They (masculine)",
-        explanation: "هُمْ (hum) means “they” (masculine). Very frequent."
+        explanation: "هُمْ (hum) means “they” (masculine). The phrase وَهُمْ لَا يَشْعُرُونَ (wa hum lā yashʿurūn – “while they perceive not”) is in Surah Az-Zumar (39:25)."
       },
       {
         id: "qav-easy-053",
         question: "What does نَحْنُ (naḥnu) mean?",
         options: ["You", "They", "We", "He"],
         correctAnswer: "We",
-        explanation: "نَحْنُ (naḥnu) means “we”. Often used for the divine “We” in the Quran."
+        explanation: "نَحْنُ (naḥnu) means “we”. The phrase إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ (innā naḥnu nazzalnā-dh-dhikr – “Indeed, it is We who sent down the Reminder”) is in Surah Al-Hijr (15:9)."
       },
       {
         id: "qav-easy-054",
         question: "What does أَنْتَ (anta) mean?",
         options: ["I", "You (singular masculine)", "He", "They"],
         correctAnswer: "You (singular masculine)",
-        explanation: "أَنْتَ (anta) means “you” (singular masculine)."
+        explanation: "أَنْتَ (anta) means “you” (singular masculine). The phrase إِنَّكَ أَنْتَ الْعَلِيمُ الْحَكِيمُ (innaka anta-l-ʿalīmu-l-ḥakīm – “Indeed, it is You who is the Knowing, the Wise”) is in Surah Al-Baqarah (2:32)."
       },
       {
         id: "qav-easy-055",
         question: "What does أَنَا (ana) mean?",
         options: ["You", "He", "I", "We"],
         correctAnswer: "I",
-        explanation: "أَنَا (ana) means “I”."
+        explanation: "أَنَا (ana) means “I”. The phrase إِنِّي أَنَا رَبُّكَ (innī ana rabbuka – “Indeed, I am your Lord”) is in Surah Ta-Ha (20:12)."
       },
       {
         id: "qav-easy-056",
         question: "What does فَ (fa) mean?",
         options: ["Or", "Then / so", "But", "If"],
         correctAnswer: "Then / so",
-        explanation: "فَ (fa) is a particle meaning “then” or “so”. Extremely frequent connector."
+        explanation: "فَ (fa) means “then” or “so”. The phrase فَاذْكُرُونِي أَذْكُرْكُمْ (fa-dhkurūnī adhkurkum – “So remember Me; I will remember you”) is in Surah Al-Baqarah (2:152)."
       },
       {
         id: "qav-easy-057",
         question: "What does ثُمَّ (thumma) mean?",
         options: ["Before", "Then / thereafter", "Never", "Only"],
         correctAnswer: "Then / thereafter",
-        explanation: "ثُمَّ (thumma) means “then” or “thereafter”, often with a slight delay."
+        explanation: "ثُمَّ (thumma) means “then” or “thereafter”. The phrase ثُمَّ أَمَاتَهُ فَأَقْبَرَهُ (thumma amātahu fa-aqbarah – “Then He causes him to die and puts him in his grave”) is in Surah Abasa (80:21)."
       },
       {
         id: "qav-easy-058",
         question: "What does أَوْ (aw) mean?",
         options: ["And", "Or", "But", "If"],
         correctAnswer: "Or",
-        explanation: "أَوْ (aw) means “or”."
+        explanation: "أَوْ (aw) means “or”. The phrase آباؤُكُمْ أَوْ أَبْنَاؤُكُمْ (ābāʾukum aw abnāʾukum – “your fathers or your sons”) is in Surah At-Tawbah (9:24)."
       },
       {
         id: "qav-easy-059",
         question: "What does إِنَّ (inna) mean?",
         options: ["If", "Indeed / verily", "Except", "When"],
         correctAnswer: "Indeed / verily",
-        explanation: "إِنَّ (inna) is an emphatic particle meaning “indeed” or “verily”. Very common."
+        explanation: "إِنَّ (inna) means “indeed” or “verily”. The phrase إِنَّ اللَّهَ مَعَ الصَّابِرِينَ (inna-llāha maʿa-ṣ-ṣābirīn – “Indeed, Allah is with the patient”) is in Surah Al-Baqarah (2:153)."
       },
       {
         id: "qav-easy-060",
         question: "What does إِنْ (in) mean?",
         options: ["Indeed", "If", "Except", "Until"],
         correctAnswer: "If",
-        explanation: "إِنْ (in) often means “if” (conditional particle)."
+        explanation: "إِنْ (in) often means “if”. The phrase إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ (in tanṣurū-llāha yanṣurkum – “If you support Allah, He will support you”) is in Surah Muhammad (47:7)."
       },
       {
         id: "qav-easy-061",
         question: "What does إِلَّا (illā) mean?",
         options: ["And", "Except / unless", "Before", "After"],
         correctAnswer: "Except / unless",
-        explanation: "إِلَّا (illā) means “except” or “unless”. Restriction particle."
+        explanation: "إِلَّا (illā) means “except” or “unless”. The phrase لَا إِلَٰهَ إِلَّا اللَّهُ (lā ilāha illā-llāh – “There is no deity except Allah”) is the core of tawhid, e.g. Surah As-Saffat (37:35)."
       },
       {
         id: "qav-easy-062",
         question: "What does عَنْ (ʿan) mean?",
         options: ["In", "About / from / away from", "With", "Under"],
         correctAnswer: "About / from / away from",
-        explanation: "عَنْ (ʿan) is a preposition meaning “about”, “from”, or “away from”."
+        explanation: "عَنْ (ʿan) means “about”, “from”, or “away from”. The phrase يَسْأَلُونَكَ عَنِ الْأَهِلَّةِ (yasʾalūnaka ʿani-l-ahillah – “They ask you about the new moons”) is in Surah Al-Baqarah (2:189)."
       },
       {
         id: "qav-easy-063",
         question: "What does مَعَ (maʿa) mean?",
         options: ["Without", "With", "Against", "Before"],
         correctAnswer: "With",
-        explanation: "مَعَ (maʿa) means “with”."
+        explanation: "مَعَ (maʿa) means “with”. The phrase إِنَّ اللَّهَ مَعَ الصَّابِرِينَ (inna-llāha maʿa-ṣ-ṣābirīn – “Indeed, Allah is with the patient”) is in Surah Al-Baqarah (2:153)."
       },
       {
         id: "qav-easy-064",
         question: "What does بَعْدَ (baʿda) mean?",
         options: ["Before", "After", "During", "Above"],
         correctAnswer: "After",
-        explanation: "بَعْدَ (baʿda) means “after”."
+        explanation: "بَعْدَ (baʿda) means “after”. The phrase مِنْ بَعْدِ مَا جَاءَتْهُمُ الْبَيِّنَاتُ (min baʿdi mā jāʾathumu-l-bayyināt – “after the clear proofs had come to them”) is in Surah Al-Baqarah (2:213)."
       },
       {
         id: "qav-easy-065",
         question: "What does قَبْلَ (qabla) mean?",
         options: ["After", "Before", "Beside", "Inside"],
         correctAnswer: "Before",
-        explanation: "قَبْلَ (qabla) means “before”."
+        explanation: "قَبْلَ (qabla) means “before”. The phrase مِنْ قَبْلِكَ (min qablika – “before you”) is frequent, e.g. Surah Al-Baqarah (2:4)."
       },
       {
         id: "qav-easy-066",
         question: "What does عِنْدَ (ʿinda) mean?",
         options: ["Far from", "With / at / near", "Under", "Above"],
         correctAnswer: "With / at / near",
-        explanation: "عِنْدَ (ʿinda) means “with”, “at”, or “near” (often of possession or presence)."
+        explanation: "عِنْدَ (ʿinda) means “with”, “at”, or “near”. The phrase عِنْدَ رَبِّهِمْ (ʿinda rabbihim – “with their Lord”) is in Surah Al-Baqarah (2:62)."
       },
       {
         id: "qav-easy-067",
         question: "What does بَيْنَ (bayna) mean?",
         options: ["Outside", "Between / among", "Behind", "Above"],
         correctAnswer: "Between / among",
-        explanation: "بَيْنَ (bayna) means “between” or “among”."
+        explanation: "بَيْنَ (bayna) means “between” or “among”. The phrase بَيْنَ يَدَيْهِ (bayna yadayhi – “before it / in front of it”) is in Surah Al-Baqarah (2:97)."
       },
       {
         id: "qav-easy-068",
         question: "What does كُلّ (kull) mean?",
         options: ["Some", "Every / all", "None", "Few"],
         correctAnswer: "Every / all",
-        explanation: "كُلّ (kull) means “every” or “all”."
+        explanation: "كُلّ (kull) means “every” or “all”. The phrase كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ (kullu nafsin dhāʾiqatu-l-mawt – “Every soul will taste death”) is in Surah Aal-Imran (3:185)."
       },
       {
         id: "qav-easy-069",
         question: "What does بَعْض (baʿḍ) mean?",
         options: ["All", "Some / part", "None", "Many"],
         correctAnswer: "Some / part",
-        explanation: "بَعْض (baʿḍ) means “some” or “part of”."
+        explanation: "بَعْض (baʿḍ) means “some” or “part”. The phrase بَعْضُكُمْ لِبَعْضٍ عَدُوٌّ (baʿḍukum li-baʿḍin ʿaduww – “some of you are enemies to others”) is in Surah Al-Baqarah (2:36)."
       },
       {
         id: "qav-easy-070",
         question: "What does شَيْء (shayʾ) mean?",
         options: ["Person", "Thing", "Place", "Time"],
         correctAnswer: "Thing",
-        explanation: "شَيْء (shayʾ) means “thing”. Extremely common. Root ش-ي-ء."
+        explanation: "شَيْء (shayʾ) means “thing”. The phrase إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ (inna-llāha ʿalā kulli shayʾin qadīr – “Indeed, Allah is over all things competent”) is in Surah Al-Baqarah (2:20). Root ش-ي-ء."
       },
       {
         id: "qav-easy-071",
         question: "What does أَمْر (amr) mean?",
         options: ["News", "Command / matter", "Food", "Path"],
         correctAnswer: "Command / matter",
-        explanation: "أَمْر (amr) means “command” or “matter / affair”. Root أ-م-ر."
+        explanation: "أَمْر (amr) means “command” or “matter”. The phrase أَلَا لَهُ الْخَلْقُ وَالْأَمْرُ (alā lahu-l-khalqu wa-l-amr – “Unquestionably, His is the creation and the command”) is in Surah Al-A’raf (7:54). Root أ-م-ر."
       },
       {
         id: "qav-easy-072",
         question: "What does قَوْل (qawl) mean?",
         options: ["Action", "Speech / saying", "Thought", "Silence"],
         correctAnswer: "Speech / saying",
-        explanation: "قَوْل (qawl) means “speech” or “saying”. Root ق-و-ل."
+        explanation: "قَوْل (qawl) means “speech” or “saying”. The phrase قَوْلٌ مَعْرُوفٌ (qawlun maʿrūf – “kind speech”) is in Surah Al-Baqarah (2:263). Root ق-و-ل."
       },
       {
         id: "qav-easy-073",
         question: "What does حَيَاة (ḥayāh) mean?",
         options: ["Death", "Life", "Sleep", "Dream"],
         correctAnswer: "Life",
-        explanation: "حَيَاة (ḥayāh) means “life”. See الْحَيَاةُ الدُّنْيَا. Root ح-ي-ي."
+        explanation: "حَيَاة (ḥayāh) means “life”. The phrase الْحَيَاةُ الدُّنْيَا (al-ḥayātu-d-dunyā – “the worldly life”) is in Surah Al-Baqarah (2:86). Root ح-ي-ي."
       },
       {
         id: "qav-easy-074",
         question: "What does مَوْت (mawt) mean?",
         options: ["Life", "Death", "Sleep", "Birth"],
         correctAnswer: "Death",
-        explanation: "مَوْت (mawt) means “death”. Root م-و-ت."
+        explanation: "مَوْت (mawt) means “death”. The phrase كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ (kullu nafsin dhāʾiqatu-l-mawt – “Every soul will taste death”) is in Surah Aal-Imran (3:185). Root م-و-ت."
       },
       {
         id: "qav-easy-075",
         question: "What does سَاعَة (sāʿah) mean?",
         options: ["Day", "Hour / the Hour (of Judgment)", "Year", "Month"],
         correctAnswer: "Hour / the Hour (of Judgment)",
-        explanation: "سَاعَة (sāʿah) means “hour”; in many verses it refers to the Hour of Judgment."
+        explanation: "سَاعَة (sāʿah) means “hour”; often the Hour of Judgment. The phrase يَسْأَلُونَكَ عَنِ السَّاعَةِ (yasʾalūnaka ʿani-s-sāʿah – “They ask you about the Hour”) is in Surah Al-A’raf (7:187)."
       },
       {
         id: "qav-easy-076",
         question: "What does رِيح (rīḥ) mean?",
         options: ["Water", "Wind", "Fire", "Earth"],
         correctAnswer: "Wind",
-        explanation: "رِيح (rīḥ) means “wind”. Root ر-و-ح / ر-ي-ح."
+        explanation: "رِيح (rīḥ) means “wind”. The phrase رِيحٌ فِيهَا عَذَابٌ أَلِيمٌ (rīḥun fīhā ʿadhābun alīm – “a wind in which is a painful punishment”) is in Surah Al-Ahqaf (46:24)."
       },
       {
         id: "qav-easy-077",
         question: "What does بَحْر (baḥr) mean?",
         options: ["Mountain", "Sea / large body of water", "River only", "Desert"],
         correctAnswer: "Sea / large body of water",
-        explanation: "بَحْر (baḥr) means “sea” or a large body of water."
+        explanation: "بَحْر (baḥr) means “sea”. The phrase وَالْبَحْرِ الْمَسْجُورِ (wa-l-baḥri-l-masjūr – “By the sea filled with fire”) is in Surah At-Tur (52:6)."
       },
       {
         id: "qav-easy-078",
         question: "What does جَبَل (jabal) mean?",
         options: ["Valley", "Mountain", "Plain", "River"],
         correctAnswer: "Mountain",
-        explanation: "جَبَل (jabal) means “mountain”."
+        explanation: "جَبَل (jabal) means “mountain”. The phrase وَإِذْ نَتَقْنَا الْجَبَلَ فَوْقَهُمْ (wa idh nataqnā-l-jabala fawqahum – “And when We raised the mountain above them”) is in Surah Al-A’raf (7:171)."
       },
       {
         id: "qav-easy-079",
         question: "What does شَجَر (shajar) mean?",
         options: ["Stone", "Tree / trees", "Flower", "Grass"],
         correctAnswer: "Tree / trees",
-        explanation: "شَجَر (shajar) means “tree” or “trees”."
+        explanation: "شَجَر (shajar) means “tree(s)”. The phrase وَالنَّجْمُ وَالشَّجَرُ يَسْجُدَانِ (wa-n-najmu wa-sh-shajaru yasjudān – “And the stars and trees prostrate”) is in Surah Ar-Rahman (55:6)."
       },
       {
         id: "qav-easy-080",
         question: "What does ثَمَر (thamar) mean?",
         options: ["Leaf", "Fruit", "Root", "Branch"],
         correctAnswer: "Fruit",
-        explanation: "ثَمَر (thamar) means “fruit”."
+        explanation: "ثَمَر (thamar) means “fruit”. The phrase وَمِنْ ثَمَرَاتِ النَّخِيلِ وَالْأَعْنَابِ (wa min thamarāti-n-nakhīli wa-l-aʿnāb – “And from the fruits of the palm trees and grapevines”) is in Surah An-Nahl (16:67)."
       },
       {
         id: "qav-easy-081",
         question: "What does طَعَام (ṭaʿām) mean?",
         options: ["Drink", "Food", "Clothing", "Shelter"],
         correctAnswer: "Food",
-        explanation: "طَعَام (ṭaʿām) means “food”."
+        explanation: "طَعَام (ṭaʿām) means “food”. The phrase وَيُطْعِمُونَ الطَّعَامَ عَلَىٰ حُبِّهِ (wa yuṭʿimūna-ṭ-ṭaʿāma ʿalā ḥubbihi – “And they give food, in spite of love for it”) is in Surah Al-Insan (76:8)."
       },
       {
         id: "qav-easy-082",
         question: "What does لَبَن (laban) mean?",
         options: ["Honey", "Milk", "Water", "Oil"],
         correctAnswer: "Milk",
-        explanation: "لَبَن (laban) means “milk”."
+        explanation: "لَبَن (laban) means “milk”. The phrase مِنْ بَيْنِ فَرْثٍ وَدَمٍ لَبَنًا خَالِصًا (min bayni farthin wa damin labanan khāliṣā – “from between excretions and blood, pure milk”) is in Surah An-Nahl (16:66)."
       },
       {
         id: "qav-easy-083",
         question: "What does عَسَل (ʿasal) mean?",
         options: ["Milk", "Honey", "Wine", "Oil"],
         correctAnswer: "Honey",
-        explanation: "عَسَل (ʿasal) means “honey”."
+        explanation: "عَسَل (ʿasal) means “honey”. The phrase وَأَنْهَارٌ مِنْ عَسَلٍ مُصَفًّى (wa anhārun min ʿasalin muṣaffā – “and rivers of purified honey”) is in Surah Muhammad (47:15)."
       },
       {
         id: "qav-easy-084",
         question: "What does خَمْر (khamr) mean?",
         options: ["Milk", "Wine / intoxicant", "Water", "Juice"],
         correctAnswer: "Wine / intoxicant",
-        explanation: "خَمْر (khamr) means “wine” or intoxicating drink. Forbidden in Islamic law."
+        explanation: "خَمْر (khamr) means “wine” or intoxicant. The phrase يَسْأَلُونَكَ عَنِ الْخَمْرِ وَالْمَيْسِرِ (yasʾalūnaka ʿani-l-khamri wa-l-maysir – “They ask you about wine and gambling”) is in Surah Al-Baqarah (2:219)."
       },
       {
         id: "qav-easy-085",
         question: "What does لَحْم (laḥm) mean?",
         options: ["Bread", "Meat / flesh", "Fish only", "Bone"],
         correctAnswer: "Meat / flesh",
-        explanation: "لَحْم (laḥm) means “meat” or “flesh”."
+        explanation: "لَحْم (laḥm) means “meat” or “flesh”. The phrase وَلَحْمِ طَيْرٍ مِمَّا يَشْتَهُونَ (wa laḥmi ṭayrin mimmā yashtahūn – “and the meat of birds from whatever they desire”) is in Surah Al-Waqi’ah (56:21)."
       },
       {
         id: "qav-easy-086",
         question: "What does دَم (dam) mean?",
         options: ["Water", "Blood", "Milk", "Oil"],
         correctAnswer: "Blood",
-        explanation: "دَم (dam) means “blood”."
+        explanation: "دَم (dam) means “blood”. The phrase حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ وَالدَّمُ (ḥurrimat ʿalaykumu-l-maytatu wa-d-dam – “Prohibited to you are dead animals and blood”) is in Surah Al-Ma’idah (5:3)."
       },
       {
         id: "qav-easy-087",
         question: "What does عَظْم (ʿaẓm) mean?",
         options: ["Skin", "Bone", "Muscle", "Hair"],
         correctAnswer: "Bone",
-        explanation: "عَظْم (ʿaẓm) means “bone”."
+        explanation: "عَظْم (ʿaẓm) means “bone”. The phrase مَنْ يُحْيِي الْعِظَامَ وَهِيَ رَمِيمٌ (man yuḥyi-l-ʿiẓāma wa hiya ramīm – “Who will give life to bones while they are disintegrated?”) is in Surah Yasin (36:78)."
       },
       {
         id: "qav-easy-088",
         question: "What does جِلْد (jild) mean?",
         options: ["Bone", "Skin", "Blood", "Hair"],
         correctAnswer: "Skin",
-        explanation: "جِلْد (jild) means “skin”."
+        explanation: "جِلْد (jild) means “skin”. The phrase كُلَّمَا نَضِجَتْ جُلُودُهُمْ (kullamā naḍijat julūduhum – “Every time their skins are roasted through”) is in Surah An-Nisa (4:56)."
       },
       {
         id: "qav-easy-089",
         question: "What does عَيْن (ʿayn) mean?",
         options: ["Ear", "Eye / spring", "Nose", "Mouth"],
         correctAnswer: "Eye / spring",
-        explanation: "عَيْن (ʿayn) means “eye”; it can also mean a spring of water."
+        explanation: "عَيْن (ʿayn) means “eye” (and sometimes “spring”). The phrase وَفَجَّرْنَا الْأَرْضَ عُيُونًا (wa fajjarnā-l-arḍa ʿuyūnā – “And We caused the earth to burst with springs”) is in Surah Al-Qamar (54:12)."
       },
       {
         id: "qav-easy-090",
         question: "What does أُذُن (udhun) mean?",
         options: ["Eye", "Ear", "Nose", "Tongue"],
         correctAnswer: "Ear",
-        explanation: "أُذُن (udhun) means “ear”."
+        explanation: "أُذُن (udhun) means “ear”. The phrase وَقَالُوا قُلُوبُنَا فِي أَكِنَّةٍ … وَفِي آذَانِنَا وَقْرٌ (wa qālū qulūbunā fī akinnah … wa fī ādhāninā waqr – “And they say, ‘Our hearts are within coverings… and in our ears is deafness’”) is in Surah Fussilat (41:5)."
       },
       {
         id: "qav-easy-091",
         question: "What does لِسَان (lisān) mean?",
         options: ["Hand", "Tongue / language", "Foot", "Eye"],
         correctAnswer: "Tongue / language",
-        explanation: "لِسَان (lisān) means “tongue” and also “language”."
+        explanation: "لِسَان (lisān) means “tongue” or “language”. The phrase بِلِسَانٍ عَرَبِيٍّ مُبِينٍ (bi-lisānin ʿarabiyyin mubīn – “in a clear Arabic language”) is in Surah Ash-Shu’ara (26:195)."
       },
       {
         id: "qav-easy-092",
         question: "What does يَد (yad) mean?",
         options: ["Foot", "Hand", "Head", "Back"],
         correctAnswer: "Hand",
-        explanation: "يَد (yad) means “hand”."
+        explanation: "يَد (yad) means “hand”. The phrase يَدُ اللَّهِ فَوْقَ أَيْدِيهِمْ (yadu-llāhi fawqa aydīhim – “The hand of Allah is over their hands”) is in Surah Al-Fath (48:10)."
       },
       {
         id: "qav-easy-093",
         question: "What does رِجْل (rijl) mean?",
         options: ["Hand", "Foot / leg", "Arm", "Neck"],
         correctAnswer: "Foot / leg",
-        explanation: "رِجْل (rijl) means “foot” or “leg”."
+        explanation: "رِجْل (rijl) means “foot” or “leg”. The phrase وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ (wa-msaḥū bi-ruʾūsikum wa arjulakum – “and wipe over your heads and wash your feet”) is in Surah Al-Ma’idah (5:6)."
       },
       {
         id: "qav-easy-094",
         question: "What does وَجْه (wajh) mean?",
         options: ["Back", "Face", "Side", "Top"],
         correctAnswer: "Face",
-        explanation: "وَجْه (wajh) means “face”. Also used for “direction” or “sake” (e.g. لِوَجْهِ اللَّهِ)."
+        explanation: "وَجْه (wajh) means “face”. The phrase وَلِلَّهِ الْمَشْرِقُ وَالْمَغْرِبُ فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ (wa li-llāhi-l-mashriqu wa-l-maghrib fa-aynamā tuwallū fa-thamma wajhu-llāh – “To Allah belong the East and the West; wherever you turn, there is the Face of Allah”) is in Surah Al-Baqarah (2:115)."
       },
       {
         id: "qav-easy-095",
         question: "What does رَأْس (raʾs) mean?",
         options: ["Foot", "Head", "Hand", "Heart"],
         correctAnswer: "Head",
-        explanation: "رَأْس (raʾs) means “head”."
+        explanation: "رَأْس (raʾs) means “head”. The phrase وَامْسَحُوا بِرُءُوسِكُمْ (wa-msaḥū bi-ruʾūsikum – “and wipe over your heads”) is in Surah Al-Ma’idah (5:6)."
       },
       {
         id: "qav-easy-096",
         question: "What does أَب (ab) mean?",
         options: ["Mother", "Father", "Brother", "Son"],
         correctAnswer: "Father",
-        explanation: "أَب (ab) means “father”."
+        explanation: "أَب (ab) means “father”. The phrase رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ (rabbanā-ghfir lī wa li-wālidayya – “Our Lord, forgive me and my parents”) is in Surah Ibrahim (14:41)."
       },
       {
         id: "qav-easy-097",
         question: "What does أُمّ (umm) mean?",
         options: ["Father", "Mother", "Sister", "Daughter"],
         correctAnswer: "Mother",
-        explanation: "أُمّ (umm) means “mother”."
+        explanation: "أُمّ (umm) means “mother”. The phrase وَوَصَّيْنَا الْإِنْسَانَ بِوَالِدَيْهِ حَمَلَتْهُ أُمُّهُ (wa waṣṣaynā-l-insāna bi-wālidayhi ḥamalathu ummuhu – “And We have enjoined upon man [care] for his parents. His mother carried him…”) is in Surah Luqman (31:14)."
       },
       {
         id: "qav-easy-098",
         question: "What does اِبْن (ibn) mean?",
         options: ["Daughter", "Son", "Uncle", "Nephew"],
         correctAnswer: "Son",
-        explanation: "اِبْن (ibn) means “son”."
+        explanation: "اِبْن (ibn) means “son”. The phrase يَا بُنَيَّ (yā bunayya – “O my son”) appears in Luqman’s advice, Surah Luqman (31:13)."
       },
       {
         id: "qav-easy-099",
         question: "What does بِنْت (bint) mean?",
         options: ["Son", "Daughter", "Wife", "Sister"],
         correctAnswer: "Daughter",
-        explanation: "بِنْت (bint) means “daughter”."
+        explanation: "بِنْت (bint) means “daughter”. The phrase وَمَرْيَمَ ابْنَتَ عِمْرَانَ (wa Maryama-bnata ʿImrān – “And Mary, the daughter of Imran”) is in Surah At-Tahrim (66:12)."
       },
       {
         id: "qav-easy-100",
         question: "What does أَخ (akh) mean?",
         options: ["Sister", "Brother", "Father", "Friend only"],
         correctAnswer: "Brother",
-        explanation: "أَخ (akh) means “brother”. Also used for fellow believer."
+        explanation: "أَخ (akh) means “brother”. The phrase إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ (innamā-l-muʾminūna ikhwah – “The believers are but brothers”) is in Surah Al-Hujurat (49:10)."
       },
       {
         id: "qav-easy-101",
         question: "What does أُخْت (ukht) mean?",
         options: ["Brother", "Sister", "Mother", "Aunt"],
         correctAnswer: "Sister",
-        explanation: "أُخْت (ukht) means “sister”."
+        explanation: "أُخْت (ukht) means “sister”. The phrase يَا أُخْتَ هَارُونَ (yā ukhta Hārūn – “O sister of Aaron”) is in Surah Maryam (19:28)."
       },
       {
         id: "qav-easy-102",
         question: "What does زَوْج (zawj) mean?",
         options: ["Child", "Spouse / pair", "Parent", "Friend"],
         correctAnswer: "Spouse / pair",
-        explanation: "زَوْج (zawj) means “spouse” or “pair / mate”."
+        explanation: "زَوْج (zawj) means “spouse” or “pair”. The phrase وَخَلَقَ مِنْهَا زَوْجَهَا (wa khalaqa minhā zawjahā – “and created from it its mate”) is in Surah An-Nisa (4:1)."
       },
       {
         id: "qav-easy-103",
         question: "What does وَلَد (walad) mean?",
         options: ["Parent", "Child / offspring", "Uncle", "Grandparent"],
         correctAnswer: "Child / offspring",
-        explanation: "وَلَد (walad) means “child” or “offspring”."
+        explanation: "وَلَد (walad) means “child” or “offspring”. The phrase وَلَا يَلِدْ وَلَمْ يُولَدْ (wa lam yalid wa lam yūlad – “He neither begets nor is born”) is in Surah Al-Ikhlas (112:3)."
       },
       {
         id: "qav-easy-104",
         question: "What does قَرْيَة (qaryah) mean?",
         options: ["City only", "Town / village", "Country", "House"],
         correctAnswer: "Town / village",
-        explanation: "قَرْيَة (qaryah) means “town” or “village” (sometimes a city in Quranic usage)."
+        explanation: "قَرْيَة (qaryah) means “town” or “village”. The phrase وَاضْرِبْ لَهُمْ مَثَلًا أَصْحَابَ الْقَرْيَةِ (wa-ḍrib lahum mathalan aṣḥāba-l-qaryah – “And present to them an example: the people of the town”) is in Surah Yasin (36:13)."
       },
       {
         id: "qav-easy-105",
         question: "What does مَدِينَة (madīnah) mean?",
         options: ["Village", "City", "Desert", "Mountain"],
         correctAnswer: "City",
-        explanation: "مَدِينَة (madīnah) means “city”. Also the name of the Prophet’s city."
+        explanation: "مَدِينَة (madīnah) means “city”. The phrase وَجَاءَ مِنْ أَقْصَى الْمَدِينَةِ رَجُلٌ (wa jāʾa min aqṣā-l-madīnati rajul – “And there came from the farthest end of the city a man”) is in Surah Yasin (36:20)."
       },
       {
         id: "qav-easy-106",
         question: "What does طَرِيق (ṭarīq) mean?",
         options: ["Door", "Road / way", "Bridge", "Wall"],
         correctAnswer: "Road / way",
-        explanation: "طَرِيق (ṭarīq) means “road” or “way”."
+        explanation: "طَرِيق (ṭarīq) means “road” or “way”. The phrase وَيَهْدِيَكُمْ صِرَاطًا مُسْتَقِيمًا (related sense of path); for ṭarīq see e.g. فَاضْرِبْ لَهُمْ طَرِيقًا فِي الْبَحْرِ (fa-ḍrib lahum ṭarīqan fī-l-baḥr – “strike for them a path in the sea”) in Surah Ta-Ha (20:77)."
       },
       {
         id: "qav-easy-107",
         question: "What does بَاب (bāb) mean?",
         options: ["Window", "Door / gate", "Roof", "Floor"],
         correctAnswer: "Door / gate",
-        explanation: "بَاب (bāb) means “door” or “gate”."
+        explanation: "بَاب (bāb) means “door” or “gate”. The phrase وَأْتُوا الْبُيُوتَ مِنْ أَبْوَابِهَا (wa-ʾtū-l-buyūta min abwābihā – “And enter houses from their doors”) is in Surah Al-Baqarah (2:189)."
       },
       {
         id: "qav-easy-108",
         question: "What does سُور (sūr) mean?",
         options: ["Door", "Wall / chapter (of Quran)", "Road", "House"],
         correctAnswer: "Wall / chapter (of Quran)",
-        explanation: "سُور (sūr) can mean “wall”; سُورَة (sūrah) is a chapter of the Quran."
+        explanation: "سُور (sūr) can mean “wall”; سُورَة is a Quran chapter. The phrase سُورَةٌ أَنْزَلْنَاهَا (sūratun anzalnāhā – “A surah which We have sent down”) is in Surah An-Nur (24:1)."
       },
       {
         id: "qav-easy-109",
         question: "What does كَلِمَة (kalimah) mean?",
         options: ["Letter", "Word", "Book", "Sentence only"],
         correctAnswer: "Word",
-        explanation: "كَلِمَة (kalimah) means “word”. See كَلِمَةُ اللَّهِ."
+        explanation: "كَلِمَة (kalimah) means “word”. The phrase وَكَلِمَةُ اللَّهِ هِيَ الْعُلْيَا (wa kalimatu-llāhi hiya-l-ʿulyā – “And the word of Allah is the highest”) is in Surah At-Tawbah (9:40)."
       },
       {
         id: "qav-easy-110",
         question: "What does اِسْم (ism) mean?",
         options: ["Verb", "Name", "Number", "Place"],
         correctAnswer: "Name",
-        explanation: "اِسْم (ism) means “name”. See بِسْمِ اللَّهِ."
+        explanation: "اِسْم (ism) means “name”. The phrase بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (bismi-llāhi-r-raḥmāni-r-raḥīm – “In the name of Allah, the Most Compassionate, the Most Merciful”) is in Surah Al-Fatihah (1:1)."
       },
       {
         id: "qav-easy-111",
         question: "What does عَدَد (ʿadad) mean?",
         options: ["Name", "Number / count", "Colour", "Size"],
         correctAnswer: "Number / count",
-        explanation: "عَدَد (ʿadad) means “number” or “count”."
+        explanation: "عَدَد (ʿadad) means “number” or “count”. The phrase فَأَتِمُّوا الْعِدَّةَ (fa-atimmū-l-ʿiddah – related counting sense); see also وَأَحْصَىٰ كُلَّ شَيْءٍ عَدَدًا (wa aḥṣā kulla shayʾin ʿadadā – “And He has enumerated everything in number”) in Surah Al-Jinn (72:28)."
       },
       {
         id: "qav-easy-112",
         question: "What does يَوْمَئِذٍ (yawmaʾidhin) mean?",
         options: ["Yesterday", "On that day", "Tomorrow", "Every day"],
         correctAnswer: "On that day",
-        explanation: "يَوْمَئِذٍ (yawmaʾidhin) means “on that day” — very common in descriptions of the Last Day."
+        explanation: "يَوْمَئِذٍ (yawmaʾidhin) means “on that day”. The phrase يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا (yawmaʾidhin yaṣduru-n-nāsu ashtātā – “That Day, the people will depart separated”) is in Surah Az-Zalzalah (99:6)."
       },
       {
         id: "qav-easy-113",
         question: "What does الْيَوْم (al-yawm) mean?",
         options: ["Yesterday", "Today / the Day", "Tomorrow", "Night"],
         correctAnswer: "Today / the Day",
-        explanation: "الْيَوْم (al-yawm) means “today” or “the Day” (often the Day of Judgment)."
+        explanation: "الْيَوْم (al-yawm) means “today” or “the Day”. The phrase الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ (al-yawma akmaltu lakum dīnakum – “This day I have perfected for you your religion”) is in Surah Al-Ma’idah (5:3)."
       },
       {
         id: "qav-easy-114",
         question: "What does غَد (ghad) mean?",
         options: ["Yesterday", "Tomorrow", "Today", "Evening"],
         correctAnswer: "Tomorrow",
-        explanation: "غَد (ghad) means “tomorrow”."
+        explanation: "غَد (ghad) means “tomorrow”. The phrase وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا (wa lā taqūlanna li-shayʾin innī fāʿilun dhālika ghadā – “And never say of anything, ‘I will do that tomorrow’”) is in Surah Al-Kahf (18:23)."
       },
       {
         id: "qav-easy-115",
         question: "What does أَمْس (ams) mean?",
         options: ["Tomorrow", "Yesterday", "Today", "Morning"],
         correctAnswer: "Yesterday",
-        explanation: "أَمْس (ams) means “yesterday”."
+        explanation: "أَمْس (ams) means “yesterday”. The phrase كَأَنْ لَمْ تَغْنَ بِالْأَمْسِ (ka-an lam taghna bi-l-ams – “as if it had not flourished yesterday”) is in Surah Yunus (10:24)."
       },
       {
         id: "qav-easy-116",
         question: "What does صَبَاح (ṣabāḥ) mean?",
         options: ["Evening", "Morning", "Night", "Noon"],
         correctAnswer: "Morning",
-        explanation: "صَبَاح (ṣabāḥ) means “morning”."
+        explanation: "صَبَاح (ṣabāḥ) means “morning”. The phrase فَإِذَا هُمْ مُصْبِحُونَ (related morning sense); see also وَالصُّبْحِ إِذَا أَسْفَرَ (wa-ṣ-ṣubḥi idhā asfar – “And by the dawn when it breathes”) in Surah Al-Muddaththir (74:34)."
       },
       {
         id: "qav-easy-117",
         question: "What does مَسَاء (masāʾ) mean?",
         options: ["Morning", "Evening", "Midnight", "Dawn"],
         correctAnswer: "Evening",
-        explanation: "مَسَاء (masāʾ) means “evening”."
+        explanation: "مَسَاء (masāʾ) means “evening”. The phrase فَسُبْحَانَ اللَّهِ حِينَ تُمْسُونَ وَحِينَ تُصْبِحُونَ (fa-subḥāna-llāhi ḥīna tumsūna wa ḥīna tuṣbiḥūn – “So exalted is Allah when you reach the evening and when you reach the morning”) is in Surah Ar-Rum (30:17)."
       },
       {
         id: "qav-easy-118",
         question: "What does قَدْ (qad) mean?",
         options: ["Never", "Indeed / already (particle of certainty)", "Perhaps", "Only"],
         correctAnswer: "Indeed / already (particle of certainty)",
-        explanation: "قَدْ (qad) is a particle that affirms or indicates that something has already occurred."
+        explanation: "قَدْ (qad) affirms or marks that something has already occurred. The phrase قَدْ أَفْلَحَ الْمُؤْمِنُونَ (qad aflaḥa-l-muʾminūn – “Certainly will the believers have succeeded”) is in Surah Al-Mu’minun (23:1)."
       },
       {
         id: "qav-easy-119",
         question: "What does لَمَّا (lammā) mean?",
         options: ["Before", "When / after (something happened)", "Never", "Always"],
         correctAnswer: "When / after (something happened)",
-        explanation: "لَمَّا (lammā) often means “when” or “after” a past event."
+        explanation: "لَمَّا (lammā) often means “when” or “after”. The phrase فَلَمَّا تَجَلَّىٰ رَبُّهُ لِلْجَبَلِ (fa-lammā tajallā rabbuhu li-l-jabal – “But when his Lord appeared to the mountain”) is in Surah Al-A’raf (7:143)."
       },
       {
         id: "qav-easy-120",
         question: "What does حَتَّى (ḥattā) mean?",
         options: ["From", "Until / so that", "Without", "Instead of"],
         correctAnswer: "Until / so that",
-        explanation: "حَتَّى (ḥattā) means “until” or “so that”."
+        explanation: "حَتَّى (ḥattā) means “until” or “so that”. The phrase حَتَّىٰ يَأْتِيَكَ الْيَقِينُ (ḥattā yaʾtiyaka-l-yaqīn – “until there comes to you the certainty [death]”) is in Surah Al-Hijr (15:99)."
       },
       {
         id: "qav-easy-121",
         question: "What does لَكِنَّ (lākinna) mean?",
         options: ["And", "But / however", "Or", "If"],
         correctAnswer: "But / however",
-        explanation: "لَكِنَّ (lākinna) means “but” or “however”."
+        explanation: "لَكِنَّ (lākinna) means “but” or “however”. The phrase لَٰكِنِ الرَّاسِخُونَ فِي الْعِلْمِ (lākini-r-rāsikhūna fī-l-ʿilm – “But those firm in knowledge”) is in Surah An-Nisa (4:162)."
       },
       {
         id: "qav-easy-122",
         question: "What does بَلْ (bal) mean?",
         options: ["And", "Rather / but", "Or", "If"],
         correctAnswer: "Rather / but",
-        explanation: "بَلْ (bal) means “rather” or “but” (correcting or contrasting)."
+        explanation: "بَلْ (bal) means “rather” or “but”. The phrase بَلْ هُوَ قُرْآنٌ مَجِيدٌ (bal huwa qurʾānun majīd – “But this is a glorious Quran”) is in Surah Al-Buruj (85:21)."
       },
       {
         id: "qav-easy-123",
         question: "What does هَلْ (hal) mean?",
         options: ["Who", "Question particle (yes/no)", "What", "Where"],
         correctAnswer: "Question particle (yes/no)",
-        explanation: "هَلْ (hal) introduces a yes/no question."
+        explanation: "هَلْ (hal) introduces a yes/no question. The phrase هَلْ أَتَىٰ عَلَى الْإِنْسَانِ (hal atā ʿalā-l-insān – “Has there come upon man…”) is in Surah Al-Insan (76:1)."
       },
       {
         id: "qav-easy-124",
         question: "What does مَا (mā) mean? (common senses)",
         options: ["Only “water”", "What / that which / not (depending on context)", "Only “who”", "Only “when”"],
         correctAnswer: "What / that which / not (depending on context)",
-        explanation: "مَا (mā) is highly versatile: relative “what/that which”, interrogative “what”, or negative “not”."
+        explanation: "مَا (mā) is versatile: “what”, “that which”, or “not”. The phrase مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ (mā fī-s-samāwāti wa mā fī-l-arḍ – “whatever is in the heavens and whatever is on the earth”) is in Surah Al-Baqarah (2:284)."
       },
       {
         id: "qav-easy-125",
         question: "What does مَنْ (man) mean?",
         options: ["What", "Who / whoever", "Where", "When"],
         correctAnswer: "Who / whoever",
-        explanation: "مَنْ (man) means “who” or “whoever”. Very frequent relative/interrogative pronoun."
+        explanation: "مَنْ (man) means “who” or “whoever”. The phrase مَنْ جَاءَ بِالْحَسَنَةِ (man jāʾa bi-l-ḥasanah – “Whoever comes with a good deed”) is in Surah Al-An’am (6:160)."
       }
     ],
     medium: [
