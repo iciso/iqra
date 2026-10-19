@@ -10,6 +10,7 @@ import hadeethCategory from "./hadeeth";
 import fiqhCategory from "./fiqh";
 import christCategory from "./christ";
 import hinduCategory from "./hindu";
+import bidahCategory from "./bidah";
 import ribaCategory from "./riba";
 import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
@@ -47,6 +48,7 @@ const quizData: QuizCategory[] = [
   hadeethCategory,
   fiqhCategory,
   christCategory,
+  bidahCategory,
   ribaCategory,
   hinduCategory,
   dawahCategory,
