@@ -164,6 +164,18 @@ const challengeCategories = [
   },
 ]
 
+const surahCategories = [
+  {
+    id: "surah-78",
+    label: "Surah An-Naba (78)",
+    description: "The Great News — Surah 78",
+    icon: Megaphone,
+    color: "bg-green-500 hover:bg-green-600",
+    textColor: "text-green-700",
+    bgLight: "bg-green-50",
+  },
+]
+
 const arabicVocabularyCategories = [
   {
     id: "quranic-arabic-01",
