@@ -1,4 +1,5 @@
 "use client"
+import { getCategory } from "@/data/quiz-data-manager"
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
@@ -23,6 +24,22 @@ const categoryLabels: Record<string, string> = {
   crypto: "Crypto & Islam", gender: "Gender in Islam", lgbtq: "LGBTQ & Islam",
   psych: "Islamic Psychology", parenting: "Islamic Parenting",
   peace: "Peace & Islam", christ: "Christianity & Islam", hindu: "Hinduism & Islam",
+}
+
+const prettify = (id: string) =>
+  id.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+
+// Legacy label map first, then the category's real title, then a prettified id.
+const labelFor = (id?: string | null): string => {
+  if (!id) return "Other"
+  if (categoryLabels[id]) return categoryLabels[id]
+  try {
+    const cat = getCategory(id)
+    if (cat?.title) return cat.title
+  } catch {
+    /* fall through */
+  }
+  return prettify(id)
 }
 
 export default function ProfilePage() {
@@ -80,7 +97,7 @@ export default function ProfilePage() {
         totalScore, totalQuestions, overallPercentage,
         totalQuizzes: entries.length,
         challengesPlayed: challengeEntries.length,
-        bestCategory: categoryLabels[best?.category] || best?.category || "—",
+        bestCategory: best ? labelFor(best.category) : "—",
         bestPercentage: best?.percentage || 0,
         categoryBreakdown,
         recentQuizzes: entries.slice(0, 10),
@@ -229,7 +246,7 @@ export default function ProfilePage() {
                   {stats.categoryBreakdown.map(({ category, score, total, percentage, count }) => (
                     <div key={category}>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-sm font-medium truncate max-w-[55%]">{categoryLabels[category] || category}</span>
+                        <span className="text-sm font-medium truncate max-w-[55%]">{labelFor(category)}</span>
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-500">{score}/{total}</span>
                           <span className={`text-sm font-bold ${pctColor(percentage)}`}>{percentage}%</span>
@@ -254,7 +271,7 @@ export default function ProfilePage() {
                     <div key={entry.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="text-sm font-medium">
-                          {categoryLabels[entry.category] || entry.category}
+                          {labelFor(entry.category)}
                           {entry.challenge && <Badge variant="outline" className="ml-2 text-xs">Challenge</Badge>}
                         </p>
                         <p className="text-xs text-gray-500">{entry.difficulty} · {fmtDate(entry.date)}</p>
@@ -304,7 +321,7 @@ export default function ProfilePage() {
                                   <span className="text-green-700 dark:text-green-400">{opponent}</span>
                                 </p>
                                 <p className="text-xs text-gray-500">
-                                  {categoryLabels[c.category] || c.category} · {c.difficulty} · {fmtDate(c.created_at)}
+                                  {labelFor(c.category)} · {c.difficulty} · {fmtDate(c.created_at)}
                                 </p>
                               </div>
                               <div className="flex flex-col items-end gap-1">
