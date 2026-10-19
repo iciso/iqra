@@ -222,16 +222,16 @@ export default function ResultsPage() {
       const percentage = Math.round((score / totalQuestions) * 100)
 
       // Add to leaderboard
-      await addToLeaderboard({
-        name,
-        score,
-        totalQuestions,
-        percentage,
-        category: categoryTitle || undefined,
-        difficulty: difficulty || undefined,
-        challenge: challenge || undefined,
-        date: new Date().toLocaleString(),
-      })
+               await addToLeaderboard({
+            name,
+            score,
+            totalQuestions,
+            percentage,
+            category: categoryId || undefined, // was categoryTitle
+            difficulty: difficulty || undefined,
+            challenge: challenge || undefined,
+            date: new Date().toLocaleString(),
+          })
 
       // Mark as submitted in this session
       localStorage.setItem("nameModalSubmittedThisSession", "true")
