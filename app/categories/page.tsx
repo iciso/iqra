@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
+  Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Telescope,
   Percent, Rainbow, Circle, HandHeart, WineOff,
 } from "lucide-react"
@@ -30,6 +30,7 @@ const categories = [
   { id: "christ", title: "Christianity", description: "Islam and Christianity", icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "riba", title: "Usury or interest", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "bidah", title: "Bidah", description: "Bidah & Tawhid", icon: <CirclePlus className="h-8 w-8 text-green-600 dark:text-green-400" /> }, 
   { id: "islamic-finance", title: "Islamic Finance", description: "Islamic Economics", icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "crypto", title: "Crypto & Blockchain", description: "Shariah & digital currencies", icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "gender", title: "Gender", description: "Gender in Islam", icon: <Circle className="h-8 w-8 text-green-600 dark:text-green-400" /> },
