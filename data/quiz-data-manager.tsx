@@ -29,6 +29,7 @@ import sawmCategory from "./sawm";
 import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
+import surah78Category from "./surah-78";
 import quranicArabic01Category from "./quranic-arabic-01";
 import modernArabic01Category from "./modern-arabic-01";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
@@ -64,6 +65,7 @@ const quizData: QuizCategory[] = [
   salahCategory,
   sawmCategory,
   islamicEschatologyCategory,
+  surah78Category,
   quranicArabic01Category,
   modernArabic01Category,
   medicalEthicsCategory,
