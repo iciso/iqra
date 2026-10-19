@@ -121,7 +121,7 @@ const surahCategories = [
     id: "surah-78",
     title: "Surah An-Naba (78)",
     description: "The Great News — Surah 78",
-    icon: Book,
+    icon: Megaphone,
   },
 ]
 
