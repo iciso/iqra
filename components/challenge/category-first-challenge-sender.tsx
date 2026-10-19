@@ -23,6 +23,7 @@ import {
   Scale,
   Scroll,
   ChurchIcon as Mosque,
+  CirclePlus,
   Heart,
   Image,
   Infinity,
@@ -52,6 +53,15 @@ const challengeCategories = [
     color: "bg-blue-500 hover:bg-blue-600",
     textColor: "text-blue-700",
     bgLight: "bg-blue-50",
+  },
+   {
+    id: "bidah",
+    label: "Bidah",
+    description: "Bidah & Tawheed",
+    icon: CirclePlus,
+    color: "bg-red-500 hover:bg-red-600",
+    textColor: "text-red-700",
+    bgLight: "bg-red-50",
   },
   {
     id: "riba",
