@@ -93,10 +93,10 @@ export const bidahCategory: QuizCategory = {
       },
       {
         id: 37,
-        question: "Is teaching the Prophet's biography beneficial only during Mawlid?",
+        question: "Is teaching the Prophet's biography beneficial only during Rabi al-Awwal?",
         options: ["Yes, only in Rabi al-Awwal", "No; teaching his life and Sunnah is beneficial at all times", "No, his biography must never be taught", "Only if accompanied by a new ritual"],
         correctAnswer: "No; teaching his life and Sunnah is beneficial at all times",
-        explanation: "IslamQA distinguishes teaching the Prophet's life at any time from making a recurring religious festival of his birthday. Reference: IslamQA, question 117651.",
+        explanation: "IslamQA distinguishes teaching the Prophet's biography at any time from making a recurring religious festival of his birthday, by teaching the seerah only during Rabi al-Awwal. Reference: IslamQA, question 117651.",
       },
       {
         id: 40,
