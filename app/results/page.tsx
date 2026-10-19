@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -46,6 +46,8 @@ export default function ResultsPage() {
   const [authReady, setAuthReady] = useState(false)
   const [showNameModal, setShowNameModal] = useState(false)
   const [nameModalSubmitted, setNameModalSubmitted] = useState(false)
+  const saveStartedRef = useRef(false)
+  const [saveError, setSaveError] = useState(false)
 
   // Get localStorage values directly for render decision
   const getLocalStorageValues = () => {
@@ -214,32 +216,67 @@ export default function ResultsPage() {
     }
   }, [score, totalQuestions, nameModalSubmitted])
 
-  // Handle name submission to leaderboard
+  // The ONE place a regular (non-challenge) quiz result is written to the database.
+  const saveResult = async (name?: string) => {
+    if (saveStartedRef.current) return
+    if (score === null || totalQuestions === null) return
+    // Challenge scores are already saved by quiz-container
+    if (localStorage.getItem("quizChallenge")) return
+
+    saveStartedRef.current = true
+    setSaving(true)
+    setSaveError(false)
+    try {
+      const userName =
+        name ||
+        localStorage.getItem("userNameForLeaderboard") ||
+        localStorage.getItem("playerName") ||
+        undefined
+
+      await submitQuizResult(
+        score,
+        totalQuestions,
+        categoryId || "quran", // ID, not title
+        difficulty || "easy",
+        timeLeft || undefined,
+        undefined,
+        undefined,
+        userName,
+      )
+      setSubmitted(true)
+    } catch (error) {
+      console.error("❌ Error saving quiz result:", error)
+      setSaveError(true)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  // Handle name submission: local leaderboard + the single database save
   const handleNameSubmit = async (name: string) => {
     if (score === null || totalQuestions === null) return
 
     try {
       const percentage = Math.round((score / totalQuestions) * 100)
 
-      // Add to leaderboard
-               await addToLeaderboard({
-            name,
-            score,
-            totalQuestions,
-            percentage,
-            category: categoryId || undefined, // was categoryTitle
-            difficulty: difficulty || undefined,
-            challenge: challenge || undefined,
-            date: new Date().toLocaleString(),
-          })
+      // Local leaderboard + remembers the name (no database write)
+      await addToLeaderboard({
+        name,
+        score,
+        totalQuestions,
+        percentage,
+        category: categoryId || undefined,
+        difficulty: difficulty || undefined,
+        challenge: challenge || undefined,
+        date: new Date().toLocaleString(),
+      })
 
-      // Mark as submitted in this session
+      await saveResult(name)
+
       localStorage.setItem("nameModalSubmittedThisSession", "true")
-
       setNameModalSubmitted(true)
       setShowNameModal(false)
-      
-      // Navigate to leaderboard after successful submission
+
       setTimeout(() => {
         router.push("/leaderboard")
       }, 500)
@@ -249,75 +286,13 @@ export default function ResultsPage() {
     }
   }
 
-  // Handle name modal skip
+  // Skipping the name still saves the result (using any stored name)
   const handleNameSkip = () => {
     localStorage.setItem("nameModalSubmittedThisSession", "true")
     setNameModalSubmitted(true)
     setShowNameModal(false)
+    void saveResult()
   }
-
-  // Auto-save with retry logic
-  useEffect(() => {
-    const autoSave = async () => {
-      console.log("💾 RESULTS AUTO-SAVE: Starting check...", {
-        hasUser: !!user,
-        hasProfile: !!profile,
-        hasScore: score !== null,
-        hasTotalQuestions: totalQuestions !== null,
-        submitted,
-        saving,
-        loading,
-        authReady,
-        challenge,
-        challengerTurn,
-      })
-
-      // Only attempt save if:
-      // 1. Auth is ready (not loading AND authReady is true)
-      // 2. We have score and totalQuestions
-      // 3. We haven't already submitted
-      // 4. We're not currently saving
-     const savedChallenge = typeof window !== 'undefined' 
-  ? localStorage.getItem('quizChallenge') 
-  : null
-
-// Skip auto-save for challenge plays — quiz-container already submitted the score
-if (authReady && score !== null && totalQuestions !== null && !submitted && !saving && !savedChallenge) {
-        console.log("🚀 RESULTS AUTO-SAVE: Starting auto-save...")
-        setSaving(true)
-        try {
-          // Get userName from localStorage — same key used everywhere in the app
-          let userName = undefined;
-          if (typeof window !== 'undefined') {
-            userName = localStorage.getItem('userNameForLeaderboard') 
-                    || localStorage.getItem('playerName') 
-                    || undefined;
-          }
-
-          const result = await submitQuizResult(
-            score,
-            totalQuestions,
-            categoryId || "quran",
-            difficulty || "easy",
-            timeLeft || undefined,
-            undefined, // answers - can be added later
-            challenge || undefined, // challenge_id for challenges
-            userName, // userName for free access
-          )
-          setSubmitted(true)
-          console.log("✅ RESULTS AUTO-SAVE: Quiz result saved successfully!", result)
-        } catch (error) {
-          console.error("❌ RESULTS AUTO-SAVE: Error saving to database:", error)
-          // Don't set submitted to true if there was an error
-          // The user can retry or navigate manually
-        } finally {
-          setSaving(false)
-        }
-      }
-    }
-
-    autoSave()
-  }, [authReady, user, profile, score, totalQuestions, submitted, saving, categoryId, difficulty, timeLeft, challenge])
 
   // Calculate percentage
   const percentage = score !== null && totalQuestions !== null ? Math.round((score / totalQuestions) * 100) : null
@@ -542,11 +517,24 @@ if (authReady && score !== null && totalQuestions !== null && !submitted && !sav
                           <p className="text-green-700 dark:text-green-400 mb-4">
                             ✅ Your score has been saved to your profile!
                           </p>
-                        ) : (
-                          <p className="text-yellow-600 dark:text-yellow-400 mb-4">
-                            🔄 Preparing to save your score...
+                        ) : saveError ? (
+                          <p className="text-red-600 dark:text-red-400 mb-4">
+                            ⚠️ Could not save your score.{" "}
+                            <button
+                              className="underline"
+                              onClick={() => {
+                                saveStartedRef.current = false
+                                saveResult()
+                              }}
+                            >
+                              Retry
+                            </button>
                           </p>
-                        )}
+                        ) : !challenge ? (
+                          <p className="text-yellow-600 dark:text-yellow-400 mb-4">
+                            ✍️ Your score will be saved once you enter (or skip) your name.
+                          </p>
+                        ) : null}
                         <div className="flex flex-col sm:flex-row gap-3 w-full">
                           <Link href="/leaderboard" className="flex-1">
                             <Button className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">
