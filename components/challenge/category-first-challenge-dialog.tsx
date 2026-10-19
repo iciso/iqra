@@ -368,6 +368,15 @@ const challengeCategories = [
   },
 ]
 
+const surahCategories = [
+  {
+    id: "surah-78",
+    title: "Surah An-Naba (78)",
+    description: "The Great News — Surah 78",
+    icon: Megaphone,
+  },
+]
+
 const arabicVocabularyCategories = [
   {
     id: "quranic-arabic-01",
@@ -390,6 +399,8 @@ const arabicVocabularyCategories = [
     borderColor: "border-lime-300",
   },
 ]
+
+
 
 const difficulties = [
   { value: "easy", label: "Easy", description: "Basic level questions", emoji: "🟢" },
