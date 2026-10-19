@@ -770,3 +770,5 @@ export const bidahCategory: QuizCategory = {
     ],
   },
 }
+
+export default bidahCategory
