@@ -1,4 +1,4 @@
-import type { QuizCategory } from "@/types/quiz";
+import type { QuizCategory } from "@/types/quiz"; 
 
 const quranCategory: QuizCategory = {
   id: "quran",
