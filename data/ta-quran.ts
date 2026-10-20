@@ -1,7 +1,7 @@
 import type { QuizCategory } from "@/types/quiz";
 
 const taQuranCategory: QuizCategory = {
-  id: "quran",
+  id: "ta-quran",
   title: "குர்ஆன்",
   description: "புனித குர்ஆனைப் பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள்",
   icon: "Book",
