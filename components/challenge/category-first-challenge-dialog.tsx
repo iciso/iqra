@@ -672,6 +672,43 @@ const challengeData = {
                           </div>
                         </div>
 
+                           {/* Tamil Islamic Studies */}
+                        <div className="mb-6">
+                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                           தமிழ் இஸ்லாமிய ஆய்வுகள்
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {tamilCategories.map((category) => {
+                              const IconComponent = category.icon
+                              const isSelected = selectedCategory === category.id
+                              return (
+                                <div
+                                  key={category.id}
+                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                                    isSelected
+                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                                  }`}
+                                  onClick={() => setSelectedCategory(category.id)}
+                                >
+                                  <div className="text-center">
+                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                                      <IconComponent className="h-5 w-5 text-white" />
+                                    </div>
+                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                                      {category.label}
+                                    </h4>
+                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                                    {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+
+                        
+
                           {/* Quranic Studies */}
                         <div className="mb-6">
                           <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
