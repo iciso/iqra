@@ -380,6 +380,16 @@ const tamilCategories = [
     bgLight: "bg-red-50",
     borderColor: "border-red-300",
   }, 
+   {
+    id: "fiqh",
+    label: "ஃபிக்ஹ்",
+    description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
+    icon: Scale,
+    color: "bg-blue-500 hover:bg-blue-600",
+    textColor: "text-blue-700",
+    bgLight: "bg-blue-50",
+    borderColor: "border-blue-300",
+  },
 ]
 
 const surahCategories = [
