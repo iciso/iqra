@@ -115,6 +115,71 @@ function ArabicVocabSection({
   )
 }
 
+// Add further Tamil translated files here.
+const tamilCategories = [
+  {
+    id: "ta-quran",
+    title: "குர்ஆன்",
+    description: "புனித குர்ஆனைப் பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள்",
+    icon: "Book",
+  },
+]
+
+function TamilIslamSection({
+  selectedCategory,
+  setSelectedCategory,
+}: {
+  selectedCategory: string | null
+  setSelectedCategory: (id: string) => void
+}) {
+  return (
+    <section id="quran-surah-studies" className="w-full max-w-3xl mt-8 scroll-mt-6">
+      <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
+            தமிழ் இஸ்லாமிய ஆய்வுகள்
+          </CardTitle>
+          <CardDescription className="text-emerald-700 dark:text-emerald-500">
+            இஸ்லாமிய தலைப்புகள் குறித்த தமிழ் வினாடி-வினாக்களில் பயிற்சி செய்யுங்கள்.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {surahCategories.map((surah) => {
+              const SurahIcon = surah.icon
+              const isSelected = selectedCategory === surah.id
+              return (
+                <button
+                  type="button"
+                  key={surah.id}
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedCategory(surah.id)}
+                  className={`rounded-lg border p-4 text-center transition-colors ${
+                    isSelected
+                      ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/50 dark:border-emerald-600"
+                      : "border-gray-200 hover:border-emerald-300 dark:border-gray-700 dark:hover:border-emerald-700"
+                  }`}
+                >
+                  <span className="flex flex-col items-center">
+                    <SurahIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+                    <span className="mt-2 font-medium dark:text-white">{surah.title}</span>
+                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{surah.description}</span>
+                    {isSelected && (
+                      <span className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                        Selected ✓
+                      </span>
+                    )}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  )
+}
+
 // Add further Surahs here as their IQRA data files are registered.
 const surahCategories = [
   {
