@@ -1,4 +1,3 @@
-
 import type { QuizCategory } from "@/types/quiz";
 
 const quranicArabic01Category: QuizCategory = {
@@ -885,877 +884,877 @@ const quranicArabic01Category: QuizCategory = {
         explanation: "مَنْ (man) means “who” or “whoever”. The phrase مَنْ جَاءَ بِالْحَسَنَةِ (man jāʾa bi-l-ḥasanah – “Whoever comes with a good deed”) is in Surah Al-An’am (6:160)."
       }
     ],
-    medium: [
+   intermediate: [
       {
-        id: "qav-medium-001",
+        id: "qav-intermediate-001",
         question: "What does سَمَاء (samāʾ) mean?",
         options: ["Earth", "Garden", "Sky or heaven", "Sea"],
         correctAnswer: "Sky or heaven",
         explanation: "سَمَاء (samāʾ) means “sky” or “heaven”. The phrase وَالسَّمَاءَ بِنَاءً (wa-s-samā’a binā’an – “and the sky a canopy”) is in Surah Al-Baqarah (2:22). The target word has four Arabic letters."
       },
       {
-        id: "qav-medium-002",
+        id: "qav-intermediate-002",
         question: "What does عَذَاب (ʿadhāb) mean?",
         options: ["Guidance", "Punishment", "Provision", "Mercy"],
         correctAnswer: "Punishment",
         explanation: "عَذَاب (ʿadhāb) means “punishment” or “torment”. The phrase عَذَابٌ عَظِيمٌ (ʿadhābun ʿaẓīm – “a great punishment”) appears frequently, e.g. Surah Al-Baqarah (2:7). The target word has four Arabic letters."
       },
       {
-        id: "qav-medium-003",
+        id: "qav-intermediate-003",
         question: "What does رَسُول (rasūl) mean?",
         options: ["Angel", "Messenger", "King", "Believer"],
         correctAnswer: "Messenger",
         explanation: "رَسُول (rasūl) means “messenger”. The phrase مَّن يُطِعِ الرَّسُولَ فَقَدْ أَطَاعَ اللَّهَ (man yuṭiʿi-r-rasūla fa-qad aṭāʿa Allāh – “Whoever obeys the Messenger has obeyed Allah”) is in Surah An-Nisa (4:80). Four Arabic letters (base form)."
       },
       {
-        id: "qav-medium-004",
+        id: "qav-intermediate-004",
         question: "What does قَلْب (qalb) mean?",
         options: ["Book", "Water", "Earth", "Heart"],
         correctAnswer: "Heart",
         explanation: "قَلْب (qalb) means “heart”. The phrase بِقَلْبٍ سَلِيمٍ (bi-qalbin salīm – “with a sound heart”) describes the heart that will benefit on the Day of Judgment in Surah Ash-Shu‘ara (26:89). Three Arabic letters."
       },
       {
-        id: "qav-medium-005",
+        id: "qav-intermediate-005",
         question: "What does تَقْوَى (taqwā) mean?",
         options: ["Anger", "Pride", "Wealth", "God-consciousness / piety"],
         correctAnswer: "God-consciousness / piety",
         explanation: "تَقْوَى (taqwā) means God-consciousness or piety. The phrase هُدًى لِّلْمُتَّقِينَ (hudan lil-muttaqīn – “guidance for the God-conscious”) is in Surah Al-Baqarah (2:2). Four Arabic letters."
       },
       {
-        id: "qav-medium-006",
+        id: "qav-intermediate-006",
         question: "What does صِرَاط (ṣirāṭ) mean?",
         options: ["Punishment", "Book", "Garden", "Path / way"],
         correctAnswer: "Path / way",
         explanation: "صِرَاط (ṣirāṭ) means “path” or “way”. The daily prayer اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (ihdinā-ṣ-ṣirāṭa-l-mustaqīm – “Guide us to the straight path”) is in Surah Al-Fatihah (1:6). Four Arabic letters."
       },
       {
-        id: "qav-medium-007",
+        id: "qav-intermediate-007",
         question: "What does مُسْتَقِيم (mustaqīm) mean?",
         options: ["Narrow", "Crooked", "Wide", "Straight"],
         correctAnswer: "Straight",
         explanation: "مُسْتَقِيم (mustaqīm) means “straight”. It completes the famous request اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ in Surah Al-Fatihah (1:6). Six Arabic letters."
       },
       {
-        id: "qav-medium-008",
+        id: "qav-intermediate-008",
         question: "What does مَلَائِكَة (malāʾikah) mean?",
         options: ["Disbelievers", "Prophets", "Believers", "Angels"],
         correctAnswer: "Angels",
         explanation: "مَلَائِكَة (malāʾikah) means “angels”. The phrase وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ (wa idh qāla Rabbuka lil-malā’ikah – “And when your Lord said to the angels”) begins the story of Adam in Surah Al-Baqarah (2:30). Six Arabic letters."
       },
       {
-        id: "qav-medium-009",
+        id: "qav-intermediate-009",
         question: "What does شَيْطَان (shayṭān) mean?",
         options: ["Believer", "Angel", "Prophet", "Satan / devil"],
         correctAnswer: "Satan / devil",
         explanation: "شَيْطَان (shayṭān) means “Satan” or “devil”. The phrase فَأَزَلَّهُمَا الشَّيْطَانُ (fa-azallahumā-sh-shayṭān – “But Satan caused them to slip”) is in the story of Adam in Surah Al-Baqarah (2:36). Five Arabic letters."
       },
       {
-        id: "qav-medium-010",
+        id: "qav-intermediate-010",
         question: "What does آخِرَة (ākhirah) mean?",
         options: ["Present", "Worldly life", "Past", "Hereafter"],
         correctAnswer: "Hereafter",
         explanation: "آخِرَة (ākhirah) means the Hereafter. The phrase وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ (wa-l-ākhiratu khayrun wa abqā – “And the Hereafter is better and more lasting”) is in Surah Al-A‘la (87:17). Five Arabic letters."
       },
       {
-        id: "qav-medium-011",
+        id: "qav-intermediate-011",
         question: "What does دُنْيَا (dunyā) mean?",
         options: ["Hell", "Hereafter", "Paradise", "Worldly life"],
         correctAnswer: "Worldly life",
         explanation: "دُنْيَا (dunyā) means “this world” or “worldly life”. The phrase الْحَيَاةُ الدُّنْيَا (al-ḥayātu-d-dunyā – “the worldly life”) is frequently contrasted with the Hereafter, e.g. Surah Al-Baqarah (2:86). Four Arabic letters."
       },
       {
-        id: "qav-medium-012",
+        id: "qav-intermediate-012",
         question: "What does رِزْق (rizq) mean?",
         options: ["Prayer", "Punishment", "Knowledge", "Provision / sustenance"],
         correctAnswer: "Provision / sustenance",
         explanation: "رِزْق (rizq) means “provision” or “sustenance”. The phrase وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ (wa mimmā razaqnāhum yunfiqūn – “and from what We have provided them, they spend”) describes the believers in Surah Al-Baqarah (2:3). Three Arabic letters."
       },
       {
-        id: "qav-medium-013",
+        id: "qav-intermediate-013",
         question: "What does تَوْبَة (tawbah) mean?",
         options: ["Forgetfulness", "Pride", "Anger", "Repentance"],
         correctAnswer: "Repentance",
         explanation: "تَوْبَة (tawbah) means “repentance”. The phrase إِنَّ اللَّهَ هُوَ التَّوَّابُ الرَّحِيمُ (inna Allāha huwa-t-tawwābu-r-raḥīm – “Indeed, Allah is the Accepter of repentance, the Merciful”) is in Surah At-Tawbah (9:104). Four Arabic letters."
       },
       {
-        id: "qav-medium-014",
+        id: "qav-intermediate-014",
         question: "What does مَغْفِرَة (maghfirah) mean?",
         options: ["Wealth", "Punishment", "Guidance", "Forgiveness"],
         correctAnswer: "Forgiveness",
         explanation: "مَغْفِرَة (maghfirah) means “forgiveness”. The phrase وَاللَّهُ غَفُورٌ رَّحِيمٌ and the noun مَغْفِرَة appear together in many places, e.g. Surah Al-Baqarah (2:175). Five Arabic letters."
       },
       {
-        id: "qav-medium-015",
+        id: "qav-intermediate-015",
         question: "What does سَبِيل (sabīl) mean?",
         options: ["Heart", "House", "Book", "Way / path"],
         correctAnswer: "Way / path",
         explanation: "سَبِيل (sabīl) means “way” or “path”. The phrase فِي سَبِيلِ اللَّهِ (fī sabīli-llāh – “in the way of Allah”) is one of the most frequent expressions of striving for Allah’s cause. Four Arabic letters."
       },
       {
-        id: "qav-medium-016",
+        id: "qav-intermediate-016",
         question: "What does أُمَّة (ummah) mean?",
         options: ["Tribe only", "Individual", "Family", "Community / nation"],
         correctAnswer: "Community / nation",
         explanation: "أُمَّة (ummah) means “community” or “nation”. The phrase وَكَذَٰلِكَ جَعَلْنَاكُمْ أُمَّةً وَسَطًا (wa kadhālika jaʿalnākum ummatan wasaṭan – “And thus We have made you a just community”) is in Surah Al-Baqarah (2:143). Three Arabic letters."
       },
       {
-        id: "qav-medium-017",
+        id: "qav-intermediate-017",
         question: "What does نَبِيّ (nabī) mean?",
         options: ["King", "Messenger only", "Angel", "Prophet"],
         correctAnswer: "Prophet",
         explanation: "نَبِيّ (nabī) means “prophet”. The phrase خَاتَمَ النَّبِيِّينَ (khātama-n-nabiyyīn – “the Seal of the Prophets”) refers to Muhammad ﷺ in Surah Al-Ahzab (33:40). Three Arabic letters."
       },
       {
-        id: "qav-medium-018",
+        id: "qav-intermediate-018",
         question: "What does عَبْد (ʿabd) mean?",
         options: ["Friend", "King", "Enemy", "Servant / slave (of Allah)"],
         correctAnswer: "Servant / slave (of Allah)",
         explanation: "عَبْد (ʿabd) means “servant” or “slave” (of Allah). The phrase إِنِّي عَبْدُ اللَّهِ (innī ʿabdu-llāh – “Indeed, I am the servant of Allah”) is spoken by the infant Jesus in Surah Maryam (19:30). Three Arabic letters."
       },
       {
-        id: "qav-medium-019",
+        id: "qav-intermediate-019",
         question: "What does حَيَاة (ḥayāh) mean?",
         options: ["Dream", "Death", "Sleep", "Life"],
         correctAnswer: "Life",
         explanation: "حَيَاة (ḥayāh) means “life”. The phrase كَيْفَ تَكْفُرُونَ بِاللَّهِ وَكُنتُمْ أَمْوَاتًا فَأَحْيَاكُمْ (kayfa takfurūna bi-llāhi wa kuntum amwātan fa-aḥyākum – “How can you disbelieve in Allah when you were lifeless and He gave you life?”) is in Surah Al-Baqarah (2:28). Four Arabic letters."
       },
       {
-        id: "qav-medium-020",
+        id: "qav-intermediate-020",
         question: "What does مَوْت (mawt) mean?",
         options: ["Birth", "Life", "Sleep", "Death"],
         correctAnswer: "Death",
         explanation: "مَوْت (mawt) means “death”. The phrase كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ (kullu nafsin dhā’iqatu-l-mawt – “Every soul will taste death”) is in Surah Al-Imran (3:185). Three Arabic letters."
       },
       {
-        id: "qav-medium-021",
+        id: "qav-intermediate-021",
         question: "What does رُوح (rūḥ) mean?",
         options: ["Mind", "Body", "Heart", "Spirit / soul"],
         correctAnswer: "Spirit / soul",
         explanation: "رُوح (rūḥ) means “spirit” or “soul”. The phrase وَيَسْأَلُونَكَ عَنِ الرُّوحِ (wa yas’alūnaka ʿani-r-rūḥ – “And they ask you about the spirit”) is in Surah Al-Isra (17:85). Three Arabic letters."
       },
       {
-        id: "qav-medium-022",
+        id: "qav-intermediate-022",
         question: "What does ذِكْر (dhikr) mean?",
         options: ["Writing", "Forgetfulness", "Speech only", "Remembrance"],
         correctAnswer: "Remembrance",
         explanation: "ذِكْر (dhikr) means “remembrance” (of Allah). The phrase أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ (alā bi-dhikri-llāhi taṭma’innu-l-qulūb – “Unquestionably, by the remembrance of Allah hearts are assured”) is in Surah Ar-Ra‘d (13:28). Three Arabic letters."
       },
       {
-        id: "qav-medium-023",
+        id: "qav-intermediate-023",
         question: "What does دُعَاء (duʿāʾ) mean?",
         options: ["Command", "Argument", "Speech", "Supplication / prayer"],
         correctAnswer: "Supplication / prayer",
         explanation: "دُعَاء (duʿāʾ) means “supplication”. The phrase ادْعُونِي أَسْتَجِبْ لَكُمْ (ud‘ūnī astajib lakum – “Call upon Me; I will respond to you”) is in Surah Ghafir (40:60). Four Arabic letters."
       },
       {
-        id: "qav-medium-024",
+        id: "qav-intermediate-024",
         question: "What does شُكْر (shukr) mean?",
         options: ["Pride", "Complaint", "Anger", "Gratitude"],
         correctAnswer: "Gratitude",
         explanation: "شُكْر (shukr) means “gratitude”. The promise لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ (la’in shakartum la-azīdannakum – “If you are grateful, I will surely increase you”) is in Surah Ibrahim (14:7). Three Arabic letters."
       },
       {
-        id: "qav-medium-025",
+        id: "qav-intermediate-025",
         question: "What does فَضْل (faḍl) mean?",
         options: ["Hardship", "Punishment", "Poverty", "Grace / bounty"],
         correctAnswer: "Grace / bounty",
         explanation: "فَضْل (faḍl) means “grace” or “bounty”. The phrase ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَن يَشَاءُ (dhālika faḍlu-llāhi yu’tīhi man yashā’ – “That is the bounty of Allah, which He gives to whom He wills”) is in Surah Al-Jumu‘ah (62:4). Three Arabic letters."
       },
       {
-        id: "qav-medium-026",
+        id: "qav-intermediate-026",
         question: "What does حِكْمَة (ḥikmah) mean?",
         options: ["Wealth", "Ignorance", "Strength", "Wisdom"],
         correctAnswer: "Wisdom",
         explanation: "حِكْمَة (ḥikmah) means “wisdom”. The phrase يُؤْتِي الْحِكْمَةَ مَن يَشَاءُ (yu’tī-l-ḥikmata man yashā’ – “He gives wisdom to whom He wills”) is in Surah Al-Baqarah (2:269). Four Arabic letters."
       },
       {
-        id: "qav-medium-027",
+        id: "qav-intermediate-027",
         question: "What does عَدْل (ʿadl) mean?",
         options: ["Power", "Injustice", "Mercy", "Justice"],
         correctAnswer: "Justice",
         explanation: "عَدْل (ʿadl) means “justice”. The command إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ (inna Allāha ya’muru bi-l-ʿadli wa-l-iḥsān – “Indeed, Allah orders justice and excellence”) is in Surah An-Nahl (16:90). Three Arabic letters."
       },
       {
-        id: "qav-medium-028",
+        id: "qav-intermediate-028",
         question: "What does ظُلْم (ẓulm) mean?",
         options: ["Guidance", "Justice", "Mercy", "Injustice / wrongdoing"],
         correctAnswer: "Injustice / wrongdoing",
         explanation: "ظُلْم (ẓulm) means “injustice” or “wrongdoing”. The phrase إِنَّ الشِّرْكَ لَظُلْمٌ عَظِيمٌ (inna-sh-shirka la-ẓulmun ʿaẓīm – “Indeed, association [with Allah] is great injustice”) is in Surah Luqman (31:13). Three Arabic letters."
       },
       {
-        id: "qav-medium-029",
+        id: "qav-intermediate-029",
         question: "What does بَاطِل (bāṭil) mean?",
         options: ["Light", "Truth", "Guidance", "Falsehood"],
         correctAnswer: "Falsehood",
         explanation: "بَاطِل (bāṭil) means “falsehood”. The phrase وَلَا تَلْبِسُوا الْحَقَّ بِالْبَاطِلِ (wa lā talbisū-l-ḥaqqa bi-l-bāṭil – “Do not mix the truth with falsehood”) is in Surah Al-Baqarah (2:42). Four Arabic letters."
       },
       {
-        id: "qav-medium-030",
+        id: "qav-intermediate-030",
         question: "What does غَيْب (ghayb) mean?",
         options: ["The present", "The seen", "The past", "The unseen"],
         correctAnswer: "The unseen",
         explanation: "غَيْب (ghayb) means “the unseen”. The phrase الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ (alladhīna yu’minūna bi-l-ghayb – “who believe in the unseen”) is the first quality of the muttaqīn in Surah Al-Baqarah (2:3). Three Arabic letters."
       },
       {
-        id: "qav-medium-031",
+        id: "qav-intermediate-031",
         question: "What does يَقِين (yaqīn) mean?",
         options: ["Fear", "Doubt", "Hope", "Certainty"],
         correctAnswer: "Certainty",
         explanation: "يَقِين (yaqīn) means “certainty”. The phrase وَاعْبُدْ رَبَّكَ حَتَّىٰ يَأْتِيَكَ الْيَقِينُ (wa-ʿbud Rabbaka ḥattā ya’tiyaka-l-yaqīn – “And worship your Lord until there comes to you the certainty [death]”) is in Surah Al-Hijr (15:99). Four Arabic letters."
       },
       {
-        id: "qav-medium-032",
+        id: "qav-intermediate-032",
         question: "What does فِتْنَة (fitnah) mean?",
         options: ["Paradise", "Ease", "Reward", "Trial / tribulation"],
         correctAnswer: "Trial / tribulation",
         explanation: "فِتْنَة (fitnah) means “trial” or “tribulation”. The phrase وَالْفِتْنَةُ أَشَدُّ مِنَ الْقَتْلِ (wa-l-fitnatu ashaddu mina-l-qatl – “and fitnah is worse than killing”) is in Surah Al-Baqarah (2:191). Four Arabic letters."
       },
       {
-        id: "qav-medium-033",
+        id: "qav-intermediate-033",
         question: "What does أَجْر (ajr) mean?",
         options: ["Loss", "Punishment", "Debt", "Reward"],
         correctAnswer: "Reward",
         explanation: "أَجْر (ajr) means “reward”. The phrase لَهُمْ أَجْرُهُمْ عِندَ رَبِّهِمْ (lahum ajruhum ʿinda Rabbihim – “for them is their reward with their Lord”) appears for the righteous, e.g. Surah Al-Baqarah (2:62). Three Arabic letters."
       },
       {
-        id: "qav-medium-034",
+        id: "qav-intermediate-034",
         question: "What does وَحْي (waḥy) mean?",
         options: ["Dream only", "Speech", "Writing", "Revelation"],
         correctAnswer: "Revelation",
         explanation: "وَحْي (waḥy) means “revelation”. The phrase إِنْ هُوَ إِلَّا وَحْيٌ يُوحَىٰ (in huwa illā waḥyun yūḥā – “It is only a revelation revealed”) is in Surah An-Najm (53:4). Three Arabic letters."
       },
       {
-        id: "qav-medium-035",
+        id: "qav-intermediate-035",
         question: "What does مَسْجِد (masjid) mean?",
         options: ["School", "House", "Market", "Mosque / place of prostration"],
         correctAnswer: "Mosque / place of prostration",
         explanation: "مَسْجِد (masjid) means “mosque” (place of prostration). The phrase وَأَنَّ الْمَسَاجِدَ لِلَّهِ (wa anna-l-masājida li-llāh – “And the mosques are for Allah”) is in Surah Al-Jinn (72:18). Four Arabic letters."
       },
                 {
-        id: "qav-medium-036",
+        id: "qav-intermediate-036",
         question: "What does صَبْر (ṣabr) mean?",
         options: ["Haste", "Patience / perseverance", "Anger", "Forgetfulness"],
         correctAnswer: "Patience / perseverance",
         explanation: "صَبْر (ṣabr) means “patience” or “perseverance”. The phrase إِنَّ اللَّهَ مَعَ الصَّابِرِينَ (inna-llāha maʿa-ṣ-ṣābirīn – “Indeed, Allah is with the patient”) is in Surah Al-Baqarah (2:153)."
       },
       {
-        id: "qav-medium-037",
+        id: "qav-intermediate-037",
         question: "What does تَوَكُّل (tawakkul) mean?",
         options: ["Doubt", "Reliance upon Allah", "Planning only", "Fear of people"],
         correctAnswer: "Reliance upon Allah",
         explanation: "تَوَكُّل (tawakkul) means reliance upon Allah. The phrase وَعَلَى اللَّهِ فَتَوَكَّلُوا إِنْ كُنْتُمْ مُؤْمِنِينَ (wa ʿalā-llāhi fa-tawakkalū in kuntum muʾminīn – “And upon Allah rely, if you should be believers”) is in Surah Al-Ma’idah (5:23)."
       },
       {
-        id: "qav-medium-038",
+        id: "qav-intermediate-038",
         question: "What does إِخْلَاص (ikhlāṣ) mean?",
         options: ["Showing off", "Sincerity / purity of intention", "Hypocrisy", "Doubt"],
         correctAnswer: "Sincerity / purity of intention",
         explanation: "إِخْلَاص (ikhlāṣ) means sincerity. The phrase وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ (wa mā umirū illā li-yaʿbudū-llāha mukhliṣīna lahu-d-dīn – “And they were not commanded except to worship Allah, [being] sincere to Him in religion”) is in Surah Al-Bayyinah (98:5)."
       },
       {
-        id: "qav-medium-039",
+        id: "qav-intermediate-039",
         question: "What does تَوْحِيد (tawḥīd) mean?",
         options: ["Association of partners", "Oneness of Allah", "Denial of God", "Multiple gods"],
         correctAnswer: "Oneness of Allah",
         explanation: "تَوْحِيد (tawḥīd) means affirming the oneness of Allah. The phrase قُلْ هُوَ اللَّهُ أَحَدٌ (qul huwa-llāhu aḥad – “Say: He is Allah, the One”) in Surah Al-Ikhlas (112:1) is the essence of tawhid."
       },
       {
-        id: "qav-medium-040",
+        id: "qav-intermediate-040",
         question: "What does شِرْك (shirk) mean?",
         options: ["Gratitude", "Associating partners with Allah", "Prayer", "Charity"],
         correctAnswer: "Associating partners with Allah",
         explanation: "شِرْك (shirk) means associating partners with Allah. The phrase إِنَّ الشِّرْكَ لَظُلْمٌ عَظِيمٌ (inna-sh-shirka la-ẓulmun ʿaẓīm – “Indeed, association [with Him] is a great injustice”) is in Surah Luqman (31:13)."
       },
       {
-        id: "qav-medium-041",
+        id: "qav-intermediate-041",
         question: "What does كُفْر (kufr) mean?",
         options: ["Faith", "Disbelief / rejection of truth", "Gratitude", "Patience"],
         correctAnswer: "Disbelief / rejection of truth",
         explanation: "كُفْر (kufr) means disbelief. The phrase وَالَّذِينَ كَفَرُوا (wa-lladhīna kafarū – “And those who disbelieve”) is frequent, e.g. Surah Al-Baqarah (2:6)."
       },
       {
-        id: "qav-medium-042",
+        id: "qav-intermediate-042",
         question: "What does نِفَاق (nifāq) mean?",
         options: ["Sincerity", "Hypocrisy", "Courage", "Knowledge"],
         correctAnswer: "Hypocrisy",
         explanation: "نِفَاق (nifāq) means hypocrisy. The phrase إِنَّ الْمُنَافِقِينَ فِي الدَّرْكِ الْأَسْفَلِ مِنَ النَّارِ (inna-l-munāfiqīna fī-d-darki-l-asfali mina-n-nār – “Indeed, the hypocrites will be in the lowest depths of the Fire”) is in Surah An-Nisa (4:145)."
       },
       {
-        id: "qav-medium-043",
+        id: "qav-intermediate-043",
         question: "What does هُدًى (hudā) mean?",
         options: ["Misguidance", "Guidance", "Punishment", "Wealth"],
         correctAnswer: "Guidance",
         explanation: "هُدًى (hudā) means guidance. The phrase ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ (dhālika-l-kitābu lā rayba fīhi hudan li-l-muttaqīn – “This is the Book about which there is no doubt, a guidance for those conscious of Allah”) is in Surah Al-Baqarah (2:2)."
       },
       {
-        id: "qav-medium-044",
+        id: "qav-intermediate-044",
         question: "What does ضَلَال (ḍalāl) mean?",
         options: ["Guidance", "Misguidance / error", "Success", "Light"],
         correctAnswer: "Misguidance / error",
         explanation: "ضَلَال (ḍalāl) means misguidance. The phrase غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (ghayri-l-maghḍūbi ʿalayhim wa lā-ḍ-ḍāllīn – “not of those who have earned [Your] anger or of those who are astray”) is in Surah Al-Fatihah (1:7)."
       },
       {
-        id: "qav-medium-045",
+        id: "qav-intermediate-045",
         question: "What does نُور (nūr) mean?",
         options: ["Darkness", "Light", "Fire", "Shadow"],
         correctAnswer: "Light",
         explanation: "نُور (nūr) means light. The phrase اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ (allāhu nūru-s-samāwāti wa-l-arḍ – “Allah is the Light of the heavens and the earth”) is in Surah An-Nur (24:35)."
       },
       {
-        id: "qav-medium-046",
+        id: "qav-intermediate-046",
         question: "What does ظُلُمَات (ẓulumāt) mean?",
         options: ["Lights", "Darknesses", "Colors", "Shadows only"],
         correctAnswer: "Darknesses",
         explanation: "ظُلُمَات (ẓulumāt) means darknesses. The phrase يُخْرِجُهُمْ مِنَ الظُّلُمَاتِ إِلَى النُّورِ (yukhrijuhum mina-ẓ-ẓulumāti ilā-n-nūr – “He brings them out of darknesses into the light”) is in Surah Al-Baqarah (2:257)."
       },
       {
-        id: "qav-medium-047",
+        id: "qav-intermediate-047",
         question: "What does حَقّ (ḥaqq) mean?",
         options: ["Falsehood", "Truth / right", "Doubt", "Opinion"],
         correctAnswer: "Truth / right",
         explanation: "حَقّ (ḥaqq) means truth or right. The phrase ذَٰلِكَ بِأَنَّ اللَّهَ هُوَ الْحَقُّ (dhālika bi-anna-llāha huwa-l-ḥaqq – “That is because Allah is the Truth”) is in Surah Al-Hajj (22:6)."
       },
       {
-        id: "qav-medium-048",
+        id: "qav-intermediate-048",
         question: "What does بَاطِل (bāṭil) mean?",
         options: ["Truth", "Falsehood / vanity", "Justice", "Wisdom"],
         correctAnswer: "Falsehood / vanity",
         explanation: "بَاطِل (bāṭil) means falsehood. The phrase وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ (wa qul jāʾa-l-ḥaqqu wa zahaqa-l-bāṭil – “And say: Truth has come, and falsehood has departed”) is in Surah Al-Isra (17:81)."
       },
       {
-        id: "qav-medium-049",
+        id: "qav-intermediate-049",
         question: "What does عَدْل (ʿadl) mean?",
         options: ["Injustice", "Justice / fairness", "Anger", "Excess"],
         correctAnswer: "Justice / fairness",
         explanation: "عَدْل (ʿadl) means justice. The phrase إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ (inna-llāha yaʾmuru bi-l-ʿadli wa-l-iḥsān – “Indeed, Allah orders justice and good conduct”) is in Surah An-Nahl (16:90)."
       },
       {
-        id: "qav-medium-050",
+        id: "qav-intermediate-050",
         question: "What does ظُلْم (ẓulm) mean?",
         options: ["Justice", "Wrongdoing / oppression", "Mercy", "Guidance"],
         correctAnswer: "Wrongdoing / oppression",
         explanation: "ظُلْم (ẓulm) means wrongdoing or oppression. The phrase إِنَّ الشِّرْكَ لَظُلْمٌ عَظِيمٌ (inna-sh-shirka la-ẓulmun ʿaẓīm – “Indeed, association [with Him] is a great injustice”) is in Surah Luqman (31:13)."
       },
       {
-        id: "qav-medium-051",
+        id: "qav-intermediate-051",
         question: "What does رَحْمَة (raḥmah) mean?",
         options: ["Punishment", "Mercy / compassion", "Anger", "Fear"],
         correctAnswer: "Mercy / compassion",
         explanation: "رَحْمَة (raḥmah) means mercy. The phrase وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ (wa raḥmatī wasiʿat kulla shayʾ – “And My mercy encompasses all things”) is in Surah Al-A’raf (7:156)."
       },
       {
-        id: "qav-medium-052",
+        id: "qav-intermediate-052",
         question: "What does غَضَب (ghaḍab) mean?",
         options: ["Mercy", "Anger / wrath", "Joy", "Peace"],
         correctAnswer: "Anger / wrath",
         explanation: "غَضَب (ghaḍab) means anger or wrath. The phrase غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ (ghayri-l-maghḍūbi ʿalayhim – “not of those who have earned [Your] anger”) is in Surah Al-Fatihah (1:7)."
       },
       {
-        id: "qav-medium-053",
+        id: "qav-intermediate-053",
         question: "What does مَغْفِرَة (maghfirah) mean?",
         options: ["Punishment", "Forgiveness", "Reward only", "Warning"],
         correctAnswer: "Forgiveness",
         explanation: "مَغْفِرَة (maghfirah) means forgiveness. The phrase وَاللَّهُ يَدْعُو إِلَىٰ دَارِ السَّلَامِ وَيَهْدِي مَنْ يَشَاءُ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ (related); specifically وَاَللَّهُ غَفُورٌ رَحِيمٌ contexts; see نَغْفِرْ لَكُمْ خَطَايَاكُمْ in Surah Al-Baqarah (2:58) and مَغْفِرَةٍ مِنْ رَبِّكُمْ in Aal-Imran (3:133)."
       },
       {
-        id: "qav-medium-054",
+        id: "qav-intermediate-054",
         question: "What does تَوْبَة (tawbah) mean?",
         options: ["Persistence in sin", "Repentance / turning back to Allah", "Denial", "Pride"],
         correctAnswer: "Repentance / turning back to Allah",
         explanation: "تَوْبَة (tawbah) means repentance. The phrase إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ (inna-llāha yuḥibbu-t-tawwābīn – “Indeed, Allah loves those who are constantly repentant”) is in Surah Al-Baqarah (2:222)."
       },
       {
-        id: "qav-medium-055",
+        id: "qav-intermediate-055",
         question: "What does اِسْتِغْفَار (istighfār) mean?",
         options: ["Praising people", "Seeking forgiveness", "Complaining", "Arguing"],
         correctAnswer: "Seeking forgiveness",
         explanation: "اِسْتِغْفَار (istighfār) means seeking forgiveness. The phrase وَاسْتَغْفِرُوا اللَّهَ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ (wa-staghfirū-llāha inna-llāha ghafūrun raḥīm – “And ask forgiveness of Allah. Indeed, Allah is Forgiving and Merciful”) is in Surah Al-Baqarah (2:199)."
       },
       {
-        id: "qav-medium-056",
+        id: "qav-intermediate-056",
         question: "What does دُعَاء (duʿāʾ) mean?",
         options: ["Silence", "Supplication / prayer of request", "Argument", "Song"],
         correctAnswer: "Supplication / prayer of request",
         explanation: "دُعَاء (duʿāʾ) means supplication. The phrase ادْعُونِي أَسْتَجِبْ لَكُمْ (udʿūnī astajib lakum – “Call upon Me; I will respond to you”) is in Surah Ghafir (40:60)."
       },
       {
-        id: "qav-medium-057",
+        id: "qav-intermediate-057",
         question: "What does ذِكْر (dhikr) mean?",
         options: ["Forgetfulness", "Remembrance (of Allah)", "Sleep", "Idle talk"],
         correctAnswer: "Remembrance (of Allah)",
         explanation: "ذِكْر (dhikr) means remembrance. The phrase أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ (alā bi-dhikri-llāhi taṭmaʾinnu-l-qulūb – “Unquestionably, by the remembrance of Allah hearts are assured”) is in Surah Ar-Ra’d (13:28)."
       },
       {
-        id: "qav-medium-058",
+        id: "qav-intermediate-058",
         question: "What does شُكْر (shukr) mean?",
         options: ["Ingratitude", "Gratitude / thanks", "Complaint", "Silence"],
         correctAnswer: "Gratitude / thanks",
         explanation: "شُكْر (shukr) means gratitude. The phrase لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ (la-in shakartum la-azīdannakum – “If you are grateful, I will surely increase you [in favor]”) is in Surah Ibrahim (14:7)."
       },
       {
-        id: "qav-medium-059",
+        id: "qav-intermediate-059",
         question: "What does كُفْرَان (kufrān) mean in the sense of ingratitude?",
         options: ["Thanks", "Ingratitude / denial of favor", "Praise", "Hope"],
         correctAnswer: "Ingratitude / denial of favor",
         explanation: "كُفْرَان can mean ingratitude. The phrase لَئِنْ كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ (la-in kafartum inna ʿadhābī la-shadīd – “but if you deny, indeed, My punishment is severe”) is in Surah Ibrahim (14:7)."
       },
       {
-        id: "qav-medium-060",
+        id: "qav-intermediate-060",
         question: "What does فَضْل (faḍl) mean?",
         options: ["Deficiency", "Bounty / grace / favor", "Punishment", "Debt"],
         correctAnswer: "Bounty / grace / favor",
         explanation: "فَضْل (faḍl) means bounty or favor. The phrase ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ (dhālika faḍlu-llāhi yuʾtīhi man yashāʾ – “That is the bounty of Allah, which He gives to whom He wills”) is in Surah Al-Hadid (57:21)."
       },
       {
-        id: "qav-medium-061",
+        id: "qav-intermediate-061",
         question: "What does نِعْمَة (niʿmah) mean?",
         options: ["Calamity", "Blessing / favor", "Trial only", "Wealth only"],
         correctAnswer: "Blessing / favor",
         explanation: "نِعْمَة (niʿmah) means blessing. The phrase وَإِنْ تَعُدُّوا نِعْمَةَ اللَّهِ لَا تُحْصُوهَا (wa in taʿuddū niʿmata-llāhi lā tuḥṣūhā – “And if you should count the favors of Allah, you could not enumerate them”) is in Surah Ibrahim (14:34)."
       },
       {
-        id: "qav-medium-062",
+        id: "qav-intermediate-062",
         question: "What does بَلَاء (balāʾ) mean?",
         options: ["Comfort only", "Trial / test / affliction", "Reward", "Rest"],
         correctAnswer: "Trial / test / affliction",
         explanation: "بَلَاء (balāʾ) means trial or test. The phrase وَلَنَبْلُوَنَّكُمْ بِشَيْءٍ مِنَ الْخَوْفِ وَالْجُوعِ (wa la-nabluwannakum bi-shayʾin mina-l-khawfi wa-l-jūʿ – “And We will surely test you with something of fear and hunger”) is in Surah Al-Baqarah (2:155)."
       },
       {
-        id: "qav-medium-063",
+        id: "qav-intermediate-063",
         question: "What does فِتْنَة (fitnah) mean?",
         options: ["Peace only", "Trial / temptation / discord", "Certainty", "Unity"],
         correctAnswer: "Trial / temptation / discord",
         explanation: "فِتْنَة (fitnah) means trial, temptation, or discord. The phrase وَالْفِتْنَةُ أَشَدُّ مِنَ الْقَتْلِ (wa-l-fitnatu ashaddu mina-l-qatl – “And fitnah is worse than killing”) is in Surah Al-Baqarah (2:191)."
       },
       {
-        id: "qav-medium-064",
+        id: "qav-intermediate-064",
         question: "What does أَجْر (ajr) mean?",
         options: ["Loss", "Reward / wage", "Punishment", "Debt"],
         correctAnswer: "Reward / wage",
         explanation: "أَجْر (ajr) means reward. The phrase إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ لَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ (inna-lladhīna āmanū wa ʿamilū-ṣ-ṣāliḥāti lahum ajrun ghayru mamnūn – “Indeed, those who believe and do righteous deeds will have a reward uninterrupted”) is in Surah Fussilat (41:8)."
       },
       {
-        id: "qav-medium-065",
+        id: "qav-intermediate-065",
         question: "What does ثَوَاب (thawāb) mean?",
         options: ["Sin", "Reward (from Allah)", "Punishment", "Forgetfulness"],
         correctAnswer: "Reward (from Allah)",
         explanation: "ثَوَاب (thawāb) means reward from Allah. The phrase وَاللَّهُ عِنْدَهُ حُسْنُ الثَّوَابِ (wa-llāhu ʿindahu ḥusnu-th-thawāb – “And Allah has with Him the best reward”) is in Surah Aal-Imran (3:195)."
       },
       {
-        id: "qav-medium-066",
+        id: "qav-intermediate-066",
         question: "What does عِقَاب (ʿiqāb) mean?",
         options: ["Reward", "Punishment / retribution", "Pardon", "Delay"],
         correctAnswer: "Punishment / retribution",
         explanation: "عِقَاب (ʿiqāb) means punishment. The phrase وَاللَّهُ شَدِيدُ الْعِقَابِ (wa-llāhu shadīdu-l-ʿiqāb – “And Allah is severe in penalty”) is in Surah Al-Baqarah (2:196)."
       },
       {
-        id: "qav-medium-067",
+        id: "qav-intermediate-067",
         question: "What does حِسَاب (ḥisāb) mean?",
         options: ["Gift", "Account / reckoning", "Forgetfulness", "Play"],
         correctAnswer: "Account / reckoning",
         explanation: "حِسَاب (ḥisāb) means account or reckoning. The phrase إِنَّ إِلَيْنَا إِيَابَهُمْ ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُمْ (inna ilaynā iyābahum thumma inna ʿalaynā ḥisābahum – “Indeed, to Us is their return. Then indeed, upon Us is their account”) is in Surah Al-Ghashiyah (88:25–26)."
       },
       {
-        id: "qav-medium-068",
+        id: "qav-intermediate-068",
         question: "What does مِيزَان (mīzān) mean?",
         options: ["Sword", "Balance / scale", "Book", "Throne"],
         correctAnswer: "Balance / scale",
         explanation: "مِيزَان (mīzān) means balance or scale. The phrase وَنَضَعُ الْمَوَازِينَ الْقِسْطَ لِيَوْمِ الْقِيَامَةِ (wa naḍaʿu-l-mawāzīna-l-qisṭa li-yawmi-l-qiyāmah – “And We place the scales of justice for the Day of Resurrection”) is in Surah Al-Anbiya (21:47)."
       },
       {
-        id: "qav-medium-069",
+        id: "qav-intermediate-069",
         question: "What does صِرَاط (ṣirāṭ) mean?",
         options: ["Door", "Path / way", "Mountain", "River"],
         correctAnswer: "Path / way",
         explanation: "صِرَاط (ṣirāṭ) means path. The phrase اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (ihdinā-ṣ-ṣirāṭa-l-mustaqīm – “Guide us to the straight path”) is in Surah Al-Fatihah (1:6)."
       },
       {
-        id: "qav-medium-070",
+        id: "qav-intermediate-070",
         question: "What does سَبِيل (sabīl) mean?",
         options: ["Wall", "Way / path / means", "House", "Sky"],
         correctAnswer: "Way / path / means",
         explanation: "سَبِيل (sabīl) means way or path. The phrase فِي سَبِيلِ اللَّهِ (fī sabīli-llāh – “in the way of Allah”) is frequent, e.g. Surah Al-Baqarah (2:154)."
       },
       {
-        id: "qav-medium-071",
+        id: "qav-intermediate-071",
         question: "What does مَنْهَج (manhaj) / مِنْهَاج (minhāj) mean?",
         options: ["Random path", "Clear way / method", "Obstacle", "Secret"],
         correctAnswer: "Clear way / method",
         explanation: "مِنْهَاج (minhāj) means a clear way or method. The phrase لِكُلٍّ جَعَلْنَا مِنْكُمْ شِرْعَةً وَمِنْهَاجًا (li-kullin jaʿalnā minkum shirʿatan wa minhājā – “To each of you We prescribed a law and a method”) is in Surah Al-Ma’idah (5:48)."
       },
       {
-        id: "qav-medium-072",
+        id: "qav-intermediate-072",
         question: "What does شَرِيعَة (sharīʿah) mean?",
         options: ["Custom only", "Revealed law / path", "Opinion", "Culture"],
         correctAnswer: "Revealed law / path",
         explanation: "شَرِيعَة (sharīʿah) means revealed law or path. The phrase ثُمَّ جَعَلْنَاكَ عَلَىٰ شَرِيعَةٍ مِنَ الْأَمْرِ (thumma jaʿalnāka ʿalā sharīʿatin mina-l-amr – “Then We put you on an ordained way concerning the matter”) is in Surah Al-Jathiyah (45:18)."
       },
       {
-        id: "qav-medium-073",
+        id: "qav-intermediate-073",
         question: "What does أَمَانَة (amānah) mean?",
         options: ["Betrayal", "Trust / responsibility", "Secret only", "Gift"],
         correctAnswer: "Trust / responsibility",
         explanation: "أَمَانَة (amānah) means trust. The phrase إِنَّا عَرَضْنَا الْأَمَانَةَ عَلَى السَّمَاوَاتِ وَالْأَرْضِ (innā ʿaraḍnā-l-amānata ʿalā-s-samāwāti wa-l-arḍ – “Indeed, We offered the Trust to the heavens and the earth”) is in Surah Al-Ahzab (33:72)."
       },
       {
-        id: "qav-medium-074",
+        id: "qav-intermediate-074",
         question: "What does خِيَانَة (khiyānah) mean?",
         options: ["Loyalty", "Betrayal / treachery", "Honesty", "Courage"],
         correctAnswer: "Betrayal / treachery",
         explanation: "خِيَانَة (khiyānah) means betrayal. The phrase يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَخُونُوا اللَّهَ وَالرَّسُولَ (yā ayyuhā-lladhīna āmanū lā takhūnū-llāha wa-r-rasūl – “O you who have believed, do not betray Allah and the Messenger”) is in Surah Al-Anfal (8:27)."
       },
       {
-        id: "qav-medium-075",
+        id: "qav-intermediate-075",
         question: "What does عَهْد (ʿahd) mean?",
         options: ["Break", "Covenant / promise", "War", "Silence"],
         correctAnswer: "Covenant / promise",
         explanation: "عَهْد (ʿahd) means covenant or promise. The phrase وَأَوْفُوا بِالْعَهْدِ إِنَّ الْعَهْدَ كَانَ مَسْئُولًا (wa awfū bi-l-ʿahdi inna-l-ʿahda kāna masʾūlā – “And fulfill [every] commitment. Indeed, the commitment is ever [that about which one will be] questioned”) is in Surah Al-Isra (17:34)."
       },
       {
-        id: "qav-medium-076",
+        id: "qav-intermediate-076",
         question: "What does مِيثَاق (mīthāq) mean?",
         options: ["Casual talk", "Solemn covenant / pact", "Joke", "Rumour"],
         correctAnswer: "Solemn covenant / pact",
         explanation: "مِيثَاق (mīthāq) means a solemn covenant. The phrase وَإِذْ أَخَذْنَا مِيثَاقَكُمْ (wa idh akhadhnā mīthāqakum – “And [recall] when We took your covenant”) is in Surah Al-Baqarah (2:63)."
       },
       {
-        id: "qav-medium-077",
+        id: "qav-intermediate-077",
         question: "What does وَعْد (waʿd) mean?",
         options: ["Threat only", "Promise", "Denial", "Delay"],
         correctAnswer: "Promise",
         explanation: "وَعْد (waʿd) means promise. The phrase إِنَّ وَعْدَ اللَّهِ حَقٌّ (inna waʿda-llāhi ḥaqq – “Indeed, the promise of Allah is truth”) is in Surah Fatir (35:5)."
       },
       {
-        id: "qav-medium-078",
+        id: "qav-intermediate-078",
         question: "What does وَعِيد (waʿīd) mean?",
         options: ["Promise of good", "Threat / warning of punishment", "Praise", "Invitation"],
         correctAnswer: "Threat / warning of punishment",
         explanation: "وَعِيد (waʿīd) means a threat or warning of punishment. The phrase وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ … contexts; see كَذَّبُوا بِآيَاتِنَا فَأَخَذْنَاهُمْ and warnings; e.g. Surah Qaf (50:14) وَعِيدِ."
       },
       {
-        id: "qav-medium-079",
+        id: "qav-intermediate-079",
         question: "What does بُشْرَى (bushrā) mean?",
         options: ["Bad news", "Glad tidings / good news", "Silence", "Doubt"],
         correctAnswer: "Glad tidings / good news",
         explanation: "بُشْرَى (bushrā) means glad tidings. The phrase يُبَشِّرُهُمْ رَبُّهُمْ بِرَحْمَةٍ مِنْهُ (yubashshiruhum rabbuhum bi-raḥmatin minhu – “Their Lord gives them good tidings of mercy from Him”) is in Surah At-Tawbah (9:21)."
       },
       {
-        id: "qav-medium-080",
+        id: "qav-intermediate-080",
         question: "What does نَذِير (nadhīr) mean?",
         options: ["One who gives glad tidings only", "Warner", "Silent observer", "Judge only"],
         correctAnswer: "Warner",
         explanation: "نَذِير (nadhīr) means warner. The phrase إِنَّا أَرْسَلْنَاكَ شَاهِدًا وَمُبَشِّرًا وَنَذِيرًا (innā arsalnāka shāhidan wa mubashshiran wa nadhīrā – “Indeed, We have sent you as a witness and a bringer of good tidings and a warner”) is in Surah Al-Ahzab (33:45)."
       },
       {
-        id: "qav-medium-081",
+        id: "qav-intermediate-081",
         question: "What does بَشِير (bashīr) mean?",
         options: ["Warner only", "Bearer of glad tidings", "Enemy", "Stranger"],
         correctAnswer: "Bearer of glad tidings",
         explanation: "بَشِير (bashīr) means bearer of glad tidings. The phrase إِنَّا أَرْسَلْنَاكَ شَاهِدًا وَمُبَشِّرًا وَنَذِيرًا (innā arsalnāka shāhidan wa mubashshiran wa nadhīrā) is in Surah Al-Ahzab (33:45)."
       },
       {
-        id: "qav-medium-082",
+        id: "qav-intermediate-082",
         question: "What does رَسُول (rasūl) mean?",
         options: ["Ordinary person", "Messenger", "King only", "Poet"],
         correctAnswer: "Messenger",
         explanation: "رَسُول (rasūl) means messenger. The phrase مُحَمَّدٌ رَسُولُ اللَّهِ (Muḥammadun rasūlu-llāh – “Muhammad is the Messenger of Allah”) is in Surah Al-Fath (48:29)."
       },
       {
-        id: "qav-medium-083",
+        id: "qav-intermediate-083",
         question: "What does نَبِيّ (nabī) mean?",
         options: ["King", "Prophet", "Angel", "Scholar only"],
         correctAnswer: "Prophet",
         explanation: "نَبِيّ (nabī) means prophet. The phrase يَا أَيُّهَا النَّبِيُّ (yā ayyuhā-n-nabī – “O Prophet”) is frequent, e.g. Surah Al-Ahzab (33:1)."
       },
       {
-        id: "qav-medium-084",
+        id: "qav-intermediate-084",
         question: "What does وَحْي (waḥy) mean?",
         options: ["Guesswork", "Revelation / inspiration", "Dream only", "Poetry"],
         correctAnswer: "Revelation / inspiration",
         explanation: "وَحْي (waḥy) means revelation. The phrase إِنْ هُوَ إِلَّا وَحْيٌ يُوحَىٰ (in huwa illā waḥyun yūḥā – “It is not but a revelation revealed”) is in Surah An-Najm (53:4)."
       },
       {
-        id: "qav-medium-085",
+        id: "qav-intermediate-085",
         question: "What does كِتَاب (kitāb) mean?",
         options: ["Speech only", "Book / scripture", "Picture", "Number"],
         correctAnswer: "Book / scripture",
         explanation: "كِتَاب (kitāb) means book. The phrase ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ (dhālika-l-kitābu lā rayba fīh – “This is the Book about which there is no doubt”) is in Surah Al-Baqarah (2:2)."
       },
       {
-        id: "qav-medium-086",
+        id: "qav-intermediate-086",
         question: "What does قُرْآن (qurʾān) mean?",
         options: ["Any book", "The Quran (recitation / revealed Book)", "Poem", "Letter"],
         correctAnswer: "The Quran (recitation / revealed Book)",
         explanation: "قُرْآن (qurʾān) is the name of the revealed Book. The phrase إِنَّهُ لَقُرْآنٌ كَرِيمٌ (innahu la-qurʾānun karīm – “Indeed, it is a noble Quran”) is in Surah Al-Waqi’ah (56:77)."
       },
       {
-        id: "qav-medium-087",
+        id: "qav-intermediate-087",
         question: "What does آيَة (āyah) mean?",
         options: ["Chapter only", "Sign / verse", "Word only", "Book"],
         correctAnswer: "Sign / verse",
         explanation: "آيَة (āyah) means sign or verse. The phrase تِلْكَ آيَاتُ اللَّهِ نَتْلُوهَا عَلَيْكَ (tilka āyātu-llāhi natlūhā ʿalayk – “These are the verses of Allah which We recite to you”) is in Surah Al-Baqarah (2:252)."
       },
       {
-        id: "qav-medium-088",
+        id: "qav-intermediate-088",
         question: "What does سُورَة (sūrah) mean?",
         options: ["Single word", "Chapter of the Quran", "Footnote", "Title only"],
         correctAnswer: "Chapter of the Quran",
         explanation: "سُورَة (sūrah) means a chapter of the Quran. The phrase سُورَةٌ أَنْزَلْنَاهَا وَفَرَضْنَاهَا (sūratun anzalnāhā wa faraḍnāhā – “A surah which We have sent down and made obligatory”) is in Surah An-Nur (24:1)."
       },
       {
-        id: "qav-medium-089",
+        id: "qav-intermediate-089",
         question: "What does تَفْسِير (tafsīr) relate to in meaning?",
         options: ["Hiding meaning", "Explanation / interpretation", "Deletion", "Translation only"],
         correctAnswer: "Explanation / interpretation",
         explanation: "تَفْسِير relates to explaining. The phrase وَلَا يَأْتُونَكَ بِمَثَلٍ إِلَّا جِئْنَاكَ بِالْحَقِّ وَأَحْسَنَ تَفْسِيرًا (wa lā yaʾtūnaka bi-mathalin illā jiʾnāka bi-l-ḥaqqi wa aḥsana tafsīrā – “And they do not come to you with an argument except that We bring you the truth and the best explanation”) is in Surah Al-Furqan (25:33)."
       },
       {
-        id: "qav-medium-090",
+        id: "qav-intermediate-090",
         question: "What does حِكْمَة (ḥikmah) mean?",
         options: ["Foolishness", "Wisdom", "Wealth", "Strength only"],
         correctAnswer: "Wisdom",
         explanation: "حِكْمَة (ḥikmah) means wisdom. The phrase وَمَنْ يُؤْتَ الْحِكْمَةَ فَقَدْ أُوتِيَ خَيْرًا كَثِيرًا (wa man yuʾta-l-ḥikmata fa-qad ūtiya khayran kathīrā – “And whoever has been given wisdom has certainly been given much good”) is in Surah Al-Baqarah (2:269)."
       },
       {
-        id: "qav-medium-091",
+        id: "qav-intermediate-091",
         question: "What does عِلْم (ʿilm) mean?",
         options: ["Ignorance", "Knowledge", "Guess", "Opinion only"],
         correctAnswer: "Knowledge",
         explanation: "عِلْم (ʿilm) means knowledge. The phrase وَقُلْ رَبِّ زِدْنِي عِلْمًا (wa qul rabbi zidnī ʿilmā – “And say: My Lord, increase me in knowledge”) is in Surah Ta-Ha (20:114)."
       },
       {
-        id: "qav-medium-092",
+        id: "qav-intermediate-092",
         question: "What does جَهْل (jahl) mean?",
         options: ["Knowledge", "Ignorance", "Wisdom", "Insight"],
         correctAnswer: "Ignorance",
         explanation: "جَهْل (jahl) means ignorance. The phrase إِنِّي أَعِظُكَ أَنْ تَكُونَ مِنَ الْجَاهِلِينَ (innī aʿiẓuka an takūna mina-l-jāhilīn – “Indeed, I advise you, lest you be among the ignorant”) is in Surah Hud (11:46)."
       },
       {
-        id: "qav-medium-093",
+        id: "qav-intermediate-093",
         question: "What does فَهْم (fahm) mean?",
         options: ["Confusion", "Understanding", "Forgetting", "Repeating"],
         correctAnswer: "Understanding",
         explanation: "فَهْم (fahm) means understanding. The phrase فَفَهَّمْنَاهَا سُلَيْمَانَ (fa-fahhamnāhā Sulaymān – “And We gave understanding of the case to Solomon”) is in Surah Al-Anbiya (21:79)."
       },
       {
-        id: "qav-medium-094",
+        id: "qav-intermediate-094",
         question: "What does عَقْل (ʿaql) mean?",
         options: ["Madness", "Intellect / reason", "Emotion only", "Habit"],
         correctAnswer: "Intellect / reason",
         explanation: "عَقْل (ʿaql) means intellect. The phrase أَفَلَا تَعْقِلُونَ (a-fa-lā taʿqilūn – “Then will you not reason?”) is frequent, e.g. Surah Al-Baqarah (2:44)."
       },
       {
-        id: "qav-medium-095",
+        id: "qav-intermediate-095",
         question: "What does قَلْب (qalb) mean?",
         options: ["Hand", "Heart", "Eye", "Tongue"],
         correctAnswer: "Heart",
         explanation: "قَلْب (qalb) means heart. The phrase إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ (illā man atā-llāha bi-qalbin salīm – “But only one who comes to Allah with a sound heart”) is in Surah Ash-Shu’ara (26:89)."
       },
       {
-        id: "qav-medium-096",
+        id: "qav-intermediate-096",
         question: "What does نَفْس (nafs) mean?",
         options: ["Only “people”", "Soul / self", "Body only", "Name"],
         correctAnswer: "Soul / self",
         explanation: "نَفْس (nafs) means soul or self. The phrase كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ (kullu nafsin dhāʾiqatu-l-mawt – “Every soul will taste death”) is in Surah Aal-Imran (3:185)."
       },
       {
-        id: "qav-medium-097",
+        id: "qav-intermediate-097",
         question: "What does رُوح (rūḥ) mean?",
         options: ["Body", "Spirit / soul", "Blood", "Bone"],
         correctAnswer: "Spirit / soul",
         explanation: "رُوح (rūḥ) means spirit. The phrase وَيَسْأَلُونَكَ عَنِ الرُّوحِ (wa yasʾalūnaka ʿani-r-rūḥ – “And they ask you about the soul”) is in Surah Al-Isra (17:85)."
       },
       {
-        id: "qav-medium-098",
+        id: "qav-intermediate-098",
         question: "What does جَسَد (jasad) mean?",
         options: ["Spirit", "Body", "Shadow", "Name"],
         correctAnswer: "Body",
         explanation: "جَسَد (jasad) means body. The phrase وَمَا جَعَلْنَاهُمْ جَسَدًا لَا يَأْكُلُونَ الطَّعَامَ (wa mā jaʿalnāhum jasadan lā yaʾkulūna-ṭ-ṭaʿām – “And We did not make them [the messengers] bodies that did not eat food”) is in Surah Al-Anbiya (21:8)."
       },
       {
-        id: "qav-medium-099",
+        id: "qav-intermediate-099",
         question: "What does بَصَر (baṣar) mean?",
         options: ["Hearing", "Sight / vision", "Touch", "Smell"],
         correctAnswer: "Sight / vision",
         explanation: "بَصَر (baṣar) means sight. The phrase فَكَشَفْنَا عَنْكَ غِطَاءَكَ فَبَصَرُكَ الْيَوْمَ حَدِيدٌ (fa-kashafnā ʿanka ghiṭāʾaka fa-baṣaruka-l-yawma ḥadīd – “So We have removed from you your cover, so your sight, this Day, is sharp”) is in Surah Qaf (50:22)."
       },
       {
-        id: "qav-medium-100",
+        id: "qav-intermediate-100",
         question: "What does سَمْع (samʿ) mean?",
         options: ["Sight", "Hearing", "Speech", "Touch"],
         correctAnswer: "Hearing",
         explanation: "سَمْع (samʿ) means hearing. The phrase إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا (inna-s-samʿa wa-l-baṣara wa-l-fuʾāda kullu ulāʾika kāna ʿanhu masʾūlā – “Indeed, the hearing, the sight and the heart – about all those [one] will be questioned”) is in Surah Al-Isra (17:36)."
       },
       {
-        id: "qav-medium-101",
+        id: "qav-intermediate-101",
         question: "What does فُؤَاد (fuʾād) mean?",
         options: ["Hand", "Heart / inner heart", "Foot", "Eye"],
         correctAnswer: "Heart / inner heart",
         explanation: "فُؤَاد (fuʾād) means the heart (inner self). The phrase إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا is in Surah Al-Isra (17:36)."
       },
       {
-        id: "qav-medium-102",
+        id: "qav-intermediate-102",
         question: "What does صَدْر (ṣadr) mean?",
         options: ["Back", "Chest / breast (also: heart/mind)", "Head", "Hand"],
         correctAnswer: "Chest / breast (also: heart/mind)",
         explanation: "صَدْر (ṣadr) means chest; often the seat of feeling. The phrase أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ (a-lam nashraḥ laka ṣadrak – “Did We not expand for you your breast?”) is in Surah Ash-Sharh (94:1)."
       },
       {
-        id: "qav-medium-103",
+        id: "qav-intermediate-103",
         question: "What does تَقْوَى (taqwā) mean?",
         options: ["Pride", "God-consciousness / piety", "Neglect", "Fear of people only"],
         correctAnswer: "God-consciousness / piety",
         explanation: "تَقْوَى (taqwā) means God-consciousness. The phrase إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ أَتْقَاكُمْ (inna akramakum ʿinda-llāhi atqākum – “Indeed, the most noble of you in the sight of Allah is the most righteous of you”) is in Surah Al-Hujurat (49:13)."
       },
       {
-        id: "qav-medium-104",
+        id: "qav-intermediate-104",
         question: "What does إِحْسَان (iḥsān) mean?",
         options: ["Wrongdoing", "Excellence / doing good beautifully", "Laziness", "Minimal effort"],
         correctAnswer: "Excellence / doing good beautifully",
         explanation: "إِحْسَان (iḥsān) means excellence in doing good. The phrase إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ (inna-llāha yaʾmuru bi-l-ʿadli wa-l-iḥsān – “Indeed, Allah orders justice and good conduct”) is in Surah An-Nahl (16:90)."
       },
       {
-        id: "qav-medium-105",
+        id: "qav-intermediate-105",
         question: "What does بِرّ (birr) mean?",
         options: ["Sin", "Righteousness / kindness", "Harshness", "Neglect"],
         correctAnswer: "Righteousness / kindness",
         explanation: "بِرّ (birr) means righteousness. The phrase لَيْسَ الْبِرَّ أَنْ تُوَلُّوا وُجُوهَكُمْ (laysa-l-birra an tuwallū wujūhakum – “Righteousness is not that you turn your faces…”) is in Surah Al-Baqarah (2:177)."
       },
       {
-        id: "qav-medium-106",
+        id: "qav-intermediate-106",
         question: "What does إِثْم (ithm) mean?",
         options: ["Reward", "Sin / guilt", "Pardon", "Praise"],
         correctAnswer: "Sin / guilt",
         explanation: "إِثْم (ithm) means sin. The phrase وَالْإِثْمَ وَالْبَغْيَ بِغَيْرِ الْحَقِّ (wa-l-ithma wa-l-baghya bi-ghayri-l-ḥaqq – “and sin and oppression without right”) is in Surah Al-A’raf (7:33)."
       },
       {
-        id: "qav-medium-107",
+        id: "qav-intermediate-107",
         question: "What does ذَنْب (dhanb) mean?",
         options: ["Good deed", "Sin / fault", "Reward", "Gift"],
         correctAnswer: "Sin / fault",
         explanation: "ذَنْب (dhanb) means sin. The phrase وَمَنْ يَغْفِرُ الذُّنُوبَ إِلَّا اللَّهُ (wa man yaghfiru-dh-dhunūba illā-llāh – “And who can forgive sins except Allah?”) is in Surah Aal-Imran (3:135)."
       },
       {
-        id: "qav-medium-108",
+        id: "qav-intermediate-108",
         question: "What does سَيِّئَة (sayyiʾah) mean?",
         options: ["Good deed", "Evil deed / bad action", "Neutral act", "Reward"],
         correctAnswer: "Evil deed / bad action",
         explanation: "سَيِّئَة (sayyiʾah) means an evil deed. The phrase مَنْ جَاءَ بِالسَّيِّئَةِ فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا (man jāʾa bi-s-sayyiʾati fa-lā yujzā illā mithlahā – “And whoever comes with an evil deed will not be recompensed except [with] the like thereof”) is in Surah Al-An’am (6:160)."
       },
       {
-        id: "qav-medium-109",
+        id: "qav-intermediate-109",
         question: "What does حَسَنَة (ḥasanah) mean?",
         options: ["Evil deed", "Good deed / good thing", "Accident", "Loss"],
         correctAnswer: "Good deed / good thing",
         explanation: "حَسَنَة (ḥasanah) means a good deed. The phrase مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا (man jāʾa bi-l-ḥasanati fa-lahu ʿashru amthālihā – “Whoever comes with a good deed will have ten times the like thereof”) is in Surah Al-An’am (6:160)."
       },
       {
-        id: "qav-medium-110",
+        id: "qav-intermediate-110",
         question: "What does صَالِح (ṣāliḥ) mean?",
         options: ["Corrupt", "Righteous / good", "Lazy", "Ignorant"],
         correctAnswer: "Righteous / good",
         explanation: "صَالِح (ṣāliḥ) means righteous. The phrase وَعَمِلُوا الصَّالِحَاتِ (wa ʿamilū-ṣ-ṣāliḥāt – “and do righteous deeds”) is frequent, e.g. Surah Al-Baqarah (2:25)."
       },
       {
-        id: "qav-medium-111",
+        id: "qav-intermediate-111",
         question: "What does فَاسِد (fāsid) / فَسَاد (fasād) mean?",
         options: ["Reform", "Corruption / disorder", "Peace", "Growth"],
         correctAnswer: "Corruption / disorder",
         explanation: "فَسَاد (fasād) means corruption. The phrase وَلَا تُفْسِدُوا فِي الْأَرْضِ بَعْدَ إِصْلَاحِهَا (wa lā tufsidū fī-l-arḍi baʿda iṣlāḥihā – “And do not cause corruption upon the earth after its reformation”) is in Surah Al-A’raf (7:56)."
       },
       {
-        id: "qav-medium-112",
+        id: "qav-intermediate-112",
         question: "What does إِصْلَاح (iṣlāḥ) mean?",
         options: ["Corruption", "Reform / setting right", "Destruction", "Neglect"],
         correctAnswer: "Reform / setting right",
         explanation: "إِصْلَاح (iṣlāḥ) means reform. The phrase إِنْ أُرِيدُ إِلَّا الْإِصْلَاحَ مَا اسْتَطَعْتُ (in urīdu illā-l-iṣlāḥa mā-staṭaʿt – “I only intend reform as much as I am able”) is in Surah Hud (11:88)."
       },
       {
-        id: "qav-medium-113",
+        id: "qav-intermediate-113",
         question: "What does وَلِيّ (walī) mean?",
         options: ["Enemy", "Ally / protector / close friend", "Stranger", "Slave only"],
         correctAnswer: "Ally / protector / close friend",
         explanation: "وَلِيّ (walī) means ally or protector. The phrase اللَّهُ وَلِيُّ الَّذِينَ آمَنُوا (allāhu waliyyu-lladhīna āmanū – “Allah is the ally of those who believe”) is in Surah Al-Baqarah (2:257)."
       },
       {
-        id: "qav-medium-114",
+        id: "qav-intermediate-114",
         question: "What does عَدُوّ (ʿaduww) mean?",
         options: ["Friend", "Enemy", "Teacher", "Neighbor"],
         correctAnswer: "Enemy",
         explanation: "عَدُوّ (ʿaduww) means enemy. The phrase إِنَّ الشَّيْطَانَ لَكُمْ عَدُوٌّ فَاتَّخِذُوهُ عَدُوًّا (inna-sh-shayṭāna lakum ʿaduwwun fa-ttakhidhūhu ʿaduwwā – “Indeed, Satan is an enemy to you; so take him as an enemy”) is in Surah Fatir (35:6)."
       },
       {
-        id: "qav-medium-115",
+        id: "qav-intermediate-115",
         question: "What does حَبِيب (ḥabīb) / مَحَبَّة related sense mean?",
         options: ["Hatred", "Beloved / love", "Fear", "Indifference"],
         correctAnswer: "Beloved / love",
         explanation: "Related to love: the phrase يُحِبُّهُمْ وَيُحِبُّونَهُ (yuḥibbuhum wa yuḥibbūnahu – “He will love them and they will love Him”) is in Surah Al-Ma’idah (5:54)."
       },
       {
-        id: "qav-medium-116",
+        id: "qav-intermediate-116",
         question: "What does خَوْف (khawf) mean?",
         options: ["Safety", "Fear", "Joy", "Sleep"],
         correctAnswer: "Fear",
         explanation: "خَوْف (khawf) means fear. The phrase فَلَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ (fa-lā khawfun ʿalayhim wa lā hum yaḥzanūn – “no fear will there be concerning them, nor will they grieve”) is in Surah Al-Baqarah (2:62)."
       },
       {
-        id: "qav-medium-117",
+        id: "qav-intermediate-117",
         question: "What does حُزْن (ḥuzn) mean?",
         options: ["Happiness", "Grief / sadness", "Anger", "Surprise"],
         correctAnswer: "Grief / sadness",
         explanation: "حُزْن (ḥuzn) means grief. The phrase فَلَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ (fa-lā khawfun ʿalayhim wa lā hum yaḥzanūn) is in Surah Al-Baqarah (2:62)."
       },
       {
-        id: "qav-medium-118",
+        id: "qav-intermediate-118",
         question: "What does رَجَاء (rajāʾ) mean?",
         options: ["Despair", "Hope", "Certainty of failure", "Anger"],
         correctAnswer: "Hope",
         explanation: "رَجَاء (rajāʾ) means hope. The phrase وَيَرْجُونَ رَحْمَتَهُ (wa yarjūna raḥmatahu – “and they hope for His mercy”) appears e.g. in Surah Al-Isra (17:57)."
       },
       {
-        id: "qav-medium-119",
+        id: "qav-intermediate-119",
         question: "What does يَأْس (yaʾs) mean?",
         options: ["Hope", "Despair", "Patience", "Joy"],
         correctAnswer: "Despair",
         explanation: "يَأْس (yaʾs) means despair. The phrase إِنَّهُ لَا يَيْأَسُ مِنْ رَوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ (innahu lā yayʾasu min rawḥi-llāhi illā-l-qawmu-l-kāfirūn – “Indeed, no one despairs of relief from Allah except the disbelieving people”) is in Surah Yusuf (12:87)."
       },
       {
-        id: "qav-medium-120",
+        id: "qav-intermediate-120",
         question: "What does طَمَع (ṭamaʿ) mean?",
         options: ["Contentment", "Greed / eager desire", "Generosity", "Fear"],
         correctAnswer: "Greed / eager desire",
         explanation: "طَمَع (ṭamaʿ) means eager desire or greed. The phrase وَلَا تَتَمَنَّوْا مَا فَضَّلَ اللَّهُ بِهِ بَعْضَكُمْ عَلَىٰ بَعْضٍ contexts of desire; related: see طَمَعًا in e.g. Surah Al-A’raf (7:56) وَادْعُوهُ خَوْفًا وَطَمَعًا."
       },
       {
-        id: "qav-medium-121",
+        id: "qav-intermediate-121",
         question: "What does رِضَا (riḍā) mean?",
         options: ["Anger", "Pleasure / contentment (of Allah or a person)", "Doubt", "Fear"],
         correctAnswer: "Pleasure / contentment (of Allah or a person)",
         explanation: "رِضَا (riḍā) means pleasure or contentment. The phrase رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ (raḍiya-llāhu ʿanhum wa raḍū ʿanhu – “Allah is pleased with them and they are pleased with Him”) is in Surah Al-Bayyinah (98:8)."
       },
       {
-        id: "qav-medium-122",
+        id: "qav-intermediate-122",
         question: "What does سَكِينَة (sakīnah) mean?",
         options: ["Turmoil", "Tranquility / calm", "Noise", "Fear"],
         correctAnswer: "Tranquility / calm",
         explanation: "سَكِينَة (sakīnah) means tranquility. The phrase هُوَ الَّذِي أَنْزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ (huwa-lladhī anzala-s-sakīnata fī qulūbi-l-muʾminīn – “It is He who sent down tranquility into the hearts of the believers”) is in Surah Al-Fath (48:4)."
       },
       {
-        id: "qav-medium-123",
+        id: "qav-intermediate-123",
         question: "What does طُمَأْنِينَة (ṭumaʾnīnah) mean?",
         options: ["Anxiety", "Reassurance / peace of heart", "Confusion", "Doubt"],
         correctAnswer: "Reassurance / peace of heart",
         explanation: "طُمَأْنِينَة (ṭumaʾnīnah) means reassurance. The phrase أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ (alā bi-dhikri-llāhi taṭmaʾinnu-l-qulūb – “Unquestionably, by the remembrance of Allah hearts are assured”) is in Surah Ar-Ra’d (13:28)."
       },
       {
-        id: "qav-medium-124",
+        id: "qav-intermediate-124",
         question: "What does يَقِين (yaqīn) mean?",
         options: ["Doubt", "Certainty", "Guess", "Hope only"],
         correctAnswer: "Certainty",
         explanation: "يَقِين (yaqīn) means certainty. The phrase وَاعْبُدْ رَبَّكَ حَتَّىٰ يَأْتِيَكَ الْيَقِينُ (wa-ʿbud rabbaka ḥattā yaʾtiyaka-l-yaqīn – “And worship your Lord until there comes to you the certainty [death]”) is in Surah Al-Hijr (15:99)."
       },
       {
-        id: "qav-medium-125",
+        id: "qav-intermediate-125",
         question: "What does غَيْب (ghayb) mean?",
         options: ["What is seen", "The unseen", "The past only", "The present only"],
         correctAnswer: "The unseen",
