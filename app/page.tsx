@@ -277,6 +277,8 @@ export default function HomePage() {
                             </Button>
                           </CardFooter>
                         </Card>
+                    </div>
+        </section>
             
                 {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
         <section
