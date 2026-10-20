@@ -269,7 +269,7 @@ export default function HomePage() {
                   asChild
                   className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
                 >
-                  <Link href="/challenges">View All Challenges</Link>
+                  <Link href="/challenges">View All Players</Link>
                 </Button>
               </CardFooter>
             </Card>
