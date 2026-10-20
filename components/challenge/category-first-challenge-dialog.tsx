@@ -43,6 +43,7 @@ import {
   Compass,
   Globe,
   AlertCircle,
+  Wind,
   WineOff,
 } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
@@ -378,6 +379,16 @@ const surahCategories = [
     textColor: "text-green-700",
     bgLight: "bg-green-50",
     borderColor: "border-green-300",
+  },
+   {
+    id: "surah-79",
+    label: "Surah An-Naziah (79)",
+    description: "Those Who Drag Forth — Surah 78",
+    icon: Wind,
+    color: "bg-blue-500 hover:bg-blue-600",
+    textColor: "text-blue-700",
+    bgLight: "bg-blue-50",
+    borderColor: "border-blue-300",
   },
 ]
 
