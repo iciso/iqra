@@ -445,7 +445,7 @@ export default function QuizContainer({
             size="icon"
             className="rounded-full dark:border-green-700 dark:text-green-400 bg-transparent"
           >
-            <Home className="h-4 w-4" />
+           
             <span className="sr-only">{challengeMode ? "Challenges" : "Categories"}</span>
           </Button>
         </Link>
