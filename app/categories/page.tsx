@@ -161,8 +161,8 @@ function TamilIslamSection({
                   }`}
                 >
                   <span className="flex flex-col items-center">
-                    <SurahIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                    <span className="mt-2 font-medium dark:text-white">{surah.title}</span>
+                    <TamilIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+                    <span className="mt-2 font-medium dark:text-white">{tamil.title}</span>
                     <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{tamil.description}</span>
                     {isSelected && (
                       <span className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">
