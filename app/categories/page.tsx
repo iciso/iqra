@@ -127,7 +127,7 @@ const tamilCategories = [
     id: "ta-fiqh",
     title: "ஃபிக்ஹ்",
     description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
-    icon: Speech,
+    icon: Scale,
   }
 ]
 
