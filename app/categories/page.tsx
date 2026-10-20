@@ -319,7 +319,7 @@ export default function CategoriesPage() {
       </section>
 
        {/* New separate section for individual Tamil question banks */}
-      <TamilIslamicSection
+      <TamilIslamSection
         selectedCategory={selectedCategory}
         setSelectedCategory={handleSelectCategory}
       />
