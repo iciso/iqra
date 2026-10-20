@@ -667,7 +667,7 @@ const challengeData = {
                            Quranic Studies
                           </h4>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {challengeCategories.map((category) => {
+                            {surahCategories.map((category) => {
                               const IconComponent = category.icon
                               const isSelected = selectedCategory === category.id
                               return (
