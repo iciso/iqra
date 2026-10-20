@@ -123,6 +123,12 @@ const tamilCategories = [
     description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
     icon: Book,
   },
+    {
+    id: "ta-fiqh",
+    title: "ஃபிக்ஹ்",
+    description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
+    icon: Speech,
+  }
 ]
 
 function TamilIslamSection({
