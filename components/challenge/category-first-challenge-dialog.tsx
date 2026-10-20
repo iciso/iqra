@@ -381,7 +381,7 @@ const tamilCategories = [
     borderColor: "border-red-300",
   }, 
    {
-    id: "fiqh",
+    id: "ta-fiqh",
     label: "ஃபிக்ஹ்",
     description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
     icon: Scale,
