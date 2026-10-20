@@ -140,7 +140,7 @@ function TamilIslamSection({
             தமிழ் இஸ்லாமிய ஆய்வுகள்
           </CardTitle>
           <CardDescription className="text-emerald-700 dark:text-emerald-500">
-            இஸ்லாமிய தலைப்புகள் குறித்த தமிழ் வினாடி-வினாக்களில் பயிற்சி செய்யுங்கள்.
+            இஸ்லாமிய தலைப்புகள்
           </CardDescription>
         </CardHeader>
         <CardContent>
