@@ -369,6 +369,19 @@ const challengeCategories = [
   },
 ]
 
+const tamilCategories = [
+{
+    id: "ta-quran",
+    label: "குர்ஆன்",
+    description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
+    icon: Book,
+    color: "bg-red-500 hover:bg-red-600",
+    textColor: "text-red-700",
+    bgLight: "bg-red-50",
+    borderColor: "border-red-300",
+  }, 
+]
+
 const surahCategories = [
   {
     id: "surah-78",
