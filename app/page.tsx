@@ -242,40 +242,42 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            {/* Keep the live player/challenge list on the home page. */}
-            <Card className="w-full border-2 border-green-200 bg-white shadow-md">
-              <CardHeader className="pb-2 text-center">
-                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16">
-                  <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
-                </div>
-                <CardTitle className="text-xl text-green-800 sm:text-2xl">
-                  IQRA Players
-                </CardTitle>
-                <CardDescription className="text-sm sm:text-base">
-                  Find a player and challenge them
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-2 sm:px-6">
-                <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800">
-                  <Trophy className="h-4 w-4" />
-                  Available players and top scores
-                </div>
-                <div className="w-full overflow-x-auto">
-                  <SimpleTopPlayers />
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-center pt-0">
-                <Button
-                  asChild
-                  className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
-                >
-                  <Link href="/challenges">View All Players</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </section>
-
+                                   {/* Keep the live player/challenge list, but limit height=other cards on the home page. */}
+                        <Card className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md">
+                          <CardHeader className="pb-2 text-center">
+                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16">
+                              <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
+                            </div>
+                            <CardTitle className="text-xl text-green-800 sm:text-2xl">
+                              IQRA Players
+                            </CardTitle>
+                            <CardDescription className="text-sm sm:text-base">
+                              Find a player and challenge them
+                            </CardDescription>
+                          </CardHeader>
+                        
+                          <CardContent className="flex min-h-0 flex-1 flex-col px-2 sm:px-6">
+                            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800">
+                              <Trophy className="h-4 w-4" />
+                              Available players and top scores
+                            </div>
+                        
+                            {/* Cap list height so this card matches Surah-Quiz; list scrolls inside */}
+                            <div className="max-h-[280px] w-full overflow-y-auto overflow-x-auto sm:max-h-[320px]">
+                              <SimpleTopPlayers />
+                            </div>
+                          </CardContent>
+                        
+                          <CardFooter className="mt-auto flex justify-center pt-0">
+                            <Button
+                              asChild
+                              className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
+                            >
+                              <Link href="/challenges">View All Players</Link>
+                            </Button>
+                          </CardFooter>
+                        </Card>
+            
                 {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
         <section
           aria-labelledby="arabic-vocabulary-heading"
