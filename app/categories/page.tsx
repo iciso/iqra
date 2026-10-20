@@ -318,6 +318,12 @@ export default function CategoriesPage() {
         </Card>
       </section>
 
+       {/* New separate section for individual Tamil question banks */}
+      <TamilIslamicSection
+        selectedCategory={selectedCategory}
+        setSelectedCategory={handleSelectCategory}
+      />
+
       {/* New separate section for individual Qur'an Surah question banks */}
       <QuranSurahSection
         selectedCategory={selectedCategory}
