@@ -133,7 +133,7 @@ function TamilIslamSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="quran-surah-studies" className="w-full max-w-3xl mt-8 scroll-mt-6">
+    <section id="tamil-islam-studies" className="w-full max-w-3xl mt-8 scroll-mt-6">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
@@ -145,15 +145,15 @@ function TamilIslamSection({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {surahCategories.map((surah) => {
-              const SurahIcon = surah.icon
-              const isSelected = selectedCategory === surah.id
+            {tamilCategories.map((tamil) => {
+              const TamilIcon = tamil.icon
+              const isSelected = selectedCategory === tamil.id
               return (
                 <button
                   type="button"
-                  key={surah.id}
+                  key={tamil.id}
                   aria-pressed={isSelected}
-                  onClick={() => setSelectedCategory(surah.id)}
+                  onClick={() => setSelectedCategory(tamil.id)}
                   className={`rounded-lg border p-4 text-center transition-colors ${
                     isSelected
                       ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/50 dark:border-emerald-600"
@@ -163,7 +163,7 @@ function TamilIslamSection({
                   <span className="flex flex-col items-center">
                     <SurahIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
                     <span className="mt-2 font-medium dark:text-white">{surah.title}</span>
-                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{surah.description}</span>
+                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{tamil.description}</span>
                     {isSelected && (
                       <span className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">
                         Selected ✓
