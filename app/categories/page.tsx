@@ -120,7 +120,7 @@ const tamilCategories = [
   {
     id: "ta-quran",
     title: "குர்ஆன்",
-    description: "புனித குர்ஆனைப் பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள்",
+    description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
     icon: Book,
   },
 ]
@@ -140,7 +140,7 @@ function TamilIslamSection({
             தமிழ் இஸ்லாமிய ஆய்வுகள்
           </CardTitle>
           <CardDescription className="text-emerald-700 dark:text-emerald-500">
-            இஸ்லாமிய தலைப்புகள்
+            பயிற்சி செய்வதற்கு ஓர் இஸ்லாமியக் கல்வித் தலைப்பைத் தேர்ந்தெடுக்கவும்
           </CardDescription>
         </CardHeader>
         <CardContent>
