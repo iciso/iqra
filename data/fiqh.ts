@@ -4,7 +4,7 @@ const fiqhCategory: QuizCategory = {
   id: "fiqh",
   title: "Fiqh",
   description: "Islamic Jurisprudence",
-  icon: "speech",
+  icon: "Scale",
   levels: {
     easy: [
         {
