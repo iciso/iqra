@@ -30,6 +30,8 @@ import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
 import surah78Category from "./surah-78";
+import surah79Category from "./surah-79";
+import taQuranCategory from "./ta-quran"; 
 import quranicArabic01Category from "./quranic-arabic-01";
 import modernArabic01Category from "./modern-arabic-01";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
@@ -66,6 +68,8 @@ const quizData: QuizCategory[] = [
   sawmCategory,
   islamicEschatologyCategory,
   surah78Category,
+  surah79Category,
+  taQuranCategory,
   quranicArabic01Category,
   modernArabic01Category,
   medicalEthicsCategory,
