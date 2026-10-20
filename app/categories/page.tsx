@@ -8,7 +8,7 @@ import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Telescope,
-  Percent, Rainbow, Circle, HandHeart, WineOff,
+  Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -187,6 +187,12 @@ const surahCategories = [
     title: "Surah An-Naba (78)",
     description: "The Great News — Surah 78",
     icon: Megaphone,
+  },
+  {
+    id: "surah-79",
+    title: "Surah An-Naziat (79)",
+    description: "Those Who Drag Forth — Surah 79",
+    icon: Wind,
   },
 ]
 
