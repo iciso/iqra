@@ -20,8 +20,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://iqrar.vercel.app/"),
-  title: "IQRA - Islamic Quiz Rivalry App",
-  description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
+  title: "IQRA 🏆 Islamic Quiz Rivalry App",
+  description: "Learn and test your Islamic knowledge through interactive quizzes💡🧠❓and challenges",
   keywords:
     "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
   manifest: "/manifest.json",
@@ -34,15 +34,15 @@ export const metadata: Metadata = {
     title: "IQRA",
   },
   openGraph: {
-    title: "IQRA - Islamic Quiz Rivalry App",
-    description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
+    title: "IQRA 🏆 Islamic Quiz Rivalry App",
+    description: "Learn and test your Islamic knowledge through interactive quizzes💡🧠❓and challenges",
     images: [{ url: "/logo.png" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IQRA - Islamic Quiz Rivalry App",
-    description: "Learn and test your Islamic knowledge through interactive quizzes and challenges",
+    title: "IQRA 🏆 Islamic Quiz Rivalry App",
+    description: "Learn and test your Islamic knowledge through interactive quizzes💡🧠❓and challenges",
     images: [{ url: "/logo.png" }],
   },
   icons: {
