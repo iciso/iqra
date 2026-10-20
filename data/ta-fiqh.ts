@@ -4,7 +4,7 @@ const taFiqhCategory: QuizCategory = {
   id: "ta-fiqh",
   title: "ஃபிக்ஹ்",
   description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
-  icon: "speech",
+  icon: "Scale",
   levels: {
     easy: [
       {
