@@ -28,7 +28,7 @@ const categories = [
   { id: "new-muslims", title: "New Muslims", description: "Essentials for New Muslims", icon: <Compass className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "comparative", title: "Comparative Religion", description: "Faiths, Non-Faiths & Islam", icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "christ", title: "Christianity", description: "Islam and Christianity", icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" /> },
-  { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <Dashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "riba", title: "Usury or interest", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "bidah", title: "Bidah", description: "Bidah & Tawhid", icon: <CirclePlus className="h-8 w-8 text-green-600 dark:text-green-400" /> }, 
   { id: "islamic-finance", title: "Islamic Finance", description: "Islamic Economics", icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -121,7 +121,7 @@ const tamilCategories = [
     id: "ta-quran",
     title: "குர்ஆன்",
     description: "புனித குர்ஆனைப் பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள்",
-    icon: "Book",
+    icon: Book,
   },
 ]
 
