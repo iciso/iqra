@@ -26,18 +26,20 @@ import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import salahCategory from "./salah";
 import sawmCategory from "./sawm";
+import hajjCategory from "./hajj";
 import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
 import surah78Category from "./surah-78";
 import surah79Category from "./surah-79";
+import surah80Category from "./surah-80";
 import taQuranCategory from "./ta-quran"; 
 import taFiqhCategory from "./ta-fiqh"; 
 import quranicArabic01Category from "./quranic-arabic-01";
 import modernArabic01Category from "./modern-arabic-01";
 import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographics";
 
-// Define all quiz categories as Quran removed on 23 Jul 25  
+// Define all quiz categories here  
 const quizData: QuizCategory[] = [
   quranCategory,
   seerahCategory,
@@ -67,9 +69,11 @@ const quizData: QuizCategory[] = [
   peaceCategory,
   salahCategory,
   sawmCategory,
+  hajjCategory,
   islamicEschatologyCategory,
   surah78Category,
   surah79Category,
+  surah80Category,
   taQuranCategory,
   taFiqhCategory,
   quranicArabic01Category,
