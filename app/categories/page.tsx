@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
-  Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Telescope,
+  Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Sprout, Telescope,
   Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -191,14 +191,20 @@ const surahCategories = [
   {
     id: "surah-78",
     title: "Surah An-Naba (78)",
-    description: "The Great News — Surah 78",
+    description: "The Great News",
     icon: Megaphone,
   },
   {
     id: "surah-79",
     title: "Surah An-Naziat (79)",
-    description: "Those Who Drag Forth — Surah 79",
+    description: "Those Who Drag Forth",
     icon: Wind,
+  },
+  {
+    id: "surah-80",
+    title: "Surah Abasa (80)",
+    description: "He Frowned",
+    icon: Sprout,
   },
 ]
 
