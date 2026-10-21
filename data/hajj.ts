@@ -440,10 +440,10 @@ const hajjCategory: QuizCategory = {
           "Idtiba' (placing the middle of the upper garment under the right armpit and the ends over the left shoulder) is a Sunnah during the Tawaf of arrival for those who will perform Sa'i afterwards.",
       },
       {
-        question: "What is the Sunnah regarding the pace of walking during the first three circuits of Tawaf for men?",
+        question: "What is the Sunnah regarding the pace of walking during the first three circuits of Tawaf on arrival for men?",
         options: [
           "Always walk slowly",
-          "Raml (walking quickly with short steps) during the first three circuits of the arrival Tawaf",
+          "Raml or walking quickly with short steps",
           "Run at full speed all seven circuits",
           "There is no Sunnah regarding pace",
         ],
