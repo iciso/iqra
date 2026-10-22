@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import {
+  ArrowUp,
   Gamepad2,
   User,
   Users,
@@ -23,7 +24,6 @@ import {
   Percent,
   Scale,
   Scroll,
-  Mosque,
   CirclePlus,
   Heart,
   Hourglass,
@@ -186,6 +186,15 @@ const tamilCategories = [
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
     bgLight: "bg-green-50",
+  },
+       {
+    id: "ta-salah",
+    label: "தொழுகை (ஸலாஹ்)",
+    description: "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்",
+    icon: ArrowUp,
+    color: "bg-fuchsia-500 hover:bg-fuchsia-600",
+    textColor: "text-fuchsia-700",
+    bgLight: "bg-fuchsia-50",
   },
     {
     id: "ta-fiqh",
