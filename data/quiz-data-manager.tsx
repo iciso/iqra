@@ -34,6 +34,7 @@ import surah78Category from "./surah-78";
 import surah79Category from "./surah-79";
 import surah80Category from "./surah-80";
 import taQuranCategory from "./ta-quran"; 
+import taSalahCategory from "./ta-salah"; 
 import taFiqhCategory from "./ta-fiqh"; 
 import quranicArabic01Category from "./quranic-arabic-01";
 import modernArabic01Category from "./modern-arabic-01";
@@ -75,6 +76,7 @@ const quizData: QuizCategory[] = [
   surah79Category,
   surah80Category,
   taQuranCategory,
+  taSalahCategory,
   taFiqhCategory,
   quranicArabic01Category,
   modernArabic01Category,
