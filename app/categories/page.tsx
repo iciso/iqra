@@ -124,6 +124,12 @@ const tamilCategories = [
     description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
     icon: Book,
   },
+   {
+    id: "ta-salah",
+    title: "தொழுகை (ஸலாஹ்)",
+    description: "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்",
+    icon: Mosque,
+  },
     {
     id: "ta-fiqh",
     title: "ஃபிக்ஹ்",
