@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Church asMosque, Music, User, Users,
+  Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Sprout, Telescope,
   Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
@@ -128,7 +128,7 @@ const tamilCategories = [
     id: "ta-salah",
     title: "தொழுகை (ஸலாஹ்)",
     description: "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்",
-    icon: Mosque,
+    icon: ArrowUp,
   },
     {
     id: "ta-fiqh",
