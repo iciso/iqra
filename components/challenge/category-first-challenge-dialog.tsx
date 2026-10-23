@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Gamepad2,
-  ArrowUp,
+  MoveUp,
   Zap,
   Bitcoin,
   Book,
@@ -396,7 +396,7 @@ const tamilCategories = [
     id: "ta-salah",
     label: "தொழுகை"
     description: "தொழுகை (ஸலாஹ்)",
-    icon: ArrowUp,
+    icon: MoveUp,
     color: "bg-purple-500 hover:bg-purple-600",
     textColor: "text-purple-700",
     bgLight: "bg-purple-50",
