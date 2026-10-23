@@ -143,7 +143,7 @@ const challengeCategories = [
     id: "salah",
     label: "Salah",
     description: "Prayers in Islam",
-    icon: ArrowUp,
+    icon: MoveUp,
     color: "bg-fuchsia-500 hover:bg-fuchsia-600",
     textColor: "text-fuchsia-700",
     bgLight: "bg-fuchsia-50",
