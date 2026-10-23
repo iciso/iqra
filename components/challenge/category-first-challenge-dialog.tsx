@@ -394,7 +394,7 @@ const tamilCategories = [
   },
       {
     id: "ta-salah",
-    label: "தொழுகை"
+    label: "தொழுகை",
     description: "தொழுகை-ஸலாஹ்",
     icon: MoveUp,
     color: "bg-purple-500 hover:bg-purple-600",
