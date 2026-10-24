@@ -30,7 +30,8 @@ export default function HomePage() {
               <li>Multiple difficulty levels</li>
               <li>Detailed explanations for each answer</li>
               <li>Track your learning progress</li>
-              <li>Covers 25 Islamic knowledge categories</li>
+              <li>Covers over 30 Islamic knowledge categories</li>
+              <li>Introduced interactive Surah quizzes and dedicated Tamil sections</li>
             </ul>
           </CardContent>
           <CardFooter className="px-4 pb-4 md:px-6">
