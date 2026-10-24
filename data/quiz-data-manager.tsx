@@ -26,6 +26,7 @@ import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
 import salahCategory from "./salah";
 import sawmCategory from "./sawm";
+import charityCategory from "./charity";
 import hajjCategory from "./hajj";
 import imageryCategory from "./imagery";
 import medicalEthicsCategory from "./islamic-medical-ethics";
@@ -35,6 +36,7 @@ import surah79Category from "./surah-79";
 import surah80Category from "./surah-80";
 import taQuranCategory from "./ta-quran"; 
 import taSalahCategory from "./ta-salah"; 
+import taCharityCategory from "./ta-charity"; 
 import taFiqhCategory from "./ta-fiqh"; 
 import quranicArabic01Category from "./quranic-arabic-01";
 import modernArabic01Category from "./modern-arabic-01";
@@ -70,6 +72,7 @@ const quizData: QuizCategory[] = [
   peaceCategory,
   salahCategory,
   sawmCategory,
+  charityCategory,
   hajjCategory,
   islamicEschatologyCategory,
   surah78Category,
@@ -77,6 +80,7 @@ const quizData: QuizCategory[] = [
   surah80Category,
   taQuranCategory,
   taSalahCategory,
+  taCharityCategory,
   taFiqhCategory,
   quranicArabic01Category,
   modernArabic01Category,
