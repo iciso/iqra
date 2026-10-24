@@ -6,49 +6,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  Gamepad2,
-  MoveUp,
-  Zap,
-  Bitcoin,
-  Book,
-  BookCopy,
-  BookDashed,
-  Brain,
-  BriefcaseMedical,
-  CirclePlus,
-  Languages,
-  Megaphone,
-  Music,
-  Percent,
-  Scale,
-  Scroll,
-  Calendar1,
-  Church,
-  Telescope,
-  HandCoins,
-  HandHeart,
-  Heart,
-  Image,
-  Infinity,
-  Trophy,
-  Clock,
-  Target,
-  History,
-  Plane,
-  ScanFace,
-  Sparkles,
-  Sprout,
-  User,
-  Users,
-  Rainbow,
-  Circle,
-  Compass,
-  Globe,
-  AlertCircle,
-  Wind,
-  WineOff,
-} from "lucide-react"
+import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
+        Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, HandHeart, Heart, 
+        Image, Infinity, Trophy, Clock, Target, History, Plane, ScanFace, Sparkles, Sprout, User, Users, 
+        Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
