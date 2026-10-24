@@ -1,7 +1,7 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
 import quranCategory from "./quran"; 
+import aqeedahCategory from "./aqeedah"; 
 import seerahCategory from "./quiz-data-manager-additions";
-import { additionalCategories } from "./quiz-data-manager-additional-categories";
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
 import cryptoCategory from "./crypto";
@@ -46,7 +46,7 @@ import { enhanceQuestionsWithInfographics } from "./quiz-data-manager-infographi
 const quizData: QuizCategory[] = [
   quranCategory,
   seerahCategory,
-  ...additionalCategories,
+  aqeedahCategory,
   newMuslimsCategory,
   tafsirCategory,
   tazkiyahCategory,
