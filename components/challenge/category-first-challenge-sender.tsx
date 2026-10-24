@@ -7,33 +7,10 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import {
-  ArrowUp,
-  Gamepad2,
-  User,
-  Users,
-  Search,
-  Trophy,
-  Zap,
-  RefreshCw, 
-  BookOpen,
-  BookCopy,
-  Languages,
-  Megaphone,
-  Music,
-  Percent,
-  Scale,
-  Scroll,
-  CirclePlus,
-  Heart,
-  Hourglass,
-  Image,
-  Infinity,
-  Sprout,
-  Star,
-  Wind,
-  WineOff,
-} from "lucide-react"
+{ Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
+  Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
+  HandHeart, Heart, Image, Infinity, Trophy, Clock, Target, History, Plane, ScanFace, Sparkles, 
+  Sprout, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
 import { useAuth } from "@/contexts/auth-context"
@@ -59,6 +36,15 @@ const challengeCategories = [
     bgLight: "bg-blue-50",
   },
   {
+    id: "charity",
+    label: "Zakat & Sadaqah",
+    description: "Charity in Islam",
+    icon: HandCoins,
+    color: "bg-amber-500 hover:bg-amber-600",
+    textColor: "text-amber-700",
+    bgLight: "bg-amber-50",
+  },
+          {
     id: "hajj",
     label: "Hajj",
     description: "Islamic Pilgrimmage",
@@ -66,7 +52,7 @@ const challengeCategories = [
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
     bgLight: "bg-green-50",
-  },
+    },
    {
     id: "bidah",
     label: "Bidah",
@@ -195,6 +181,15 @@ const tamilCategories = [
     color: "bg-fuchsia-500 hover:bg-fuchsia-600",
     textColor: "text-fuchsia-700",
     bgLight: "bg-fuchsia-50",
+  },
+         {
+    id: "ta-chairty",
+    label: "ஸகாத் மற்றும் தர்மம்",
+    description: "பஸகாத், சதகா வழிகாட்டல்கள்",
+    icon: HandCoins,
+    color: "bg-amber-500 hover:bg-amber-600",
+    textColor: "text-amber-700",
+    bgLight: "bg-amber-50",
   },
     {
     id: "ta-fiqh",
