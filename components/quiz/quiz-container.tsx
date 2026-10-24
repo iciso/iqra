@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -51,7 +51,13 @@ export default function QuizContainer({
   const { user } = useAuth()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string>("")
-  const [score, setScore] = useState(0)
+// questionIndex -> was the FIRST submitted answer correct?
+// The score is derived from this, so it can never exceed questions.length.
+const [graded, setGraded] = useState<Record<number, boolean>>({})
+const score = useMemo(
+  () => Math.min(Object.values(graded).filter(Boolean).length, questions.length),
+  [graded, questions.length],
+)
   const [answers, setAnswers] = useState<string[]>([])
   const [showExplanation, setShowExplanation] = useState(false)
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
@@ -208,44 +214,46 @@ export default function QuizContainer({
     setAnswers(newAnswers)
   }
 
-  const handleSubmitAnswer = () => {
-    if (!questions[currentQuestion]) return
-    setTransitionType("submit")
-    setIsLoading(true)
+      const handleSubmitAnswer = () => {
+  if (!questions[currentQuestion]) return
+  const index = currentQuestion
 
-    setTimeout(() => {
-      const correct = selectedAnswer === questions[currentQuestion].correctAnswer
-      setIsCorrect(correct)
-      if (correct) {
-        setScore(score + 1)
-      }
+  setTransitionType("submit")
+  setIsLoading(true)
+
+  setTimeout(() => {
+    const correct = selectedAnswer === questions[index].correctAnswer
+    setIsCorrect(correct)
+    // Record only the first answer for each question; later attempts are ignored
+    setGraded((prev) => (index in prev ? prev : { ...prev, [index]: correct }))
+    setShowExplanation(true)
+    setIsLoading(false)
+    setTransitionType(null)
+  }, 800)
+
+  setTimeout(() => {
+  if (currentQuestion < questions.length - 1) {
+    const nextIndex = currentQuestion + 1
+    setCurrentQuestion(nextIndex)
+    setSelectedAnswer(answers[nextIndex] || "")
+    // Already answered? Open it in read-only review mode
+    if (nextIndex in graded) {
       setShowExplanation(true)
-      setIsLoading(false)
-      setTransitionType(null)
-    }, 800)
-  }
-
-  const handleNext = () => {
-    setTransitionType("next")
-    setIsLoading(true)
-
-    setTimeout(() => {
+      setIsCorrect(graded[nextIndex])
+    } else {
       setShowExplanation(false)
       setIsCorrect(null)
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-        setSelectedAnswer(answers[currentQuestion + 1] || "")
-      } else {
-        setTransitionType("finish")
-        handleFinishQuiz()
-        return
-      }
-      setIsLoading(false)
-      setTransitionType(null)
-    }, 800)
+    }
+  } else {
+    setTransitionType("finish")
+    handleFinishQuiz()
+    return
   }
-
-  const submitQuizWithTimeout = async (timeoutMs = 5000) => {
+  setIsLoading(false)
+  setTransitionType(null)
+}, 800)
+      
+    const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
 
     // Read player name from localStorage — same key used everywhere
@@ -394,10 +402,18 @@ export default function QuizContainer({
       setTransitionType("next")
       setIsLoading(true)
       setTimeout(() => {
-        setShowExplanation(false)
-        setIsCorrect(null)
-        setCurrentQuestion(currentQuestion - 1)
-        setSelectedAnswer(answers[currentQuestion - 1] || "")
+        const prevIndex = currentQuestion - 1
+        setCurrentQuestion(prevIndex)
+        setSelectedAnswer(answers[prevIndex] || "")
+        // Every earlier question has been answered, so show it in review mode:
+        // the original choice, the correct answer and the explanation, with options locked
+        if (prevIndex in graded) {
+          setShowExplanation(true)
+          setIsCorrect(graded[prevIndex])
+        } else {
+          setShowExplanation(false)
+          setIsCorrect(null)
+        }
         setIsLoading(false)
         setTransitionType(null)
       }, 800)
