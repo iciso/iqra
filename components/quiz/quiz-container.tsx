@@ -51,13 +51,16 @@ export default function QuizContainer({
   const { user } = useAuth()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string>("")
-// questionIndex -> was the FIRST submitted answer correct?
-// The score is derived from this, so it can never exceed questions.length.
-const [graded, setGraded] = useState<Record<number, boolean>>({})
-const score = useMemo(
-  () => Math.min(Object.values(graded).filter(Boolean).length, questions.length),
-  [graded, questions.length],
-)
+
+  // questionIndex -> was the FIRST submitted answer correct?
+  // The score is derived from this, so it can never exceed questions.length
+  // and revisiting a question can never earn a second point.
+  const [graded, setGraded] = useState<Record<number, boolean>>({})
+  const score = useMemo(
+    () => Math.min(Object.values(graded).filter(Boolean).length, questions.length),
+    [graded, questions.length],
+  )
+
   const [answers, setAnswers] = useState<string[]>([])
   const [showExplanation, setShowExplanation] = useState(false)
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
@@ -69,7 +72,7 @@ const score = useMemo(
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
-// Shuffle the options of every question once when the quiz starts
+  // Shuffle the options of every question once when the quiz starts
   // so the correct answer is not always in the same position
   const [shuffledQuestions] = useState(() =>
     questions.map((q) => ({
@@ -77,7 +80,7 @@ const score = useMemo(
       options: shuffleArray(q.options),
     })),
   )
-  
+
   // Helper function to detect fallback challenges
   const isFallbackChallenge = () => {
     return Boolean(
@@ -157,7 +160,6 @@ const score = useMemo(
             localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
           }
         }
-
         fetchOpponent()
       } else {
         console.log("🎯 QUIZ CONTAINER: Using fallback opponent")
@@ -187,6 +189,7 @@ const score = useMemo(
   // Timer effect
   useEffect(() => {
     let timer: NodeJS.Timeout
+
     if (isTimerRunning && timeLeft > 0) {
       timer = setInterval(() => {
         setTimeLeft((prev) => prev - 1)
@@ -208,69 +211,83 @@ const score = useMemo(
 
   const handleAnswerSelect = (value: string) => {
     if (showExplanation) return
+
     setSelectedAnswer(value)
+
     const newAnswers = [...answers]
     newAnswers[currentQuestion] = value
     setAnswers(newAnswers)
   }
 
-      const handleSubmitAnswer = () => {
-  if (!questions[currentQuestion]) return
-  const index = currentQuestion
+  const handleSubmitAnswer = () => {
+    if (!questions[currentQuestion]) return
 
-  setTransitionType("submit")
-  setIsLoading(true)
+    const index = currentQuestion
 
-  setTimeout(() => {
-    const correct = selectedAnswer === questions[index].correctAnswer
-    setIsCorrect(correct)
-    // Record only the first answer for each question; later attempts are ignored
-    setGraded((prev) => (index in prev ? prev : { ...prev, [index]: correct }))
-    setShowExplanation(true)
-    setIsLoading(false)
-    setTransitionType(null)
-  }, 800)
+    setTransitionType("submit")
+    setIsLoading(true)
 
-  setTimeout(() => {
-  if (currentQuestion < questions.length - 1) {
-    const nextIndex = currentQuestion + 1
-    setCurrentQuestion(nextIndex)
-    setSelectedAnswer(answers[nextIndex] || "")
-    // Already answered? Open it in read-only review mode
-    if (nextIndex in graded) {
+    setTimeout(() => {
+      const correct = selectedAnswer === questions[index].correctAnswer
+      setIsCorrect(correct)
+
+      // Record only the FIRST answer for each question; later attempts are ignored
+      setGraded((prev) => (index in prev ? prev : { ...prev, [index]: correct }))
+
       setShowExplanation(true)
-      setIsCorrect(graded[nextIndex])
-    } else {
-      setShowExplanation(false)
-      setIsCorrect(null)
-    }
-  } else {
-    setTransitionType("finish")
-    handleFinishQuiz()
-    return
+      setIsLoading(false)
+      setTransitionType(null)
+    }, 800)
   }
-  setIsLoading(false)
-  setTransitionType(null)
-}, 800)
-      
-    const submitQuizWithTimeout = async (timeoutMs = 5000) => {
+
+  const handleNext = () => {
+    setTransitionType("next")
+    setIsLoading(true)
+
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        const nextIndex = currentQuestion + 1
+        setCurrentQuestion(nextIndex)
+        setSelectedAnswer(answers[nextIndex] || "")
+
+        // Already answered? Open it in read-only review mode
+        if (nextIndex in graded) {
+          setShowExplanation(true)
+          setIsCorrect(graded[nextIndex])
+        } else {
+          setShowExplanation(false)
+          setIsCorrect(null)
+        }
+      } else {
+        setTransitionType("finish")
+        handleFinishQuiz()
+        return
+      }
+
+      setIsLoading(false)
+      setTransitionType(null)
+    }, 800)
+  }
+
+  const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
 
     // Read player name from localStorage — same key used everywhere
-           let playerName = ""
-        if (typeof window !== "undefined") {
-          playerName =
-            localStorage.getItem("userNameForLeaderboard") ||
-            localStorage.getItem("playerName") ||
-            ""
-        }
-        if (!playerName || playerName.length < 2) {
-          throw new Error("No player name found — please enter your name with more than 2 characters on the homepage first.")
-        }
+    let playerName = ""
+    if (typeof window !== "undefined") {
+      playerName = localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("playerName") || ""
+    }
+
+    if (!playerName || playerName.length < 2) {
+      throw new Error(
+        "No player name found — please enter your name with more than 2 characters on the homepage first.",
+      )
+    }
 
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error("Quiz submission timeout")), timeoutMs)
     })
+
     const submitPromise = submitQuizResult(
       score,
       questions.length,
@@ -281,12 +298,14 @@ const score = useMemo(
       challengeMode,
       playerName,
     )
+
     return Promise.race([submitPromise, timeoutPromise])
   }
 
   const handleFinishQuiz = async () => {
     console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
     console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
+
     setIsTimerRunning(false)
 
     try {
@@ -297,16 +316,19 @@ const score = useMemo(
       localStorage.setItem("quizChallenge", challengeMode || "")
       localStorage.setItem("quizTimeLeft", timeLeft.toString())
       localStorage.setItem("quizId", quizId)
+
       if (challengerTurn) {
         localStorage.setItem("challengerTurn", "true")
         console.log("🎯 QUIZ CONTAINER: Stored challengerTurn=true in localStorage")
       } else {
         localStorage.setItem("challengerTurn", "false")
       }
+
       if (opponent) {
         localStorage.setItem("quizOpponentId", opponent.id || "")
         localStorage.setItem("quizOpponent", JSON.stringify(opponent))
       }
+
       console.log("🎯 QUIZ CONTAINER: All localStorage data saved successfully")
     } catch (error) {
       console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
@@ -332,15 +354,18 @@ const score = useMemo(
     try {
       if (challengerTurn && challengeMode) {
         console.log("🎯 QUIZ CONTAINER: Challenger finished quiz, updating challenge status...")
+
         try {
           console.log("🎯 QUIZ CONTAINER: Submitting challenger quiz result...")
           await submitQuizWithTimeout(5000)
           console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
+
           toast({
             title: "Challenge Sent Successfully!",
             description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
             duration: 5000,
           })
+
           router.push("/results")
           return
         } catch (error) {
@@ -355,15 +380,18 @@ const score = useMemo(
         }
       } else if (challengeMode) {
         console.log("🏆 QUIZ CONTAINER: Challenge completion - submitting challenged player score...")
+
         try {
           console.log("💾 Submitting your score to leaderboard...")
           await submitQuizWithTimeout(5000)
           console.log("✅ Challenge score submitted successfully")
+
           toast({
             title: "Challenge Completed!",
             description: `Your score (${score}/${questions.length}) has been recorded!`,
             duration: 5000,
           })
+
           router.push("/results")
           return
         } catch (error) {
@@ -401,12 +429,14 @@ const score = useMemo(
     if (currentQuestion > 0) {
       setTransitionType("next")
       setIsLoading(true)
+
       setTimeout(() => {
         const prevIndex = currentQuestion - 1
         setCurrentQuestion(prevIndex)
         setSelectedAnswer(answers[prevIndex] || "")
+
         // Every earlier question has been answered, so show it in review mode:
-        // the original choice, the correct answer and the explanation, with options locked
+        // original choice, correct answer and explanation, with options locked
         if (prevIndex in graded) {
           setShowExplanation(true)
           setIsCorrect(graded[prevIndex])
@@ -414,6 +444,7 @@ const score = useMemo(
           setShowExplanation(false)
           setIsCorrect(null)
         }
+
         setIsLoading(false)
         setTransitionType(null)
       }, 800)
@@ -445,6 +476,7 @@ const score = useMemo(
   }
 
   const question = questions[currentQuestion]
+
   const getLoadingText = () => {
     if (transitionType === "submit") return "Checking answer..."
     if (transitionType === "next") return "Loading next question..."
@@ -461,7 +493,6 @@ const score = useMemo(
             size="icon"
             className="rounded-full dark:border-green-700 dark:text-green-400 bg-transparent"
           >
-           
             <span className="sr-only">{challengeMode ? "Challenges" : "Categories"}</span>
           </Button>
         </Link>
@@ -479,6 +510,7 @@ const score = useMemo(
           </span>
         </div>
         <Progress value={progress} className="h-2 bg-green-100 dark:bg-green-800" />
+
         {challengeMode && (
           <div className="flex justify-end items-center mt-2">
             <Clock className="h-4 w-4 mr-1 text-green-700 dark:text-green-400" />
@@ -503,6 +535,7 @@ const score = useMemo(
               <CardTitle className="text-xl text-green-800 dark:text-green-400">
                 Question {currentQuestion + 1}
               </CardTitle>
+
               {challengeMode && opponent && (
                 <div className="flex justify-center mt-2">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
@@ -519,25 +552,27 @@ const score = useMemo(
                 </div>
               )}
             </CardHeader>
+
             <CardContent className="flex-1 overflow-y-auto">
               <div className="h-full flex flex-col justify-between">
                 <div className="mb-6 flex-1">
-                      <h2
-                        className="text-lg font-medium mb-4 dark:text-white min-h-[3rem] leading-normal" 
-                        style={{
-                          // Make Arabic letters ~2× larger so vowels (tashkīl) are readable
-                          fontSize: /[\u0600-\u06FF]/.test(question.question) ? "1.65rem" : undefined,
-                          lineHeight: /[\u0600-\u06FF]/.test(question.question) ? "1.4" : undefined,
-                        }}
-                      >
-                        {question.question}
-                      </h2>
+                  <h2
+                    className="text-lg font-medium mb-4 dark:text-white min-h-[3rem] leading-normal"
+                    style={{
+                      // Make Arabic letters ~2× larger so vowels (tashkīl) are readable
+                      fontSize: /[\u0600-\u06FF]/.test(question.question) ? "1.65rem" : undefined,
+                      lineHeight: /[\u0600-\u06FF]/.test(question.question) ? "1.4" : undefined,
+                    }}
+                  >
+                    {question.question}
+                  </h2>
+
                   <div className="min-h-[200px]">
                     <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
                       {question.options.map((option, index) => (
                         <div
                           key={index}
-                          className={`flex items-center space-x-2 mb-2 p-2 rounded 
+                          className={`flex items-center space-x-2 mb-2 p-2 rounded
                             ${
                               showExplanation && option === question.correctAnswer
                                 ? "bg-green-100 dark:bg-green-900"
@@ -560,16 +595,18 @@ const score = useMemo(
                       ))}
                     </RadioGroup>
                   </div>
+
                   {showExplanation && (
                     <div className="mt-4 max-h-[150px] overflow-y-auto">
                       {question.explanation && (
                         <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-                          <AlertDescription className="text-blue-800 dark:text-blue-300"
-                                  style={{
-                                    fontSize: /[\u0600-\u06FF]/.test(question.explanation || "") ? "1.15rem" : undefined,
-                                    lineHeight: 1.8,
-                                  }}
-                                >
+                          <AlertDescription
+                            className="text-blue-800 dark:text-blue-300"
+                            style={{
+                              fontSize: /[\u0600-\u06FF]/.test(question.explanation || "") ? "1.15rem" : undefined,
+                              lineHeight: 1.8,
+                            }}
+                          >
                             <div className="flex items-start">
                               <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
                               <div>
@@ -580,6 +617,7 @@ const score = useMemo(
                           </AlertDescription>
                         </Alert>
                       )}
+
                       {!challengeMode &&
                         question.hasInfographic &&
                         question.infographicType &&
@@ -597,6 +635,7 @@ const score = useMemo(
                 </div>
               </div>
             </CardContent>
+
             <CardFooter className="flex justify-between mt-auto">
               <Button
                 variant="outline"
@@ -606,6 +645,7 @@ const score = useMemo(
               >
                 <ChevronLeft className="mr-1 h-4 w-4" /> Previous
               </Button>
+
               {!showExplanation ? (
                 <Button
                   className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
