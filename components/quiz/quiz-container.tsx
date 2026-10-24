@@ -28,6 +28,16 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
+// Options like "All of the above" or "Both A and B" only make sense in their
+// original place, so they are kept at the end (in their original order).
+const PINNED_OPTION = /(all|none|both|neither) of (the above|these|them)|^\s*(both\s+)?[a-d]\s*(and|&|,)\s*[a-d]\b/i
+
+function shuffleOptions(options: string[]): string[] {
+  const movable = options.filter((o) => !PINNED_OPTION.test(o))
+  const pinned = options.filter((o) => PINNED_OPTION.test(o))
+  return [...shuffleArray(movable), ...pinned]
+}
+
 interface QuizContainerProps {
   questions: QuizQuestion[]
   category: QuizCategory
@@ -77,7 +87,7 @@ export default function QuizContainer({
   const [shuffledQuestions] = useState(() =>
     questions.map((q) => ({
       ...q,
-      options: shuffleArray(q.options),
+      options: shuffleOptions(q.options),
     })),
   )
 
@@ -220,7 +230,7 @@ export default function QuizContainer({
   }
 
   const handleSubmitAnswer = () => {
-    if (!questions[currentQuestion]) return
+    if (!shuffledQuestions[currentQuestion]) return
 
     const index = currentQuestion
 
@@ -228,7 +238,7 @@ export default function QuizContainer({
     setIsLoading(true)
 
     setTimeout(() => {
-      const correct = selectedAnswer === questions[index].correctAnswer
+      const correct = selectedAnswer === shuffledQuestions[index].correctAnswer
       setIsCorrect(correct)
 
       // Record only the FIRST answer for each question; later attempts are ignored
@@ -475,7 +485,7 @@ export default function QuizContainer({
     )
   }
 
-  const question = questions[currentQuestion]
+  const question = shuffledQuestions[currentQuestion]
 
   const getLoadingText = () => {
     if (transitionType === "submit") return "Checking answer..."
