@@ -416,7 +416,7 @@ const tamilCategories = [
      {
     id: "ta-charity",
     label: "தஸகாத் மற்றும் தர்மம்",
-    description: "ஸகாத் மற்றும் தர்மம்",
+    description: "பஸகாத், சதகா வழிகாட்டல்கள்",
     icon: HandCoins,
     color: "bg-amber-500 hover:bg-amber-600",
     textColor: "text-amber-700",
