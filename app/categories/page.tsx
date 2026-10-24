@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, CirclePlus, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
+  Calendar1, Church, CirclePlus, HandCoins, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Sprout, Telescope,
   Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
@@ -23,6 +23,7 @@ const categories = [
   { id: "tazkiyah", title: "Tazkiyah", description: "Spiritual Purification", icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "salah", title: "Salah", description: "Prayers in Islam", icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "sawm", title: "Sawm", description: "Fasting & Ramadaan", icon: <Calendar1 className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "chairty", title: "Zakat & Sadaqah", description: "Charity in Islam", icon: <HandCoins className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hajj", title: "Hajj", description: "Islamic Pilgrimmage", icon: <Compass className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "history", title: "Islamic History", description: "History of Islam", icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "dawah", title: "Dawah", description: "Inviting to Islam", icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -129,6 +130,12 @@ const tamilCategories = [
     title: "தொழுகை (ஸலாஹ்)",
     description: "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்",
     icon: ArrowUp,
+  },
+       {
+    id: "ta-charity",
+    title: "ஸகாத் மற்றும் தர்மம்",
+    description: "பஸகாத், சதகா வழிகாட்டல்கள்",
+    icon: HandCoins,
   },
     {
     id: "ta-fiqh",
