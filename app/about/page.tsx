@@ -12,12 +12,12 @@ iqra/components/challenge/category-first-challenge-dialog.tsx
 iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx
 ------
-Break up quizzes for each category into sets of 10 each like in challenges
 Enhance the Badges Page with bigger badges, better logic explained by infographic to players
 Animated Flowchart to explain workflow of challenge to player.
 ------
 Complete the work begun on Challenges for Surah Quizzes -> 78 to 114
-Complete the work begun on Challenges for Quranic Arabic and MSA
+Complete the work begun on Challenges for Quranic Arabic and MSA with 1000 words each
+Make Challenges stay indefinitely until challenged player accepts or refuses. No 24 Hr limit.
 Continously test to see all quizzes, and pages are Mobile Responsive
 Contributors rewazrds, algorithm animated infographic to motiviate Volunteers to play and find out errors in content
 Maintain uniform UI and UX as if one AI did the entire project
