@@ -244,7 +244,7 @@ export async function createChallenge(
     });
 
     const expiresAt = new Date();
-    expiresAt.setHours(expiresAt.getHours() + 24);
+    expiresAt.setYears(expiresAt.getYears() + 24);
 
     const { data, error } = await supabase
       .from('user_challenges')
@@ -311,8 +311,7 @@ export async function getPendingChallenges(userId: string): Promise<any[]> {
     `)
     .eq('challenged_id', userId)
     .eq('status', 'pending')
-    .gt('expires_at', new Date().toISOString());
-
+    .order("created_at", { ascending: false })
   if (error) {
     console.error('Error fetching pending challenges:', error);
     throw error;
