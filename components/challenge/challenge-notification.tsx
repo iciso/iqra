@@ -125,7 +125,6 @@ export default function ChallengeNotification() {
         `)
         .eq("challenged_id", user.id)
         .eq("status", "pending")
-        .gt("expires_at", new Date().toISOString())
         .order("created_at", { ascending: false })
 
       if (challengesError) {
@@ -368,13 +367,13 @@ export default function ChallengeNotification() {
                       <p className="text-sm text-gray-500">Questions</p>
                       <p className="font-medium">{selectedChallenge.question_count}</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Expires in</p>
-                      <p className="font-medium flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {formatExpiresIn(selectedChallenge.expires_at)}
-                      </p>
-                    </div>
+                        <div>
+                          <p className="text-sm text-gray-500">Valid until</p>
+                            <p className="font-medium flex items-center gap-1">
+                              <Clock className="h-4 w-4" />
+                              You accept or decline
+                            </p>
+                      </div>
                   </div>
                 </CardContent>
                 <CardFooter className="bg-gray-50 p-4 dark:bg-gray-800">
