@@ -277,6 +277,13 @@ function QuranSurahSection({
   )
 }
 
+// Levels offered to the player. `value` is what goes into the URL (?difficulty=...)
+// and is understood by normalizeDifficulty() in app/quiz/page.tsx.
+const difficultyLevels = [
+  { value: "easy", label: "Easy", description: "Basic questions for beginners" },
+  { value: "intermediate", label: "Intermediate", description: "Moderate questions to build on the basics" },
+  { value: "advanced", label: "Advanced", description: "Challenging questions for those with deeper knowledge" },
+]
 
 export default function CategoriesPage() {
   const router = useRouter()
@@ -374,25 +381,21 @@ export default function CategoriesPage() {
             </CardHeader>
             <CardContent>
               <RadioGroup value={selectedDifficulty || ""} onValueChange={setSelectedDifficulty}>
-                <div className="flex flex-col space-y-3">
-                  <div className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700">
-                    <RadioGroupItem value="easy" id="quiz-difficulty-easy" />
-                    <Label htmlFor="quiz-difficulty-easy" className="flex flex-col cursor-pointer">
-                      <span className="font-medium dark:text-white">Easy</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Basic questions for beginners</span>
-                    </Label>
+                  <div className="flex flex-col space-y-3">
+                    {difficultyLevels.map((level) => (
+                      <div
+                        key={level.value}
+                        className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700"
+                      >
+                        <RadioGroupItem value={level.value} id={`quiz-difficulty-${level.value}`} />
+                        <Label htmlFor={`quiz-difficulty-${level.value}`} className="flex flex-col cursor-pointer">
+                          <span className="font-medium dark:text-white">{level.label}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{level.description}</span>
+                        </Label>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700">
-                    <RadioGroupItem value="advanced" id="quiz-difficulty-advanced" />
-                    <Label htmlFor="quiz-difficulty-advanced" className="flex flex-col cursor-pointer">
-                      <span className="font-medium dark:text-white">Advanced</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        Challenging questions for those with deeper knowledge
-                      </span>
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
+                </RadioGroup>
             </CardContent>
             <CardFooter className="flex justify-center">
               <Button
