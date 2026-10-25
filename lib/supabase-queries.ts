@@ -243,8 +243,7 @@ export async function createChallenge(
       time_limit: timeLimit,
     });
 
-    const expiresAt = new Date();
-    expiresAt.setFullYear(9990, 11, 31); 
+    const expiresAt = new Date('9990-12-31T23:59:59Z'); 
     
     const { data, error } = await supabase
       .from('user_challenges')
