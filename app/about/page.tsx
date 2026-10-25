@@ -5,24 +5,25 @@ import { IqraLogo } from "@/components/iqra-logo";
 
 /*
 IQRA To do list:
-To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
+1) To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
 iqra/data/
 iqra/app/categories/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
 iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx
 ------
-Enhance the Badges Page with bigger badges, better logic explained by infographic to players
-Animated Flowchart to explain workflow of challenge to player.
+2) Enhance the Badges Page with bigger badges, better logic explained by infographic to players
+3) Animated Flowchart to explain workflow of challenge to player.
 ------
-Complete the work begun on Challenges for Surah Quizzes -> 78 to 114
-Complete the work begun on Challenges for Quranic Arabic and MSA with 1000 words each
-Make Challenges stay indefinitely until challenged player accepts or refuses. No 24 Hr limit.
-Continously test to see all quizzes, and pages are Mobile Responsive
-Contributors rewazrds, algorithm animated infographic to motiviate Volunteers to play and find out errors in content
-Maintain uniform UI and UX as if one AI did the entire project
-Cross-link IQRA & KALAM to guide users who want or do not want challenges 
-Acknowledge all other AI contributors like Grok, DeepSeek, and Gemini
+4) Complete the work begun on Challenges for Surah Quizzes -> 78 to 114
+5) Complete the work begun on Challenges for Quranic Arabic and MSA with 1000 words each
+6) a)Complete all three levels to same numbers in multiples of 10 for all categories
+6) b)Refactor Neon SOL so that those players who earned % above 100% scores and % are rounded to 100% 
+7) Continously test to see all quizzes, and pages are Mobile Responsive
+8) Contributors rewards, algorithm animated infographic to motiviate Volunteers to play and find out errors in content
+9) Maintain uniform UI and UX as if one AI did the entire project
+10) Cross-link IQRA & KALAM to guide users who want or do not want challenges 
+11) Acknowledge all other AI contributors like Grok, DeepSeek, and Gemini
 */
 
 export default function AboutPage() {
