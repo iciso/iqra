@@ -22,6 +22,7 @@ iqra/data/quiz-data-manager.tsx
 7) b)Refactor Neon SOL so that those players who earned % above 100% scores and % are rounded to 100% 
 8) a) Challenge Notifications more than one must be in autoscroll, so second is not seen
 8) b) Check if Valid Until time is removed in Challenge notification an eight figure digit in hours!
+8) c) Notifying user to log in if not logged in and trying to Challenge must contain the link to Home Bookmark#Login
 9) Challenges in Easy or Hard start in the same easy level for Quranic Arabic! Check for other categories?
 
 ------
