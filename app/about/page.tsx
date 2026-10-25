@@ -20,8 +20,9 @@ iqra/data/quiz-data-manager.tsx
 6) Complete the work begun on Challenges for Quranic Arabic and MSA with 1000 words each
 7) a)Complete all three levels to same numbers in multiples of 10 for all categories
 7) b)Refactor Neon SOL so that those players who earned % above 100% scores and % are rounded to 100% 
-8) Challenge Notifications more than one must be in autoscroll, so second is not seen
-9) 
+8) a) Challenge Notifications more than one must be in autoscroll, so second is not seen
+8) b) Check if Valid Until time is removed in Challenge notification an eight figure digit in hours!
+9) Challenges in Easy or Hard start in the same easy level for Quranic Arabic! Check for other categories?
 
 ------
 10) Continously test to see all quizzes, and pages are Mobile Responsive Maintain uniform UI and UX as if one AI did the entire project
