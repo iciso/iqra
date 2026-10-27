@@ -23,14 +23,13 @@ export async function GET(request: NextRequest) {
     try {
       const client = await pool.connect()
       try {
-        const result = await client.query(
+       const result = await client.query(
           `SELECT id, challenger_name, challenged_name, category, difficulty,
-                  question_count, status, created_at, expires_at
-           FROM challenges
-           WHERE challenged_name = $1
-             AND status = 'pending'
-             AND expires_at > NOW()
-           ORDER BY created_at DESC`,
+                  question_count, section_number, status, created_at, expires_at
+             FROM challenges
+            WHERE challenged_name = $1
+              AND status = 'pending'
+            ORDER BY created_at DESC`,
           [name],
         )
 
