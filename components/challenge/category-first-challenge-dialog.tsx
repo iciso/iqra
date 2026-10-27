@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
@@ -452,20 +452,82 @@ const arabicVocabularyCategories = [
   },
 ]
 
+type SectionInfo = { number: number; size: number }
+type SectionData = {
+  levels: Record<string, { count: number; sections: SectionInfo[] }>
+  played: Record<string, number[]>
+}
 
+// First section these two players have not played; falls back to section 1.
+function nextSection(data: SectionData | null, level: string): number | null {
+  const sections = data?.levels[level]?.sections ?? []
+  const played = data?.played[level] ?? []
+  return (sections.find((s) => !played.includes(s.number)) ?? sections[0])?.number ?? null
+}
 
 const difficulties = [
-  { value: "easy", label: "Easy", description: "Basic level questions", emoji: "🟢" },
-  { value: "intermediate", label: "Intermediate", description: "Moderate difficulty", emoji: "🟡" },
-  { value: "advanced", label: "Advanced", description: "Expert level questions", emoji: "🔴" },
-  { value: "mixed", label: "Mixed", description: "All difficulty levels", emoji: "🌈" },
+  { value: "easy", label: "Easy", emoji: "🟢" },
+  { value: "intermediate", label: "Intermediate", emoji: "🟡" },
+  { value: "advanced", label: "Advanced", emoji: "🔴" },
 ]
 
 export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: CategoryFirstChallengeDialogProps) {
   const { user } = useAuth()
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  const [selectedDifficulty, setSelectedDifficulty] = useState("mixed")
+        
+ const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
+const [sectionData, setSectionData] = useState<SectionData | null>(null)
+const [loadingSections, setLoadingSections] = useState(false)
+const [selectedSection, setSelectedSection] = useState<number | null>(null)
+
+const levelInfo = sectionData?.levels[selectedDifficulty]
+const playedSections = sectionData?.played[selectedDifficulty] ?? []
+const selectedSectionInfo = levelInfo?.sections.find((s) => s.number === selectedSection)
+const questionCount = selectedSectionInfo?.size ?? 10
+
+const handleSelectLevel = (level: string) => {
+  setSelectedDifficulty(level)
+  setSelectedSection(nextSection(sectionData, level))
+}
+
+useEffect(() => {
+  if (!selectedCategory) {
+    setSectionData(null)
+    setSelectedSection(null)
+    return
+  }
+  let cancelled = false
+  setLoadingSections(true)
+  const challenger =
+    localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId") || ""
+  const challenged = opponent.full_name || opponent.username
+  const qs = new URLSearchParams({ category: selectedCategory, challenger, challenged })
+
+  fetch(`/api/challenges/sections?${qs.toString()}`)
+    .then((r) => r.json())
+    .then((data: SectionData & { success: boolean }) => {
+      if (cancelled || !data.success) return
+      setSectionData(data)
+      // Start on the first level that actually has questions.
+      const level = ["easy", "intermediate", "advanced"].find((l) => (data.levels[l]?.count ?? 0) > 0)
+      if (level) {
+        setSelectedDifficulty(level)
+        setSelectedSection(nextSection(data, level))
+      } else {
+        setSelectedSection(null)
+      }
+    })
+    .catch((e) => console.error("Could not load sections:", e))
+    .finally(() => {
+      if (!cancelled) setLoadingSections(false)
+    })
+
+  return () => {
+    cancelled = true
+  }
+}, [selectedCategory, opponent.id])
+        
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [challengeSent, setChallengeSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -490,6 +552,15 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
       })
       return
     }
+
+if (selectedSection === null) {
+  toast({
+    title: "Select a section",
+    description: "Please choose a difficulty level and a section of questions",
+    variant: "destructive",
+  })
+  return
+}
 
     setIsSubmitting(true)
     setError(null)
@@ -531,7 +602,8 @@ const challengeData = {
   challengedName,
   category: selectedCategory,
   difficulty: selectedDifficulty,
-  question_count: 10,
+  question_count: questionCount,
+  section_number: selectedSection,
   time_limit: 300,
 }
 
@@ -567,7 +639,7 @@ const challengeData = {
 
       // Redirect to quiz immediately as the challenger
       setTimeout(() => {
-        const challengeUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${challenge.id}&questions=10&opponentName=${encodeURIComponent(challengedName)}&challengerTurn=true`
+        const challengeUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${challenge.id}&questions=${questionCount}&section=${selectedSection}&opponentName=${encodeURIComponent(challengedName)}&challengerTurn=true`
         console.log(`🔗 Redirecting challenger to:`, challengeUrl)
         router.push(challengeUrl)
       }, 1500)
@@ -587,7 +659,9 @@ const challengeData = {
   const handleClose = () => {
     if (!isSubmitting && !challengeSent) {
       setSelectedCategory(null)
-      setSelectedDifficulty("mixed")
+      setSelectedDifficulty("easy")
+      setSelectedSection(null)
+      setSectionData(null)
       setError(null)
       onClose()
     }
@@ -820,53 +894,91 @@ const challengeData = {
                       </div>
 
               {/* Difficulty Selection - Only show if category is selected */}
-              {selectedCategory && (
-                <div
-                  className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight}`}
-                >
-                  <h4 className="font-medium mb-3 flex items-center gap-2">
-                    <Trophy className="h-4 w-4" />
-                    Challenge Settings
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
-                      <Select value={selectedDifficulty} onValueChange={setSelectedDifficulty}>
-                        <SelectTrigger className="bg-white dark:bg-gray-800">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {difficulties.map((difficulty) => (
-                            <SelectItem key={difficulty.value} value={difficulty.value}>
-                              <div className="flex items-center gap-2">
-                                <span>{difficulty.emoji}</span>
-                                <div>
-                                  <div className="font-medium">{difficulty.label}</div>
-                                  <div className="text-xs text-gray-500">{difficulty.description}</div>
-                                </div>
-                              </div>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                              {selectedCategory && (
+                  <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight}`}>
+                    <h4 className="font-medium mb-3 flex items-center gap-2">
+                      <Trophy className="h-4 w-4" />
+                      Challenge Settings
+                    </h4>
+                
+                    <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                      {difficulties.map((difficulty) => {
+                        const count = sectionData?.levels[difficulty.value]?.count ?? 0
+                        const unavailable = loadingSections || !sectionData || count === 0
+                        const isActive = selectedDifficulty === difficulty.value && !unavailable
+                        return (
+                          <button
+                            type="button"
+                            key={difficulty.value}
+                            disabled={unavailable}
+                            aria-pressed={isActive}
+                            onClick={() => handleSelectLevel(difficulty.value)}
+                            className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 ${
+                              isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600"
+                            } ${unavailable ? "opacity-50 cursor-not-allowed" : "hover:border-gray-400"}`}
+                          >
+                            <div className="flex items-center gap-2 font-medium">
+                              <span>{difficulty.emoji}</span>
+                              {difficulty.label}
+                            </div>
+                            <div className="text-xs text-gray-500 mt-1">
+                              {loadingSections ? "Checking questions..." : count === 0 ? "Not available yet" : `${count} questions`}
+                            </div>
+                          </button>
+                        )
+                      })}
                     </div>
-                    <div className="flex items-end">
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        <div className="font-medium">Challenge Details:</div>
-                        <div>• 10 questions</div>
-                        <div>• 5 minutes time limit</div>
-                        <div>• Winner gets +2 points</div>
-                      </div>
+                
+                    {levelInfo && levelInfo.sections.length > 0 && (
+                      <>
+                        <label className="text-sm font-medium mb-2 block">Choose a section</label>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
+                          {levelInfo.sections.map((section) => {
+                            const start = (section.number - 1) * 10 + 1
+                            const end = start + section.size - 1
+                            const alreadyPlayed = playedSections.includes(section.number)
+                            const isActive = selectedSection === section.number
+                            return (
+                              <button
+                                type="button"
+                                key={section.number}
+                                aria-pressed={isActive}
+                                onClick={() => setSelectedSection(section.number)}
+                                className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 ${
+                                  isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                                }`}
+                              >
+                                <div className="font-medium">Section {section.number}</div>
+                                <div className="text-xs text-gray-500">
+                                  Questions {start}-{end}
+                                </div>
+                                {alreadyPlayed && (
+                                  <Badge variant="secondary" className="mt-1 text-xs">
+                                    Played
+                                  </Badge>
+                                )}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </>
+                    )}
+                
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="font-medium">Challenge Details:</div>
+                      <div>• {questionCount} questions, in the same order for both players</div>
+                      <div>• 5 minutes time limit</div>
+                      <div>• Winner gets +2 points</div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4">
                 <Button
                   onClick={handleSendChallenge}
-                  disabled={!selectedCategory || isSubmitting}
+                  disabled={!selectedCategory || selectedSection === null || isSubmitting}
                   className="flex-1 bg-green-600 hover:bg-green-700 h-12 text-base"
                 >
                   {isSubmitting ? (
