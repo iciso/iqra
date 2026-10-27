@@ -116,7 +116,7 @@ export default function ProfileChallengeNotifications() {
       localStorage.setItem("tempChallengerId", playerName)
       
       router.push(
-        `/quiz?category=${c.category}&difficulty=${c.difficulty}&challenge=${c.id}&questions=${c.question_count}&opponentName=${encodeURIComponent(c.challenger_name)}&challengerTurn=false`
+        `/quiz?category=${c.category}&difficulty=${c.difficulty}&challenge=${c.id}&questions=${c.question_count}${c.section_number ? `&section=${c.section_number}` : ""}&opponentName=${encodeURIComponent(c.challenger_name)}&challengerTurn=false`
       )
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" })
