@@ -20,6 +20,7 @@ async function ensureChallengesTable(pool: Pool) {
         status VARCHAR(20) NOT NULL DEFAULT 'pending',
         challenger_score INTEGER,
         challenged_score INTEGER,
+        section_number INTEGER,
         challenger_completed_at TIMESTAMP,
         challenged_completed_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -62,14 +63,17 @@ export async function POST(request: NextRequest) {
       await ensureChallengesTable(pool)
 
       const challengeId = crypto.randomUUID()
-      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000)
-
+      const expiresAt = new Date("9990-12-31T23:59:59Z");
+      
+      const sectionRaw = body.section_number ?? body.sectionNumber ?? null
+      const sectionNumber = Number.isInteger(Number(sectionRaw)) && Number(sectionRaw) > 0 ? Number(sectionRaw) : null
+      
       const client = await pool.connect()
       try {
         const result = await client.query(
           `INSERT INTO challenges
-            (id, challenger_name, challenged_name, category, difficulty, question_count, time_limit, status, expires_at)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending', $8)
+            (id, challenger_name, challenged_name, category, difficulty, question_count, time_limit, status, expires_at, section_number)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending', $8, $9)
            RETURNING *`,
           [
             challengeId,
@@ -80,6 +84,7 @@ export async function POST(request: NextRequest) {
             questionCount,
             timeLimit,
             expiresAt.toISOString(),
+            sectionNumber,
           ],
         )
 
