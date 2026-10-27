@@ -81,6 +81,24 @@ function buildOrderedPool(
   return primary.length >= sectionSize ? primary : everything
 }
 
+const SECTION_SIZE = 10
+
+// Section n of a level = questions (n-1)*10 .. n*10-1 of that level, in data-file order.
+// No shuffling and no top-up from other levels, so the section is exactly what the data file holds.
+function buildSectionQuestions(
+  getQuizQuestions: (id: string, diff: BaseDifficulty) => QuizQuestion[],
+  categoryId: string,
+  difficulty: DifficultyLike,
+  section: number,
+): QuizQuestion[] | null {
+  if (difficulty === "mixed") return null
+  const pool = getQuizQuestions(categoryId, difficulty as BaseDifficulty) || []
+  const start = (section - 1) * SECTION_SIZE
+  const slice = pool.slice(start, start + SECTION_SIZE)
+  return slice.length > 0 ? slice : null
+}
+
+
 /** Splits the ordered pool into numbered sections (1-based) of `size` questions. */
 function getSectionCount(total: number, size: number) {
   return Math.max(1, Math.ceil(total / size))
@@ -104,6 +122,9 @@ async function resolveChallengeParams(params: URLSearchParams) {
   let challengerTurn = params.get("challengerTurn") === "true"
   const challengeId = params.get("challenge") || undefined
 
+  const sectionParam = Number.parseInt(params.get("section") || "", 10)
+  const section = Number.isFinite(sectionParam) && sectionParam > 0 ? sectionParam : undefined
+  
   const needsResolve = !!challengeId && (!category || !difficulty || !questionCount || !opponentId || !opponentName)
 
   if (!needsResolve) {
