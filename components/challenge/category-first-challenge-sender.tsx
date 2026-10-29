@@ -117,6 +117,15 @@ const challengeCategories = [
     bgLight: "bg-red-50",
   },
    {
+    id: "shirk",
+    label: "Shirk",
+    description: "Assigning Partners",
+    icon: Users,
+    color: "bg-amber-500 hover:bg-amber-600",
+    textColor: "text-amber-700",
+    bgLight: "bg-amber-50",
+  },
+   {
     id: "islamic-eschatology",
     label: "Islamic End-Days",
     description: "Islamic End Days",
