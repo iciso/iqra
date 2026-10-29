@@ -288,16 +288,16 @@ export default function AboutPage() {
     text-gray-600 dark:text-gray-300">
     Have you spotted an error or found a way to improve IQRA?
     Your feedback matters! 
-    <span>
-            Send suggestions by WhatsApp to{" "}
-           <a
-                https://wa.me{+917558845528}?text=${Rafique}`;
+      <span>
+            Send suggestions by WhatsApp to {" "}
+                <a
+                href="https://wa.me"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
               >
               Rafique
-            </a>{" "}
+            </a> {" "}
             at +91 7558845528
           </span>
     
