@@ -29,7 +29,7 @@ interface CategoryFirstChallengeDialogProps {
   opponent: User
 }
 
-// Deine all categories here for challenges 
+// Define all categories here for challenges 
 const challengeCategories = [
   {
     id: "quran",
@@ -111,7 +111,7 @@ const challengeCategories = [
     bgLight: "bg-fuchsia-50",
     borderColor: "border-fuchsia-300",
   },
-    {
+  {
     id: "charity",
     label: "Zakat & Sadaqah",
     description: "Charity in Islam",
@@ -121,7 +121,7 @@ const challengeCategories = [
     bgLight: "bg-amber-50",
     borderColor: "border-amber-300",
   },
-   {
+  {
     id: "sawm",
     label: "Sawm",
     description: "Fasting & Ramadaan",
@@ -131,7 +131,7 @@ const challengeCategories = [
     bgLight: "bg-purple-50",
     borderColor: "border-purple-300",
   },
-   {
+  {
     id: "hajj",
     label: "Hajj",
     description: "Islamic Pilgrimmage",
@@ -181,7 +181,7 @@ const challengeCategories = [
     bgLight: "bg-violet-50",
     borderColor: "border-violet-300",
   },
-   {
+  {
     id: "christ",
     label: "Christianity",
     description: "Islam & Christianity",
@@ -191,7 +191,7 @@ const challengeCategories = [
     bgLight: "bg-yellow-50",
     borderColor: "border-yellow-300",
   },
-    {
+  {
     id: "hindu",
     label: "Hinduism",
     description: "Islam & Hinduism",
@@ -201,7 +201,7 @@ const challengeCategories = [
     bgLight: "bg-fuchsia-50",
     borderColor: "border-fuchsia-300",
   },
-    {
+  {
     id: "bidah",
     label: "Bidah",
     description: "Bidah & Tawheed",
@@ -231,7 +231,7 @@ const challengeCategories = [
     bgLight: "bg-rose-50",
     borderColor: "border-rose-300",
   },
-   {
+  {
     id: "crypto",
     label: "Crypto & Blockchain",
     description: "Shariah & digital currencies",
@@ -241,7 +241,7 @@ const challengeCategories = [
     bgLight: "bg-blue-50",
     borderColor: "border-blue-300",
   },
-     {
+  {
     id: "gender",
     label: "Gender",
     description: "Gender in Islam",
@@ -251,7 +251,7 @@ const challengeCategories = [
     bgLight: "bg-green-50",
     borderColor: "border-green-300",
   },
-     {
+  {
     id: "lgbtq",
     label: "LGBTQIA+",
     description: "LGBTQIA+ & Islam",
@@ -261,7 +261,7 @@ const challengeCategories = [
     bgLight: "bg-indigo-50",
     borderColor: "border-indigo-300",
   },
-    {
+  {
     id: "psych",
     label: "Islamic Psychology",
     description: "Psychology & Islam",
@@ -281,7 +281,7 @@ const challengeCategories = [
     bgLight: "bg-yellow-50",
     borderColor: "border-yellow-300",
   },
-    {
+  {
     id: "islamic-alcohol-drugs",
     label: "Alcohol & Drugs in Islam",
     description: "Alcohol & Drugs in Islam",
@@ -301,7 +301,7 @@ const challengeCategories = [
     bgLight: "bg-green-50",
     borderColor: "border-green-300",
   },
-   {
+  {
     id: "dating",
     label: "Dating",
     description: "Dating in Islam",
@@ -331,7 +331,7 @@ const challengeCategories = [
     bgLight: "bg-gray-50",
     borderColor: "border-gray-300",
   },
-    {
+  {
     id: "islamic-eschatology",
     label: "Islamic End-Days",
     description: "Islamic End-Days",
@@ -341,7 +341,7 @@ const challengeCategories = [
     bgLight: "bg-blue-50",
     borderColor: "border-blue-300",
   },
-   {
+  {
     id: "peace",
     label: "Peace",
     description: "Peace in Middle East",
@@ -354,7 +354,7 @@ const challengeCategories = [
 ]
 
 const tamilCategories = [
-{
+  {
     id: "ta-quran",
     label: "குர்ஆன்",
     description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
@@ -364,7 +364,7 @@ const tamilCategories = [
     bgLight: "bg-red-50",
     borderColor: "border-red-300",
   },
-      {
+  {
     id: "ta-salah",
     label: "தொழுகை",
     description: "தொழுகை-ஸலாஹ்",
@@ -374,7 +374,7 @@ const tamilCategories = [
     bgLight: "bg-purple-50",
     borderColor: "border-purple-300",
   }, 
-     {
+  {
     id: "ta-charity",
     label: "தஸகாத் மற்றும் தர்மம்",
     description: "பஸகாத், சதகா வழிகாட்டல்கள்",
@@ -384,7 +384,7 @@ const tamilCategories = [
     bgLight: "bg-amber-50",
     borderColor: "border-amber-300",
   }, 
-   {
+  {
     id: "ta-fiqh",
     label: "ஃபிக்ஹ்",
     description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
@@ -407,7 +407,7 @@ const surahCategories = [
     bgLight: "bg-green-50",
     borderColor: "border-green-300",
   },
-   {
+  {
     id: "surah-79",
     label: "Surah-79 An-Naziah",
     description: "Those Who Drag Forth",
@@ -440,7 +440,7 @@ const arabicVocabularyCategories = [
     bgLight: "bg-purple-50",
     borderColor: "border-purple-300",
   },
-      {
+  {
     id: "modern-arabic-01",
     label: "Modern Arabic 01",
     description: "Modern Arabic - Level 1",
@@ -458,11 +458,21 @@ type SectionData = {
   played: Record<string, number[]>
 }
 
+const DEFAULT_LEVEL_STRUCTURE = {
+  count: 30,
+  sections: [
+    { number: 1, size: 10 },
+    { number: 2, size: 10 },
+    { number: 3, size: 10 },
+  ],
+}
+
 // First section these two players have not played; falls back to section 1.
 function nextSection(data: SectionData | null, level: string): number | null {
-  const sections = data?.levels[level]?.sections ?? []
+  const levelData = data?.levels[level] || DEFAULT_LEVEL_STRUCTURE
+  const sections = levelData.sections ?? DEFAULT_LEVEL_STRUCTURE.sections
   const played = data?.played[level] ?? []
-  return (sections.find((s) => !played.includes(s.number)) ?? sections[0])?.number ?? null
+  return (sections.find((s) => !played.includes(s.number)) ?? sections[0])?.number ?? 1
 }
 
 const difficulties = [
@@ -476,57 +486,64 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
         
- const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
-const [sectionData, setSectionData] = useState<SectionData | null>(null)
-const [loadingSections, setLoadingSections] = useState(false)
-const [selectedSection, setSelectedSection] = useState<number | null>(null)
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
+  const [sectionData, setSectionData] = useState<SectionData | null>(null)
+  const [loadingSections, setLoadingSections] = useState(false)
+  const [selectedSection, setSelectedSection] = useState<number | null>(null)
 
-const levelInfo = sectionData?.levels[selectedDifficulty]
-const playedSections = sectionData?.played[selectedDifficulty] ?? []
-const selectedSectionInfo = levelInfo?.sections.find((s) => s.number === selectedSection)
-const questionCount = selectedSectionInfo?.size ?? 10
+  const rawLevelInfo = sectionData?.levels[selectedDifficulty]
+  const levelInfo = (rawLevelInfo && rawLevelInfo.count > 0) ? rawLevelInfo : DEFAULT_LEVEL_STRUCTURE
+  const playedSections = sectionData?.played[selectedDifficulty] ?? []
+  const selectedSectionInfo = levelInfo?.sections.find((s) => s.number === selectedSection)
+  const questionCount = selectedSectionInfo?.size ?? 10
 
-const handleSelectLevel = (level: string) => {
-  setSelectedDifficulty(level)
-  setSelectedSection(nextSection(sectionData, level))
-}
-
-useEffect(() => {
-  if (!selectedCategory) {
-    setSectionData(null)
-    setSelectedSection(null)
-    return
+  const handleSelectLevel = (level: string) => {
+    setSelectedDifficulty(level)
+    setSelectedSection(nextSection(sectionData, level))
   }
-  let cancelled = false
-  setLoadingSections(true)
-  const challenger =
-    localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId") || ""
-  const challenged = opponent.full_name || opponent.username
-  const qs = new URLSearchParams({ category: selectedCategory, challenger, challenged })
 
-  fetch(`/api/challenges/sections?${qs.toString()}`)
-    .then((r) => r.json())
-    .then((data: SectionData & { success: boolean }) => {
-      if (cancelled || !data.success) return
-      setSectionData(data)
-      // Start on the first level that actually has questions.
-      const level = ["easy", "intermediate", "advanced"].find((l) => (data.levels[l]?.count ?? 0) > 0)
-      if (level) {
-        setSelectedDifficulty(level)
-        setSelectedSection(nextSection(data, level))
-      } else {
-        setSelectedSection(null)
-      }
-    })
-    .catch((e) => console.error("Could not load sections:", e))
-    .finally(() => {
-      if (!cancelled) setLoadingSections(false)
-    })
+  useEffect(() => {
+    if (!selectedCategory) {
+      setSectionData(null)
+      setSelectedSection(null)
+      return
+    }
+    let cancelled = false
+    setLoadingSections(true)
+    const challenger =
+      localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId") || ""
+    const challenged = opponent.full_name || opponent.username
+    const qs = new URLSearchParams({ category: selectedCategory, challenger, challenged })
 
-  return () => {
-    cancelled = true
-  }
-}, [selectedCategory, opponent.id])
+    fetch(`/api/challenges/sections?${qs.toString()}`)
+      .then((r) => r.json())
+      .then((data: SectionData & { success: boolean }) => {
+        if (cancelled) return
+        if (data.success) {
+          setSectionData(data)
+          setSelectedDifficulty("easy")
+          setSelectedSection(nextSection(data, "easy"))
+        } else {
+          // Fallback structure if API call fails to return standard success
+          setSelectedDifficulty("easy")
+          setSelectedSection(1)
+        }
+      })
+      .catch((e) => {
+        console.error("Could not load sections:", e)
+        if (!cancelled) {
+          setSelectedDifficulty("easy")
+          setSelectedSection(1)
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingSections(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [selectedCategory, opponent.id])
         
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [challengeSent, setChallengeSent] = useState(false)
@@ -553,14 +570,14 @@ useEffect(() => {
       return
     }
 
-if (selectedSection === null) {
-  toast({
-    title: "Select a section",
-    description: "Please choose a difficulty level and a section of questions",
-    variant: "destructive",
-  })
-  return
-}
+    if (selectedSection === null) {
+      toast({
+        title: "Select a section",
+        description: "Please choose a difficulty level and a section of questions",
+        variant: "destructive",
+      })
+      return
+    }
 
     setIsSubmitting(true)
     setError(null)
@@ -570,11 +587,11 @@ if (selectedSection === null) {
       console.log(`🎯 Challenge details:`, {
         category: selectedCategory,
         difficulty: selectedDifficulty,
-        questionCount: 10,
+        questionCount: questionCount,
         timeLimit: 300,
       })
 
-      // Get the challenger's display name - same key used everywhere in the app
+      // Get the challenger's display name
       const challengerName =
         typeof window !== "undefined"
           ? localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId")
@@ -590,24 +607,21 @@ if (selectedSection === null) {
         return
       }
 
-      // Keep both keys in sync so quiz-container and leaderboard always find the name
       localStorage.setItem("userNameForLeaderboard", challengerName)
       localStorage.setItem("tempChallengerId", challengerName)
 
-      // Opponent's real name (not the synthetic player-N id)
       const challengedName = opponent.full_name || opponent.username
 
-const challengeData = {
-  challengerName,
-  challengedName,
-  category: selectedCategory,
-  difficulty: selectedDifficulty,
-  question_count: questionCount,
-  section_number: selectedSection,
-  time_limit: 300,
-}
+      const challengeData = {
+        challengerName,
+        challengedName,
+        category: selectedCategory,
+        difficulty: selectedDifficulty,
+        question_count: questionCount,
+        section_number: selectedSection,
+        time_limit: 300,
+      }
 
-      // Use the API endpoint to create challenges (works without auth)
       const apiResponse = await fetch("/api/challenges/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -615,19 +629,15 @@ const challengeData = {
       })
 
       let challenge: any = null
-      let error: any = null
 
       if (apiResponse.ok) {
         const result = await apiResponse.json()
         challenge = result.challenge
-        console.log("✅ Challenge created successfully via API")
-        console.log("✅ Challenge created successfully:", challenge)
+        console.log("✅ Challenge created successfully via API:", challenge)
       } else {
         const errData = await apiResponse.json().catch(() => ({}))
         throw new Error(errData.error || "Failed to create challenge")
       }
-
-      console.log(`✅ Challenge created successfully:`, challenge)
 
       setChallengeSent(true)
 
@@ -637,7 +647,6 @@ const challengeData = {
         description: `${categoryLabel} challenge sent to ${opponent.full_name || opponent.username}. Take your quiz now!`,
       })
 
-      // Redirect to quiz immediately as the challenger
       setTimeout(() => {
         const challengeUrl = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}&challenge=${challenge.id}&questions=${questionCount}&section=${selectedSection}&opponentName=${encodeURIComponent(challengedName)}&challengerTurn=true`
         console.log(`🔗 Redirecting challenger to:`, challengeUrl)
@@ -741,238 +750,234 @@ const challengeData = {
                 </div>
               )}
 
-                              {/* Category Selection - Most Prominent */}
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <Target className="h-5 w-5 text-blue-600" />
-                          What do you want to challenge them in?
-                        </h3>
-                      
-                        {/* Islamic Topics */}
-                        <div className="mb-6">
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                            Islamic Knowledge Topics
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {challengeCategories.map((category) => {
-                              const IconComponent = category.icon
-                              const isSelected = selectedCategory === category.id
-                              return (
-                                <div
-                                  key={category.id}
-                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
-                                    isSelected
-                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
-                                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
-                                  }`}
-                                  onClick={() => setSelectedCategory(category.id)}
-                                >
-                                  <div className="text-center">
-                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
-                                      <IconComponent className="h-5 w-5 text-white" />
-                                    </div>
-                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
-                                      {category.label}
-                                    </h4>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                                    {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-
-                           {/* Tamil Islamic Studies */}
-                        <div className="mb-6">
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                           தமிழ் இஸ்லாமிய ஆய்வுகள்
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {tamilCategories.map((category) => {
-                              const IconComponent = category.icon
-                              const isSelected = selectedCategory === category.id
-                              return (
-                                <div
-                                  key={category.id}
-                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
-                                    isSelected
-                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
-                                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
-                                  }`}
-                                  onClick={() => setSelectedCategory(category.id)}
-                                >
-                                  <div className="text-center">
-                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
-                                      <IconComponent className="h-5 w-5 text-white" />
-                                    </div>
-                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
-                                      {category.label}
-                                    </h4>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                                    {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-
-                        
-
-                          {/* Quranic Studies */}
-                        <div className="mb-6">
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                           Quranic Studies
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {surahCategories.map((category) => {
-                              const IconComponent = category.icon
-                              const isSelected = selectedCategory === category.id
-                              return (
-                                <div
-                                  key={category.id}
-                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
-                                    isSelected
-                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
-                                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
-                                  }`}
-                                  onClick={() => setSelectedCategory(category.id)}
-                                >
-                                  <div className="text-center">
-                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
-                                      <IconComponent className="h-5 w-5 text-white" />
-                                    </div>
-                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
-                                      {category.label}
-                                    </h4>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                                    {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-
-                        
-                        {/* Arabic Vocabulary - Distinctive Section */}
-                        <div>
-                          <h4 className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3 uppercase tracking-wide flex items-center gap-2">
-                            <Book className="h-4 w-4" />
-                            Arabic Vocabulary
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {arabicVocabularyCategories.map((category) => {
-                              const IconComponent = category.icon
-                              const isSelected = selectedCategory === category.id
-                              return (
-                                <div
-                                  key={category.id}
-                                  className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
-                                    isSelected
-                                      ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-purple-500`
-                                      : "border-purple-200 dark:border-purple-700 hover:border-purple-400"
-                                  }`}
-                                  onClick={() => setSelectedCategory(category.id)}
-                                >
-                                  <div className="text-center">
-                                    <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
-                                      <IconComponent className="h-5 w-5 text-white" />
-                                    </div>
-                                    <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
-                                      {category.label}
-                                    </h4>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
-                                    {isSelected && <Badge className="mt-2 bg-purple-100 text-purple-800 text-xs">Selected ✓</Badge>}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      </div>
-
-              {/* Difficulty Selection - Only show if category is selected */}
-                              {selectedCategory && (
-                  <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight}`}>
-                    <h4 className="font-medium mb-3 flex items-center gap-2">
-                      <Trophy className="h-4 w-4" />
-                      Challenge Settings
-                    </h4>
-                
-                    <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                      {difficulties.map((difficulty) => {
-                        const count = sectionData?.levels[difficulty.value]?.count ?? 0
-                        const unavailable = loadingSections || !sectionData || count === 0
-                        const isActive = selectedDifficulty === difficulty.value && !unavailable
-                        return (
-                          <button
-                            type="button"
-                            key={difficulty.value}
-                            disabled={unavailable}
-                            aria-pressed={isActive}
-                            onClick={() => handleSelectLevel(difficulty.value)}
-                            className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 ${
-                              isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600"
-                            } ${unavailable ? "opacity-50 cursor-not-allowed" : "hover:border-gray-400"}`}
-                          >
-                            <div className="flex items-center gap-2 font-medium">
-                              <span>{difficulty.emoji}</span>
-                              {difficulty.label}
+              {/* Category Selection - Most Prominent */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <Target className="h-5 w-5 text-blue-600" />
+                  What do you want to challenge them in?
+                </h3>
+              
+                {/* Islamic Topics */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                    Islamic Knowledge Topics
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {challengeCategories.map((category) => {
+                      const IconComponent = category.icon
+                      const isSelected = selectedCategory === category.id
+                      return (
+                        <div
+                          key={category.id}
+                          className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                            isSelected
+                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                          }`}
+                          onClick={() => setSelectedCategory(category.id)}
+                        >
+                          <div className="text-center">
+                            <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                              <IconComponent className="h-5 w-5 text-white" />
                             </div>
-                            <div className="text-xs text-gray-500 mt-1">
-                              {loadingSections ? "Checking questions..." : count === 0 ? "Not available yet" : `${count} questions`}
-                            </div>
-                          </button>
-                        )
-                      })}
-                    </div>
-                
-                    {levelInfo && levelInfo.sections.length > 0 && (
-                      <>
-                        <label className="text-sm font-medium mb-2 block">Choose a section</label>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
-                          {levelInfo.sections.map((section) => {
-                            const start = (section.number - 1) * 10 + 1
-                            const end = start + section.size - 1
-                            const alreadyPlayed = playedSections.includes(section.number)
-                            const isActive = selectedSection === section.number
-                            return (
-                              <button
-                                type="button"
-                                key={section.number}
-                                aria-pressed={isActive}
-                                onClick={() => setSelectedSection(section.number)}
-                                className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 ${
-                                  isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
-                                }`}
-                              >
-                                <div className="font-medium">Section {section.number}</div>
-                                <div className="text-xs text-gray-500">
-                                  Questions {start}-{end}
-                                </div>
-                                {alreadyPlayed && (
-                                  <Badge variant="secondary" className="mt-1 text-xs">
-                                    Played
-                                  </Badge>
-                                )}
-                              </button>
-                            )
-                          })}
+                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                              {category.label}
+                            </h4>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                          </div>
                         </div>
-                      </>
-                    )}
-                
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      <div className="font-medium">Challenge Details:</div>
-                      <div>• {questionCount} questions, in the same order for both players</div>
-                      <div>• 5 minutes time limit</div>
-                      <div>• Winner gets +2 points</div>
-                    </div>
+                      )
+                    })}
                   </div>
-                )}
+                </div>
+
+                {/* Tamil Islamic Studies */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                   தமிழ் இஸ்லாமிய ஆய்வுகள்
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {tamilCategories.map((category) => {
+                      const IconComponent = category.icon
+                      const isSelected = selectedCategory === category.id
+                      return (
+                        <div
+                          key={category.id}
+                          className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                            isSelected
+                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                          }`}
+                          onClick={() => setSelectedCategory(category.id)}
+                        >
+                          <div className="text-center">
+                            <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                              <IconComponent className="h-5 w-5 text-white" />
+                            </div>
+                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                              {category.label}
+                            </h4>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Quranic Studies */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                   Quranic Studies
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {surahCategories.map((category) => {
+                      const IconComponent = category.icon
+                      const isSelected = selectedCategory === category.id
+                      return (
+                        <div
+                          key={category.id}
+                          className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                            isSelected
+                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                          }`}
+                          onClick={() => setSelectedCategory(category.id)}
+                        >
+                          <div className="text-center">
+                            <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                              <IconComponent className="h-5 w-5 text-white" />
+                            </div>
+                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                              {category.label}
+                            </h4>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Arabic Vocabulary */}
+                <div>
+                  <h4 className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3 uppercase tracking-wide flex items-center gap-2">
+                    <Book className="h-4 w-4" />
+                    Arabic Vocabulary
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {arabicVocabularyCategories.map((category) => {
+                      const IconComponent = category.icon
+                      const isSelected = selectedCategory === category.id
+                      return (
+                        <div
+                          key={category.id}
+                          className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
+                            isSelected
+                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-purple-500`
+                              : "border-purple-200 dark:border-purple-700 hover:border-purple-400"
+                          }`}
+                          onClick={() => setSelectedCategory(category.id)}
+                        >
+                          <div className="text-center">
+                            <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
+                              <IconComponent className="h-5 w-5 text-white" />
+                            </div>
+                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                              {category.label}
+                            </h4>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
+                            {isSelected && <Badge className="mt-2 bg-purple-100 text-purple-800 text-xs">Selected ✓</Badge>}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Difficulty Selection */}
+              {selectedCategory && (
+                <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight || "bg-gray-50"}`}>
+                  <h4 className="font-medium mb-3 flex items-center gap-2">
+                    <Trophy className="h-4 w-4" />
+                    Challenge Settings
+                  </h4>
+              
+                  <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                    {difficulties.map((difficulty) => {
+                      const currentCount = sectionData?.levels[difficulty.value]?.count ?? 30
+                      const countText = loadingSections ? "Loading..." : `${currentCount} questions`
+                      const isActive = selectedDifficulty === difficulty.value
+                      return (
+                        <button
+                          type="button"
+                          key={difficulty.value}
+                          aria-pressed={isActive}
+                          onClick={() => handleSelectLevel(difficulty.value)}
+                          className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 cursor-pointer ${
+                            isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 font-medium">
+                            <span>{difficulty.emoji}</span>
+                            {difficulty.label}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {countText}
+                          </div>
+                        </button>
+                      )
+                    })}
+                  </div>
+              
+                  {levelInfo && levelInfo.sections.length > 0 && (
+                    <>
+                      <label className="text-sm font-medium mb-2 block">Choose a section</label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
+                        {levelInfo.sections.map((section) => {
+                          const start = (section.number - 1) * 10 + 1
+                          const end = start + section.size - 1
+                          const alreadyPlayed = playedSections.includes(section.number)
+                          const isActive = selectedSection === section.number
+                          return (
+                            <button
+                              type="button"
+                              key={section.number}
+                              aria-pressed={isActive}
+                              onClick={() => setSelectedSection(section.number)}
+                              className={`rounded-lg border-2 p-3 text-left transition-colors bg-white dark:bg-gray-800 cursor-pointer ${
+                                isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
+                              }`}
+                            >
+                              <div className="font-medium">Section {section.number}</div>
+                              <div className="text-xs text-gray-500">
+                                Questions {start}-{end}
+                              </div>
+                              {alreadyPlayed && (
+                                <Badge variant="secondary" className="mt-1 text-xs">
+                                  Played
+                                </Badge>
+                              )}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </>
+                  )}
+              
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="font-medium">Challenge Details:</div>
+                    <div>• {questionCount} questions, in the same order for both players</div>
+                    <div>• 5 minutes time limit</div>
+                    <div>• Winner gets +2 points</div>
+                  </div>
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4">
