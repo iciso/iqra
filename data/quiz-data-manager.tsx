@@ -1,6 +1,7 @@
 import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
 import quranCategory from "./quran"; 
 import aqeedahCategory from "./aqeedah"; 
+import shirkCategory from "./shirk"; 
 import seerahCategory from "./quiz-data-manager-additions";
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
@@ -47,6 +48,7 @@ const quizData: QuizCategory[] = [
   quranCategory,
   seerahCategory,
   aqeedahCategory,
+  shirkCategory,
   newMuslimsCategory,
   tafsirCategory,
   tazkiyahCategory,
