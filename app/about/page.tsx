@@ -48,11 +48,13 @@ export default function AboutPage() {
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            or This is an ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Generous.<br />
+            or This is an ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, 
+            The Entirely Generous.<br />
             Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
           </p>
           <p className="text-gray-600 dark:text-gray-300">
-            So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world.
+            So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for
+            Muslims around the world.
           </p>
         </section>
 
@@ -186,12 +188,12 @@ export default function AboutPage() {
     Your feedback matters! 
     <span>
             Send suggestions by WhatsApp to{" "}
-            <a
-              href="https://cvemrafi.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
-            >
+           <a
+                href="https://wa.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
               Rafique
             </a>{" "}
             at +91 7558845528
@@ -258,14 +260,17 @@ export default function AboutPage() {
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
             <img src="/images/design-mode/logo-dark.png" alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
-            <img src="/images/design-mode/Icon_light_background.png" alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <img src="/images/design-mode/Icon_light_background.png" 
+              alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, Ameen, Summa Ameen.
+            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
+            The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, 
+            Ameen, Summa Ameen.
           </p>
           <ul className="list-disc pl-6 space-y-4 text-gray-600 dark:text-gray-300">
             <li>
@@ -277,7 +282,8 @@ export default function AboutPage() {
                 className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
               >
                 Mohamed Essa Rafique
-              </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
+              </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. 
+              May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
               <a
                 href="https://zettabyteincorp.com/"
                 target="_blank"
@@ -300,7 +306,8 @@ export default function AboutPage() {
               </a>{" "}
               and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.
               <div className="mt-2">
-                <img src="/images/design-mode/Icon_light_background.png" alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                <img src="/images/design-mode/Icon_light_background.png" 
+                  alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
             <li>
@@ -313,9 +320,12 @@ export default function AboutPage() {
               >
                 xAI
               </a>{" "}
-              and their AI assistant, Grok, for tirelessly assisting in debugging, optimizing, and enhancing the codebase of both IQRA and KALAM over the past month. Grok’s precision and insights have been instrumental in ensuring a robust and reliable application, Alhamdulillah.
+              and their AI assistant, Grok, for tirelessly assisting in debugging, optimizing, and enhancing the codebase of both 
+              IQRA and KALAM over the past month. Grok’s precision and insights have been instrumental in ensuring a robust and reliable application, 
+              Alhamdulillah.
               <div className="mt-2">
-                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:text-gray-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" 
+                  className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:text-gray-300">
                   <path d="M2.30047 8.77631L12.0474 23H16.3799L6.63183 8.77631H2.30047ZM6.6285 16.6762L2.29492 23H6.63072L8.79584 19.8387L6.6285 16.6762ZM17.3709 1L9.88007 11.9308L12.0474 15.0944L21.7067 1H17.3709ZM18.1555 7.76374V23H21.7067V2.5818L18.1555 7.76374Z" fill="currentColor"></path>
                 </svg>
               </div>
@@ -330,7 +340,8 @@ export default function AboutPage() {
               >
                 DeepSeek
               </a>{" "}
-              for their invaluable assistance in structuring data and curating Islamic content, ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.
+              for their invaluable assistance in structuring data and curating Islamic content, 
+              ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.
               <div className="mt-2">
                   <img src="/deepseek.svg" alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
@@ -345,9 +356,11 @@ export default function AboutPage() {
               >
                 Claude AI
               </a>{" "}
-              for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, to those without email.
+              for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, 
+               to those without email.
               <div className="mt-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" 
+                    className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
 
@@ -361,7 +374,8 @@ export default function AboutPage() {
               >
                 Gemini
               </a>{" "}
-              for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, Alhamdulillah.
+              for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, 
+              Alhamdulillah.
                 <div className="mt-2">
                   <img src="/gemini.svg" alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
@@ -376,13 +390,15 @@ export default function AboutPage() {
               >
                 Meta
               </a>{" "}
-          all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
+          all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, 
+              questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
                 <div className="flex flex-wrap gap-4 mt-4 justify-center">
                   <div className="mt-2">
                   <img src="/meta.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                       <div className="mt-2">
-                      <img src="/instagram.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                      <img src="/instagram.png" alt="Meta WhatsApp Logo" 
+                        className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                         </div>
                    <div className="mt-2">
                   <img src="/meta.svg" alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
@@ -395,7 +411,8 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
+            This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah 
+            <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
           </p>
            <div className="flex flex-wrap gap-4 mt-4 justify-center">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
@@ -421,12 +438,12 @@ export default function AboutPage() {
           <MessageSquare className="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" />
           <span>
             For suggestions WhatsApp{" "}
-            <a
-              href="https://cvemrafi.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
-            >
+                <a
+                href="https://wa.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
               Rafique
             </a>{" "}
             at +91 7558845528
