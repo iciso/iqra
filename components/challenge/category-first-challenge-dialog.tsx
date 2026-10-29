@@ -82,6 +82,16 @@ const challengeCategories = [
     borderColor: "border-red-300",
   },
   {
+    id: "shirk",
+    label: "Shirk",
+    description: "Assigning Partners",
+    icon: Users,
+    color: "bg-amber-500 hover:bg-amber-600",
+    textColor: "text-amber-700",
+    bgLight: "bg-amber-50",
+    borderColor: "border-amber-300",
+  },
+  {
     id: "seerah",
     label: "Seerah",
     description: "Prophet's Biography",
