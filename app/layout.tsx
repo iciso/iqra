@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://iqrar.vercel.app/"),
   title: "IQRA 🏆 Islamic Quiz Rivalry App",
-  description: "Test your Islamic knowledge with quizzes💡🧠❓and challenges",
+  description: "Test your Islamic knowledge with quizzes💡🎯 and challenges",
   keywords:
     "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
   manifest: "/manifest.json",
