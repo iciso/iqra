@@ -19,6 +19,7 @@ const categories = [
   { id: "tafsir", title: "Tafsir", description: "Quranic Exegesis", icon: <BookCopy className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hadeeth", title: "Hadeeth", description: "Prophetic Traditions", icon: <Scroll className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "aqeedah", title: "Aqeedah", description: "Islamic Monotheism", icon: <Infinity className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "shirk", title: "Shirk", description: "Assigning Partners", icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "seerah", title: "Seerah", description: "Prophet's Biography", icon: <User className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "tazkiyah", title: "Tazkiyah", description: "Spiritual Purification", icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "salah", title: "Salah", description: "Prayers in Islam", icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" /> },
