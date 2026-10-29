@@ -128,19 +128,7 @@ export default function AboutPage() {
     </p>
 
        {/* Begin Table */}
-      {/* Header Section */}
-      <div className="text-center mb-6">
-        <h2 className="text-[#0C4E2D] font-extrabold text-sm tracking-widest uppercase mb-1">
-          — IQRA PLAYER CONTRIBUTIONS —
-        </h2>
-        <h1 className="text-[#0C4E2D] font-black text-4xl mb-2">
-          Dhanish Ali
-        </h1>
-        <p className="text-sm font-medium text-gray-800">
-          Three valuable suggestions • <span className="text-[#1B7A4B] font-bold">All accepted & implemented</span>
-        </p>
-      </div>
-
+      {/* Header Section removed */}
       {/* Responsive Table Container */}
       <div className="overflow-x-auto">
         <table className="w-full border-separate border-spacing-y-2.5">
