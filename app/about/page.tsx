@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from 'react';
 import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Trophy, Gamepad2, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
@@ -125,6 +126,119 @@ export default function AboutPage() {
       to IQRA. All three suggestions were accepted and
       implemented by the IQRA coding team.
     </p>
+
+       {/* Begin Table */}
+      {/* Header Section */}
+      <div className="text-center mb-6">
+        <h2 className="text-[#0C4E2D] font-extrabold text-sm tracking-widest uppercase mb-1">
+          — IQRA PLAYER CONTRIBUTIONS —
+        </h2>
+        <h1 className="text-[#0C4E2D] font-black text-4xl mb-2">
+          Dhanish Ali
+        </h1>
+        <p className="text-sm font-medium text-gray-800">
+          Three valuable suggestions • <span className="text-[#1B7A4B] font-bold">All accepted & implemented</span>
+        </p>
+      </div>
+
+      {/* Responsive Table Container */}
+      <div className="overflow-x-auto">
+        <table className="w-full border-separate border-spacing-y-2.5">
+          <thead>
+            <tr className="text-white text-lg font-bold">
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
+                No.
+              </th>
+              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
+                💡 Contribution
+              </th>
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
+                💰 Reward
+              </th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            {/* Item 1 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  1
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📖</span>
+                  <div>
+                    Salah Quiz — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Item 2 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  2
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl"> 🕌</span>
+                  <div>
+                    Harun (AS) — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Item 3 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  3
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📗</span>
+                  <div>
+                    Surah Maryam — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Nabi Reference</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Total Reward Row */}
+            <tr className="text-lg font-bold text-white">
+              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
+                🎁 Total reward
+              </td>
+              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
+                ⪧ ₹750 ⪦
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+   {/* End of Table */}
+
+
+    
 
     <div className="mx-auto grid max-w-md grid-cols-1
       gap-3 sm:grid-cols-2">
