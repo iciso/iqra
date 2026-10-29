@@ -183,7 +183,21 @@ export default function AboutPage() {
   <p className="mt-6 text-center text-sm italic
     text-gray-600 dark:text-gray-300">
     Have you spotted an error or found a way to improve IQRA?
-    Your feedback matters! Help us make IQRA better,
+    Your feedback matters! 
+    <span>
+            Send suggestions by WhatsApp to{" "}
+            <a
+              href="https://cvemrafi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
+            >
+              Rafique
+            </a>{" "}
+            at +91 7558845528
+          </span>
+    
+    Help us make IQRA better,
     one thoughtful contribution at a time.
     May Allah ﷻ reward everyone who contributes
     sincerely to beneficial Islamic learning. Ameen.
