@@ -1,6 +1,7 @@
 "use client" 
 
 import { useState, useEffect } from "react"
+import { NameRequiredMessage } from "./name-required-message"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -363,11 +364,12 @@ export default function CategoryFirstChallengeSender() {
           : null
       
       if (!challengerName || challengerName.length < 2) {
-        toast({
-          title: "Name required",
-          description: "Please enter your name in the Challenge Notifications box on the homepage first.",
-          variant: "destructive",
-        })
+       toast({
+        title: "Name required",
+        description: <NameRequiredMessage />,
+        variant: "destructive",
+        duration: 10000,
+      })
   setIsSubmitting(false)
   return
 }
