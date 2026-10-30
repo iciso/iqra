@@ -135,7 +135,7 @@ export default function HomePage() {
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb]">
       <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
         {/* Keep challenge notifications easy to find for returning players. */}
-        <div className="mb-6 w-full sm:mb-8">
+        <div id="challenge-name" className="mb-6 w-full scroll-mt-4 sm:mb-8">
           <ProfileChallengeNotifications />
         </div>
 
