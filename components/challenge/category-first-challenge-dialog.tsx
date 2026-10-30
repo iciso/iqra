@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { NameRequiredMessage } from "./name-required-message"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
@@ -495,7 +496,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   const { user } = useAuth()
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-        
+  const [nameRequired, setNameRequired] = useState(false)    
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
   const [sectionData, setSectionData] = useState<SectionData | null>(null)
   const [loadingSections, setLoadingSections] = useState(false)
@@ -591,6 +592,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
     setIsSubmitting(true)
     setError(null)
+    setNameRequired(false)
 
     try {
       console.log(`🎯 Creating challenge: ${opponent.full_name || opponent.username} (${opponent.id})`)
@@ -608,10 +610,12 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
           : null
 
       if (!challengerName || challengerName.length < 2) {
+        setNameRequired(true)
         toast({
           title: "Name required",
-          description: "Please enter your name in the Challenge Notifications box on the homepage first.",
+          description: <NameRequiredMessage onNavigate={onClose} />,
           variant: "destructive",
+          duration: 10000,
         })
         setIsSubmitting(false)
         return
@@ -746,6 +750,18 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 </div>
               </div>
 
+                {nameRequired && (
+                  <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start gap-3">
+                    <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-red-800">Name required</p>
+                      <p className="text-red-700 text-sm">
+                        <NameRequiredMessage onNavigate={onClose} />
+                      </p>
+                    </div>
+                  </div>
+                )}
+                    
               {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start gap-3">
