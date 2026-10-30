@@ -98,9 +98,9 @@ export default function AboutPage() {
     <p className="text-lg leading-relaxed
       text-gray-700 dark:text-gray-200">
       IQRA belongs not only to its creators, but also to the
-      players who help make it better. Every correction,
+      players who  make it better. Every correction,
       constructive suggestion, and improvement identified by
-      our players can help make IQRA's Islamic knowledge,
+      our players can  make IQRA's Islamic knowledge,
       data, and user interface more accurate and useful
       for everyone.
     </p>
@@ -298,7 +298,7 @@ export default function AboutPage() {
               >
               Rafique
             </a> {" "}
-            at +91 7558845528
+            at +91 7558845528. {" "}
           </span>
     
     Help us make IQRA better,
