@@ -22,6 +22,7 @@ import lgbtqCategory from "./lgbtq";
 import psychCategory from "./psych";
 import musicCategory from "./music";
 import datingCategory from "./dating";
+import marriageCategory from "./marriage";
 import islamicAlcoholDrugsCategory from "./islamic-alcohol-drugs";
 import parentingCategory from "./parenting";
 import peaceCategory from "./peace";
@@ -70,6 +71,7 @@ const quizData: QuizCategory[] = [
   islamicAlcoholDrugsCategory,
   imageryCategory,
   datingCategory,
+  marriageCategory,
   parentingCategory,
   peaceCategory,
   salahCategory,
