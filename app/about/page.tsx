@@ -188,12 +188,12 @@ export default function AboutPage() {
                     E
                   </span>
                   for Easy, 
-                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
-                    E
+                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-sky-100 font-bold text-sky-800">
+                    I
                   </span>
                   for Intermediate, or 
-                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
-                    E
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-amber-100 font-bold text-amber-800">
+                    A
                   </span> 
                   for Advanced
                   beside any category.
@@ -204,7 +204,7 @@ export default function AboutPage() {
                   {" "}
                   <a
                     href="/challenges"
-                    className="inline-flex items-center rounded-md bg-amber-500 px-3 py-1 font-bold text-white transition hover:bg-amber-600"
+                    className="inline-flex items-center rounded-md bg-purple-500 px-3 py-1 font-bold text-white transition hover:bg-purple-600"
                   >
                     C — Challenge
                   </a>
