@@ -100,8 +100,8 @@ const surah80Questions: QuizQuestion[] = [
     "id": "q8",
     "question": "What does the Arabic phrase 'وَمَا عَلَيْكَ أَلَّا يَزَّكَّى' mean?",
     "options": [
-      "And not upon you is it if he believes",
-      "And not upon you is it if he purifies himself",
+      "And not upon you [is any blame] if he believes",
+      "And not upon you [is any blame] if he will not be purified",
       "And not upon you is it if he repents",
       "And not upon you is it if he sins"
     ],
