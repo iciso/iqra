@@ -35,14 +35,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "IQRA 🏆 Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge with quizzes💡🧠❓and challenges",
+    description: "Test your Islamic knowledge with quizzes💡🎯and challenges",
     images: [{ url: "/logo.png" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "IQRA 🏆 Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge with quizzes💡🧠❓and challenges",
+    description: "Test your Islamic knowledge with quizzes💡🎯and challenges",
     images: [{ url: "/logo.png" }],
   },
   icons: {
