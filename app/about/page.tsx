@@ -200,24 +200,33 @@ export default function AboutPage() {
               </div>
             </div>
   
-      <div className="mb-4 flex flex-wrap justify-center gap-4 text-sm">
-          <span className="flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center
-              rounded bg-emerald-100 font-bold text-emerald-800">
-              E
-            </span>
-            Learn — Easy Level
-          </span>
-        
-          <span className="flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center
-              rounded bg-amber-100 font-bold text-amber-800">
-              C
-            </span>
-            Challenge a Friend
-          </span>
-        </div>
-  
+              <div className="mb-4 flex flex-wrap justify-center gap-4 text-sm">
+                <span className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
+                    E
+                  </span>
+                  Learn — Easy Level
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-sky-100 font-bold text-sky-800">
+                    I
+                  </span>
+                  Learn — Intermediate Level
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-amber-100 font-bold text-amber-800">
+                    A
+                  </span>
+                  Learn — Advanced Level
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-purple-100 font-bold text-purple-800">
+                    C
+                  </span>
+                  Challenge a Friend
+                </span>
+              </div>
+
   <div className="w-full overflow-x-auto rounded-lg">
     <table className="w-full min-w-[520px] border-collapse text-sm">
 
