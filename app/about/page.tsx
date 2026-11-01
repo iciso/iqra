@@ -360,7 +360,7 @@ export default function AboutPage() {
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
 <section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
 
-  <div className="mb-6 text-center">
+ <div id="iqra-quizzes" className="mb-6 text-center"> 
     <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
       📊 IQRA Quizzes
     </h2>
