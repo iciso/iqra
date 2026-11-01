@@ -80,6 +80,52 @@ const quizDistribution = [
   { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
 ];
 
+// URL slugs used by IQRA's category quiz pages
+const categorySlugs: Record<string, string> = {
+  "Quran": "quran",
+  "Seerah": "seerah",
+  "Aqeedah": "aqeedah",
+  "Shirk": "shirk",
+  "New Muslims": "new-muslims",
+  "Tafsir": "tafsir",
+  "Tazkiyah": "tazkiyah",
+  "Comparative Religion": "comparative-religion",
+  "Islamic Finance": "islamic-finance",
+  "Cryptocurrency": "cryptocurrency",
+  "History": "history",
+  "Hadeeth": "hadeeth",
+  "Fiqh": "fiqh",
+  "Christianity": "christianity",
+  "Bid'ah": "bidah",
+  "Riba": "riba",
+  "Hinduism": "hinduism",
+  "Dawah": "dawah",
+  "Gender": "gender",
+  "LGBTQ": "lgbtq",
+  "Psychology": "psychology",
+  "Music": "music",
+  "Islamic Alcohol & Drugs": "islamic-alcohol-drugs",
+  "Imagery": "imagery",
+  "Dating": "dating",
+  "Marriage": "marriage",
+  "Parenting": "parenting",
+  "Peace": "peace",
+  "Salah": "salah",
+  "Sawm": "sawm",
+  "Charity": "charity",
+  "Hajj": "hajj",
+  "Islamic Eschatology": "islamic-eschatology",
+  "Surah 78": "surah-78",
+  "Surah 79": "surah-79",
+  "Surah 80": "surah-80",
+  "TA Quran": "ta-quran",
+  "TA Salah": "ta-salah",
+  "TA Charity": "ta-charity",
+  "TA Fiqh": "ta-fiqh",
+  "Quranic Arabic 01": "quranic-arabic-01",
+  "Modern Arabic 01": "modern-arabic-01",
+  "Islamic Medical Ethics": "islamic-medical-ethics",
+};
 
 export default function AboutPage() {
   return (
@@ -373,6 +419,24 @@ export default function AboutPage() {
     </p>
   </div>
 
+      <div className="mb-4 flex flex-wrap justify-center gap-4 text-sm">
+          <span className="flex items-center gap-2">
+            <span className="inline-flex h-6 w-6 items-center justify-center
+              rounded bg-emerald-100 font-bold text-emerald-800">
+              L
+            </span>
+            Learn — Easy Level
+          </span>
+        
+          <span className="flex items-center gap-2">
+            <span className="inline-flex h-6 w-6 items-center justify-center
+              rounded bg-amber-100 font-bold text-amber-800">
+              C
+            </span>
+            Challenge a Friend
+          </span>
+        </div>
+  
   <div className="w-full overflow-x-auto rounded-lg">
     <table className="w-full min-w-[520px] border-collapse text-sm">
 
@@ -403,8 +467,38 @@ export default function AboutPage() {
                 : "bg-gray-50 hover:bg-emerald-50"
             }
           >
-            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
-              {item.category}
+             <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
+              <div className="flex flex-wrap items-center gap-2">
+                <span>{item.category}</span>
+            
+                {/* Learn link */}
+                <a
+                  href={`/quiz?category=${encodeURIComponent(
+                    categorySlugs[item.category]
+                  )}&difficulty=easy`}
+                  className="inline-flex h-7 min-w-7 items-center justify-center
+                    rounded-md bg-emerald-100 px-2 text-xs font-extrabold
+                    text-emerald-800 transition hover:bg-emerald-700
+                    hover:text-white"
+                  title={`Learn ${item.category} at the Easy level`}
+                  aria-label={`Learn ${item.category}`}
+                >
+                  L
+                </a>
+            
+                {/* Challenge link */}
+                <a
+                  href="/challenges"
+                  className="inline-flex h-7 min-w-7 items-center justify-center
+                    rounded-md bg-amber-100 px-2 text-xs font-extrabold
+                    text-amber-800 transition hover:bg-amber-500
+                    hover:text-white"
+                  title={`Challenge someone in ${item.category}`}
+                  aria-label={`Challenge someone in ${item.category}`}
+                >
+                  C
+                </a>
+              </div>
             </td>
 
             <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
