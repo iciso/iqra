@@ -127,6 +127,24 @@ const categorySlugs: Record<string, string> = {
   "Modern Arabic 01": "modern-arabic-01",
 };
 
+// Totals and Sub-totals of questions
+const totalEasy = quizDistribution.reduce(
+  (sum, item) => sum + item.easy,
+  0
+);
+
+const totalIntermediate = quizDistribution.reduce(
+  (sum, item) => sum + item.intermediate,
+  0
+);
+
+const totalAdvanced = quizDistribution.reduce(
+  (sum, item) => sum + item.advanced,
+  0
+);
+
+const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -307,15 +325,15 @@ export default function AboutPage() {
           </td>
 
           <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
-            1,689
+            {totalEasy.toLocaleString()}
           </td>
 
           <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
-            1,441
+            {totalIntermediate.toLocaleString()}
           </td>
 
           <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
-            1,671
+            {totalAdvanced.toLocaleString()}
           </td>
         </tr>
       </tbody>
@@ -329,7 +347,7 @@ export default function AboutPage() {
     </p>
 
     <p className="mt-1 text-xl font-extrabold sm:text-2xl">
-      Total Question Bank: 4,801 Questions
+      Total Question Bank: {grandTotal.toLocaleString()} Questions
     </p>
   </div>
         </section>
