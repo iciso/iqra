@@ -406,19 +406,35 @@ export default function AboutPage() {
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
 <section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
 
- <div id="iqra-quizzes" className="mb-6 text-center"> 
-    <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
-      📊 IQRA Quizzes
-    </h2>
-     <p className="mb-4 text-gray-600 dark:text-gray-300">
-            IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
-            Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
-          </p>
-    <p className="mt-2 text-sm text-gray-600 sm:text-base">
-      Category-wise Distribution of Questions by Difficulty Level
-    </p>
-  </div>
-
+                     <div id="iqra-quizzes" className="mb-6 text-center">
+              <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
+                📊 IQRA Quizzes
+              </h2>
+            
+              <p className="mt-2 text-sm text-gray-600 sm:text-base">
+                Category-wise Distribution of Questions by Difficulty Level
+              </p>
+            
+              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700">
+                <p className="mb-3">
+                  <strong>Choose your learning level:</strong>
+                  {" "}Select E for Easy, I for Intermediate, or A for Advanced
+                  beside any category.
+                </p>
+            
+                <p>
+                  <strong>🏆 Want to challenge a friend?</strong>
+                  {" "}
+                  <a
+                    href="/challenges"
+                    className="inline-flex items-center rounded-md bg-amber-500 px-3 py-1 font-bold text-white transition hover:bg-amber-600"
+                  >
+                    C — Challenge
+                  </a>
+                </p>
+              </div>
+            </div>
+  
       <div className="mb-4 flex flex-wrap justify-center gap-4 text-sm">
           <span className="flex items-center gap-2">
             <span className="inline-flex h-6 w-6 items-center justify-center
@@ -467,40 +483,42 @@ export default function AboutPage() {
                 : "bg-gray-50 hover:bg-emerald-50"
             }
           >
-             <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
-              <div className="flex flex-wrap items-center gap-2">
-                <span>{item.category}</span>
             
-                {/* Learn link */}
-                <a
-                  href={`/quiz?category=${encodeURIComponent(
-                    categorySlugs[item.category]
-                  )}&difficulty=easy`}
-                  className="inline-flex h-7 min-w-7 items-center justify-center
-                    rounded-md bg-emerald-100 px-2 text-xs font-extrabold
-                    text-emerald-800 transition hover:bg-emerald-700
-                    hover:text-white"
-                  title={`Learn ${item.category} at the Easy level`}
-                  aria-label={`Learn ${item.category}`}
-                >
-                  L
-                </a>
-            
-                {/* Challenge link */}
-                <a
-                  href="/challenges"
-                  className="inline-flex h-7 min-w-7 items-center justify-center
-                    rounded-md bg-amber-100 px-2 text-xs font-extrabold
-                    text-amber-800 transition hover:bg-amber-500
-                    hover:text-white"
-                  title={`Challenge someone in ${item.category}`}
-                  aria-label={`Challenge someone in ${item.category}`}
-                >
-                  C
-                </a>
-              </div>
-            </td>
-
+            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
+            <div className="flex flex-wrap items-center gap-2">
+              <span>{item.category}</span>
+          
+              {/* Easy */}
+              <a
+                href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=easy`}
+                className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-emerald-100 px-2 text-xs font-extrabold text-emerald-800 transition hover:bg-emerald-700 hover:text-white"
+                title={`Easy level: ${item.category}`}
+                aria-label={`Easy level: ${item.category}`}
+              >
+                E
+              </a>
+          
+              {/* Intermediate */}
+              <a
+                href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=intermediate`}
+                className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-sky-100 px-2 text-xs font-extrabold text-sky-800 transition hover:bg-sky-700 hover:text-white"
+                title={`Intermediate level: ${item.category}`}
+                aria-label={`Intermediate level: ${item.category}`}
+              >
+                I
+              </a>
+          
+              {/* Advanced */}
+              <a
+                href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=advanced`}
+                className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-amber-100 px-2 text-xs font-extrabold text-amber-800 transition hover:bg-amber-600 hover:text-white"
+                title={`Advanced level: ${item.category}`}
+                aria-label={`Advanced level: ${item.category}`}
+              >
+                A
+              </a>
+            </div>
+          </td>
             <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
               {item.easy}
             </td>
