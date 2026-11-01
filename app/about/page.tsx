@@ -33,6 +33,54 @@ animated infographic to motiviate Volunteers to play and find out errors in cont
 12) Acknowledge all other AI contributors if any left out
 */
 
+
+const quizDistribution = [
+  { category: "Quran", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Seerah", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Aqeedah", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Shirk", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "New Muslims", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Tafsir", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Tazkiyah", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Comparative Religion", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Islamic Finance", easy: 30, intermediate: 50, advanced: 40 },
+  { category: "Cryptocurrency", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "History", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Hadeeth", easy: 40, intermediate: 40, advanced: 39 },
+  { category: "Fiqh", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Christianity", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Bid'ah", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Riba", easy: 40, intermediate: 30, advanced: 30 },
+  { category: "Hinduism", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Dawah", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Gender", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "LGBTQ", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "Psychology", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Music", easy: 40, intermediate: 30, advanced: 30 },
+  { category: "Islamic Alcohol & Drugs", easy: 34, intermediate: 33, advanced: 33 },
+  { category: "Imagery", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Dating", easy: 33, intermediate: 34, advanced: 33 },
+  { category: "Marriage", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Parenting", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Peace", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Salah", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "Sawm", easy: 29, intermediate: 32, advanced: 35 },
+  { category: "Charity", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Hajj", easy: 40, intermediate: 30, advanced: 30 },
+  { category: "Islamic Eschatology", easy: 34, intermediate: 33, advanced: 33 },
+  { category: "Surah 78", easy: 35, intermediate: 35, advanced: 35 },
+  { category: "Surah 79", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "Surah 80", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "TA Quran", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "TA Salah", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "TA Charity", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "TA Fiqh", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Quranic Arabic 01", easy: 125, intermediate: 125, advanced: 125 },
+  { category: "Modern Arabic 01", easy: 167, intermediate: 167, advanced: 166 },
+  { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
+];
+
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -308,13 +356,104 @@ export default function AboutPage() {
     sincerely to beneficial Islamic learning. Ameen.
   </p>
 </section>
-        
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Islamic Knowledge Categories</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-300">
+                  
+          {/* IQRA Quiz Distribution Table - Newly Introduced */}
+<section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
+
+  <div className="mb-6 text-center">
+    <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
+      📊 IQRA Quizzes
+    </h2>
+     <p className="mb-4 text-gray-600 dark:text-gray-300">
             IQRA currently covers a wide range of Islamic knowledge categories including Quran, Fiqh, Tafsir, Hadeeth,
             Aqeedah, Seerah, Tazkiyah, Islamic History, Dawah, New Muslims, Comparative Religion, and Islamic Finance.
           </p>
+    <p className="mt-2 text-sm text-gray-600 sm:text-base">
+      Category-wise Distribution of Questions by Difficulty Level
+    </p>
+  </div>
+
+  <div className="w-full overflow-x-auto rounded-lg">
+    <table className="w-full min-w-[520px] border-collapse text-sm">
+
+      <thead>
+        <tr className="bg-emerald-100 text-emerald-900">
+          <th className="border-b-2 border-emerald-200 px-3 py-3 text-left font-bold">
+            Category
+          </th>
+          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+            Easy
+          </th>
+          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+            Intermediate
+          </th>
+          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+            Advanced
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {quizDistribution.map((item, index) => (
+          <tr
+            key={item.category}
+            className={
+              index % 2 === 0
+                ? "bg-white hover:bg-emerald-50"
+                : "bg-gray-50 hover:bg-emerald-50"
+            }
+          >
+            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
+              {item.category}
+            </td>
+
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+              {item.easy}
+            </td>
+
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+              {item.intermediate}
+            </td>
+
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+              {item.advanced}
+            </td>
+          </tr>
+        ))}
+
+        {/* Total Row */}
+        <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900">
+          <td className="border-t-2 border-emerald-300 px-3 py-4">
+            TOTAL (43 Categories)
+          </td>
+
+          <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
+            1,689
+          </td>
+
+          <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
+            1,441
+          </td>
+
+          <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
+            1,671
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <div className="mt-5 rounded-lg bg-gradient-to-r from-emerald-700 to-green-800 p-4 text-center text-white shadow">
+    <p className="text-sm font-medium sm:text-base">
+      IQRA Quiz Platform
+    </p>
+
+    <p className="mt-1 text-xl font-extrabold sm:text-2xl">
+      Total Question Bank: 4,801 Questions
+    </p>
+  </div>
+
         </section>
 
         <section className="mb-12">
