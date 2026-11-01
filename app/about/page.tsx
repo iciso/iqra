@@ -183,7 +183,19 @@ export default function AboutPage() {
               <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700">
                 <p className="mb-3">
                   <strong>Choose your learning level:</strong>
-                  {" "}Select E for Easy, I for Intermediate, or A for Advanced
+                  {" "}Select the Level: 
+                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
+                    E
+                  </span>
+                  for Easy, 
+                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
+                    E
+                  </span>
+                  for Intermediate, or 
+                   <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-emerald-100 font-bold text-emerald-800">
+                    E
+                  </span> 
+                  for Advanced
                   beside any category.
                 </p>
             
