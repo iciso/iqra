@@ -167,241 +167,6 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        {/* Player Contributions & Recognition */}
-<section
-  id="player-contributions-dhanish-ali"
-  className="mb-12 rounded-2xl border-2 border-amber-400
-    bg-gradient-to-br from-amber-50 via-yellow-50 to-green-50
-    p-6 shadow-lg dark:from-gray-800 dark:via-gray-800
-    dark:to-green-950 sm:p-8"
->
-  <div className="mb-5 text-center">
-    <div className="mb-3 text-5xl" aria-hidden="true">
-      🏆
-    </div>
-
-    <p className="mb-2 text-sm font-bold uppercase
-      tracking-widest text-amber-700 dark:text-amber-400">
-      IQRA Player Recognition
-    </p>
-
-    <h2 className="mb-4 text-3xl font-extrabold
-      text-green-800 dark:text-green-400">
-      Celebrating Our Players' Contributions!
-    </h2>
-
-    <p className="text-lg leading-relaxed
-      text-gray-700 dark:text-gray-200">
-      IQRA belongs not only to its creators, but also to the
-      players who  make it better. Every correction,
-      constructive suggestion, and improvement identified by
-      our players can  make IQRA's Islamic knowledge,
-      data, and user interface more accurate and useful
-      for everyone.
-    </p>
-  </div>
-
-  <div className="my-6 rounded-xl border border-amber-300
-    bg-white/80 p-5 text-center dark:border-amber-700
-    dark:bg-gray-900/60">
-
-    <p className="mb-2 text-sm font-semibold uppercase
-      tracking-wide text-gray-600 dark:text-gray-300">
-      Our First Celebrated Contributor
-    </p>
-
-    <h3 className="mb-3 text-3xl font-extrabold
-      text-green-700 dark:text-green-400">
-      🌟 Dhanish Ali 🌟
-    </h3>
-
-    <p className="mb-5 text-gray-700 dark:text-gray-200">
-      With sincere appreciation, we acknowledge Dhanish Ali
-      for identifying and suggesting three corrections
-      to IQRA. All three suggestions were accepted and
-      implemented by the IQRA coding team.
-    </p>
-
-       {/* Begin Table */}
-      {/* Header Section removed */}
-      {/* Responsive Table Container */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-separate border-spacing-y-2.5">
-          <thead>
-            <tr className="text-white text-lg font-bold">
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
-                No.
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
-                💡 Contribution
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
-                💰 Reward
-              </th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            {/* Item 1 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  1
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📖</span>
-                  <div>
-                    Salah Quiz — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Item 2 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  2
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl"> 🕌</span>
-                  <div>
-                    Harun (AS) — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Item 3 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  3
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📗</span>
-                  <div>
-                    Surah Maryam — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Nabi Reference</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Total Reward Row */}
-            <tr className="text-lg font-bold text-white">
-              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
-                🎁 Total reward
-              </td>
-              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
-                ⪧ ₹750 ⪦
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-   {/* End of Table */}
-
-
-    
-
-    <div className="mx-auto grid max-w-md grid-cols-1
-      gap-3 sm:grid-cols-2">
-
-      <div className="rounded-lg bg-green-50 p-4
-        dark:bg-green-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Accepted Suggestions
-        </p>
-        <p className="text-3xl font-extrabold text-green-700
-          dark:text-green-400">
-          3
-        </p>
-      </div>
-
-      <div className="rounded-lg bg-amber-50 p-4
-        dark:bg-amber-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Reward Earned
-        </p>
-        <p className="text-3xl font-extrabold text-amber-700
-          dark:text-amber-400">
-          ₹750
-        </p>
-        <p className="mt-1 text-xs text-gray-600
-          dark:text-gray-300">
-          ₹250 per accepted suggestion
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <div className="rounded-xl bg-green-100 p-5 text-center
-    dark:bg-green-900/50">
-
-    <h3 className="mb-3 text-xl font-bold
-      text-green-800 dark:text-green-300">
-      🎉 Reward Presentation — Insha Allah
-    </h3>
-
-    <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali's total reward of ₹750 will be presented
-      during the Kattoo Yamani (KY) Family Meet 2026.
-    </p>
-
-    <p className="font-bold text-green-800
-      dark:text-green-300">
-      📅 26 December 2026
-    </p>
-
-    <p className="font-semibold text-gray-700
-      dark:text-gray-200">
-      📍 PWD Beach Rest House, Alleppey
-    </p>
-  </div>
-
-  <p className="mt-6 text-center text-sm italic
-    text-gray-600 dark:text-gray-300">
-    Have you spotted an error or found a way to improve IQRA?
-    Your feedback matters! 
-      <span>
-            Send suggestions by WhatsApp to {" "}
-                <a
-                href="https://wa.me"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
-              >
-              Rafique
-            </a> {" "}
-            at +91 7558845528. {" "}
-          </span>
-    
-    Help us make IQRA better,
-    one thoughtful contribution at a time.
-    May Allah ﷻ reward everyone who contributes
-    sincerely to beneficial Islamic learning. Ameen.
-  </p>
-</section>
                   
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
 <section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
@@ -439,7 +204,7 @@ export default function AboutPage() {
           <span className="flex items-center gap-2">
             <span className="inline-flex h-6 w-6 items-center justify-center
               rounded bg-emerald-100 font-bold text-emerald-800">
-              L
+              E
             </span>
             Learn — Easy Level
           </span>
@@ -565,9 +330,241 @@ export default function AboutPage() {
       Total Question Bank: 4,801 Questions
     </p>
   </div>
-
         </section>
 
+       {/* Player Contributions & Recognition */}
+<section
+  id="player-contributions-dhanish-ali"
+  className="mb-12 rounded-2xl border-2 border-amber-400
+    bg-gradient-to-br from-amber-50 via-yellow-50 to-green-50
+    p-6 shadow-lg dark:from-gray-800 dark:via-gray-800
+    dark:to-green-950 sm:p-8"
+>
+  <div className="mb-5 text-center">
+    <div className="mb-3 text-5xl" aria-hidden="true">
+      🏆
+    </div>
+
+    <p className="mb-2 text-sm font-bold uppercase
+      tracking-widest text-amber-700 dark:text-amber-400">
+      IQRA Player Recognition
+    </p>
+
+    <h2 className="mb-4 text-3xl font-extrabold
+      text-green-800 dark:text-green-400">
+      Celebrating Our Players' Contributions!
+    </h2>
+
+    <p className="text-lg leading-relaxed
+      text-gray-700 dark:text-gray-200">
+      IQRA belongs not only to its creators, but also to the
+      players who  make it better. Every correction,
+      constructive suggestion, and improvement identified by
+      our players can  make IQRA's Islamic knowledge,
+      data, and user interface more accurate and useful
+      for everyone.
+    </p>
+  </div>
+
+  <div className="my-6 rounded-xl border border-amber-300
+    bg-white/80 p-5 text-center dark:border-amber-700
+    dark:bg-gray-900/60">
+
+    <p className="mb-2 text-sm font-semibold uppercase
+      tracking-wide text-gray-600 dark:text-gray-300">
+      Our First Celebrated Contributor
+    </p>
+
+    <h3 className="mb-3 text-3xl font-extrabold
+      text-green-700 dark:text-green-400">
+      🌟 Dhanish Ali 🌟
+    </h3>
+
+    <p className="mb-5 text-gray-700 dark:text-gray-200">
+      With sincere appreciation, we acknowledge Dhanish Ali
+      for identifying and suggesting three corrections
+      to IQRA. All three suggestions were accepted and
+      implemented by the IQRA coding team.
+    </p>
+
+       {/* Begin Table */}
+      {/* Responsive Table Container */}
+      <div className="overflow-x-auto">
+        <table className="w-full border-separate border-spacing-y-2.5">
+          <thead>
+            <tr className="text-white text-lg font-bold">
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
+                No.
+              </th>
+              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
+                💡 Contribution
+              </th>
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
+                💰 Reward
+              </th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            {/* Item 1 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  1
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📖</span>
+                  <div>
+                    Salah Quiz — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Item 2 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  2
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl"> 🕌</span>
+                  <div>
+                    Harun (AS) — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Item 3 */}
+            <tr className="text-base">
+              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
+                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
+                  3
+                </span>
+              </td>
+              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📗</span>
+                  <div>
+                    Surah Maryam — 
+                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Nabi Reference</span>
+                  </div>
+                </div>
+              </td>
+              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
+                ₹250
+              </td>
+            </tr>
+
+            {/* Total Reward Row */}
+            <tr className="text-lg font-bold text-white">
+              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
+                🎁 Total reward
+              </td>
+              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
+                ⪧ ₹750 ⪦
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   {/* End of Table */}
+
+    <div className="mx-auto grid max-w-md grid-cols-1
+      gap-3 sm:grid-cols-2">
+
+      <div className="rounded-lg bg-green-50 p-4
+        dark:bg-green-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          Accepted Suggestions
+        </p>
+        <p className="text-3xl font-extrabold text-green-700
+          dark:text-green-400">
+          3
+        </p>
+      </div>
+
+      <div className="rounded-lg bg-amber-50 p-4
+        dark:bg-amber-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          Reward Earned
+        </p>
+        <p className="text-3xl font-extrabold text-amber-700
+          dark:text-amber-400">
+          ₹750
+        </p>
+        <p className="mt-1 text-xs text-gray-600
+          dark:text-gray-300">
+          ₹250 per accepted suggestion
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div className="rounded-xl bg-green-100 p-5 text-center
+    dark:bg-green-900/50">
+
+    <h3 className="mb-3 text-xl font-bold
+      text-green-800 dark:text-green-300">
+      🎉 Reward Presentation — Insha Allah
+    </h3>
+
+    <p className="mb-3 text-gray-700 dark:text-gray-200">
+      Dhanish Ali's total reward of ₹750 will be presented
+      during the Kattoo Yamani (KY) Family Meet 2026.
+    </p>
+
+    <p className="font-bold text-green-800
+      dark:text-green-300">
+      📅 26 December 2026
+    </p>
+
+    <p className="font-semibold text-gray-700
+      dark:text-gray-200">
+      📍 PWD Beach Rest House, Alleppey
+    </p>
+  </div>
+
+  <p className="mt-6 text-center text-sm italic
+    text-gray-600 dark:text-gray-300">
+    Have you spotted an error or found a way to improve IQRA?
+    Your feedback matters! 
+      <span>
+            Send suggestions by WhatsApp to {" "}
+                <a
+                href="https://wa.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
+              >
+              Rafique
+            </a> {" "}
+            at +91 7558845528. {" "}
+          </span>
+    
+    Help us make IQRA better,
+    one thoughtful contribution at a time.
+    May Allah ﷻ reward everyone who contributes
+    sincerely to beneficial Islamic learning. Ameen.
+  </p>
+</section>
+ {/* End of Player Contributors Note */}
+
+ {/* Open Source & AI  Contributions*/}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
