@@ -68,6 +68,7 @@ const quizDistribution = [
   { category: "Charity", easy: 36, intermediate: 36, advanced: 36 },
   { category: "Hajj", easy: 40, intermediate: 30, advanced: 30 },
   { category: "Islamic Eschatology", easy: 34, intermediate: 33, advanced: 33 },
+  { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
   { category: "Surah 78", easy: 35, intermediate: 35, advanced: 35 },
   { category: "Surah 79", easy: 30, intermediate: 30, advanced: 30 },
   { category: "Surah 80", easy: 30, intermediate: 30, advanced: 30 },
@@ -77,7 +78,6 @@ const quizDistribution = [
   { category: "Tamil Fiqh", easy: 40, intermediate: 40, advanced: 40 },
   { category: "Quranic Arabic 01", easy: 125, intermediate: 125, advanced: 125 },
   { category: "Modern Arabic 01", easy: 167, intermediate: 167, advanced: 166 },
-  { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
 ];
 
 // URL slugs used by IQRA's category quiz pages
@@ -115,6 +115,7 @@ const categorySlugs: Record<string, string> = {
   "Charity": "charity",
   "Hajj": "hajj",
   "Islamic Eschatology": "islamic-eschatology",
+  "Islamic Medical Ethics": "islamic-medical-ethics",
   "Surah 78": "surah-78",
   "Surah 79": "surah-79",
   "Surah 80": "surah-80",
@@ -124,7 +125,6 @@ const categorySlugs: Record<string, string> = {
   "Tamil Fiqh": "ta-fiqh",
   "Quranic Arabic 01": "quranic-arabic-01",
   "Modern Arabic 01": "modern-arabic-01",
-  "Islamic Medical Ethics": "islamic-medical-ethics",
 };
 
 export default function AboutPage() {
