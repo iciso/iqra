@@ -71,10 +71,10 @@ const quizDistribution = [
   { category: "Surah 78", easy: 35, intermediate: 35, advanced: 35 },
   { category: "Surah 79", easy: 30, intermediate: 30, advanced: 30 },
   { category: "Surah 80", easy: 30, intermediate: 30, advanced: 30 },
-  { category: "TA Quran", easy: 30, intermediate: 10, advanced: 30 },
-  { category: "TA Salah", easy: 30, intermediate: 30, advanced: 30 },
-  { category: "TA Charity", easy: 36, intermediate: 36, advanced: 36 },
-  { category: "TA Fiqh", easy: 40, intermediate: 40, advanced: 40 },
+  { category: "Tamil Quran", easy: 30, intermediate: 10, advanced: 30 },
+  { category: "Tamil Salah", easy: 30, intermediate: 30, advanced: 30 },
+  { category: "Tamil Charity", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Tamil Fiqh", easy: 40, intermediate: 40, advanced: 40 },
   { category: "Quranic Arabic 01", easy: 125, intermediate: 125, advanced: 125 },
   { category: "Modern Arabic 01", easy: 167, intermediate: 167, advanced: 166 },
   { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
@@ -118,10 +118,10 @@ const categorySlugs: Record<string, string> = {
   "Surah 78": "surah-78",
   "Surah 79": "surah-79",
   "Surah 80": "surah-80",
-  "TA Quran": "ta-quran",
-  "TA Salah": "ta-salah",
-  "TA Charity": "ta-charity",
-  "TA Fiqh": "ta-fiqh",
+  "Tamil Quran": "ta-quran",
+  "Tamil Salah": "ta-salah",
+  "Tamil Charity": "ta-charity",
+  "Tamil Fiqh": "ta-fiqh",
   "Quranic Arabic 01": "quranic-arabic-01",
   "Modern Arabic 01": "modern-arabic-01",
   "Islamic Medical Ethics": "islamic-medical-ethics",
@@ -202,8 +202,10 @@ export default function AboutPage() {
                 <p>
                   <strong>🏆 Want to challenge a friend?</strong>
                   {" "}
-                  <a
+                  <a 
                     href="/challenges"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center rounded-md bg-purple-500 px-3 py-1 font-bold text-white transition hover:bg-purple-600"
                   >
                     C — Challenge
@@ -250,6 +252,8 @@ export default function AboutPage() {
               {/* Easy */}
               <a
                 href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=easy`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-emerald-100 px-2 text-xs font-extrabold text-emerald-800 transition hover:bg-emerald-700 hover:text-white"
                 title={`Easy level: ${item.category}`}
                 aria-label={`Easy level: ${item.category}`}
@@ -260,6 +264,8 @@ export default function AboutPage() {
               {/* Intermediate */}
               <a
                 href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=intermediate`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-sky-100 px-2 text-xs font-extrabold text-sky-800 transition hover:bg-sky-700 hover:text-white"
                 title={`Intermediate level: ${item.category}`}
                 aria-label={`Intermediate level: ${item.category}`}
@@ -270,6 +276,8 @@ export default function AboutPage() {
               {/* Advanced */}
               <a
                 href={`/quiz?category=${encodeURIComponent(categorySlugs[item.category])}&difficulty=advanced`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-amber-100 px-2 text-xs font-extrabold text-amber-800 transition hover:bg-amber-600 hover:text-white"
                 title={`Advanced level: ${item.category}`}
                 aria-label={`Advanced level: ${item.category}`}
