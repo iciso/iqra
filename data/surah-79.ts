@@ -883,7 +883,7 @@ const surah79AdvancedQuestions: QuizQuestion[] = [
       "It is an adjective describing peaceful sleep.",
       "It indicates a geographical location in Arabia."
     ],
-    "correctAnswer": "It is a verbal noun (*maf'ul mutlaq*) emphasizing the intensity or depth of extraction.",
+    "correctAnswer": "It is a verbal noun (*maf'ul mutlaq*) emphasizing the intensity or depth of the extraction process.",
     "explanation": "Gharqa emphasizes pulling something out from the very depths (as an arrow is drawn out from a bow with full force)."
   },
   {
