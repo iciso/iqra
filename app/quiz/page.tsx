@@ -106,33 +106,33 @@ function buildOrderedPool(
   ) => QuizQuestion[],
   categoryId: string,
   difficulty: DifficultyLike,
-  _sectionSize: number,
+  sectionSize: number,
 ): QuizQuestion[] {
-  // Mixed mode is no longer supported.
-  if (difficulty === "mixed") {
-    return [];
-  }
+  // Mixed-level selection is no longer supported.
+  if (difficulty === "mixed") return [];
 
+  // Accept both the user-facing names and the data-file names.
   const dataLevel: BaseDifficulty =
-    difficulty === "intermediate"
+    difficulty === "intermediate" || difficulty === "medium"
       ? "medium"
-      : difficulty === "advanced"
+      : difficulty === "advanced" || difficulty === "hard"
         ? "hard"
-        : difficulty;
+        : "easy";
 
+  // Retrieve the complete question pool for the selected level.
   const questions = dedupeQuestions(
     getQuizQuestions(categoryId, dataLevel) || []
   );
 
-  // Shuffle within this category and level, not across levels.
+  // Keep the section order reproducible for both challenge players.
   return seededShuffle(
     questions,
     `${categoryId}:${dataLevel}`
   );
 }
+ // End of function buildOrderedPool(
 
 const SECTION_SIZE = 10
-
 // Section n of a level = questions (n-1)*10 .. n*10-1 of that level, in data-file order.
 // No shuffling and no top-up from other levels, so the section is exactly what the data file holds.
 function buildSectionQuestions(
