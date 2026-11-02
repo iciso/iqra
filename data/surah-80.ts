@@ -1235,4 +1235,4 @@ const surah80Category: QuizCategory = {
   },
 };
 
-export default sur80Category;
+export default surah80Category;
