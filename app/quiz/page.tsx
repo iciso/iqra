@@ -3,8 +3,8 @@ import QuizContainer from "@/components/quiz/quiz-container"
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-type BaseDifficulty = "easy" | "medium" | "hard"
-type DifficultyLike = BaseDifficulty | "intermediate" | "advanced" | "mixed"
+type BaseDifficulty = "easy" | "intermediate" | "advanced"
+type DifficultyLike = BaseDifficulty | "medium" | "hard" | "mixed"
 
 type QuizQuestion = {
   id?: string
@@ -12,20 +12,19 @@ type QuizQuestion = {
   // other fields are not required here
 }
 
-// Number of questions in one numbered section (can be overridden by ?questions=)
+// Number of questions in one numbered section.
 const DEFAULT_SECTION_SIZE = 10
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-// Normalize query difficulty (accepts synonyms), but preserves "mixed"
+// Normalize URL/database difficulty values to the keys used by quiz-data-manager.
 function normalizeDifficulty(d: string | undefined): DifficultyLike {
   const val = (d || "").toLowerCase()
   if (val === "mixed") return "mixed"
-  if (val === "intermediate" || val === "medium") return "medium"
-  if (val === "advanced" || val === "hard") return "hard"
-  if (val === "easy") return "easy"
+  if (val === "intermediate" || val === "medium") return "intermediate"
+  if (val === "advanced" || val === "hard") return "advanced"
   return "easy"
 }
 
@@ -86,18 +85,10 @@ async function loadCategoryAndQuestions(categoryId: string) {
 }
 
 /**
- * Builds the ordered pool of questions for a category.
- * NO shuffling: questions stay exactly in the order of the data files, so
- * "Section 1" is always questions 1-10, "Section 2" is 11-20, and so on.
- * - A specific difficulty uses that difficulty's questions (in file order).
- * - The final section may contain fewer than ten questions.
- */
-
-/**
  * Build a question pool for ONE difficulty level only.
- * No mixed-level fallback.
- * No duplicate questions.
- * Reproducible ordering for consistent numbered sections.
+ * Difficulty names match quiz-data-manager: easy, intermediate, advanced.
+ * The same category and level always produce the same shuffled order so
+ * numbered sections remain consistent for challenge players.
  */
 function buildOrderedPool(
   getQuizQuestions: (
@@ -106,48 +97,27 @@ function buildOrderedPool(
   ) => QuizQuestion[],
   categoryId: string,
   difficulty: DifficultyLike,
-  sectionSize: number,
 ): QuizQuestion[] {
   // Mixed-level selection is no longer supported.
   if (difficulty === "mixed") return [];
 
-  // Accept both the user-facing names and the data-file names.
+  // Keep compatibility with legacy values while using the data manager's keys.
   const dataLevel: BaseDifficulty =
-    difficulty === "intermediate" || difficulty === "medium"
-      ? "medium"
-      : difficulty === "advanced" || difficulty === "hard"
-        ? "hard"
-        : "easy";
+    difficulty === "medium"
+      ? "intermediate"
+      : difficulty === "hard"
+        ? "advanced"
+        : difficulty;
 
-  // Retrieve the complete question pool for the selected level.
   const questions = dedupeQuestions(
     getQuizQuestions(categoryId, dataLevel) || []
   );
 
-  // Keep the section order reproducible for both challenge players.
   return seededShuffle(
     questions,
     `${categoryId}:${dataLevel}`
   );
 }
- // End of function buildOrderedPool(
-
-const SECTION_SIZE = 10
-// Section n of a level = questions (n-1)*10 .. n*10-1 of that level, in data-file order.
-// No shuffling and no top-up from other levels, so the section is exactly what the data file holds.
-function buildSectionQuestions(
-  getQuizQuestions: (id: string, diff: BaseDifficulty) => QuizQuestion[],
-  categoryId: string,
-  difficulty: DifficultyLike,
-  section: number,
-): QuizQuestion[] | null {
-  if (difficulty === "mixed") return null
-  const pool = getQuizQuestions(categoryId, difficulty as BaseDifficulty) || []
-  const start = (section - 1) * SECTION_SIZE
-  const slice = pool.slice(start, start + SECTION_SIZE)
-  return slice.length > 0 ? slice : null
-}
-
 
 /** Splits the ordered pool into numbered sections (1-based) of `size` questions. */
 function getSectionCount(total: number, size: number) {
@@ -330,10 +300,9 @@ export default async function QuizPage({
     )
   }
 
-  // Numbered sections always use groups of ten.
-// The final section may contain fewer than ten questions.
-const sectionSize = DEFAULT_SECTION_SIZE;
-  const pool = buildOrderedPool(getQuizQuestions, category, difficulty, sectionSize)
+  // Numbered sections always use groups of ten; the final section may be shorter.
+  const sectionSize = DEFAULT_SECTION_SIZE;
+  const pool = buildOrderedPool(getQuizQuestions, category, difficulty)
 
   if (pool.length === 0) {
     return (
@@ -379,7 +348,7 @@ const sectionSize = DEFAULT_SECTION_SIZE;
   }
 
   const section = hasValidSection ? requestedSection : 1
-  const finalQuestions = getSectionSlice(pool, section, sectionSize) // serial order, no shuffle
+  const finalQuestions = getSectionSlice(pool, section, sectionSize)
 
   return (
     <div className="container mx-auto py-8 px-4">
