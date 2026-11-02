@@ -664,8 +664,8 @@ const aqeedahCategory: QuizCategory = {
       },
       {
         question: "What is the correct understanding of the hadith 'Whoever dies while knowing that there is no god but Allah will enter Paradise'?",
-        options: ["Simply uttering the words is enough regardless of action or belief", "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise (even if after purification)", "It means no deeds are required at all", "It applies only to the Companions"],
-        correctAnswer: "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise (even if after purification)",
+        options: ["Simply uttering the words is enough regardless of action or belief", "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise.", "It means no deeds are required at all", "It applies only to the Companions"],
+        correctAnswer: "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise.",
         explanation: "The hadith affirms that the one who dies upon Tawhid will enter Paradise, though major sinners among them may first undergo purification in Hellfire if Allah wills.",
         references: "Sahih Muslim"
       },
