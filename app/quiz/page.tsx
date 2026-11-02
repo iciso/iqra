@@ -43,6 +43,37 @@ function dedupeQuestions(arr: QuizQuestion[]): QuizQuestion[] {
   return out
 }
 
+// Seeded shuffle: the same seed always produces the same order.
+// This keeps both players' question sets identical in a challenge.
+function seededShuffle<T>(items: T[], seed: string): T[] {
+  const result = [...items];
+
+  // Convert the seed string into a 32-bit number.
+  let state = 2166136261;
+
+  for (let i = 0; i < seed.length; i++) {
+    state ^= seed.charCodeAt(i);
+    state = Math.imul(state, 16777619);
+  }
+
+  // Deterministic pseudo-random number generator.
+  const random = () => {
+    state += 0x6D2B79F5;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  // Fisher–Yates shuffle.
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
 async function loadCategoryAndQuestions(categoryId: string) {
   const mod: any = await import("@/data/quiz-data-manager")
   if (!mod || typeof mod.getCategory !== "function" || typeof mod.getQuizQuestions !== "function") {
@@ -58,27 +89,78 @@ async function loadCategoryAndQuestions(categoryId: string) {
  * Builds the ordered pool of questions for a category.
  * NO shuffling: questions stay exactly in the order of the data files, so
  * "Section 1" is always questions 1-10, "Section 2" is 11-20, and so on.
- *
  * - A specific difficulty uses that difficulty's questions (in file order).
- * - "mixed", or a difficulty pool too small to form a section, falls back to
- *   easy -> medium -> hard concatenated in file order.
+ * - The final section may contain fewer than ten questions.
+ */
+// Produce a reproducible shuffle.
+// The same category and difficulty always produce the same ordering.
+// This ensures that numbered sections remain consistent for both
+// ordinary quizzes and challenges.
+
+function seededShuffle<T>(items: T[], seedText: string): T[] {
+  const result = [...items];
+
+  let seed = 0;
+  for (let i = 0; i < seedText.length; i++) {
+    seed = (seed * 31 + seedText.charCodeAt(i)) >>> 0;
+  }
+
+  // Deterministic pseudo-random number generator
+  function random(): number {
+    seed = (seed + 0x6d2b79f5) >>> 0;
+
+    let t = seed;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+
+  // Fisher–Yates shuffle
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+/**
+ * Build a question pool for ONE difficulty level only.
+ * No mixed-level fallback.
+ * No duplicate questions.
+ * Reproducible ordering for consistent numbered sections.
  */
 function buildOrderedPool(
-  getQuizQuestions: (id: string, diff: BaseDifficulty) => QuizQuestion[],
+  getQuizQuestions: (
+    id: string,
+    diff: BaseDifficulty
+  ) => QuizQuestion[],
   categoryId: string,
   difficulty: DifficultyLike,
-  sectionSize: number,
+  _sectionSize: number,
 ): QuizQuestion[] {
-  const easy = getQuizQuestions(categoryId, "easy") || []
-  const medium = getQuizQuestions(categoryId, "medium") || []
-  const hard = getQuizQuestions(categoryId, "hard") || []
+  // Mixed mode is no longer supported.
+  if (difficulty === "mixed") {
+    return [];
+  }
 
-  const everything = dedupeQuestions([...easy, ...medium, ...hard])
-  if (difficulty === "mixed") return everything
+  const dataLevel: BaseDifficulty =
+    difficulty === "intermediate"
+      ? "medium"
+      : difficulty === "advanced"
+        ? "hard"
+        : difficulty;
 
-  const primary = dedupeQuestions(difficulty === "easy" ? easy : difficulty === "medium" ? medium : hard)
+  const questions = dedupeQuestions(
+    getQuizQuestions(categoryId, dataLevel) || []
+  );
 
-  return primary.length >= sectionSize ? primary : everything
+  // Shuffle within this category and level, not across levels.
+  return seededShuffle(
+    questions,
+    `${categoryId}:${dataLevel}`
+  );
 }
 
 const SECTION_SIZE = 10
@@ -280,7 +362,9 @@ export default async function QuizPage({
     )
   }
 
-  const sectionSize = Math.max(1, questionCount || DEFAULT_SECTION_SIZE)
+  // Numbered sections always use groups of ten.
+// The final section may contain fewer than ten questions.
+const sectionSize = DEFAULT_SECTION_SIZE;
   const pool = buildOrderedPool(getQuizQuestions, category, difficulty, sectionSize)
 
   if (pool.length === 0) {
