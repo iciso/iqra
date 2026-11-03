@@ -343,9 +343,17 @@ export default function HomePage() {
             />
           </div>
           <p className="mt-3 text-center text-xs text-gray-500">
-            Both buttons currently lead to the Vocabulary bookmark. The
-            Categories page must contain an element with id="Vocab" for the
-            browser to scroll directly to that section.
+            Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. For challenges go to the {" "}
+            <a
+              href="/challenges"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
+            >
+              Challenges
+            </a>{" "}
+            page
+          </span>
           </p>
         </section>
         
