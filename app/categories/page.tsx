@@ -45,6 +45,7 @@ const categories = [
   { id: "dating", title: "Dating", description: "Dating in Islam", icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "marriage", title: "Marriage & Family", description: "Family Bonding", icon: <Home className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "parenting", title: "Islamic Parenting", description: "Islam & parenting", icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "madhab", title: "Madhabs", description: "Jurisprudence Schools", icon: <Network className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "islamic-medical-ethics", title: "Medical Ethics", description: "Islamic Medical Ethics", icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "islamic-eschatology", title: "Islamic End-Days", description: "Islamic End Days", icon: <Megaphone className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
