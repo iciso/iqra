@@ -72,8 +72,8 @@ const salahCategory: QuizCategory = {
       },
       {
         question: "What is the reward for performing Salah on time?",
-        options: ["Forgiveness of sins", "Entry to Paradise", "Both A and B", "Nothing specific"],
-        correctAnswer: "Both A and B",
+        options: ["Equal to a Hajj", "Entry to Paradise", "Equal to a Umrah", "Nothing specific"],
+        correctAnswer: "Entry to Paradise",
         explanation: "Salah on time brings forgiveness of sins and is a means to enter Paradise.",
         references: "Fiqh us-Sunnah: Volume 1, Page 85"
       },
