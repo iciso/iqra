@@ -1,4 +1,4 @@
-import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
+import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz"; 
 import quranCategory from "./quran"; 
 import aqeedahCategory from "./aqeedah"; 
 import shirkCategory from "./shirk"; 
