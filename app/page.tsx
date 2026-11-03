@@ -206,9 +206,9 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
-                  Learn vocabulary from specific Surahs. Browse through Surahs
+                  Learn vocabulary from specific Surahs. Browse through Surahs in KALAM
                   to study their context, meaning, and rulings. Self-test your
-                  knowledge on the nearly 40 completed Surahs in this section, 
+                  knowledge on the nearly 40 completed Surahs in KALAM, 
                   without entry into a Leaderboard.
                 </p>
                 <div className="mb-4 flex flex-wrap justify-center gap-1 sm:gap-2">
@@ -232,6 +232,28 @@ export default function HomePage() {
                     Start Surah Quiz without Leaderboard
                   </Link>
                 </Button>
+
+
+                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                  <i>
+                    Also as a part of the IQRA web app, Surah-Quizzes
+                    are available with entries to the IQRA leaderboard.
+                  </i>
+                </p>
+
+                 <Button
+                  asChild
+                  className="bg-green-600 px-6 py-2 text-sm hover:bg-green-700 sm:text-base"
+                >
+                  <Link
+                    href="https://iqrar.vercel.app/categories#surah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Start Surah Quiz with IQRA Leaderboard
+                  </Link>
+                </Button>
+
               </CardFooter>
             </Card>
 
