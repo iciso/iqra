@@ -247,7 +247,7 @@ export default function HomePage() {
                   className="bg-green-600 px-6 py-2 text-sm hover:bg-green-700 sm:text-base"
                 >
                   <Link
-                    href="https://iqrar.vercel.app/categories#surah"
+                    href="/categories#quran-surah-studies"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -326,7 +326,7 @@ export default function HomePage() {
               subtitle="Understand the words of the Qur’an"
               description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
               tags={["Quranic words", "Meanings", "Quran references"]}
-              href="/categories#Vocab"
+              href="/categories#vocab"
               buttonText="Explore Quranic Vocabulary"
             />
 
