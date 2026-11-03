@@ -2,7 +2,7 @@ import type { QuizCategory, DifficultyLevel, QuizQuestion } from "@/types/quiz";
 import quranCategory from "./quran"; 
 import aqeedahCategory from "./aqeedah"; 
 import shirkCategory from "./shirk"; 
-import seerahCategory from "./quiz-data-manager-additions";
+import seerahCategory from "./seerah";
 import comparativeReligionCategory from "./comparative-religion";
 import islamicFinanceCategory from "./islamic-finance";
 import cryptoCategory from "./crypto";
