@@ -207,10 +207,9 @@ export default function HomePage() {
               <CardContent className="px-4 sm:px-6">
                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
                   Learn vocabulary from specific Surahs. Browse through Surahs
-                  to study their context, meaning, and rulings. Test your
-                  knowledge on the nearly 40 completed Surahs in this section.
-                  We are rapidly adding more and aim to complete all 114
-                  Surahs. Insha Allah!
+                  to study their context, meaning, and rulings. Self-test your
+                  knowledge on the nearly 40 completed Surahs in this section, 
+                  without entry into a Leaderboard.
                 </p>
                 <div className="mb-4 flex flex-wrap justify-center gap-1 sm:gap-2">
                   <span className={tagClass}>Surah Quiz</span>
@@ -219,12 +218,6 @@ export default function HomePage() {
                   <span className={tagClass}>Hadeeth</span>
                   <span className={tagClass}>Seerah &amp; Context</span>
                 </div>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
-                  <i>
-                    As a part of the open-source KALAM web app, Surah-Quizzes
-                    are completely free to use and require no sign-in.
-                  </i>
-                </p>
               </CardContent>
               <CardFooter className="flex justify-center pt-0">
                 <Button
@@ -236,7 +229,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Start Surah Quiz without Sign-in
+                    Start Surah Quiz without Leaderboard
                   </Link>
                 </Button>
               </CardFooter>
