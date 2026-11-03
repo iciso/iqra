@@ -218,6 +218,12 @@ export default function HomePage() {
                   <span className={tagClass}>Hadeeth</span>
                   <span className={tagClass}>Seerah &amp; Context</span>
                 </div>
+                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                  <i>
+                    Also as a part of the IQRA web app, Surah-Quizzes
+                    are available with entries to the IQRA leaderboard.
+                  </i>
+                </p>
               </CardContent>
               <CardFooter className="flex justify-center pt-0">
                 <Button
@@ -232,14 +238,9 @@ export default function HomePage() {
                     Start Surah Quiz without Leaderboard
                   </Link>
                 </Button>
-
-
-                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
-                  <i>
-                    Also as a part of the IQRA web app, Surah-Quizzes
-                    are available with entries to the IQRA leaderboard.
-                  </i>
-                </p>
+             </CardFooter>
+             <CardFooter className="flex justify-center pt-0">
+                
 
                  <Button
                   asChild
