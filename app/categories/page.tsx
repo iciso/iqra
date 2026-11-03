@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, HandCoins, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
-  Sparkles, History, Scroll, Compass, Globe, ArrowRight, ScanFace, Sprout, Telescope,
+  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Network, ScanFace, Sprout, Telescope,
   Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
