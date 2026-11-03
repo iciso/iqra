@@ -342,19 +342,14 @@ export default function HomePage() {
               buttonText="Explore Modern Vocabulary"
             />
           </div>
-          <p className="mt-3 text-center text-xs text-gray-500">
-            Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. For challenges go to the {" "}
-            <a
-              href="/challenges"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
-            >
-              Challenges
-            </a>{" "}
-            page
-          </span>
-          </p>
+              <p className="mt-3 text-center text-xs text-gray-500"> 
+                  Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. 
+                  For challenges go to the{' '} 
+                  <a href="/challenges" target="_blank" rel="noopener noreferrer" className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"> 
+                    Challenges 
+                  </a>{' '} 
+                  page 
+              </p>
         </section>
         
 
