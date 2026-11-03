@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input"
 { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
   Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
-  HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Plane, ScanFace, Sparkles, 
+  HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Netowrk, Plane, ScanFace, Sparkles, 
   Sprout, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
@@ -170,6 +170,15 @@ const challengeCategories = [
     color: "bg-lime-500 hover:bg-lime-600",
     textColor: "text-lime-700",
     bgLight: "bg-lime-50",
+  },
+   {
+    id: "madhab",
+    label: "Madhabs",
+    description: "Jurisprudence Schools",
+    icon: Network,
+    color: "bg-yellow-500 hover:bg-yellow-600",
+    textColor: "text-yellow-700",
+    bgLight: "bg-yellow-50",
   },
   {
     id: "tafsir",
