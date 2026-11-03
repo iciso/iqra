@@ -61,7 +61,7 @@ function ArabicVocabSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="Vocab" className="w-full max-w-3xl mt-8 scroll-mt-6">
+    <section id="vocab" className="w-full max-w-3xl mt-8 scroll-mt-6">
       <Card className="border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
