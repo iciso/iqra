@@ -9,8 +9,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
         Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, HandHeart, Heart, 
-        Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, User, Users, 
-        Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
+        Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
+        Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
@@ -352,7 +352,7 @@ const challengeCategories = [
     bgLight: "bg-yellow-50",
     borderColor: "border-yellow-300",
   },
-         {
+    {
     id: "inheritance",
     label: "Inheritance",
     description: "Inheritance & Equity",
@@ -361,6 +361,16 @@ const challengeCategories = [
     textColor: "text-indigo-700",
     bgLight: "bg-indigo-50",
     borderColor: "border-indigo-300",
+  },
+    {
+    id: "fitnah",
+    label: "Fitnah",
+    description: "Discord & Unity",
+    icon: Tornado,
+    color: "bg-red-500 hover:bg-red-600",
+    textColor: "text-red-700",
+    bgLight: "bg-red-50",
+    borderColor: "border-red-300",
   },
   {
     id: "islamic-medical-ethics",
