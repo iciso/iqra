@@ -11,7 +11,8 @@ iqra/data/
 iqra/app/categories/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
 iqra/components/challenge/category-first-challenge-sender.tsx
-iqra/data/quiz-data-manager.tsx
+iqra/data/quiz-data-manager.tsx 
+iqra/app/about/page  -> https://iqrar.vercel.app/about#iqra-quizzes  
 ------
 2) Enhance the Badges Page with bigger badges, better logic explained by infographic to players
 3) Animated Flowchart to explain workflow of challenge to player.
@@ -67,6 +68,8 @@ const quizDistribution = [
   { category: "Sawm", easy: 29, intermediate: 32, advanced: 35 },
   { category: "Charity", easy: 36, intermediate: 36, advanced: 36 },
   { category: "Hajj", easy: 40, intermediate: 30, advanced: 30 },
+  { category: "Madhabs", easy: 36, intermediate: 36, advanced: 36 },
+  { category: "Inheritance", easy: 36, intermediate: 36, advanced: 36 },
   { category: "Islamic Eschatology", easy: 34, intermediate: 33, advanced: 33 },
   { category: "Islamic Medical Ethics", easy: 40, intermediate: 40, advanced: 40 },
   { category: "Surah 78", easy: 35, intermediate: 35, advanced: 35 },
@@ -114,6 +117,8 @@ const categorySlugs: Record<string, string> = {
   "Sawm": "sawm",
   "Charity": "charity",
   "Hajj": "hajj",
+  "Madhabs": "madhab",
+  "Inheritance": "inheritance",
   "Islamic Eschatology": "islamic-eschatology",
   "Islamic Medical Ethics": "islamic-medical-ethics",
   "Surah 78": "surah-78",
