@@ -32,6 +32,7 @@ import charityCategory from "./charity";
 import hajjCategory from "./hajj";
 import imageryCategory from "./imagery";
 import madhabCategory from "./madhab"; 
+import inheritanceCategory from "./inheritance"; 
 import medicalEthicsCategory from "./islamic-medical-ethics";
 import islamicEschatologyCategory from './islamic-eschatology';
 import surah78Category from "./surah-78";
@@ -80,6 +81,7 @@ const quizData: QuizCategory[] = [
   charityCategory,
   hajjCategory,
   madhabCategory,
+  inheritanceCategory,
   islamicEschatologyCategory,
   surah78Category,
   surah79Category,
