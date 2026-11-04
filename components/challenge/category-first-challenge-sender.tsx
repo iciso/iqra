@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
   Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
   HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
-  Sprout, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
+  Sprout, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
 import { useAuth } from "@/contexts/auth-context"
@@ -188,6 +188,15 @@ const challengeCategories = [
     color: "bg-yellow-500 hover:bg-yellow-600",
     textColor: "text-yellow-700",
     bgLight: "bg-yellow-50",
+  },
+  {
+    id: "fitnah",
+    label: "Fitnah",
+    description: "Discord & Unity",
+    icon: Tornado,
+    color: "bg-red-500 hover:bg-red-600",
+    textColor: "text-red-700",
+    bgLight: "bg-red-50",
   },
   {
     id: "tafsir",
