@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, HandCoins, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
-  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Network, ScanFace, Sprout, Telescope,
+  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Telescope,
   Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -46,6 +46,7 @@ const categories = [
   { id: "marriage", title: "Marriage & Family", description: "Family Bonding", icon: <Home className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "parenting", title: "Islamic Parenting", description: "Islam & parenting", icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "madhab", title: "Madhabs", description: "Jurisprudence Schools", icon: <Network className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "inheritance", title: "Inheritance", description: "Inheritance & Equity", icon: <Milestone className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "islamic-medical-ethics", title: "Medical Ethics", description: "Islamic Medical Ethics", icon: <BriefcaseMedical className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "islamic-eschatology", title: "Islamic End-Days", description: "Islamic End Days", icon: <Megaphone className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
