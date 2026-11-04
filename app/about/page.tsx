@@ -25,7 +25,7 @@ animated infographic to motiviate Volunteers to play and find out errors in cont
 7) b)Refactor Neon SOL so that those players who earned % above 100% scores and % are rounded to 100% 
 8) a) Challenge Notifications more than one must be in autoscroll, so second is not seen
 8) b) Check if Valid Until time is removed in Challenge notification -> eight figure digit in hours!
-8) c) 
+8) c) Can clicking on any Player name reveal their profile in IQRA, as IQRA profile depends on what name is used to log in?
 9) Challenges in Easy or Hard start in the same easy level for Quranic Arabic! Check for other categories?
 
 ------
