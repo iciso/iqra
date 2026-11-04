@@ -1,7 +1,7 @@
 import type { QuizCategory } from "@/types/quiz"
 
 const fitnahCategory: QuizCategory = {
-  id: "fitnah-family-ties",
+  id: "fitnah",
   title: "Fitnah, Family Ties & Community Unity",
   description: "Recognising the subtle beginnings of fitnah (trials, tribulations and discord), guarding the heart with wisdom rather than emotion, heeding the prophetic warnings against division, de-escalating misunderstandings, and actively preserving the bonds of kinship, friendship and the wider Muslim community",
   icon: "Shield",
