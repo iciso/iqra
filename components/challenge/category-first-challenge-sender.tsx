@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input"
 { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
   Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
-  HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Netowrk, Plane, ScanFace, Sparkles, 
+  HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
   Sprout, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
@@ -45,7 +45,7 @@ const challengeCategories = [
     textColor: "text-amber-700",
     bgLight: "bg-amber-50",
   },
-          {
+    {
     id: "hajj",
     label: "Hajj",
     description: "Islamic Pilgrimmage",
@@ -152,6 +152,15 @@ const challengeCategories = [
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
     bgLight: "bg-green-50",
+  },
+   {
+    id: "inheritance",
+    label: "Inheritance",
+    description: "Inheritance & Equity",
+    icon: Milestone,
+    color: "bg-indigo-500 hover:bg-indigo-600",
+    textColor: "text-indigo-700",
+    bgLight: "bg-indigo-50",
   },
   {
     id: "dating",
