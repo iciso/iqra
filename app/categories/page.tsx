@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, CirclePlus, HandCoins, HandShake, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
+  Calendar1, Church, CirclePlus, HandCoins, Handshake, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
   Tornado, Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
@@ -33,7 +33,7 @@ const categories = [
   { id: "christ", title: "Christianity", description: "Islam and Christianity", icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "riba", title: "Riba", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
-  { id: "takaful", title: "Takaful", description: "Islamic Insurance", icon: <HandShake className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "takaful", title: "Takaful", description: "Islamic Insurance", icon: <Handshake className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "bidah", title: "Bidah", description: "Bidah & Tawhid", icon: <CirclePlus className="h-8 w-8 text-green-600 dark:text-green-400" /> }, 
   { id: "islamic-finance", title: "Islamic Finance", description: "Islamic Economics", icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "crypto", title: "Crypto & Blockchain", description: "Shariah & digital currencies", icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -54,9 +54,6 @@ const categories = [
   { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
 ]
 
-
-// Arabic vocabulary remains a separate section, distinct from Islamic Studies
-// and the Qur'an Surah question banks.
 function ArabicVocabSection({
   selectedCategory,
   setSelectedCategory,
@@ -123,7 +120,6 @@ function ArabicVocabSection({
   )
 }
 
-// Add further Tamil translated files here.
 const tamilCategories = [
   {
     id: "ta-quran",
@@ -131,25 +127,25 @@ const tamilCategories = [
     description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
     icon: Book,
   },
-    {
+  {
     id: "ta-aqeedah",
     title: "அகீதா",
     description: "ஈமானும் தவ்ஹீதும்",
     icon: Infinity,
   },
-   {
+  {
     id: "ta-salah",
     title: "தொழுகை (ஸலாஹ்)",
     description: "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்",
     icon: ArrowUp,
   },
-       {
+  {
     id: "ta-charity",
     title: "ஸகாத் மற்றும் தர்மம்",
     description: "பஸகாத், சதகா வழிகாட்டல்கள்",
     icon: HandCoins,
   },
-    {
+  {
     id: "ta-fiqh",
     title: "ஃபிக்ஹ்",
     description: "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்",
@@ -212,7 +208,6 @@ function TamilIslamSection({
   )
 }
 
-// Add further Surahs here as their IQRA data files are registered.
 const surahCategories = [
   {
     id: "surah-78",
@@ -232,8 +227,8 @@ const surahCategories = [
     description: "He Frowned",
     icon: Sprout,
   },
-   {
-    id: "surah-80",
+  {
+    id: "surah-81",
     title: "Surah At-Takwir (81)",
     description: "The Folding Up",
     icon: Sun,
@@ -295,8 +290,6 @@ function QuranSurahSection({
   )
 }
 
-// Levels offered to the player. `value` is what goes into the URL (?difficulty=...)
-// and is understood by normalizeDifficulty() in app/quiz/page.tsx.
 const difficultyLevels = [
   { value: "easy", label: "Easy", description: "Basic questions for beginners" },
   { value: "intermediate", label: "Intermediate", description: "Moderate questions to build on the basics" },
@@ -331,7 +324,6 @@ export default function CategoriesPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 py-8 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      {/* Existing Islamic Studies categories */}
       <section id="islamic-studies" className="w-full max-w-3xl scroll-mt-6">
         <Card className="border-green-200 shadow-lg dark:border-green-800">
           <CardHeader className="text-center">
@@ -369,25 +361,21 @@ export default function CategoriesPage() {
         </Card>
       </section>
 
-       {/* New separate section for individual Tamil question banks */}
       <TamilIslamSection
         selectedCategory={selectedCategory}
         setSelectedCategory={handleSelectCategory}
       />
 
-      {/* New separate section for individual Qur'an Surah question banks */}
       <QuranSurahSection
         selectedCategory={selectedCategory}
         setSelectedCategory={handleSelectCategory}
       />
 
-      {/* Existing Arabic Vocabulary section */}
       <ArabicVocabSection
         selectedCategory={selectedCategory}
         setSelectedCategory={handleSelectCategory}
       />
 
-      {/* Shared difficulty and launch controls for whichever category was selected */}
       {selectedCategory && (
         <section ref={difficultyRef} className="w-full max-w-3xl mt-8 scroll-mt-6">
           <Card className="border-green-200 shadow-lg dark:border-green-800">
@@ -399,21 +387,21 @@ export default function CategoriesPage() {
             </CardHeader>
             <CardContent>
               <RadioGroup value={selectedDifficulty || ""} onValueChange={setSelectedDifficulty}>
-                  <div className="flex flex-col space-y-3">
-                    {difficultyLevels.map((level) => (
-                      <div
-                        key={level.value}
-                        className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700"
-                      >
-                        <RadioGroupItem value={level.value} id={`quiz-difficulty-${level.value}`} />
-                        <Label htmlFor={`quiz-difficulty-${level.value}`} className="flex flex-col cursor-pointer">
-                          <span className="font-medium dark:text-white">{level.label}</span>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">{level.description}</span>
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </RadioGroup>
+                <div className="flex flex-col space-y-3">
+                  {difficultyLevels.map((level) => (
+                    <div
+                      key={level.value}
+                      className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-gray-700"
+                    >
+                      <RadioGroupItem value={level.value} id={`quiz-difficulty-${level.value}`} />
+                      <Label htmlFor={`quiz-difficulty-${level.value}`} className="flex flex-col cursor-pointer">
+                        <span className="font-medium dark:text-white">{level.label}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{level.description}</span>
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </RadioGroup>
             </CardContent>
             <CardFooter className="flex justify-center">
               <Button
