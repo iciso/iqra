@@ -13,6 +13,7 @@ import christCategory from "./christ";
 import hinduCategory from "./hindu";
 import bidahCategory from "./bidah";
 import ribaCategory from "./riba";
+import takafulCategory from "./takaful";
 import dawahCategory from "./dawah";
 import tafsirCategory from "./tafsir";
 import newMuslimsCategory from "./new-muslims";
@@ -39,7 +40,9 @@ import islamicEschatologyCategory from './islamic-eschatology';
 import surah78Category from "./surah-78";
 import surah79Category from "./surah-79";
 import surah80Category from "./surah-80";
+import surah81Category from "./surah-81";
 import taQuranCategory from "./ta-quran"; 
+import taAqeedahCategory from "./ta-aqeedah"; 
 import taSalahCategory from "./ta-salah"; 
 import taCharityCategory from "./ta-charity"; 
 import taFiqhCategory from "./ta-fiqh"; 
@@ -65,6 +68,7 @@ const quizData: QuizCategory[] = [
   christCategory,
   bidahCategory,
   ribaCategory,
+  takafulCategory,
   hinduCategory,
   dawahCategory,
   genderCategory,
@@ -88,7 +92,9 @@ const quizData: QuizCategory[] = [
   surah78Category,
   surah79Category,
   surah80Category,
+  surah81Category,
   taQuranCategory,
+  taAqeedahCategory,
   taSalahCategory,
   taCharityCategory,
   taFiqhCategory,
