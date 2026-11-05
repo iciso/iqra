@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
         Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Sun, Telescope, HandCoins, HandHeart, 
-        HandShake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
+        Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
         Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
