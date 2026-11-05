@@ -499,7 +499,7 @@ const surahCategories = [
     borderColor: "border-red-300",
   },
       {
-    id: "surah-81,
+    id: "surah-81",
     label: "Surah-81 At-Takwir",
     description: "The Folding Up",
     icon: Sun,
