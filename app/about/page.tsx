@@ -135,6 +135,12 @@ const categorySlugs: Record<string, string> = {
 };
 
 // Totals and Sub-totals of questions
+const total = quizDistribution.reduce(
+  (sum, item) => sum + item,
+  0
+);
+
+
 const totalEasy = quizDistribution.reduce(
   (sum, item) => sum + item.easy,
   0
@@ -328,7 +334,7 @@ export default function AboutPage() {
         {/* Total Row */}
         <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900">
           <td className="border-t-2 border-emerald-300 px-3 py-4">
-            TOTAL (46 Categories)
+            TOTAL {" "}{item}
           </td>
 
           <td className="border-t-2 border-emerald-300 px-3 py-4 text-center">
