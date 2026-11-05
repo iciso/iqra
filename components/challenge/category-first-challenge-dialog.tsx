@@ -236,7 +236,7 @@ const challengeCategories = [
     id: "takaful",
     label: "Takaful",
     description: "Islamic Insurance",
-    icon: HandShake,
+    icon: Handshake,
     color: "bg-orange-500 hover:bg-orange-600",
     textColor: "text-orange-700",
     bgLight: "bg-orange-50",
