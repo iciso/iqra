@@ -8,8 +8,8 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
-        Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, HandHeart, Heart, 
-        Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
+        Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Sun, Telescope, HandCoins, HandHeart, 
+        HandShake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
         Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
@@ -232,6 +232,16 @@ const challengeCategories = [
     bgLight: "bg-green-50",
     borderColor: "border-green-300",
   },
+     {
+    id: "takaful",
+    label: "Takaful",
+    description: "Islamic Insurance",
+    icon: HandShake,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
+    borderColor: "border-orange-300",
+  },
   {
     id: "islamic-finance",
     label: "Islamic Finance",
@@ -415,6 +425,16 @@ const tamilCategories = [
     bgLight: "bg-red-50",
     borderColor: "border-red-300",
   },
+     {
+    id: "ta-aqeedah",
+    label: "அகீதா",
+    description: "ஈமானும் தவ்ஹீதும்",
+    icon: Infinity,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
+    borderColor: "border-orange-300",
+  },
   {
     id: "ta-salah",
     label: "தொழுகை",
@@ -477,6 +497,16 @@ const surahCategories = [
     textColor: "text-red-700",
     bgLight: "bg-red-50",
     borderColor: "border-red-300",
+  },
+      {
+    id: "surah-81,
+    label: "Surah-81 At-Takwir",
+    description: "The Folding Up",
+    icon: Sun,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
+    borderColor: "border-orange-300",
   },
 ]
 
