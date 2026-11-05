@@ -229,7 +229,7 @@ const tamilCategories = [
     bgLight: "bg-green-50",
   },
   {
-    id: "ta=aqeedah",
+    id: "ta=aqeedah", 
     label: "அகீதா",
     description: "ஈமானும் தவ்ஹீதும்",
     icon: Infinity,
