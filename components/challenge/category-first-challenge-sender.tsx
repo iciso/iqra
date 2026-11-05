@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input"
 { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
   Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
-  HandHeart, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
-  Sprout, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
+  HandHeart, Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
+  Sprout, Sun, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
 import { useAuth } from "@/contexts/auth-context"
@@ -71,6 +71,15 @@ const challengeCategories = [
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
     bgLight: "bg-green-50",
+  },
+  {
+    id: "takaful",
+    label: "Takaful",
+    description: "Islamic Insurance",
+    icon: Handshake,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
   },
   {
     id: "quran",
@@ -219,6 +228,15 @@ const tamilCategories = [
     textColor: "text-green-700",
     bgLight: "bg-green-50",
   },
+  {
+    id: "ta=aqeedah",
+    label: "அகீதா",
+    description: "ஈமானும் தவ்ஹீதும்",
+    icon: Infinity,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
+  },
        {
     id: "ta-salah",
     label: "தொழுகை (ஸலாஹ்)",
@@ -275,6 +293,15 @@ const surahCategories = [
     color: "bg-green-500 hover:bg-green-600",
     textColor: "text-green-700",
     bgLight: "bg-green-50",
+  },
+   {
+    id: "surah-81",
+    label: "Surah-81: At-Takwir",
+    description: "The Folding Up",
+    icon: Sun,
+    color: "bg-orange-500 hover:bg-orange-600",
+    textColor: "text-orange-700",
+    bgLight: "bg-orange-50",
   },
 ]
 
