@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, CirclePlus, HandCoins, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
-  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Telescope,
+  Calendar1, Church, CirclePlus, HandCoins, HandShake, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
+  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
   Tornado, Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -32,7 +32,8 @@ const categories = [
   { id: "comparative", title: "Comparative Religion", description: "Faiths, Non-Faiths & Islam", icon: <Globe className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "christ", title: "Christianity", description: "Islam and Christianity", icon: <Church className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hindu", title: "Hinduism", description: "Islam and Hinduism", icon: <BookDashed className="h-8 w-8 text-green-600 dark:text-green-400" /> },
-  { id: "riba", title: "Usury or interest", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "riba", title: "Riba", description: "Usury or interest", icon: <Percent className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "takaful", title: "Takaful", description: "Islamic Insurance", icon: <HandShake className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "bidah", title: "Bidah", description: "Bidah & Tawhid", icon: <CirclePlus className="h-8 w-8 text-green-600 dark:text-green-400" /> }, 
   { id: "islamic-finance", title: "Islamic Finance", description: "Islamic Economics", icon: <HandHeart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "crypto", title: "Crypto & Blockchain", description: "Shariah & digital currencies", icon: <Bitcoin className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -130,6 +131,12 @@ const tamilCategories = [
     description: "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்",
     icon: Book,
   },
+    {
+    id: "ta-aqeedah",
+    title: "அகீதா",
+    description: "ஈமானும் தவ்ஹீதும்",
+    icon: Infinity,
+  },
    {
     id: "ta-salah",
     title: "தொழுகை (ஸலாஹ்)",
@@ -224,6 +231,12 @@ const surahCategories = [
     title: "Surah Abasa (80)",
     description: "He Frowned",
     icon: Sprout,
+  },
+   {
+    id: "surah-80",
+    title: "Surah At-Takwir (81)",
+    description: "The Folding Up",
+    icon: Sun,
   },
 ]
 
