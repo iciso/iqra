@@ -135,11 +135,7 @@ const categorySlugs: Record<string, string> = {
 };
 
 // Totals and Sub-totals of questions
-const totalCategory = quizDistribution.reduce(
-  (sum, item) => sum + item.count,
-  0
-);
- 
+const totalCategory = quizDistribution.length;
 
 const totalEasy = quizDistribution.reduce(
   (sum, item) => sum + item.easy,
