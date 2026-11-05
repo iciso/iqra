@@ -136,7 +136,7 @@ const categorySlugs: Record<string, string> = {
 
 // Totals and Sub-totals of questions
 const totalCategory = quizDistribution.reduce(
-  (sum, item) => sum + (item.count || 0),
+  (sum, item) => sum + item.count,
   0
 );
  
