@@ -17,14 +17,6 @@ const todoTasks: TaskItem[] = [
     description: "Explain the algorithm of challenges, scoring, leaderboard, contributors rewards by an animated infographic to motivate Volunteers to play and find out errors in content."
   },
   {
-    id: "5",
-    description: "Complete the work begun on Challenges for Surah Quizzes -> 78 to 114."
-  },
-  {
-    id: "6",
-    description: "Complete the work begun on Challenges for Quranic Arabic and MSA with 1000 words each."
-  },
-  {
     id: "7a",
     description: "Complete all three levels to same numbers in multiples of 10 for all categories."
   },
@@ -95,6 +87,23 @@ const doingTasks: TaskItem[] = [
       </div>
     )
   },
+  {
+    id: "5",
+    title: "Surah Quiz Challenges & Tamil Categories",
+    description: (
+      <div>
+        <span className="font-semibold text-amber-900 block mb-1">Mobile Responsiveness & UI/UX Audit</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Complete the work begun on Challenges for Surah Quizzes -> 78 to 114. Also complete Translation from 
+          English to Tamil all the 50 English Categories Quizzes.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Content Creation
+        </div>
+      </div>
+    )
+  }
   {
     id: "10",
     title: "Mobile Responsiveness & UI/UX Audit",
