@@ -9,8 +9,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
         Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Sun, Telescope, HandCoins, HandHeart, 
-        Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, Sparkles, Sprout, 
-        Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, } from "lucide-react"
+        Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, 
+        Sparkles, Split, Sprout, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, 
+       } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
@@ -507,6 +508,16 @@ const surahCategories = [
     textColor: "text-orange-700",
     bgLight: "bg-orange-50",
     borderColor: "border-orange-300",
+  },
+    {
+     id: "surah-82",
+    label: "Surah-82 An-Infitar",
+    description: "The Cleaving",
+    icon: Split,
+    color: "bg-fuchsia-500 hover:bg-fuchsia-600",
+    textColor: "text-fuchsia-700",
+    bgLight: "bg-fuchsia-50",
+    borderColor: "border-fuchsia-300",
   },
 ]
 
