@@ -918,7 +918,7 @@ const surah82IntermediateQuestions: QuizQuestion[] = [
       ],
       explanation: "The text clearly teaches creation, resurrection, recording, judgment, and divine sovereignty. These support moral vigilance, but not a fabricated specific fiqh rule.",
     }
-    ],
+    ];
    const surah82AdvancedQuestions: QuizQuestion[] = [
     {
       id: "q71",
@@ -1375,8 +1375,8 @@ const surah82IntermediateQuestions: QuizQuestion[] = [
       ],
       explanation: "الأمر is from أ م ر and can mean command, affair, or matter; in 82:19 it points to Allah's sole authority on that Day.",
     }
-    ],
-    
+   ];
+
 const surah82Category: QuizCategory = {
   id: "surah-82",
   title: "Surah Al-Infitar",
