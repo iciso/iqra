@@ -140,18 +140,16 @@ export default function AdminTasksPage() {
                       </div>
                     </td>
 
-                    {/* Column 2: Doing Workspace */}
+                     {/* Column 2: Doing Workspace */}
                     <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic">
                       {/* You can cut a task from list above and paste its placeholder here when actively coding */}
-                            
-                            id: "1",
-                            description: "id 3: Animated Flowchart to explain workflow of challenge to player."
-                                           
-                    </td>
-
+                   This is a placeholder for tasks that are currently being worked on.
+                        </td>
+                    
                     {/* Column 3: Done Workspace */}
                     <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic">
                       {/* Move rows down here to register fully completed features */}
+                      This is a placeholder for tasks that are done or completed.
                     </td>
 
                   </tr>
@@ -164,7 +162,7 @@ export default function AdminTasksPage() {
         {/* Development Workspace System Note */}
         <footer className="mt-6 text-center text-xs text-gray-400">
           This system configuration ledger is designated for direct administrative tracking. 
-          All apps by the IQRA team of Rafique and Joy are open-source and freeware.
+          All apps by the IQRA team are open-source and freeware.
         </footer>
 
       </div>
