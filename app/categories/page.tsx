@@ -8,7 +8,7 @@ import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, HandCoins, Handshake, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
-  Tornado, Percent, Rainbow, Circle, HandHeart, Wind, WineOff,
+  Tornado, Percent, Rainbow, Split, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -232,6 +232,12 @@ const surahCategories = [
     title: "Surah At-Takwir (81)",
     description: "The Folding Up",
     icon: Sun,
+  },
+   {
+    id: "surah-82",
+    title: "Surah An-Infitar (82)",
+    description: "The Cleaving",
+    icon: Split,
   },
 ]
 
