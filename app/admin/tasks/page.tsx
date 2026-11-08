@@ -8,29 +8,7 @@ interface TaskItem {
 }
 
 const todoTasks: TaskItem[] = [
-  {
-    id: "1",
-    description: (
-      <div>
-        <p className="font-semibold text-gray-900 mb-1">Add New Quiz Categories</p>
-        <p className="text-xs text-gray-500 mb-2">Integrate Ethical AI Use, Sexual Health, and others from G Docs.</p>
-        <div className="space-y-1 font-mono text-[11px] text-indigo-600 bg-indigo-50/50 p-2 rounded border border-indigo-100/50">
-          <div>• iqra/data/</div>
-          <div>• iqra/app/categories/page</div>
-          <div>• iqra/components/challenge/category-first-challenge-dialog.tsx</div>
-          <div>• iqra/components/challenge/category-first-challenge-sender.tsx</div>
-          <div>• iqra/data/quiz-data-manager.tsx</div>
-          <div>
-            • iqra/app/about/page →{' '}
-            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
-              iqrar.vercel.app/about#iqra-quizzes
-            </a>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
+   {
     id: "2",
     description: "Enhance the Badges Page with bigger badges, better logic explained by infographic to players."
   },
@@ -81,6 +59,38 @@ const todoTasks: TaskItem[] = [
 ];
 
 const doingTasks: TaskItem[] = [
+   {
+    id: "1",
+    description: (
+      <div>
+         <div>
+        <span className="font-semibold text-amber-900 block mb-1">Adding New Quiz Categories</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Integrate Ethical AI Use, Sexual Health, and others from Google Docs.</p>
+        
+          
+          <div className="space-y-1 font-mono text-[11px] text-indigo-600 bg-indigo-50/50 p-2 rounded border border-indigo-100/50">
+          <div>• iqra/data/</div>
+          <div>• iqra/app/categories/page</div>
+          <div>• iqra/components/challenge/category-first-challenge-dialog.tsx</div>
+          <div>• iqra/components/challenge/category-first-challenge-sender.tsx</div>
+          <div>• iqra/data/quiz-data-manager.tsx</div>
+          <div>
+            • iqra/app/about/page →{' '}
+            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
+              iqrar.vercel.app/about#iqra-quizzes
+            </a>
+          </div>
+          <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Adding New Quiz Categories
+        </div>
+
+            
+        </div>
+      </div>
+    )
+  },
   {
     id: "10",
     title: "Mobile Responsiveness & UI/UX Audit",
