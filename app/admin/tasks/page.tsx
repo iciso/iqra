@@ -70,10 +70,6 @@ const todoTasks: TaskItem[] = [
     description: "Challenges in Easy or Hard start in the same easy level for Quranic Arabic! Check for other categories?"
   },
   {
-    id: "10",
-    description: "Continuously test to see all quizzes, and pages are Mobile Responsive. Maintain uniform UI and UX as if one AI did the entire project."
-  },
-  {
     id: "11",
     description: "Cross-link IQRA & KALAM to guide users who want or do not want challenges."
   },
@@ -85,6 +81,25 @@ const todoTasks: TaskItem[] = [
 
 // Add this new array right below your todoTasks array
 const doingTasks: TaskItem[] = [
+  {
+    id: "10",
+    description: (
+      <div>
+        <span className="font-semibold text-amber-900 block mb-1">Animated Flowchart</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Continuously test to see all quizzes, and pages are Mobile Responsive. Maintain uniform UI and UX as if one AI did the entire project.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Active Coding
+        </div>
+      </div>
+    )
+  }
+];
+
+// Add this new array right below your doingTasks array
+const doneTasks: TaskItem[] = [
   {
     id: "3",
     description: (
@@ -161,7 +176,16 @@ export default function AdminTasksPage() {
                               </td>
                         
                               {/* Column 3: Done Workspace */}
-                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
+                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic">
+                              
+                              
+                             {/* Row for Completed Task (id=3) */}
+                          {doneTasks.map((task) => (
+                            <tr key={task.id} className="bg-green-50/20 hover:bg-green-50/40 transition-colors align-top">
+                              {/* (Blank placeholder now) */}
+                              <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
+                                Moved from doing
+                              </td>
                             </tr>
                           ))}
                         
