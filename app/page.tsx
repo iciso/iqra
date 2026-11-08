@@ -251,7 +251,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Start Expert Quiz: 4 Surahs
+                    Start Expert Quiz: 5 Surahs
                   </Link>
                 </Button>
 
