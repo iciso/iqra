@@ -143,6 +143,10 @@ export default function AdminTasksPage() {
                     {/* Column 2: Doing Workspace */}
                     <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic">
                       {/* You can cut a task from list above and paste its placeholder here when actively coding */}
+                              {
+                            id: "1",
+                            description: "id 3: Animated Flowchart to explain workflow of challenge to player."
+                          },                      
                     </td>
 
                     {/* Column 3: Done Workspace */}
