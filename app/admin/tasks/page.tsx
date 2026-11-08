@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 interface TaskItem {
   id: string;
+  title?: string;
   description: React.ReactNode;
 }
 
@@ -21,7 +22,7 @@ const todoTasks: TaskItem[] = [
           <div>• iqra/data/quiz-data-manager.tsx</div>
           <div>
             • iqra/app/about/page →{' '}
-            <a href="https://iqrar.vercel.app/about#iqra-quizzes" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
+            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
               iqrar.vercel.app/about#iqra-quizzes
             </a>
           </div>
@@ -79,38 +80,36 @@ const todoTasks: TaskItem[] = [
   }
 ];
 
-// Add this new array right below your todoTasks array
 const doingTasks: TaskItem[] = [
   {
     id: "10",
+    title: "Mobile Responsiveness & UI/UX Audit",
     description: (
       <div>
-        <span className="font-semibold text-amber-900 block mb-1">Animated Flowchart</span>
+        <span className="font-semibold text-amber-900 block mb-1">Mobile Responsiveness & UI/UX Audit</span>
         <p className="text-amber-800/90 text-xs leading-relaxed">
           Continuously test to see all quizzes, and pages are Mobile Responsive. Maintain uniform UI and UX as if one AI did the entire project.
         </p>
         <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-          Active Coding
+          Active UI Verification
         </div>
       </div>
     )
   }
 ];
 
-// Add this new array right below your doingTasks array
 const doneTasks: TaskItem[] = [
   {
     id: "3",
     description: (
       <div>
-        <span className="font-semibold text-amber-900 block mb-1">Animated Flowchart</span>
-        <p className="text-amber-800/90 text-xs leading-relaxed">
+        <span className="font-semibold text-emerald-900 block mb-1">Animated Flowchart</span>
+        <p className="text-emerald-800/90 text-xs leading-relaxed">
           Explaining workflow of challenge to player.
         </p>
-        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-          Active Coding
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
+          <span className="text-emerald-600 font-bold">✓</span> Completed
         </div>
       </div>
     )
@@ -134,7 +133,7 @@ export default function AdminTasksPage() {
           </div>
           <div className="flex items-center gap-3 text-xs">
             <Link 
-              href="https://github.com/iciso/iqra" 
+              href="https://github.com" 
               target="_blank" 
               className="px-3 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-md font-medium hover:bg-gray-50 transition-colors shadow-sm"
             >
@@ -154,64 +153,63 @@ export default function AdminTasksPage() {
                   <th className="w-[27.5%] py-3.5 px-5 border-l border-gray-200/60 font-semibold text-emerald-700 bg-emerald-50/30">Done</th>
                 </tr>
               </thead>
-                        <tbody className="divide-y divide-gray-100">
-                          {/* Row for Active Task (id=3) */}
-                          {doingTasks.map((task) => (
-                            <tr key={task.id} className="bg-amber-50/20 hover:bg-amber-50/40 transition-colors align-top">
-                              {/* Column 1: Planned (Blank placeholder now) */}
-                              <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
-                                Moved to in-progress
-                              </td>
-                        
-                              {/* Column 2: Doing Workspace */}
-                              <td className="py-4 px-5 border-l border-amber-200/60 bg-amber-50/40">
-                                <div className="flex gap-2">
-                                  <span className="font-mono text-xs font-bold text-amber-600 mt-0.5 min-w-[20px]">
-                                    {task.id}.
-                                  </span>
-                                  <div className="text-[13px]">
-                                    {task.description}
-                                  </div>
-                                </div>
-                              </td>
-                        
-                              {/* Column 3: Done Workspace */}
-                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic">
-                              
-                              
-                             {/* Row for Completed Task (id=3) */}
-                          {doneTasks.map((task) => (
-                            <tr key={task.id} className="bg-green-50/20 hover:bg-green-50/40 transition-colors align-top">
-                              {/* (Blank placeholder now) */}
-                              <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
-                                Moved from doing
-                              </td>
-                            </tr>
-                          ))}
-                        
-                          {/* Rows for Remaining Backlog Tasks */}
-                          {todoTasks.map((task) => (
-                            <tr key={task.id} className="hover:bg-gray-50/40 transition-colors align-top">
-                              {/* Column 1: To Do Items */}
-                              <td className="py-4 px-5 pr-8">
-                                <div className="flex gap-3">
-                                  <span className="font-mono text-xs font-semibold text-gray-400 mt-0.5 min-w-[24px]">
-                                    {task.id}.
-                                  </span>
-                                  <div className="text-gray-700 text-[13.5px] leading-relaxed">
-                                    {task.description}
-                                  </div>
-                                </div>
-                              </td>
-                        
-                              {/* Column 2: Doing Workspace */}
-                              <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic"></td>
-                        
-                              {/* Column 3: Done Workspace */}
-                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
-                            </tr>
-                          ))}
-                        </tbody>            
+              <tbody className="divide-y divide-gray-100">
+                
+                {/* 1. RENDER DOING TASKS */}
+                {doingTasks.map((task) => (
+                  <tr key={task.id} className="bg-amber-50/10 hover:bg-amber-50/30 transition-colors align-top">
+                    <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
+                      Moved to in-progress
+                    </td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/30">
+                      <div className="flex gap-2">
+                        <span className="font-mono text-xs font-bold text-amber-600 mt-0.5 min-w-[20px]">
+                          {task.id}.
+                        </span>
+                        <div className="text-[13px]">{task.description}</div>
+                      </div>
+                    </td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
+                  </tr>
+                ))}
+
+                {/* 2. RENDER DONE TASKS */}
+                {doneTasks.map((task) => (
+                  <tr key={task.id} className="bg-emerald-50/10 hover:bg-emerald-50/20 transition-colors align-top">
+                    <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
+                      Completed
+                    </td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 text-xs text-gray-400 italic"></td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/20">
+                      <div className="flex gap-2">
+                        <span className="font-mono text-xs font-bold text-emerald-600 mt-0.5 min-w-[20px]">
+                          {task.id}.
+                        </span>
+                        <div className="text-[13px]">{task.description}</div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+
+                {/* 3. RENDER BACKLOG PLANNED TASKS */}
+                {todoTasks.map((task) => (
+                  <tr key={task.id} className="hover:bg-gray-50/40 transition-colors align-top">
+                    <td className="py-4 px-5 pr-8">
+                      <div className="flex gap-3">
+                        <span className="font-mono text-xs font-semibold text-gray-400 mt-0.5 min-w-[24px]">
+                          {task.id}.
+                        </span>
+                        <div className="text-gray-700 text-[13.5px] leading-relaxed">
+                          {task.description}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic"></td>
+                    <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
+                  </tr>
+                ))}
+
+              </tbody>            
             </table>
           </div>
         </div>
