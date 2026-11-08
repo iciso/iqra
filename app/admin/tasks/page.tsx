@@ -34,10 +34,6 @@ const todoTasks: TaskItem[] = [
     description: "Enhance the Badges Page with bigger badges, better logic explained by infographic to players."
   },
   {
-    id: "",
-    description: "Animated Flowchart to explain workflow of challenge to player."
-  },
-  {
     id: "4",
     description: "Explain the algorithm of challenges, scoring, leaderboard, contributors rewards by an animated infographic to motivate Volunteers to play and find out errors in content."
   },
@@ -87,6 +83,25 @@ const todoTasks: TaskItem[] = [
   }
 ];
 
+// Add this new array right below your todoTasks array
+const doingTasks: TaskItem[] = [
+  {
+    id: "3",
+    description: (
+      <div>
+        <span className="font-semibold text-amber-900 block mb-1">Animated Flowchart</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Explaining workflow of challenge to player.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Active Coding
+        </div>
+      </div>
+    )
+  }
+];
+
 export default function AdminTasksPage() {
   return (
     <div className="min-h-screen bg-gray-50/50 py-12 px-6 sm:px-8 font-sans antialiased text-gray-800">
@@ -124,37 +139,55 @@ export default function AdminTasksPage() {
                   <th className="w-[27.5%] py-3.5 px-5 border-l border-gray-200/60 font-semibold text-emerald-700 bg-emerald-50/30">Done</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
-                {todoTasks.map((task) => (
-                  <tr key={task.id} className="hover:bg-gray-50/40 transition-colors align-top">
-                    
-                    {/* Column 1: To Do Items */}
-                    <td className="py-4 px-5 pr-8">
-                      <div className="flex gap-3">
-                        <span className="font-mono text-xs font-semibold text-gray-400 mt-0.5 min-w-[24px]">
-                          {task.id}.
-                        </span>
-                        <div className="text-gray-700 text-[13.5px] leading-relaxed">
-                          {task.description}
-                        </div>
-                      </div>
-                    </td>
-
-                     {/* Column 2: Doing Workspace */}
-                    <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic">
-                      {/* You can cut a task from list above and paste its placeholder here when actively coding */}
-                   This is a placeholder for tasks that are currently being worked on.
-                        </td>
-                    
-                    {/* Column 3: Done Workspace */}
-                    <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic">
-                      {/* Move rows down here to register fully completed features */}
-                      This is a placeholder for tasks that are done or completed.
-                    </td>
-
-                  </tr>
-                ))}
-              </tbody>
+                        <tbody className="divide-y divide-gray-100">
+                          {/* Row for Active Task (id=3) */}
+                          {doingTasks.map((task) => (
+                            <tr key={task.id} className="bg-amber-50/20 hover:bg-amber-50/40 transition-colors align-top">
+                              {/* Column 1: Planned (Blank placeholder now) */}
+                              <td className="py-4 px-5 pr-8 text-xs text-gray-400 italic">
+                                Moved to in-progress
+                              </td>
+                        
+                              {/* Column 2: Doing Workspace */}
+                              <td className="py-4 px-5 border-l border-amber-200/60 bg-amber-50/40">
+                                <div className="flex gap-2">
+                                  <span className="font-mono text-xs font-bold text-amber-600 mt-0.5 min-w-[20px]">
+                                    {task.id}.
+                                  </span>
+                                  <div className="text-[13px]">
+                                    {task.description}
+                                  </div>
+                                </div>
+                              </td>
+                        
+                              {/* Column 3: Done Workspace */}
+                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
+                            </tr>
+                          ))}
+                        
+                          {/* Rows for Remaining Backlog Tasks */}
+                          {todoTasks.map((task) => (
+                            <tr key={task.id} className="hover:bg-gray-50/40 transition-colors align-top">
+                              {/* Column 1: To Do Items */}
+                              <td className="py-4 px-5 pr-8">
+                                <div className="flex gap-3">
+                                  <span className="font-mono text-xs font-semibold text-gray-400 mt-0.5 min-w-[24px]">
+                                    {task.id}.
+                                  </span>
+                                  <div className="text-gray-700 text-[13.5px] leading-relaxed">
+                                    {task.description}
+                                  </div>
+                                </div>
+                              </td>
+                        
+                              {/* Column 2: Doing Workspace */}
+                              <td className="py-4 px-5 border-l border-gray-200/60 bg-amber-50/5 text-xs text-gray-400 italic"></td>
+                        
+                              {/* Column 3: Done Workspace */}
+                              <td className="py-4 px-5 border-l border-gray-200/60 bg-emerald-50/5 text-xs text-gray-400 italic"></td>
+                            </tr>
+                          ))}
+                        </tbody>            
             </table>
           </div>
         </div>
