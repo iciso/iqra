@@ -89,10 +89,10 @@ const doingTasks: TaskItem[] = [
   },
   {
     id: "5",
-    title: "Surah Quiz Challenges & Tamil Categories",
+    title: "Surah Quiz, Challenges & Tamil Categories",
     description: (
       <div>
-        <span className="font-semibold text-amber-900 block mb-1">Mobile Responsiveness & UI/UX Audit</span>
+        <span className="font-semibold text-amber-900 block mb-1">Surah Quiz, Challenges & Tamil Categories</span>
         <p className="text-amber-800/90 text-xs leading-relaxed">
           Complete the work begun on Challenges for Surah Quizzes -> 78 to 114. Also complete Translation from 
           English to Tamil all the 50 English Categories Quizzes.
