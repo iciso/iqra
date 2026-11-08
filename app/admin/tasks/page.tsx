@@ -103,7 +103,7 @@ const doingTasks: TaskItem[] = [
         </div>
       </div>
     )
-  }
+  },
   {
     id: "10",
     title: "Mobile Responsiveness & UI/UX Audit",
