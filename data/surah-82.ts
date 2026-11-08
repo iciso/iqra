@@ -1,19 +1,11 @@
-type AlInfitarQuizDataWithLevels = Omit<SurahQuizData, "questions"> & {
-  levels: {
-    easy: NonNullable<SurahQuizData["questions"]>;
-    intermediate: NonNullable<SurahQuizData["questions"]>;
-    advanced: NonNullable<SurahQuizData["questions"]>;
-  };
-};
+import type { QuizCategory, QuizQuestion } from "@/types/quiz";
 
-export const alInfitarQuizData: AlInfitarQuizDataWithLevels = {
-  surahId: 82,
-  surahName: "Al-Infitar",
-  surahArabicName: "الإنفطار",
-  totalVerses: 19,
-  levels: {
-    easy: [
-{
+/**
+ * Surah Al-Infitar (82) — IQRA three-level question bank.
+ */
+
+const surah82EasyQuestions: QuizQuestion[] = [
+  {
       id: "q1",
       question: "What is the English meaning for the surah's title, Al-Infitar, الإنفطار?",
       arabic: "الإنفطار",
@@ -468,8 +460,9 @@ export const alInfitarQuizData: AlInfitarQuizDataWithLevels = {
       ],
       explanation: "This phrase begins the final declaration in 82:19, stating that the command and authority on that Day belong to Allah.",
     }
-    ],
-    intermediate: [
+    ];
+
+const surah82IntermediateQuestions: QuizQuestion[] = [
     {
       id: "q36",
       question: "What is the central subject linking the opening and closing of Surah Al-Infitar?",
@@ -926,7 +919,7 @@ export const alInfitarQuizData: AlInfitarQuizDataWithLevels = {
       explanation: "The text clearly teaches creation, resurrection, recording, judgment, and divine sovereignty. These support moral vigilance, but not a fabricated specific fiqh rule.",
     }
     ],
-    advanced: [
+   const surah82AdvancedQuestions: QuizQuestion[] = [
     {
       id: "q71",
       question: "What does the verb 'انفَطَرَتْ' mean in 82:1?",
@@ -1383,5 +1376,17 @@ export const alInfitarQuizData: AlInfitarQuizDataWithLevels = {
       explanation: "الأمر is from أ م ر and can mean command, affair, or matter; in 82:19 it points to Allah's sole authority on that Day.",
     }
     ],
+    
+const surah82Category: QuizCategory = {
+  id: "surah-82",
+  title: "Surah Al-Infitar",
+  description: "The Splitting Open — Surah 82 (Three-Level Question Bank)",
+  icon: "book-open",
+  levels: {
+    easy: surah82EasyQuestions,
+    intermediate: surah82IntermediateQuestions,
+    advanced: surah82AdvancedQuestions,
   },
 };
+
+export default surah82Category;
