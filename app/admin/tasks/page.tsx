@@ -54,6 +54,14 @@ const todoTasks: TaskItem[] = [
   },
   {
     id: "12",
+    description: "Merge the scores of two players Feroza and Faizal with spelling mistakes in their names causing two different IDs."
+  },
+  {
+    id: "13",
+    description: "Acknowledge Feroza's contribution which helped in refactoring the code, which showed only first ten questions in Easy for any selection."
+  },
+  {
+    id: "14",
     description: "Acknowledge all other AI."
   }
 ];
