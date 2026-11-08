@@ -93,13 +93,13 @@ export default function HowItWorksPage() {
                 Quizzes (Answer & Learn)
               </CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-300">
-                Untimed practice designed for thoughtful learning and discovery.
+                Untimed practice designed for thoughtful learning and discovering new knowledge.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-start gap-2.5">
                 <Sparkles className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span><strong>No Timer:</strong> Read explanations carefully without any rush.</span>
+                <span><strong>No Timer:</strong> Read explanations carefully without any rush. Become an Instant Quality Regligious Authority(IQRA)</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
