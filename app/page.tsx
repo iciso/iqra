@@ -168,7 +168,7 @@ export default function HomePage() {
             icon={<BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />}
             title="IQRA Learn"
             subtitle="Learn at your own pace"
-            description="Browse 25 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
+            description="Browse 50 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
             tags={["Quran", "Fiqh", "Tafsir", "Hadeeth", "Aqeedah"]}
             href="/categories"
             buttonText="Start Learning"
@@ -220,8 +220,8 @@ export default function HomePage() {
                 </div>
                  <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
                   <i>
-                    Also as a part of the IQRA web app, Surah-Quizzes
-                    are available with entries to the IQRA leaderboard.
+                    Also Surah-Quizzes are available in Easy or Translation only Quizzes in KALAM app, and 
+                    as an Expert version with Translation, Tafsir, and Vocab Quizzes in IQRA app.
                   </i>
                 </p>
               </CardContent>
@@ -235,7 +235,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Start Surah Quiz without Leaderboard
+                    Start Easy Quiz: 40 Surahs 
                   </Link>
                 </Button>
              </CardFooter>
@@ -251,7 +251,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Start Surah Quiz with IQRA Leaderboard
+                    Start Expert Quiz: 4 Surahs
                   </Link>
                 </Button>
 
