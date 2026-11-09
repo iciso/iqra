@@ -104,12 +104,29 @@ const doingTasks: TaskItem[] = [
       </div>
     )
   },
-  {
-    id: "10",
-    title: "Mobile Responsiveness & UI/UX Audit",
+   {
+    id: "6",
+    title: "Community Growth, UX & Vibrancy",
     description: (
       <div>
-        <span className="font-semibold text-amber-900 block mb-1">Mobile Responsiveness & UI/UX Audit</span>
+        <span className="font-semibold text-amber-900 block mb-1">Community Growth & Vibrancy</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Start contacting Muslim colleges and schools to demo IQRA; Talk to community members for feedback, 
+          corrections, and contributions; Establish the community reward system.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          CRM
+        </div>
+      </div>
+    )
+  },
+  {
+    id: "10",
+    title: "Mobile Responsiveness & UI Audit",
+    description: (
+      <div>
+        <span className="font-semibold text-amber-900 block mb-1">Mobile Responsiveness & UI Audit</span>
         <p className="text-amber-800/90 text-xs leading-relaxed">
           Continuously test to see all quizzes, and pages are Mobile Responsive. Maintain uniform UI and UX as if one AI did the entire project.
         </p>
