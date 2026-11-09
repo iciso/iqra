@@ -87,6 +87,23 @@ const doingTasks: TaskItem[] = [
       </div>
     )
   },
+   {
+    id: "3",
+    title: "Research, Validate Data",
+    description: (
+      <div>
+        <span className="font-semibold text-amber-900 block mb-1">Tri-pronged Content Validation</span>
+        <p className="text-amber-800/90 text-xs leading-relaxed">
+          Query AI, Community, and self to continously check every section in every level, 
+          in every category, all the words for their validity.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Content Validation
+        </div>
+      </div>
+    )
+  },
   {
     id: "5",
     title: "Surah Quiz, Challenges & Tamil Categories",
@@ -141,7 +158,7 @@ const doingTasks: TaskItem[] = [
 
 const doneTasks: TaskItem[] = [
   {
-    id: "3",
+    id: "4a",
     description: (
       <div>
         <span className="font-semibold text-emerald-900 block mb-1">Animated Flowchart</span>
