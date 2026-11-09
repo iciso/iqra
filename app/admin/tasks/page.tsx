@@ -17,6 +17,10 @@ const todoTasks: TaskItem[] = [
     description: "Explain the algorithm of challenges, scoring, leaderboard, contributors rewards by an animated infographic to motivate Volunteers to play and find out errors in content."
   },
   {
+    id: "6a",
+    description: "Plan and Establish UX Audit for all categories, once active community members reach sufficient size."
+  },
+  {
     id: "7a",
     description: "Complete all three levels to same numbers in multiples of 10 for all categories."
   },
