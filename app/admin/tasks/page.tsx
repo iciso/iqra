@@ -179,7 +179,7 @@ const doneTasks: TaskItem[] = [
     id: "4a",
     description: (
       <div>
-        <span className="font-semibold text-emerald-900 block mb-1">Animated Flowchart</span>
+        <span className="font-semibold text-emerald-900 block mb-1">How IQRA Works Flowchart</span>
         <p className="text-emerald-800/90 text-xs leading-relaxed">
           Explaining workflow of challenge to player.
         </p>
@@ -188,7 +188,27 @@ const doneTasks: TaskItem[] = [
         </div>
       </div>
     )
-  }
+  },
+   {
+    id: "6b",
+    description: (
+      <div>
+        <span className="font-semibold text-emerald-900 block mb-1">Player Rewards Anounced</span>
+        <p className="text-emerald-800/90 text-xs leading-relaxed">
+          Names of Players who contributed to content validation, as well as their rewards anounced.
+        </p>
+         <div>
+            • iqra/app/about/page →{' '}
+            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
+              iqrar.vercel.app/about#player-contributions-dhanish-ali
+            </a>
+          </div>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
+          <span className="text-emerald-600 font-bold">✓</span> Completed
+        </div>
+      </div>
+    )
+  },
 ];
 
 export default function AdminTasksPage() {
