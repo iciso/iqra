@@ -79,8 +79,8 @@ const doingTasks: TaskItem[] = [
           <div>• iqra/data/quiz-data-manager.tsx</div>
           <div>
             • iqra/app/about/page →{' '}
-            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
-              iqrar.vercel.app/about#iqra-quizzes
+            <a href="https://iqrar.vercel.app/about#iqra-quizzes" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
+              about#iqra-quizzes
             </a>
           </div>
         </div>
@@ -199,8 +199,8 @@ const doneTasks: TaskItem[] = [
         </p>
          <div>
             • iqra/app/about/page →{' '}
-            <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
-              iqrar.vercel.app/about#player-contributions-dhanish-ali
+            <a href="https://iqrar.vercel.app/about#player-contributions-dhanish-ali" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-800">
+             about#player-contributions-dhanish-ali
             </a>
           </div>
         <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
