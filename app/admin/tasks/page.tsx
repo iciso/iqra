@@ -158,6 +158,20 @@ const doingTasks: TaskItem[] = [
 
 const doneTasks: TaskItem[] = [
   {
+    id: "1a",
+    description: (
+      <div>
+        <span className="font-semibold text-emerald-900 block mb-1">Added New Quiz Categories</span>
+        <p className="text-emerald-800/90 text-xs leading-relaxed">
+          Overall added New Quiz Categories from 23 to over 50. Specifically Tamil and Surah Quiz Divisions introduced.
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
+          <span className="text-emerald-600 font-bold">✓</span> Completed
+        </div>
+      </div>
+    )
+  },
+    {
     id: "4a",
     description: (
       <div>
