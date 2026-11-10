@@ -827,7 +827,7 @@ export default function AboutPage() {
           <span>
             For suggestions, WhatsApp{" "}
             <a
-              href="https://wa.me/917558845528"
+               href="https://wa.me/917558845528?text=Hi%20Rafique%2C%0AMy%20suggestion%20for%20IQRA%20is"
               target="_blank"
                rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
