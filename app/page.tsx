@@ -382,7 +382,7 @@ export default function HomePage() {
           <span>
             For suggestions, WhatsApp{" "}
             <a
-              href="https://cvemrafi.vercel.app/"
+              href="https://wa.me/917558845528"
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
