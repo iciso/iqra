@@ -58,6 +58,10 @@ const todoTasks: TaskItem[] = [
   },
   {
     id: "14",
+    description: "Consider Ads in Meta, or Fb for Community growth."
+  }
+  {
+    id: "15",
     description: "Acknowledge all other AI."
   }
 ];
