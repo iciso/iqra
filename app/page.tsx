@@ -378,15 +378,23 @@ export default function HomePage() {
       {/* Existing footer links retained. */}
       <footer className="mt-8 w-full border-t border-green-200 bg-green-50 p-4 text-center text-sm text-green-800 sm:p-6 dark:border-green-700/30 dark:bg-green-900/20 dark:text-green-300">
         <div className="mb-2 flex items-center justify-center sm:mb-3">
-          <MessageSquare className="mr-1 h-4 w-4 shrink-0 text-green-600 sm:h-5 sm:w-5 dark:text-green-400" />
+           <MessageSquare className="mr-1 h-4 w-4 shrink-0 text-green-600 sm:h-5 sm:w-5 dark:text-green-400" />
           <span>
             For suggestions, WhatsApp{" "}
             <a
               href="https://wa.me/917558845528"
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
-            >
+               rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
+                >
+                  {/* WhatsApp SVG Icon */}
+                  <svg
+                    className="w-4 h-4 fill-current shrink-0"
+                    viewBox="0 0 24 24"
+                    xmlns="http://w3.org"
+                  >
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.47 5.425 1.471 5.489 0 9.957-4.469 9.96-9.96.002-2.661-1.034-5.163-2.919-7.05C17.228 1.728 14.73 .689 12.01 .689 6.518.689 2.053 5.155 2.05 10.649c-.001 2.023.52 3.992 1.516 5.696l-1.02 3.722 3.811-1.005zm13.115-6.303c-.292-.146-1.729-.854-1.997-.951-.267-.099-.463-.146-.659.146-.195.292-.756.951-.926 1.146-.17.195-.341.219-.633.073-.292-.146-1.234-.454-2.35-1.449-.869-.775-1.456-1.732-1.627-2.024-.17-.292-.018-.45.129-.595.132-.131.292-.341.439-.512.146-.17.195-.292.292-.487.097-.195.048-.365-.024-.511-.073-.146-.659-1.586-.902-2.17-.236-.569-.477-.492-.659-.501-.17-.008-.365-.01-.56-.01-.195 0-.512.073-.78.365-.268.292-1.022.999-1.022 2.437 0 1.438 1.047 2.827 1.193 3.022.147.195 2.062 3.149 4.996 4.417.697.302 1.242.483 1.666.618.701.223 1.34.191 1.845.116.563-.083 1.729-.706 1.972-1.389.244-.682.244-1.267.17-1.389-.072-.122-.268-.195-.561-.341z" />
+                  </svg>
               Rafique
             </a>{" "}
             at +91 7558845528
