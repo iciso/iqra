@@ -58,10 +58,14 @@ const todoTasks: TaskItem[] = [
   },
   {
     id: "14",
-    description: "Consider Ads in Meta, or Fb for Community growth."
+    description: "Debug Results page as clicking the Skip Button still adds the ?name and ?score to the Leaderboard. Check this out."
   },
   {
     id: "15",
+    description: "Consider Ads in Meta, or Fb for Community growth."
+  },
+  {
+    id: "16",
     description: "Acknowledge all other AI."
   }
 ];
