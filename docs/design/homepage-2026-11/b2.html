@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IQRA B - Race to Good</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Familjen+Grotesk:wght@400;600&family=Red+Hat+Mono:wght@500;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#3E6B55;--deep:#2F5443;--tile:#F1EAD8;--tileink:#14110E;--ink:#F6F1E4;--muted:#BFD3C5;--line:#55836B;--accent:#E8D9A0;--rival:#E39B72}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:'Familjen Grotesk',sans-serif;min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid var(--line)}
+.logo{font-family:'Big Shoulders Display';font-weight:900;font-size:32px;letter-spacing:.04em}
+.logo i{font-style:normal;color:var(--accent)}
+nav ul{display:flex;gap:28px;list-style:none;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.08em}
+nav a{color:var(--ink);text-decoration:none}
+.live{font-family:'Red Hat Mono';font-size:13px;color:var(--accent)}
+.live:before{content:'';display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;margin-right:8px}
+.hero{display:grid;grid-template-columns:1fr;max-width:1320px;margin:0 auto;padding:34px 40px 40px}
+.verse{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}
+.verse .ar{font-family:'Noto Naskh Arabic';font-size:34px;font-weight:700;direction:rtl}
+.verse .tr{font-size:15px;color:var(--muted)}
+h1{font-family:'Big Shoulders Display';font-weight:900;font-size:184px;line-height:.84;text-transform:uppercase;margin:22px 0 8px;letter-spacing:-.005em}
+h1 span{color:var(--accent)}
+.row{display:flex;gap:40px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.lede{max-width:430px;font-size:18px;line-height:1.5;color:var(--muted)}
+.lede b{color:var(--ink)}
+.ctas{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn{font-family:'Big Shoulders Display';font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:.04em;padding:12px 26px;border-radius:4px;text-decoration:none;color:var(--tileink);background:var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.board{flex:1;min-width:560px;max-width:720px;background:var(--deep);border-radius:6px;padding:16px 18px;box-shadow:inset 0 0 0 1px var(--line)}
+.bhead{display:flex;justify-content:space-between;font-family:'Red Hat Mono';font-size:12px;letter-spacing:.14em;color:var(--muted);margin-bottom:10px;text-transform:uppercase}
+.r{display:grid;grid-template-columns:42px 1fr 150px 78px;gap:10px;align-items:center;margin-bottom:6px}
+.flaps{display:flex;gap:2px}
+.f{width:22px;height:32px;background:var(--tile);color:var(--tileink);font-family:'Red Hat Mono';font-weight:700;font-size:19px;display:grid;place-items:center;border-radius:2px;position:relative;
+ animation:flip .5s cubic-bezier(.3,1.4,.5,1) both}
+.f:after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.35)}
+.f.sp{background:#DCD3BE}
+.r.me .f{background:var(--accent)}
+.rank{font-family:'Big Shoulders Display';font-weight:900;font-size:30px;color:var(--accent)}
+.subj{font-family:'Red Hat Mono';font-size:13px;color:var(--muted);text-transform:uppercase}
+.score{font-family:'Red Hat Mono';font-weight:700;font-size:22px;text-align:right}
+.vs{margin-top:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:12px;font-family:'Red Hat Mono';font-size:13px;color:var(--rival)}
+@keyframes flip{0%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+@media (max-width:900px){.board{min-width:0;max-width:none;width:100%}}
+@media (max-width:640px){
+ nav{padding:14px 16px}nav ul{display:none}
+ .hero{padding:20px 16px 28px}
+ .verse .ar{font-size:26px}
+ h1{font-size:92px;margin-top:16px}
+ .r{grid-template-columns:28px 1fr 52px;gap:6px}.subj{display:none}
+ .f{width:16px;height:24px;font-size:14px}
+ .rank{font-size:22px}.score{font-size:17px}
+ .btn{font-size:20px;flex:1;text-align:center}
+}
+</style></head><body>
+<nav><div class="logo">IQR<i>A</i></div>
+<ul><li><a href="#">Learn</a></li><li><a href="#">Challenge</a></li><li><a href="#">Leaderboard</a></li><li><a href="#">About</a></li></ul>
+<span class="live">48 players on now</span></nav>
+<section class="hero">
+ <div class="verse"><span class="ar">فَاسْتَبِقُوا الْخَيْرَاتِ</span><span class="tr">"So race to all that is good" &mdash; Al-Baqarah 2:148</span></div>
+ <h1>Race<br><span>to good.</span></h1>
+ <div class="row">
+  <div>
+   <p class="lede"><b>Islamic Quiz Rivalry.</b> Pick one of 50 subjects, answer 10 questions, then send the same quiz to a friend. Highest score takes the board.</p>
+   <div class="ctas"><a class="btn" href="#">Challenge a friend</a><a class="btn ghost" href="#">Practise first</a></div>
+  </div>
+  <div class="board" id="board">
+   <div class="bhead"><span>Today's board</span><span>Subject &middot; Score</span></div>
+  </div>
+ </div>
+</section>
+<script>
+const rows=[['1','AMINA K','SEERAH','980'],['2','YUSUF R','FIQH','955'],['3','IBRAHIM','TAFSIR','940'],['4','ZAINAB M','RIBA','910'],['5','YOU','QURAN','---']];
+const b=document.getElementById('board');let d=0;
+rows.forEach(([rk,n,s,sc])=>{const r=document.createElement('div');r.className='r'+(n==='YOU'?' me':'');
+ const name=n.padEnd(9,' ').split('').map(c=>`<span class="f${c===' '?' sp':''}" style="animation-delay:${(d+=18)}ms">${c===' '?'':c}</span>`).join('');
+ r.innerHTML=`<span class="rank">${rk}</span><span class="flaps">${name}</span><span class="subj">${s}</span><span class="score">${sc}</span>`;b.appendChild(r)});
+const v=document.createElement('div');v.className='vs';v.innerHTML='<span>YUSUF R challenged you &middot; Fiqh &middot; 10 Qs</span><span>ACCEPT &rarr;</span>';b.appendChild(v);
+</script>
+</body></html>
