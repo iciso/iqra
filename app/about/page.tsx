@@ -164,7 +164,7 @@ const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-background">
       <main className="container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-12">
           <div className="flex justify-center mb-8">
@@ -204,18 +204,18 @@ export default function AboutPage() {
 
                   
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
-<section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
+<section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6 dark:border-emerald-800 dark:bg-card">
 
                      <div id="iqra-quizzes" className="mb-6 text-center">
-              <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
+              <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl dark:text-emerald-300">
                 📊 IQRA Quizzes
               </h2>
             
-              <p className="mt-2 text-sm text-gray-600 sm:text-base">
+              <p className="mt-2 text-sm text-gray-600 sm:text-base dark:text-muted-foreground">
                 Category-wise Distribution of Questions by Difficulty Level
               </p>
             
-              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700">
+              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
                 <p className="mb-3">
                   <strong>Choose your learning level:</strong>
                   {" "}Select the Level: 
@@ -253,17 +253,17 @@ export default function AboutPage() {
     <table className="w-full min-w-[520px] border-collapse text-sm">
 
       <thead>
-        <tr className="bg-emerald-100 text-emerald-900">
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-left font-bold">
+        <tr className="bg-emerald-100 text-emerald-900 dark:bg-emerald-900/60 dark:text-emerald-100">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-left font-bold">
             Category
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Easy
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Intermediate
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Advanced
           </th>
         </tr>
@@ -275,12 +275,12 @@ export default function AboutPage() {
             key={item.category}
             className={
               index % 2 === 0
-                ? "bg-white hover:bg-emerald-50"
-                : "bg-gray-50 hover:bg-emerald-50"
+                ? "bg-white hover:bg-emerald-50 dark:bg-card dark:hover:bg-emerald-950/60"
+                : "bg-gray-50 hover:bg-emerald-50 dark:bg-muted/40 dark:hover:bg-emerald-950/60"
             }
           >
             
-            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
+            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700 dark:border-border dark:text-foreground">
             <div className="flex flex-wrap items-center gap-2">
               <span>{item.category}</span>
           
@@ -321,22 +321,22 @@ export default function AboutPage() {
               </a>
             </div>
           </td>
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.easy}
             </td>
 
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.intermediate}
             </td>
 
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.advanced}
             </td>
           </tr>
         ))}
 
         {/* Total Row */}
-        <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900">
+        <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900 dark:from-emerald-900/70 dark:to-amber-900/50 dark:text-emerald-100">
           <td className="border-t-2 border-emerald-300 px-3 py-4">
             TOTAL {" "}{totalCategory.toLocaleString()}
           </td>

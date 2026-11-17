@@ -28,7 +28,7 @@ export function IqraLogo({ size = "md", showText = false, isLink = true }: IqraL
 
   const logoContent = (
     <div
-      className={`relative ${dimensions[size].container} bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden`}
+      className={`relative ${dimensions[size].container} bg-white dark:bg-card rounded-full shadow-lg flex items-center justify-center overflow-hidden`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-20"></div>
       <div className="relative flex flex-col items-center justify-center w-full h-full">

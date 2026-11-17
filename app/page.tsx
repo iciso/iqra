@@ -46,7 +46,7 @@ function FeatureCard({
 }) {
   return (
     <Card
-      className={`w-full border-0 bg-white shadow-sm ${
+      className={`w-full border-0 bg-white shadow-sm dark:bg-card ${
         prominent
           ? "ring-2 ring-green-500 shadow-md"
           : ""
@@ -54,13 +54,13 @@ function FeatureCard({
     >
       <CardHeader className="pb-2 text-center">
         <div
-          className={`mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full sm:h-16 sm:w-16 ${
+          className={`mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full sm:h-16 sm:w-16 dark:bg-green-900/40 ${
             prominent ? "bg-green-100" : "bg-green-50"
           }`}
         >
           {icon}
         </div>
-        <CardTitle className="text-xl text-green-800 sm:text-2xl">
+        <CardTitle className="text-xl text-green-800 sm:text-2xl dark:text-green-400">
           {title}
         </CardTitle>
         <CardDescription className="text-sm sm:text-base">
@@ -69,7 +69,7 @@ function FeatureCard({
       </CardHeader>
 
       <CardContent className="px-4 text-center sm:px-6">
-        <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+        <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-muted-foreground sm:text-base">
           {description}
         </p>
         {tags && tags.length > 0 && (
@@ -77,7 +77,7 @@ function FeatureCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded bg-green-50 px-2 py-1 text-xs text-green-700"
+                className="rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
               >
                 {tag}
               </span>
@@ -129,10 +129,10 @@ export default function HomePage() {
   }, [])
 
   const tagClass =
-    "rounded bg-green-50 px-2 py-1 text-xs text-green-700"
+    "rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb]">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb] dark:bg-background">
       <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
         {/* Keep challenge notifications easy to find for returning players. */}
         <div id="challenge-name" className="mb-6 w-full scroll-mt-4 sm:mb-8">
@@ -141,16 +141,16 @@ export default function HomePage() {
 
         {/* IQRA welcome / hero */}
         <header className="mb-6 w-full text-center sm:mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24 dark:bg-green-900/40">
             <IqraLogo className="h-8 w-8 text-green-700 sm:h-12 sm:w-12" />
           </div>
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl">
+          <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl dark:text-green-400">
             IQRA
           </h1>
-          <p className="text-lg text-green-700 sm:text-xl">
+          <p className="text-lg text-green-700 sm:text-xl dark:text-green-300">
             Islamic Quiz Rivalry App
           </p>
-          <p className="mt-2 px-2 text-sm text-gray-600 sm:mt-4 sm:text-base">
+          <p className="mt-2 px-2 text-sm text-gray-600 dark:text-muted-foreground sm:mt-4 sm:text-base">
             ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
             <br className="hidden sm:block" />
             <span className="block sm:inline">
@@ -192,12 +192,12 @@ export default function HomePage() {
           className="mx-auto mt-8 w-full max-w-6xl"
         >
           <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-            <Card className="w-full border-0 bg-white shadow-sm">
+            <Card className="w-full border-0 bg-white shadow-sm dark:bg-card">
               <CardHeader className="pb-2 text-center">
-                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 sm:h-16 sm:w-16">
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 sm:h-16 sm:w-16 dark:bg-green-900/40">
                   <BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
                 </div>
-                <CardTitle className="text-xl text-green-800 sm:text-2xl">
+                <CardTitle className="text-xl text-green-800 sm:text-2xl dark:text-green-400">
                   Surah-Quiz
                 </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
@@ -205,7 +205,7 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-muted-foreground sm:text-base">
                   Learn vocabulary from specific Surahs. Browse through Surahs in KALAM
                   to study their context, meaning, and rulings. Self-test your
                   knowledge on the nearly 40 completed Surahs in KALAM, 
@@ -218,7 +218,7 @@ export default function HomePage() {
                   <span className={tagClass}>Hadeeth</span>
                   <span className={tagClass}>Seerah &amp; Context</span>
                 </div>
-                 <p className="mb-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+                 <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-muted-foreground sm:text-base">
                   <i>
                     Also Surah-Quizzes are available in Easy or Translation only Quizzes in KALAM app, and 
                     as an Expert version with Translation, Tafsir, and Vocab Quizzes in IQRA app.
@@ -259,12 +259,12 @@ export default function HomePage() {
             </Card>
 
                                    {/* Keep the live player/challenge list, but limit height=other cards on the home page. */}
-                        <Card className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md">
+                        <Card className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
                           <CardHeader className="pb-2 text-center">
-                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16">
+                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16 dark:bg-green-900/40">
                               <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
                             </div>
-                            <CardTitle className="text-xl text-green-800 sm:text-2xl">
+                            <CardTitle className="text-xl text-green-800 sm:text-2xl dark:text-green-400">
                               IQRA Players
                             </CardTitle>
                             <CardDescription className="text-sm sm:text-base">
@@ -273,7 +273,7 @@ export default function HomePage() {
                           </CardHeader>
                         
                           <CardContent className="flex min-h-0 flex-1 flex-col px-2 sm:px-6">
-                            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800">
+                            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800 dark:text-green-400">
                               <Trophy className="h-4 w-4" />
                               Available players and top scores
                             </div>
@@ -302,16 +302,16 @@ export default function HomePage() {
           className="mx-auto mt-8 w-full max-w-6xl"
         >
           <div className="mb-4 text-center">
-            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700">
+            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
               New learning tracks
             </p>
             <h2
               id="arabic-vocabulary-heading"
-              className="text-xl font-bold text-green-900 sm:text-2xl"
+              className="text-xl font-bold text-green-900 sm:text-2xl dark:text-green-300"
             >
               Arabic Vocabulary
             </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-muted-foreground sm:text-base">
               Choose the vocabulary that matches your learning goal. Each track
               opens the Vocabulary section on the Categories page.
             </p>
@@ -342,7 +342,7 @@ export default function HomePage() {
               buttonText="Explore Modern Vocabulary"
             />
           </div>
-              <p className="mt-3 text-center text-xs text-gray-500"> 
+              <p className="mt-3 text-center text-xs text-gray-500 dark:text-muted-foreground"> 
                   Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. 
                   For challenges go to the{' '} 
                   <a href="/challenges" target="_blank" rel="noopener noreferrer" className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"> 

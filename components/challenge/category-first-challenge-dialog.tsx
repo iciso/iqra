@@ -789,7 +789,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 <Zap className="h-8 w-8 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Challenge Created! 🎯</h3>
-              <p className="text-gray-600 mb-4">Taking you to your quiz now...</p>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">Taking you to your quiz now...</p>
               <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
                 <Clock className="h-4 w-4" />
                 <span>{opponent.full_name || opponent.username} will be notified and can accept when ready.</span>
@@ -878,7 +878,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                           key={category.id}
                           className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
                             isSelected
-                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              ? `${category.bgLight} ${category.borderColor} dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-background ring-blue-500`
                               : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
                           }`}
                           onClick={() => setSelectedCategory(category.id)}
@@ -887,7 +887,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                             <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
                               <IconComponent className="h-5 w-5 text-white" />
                             </div>
-                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                            <h4 className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
                               {category.label}
                             </h4>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
@@ -913,7 +913,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                           key={category.id}
                           className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
                             isSelected
-                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              ? `${category.bgLight} ${category.borderColor} dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-background ring-blue-500`
                               : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
                           }`}
                           onClick={() => setSelectedCategory(category.id)}
@@ -922,7 +922,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                             <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
                               <IconComponent className="h-5 w-5 text-white" />
                             </div>
-                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                            <h4 className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
                               {category.label}
                             </h4>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
@@ -948,7 +948,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                           key={category.id}
                           className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
                             isSelected
-                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-blue-500`
+                              ? `${category.bgLight} ${category.borderColor} dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-background ring-blue-500`
                               : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
                           }`}
                           onClick={() => setSelectedCategory(category.id)}
@@ -957,7 +957,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                             <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
                               <IconComponent className="h-5 w-5 text-white" />
                             </div>
-                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                            <h4 className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
                               {category.label}
                             </h4>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
@@ -984,7 +984,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                           key={category.id}
                           className={`cursor-pointer transition-all duration-200 p-4 rounded-lg border-2 hover:shadow-md ${
                             isSelected
-                              ? `${category.bgLight} ${category.borderColor} ring-2 ring-offset-2 ring-purple-500`
+                              ? `${category.bgLight} ${category.borderColor} dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-background ring-purple-500`
                               : "border-purple-200 dark:border-purple-700 hover:border-purple-400"
                           }`}
                           onClick={() => setSelectedCategory(category.id)}
@@ -993,7 +993,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                             <div className={`mx-auto w-10 h-10 rounded-full ${category.color} flex items-center justify-center mb-2`}>
                               <IconComponent className="h-5 w-5 text-white" />
                             </div>
-                            <h4 className={`font-semibold ${isSelected ? category.textColor : "text-gray-900 dark:text-gray-100"}`}>
+                            <h4 className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
                               {category.label}
                             </h4>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</p>
@@ -1008,7 +1008,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
               {/* Difficulty Selection */}
               {selectedCategory && (
-                <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight || "bg-gray-50"}`}>
+                <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight || "bg-gray-50"} dark:bg-gray-800/60`}>
                   <h4 className="font-medium mb-3 flex items-center gap-2">
                     <Trophy className="h-4 w-4" />
                     Challenge Settings

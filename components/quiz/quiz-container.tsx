@@ -567,7 +567,7 @@ export default function QuizContainer({
               <div className="h-full flex flex-col justify-between">
                 <div className="mb-6 flex-1">
                   <h2
-                    className="text-lg font-medium mb-4 dark:text-white min-h-[3rem] leading-normal"
+                    className="text-lg font-medium mb-4 text-card-foreground min-h-[3rem] leading-normal"
                     style={{
                       // Make Arabic letters ~2× larger so vowels (tashkīl) are readable
                       fontSize: /[\u0600-\u06FF]/.test(question.question) ? "1.65rem" : undefined,
@@ -592,7 +592,7 @@ export default function QuizContainer({
                             }`}
                         >
                           <RadioGroupItem value={option} id={`option-${index}`} disabled={showExplanation} />
-                          <Label htmlFor={`option-${index}`} className="cursor-pointer w-full dark:text-gray-200">
+                          <Label htmlFor={`option-${index}`} className="cursor-pointer w-full text-card-foreground">
                             {option}
                             {showExplanation && option === question.correctAnswer && (
                               <CheckCircle className="inline-block ml-2 h-4 w-4 text-green-600 dark:text-green-400" />

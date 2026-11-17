@@ -96,7 +96,7 @@ export default function ChallengeResultsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-green-100">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
         <div className="text-center">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-green-500 border-t-transparent mx-auto mb-4" />
           <p className="text-gray-600">Loading challenge results...</p>
@@ -107,7 +107,7 @@ export default function ChallengeResultsPage() {
 
   if (error || !challenge) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-green-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
         <Card className="w-full max-w-md">
           <CardContent className="text-center py-8">
             <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />

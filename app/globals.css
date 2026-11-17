@@ -25,6 +25,30 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
+
+  /* Dark theme: a deep green-grey page, lifted cards, light text, green primary.
+     Without this block every token stayed light while dark: text turned white. */
+  .dark {
+    --background: 165 25% 7%;
+    --foreground: 150 20% 96%;
+    --card: 165 20% 10%;
+    --card-foreground: 150 20% 96%;
+    --popover: 165 20% 10%;
+    --popover-foreground: 150 20% 96%;
+    --primary: 142 72% 29%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 165 15% 16%;
+    --secondary-foreground: 150 20% 96%;
+    --muted: 165 15% 16%;
+    --muted-foreground: 160 10% 68%;
+    --accent: 165 15% 18%;
+    --accent-foreground: 150 20% 96%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 165 15% 20%;
+    --input: 165 15% 22%;
+    --ring: 142 69% 58%;
+  }
 }
 
 @layer base {

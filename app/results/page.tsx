@@ -332,7 +332,7 @@ export default function ResultsPage() {
   // Show loading state while auth is loading
   if (!isClient || !authReady) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
+      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading your results...</p>

@@ -240,7 +240,7 @@ export default function LeaderboardPage() {
 
   if (!isClient) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
+      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
         <Card className="w-full max-w-4xl border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading leaderboard...</p>

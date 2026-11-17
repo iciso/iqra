@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className="light overflow-x-hidden" style={{ colorScheme: "light" }}>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-hidden" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -71,7 +71,7 @@ export default function RootLayout({
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen bg-emerald-50/30`}>
+      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen bg-emerald-50/30 dark:bg-background`}>
         <div className="max-w-screen-2xl mx-auto my-auto">
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <AuthProvider>

@@ -133,14 +133,14 @@ export default function ProfilePage() {
 
   if (!playerName) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <Trophy className="h-12 w-12 text-green-600 mx-auto mb-2" />
             <CardTitle>View Your Profile</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-gray-600 text-center">Enter the name you use when playing quizzes to see your stats.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">Enter the name you use when playing quizzes to see your stats.</p>
             <div className="flex gap-2">
               <Input placeholder="Your name" value={nameInput} onChange={(e) => setNameInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSetName()} />
               <Button onClick={handleSetName} className="bg-green-600 hover:bg-green-700">View</Button>
@@ -253,7 +253,7 @@ export default function ProfilePage() {
                           <Badge variant="outline" className="text-xs">{count}×</Badge>
                         </div>
                       </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-2 bg-gray-100 dark:bg-muted rounded-full overflow-hidden">
                         <div className={`h-full rounded-full ${percentage >= 80 ? "bg-green-500" : percentage >= 60 ? "bg-blue-500" : "bg-orange-400"}`}
                           style={{ width: `${Math.min(percentage, 100)}%` }} />
                       </div>
