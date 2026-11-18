@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase-client';
 import { saveQuizResultToFallback, initializeFallbackTables } from './neon-fallback';
+import { submitQuizResultAction } from '@/app/actions/quiz';
 
 // Initialize fallback tables
 let fallbackInitialized = false;
@@ -540,29 +541,21 @@ export async function submitQuizResult(
   });
 
   try {
-    const response = await fetch('/api/quiz/submit-result', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user_id: userId,
-        user_name: userName,
-        score,
-        total_questions: totalQuestions,
-        percentage,
-        category,
-        difficulty,
-        time_left: timeLeft,
-        answers: answers ? JSON.stringify(answers) : null,
-        challenge_id: challengeId || null,
-      }),
+    // Server Action (app/actions/quiz.ts). The player is identified by name; no user id is sent.
+    const saved = await submitQuizResultAction({
+      name: userName,
+      score,
+      totalQuestions,
+      percentage,
+      category,
+      difficulty,
+      challenge: challengeId || null,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API error: ${errorData.error || response.statusText}`);
+    if (!saved.success) {
+      throw new Error(`API error: ${saved.error}`);
     }
 
-    await response.json();
     console.log('✅ SUBMIT QUIZ RESULT: saved');
 
     return { success: true, finalScore: score, bonusPoints: 0, originalScore: score, saved: true };
