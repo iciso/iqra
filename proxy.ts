@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Only redirect /challenge to /challenges
   if (request.nextUrl.pathname === "/challenge") {
     return NextResponse.redirect(new URL("/challenges", request.url))
