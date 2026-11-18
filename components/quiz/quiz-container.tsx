@@ -499,7 +499,7 @@ export default function QuizContainer({
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-2xl mx-auto">
       <Button asChild variant="ghost" size="sm" className="-ml-3 mb-2 text-green-700 dark:text-green-400">
         <Link href={challengeMode ? "/challenges" : "/subjects"}>
           <ChevronLeft className="h-4 w-4" />
@@ -532,9 +532,9 @@ export default function QuizContainer({
         )}
       </div>
 
-      <Card className="border-green-200 shadow-lg dark:border-green-800 h-[600px] flex flex-col">
+      <Card className="border-green-200 shadow-lg dark:border-green-800">
         {isLoading ? (
-          <div className="flex-1 flex items-center justify-center p-6">
+          <div className="flex min-h-[320px] items-center justify-center p-6">
             <LoadingAnimation size="md" text={getLoadingText()} />
           </div>
         ) : (
@@ -562,9 +562,9 @@ export default function QuizContainer({
               )}
             </CardHeader>
 
-            <CardContent className="flex-1 overflow-y-auto">
-              <div className="h-full flex flex-col justify-between">
-                <div className="mb-6 flex-1">
+            <CardContent>
+              <div>
+                <div>
                   <h2
                     className="text-lg font-medium mb-4 text-card-foreground min-h-[3rem] leading-normal"
                     style={{
@@ -576,7 +576,7 @@ export default function QuizContainer({
                     {question.question}
                   </h2>
 
-                  <div className="min-h-[200px]">
+                  <div>
                     <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
                       {question.options.map((option, index) => (
                         <div
@@ -606,7 +606,7 @@ export default function QuizContainer({
                   </div>
 
                   {showExplanation && (
-                    <div className="mt-4 max-h-[150px] overflow-y-auto">
+                    <div className="mt-4">
                       {question.explanation && (
                         <Alert className="mt-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
                           <AlertDescription
@@ -645,7 +645,7 @@ export default function QuizContainer({
               </div>
             </CardContent>
 
-            <CardFooter className="flex justify-between mt-auto">
+            <CardFooter className="flex justify-between">
               <Button
                 variant="outline"
                 onClick={handlePrevious}
