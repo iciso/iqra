@@ -81,13 +81,15 @@ const chartKeywords = [
   "principles",
 ]
 
+type InfographicType = "timeline" | "comparison" | "process" | "map" | "chart"
+
 /**
  * Analyzes a quiz question to determine if it would benefit from an infographic
  * and what type of infographic would be most appropriate
  */
 export function analyzeForInfographic(question: QuizQuestion): {
   needsInfographic: boolean
-  recommendedType?: "timeline" | "comparison" | "process" | "map" | "chart"
+  recommendedType?: InfographicType
   confidence: number // 0-100
 } {
   if (!question.explanation) {
@@ -104,7 +106,7 @@ export function analyzeForInfographic(question: QuizQuestion): {
   const chartScore = chartKeywords.filter((keyword) => text.includes(keyword)).length
 
   // Get the highest score
-  const scores = [
+  const scores: { type: InfographicType; score: number }[] = [
     { type: "timeline", score: timelineScore },
     { type: "comparison", score: comparisonScore },
     { type: "process", score: processScore },
@@ -133,7 +135,7 @@ export function analyzeForInfographic(question: QuizQuestion): {
 
     return {
       needsInfographic: true,
-      recommendedType: scores[0].type as any,
+      recommendedType: scores[0].type,
       confidence,
     }
   }
