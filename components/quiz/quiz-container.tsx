@@ -500,19 +500,14 @@ export default function QuizContainer({
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="absolute top-4 left-4">
+      <Button asChild variant="ghost" size="sm" className="-ml-3 mb-2 text-green-700 dark:text-green-400">
         <Link href={challengeMode ? "/challenges" : "/categories"}>
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full dark:border-green-700 dark:text-green-400 bg-transparent"
-          >
-            <span className="sr-only">{challengeMode ? "Challenges" : "Categories"}</span>
-          </Button>
+          <ChevronLeft className="h-4 w-4" />
+          {challengeMode ? "Challenges" : "Subjects"}
         </Link>
-      </div>
+      </Button>
 
-      <div className="w-full mb-4 mt-12">
+      <div className="w-full mb-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-green-700 dark:text-green-400">
             {category.title} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
