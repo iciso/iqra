@@ -1,6 +1,7 @@
 "use client" 
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useEffectEvent } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -9,6 +10,8 @@ import { Check, X, Trophy, Clock, AlertCircle, RefreshCw } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { supabase } from "@/lib/supabase"
 import { toast } from "@/hooks/use-toast"
+
+const errorMessage = (error: unknown) => (error as { message?: string } | null)?.message
 
 interface Challenge {
   id: string
@@ -29,6 +32,7 @@ interface Challenge {
 
 export default function ChallengeNotification() {
   const { user } = useAuth()
+  const router = useRouter()
   const [pendingChallenges, setPendingChallenges] = useState<Challenge[]>([])
   const [loading, setLoading] = useState(true)
   const [showDialog, setShowDialog] = useState(false)
@@ -64,33 +68,6 @@ export default function ChallengeNotification() {
     mixed: "Mixed",
   }
 
-  useEffect(() => {
-    if (user) {
-      loadPendingChallenges()
-
-      // Set up real-time subscription for new challenges
-      const subscription = supabase
-        .channel("challenge-notifications")
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "user_challenges",
-            filter: `challenged_id=eq.${user.id}`,
-          },
-          (payload) => {
-            addDebug("New challenge received via real-time!")
-            loadPendingChallenges()
-          },
-        )
-        .subscribe()
-
-      return () => {
-        subscription.unsubscribe()
-      }
-    }
-  }, [user])
 
   const loadPendingChallenges = async () => {
     if (!user) return
@@ -168,13 +145,49 @@ export default function ChallengeNotification() {
 
       addDebug(`Successfully loaded ${challengesWithProfiles.length} challenges with profiles`)
       setPendingChallenges(challengesWithProfiles)
-    } catch (error: any) {
-      addDebug(`Error loading challenges: ${error.message}`)
+    } catch (error) {
+      addDebug(`Error loading challenges: ${errorMessage(error)}`)
       console.error("Error loading pending challenges:", error)
     } finally {
       setLoading(false)
     }
   }
+
+  const onPendingChallengesChanged = useEffectEvent(() => {
+    loadPendingChallenges()
+  })
+
+  useEffect(() => {
+    if (!user) return
+    let cancelled = false
+    // First load after the commit; later loads come from the real-time subscription.
+    Promise.resolve().then(() => {
+      if (!cancelled) onPendingChallengesChanged()
+    })
+
+    // Set up real-time subscription for new challenges
+    const subscription = supabase
+      .channel("challenge-notifications")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "user_challenges",
+          filter: `challenged_id=eq.${user.id}`,
+        },
+        () => {
+          addDebug("New challenge received via real-time!")
+          onPendingChallengesChanged()
+        },
+      )
+      .subscribe()
+
+    return () => {
+      cancelled = true
+      subscription.unsubscribe()
+    }
+  }, [user])
 
   const handleAcceptChallenge = async (challengeId: string) => {
     if (!selectedChallenge) return
@@ -201,12 +214,12 @@ export default function ChallengeNotification() {
       const challengeUrl = `/quiz?category=${selectedChallenge.category}&difficulty=${selectedChallenge.difficulty}&challenge=${challengeId}&questions=${selectedChallenge.question_count}&opponent=${selectedChallenge.challenger_id}&opponentName=${encodeURIComponent(selectedChallenge.challenger.full_name || selectedChallenge.challenger.username)}&challengerTurn=false`
 
       addDebug(`Redirecting to: ${challengeUrl}`)
-      window.location.href = challengeUrl
-    } catch (error: any) {
-      addDebug(`Error accepting challenge: ${error.message}`)
+      router.push(challengeUrl)
+    } catch (error) {
+      addDebug(`Error accepting challenge: ${errorMessage(error)}`)
       toast({
         title: "Error",
-        description: error.message || "Failed to accept challenge",
+        description: errorMessage(error) || "Failed to accept challenge",
         variant: "destructive",
       })
     } finally {
@@ -233,11 +246,11 @@ export default function ChallengeNotification() {
 
       setShowDialog(false)
       addDebug("Challenge declined successfully")
-    } catch (error: any) {
-      addDebug(`Error declining challenge: ${error.message}`)
+    } catch (error) {
+      addDebug(`Error declining challenge: ${errorMessage(error)}`)
       toast({
         title: "Error",
-        description: error.message || "Failed to decline challenge",
+        description: errorMessage(error) || "Failed to decline challenge",
         variant: "destructive",
       })
     } finally {

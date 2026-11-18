@@ -52,7 +52,7 @@ export default function BadgesProfile() {
           </div>
         ) : (
           <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-            <p className="mb-2">You haven't earned any badges yet.</p>
+            <p className="mb-2">You haven&apos;t earned any badges yet.</p>
             <p className="text-sm">Complete challenges and quizzes to earn badges!</p>
           </div>
         )}

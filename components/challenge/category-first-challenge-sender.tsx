@@ -8,13 +8,13 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
-  Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
-  HandHeart, Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
-  Sprout, Sun, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
+import {
+  ArrowUp, Book, BookOpen, Compass, CirclePlus, Gamepad2, HandCoins, Handshake, Heart, Home, Images, Infinity, Languages, Megaphone, Milestone, Music, Network, Percent, RefreshCw, Scale, Scroll, Search, Sprout, Star, Sun, Tornado, Trophy, User, Users, Wind, WineOff, Zap,
+} from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import ChallengeScoringInfo from "./challenge-scoring-info"
 import { useAuth } from "@/contexts/auth-context"
+import { supabase } from "@/lib/supabase"
 
 interface User {
   id: string
@@ -218,7 +218,8 @@ const challengeCategories = [
   },
 ]
 
-const tamilCategories = [
+// WIP category set (not rendered yet)
+export const tamilCategories = [
   {
     id: "ta-quran",
     label: "குர்ஆன்",
@@ -266,7 +267,8 @@ const tamilCategories = [
   },
 ]
 
-const surahCategories = [
+// WIP category set (not rendered yet)
+export const surahCategories = [
   {
     id: "surah-78",
     label: "Surah-78: An-Naba",
@@ -305,7 +307,8 @@ const surahCategories = [
   },
 ]
 
-const arabicVocabularyCategories = [
+// WIP category set (not rendered yet)
+export const arabicVocabularyCategories = [
   {
     id: "quranic-arabic-01",
     label: "Quranic Arabic - Level 1",
@@ -326,6 +329,29 @@ const arabicVocabularyCategories = [
   },
 ]
 
+// Module-level so the expiry clock is read in the click handler, never during render.
+const expiresIn24h = () => new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+
+const queryTopPlayers = async (): Promise<User[]> => {
+  const { data, error } = await supabase
+    .from("user_profiles")
+    .select("id, username, full_name, avatar_url, total_score, best_percentage")
+    .order("total_score", { ascending: false })
+    .order("best_percentage", { ascending: false })
+    .limit(8)
+  if (error) throw error
+  return (data as User[] | null) || []
+}
+
+const reportTopPlayersError = (error: unknown) => {
+  console.error("Error loading top players:", error)
+  toast({
+    title: "Error",
+    description: "Failed to load top players",
+    variant: "destructive",
+  })
+}
+
 const difficulties = [
   { value: "easy", label: "Easy", description: "Basic level questions" },
   { value: "intermediate", label: "Intermediate", description: "Moderate difficulty" },
@@ -341,39 +367,23 @@ export default function CategoryFirstChallengeSender() {
   const [searchResults, setSearchResults] = useState<User[]>([])
   const [topPlayers, setTopPlayers] = useState<User[]>([])
   const [searchLoading, setSearchLoading] = useState(false)
-  const [topPlayersLoading, setTopPlayersLoading] = useState(false)
+  const [topPlayersLoading, setTopPlayersLoading] = useState(true)
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (!authLoading) {
-      loadTopPlayers()
-    }
-  }, [authLoading])
-
-  const loadTopPlayers = async () => {
+  const loadTopPlayers = () => {
     setTopPlayersLoading(true)
-
-    try {
-      const { data, error } = await supabase
-        .from("user_profiles")
-        .select("id, username, full_name, avatar_url, total_score, best_percentage")
-        .order("total_score", { ascending: false })
-        .order("best_percentage", { ascending: false })
-        .limit(8)
-
-      if (error) throw error
-      setTopPlayers(data || [])
-    } catch (error: any) {
-      console.error("Error loading top players:", error)
-      toast({
-        title: "Error",
-        description: "Failed to load top players",
-        variant: "destructive",
-      })
-    } finally {
-      setTopPlayersLoading(false)
-    }
+    queryTopPlayers()
+      .then(setTopPlayers, reportTopPlayersError)
+      .finally(() => setTopPlayersLoading(false))
   }
+
+  // Initial load: topPlayersLoading starts true, state is only set in the promise callbacks.
+  useEffect(() => {
+    if (authLoading) return
+    queryTopPlayers()
+      .then(setTopPlayers, reportTopPlayersError)
+      .finally(() => setTopPlayersLoading(false))
+  }, [authLoading])
 
   const searchUsers = async (query: string) => {
     if (!query || query.length < 2) {
@@ -392,7 +402,7 @@ export default function CategoryFirstChallengeSender() {
 
       if (error) throw error
       setSearchResults(data || [])
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error searching users:", error)
       toast({
         title: "Search Error",
@@ -435,19 +445,18 @@ export default function CategoryFirstChallengeSender() {
         variant: "destructive",
         duration: 10000,
       })
-  setIsSubmitting(false)
-  return
+        return
 }
 
       const challengeData = {
-        challenger_id: challengerId,
+        challenger_id: user?.id,
         challenged_id: challengedUser.id,
         category: selectedCategory,
         difficulty: selectedDifficulty,
         question_count: 10,
         time_limit: 300,
         status: "pending",
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        expires_at: expiresIn24h(),
       }
 
       const apiResponse = await fetch("/api/challenges/create", {
@@ -468,10 +477,10 @@ export default function CategoryFirstChallengeSender() {
 
       setSearchQuery("")
       setSearchResults([])
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: "Error",
-        description: error.message || "Failed to send challenge",
+        description: (error as { message?: string } | null)?.message || "Failed to send challenge",
         variant: "destructive",
       })
     } finally {

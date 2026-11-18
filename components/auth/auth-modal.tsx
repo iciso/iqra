@@ -40,8 +40,8 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         onClose()
         router.push("/categories")
       }
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in")
+    } catch (err) {
+      setError((err as { message?: string } | null)?.message || "Failed to sign in")
     } finally {
       setLoading(false)
     }
@@ -78,8 +78,8 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         onClose()
         router.push("/categories")
       }
-    } catch (err: any) {
-      setError(err.message || "Failed to sign up")
+    } catch (err) {
+      setError((err as { message?: string } | null)?.message || "Failed to sign up")
     } finally {
       setLoading(false)
     }

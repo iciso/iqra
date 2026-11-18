@@ -171,7 +171,7 @@ export default function ChallengeScoringInfo() {
 
           <div className="text-center">
             <Button onClick={() => setOpen(false)} className="bg-green-600 hover:bg-green-700">
-              Got it! Let's Challenge!
+              Got it! Let&apos;s Challenge!
             </Button>
           </div>
         </div>

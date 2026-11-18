@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -54,7 +54,7 @@ const difficultyOptions = [
   { value: "mixed", label: "Mixed" },
 ]
 
-export default function SocialChallengerSelector({ onChallengerSelect, currentChallenger }: SocialChallengerSelectorProps) {
+export default function SocialChallengerSelector({ onChallengerSelect }: SocialChallengerSelectorProps) {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [yourName, setYourName] = useState("")
   const [opponentName, setOpponentName] = useState("")
@@ -63,12 +63,12 @@ export default function SocialChallengerSelector({ onChallengerSelect, currentCh
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [challengeSent, setChallengeSent] = useState(false)
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedName = localStorage.getItem(NAME_STORAGE_KEY)
-      if (savedName) setYourName(savedName)
-    }
-  }, [dialogOpen])
+  // Prefill the saved name whenever the dialog opens or closes (was an effect on dialogOpen).
+  const handleOpenChange = (open: boolean) => {
+    setDialogOpen(open)
+    const savedName = localStorage.getItem(NAME_STORAGE_KEY)
+    if (savedName) setYourName(savedName)
+  }
 
   const handleSendChallenge = async () => {
     const trimmedYourName = yourName.trim()
@@ -122,10 +122,10 @@ export default function SocialChallengerSelector({ onChallengerSelect, currentCh
         setChallengeSent(false)
         setOpponentName("")
       }, 2000)
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: "Error",
-        description: error.message || "Failed to send challenge",
+        description: (error as { message?: string } | null)?.message || "Failed to send challenge",
         variant: "destructive",
       })
     } finally {
@@ -134,7 +134,7 @@ export default function SocialChallengerSelector({ onChallengerSelect, currentCh
   }
 
   return (
-    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+    <Dialog open={dialogOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
           <Gamepad2 className="h-4 w-4 mr-2" />
@@ -170,7 +170,7 @@ export default function SocialChallengerSelector({ onChallengerSelect, currentCh
             </div>
 
             <div>
-              <label className="text-sm font-medium">Opponent's Name</label>
+              <label className="text-sm font-medium">Opponent&apos;s Name</label>
               <Input
                 placeholder="Who are you challenging?"
                 value={opponentName}

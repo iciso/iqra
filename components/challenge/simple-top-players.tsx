@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useEffectEvent, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -23,6 +23,14 @@ interface SimpleTopPlayersProps {
   initialPlayers?: ChallengePlayersResult
 }
 
+interface StoredLeaderboardEntry {
+  name: string
+  score: number
+  percentage: number
+}
+
+const FALLBACK_PLAYERS: Player[] = [] // Add fallback players if needed
+
 const usablePlayers = (result?: ChallengePlayersResult | null): Player[] =>
   result?.success && result.players?.length
     ? result.players.filter((player: Player) => player.username !== "Test User")
@@ -41,8 +49,6 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
   const loadingRef = useRef(false)
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
-
-  const fallbackPlayers: Player[] = [] // Add fallback players if needed
 
   const loadPlayers = async () => {
     if (loadingRef.current) {
@@ -86,9 +92,9 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
         if (typeof window !== "undefined") {
           const stored = localStorage.getItem("quranQuizLeaderboard")
           if (stored) {
-            const leaderboardData = JSON.parse(stored)
-            const storagePlayersMap = new Map<string, any>()
-            leaderboardData.forEach((entry: any) => {
+            const leaderboardData: StoredLeaderboardEntry[] = JSON.parse(stored)
+            const storagePlayersMap = new Map<string, Player>()
+            leaderboardData.forEach((entry) => {
               if (!storagePlayersMap.has(entry.name)) {
                 storagePlayersMap.set(entry.name, {
                   id: `player-${Math.random()}`,
@@ -119,17 +125,17 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
 
       console.log("🔍 Step 3: Using registered users as final fallback...")
       if (mountedRef.current) {
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
       }
-    } catch (err: any) {
-      console.error("❌ Load error:", err.message)
+    } catch (err) {
+      console.error("❌ Load error:", (err as { message?: string } | null)?.message)
       if (mountedRef.current) {
         console.log("🔄 Using registered users as fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
@@ -189,17 +195,25 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
     return "bg-purple-100 text-purple-800"
   }
 
+  // Effects below call the latest loadPlayers without re-running when it changes.
+  const onLoadPlayers = useEffectEvent(() => {
+    loadPlayers()
+  })
+  const onShowAllChange = useEffectEvent(() => {
+    if (!authLoading && mountedRef.current) loadPlayers()
+  })
+
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
     if (!authLoading) {
       console.log("✅ Auth is ready, loading players...")
-      loadPlayers()
+      onLoadPlayers()
     } else {
       console.log("⏳ Auth still loading, waiting...")
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
-        loadPlayers()
+        onLoadPlayers()
       }, 3000)
       return () => clearTimeout(timeout)
     }
@@ -212,21 +226,19 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
       console.log("🔄 Auth state changed, reloading players...")
-      loadPlayers()
+      onLoadPlayers()
     }
   }, [user, authLoading])
 
   useEffect(() => {
-    if (!authLoading && mountedRef.current) {
-      loadPlayers()
-    }
+    onShowAllChange()
   }, [showAll])
 
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
