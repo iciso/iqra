@@ -7,6 +7,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users, Database } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import { getChallengePlayersAction } from "@/app/actions/challenges"
+import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 interface Player {
   id: string
@@ -16,10 +18,21 @@ interface Player {
   best_percentage: number
 }
 
-export default function SimpleTopPlayers() {
+interface SimpleTopPlayersProps {
+  // Loaded by the server page. Used for the first paint and the first load; refreshes call the Server Action.
+  initialPlayers?: ChallengePlayersResult
+}
+
+const usablePlayers = (result?: ChallengePlayersResult | null): Player[] =>
+  result?.success && result.players?.length
+    ? result.players.filter((player: Player) => player.username !== "Test User")
+    : []
+
+export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersProps = {}) {
   const { user, loading: authLoading } = useAuth()
-  const [players, setPlayers] = useState<Player[]>([])
-  const [loading, setLoading] = useState(true)
+  const initialRef = useRef<ChallengePlayersResult | null>(initialPlayers ?? null)
+  const [players, setPlayers] = useState<Player[]>(() => usablePlayers(initialPlayers))
+  const [loading, setLoading] = useState(() => usablePlayers(initialPlayers).length === 0)
   const [retryCount, setRetryCount] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [dataSource, setDataSource] = useState<string>("Loading...")
@@ -43,17 +56,19 @@ export default function SimpleTopPlayers() {
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
-      // Try the API endpoint first
-      console.log("🔍 Step 1: Trying API endpoint for challenge players...")
+      // Server first: the page's own load on the first pass, the Server Action after that
+      console.log("🔍 Step 1: Loading challenge players from the server...")
       try {
-        const response = await Promise.race([
-          fetch("/api/challenges/players"),
-          new Promise((_, reject) => setTimeout(() => reject(new Error("API timeout")), 5000)),
-        ])
+        const data =
+          initialRef.current ??
+          (await Promise.race([
+            getChallengePlayersAction(),
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error("API timeout")), 5000)),
+          ]))
+        initialRef.current = null
 
-        const data = await response.json()
-        if (data.success && data.players && data.players.length > 0) {
-          const filteredData = data.players.filter((player: Player) => player.username !== "Test User")
+        const filteredData = usablePlayers(data)
+        if (filteredData.length > 0) {
           console.log("✅ Players loaded from API:", filteredData.length, "players")
           if (mountedRef.current) {
             setPlayers(filteredData)

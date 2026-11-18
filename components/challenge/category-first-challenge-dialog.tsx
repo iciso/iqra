@@ -15,6 +15,7 @@ import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, Brie
 import { toast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
+import { createChallengeAction, getChallengeSectionsAction } from "@/app/actions/challenges"
 
 interface User {
   id: string
@@ -605,11 +606,9 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
     const challenger =
       localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId") || ""
     const challenged = opponent.full_name || opponent.username
-    const qs = new URLSearchParams({ category: selectedCategory, challenger, challenged })
-
-    fetch(`/api/challenges/sections?${qs.toString()}`)
-      .then((r) => r.json())
-      .then((data: SectionData & { success: boolean }) => {
+    getChallengeSectionsAction({ category: selectedCategory, challenger, challenged })
+      .then((result) => {
+        const data = result as SectionData & { success: boolean }
         if (cancelled) return
         if (data.success) {
           setSectionData(data)
@@ -712,27 +711,17 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         challengedName,
         category: selectedCategory,
         difficulty: selectedDifficulty,
-        question_count: questionCount,
-        section_number: selectedSection,
-        time_limit: 300,
+        questionCount,
+        sectionNumber: selectedSection,
+        timeLimit: 300,
       }
 
-      const apiResponse = await fetch("/api/challenges/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(challengeData),
-      })
-
-      let challenge: any = null
-
-      if (apiResponse.ok) {
-        const result = await apiResponse.json()
-        challenge = result.challenge
-        console.log("✅ Challenge created successfully via API:", challenge)
-      } else {
-        const errData = await apiResponse.json().catch(() => ({}))
-        throw new Error(errData.error || "Failed to create challenge")
+      const result = await createChallengeAction(challengeData)
+      if (!result.success) {
+        throw new Error(result.error || "Failed to create challenge")
       }
+      const challenge = result.challenge
+      console.log("✅ Challenge created successfully:", challenge)
 
       setChallengeSent(true)
 

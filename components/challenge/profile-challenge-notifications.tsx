@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Bell, Check, X, Clock, RefreshCw, User } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
+import { getPendingChallengesAction, respondToChallengeAction } from "@/app/actions/challenges"
 
 interface Challenge {
   id: string
@@ -81,9 +82,7 @@ export default function ProfileChallengeNotifications() {
   const loadChallenges = async (name: string) => {
     setLoading(true)
     try {
-      const res = await fetch(`/api/challenges?name=${encodeURIComponent(name)}`)
-      const result = await res.json()
-      setChallenges(result.challenges || [])
+      setChallenges((await getPendingChallengesAction(name)) || [])
     } catch {
       setChallenges([])
     } finally {
@@ -93,13 +92,8 @@ export default function ProfileChallengeNotifications() {
 
   const respond = async (challengeId: string, action: "accept" | "decline") => {
     try {
-      const res = await fetch("/api/challenges/respond", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ challengeId, action }),
-      })
-      const result = await res.json()
-      if (!res.ok) throw new Error(result.error || "Failed")
+      const result = await respondToChallengeAction({ challengeId, action, playerName })
+      if (!result.success) throw new Error(result.error || "Failed")
 
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
