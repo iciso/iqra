@@ -84,7 +84,7 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 - data/new.ts
 - data/quiz-data-manager.tsx
 - components/challenge/category-first-challenge-dialog.tsx
-- app/categories/page.tsx
+- app/subjects/page.tsx
 - app/page 
 
 

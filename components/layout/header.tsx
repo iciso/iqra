@@ -26,7 +26,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
-            <Link href="/categories">
+            <Link href="/subjects">
               <Button variant="ghost">Subjects</Button>
             </Link>
             <Link href="/challenges">
@@ -55,7 +55,7 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <div className="flex flex-col space-y-4 mt-8">
-                  <Link href="/categories" onClick={closeMobileMenu}>
+                  <Link href="/subjects" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
                       Subjects
                     </Button>

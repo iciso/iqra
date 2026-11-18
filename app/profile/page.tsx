@@ -242,7 +242,7 @@ export default function ProfilePage() {
               <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 mb-2">No quiz history found for <strong>{playerName}</strong></p>
               <p className="text-sm text-gray-400">Play a quiz to start building your profile!</p>
-              <Link href="/categories"><Button className="bg-green-600 hover:bg-green-700 mt-4">Start a Quiz</Button></Link>
+              <Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700 mt-4">Start a Quiz</Button></Link>
             </CardContent>
           </Card>
         ) : (

@@ -316,7 +316,7 @@ export default function ResultsPage() {
     } else if (categoryId && difficulty) {
       router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
     } else {
-      router.push("/categories")
+      router.push("/subjects")
     }
   }
 
@@ -429,10 +429,10 @@ export default function ResultsPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
-            <Link href="/categories">
+            <Link href="/subjects">
               <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Categories
+                Subjects
               </Button>
             </Link>
             <Button
@@ -578,7 +578,7 @@ export default function ResultsPage() {
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Complete a quiz to see your results here!
                     </p>
-                    <Link href="/categories">
+                    <Link href="/subjects">
                       <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                         Start a Quiz
                       </Button>
@@ -587,10 +587,10 @@ export default function ResultsPage() {
                 )}
               </CardContent>
               <CardFooter className="flex justify-center gap-4">
-                <Link href={challenge ? "/challenges" : "/categories"}>
+                <Link href={challenge ? "/challenges" : "/subjects"}>
                   <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    {challenge ? "Challenges" : "Categories"}
+                    {challenge ? "Challenges" : "Subjects"}
                   </Button>
                 </Link>
                 <Button

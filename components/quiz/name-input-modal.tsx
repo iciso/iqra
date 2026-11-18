@@ -121,7 +121,7 @@ export function NameInputModal({
           </form>
 
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            You can also navigate away using the Categories or Try Again buttons below.
+            You can also navigate away using the Subjects or Try Again buttons below.
           </p>
         </div>
       </DialogContent>

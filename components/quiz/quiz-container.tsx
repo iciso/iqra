@@ -479,9 +479,9 @@ export default function QuizContainer({
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">
           <p className="dark:text-white mb-4">No questions available for this category and difficulty level.</p>
-          <Link href="/categories">
+          <Link href="/subjects">
             <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-              Return to Categories
+              Return to Subjects
             </Button>
           </Link>
         </CardContent>
@@ -501,7 +501,7 @@ export default function QuizContainer({
   return (
     <div className="w-full max-w-md mx-auto">
       <Button asChild variant="ghost" size="sm" className="-ml-3 mb-2 text-green-700 dark:text-green-400">
-        <Link href={challengeMode ? "/challenges" : "/categories"}>
+        <Link href={challengeMode ? "/challenges" : "/subjects"}>
           <ChevronLeft className="h-4 w-4" />
           {challengeMode ? "Challenges" : "Subjects"}
         </Link>
