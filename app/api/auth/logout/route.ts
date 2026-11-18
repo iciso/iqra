@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     // Logout is handled client-side by removing the token from localStorage
     // This endpoint can be used for server-side cleanup if needed

@@ -65,6 +65,8 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
+        {/* Root layout <head> applies to every route; this rule targets pages/_document. */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
           rel="stylesheet"

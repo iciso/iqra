@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
-  Calendar1, Church, CirclePlus, HandCoins, Handshake, Home, Heart, Image, Infinity, Languages, Megaphone, Music, User, Users,
+  Calendar1, Church, CirclePlus, HandCoins, Handshake, Home, Heart, Image as ImageIcon, Infinity, Languages, Megaphone, Music, User, Users,
   Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
   Tornado, Percent, Rainbow, Split, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
@@ -42,7 +42,7 @@ const categories = [
   { id: "psych", title: "Islamic Psychology", description: "Psychology & Islam", icon: <Brain className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "music", title: "Music in Islam", description: "Music in Islam", icon: <Music className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "islamic-alcohol-drugs", title: "Alcohol & Drugs in Islam", description: "Alcohol & Drugs in Islam", icon: <WineOff className="h-8 w-8 text-green-600 dark:text-green-400" /> },
-  { id: "imagery", title: "Images & Animation in Islam", description: "Images & Animation in Islam", icon: <Image className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "imagery", title: "Images & Animation in Islam", description: "Images & Animation in Islam", icon: <ImageIcon className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "dating", title: "Dating", description: "Dating in Islam", icon: <Heart className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "marriage", title: "Marriage & Family", description: "Family Bonding", icon: <Home className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "parenting", title: "Islamic Parenting", description: "Islam & parenting", icon: <ScanFace className="h-8 w-8 text-green-600 dark:text-green-400" /> },
