@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -38,15 +38,15 @@ const categoryLabels: Record<string, string> = {
 
 const NAME_KEY = "userNameForLeaderboard"
 
+// The visitor's saved name lives in localStorage; the server sees none (null),
+// the same first paint the old mount effect gave.
+const noSubscribe = () => () => {}
+const readPlayerName = () => localStorage.getItem(NAME_KEY)
+const serverPlayerName = () => null
+
 export default function ChallengeResultsView({ challenge }: { challenge: ChallengeResult }) {
   const router = useRouter()
-  const [currentPlayerName, setCurrentPlayerName] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentPlayerName(localStorage.getItem(NAME_KEY))
-    }
-  }, [])
+  const currentPlayerName = useSyncExternalStore(noSubscribe, readPlayerName, serverPlayerName)
 
   const getInitials = (name: string) =>
     name

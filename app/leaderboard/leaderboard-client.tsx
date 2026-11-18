@@ -1,13 +1,12 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trophy, Medal, RefreshCw, Database, Cloud, HardDrive, Target, UserRoundSearch } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
-import { getLeaderboardWithFallback } from "@/lib/database-with-fallback"
 import { useToast } from "@/components/ui/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { getLeaderboardEntriesAction } from "@/app/actions/leaderboard"
@@ -25,6 +24,20 @@ interface LeaderboardEntry {
   user_id?: string
 }
 
+// Shape of the user_profiles rows getTopPlayers() returns (its client is untyped).
+interface TopPlayerRow {
+  id?: string
+  full_name?: string | null
+  username?: string | null
+  total_score?: number | null
+  total_questions?: number | null
+}
+
+// true in the browser, false while server rendering - no mount effect needed.
+const noSubscribe = () => () => {}
+const onClient = () => true
+const onServer = () => false
+
 export default function LeaderboardClient({ initialEntries }: { initialEntries?: LeaderboardEntriesResult }) {
   const { toast } = useToast()
   const { user } = useAuth()
@@ -32,7 +45,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   const initialRef = useRef<LeaderboardEntriesResult | null>(initialEntries ?? null)
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
-  const [isClient, setIsClient] = useState(false)
+  const isClient = useSyncExternalStore(noSubscribe, onClient, onServer)
   const [loading, setLoading] = useState(true)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
   const [dataSource, setDataSource] = useState<string>("Loading...")
@@ -74,11 +87,10 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     }
   }, [sorted, myRank, myEntry])
 
-  // Load data (try Neon + localStorage first, then Supabase fallback)
-  const loadLeaderboardData = async () => {
+  // Load data (try Neon + localStorage first, then Supabase fallback).
+  // Sets state only after its first await, so the mount effect can call it.
+  const fetchLeaderboardData = async () => {
     try {
-      setLoading(true)
-
       // 1) Try Neon database for leaderboard entries (from quiz submissions)
       try {
         console.log("🏆 Leaderboard: fetching from Neon database...")
@@ -90,14 +102,13 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
 
           // Also get localStorage entries (client-side submissions)
           let localStorageEntries: LeaderboardEntry[] = []
-          if (isClient) {
-            try {
-              const stored = localStorage.getItem("quranQuizLeaderboard")
-              localStorageEntries = stored ? JSON.parse(stored) : []
-              console.log(`📱 localStorage returned ${localStorageEntries.length} entries`)
-            } catch (e) {
-              console.error("[v0] Error reading localStorage:", e)
-            }
+          // This loader only ever runs in the browser (effect, interval, button).
+          try {
+            const stored = localStorage.getItem("quranQuizLeaderboard")
+            localStorageEntries = stored ? JSON.parse(stored) : []
+            console.log(`📱 localStorage returned ${localStorageEntries.length} entries`)
+          } catch (e) {
+            console.error("[v0] Error reading localStorage:", e)
           }
 
           // Merge both sources: combine entries and deduplicate by player name (keeping highest score)
@@ -124,12 +135,12 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
         const topPlayers = await getTopPlayers(1000)
         if (topPlayers && topPlayers.length > 0) {
           console.log(`✅ Supabase returned ${topPlayers.length} players`)
-          const formattedData = topPlayers.map((player: any) => ({
+          const formattedData = (topPlayers as TopPlayerRow[]).map((player) => ({
             name: player.full_name || player.username || "Unknown User",
             score: player.total_score || 0,
             totalQuestions: player.total_questions || 0,
             percentage:
-              player.total_questions > 0 ? Math.round((player.total_score / player.total_questions) * 100) : 0,
+              player.total_questions ? Math.round(((player.total_score || 0) / player.total_questions) * 100) : 0,
             date: new Date().toLocaleDateString(),
             category: "All Categories",
             challenge: "all",
@@ -196,10 +207,19 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     }
   }
 
+  // Button and auto-refresh: show the spinner, then fetch.
+  const loadLeaderboardData = () => {
+    setLoading(true)
+    void fetchLeaderboardData()
+  }
+
+  const onMount = useEffectEvent(() => {
+    void fetchLeaderboardData() // loading already starts true
+    return setInterval(() => loadLeaderboardData(), 5 * 60 * 1000)
+  })
+
   useEffect(() => {
-    setIsClient(true)
-    loadLeaderboardData()
-    const refreshInterval = setInterval(() => loadLeaderboardData(), 5 * 60 * 1000)
+    const refreshInterval = onMount()
     return () => clearInterval(refreshInterval)
   }, [])
 

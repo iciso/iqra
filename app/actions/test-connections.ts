@@ -6,7 +6,7 @@ interface ConnectionResult {
   name: string
   status: "success" | "error" | "warning"
   message: string
-  details?: any
+  details?: unknown
 }
 
 export async function testDatabaseConnections(): Promise<ConnectionResult[]> {

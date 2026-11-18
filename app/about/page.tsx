@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from 'react';
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Trophy, Gamepad2, MessageSquare } from "lucide-react";
+import { ArrowLeft, Github, Album, Trophy, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
 
@@ -389,7 +390,7 @@ export default function AboutPage() {
 
     <h2 className="mb-4 text-3xl font-extrabold
       text-green-800 dark:text-green-400">
-      Celebrating Our Players' Contributions!
+      Celebrating Our Players&apos; Contributions!
     </h2>
 
     <p className="text-lg leading-relaxed
@@ -397,7 +398,7 @@ export default function AboutPage() {
       IQRA belongs not only to its creators, but also to the
       players who  make it better. Every correction,
       constructive suggestion, and improvement identified by
-      our players can  make IQRA's Islamic knowledge,
+      our players can  make IQRA&apos;s Islamic knowledge,
       data, and user interface more accurate and useful
       for everyone.
     </p>
@@ -561,7 +562,7 @@ export default function AboutPage() {
     </h3>
 
     <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali's total reward of ₹750 will be presented
+      Dhanish Ali&apos;s total reward of ₹750 will be presented
       during the Kattoo Yamani (KY) Family Meet 2026.
     </p>
 
@@ -647,8 +648,8 @@ export default function AboutPage() {
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <img src="/images/design-mode/logo-dark.png" alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
-            <img src="/images/design-mode/Icon_light_background.png" 
+            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
               alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
@@ -694,7 +695,7 @@ export default function AboutPage() {
               </a>{" "}
               and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.
               <div className="mt-2">
-                <img src="/images/design-mode/Icon_light_background.png" 
+                <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
                   alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
@@ -731,7 +732,7 @@ export default function AboutPage() {
               for their invaluable assistance in structuring data and curating Islamic content, 
               ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.
               <div className="mt-2">
-                  <img src="/deepseek.svg" alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/deepseek.svg" width={30} height={30} alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
              <li>
@@ -747,7 +748,7 @@ export default function AboutPage() {
               for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, 
                to those without email.
               <div className="mt-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" 
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" width={100} height={100} alt="Claude AI Logo" 
                     className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
@@ -765,7 +766,7 @@ export default function AboutPage() {
               for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, 
               Alhamdulillah.
                 <div className="mt-2">
-                  <img src="/gemini.svg" alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/gemini.svg" width={192} height={192} alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
               </li>
             <li>
@@ -782,14 +783,14 @@ export default function AboutPage() {
               questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
                 <div className="flex flex-wrap gap-4 mt-4 justify-center">
                   <div className="mt-2">
-                  <img src="/meta.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/meta.png" width={150} height={150} alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                       <div className="mt-2">
-                      <img src="/instagram.png" alt="Meta WhatsApp Logo" 
+                      <Image src="/instagram.png" width={1397} height={1403} alt="Meta WhatsApp Logo" 
                         className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                         </div>
                    <div className="mt-2">
-                  <img src="/meta.svg" alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/meta.svg" width={288} height={191} alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                 </div>
             </li>

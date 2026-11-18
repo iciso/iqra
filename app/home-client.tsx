@@ -143,7 +143,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
         {/* IQRA welcome / hero */}
         <header className="mb-6 w-full text-center sm:mb-8">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24 dark:bg-green-900/40">
-            <IqraLogo className="h-8 w-8 text-green-700 sm:h-12 sm:w-12" />
+            <IqraLogo />
           </div>
           <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl dark:text-green-400">
             IQRA
@@ -369,8 +369,8 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ
             </p>
             <p className="mb-4 text-sm text-emerald-600 sm:text-base dark:text-emerald-300">
-              Say, "I do not ask you for this any payment, and I am not of the
-              pretentious" — Surah Sad 38:86.
+              Say, &quot;I do not ask you for this any payment, and I am not of the
+              pretentious&quot; — Surah Sad 38:86.
             </p>
           </div>
         </section>
