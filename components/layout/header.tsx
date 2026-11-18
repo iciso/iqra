@@ -27,7 +27,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
             <Link href="/categories">
-              <Button variant="ghost">Quiz</Button>
+              <Button variant="ghost">Subjects</Button>
             </Link>
             <Link href="/challenges">
               <Button variant="ghost">Challenges</Button>
@@ -57,7 +57,7 @@ const Header = () => {
                 <div className="flex flex-col space-y-4 mt-8">
                   <Link href="/categories" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
-                      Quiz
+                      Subjects
                     </Button>
                   </Link>
                   <Link href="/challenges" onClick={closeMobileMenu}>
