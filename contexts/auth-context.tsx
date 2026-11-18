@@ -31,8 +31,8 @@ interface AuthContextType {
   profile: UserProfile | null;
   loading: boolean;
   authInitialized: boolean;
-  signIn: (usernameOrEmail: string, password: string) => Promise<{ error: any }>;
-  signUp: (username: string, email: string, password: string, fullName?: string) => Promise<{ error: any }>;
+  signIn: (usernameOrEmail: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (username: string, email: string, password: string, fullName?: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }

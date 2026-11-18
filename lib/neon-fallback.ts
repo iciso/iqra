@@ -127,7 +127,7 @@ export async function saveQuizResultToFallback(
   category: string,
   difficulty: string,
   timeLeft: number,
-  answers: any,
+  answers: unknown,
   challengeId: string | null,
 ) {
   console.log("💾 Saving quiz result to fallback database...")
