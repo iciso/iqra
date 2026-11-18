@@ -241,6 +241,7 @@ export async function getPendingFriendRequests(userId: string): Promise<Friendsh
       status,
       created_at,
       user_profiles!friendships_requester_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -341,6 +342,7 @@ export async function getPendingChallenges(userId: string): Promise<UserChalleng
       created_at,
       expires_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -374,11 +376,13 @@ export async function getActiveChallenges(userId: string): Promise<UserChallenge
       challenged_completed_at,
       created_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
       ),
       challenged:user_profiles!user_challenges_challenged_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -498,7 +502,7 @@ export async function acceptChallenge(challengeId: string) {
   }
 }
 
-export async function getChallenge(challengeId: string) {
+export async function getChallenge(challengeId: string): Promise<UserChallenge | null> {
   const { data, error } = await supabase
     .from<UserChallenge>('user_challenges')
     .select(`
@@ -515,11 +519,13 @@ export async function getChallenge(challengeId: string) {
       challenged_completed_at,
       created_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
       ),
       challenged:user_profiles!user_challenges_challenged_id_fkey (
+        id,
         username,
         full_name,
         avatar_url

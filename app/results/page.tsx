@@ -19,22 +19,6 @@ import { submitQuizResult, getChallenge } from "@/lib/supabase-queries"
 import { NameInputModal } from "@/components/quiz/name-input-modal"
 import { addToLeaderboard } from "@/utils/leaderboard"
 
-// The player row getChallenge() joins in for each side of a challenge.
-interface ChallengePlayer {
-  id?: string
-  username?: string | null
-  full_name?: string | null
-  avatar_url?: string | null
-}
-
-// The fields of getChallenge()'s row this page reads.
-interface ChallengeLookup {
-  challenger_id: string
-  challenger_score: number | null
-  challenger?: ChallengePlayer | null
-  challenged?: ChallengePlayer | null
-}
-
 // The finished quiz, as quiz-container left it in localStorage.
 interface StoredQuiz {
   score: number | null
@@ -196,8 +180,7 @@ export default function ResultsPage() {
 
     const fetchChallengeData = async () => {
       try {
-        // getChallenge() is untyped (Supabase client has no schema), so name the row shape here.
-        const challengeData = (await getChallenge(challenge)) as ChallengeLookup | null
+        const challengeData = await getChallenge(challenge)
         console.log("📋 Challenge data:", challengeData)
 
         if (challengeData) {
@@ -207,7 +190,7 @@ export default function ResultsPage() {
           const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
           if (opponentData) {
             const opponentInfo: Opponent & { avatar_url?: string | null } = {
-              id: opponentData.id ?? "",
+              id: opponentData.id,
               name: opponentData.full_name || opponentData.username || "Opponent",
               type: "user",
               avatar_url: opponentData.avatar_url,

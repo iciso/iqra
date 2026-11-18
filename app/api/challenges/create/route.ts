@@ -2,9 +2,9 @@ import { type NextRequest, NextResponse } from "next/server"
 import { insertChallenge, newChallengeSchema } from "@/lib/server/challenge-data"
 import { errorMessage } from "@/lib/server/neon"
 
-// Kept for callers that still POST here: components/challenge/category-first-challenge-sender.tsx
-// (in-progress file, not imported anywhere), social-challenger-selector.tsx and vercel-challenge-button.tsx
-// (not imported anywhere). The live challenge dialog uses createChallengeAction in app/actions/challenges.ts.
+// Kept for callers that still POST here: components/challenge/category-first-challenge-sender.tsx and
+// social-challenger-selector.tsx (neither is imported anywhere yet). The live challenge dialog uses
+// createChallengeAction in app/actions/challenges.ts.
 // Both paths share the same validation and insert in lib/server/challenge-data.ts.
 
 export async function POST(request: NextRequest) {
