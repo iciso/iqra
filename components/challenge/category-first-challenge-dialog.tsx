@@ -6,14 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
         Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Sun, Telescope, HandCoins, HandHeart, 
         Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Network, Plane, ScanFace, 
         Sparkles, Split, Sprout, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, 
        } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
-import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
 import { createChallengeAction, getChallengeSectionsAction } from "@/app/actions/challenges"
 
@@ -575,13 +573,15 @@ const difficulties = [
 ]
 
 export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: CategoryFirstChallengeDialogProps) {
-  const { user } = useAuth()
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [nameRequired, setNameRequired] = useState(false)    
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
   const [sectionData, setSectionData] = useState<SectionData | null>(null)
-  const [loadingSections, setLoadingSections] = useState(false)
+  // Sections are loading while the loaded key lags the current category + opponent.
+  const sectionsKey = selectedCategory ? `${selectedCategory}|${opponent.id}` : null
+  const [loadedSectionsKey, setLoadedSectionsKey] = useState<string | null>(null)
+  const loadingSections = sectionsKey !== null && loadedSectionsKey !== sectionsKey
   const [selectedSection, setSelectedSection] = useState<number | null>(null)
 
   const rawLevelInfo = sectionData?.levels[selectedDifficulty]
@@ -596,13 +596,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   }
 
   useEffect(() => {
-    if (!selectedCategory) {
-      setSectionData(null)
-      setSelectedSection(null)
-      return
-    }
+    // Closing the dialog (handleClose) clears the category, section and section data.
+    if (!selectedCategory) return
     let cancelled = false
-    setLoadingSections(true)
+    const key = `${selectedCategory}|${opponent.id}`
     const challenger =
       localStorage.getItem("userNameForLeaderboard") || localStorage.getItem("tempChallengerId") || ""
     const challenged = opponent.full_name || opponent.username
@@ -628,13 +625,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         }
       })
       .finally(() => {
-        if (!cancelled) setLoadingSections(false)
+        if (!cancelled) setLoadedSectionsKey(key)
       })
 
     return () => {
       cancelled = true
     }
-  }, [selectedCategory, opponent.id])
+  }, [selectedCategory, opponent.id, opponent.full_name, opponent.username])
         
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [challengeSent, setChallengeSent] = useState(false)
@@ -736,12 +733,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         console.log(`🔗 Redirecting challenger to:`, challengeUrl)
         router.push(challengeUrl)
       }, 1500)
-    } catch (error: any) {
+    } catch (error) {
       console.error("❌ Error sending challenge:", error)
-      setError(error.message || "Failed to send challenge. Please try again.")
+      const message = (error as { message?: string } | null)?.message
+      setError(message || "Failed to send challenge. Please try again.")
       toast({
         title: "Error",
-        description: error.message || "Failed to send challenge",
+        description: message || "Failed to send challenge",
         variant: "destructive",
       })
     } finally {
@@ -755,6 +753,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
       setSelectedDifficulty("easy")
       setSelectedSection(null)
       setSectionData(null)
+      setLoadedSectionsKey(null)
       setError(null)
       onClose()
     }
@@ -840,7 +839,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                     <p className="font-medium text-red-800">Challenge Error</p>
                     <p className="text-red-700 text-sm">{error}</p>
                     <p className="text-sm text-red-600 mt-1">
-                      Don't worry! You can still take the quiz and we'll try to save your results.
+                      Don&apos;t worry! You can still take the quiz and we&apos;ll try to save your results.
                     </p>
                   </div>
                 </div>

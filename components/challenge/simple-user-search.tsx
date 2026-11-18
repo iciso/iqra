@@ -6,12 +6,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, AlertCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
-import { useAuth } from "@/contexts/auth-context"
+
+interface UserSearchRow {
+  id: string
+  username: string
+  full_name?: string | null
+}
 
 export default function SimpleUserSearch() {
-  const { user: currentUser } = useAuth()
   const [query, setQuery] = useState("")
-  const [results, setResults] = useState<any[]>([])
+  const [results, setResults] = useState<UserSearchRow[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string[]>([])
@@ -71,11 +75,12 @@ export default function SimpleUserSearch() {
       }
       addDebug(`Step 3 success: Found ${searchData?.length || 0} matches`)
 
-      setResults(searchData || [])
+      setResults((searchData as UserSearchRow[] | null) || [])
       addDebug("Search completed successfully")
-    } catch (error: any) {
-      addDebug(`Error: ${error.message}`)
-      setError(error.message)
+    } catch (error) {
+      const message = (error as { message?: string } | null)?.message ?? "Unknown error"
+      addDebug(`Error: ${message}`)
+      setError(message)
     } finally {
       setLoading(false)
     }
@@ -117,7 +122,7 @@ export default function SimpleUserSearch() {
         {/* Status */}
         <div className="mb-4 p-3 bg-white dark:bg-gray-800 rounded">
           <p className="text-sm">
-            <strong>Query:</strong> "{query}"
+            <strong>Query:</strong> &quot;{query}&quot;
           </p>
           <p className="text-sm">
             <strong>Loading:</strong> {loading.toString()}

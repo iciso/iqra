@@ -1,15 +1,22 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useEffectEvent } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Bell, RefreshCw, AlertCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 
+interface ChallengeSummary {
+  id: string
+  challenger_id: string
+  category: string
+  status: string
+}
+
 export default function SimpleChallengeNotifications() {
   const { user, loading: authLoading } = useAuth()
-  const [challenges, setChallenges] = useState<any[]>([])
+  const [challenges, setChallenges] = useState<ChallengeSummary[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string[]>([])
@@ -18,12 +25,6 @@ export default function SimpleChallengeNotifications() {
     console.log("🔔 SIMPLE DEBUG:", message)
     setDebugInfo((prev) => [...prev.slice(-9), `${new Date().toLocaleTimeString()}: ${message}`])
   }
-
-  useEffect(() => {
-    if (!authLoading && user) {
-      loadChallenges()
-    }
-  }, [user, authLoading])
 
   const loadChallenges = async () => {
     if (!user) {
@@ -88,15 +89,32 @@ export default function SimpleChallengeNotifications() {
       }
       addDebug(`Step 4 success: Found ${userChallenges?.length || 0} challenges`)
 
-      setChallenges(userChallenges || [])
+      setChallenges((userChallenges as ChallengeSummary[] | null) || [])
       addDebug("All steps completed successfully")
-    } catch (error: any) {
-      addDebug(`Error: ${error.message}`)
-      setError(error.message)
+    } catch (error) {
+      const message = (error as { message?: string } | null)?.message ?? "Unknown error"
+      addDebug(`Error: ${message}`)
+      setError(message)
     } finally {
       setLoading(false)
     }
   }
+
+  const onUserReady = useEffectEvent(() => {
+    loadChallenges()
+  })
+
+  // Start the checks after the commit (loadChallenges logs and sets loading right away).
+  useEffect(() => {
+    if (authLoading || !user) return
+    let cancelled = false
+    Promise.resolve().then(() => {
+      if (!cancelled) onUserReady()
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [user, authLoading])
 
   if (authLoading) {
     return (
