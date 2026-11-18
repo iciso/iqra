@@ -1,22 +1,17 @@
 import type { Pool } from "@neondatabase/serverless"
 import { Pool as NeonPool } from "@neondatabase/serverless"
 import { getDatabaseUrl, withClient, toPlain } from "./neon"
-import type { ChallengeRow } from "./types"
-import type { DifficultyLevel } from "@/types/quiz"
+import type { ChallengeResult, ChallengeRow } from "./types"
 import { z } from "zod"
 
 // Challenge reads and writes that used to live in app/api/challenges/*.
 
 const SECTION_SIZE = 10
 
-// `key` is what challenges store and show; `dataLevel` is what the data manager understands.
-const LEVELS = [
-  { key: "easy", dataLevel: "easy" },
-  { key: "intermediate", dataLevel: "medium" },
-  { key: "advanced", dataLevel: "hard" },
-] as const
+// Level names are the ones the question data uses: easy / intermediate / advanced.
+const LEVELS = ["easy", "intermediate", "advanced"] as const
 
-type LevelKey = (typeof LEVELS)[number]["key"]
+type LevelKey = (typeof LEVELS)[number]
 export type SectionInfo = { number: number; size: number }
 
 export interface ChallengeSectionsResult {
@@ -62,9 +57,10 @@ export async function getChallengeSections(
 
   try {
     const mod = await import("@/data/quiz-data-manager")
-    for (const { key, dataLevel } of LEVELS) {
-      // Kept exactly as the old route: the data has no "medium"/"hard" keys, so these two levels count 0.
-      const list: unknown = mod.getQuizQuestions(category, dataLevel as unknown as DifficultyLevel)
+    // Read the category directly: getQuizQuestions would answer an empty intermediate level with easy questions.
+    const levelData = mod.getCategory(category)?.levels as Partial<Record<LevelKey, unknown[]>> | undefined
+    for (const key of LEVELS) {
+      const list: unknown = levelData?.[key]
       const count = Array.isArray(list) ? list.length : 0
       levels[key] = { count, sections: buildSections(count) }
     }
@@ -129,6 +125,51 @@ export async function getPendingChallenges(name: string): Promise<ChallengeRow[]
   } catch (error) {
     console.error("[challenges] list error:", error)
     return []
+  }
+}
+
+const CHALLENGE_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+/**
+ * One challenge plus each player's score. Returns null for a bad id, an unknown id,
+ * or a database problem (logged), so the page can show "challenge not found".
+ */
+export async function getChallengeResult(id: string): Promise<ChallengeResult | null> {
+  // Challenge ids are UUIDs (insertChallenge). Anything else cannot exist; skip the database.
+  if (!CHALLENGE_ID.test(id)) return null
+  const databaseUrl = getDatabaseUrl()
+  if (!databaseUrl) return null
+
+  try {
+    return await withClient(databaseUrl, async (client) => {
+      const result = await client.query(
+        `SELECT
+           c.id, c.challenger_name, c.challenged_name, c.category, c.difficulty,
+           c.question_count, c.status,
+           ch.score AS challenger_score, ch.total_questions AS challenger_total, ch.percentage AS challenger_percentage,
+           cd.score AS challenged_score, cd.total_questions AS challenged_total, cd.percentage AS challenged_percentage
+         FROM challenges c
+         LEFT JOIN LATERAL (
+           SELECT score, total_questions, percentage FROM leaderboard_entries
+            WHERE challenge = c.id::text AND LOWER(name) = LOWER(c.challenger_name)
+            ORDER BY submitted_at DESC LIMIT 1
+         ) ch ON true
+         LEFT JOIN LATERAL (
+           SELECT score, total_questions, percentage FROM leaderboard_entries
+            WHERE challenge = c.id::text AND LOWER(name) = LOWER(c.challenged_name)
+            ORDER BY submitted_at DESC LIMIT 1
+         ) cd ON true
+         WHERE c.id = $1`,
+        [id],
+      )
+      const row = result.rows[0]
+      if (!row) return null
+      const plain = toPlain(row) as Omit<ChallengeResult, "both_played">
+      return { ...plain, both_played: plain.challenger_score !== null && plain.challenged_score !== null }
+    })
+  } catch (error) {
+    console.error("[challenges] result lookup failed:", error)
+    return null
   }
 }
 

@@ -55,6 +55,24 @@ export interface ChallengeRow {
   expires_at: string
 }
 
+/** One challenge with both players' scores, for the results page. Scores are null until that player has played. */
+export interface ChallengeResult {
+  id: string
+  challenger_name: string
+  challenged_name: string
+  category: string
+  difficulty: string
+  question_count: number
+  status: string
+  challenger_score: number | null
+  challenger_total: number | null
+  challenger_percentage: number | null
+  challenged_score: number | null
+  challenged_total: number | null
+  challenged_percentage: number | null
+  both_played: boolean
+}
+
 export interface QuizResultRow {
   id: number | string
   name: string
