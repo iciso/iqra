@@ -9,7 +9,7 @@ import { IqraLogo } from "@/components/iqra-logo";
 IQRA To do list:
 1) To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
 iqra/data/
-iqra/app/categories/page
+iqra/app/subjects/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
 iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx 

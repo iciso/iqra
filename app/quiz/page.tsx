@@ -248,8 +248,8 @@ function SectionPicker({
       </div>
 
       <div className="mt-8 text-center">
-        <a href="/categories" className="text-sm text-green-700 underline dark:text-green-400">
-          ← Back to categories
+        <a href="/subjects" className="text-sm text-green-700 underline dark:text-green-400">
+          ← Back to subjects
         </a>
       </div>
     </div>
@@ -288,8 +288,8 @@ export default async function QuizPage({
       <div className="container mx-auto py-12 px-4 text-center">
         <h1 className="text-2xl font-bold mb-4">Category Not Found</h1>
         <p className="mb-6">The requested category &quot;{category}&quot; could not be loaded. Please choose another category.</p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Categories
+        <a href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Subjects
         </a>
       </div>
     )
@@ -306,8 +306,8 @@ export default async function QuizPage({
         <p className="mb-6">
           Sorry, there are no questions available for {cat.title} in {String(difficulty)} mode at this time.
         </p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Categories
+        <a href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Subjects
         </a>
       </div>
     )

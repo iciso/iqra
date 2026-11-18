@@ -169,9 +169,9 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             icon={<BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />}
             title="IQRA Learn"
             subtitle="Learn at your own pace"
-            description="Browse 50 Islamic categories with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
+            description="Browse 50 Islamic subjects with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
             tags={["Quran", "Fiqh", "Tafsir", "Hadeeth", "Aqeedah"]}
-            href="/categories"
+            href="/subjects"
             buttonText="Start Learning"
           />
 
@@ -248,7 +248,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                   className="bg-green-600 px-6 py-2 text-sm hover:bg-green-700 sm:text-base"
                 >
                   <Link
-                    href="/categories#quran-surah-studies"
+                    href="/subjects#quran-surah-studies"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -314,7 +314,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-muted-foreground sm:text-base">
               Choose the vocabulary that matches your learning goal. Each track
-              opens the Vocabulary section on the Categories page.
+              opens the Vocabulary section on the Subjects page.
             </p>
           </div>
 
@@ -327,7 +327,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               subtitle="Understand the words of the Qur’an"
               description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
               tags={["Quranic words", "Meanings", "Quran references"]}
-              href="/categories#vocab"
+              href="/subjects#vocab"
               buttonText="Explore Quranic Vocabulary"
             />
 
@@ -339,7 +339,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               subtitle="Build contemporary Arabic vocabulary"
               description="Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added."
               tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
-              href="/categories#Vocab"
+              href="/subjects#Vocab"
               buttonText="Explore Modern Vocabulary"
             />
           </div>

@@ -81,7 +81,7 @@ const doingTasks: TaskItem[] = [
         </p>
         <div className="space-y-1 font-mono text-[11px] text-indigo-600 bg-indigo-50/50 p-2 rounded border border-indigo-100/50 mb-2">
           <div>• iqra/data/</div>
-          <div>• iqra/app/categories/page</div>
+          <div>• iqra/app/subjects/page</div>
           <div>• iqra/components/challenge/category-first-challenge-dialog.tsx</div>
           <div>• iqra/components/challenge/category-first-challenge-sender.tsx</div>
           <div>• iqra/data/quiz-data-manager.tsx</div>
