@@ -1,5 +1,7 @@
 "use client"
 import { getCategory } from "@/data/quiz-data-manager"
+import { getProfileDataAction } from "@/app/actions/profile"
+import type { ProfileChallengeRow } from "@/lib/server/types"
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
@@ -49,7 +51,7 @@ export default function ProfilePage() {
   const [editingName, setEditingName] = useState(false)
   const [newName, setNewName] = useState("")
   const [stats, setStats] = useState(null)
-  const [challenges, setChallenges] = useState([])
+  const [challenges, setChallenges] = useState<ProfileChallengeRow[]>([])
   const [loading, setLoading] = useState(false)
   const [checked, setChecked] = useState(false)
 
@@ -63,14 +65,10 @@ export default function ProfilePage() {
   const loadProfile = async (name) => {
     setLoading(true)
     try {
-      const [entriesRes, challengesRes] = await Promise.all([
-        fetch(`/api/profile/entries?name=${encodeURIComponent(name)}`),
-        fetch(`/api/profile/challenges?name=${encodeURIComponent(name)}`),
-      ])
-      const entriesData = await entriesRes.json()
-      const challengesData = await challengesRes.json()
-      const entries = entriesData.entries || []
-      setChallenges(challengesData.challenges || [])
+      // The name lives only in this browser, so the server reads it through a Server Action.
+      const data = await getProfileDataAction(name)
+      const entries = data.entries || []
+      setChallenges(data.challenges || [])
 
       if (entries.length === 0) { setStats(null); return }
 
@@ -304,8 +302,8 @@ export default function ProfilePage() {
                         const myTotal = isChallenger ? c.challenger_total : c.challenged_total
                         const oppScore = isChallenger ? c.challenged_score : c.challenger_score
                         const oppTotal = isChallenger ? c.challenged_total : c.challenger_total
-                        const myPct = myTotal > 0 ? Math.round((myScore / myTotal) * 100) : null
-                        const oppPct = oppTotal > 0 ? Math.round((oppScore / oppTotal) * 100) : null
+                        const myPct = myTotal != null && myTotal > 0 ? Math.round(((myScore ?? 0) / myTotal) * 100) : null
+                        const oppPct = oppTotal != null && oppTotal > 0 ? Math.round(((oppScore ?? 0) / oppTotal) * 100) : null
                         const bothPlayed = myScore !== null && oppScore !== null
                         const iWon = bothPlayed && myScore > oppScore
                         const iLost = bothPlayed && myScore < oppScore
