@@ -1,19 +1,30 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { useMemo, useSyncExternalStore } from "react"
 import BadgesCollection from "@/components/badges/badges-collection"
-import { getEarnedBadges } from "@/utils/badges"
+
+// Badges live in localStorage. The snapshot is the raw string (stable between
+// reads); the server snapshot is undefined so the server renders the loading state.
+const noSubscribe = () => () => {}
+const readBadgesRaw = () => localStorage.getItem("quranQuizBadges")
+const serverBadgesRaw = () => undefined
+
+// Same parsing as getEarnedBadges() in utils/badges, but from the snapshot string.
+function parseBadges(raw: string | null | undefined): string[] {
+  if (!raw) return []
+  try {
+    return JSON.parse(raw) as string[]
+  } catch (error) {
+    console.error("Error getting badges:", error)
+    return []
+  }
+}
 
 export default function BadgesPage() {
-  const [earnedBadges, setEarnedBadges] = useState<string[]>([])
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-    setEarnedBadges(getEarnedBadges())
-  }, [])
+  const badgesRaw = useSyncExternalStore(noSubscribe, readBadgesRaw, serverBadgesRaw)
+  const isClient = badgesRaw !== undefined
+  // Re-parse only when the stored string changes.
+  const earnedBadges = useMemo(() => parseBadges(badgesRaw), [badgesRaw])
 
   // If we're not on the client yet, show a simple loading state
   if (!isClient) {
