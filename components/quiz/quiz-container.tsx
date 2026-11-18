@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useEffectEvent, useMemo, useSyncExternalStore } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,15 +8,48 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Home, Clock, Info } from "lucide-react"
+import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Clock, Info } from "lucide-react"
 import Link from "next/link"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
-import { useAuth } from "@/contexts/auth-context"
 import { toast } from "@/components/ui/use-toast"
+
+// The opponent shown during a challenge quiz (and saved to localStorage for /results)
+interface QuizOpponent {
+  id: string
+  name: string
+  avatar_url?: string | null
+  level?: string
+}
+
+// Row shape read from user_profiles (getUserProfile is untyped)
+interface OpponentProfileRow {
+  id: string
+  full_name?: string | null
+  username?: string | null
+  avatar_url?: string | null
+}
+
+// false while the server renders and while React hydrates, true after that.
+// Random things (option order, bot opponent) are only made when this is true,
+// so the server HTML and the first client render match (React error #418).
+const subscribeNothing = () => () => {}
+function useIsClient() {
+  return useSyncExternalStore(
+    subscribeNothing,
+    () => true,
+    () => false,
+  )
+}
+
+function challengeMinutes(challengeMode?: string) {
+  if (challengeMode === "quran") return 7
+  if (challengeMode === "seerah") return 6
+  return 5
+}
 
 // Fisher–Yates shuffle – returns a new array
 function shuffleArray<T>(array: T[]): T[] {
@@ -58,9 +91,8 @@ export default function QuizContainer({
   challengerTurn,
 }: QuizContainerProps) {
   const router = useRouter()
-  const { user } = useAuth()
+  const isClient = useIsClient()
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<string>("")
 
   // questionIndex -> was the FIRST submitted answer correct?
   // The score is derived from this, so it can never exceed questions.length
@@ -71,147 +103,114 @@ export default function QuizContainer({
     [graded, questions.length],
   )
 
-  const [answers, setAnswers] = useState<string[]>([])
+  // One answer slot per question; the selected answer is the slot of the current question
+  const [answers, setAnswers] = useState<string[]>(() => Array(questions.length).fill(""))
+  const selectedAnswer = answers[currentQuestion] || ""
+  const progress = (currentQuestion / questions.length) * 100
+
   const [showExplanation, setShowExplanation] = useState(false)
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
-  const [progress, setProgress] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(0)
-  const [isTimerRunning, setIsTimerRunning] = useState(false)
-  const [quizId, setQuizId] = useState("")
-  const [opponent, setOpponent] = useState<any>(null)
+  // Challenge mode is timed; the timer starts as soon as the quiz is on screen
+  const [timeLeft, setTimeLeft] = useState(() => (challengeMode ? challengeMinutes(challengeMode) * 60 : 0))
+  const [isTimerRunning, setIsTimerRunning] = useState(Boolean(challengeMode))
   const [isLoading, setIsLoading] = useState(false)
   const [transitionType, setTransitionType] = useState<"next" | "submit" | "finish" | null>(null)
 
   // Shuffle the options of every question once when the quiz starts
-  // so the correct answer is not always in the same position
-  const [shuffledQuestions] = useState(() =>
-    questions.map((q) => ({
-      ...q,
-      options: shuffleOptions(q.options),
-    })),
+  // so the correct answer is not always in the same position.
+  // Done only on the client (after hydration) so the server HTML matches.
+  const shuffledQuestions = useMemo(
+    () =>
+      isClient
+        ? questions.map((q) => ({
+            ...q,
+            options: shuffleOptions(q.options),
+          }))
+        : questions,
+    [isClient, questions],
   )
 
-  // Helper function to detect fallback challenges
-  const isFallbackChallenge = () => {
-    return Boolean(
-      (challengeMode && (challengeMode.startsWith("demo-") || challengeMode.startsWith("fallback-"))) ||
-        (opponentId && opponentId.startsWith("demo-")),
-    )
-  }
+  // Demo / fallback challenges skip all database work
+  const isFallbackChallenge = Boolean(
+    (challengeMode && (challengeMode.startsWith("demo-") || challengeMode.startsWith("fallback-"))) ||
+      (opponentId && opponentId.startsWith("demo-")),
+  )
 
-  // Generate a unique quiz ID when the component mounts
+  // Where the opponent comes from: the URL name, the user's profile, or a random bot
+  const opponentSource = !challengeMode
+    ? "none"
+    : opponentName
+      ? "url"
+      : opponentId && !isFallbackChallenge
+        ? "profile"
+        : "bot"
+  const opponentLevel = challengerTurn ? "Waiting for your quiz" : "Challenger"
+  const [profileOpponent, setProfileOpponent] = useState<QuizOpponent | null>(null)
+  const botOpponent = useMemo(
+    () => (isClient && opponentSource === "bot" ? getRandomOpponent() : null),
+    [isClient, opponentSource],
+  )
+  const opponent: QuizOpponent | null = useMemo(() => {
+    if (opponentSource === "url" && opponentName) {
+      // Use opponentName from URL — no Supabase lookup needed
+      return { id: opponentId || opponentName, name: opponentName, avatar_url: null, level: opponentLevel }
+    }
+    if (opponentSource === "profile") return profileOpponent
+    if (opponentSource === "bot") return botOpponent
+    return null
+  }, [opponentSource, opponentId, opponentName, opponentLevel, profileOpponent, botOpponent])
+
   useEffect(() => {
-    setQuizId(`quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`)
-  }, [])
-
-  useEffect(() => {
-    // Initialize answers array
-    setAnswers(Array(questions.length).fill(""))
-
-    // Set up opponent for challenge mode
     if (challengeMode) {
       console.log("🎯 QUIZ CONTAINER: Challenge mode active")
       console.log("🎯 QUIZ CONTAINER: Opponent ID from URL:", opponentId)
       console.log("🎯 QUIZ CONTAINER: Opponent Name from URL:", opponentName)
       console.log("🎯 QUIZ CONTAINER: Challenger turn:", challengerTurn)
-      console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
-
-      // Use opponentName from URL — no Supabase lookup needed
-      if (opponentName) {
-        console.log("🎯 QUIZ CONTAINER: Using opponent name from URL")
-        const opponentInfo = {
-          id: opponentId || opponentName,
-          name: opponentName,
-          avatar_url: null,
-          level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-        }
-        setOpponent(opponentInfo)
-        localStorage.setItem("quizOpponentId", opponentInfo.id)
-        localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
-      } else if (opponentId && !isFallbackChallenge()) {
-        console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
-        const fetchOpponent = async () => {
-          try {
-            const opponentData = await getUserProfile(opponentId)
-            console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData)
-
-            if (opponentData) {
-              const opponentInfo = {
-                id: opponentData.id,
-                name: opponentData.full_name || opponentData.username || "Challenger",
-                avatar_url: opponentData.avatar_url,
-                level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              }
-              setOpponent(opponentInfo)
-              localStorage.setItem("quizOpponentId", opponentData.id)
-              localStorage.setItem("quizOpponent", JSON.stringify(opponentInfo))
-            } else {
-              console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback")
-              const fallbackOpponent = {
-                id: opponentId,
-                name: opponentName || "Challenger",
-                avatar_url: null,
-                level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-              }
-              setOpponent(fallbackOpponent)
-              localStorage.setItem("quizOpponentId", opponentId)
-              localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
-            }
-          } catch (error) {
-            console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error)
-            const fallbackOpponent = {
-              id: opponentId,
-              name: opponentName || "Challenger",
-              avatar_url: null,
-              level: challengerTurn ? "Waiting for your quiz" : "Challenger",
-            }
-            setOpponent(fallbackOpponent)
-            localStorage.setItem("quizOpponentId", opponentId)
-            localStorage.setItem("quizOpponent", JSON.stringify(fallbackOpponent))
-          }
-        }
-        fetchOpponent()
-      } else {
-        console.log("🎯 QUIZ CONTAINER: Using fallback opponent")
-        const randomOpponent = getRandomOpponent()
-        setOpponent(randomOpponent)
-        localStorage.setItem("quizOpponentId", randomOpponent.id)
-        localStorage.setItem("quizOpponent", JSON.stringify(randomOpponent))
-      }
-
-      // Set up timer for challenge mode
-      let minutes = 5
-      if (challengeMode === "daily") minutes = 5
-      else if (challengeMode === "quran") minutes = 7
-      else if (challengeMode === "seerah") minutes = 6
-      else if (challengeMode === "fiqh") minutes = 5
-
-      const totalTime = minutes * 60
-      setTimeLeft(totalTime)
-      localStorage.setItem("quizTimeTotal", totalTime.toString())
-      setIsTimerRunning(true)
+      console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge)
+      console.log("🎯 QUIZ CONTAINER: Opponent source:", opponentSource)
+      localStorage.setItem("quizTimeTotal", (challengeMinutes(challengeMode) * 60).toString())
     }
-
     console.log("🎯 QUIZ CONTAINER: Setup complete")
     console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length)
-  }, [questions.length, challengeMode, category.id, difficulty, opponentId, opponentName, challengerTurn])
+  }, [questions.length, challengeMode, opponentId, opponentName, challengerTurn, isFallbackChallenge, opponentSource])
 
-  // Timer effect
+  // Fetch the opponent's profile from the database
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
-    if (isTimerRunning && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1)
-      }, 1000)
-    } else if (timeLeft === 0 && isTimerRunning) {
-      handleFinishQuiz()
-    }
-
+    if (opponentSource !== "profile" || !opponentId) return
+    let cancelled = false
+    const fallbackOpponent = { id: opponentId, name: opponentName || "Challenger", avatar_url: null, level: opponentLevel }
+    console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
+    getUserProfile(opponentId)
+      .then((data) => {
+        const opponentData = data as OpponentProfileRow | null
+        console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData)
+        if (cancelled) return
+        if (opponentData) {
+          setProfileOpponent({
+            id: opponentData.id,
+            name: opponentData.full_name || opponentData.username || "Challenger",
+            avatar_url: opponentData.avatar_url,
+            level: opponentLevel,
+          })
+        } else {
+          console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback")
+          setProfileOpponent(fallbackOpponent)
+        }
+      })
+      .catch((error) => {
+        console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error)
+        if (!cancelled) setProfileOpponent(fallbackOpponent)
+      })
     return () => {
-      if (timer) clearInterval(timer)
+      cancelled = true
     }
-  }, [isTimerRunning, timeLeft])
+  }, [opponentSource, opponentId, opponentName, opponentLevel])
+
+  // Keep the opponent in localStorage for the results page
+  useEffect(() => {
+    if (!opponent) return
+    localStorage.setItem("quizOpponentId", opponent.id)
+    localStorage.setItem("quizOpponent", JSON.stringify(opponent))
+  }, [opponent])
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -221,8 +220,6 @@ export default function QuizContainer({
 
   const handleAnswerSelect = (value: string) => {
     if (showExplanation) return
-
-    setSelectedAnswer(value)
 
     const newAnswers = [...answers]
     newAnswers[currentQuestion] = value
@@ -239,7 +236,6 @@ export default function QuizContainer({
 
     setTimeout(() => {
       const correct = selectedAnswer === shuffledQuestions[index].correctAnswer
-      setIsCorrect(correct)
 
       // Record only the FIRST answer for each question; later attempts are ignored
       setGraded((prev) => (index in prev ? prev : { ...prev, [index]: correct }))
@@ -258,15 +254,12 @@ export default function QuizContainer({
       if (currentQuestion < questions.length - 1) {
         const nextIndex = currentQuestion + 1
         setCurrentQuestion(nextIndex)
-        setSelectedAnswer(answers[nextIndex] || "")
 
         // Already answered? Open it in read-only review mode
         if (nextIndex in graded) {
           setShowExplanation(true)
-          setIsCorrect(graded[nextIndex])
         } else {
           setShowExplanation(false)
-          setIsCorrect(null)
         }
       } else {
         setTransitionType("finish")
@@ -314,7 +307,7 @@ export default function QuizContainer({
 
   const handleFinishQuiz = async () => {
     console.log("🎯 QUIZ CONTAINER: Starting quiz finish process...")
-    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge())
+    console.log("🎯 QUIZ CONTAINER: Is fallback challenge:", isFallbackChallenge)
 
     setIsTimerRunning(false)
 
@@ -325,7 +318,8 @@ export default function QuizContainer({
       localStorage.setItem("quizDifficulty", difficulty)
       localStorage.setItem("quizChallenge", challengeMode || "")
       localStorage.setItem("quizTimeLeft", timeLeft.toString())
-      localStorage.setItem("quizId", quizId)
+      // A unique id for this quiz attempt
+      localStorage.setItem("quizId", `quiz_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`)
 
       if (challengerTurn) {
         localStorage.setItem("challengerTurn", "true")
@@ -344,7 +338,7 @@ export default function QuizContainer({
       console.error("🎯 QUIZ CONTAINER: Error saving to localStorage:", error)
     }
 
-    if (isFallbackChallenge()) {
+    if (isFallbackChallenge) {
       console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations")
       toast({
         title: "Challenge Sent!",
@@ -435,6 +429,28 @@ export default function QuizContainer({
     }
   }
 
+  // When the challenge timer runs out, finish the quiz
+  const onTimeUp = useEffectEvent(() => {
+    handleFinishQuiz()
+  })
+
+  // Timer effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout | undefined
+
+    if (isTimerRunning && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1)
+      }, 1000)
+    } else if (timeLeft === 0 && isTimerRunning) {
+      onTimeUp()
+    }
+
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [isTimerRunning, timeLeft])
+
   const handlePrevious = () => {
     if (currentQuestion > 0) {
       setTransitionType("next")
@@ -443,16 +459,13 @@ export default function QuizContainer({
       setTimeout(() => {
         const prevIndex = currentQuestion - 1
         setCurrentQuestion(prevIndex)
-        setSelectedAnswer(answers[prevIndex] || "")
 
         // Every earlier question has been answered, so show it in review mode:
         // original choice, correct answer and explanation, with options locked
         if (prevIndex in graded) {
           setShowExplanation(true)
-          setIsCorrect(graded[prevIndex])
         } else {
           setShowExplanation(false)
-          setIsCorrect(null)
         }
 
         setIsLoading(false)
@@ -460,15 +473,6 @@ export default function QuizContainer({
       }, 800)
     }
   }
-
-  useEffect(() => {
-    setSelectedAnswer(answers[currentQuestion] || "")
-  }, [currentQuestion, answers])
-
-  useEffect(() => {
-    const progressValue = (currentQuestion / questions.length) * 100
-    setProgress(progressValue)
-  }, [currentQuestion, questions.length])
 
   if (questions.length === 0) {
     return (

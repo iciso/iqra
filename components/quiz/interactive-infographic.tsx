@@ -37,7 +37,7 @@ interface ChartData {
 
 interface InfographicProps {
   type: "timeline" | "comparison" | "process" | "map" | "chart"
-  data: any
+  data: unknown
   title: string
 }
 
@@ -58,12 +58,8 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
 
   const uniqueCategories = getUniqueCategories()
 
-  // Set initial category if comparison type
-  useEffect(() => {
-    if (type === "comparison" && uniqueCategories.length > 0 && !currentCategory) {
-      setCurrentCategory(uniqueCategories[0])
-    }
-  }, [type, uniqueCategories, currentCategory])
+  // The selected comparison category; the first one until the user picks another
+  const activeCategory = currentCategory ?? (type === "comparison" ? (uniqueCategories[0] ?? null) : null)
 
   // Handle escape key to close full view
   useEffect(() => {
@@ -159,11 +155,11 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
             {uniqueCategories.map((category, idx) => (
               <Button
                 key={idx}
-                variant={currentCategory === category ? "default" : "outline"}
+                variant={activeCategory === category ? "default" : "outline"}
                 size="sm"
                 onClick={() => setCurrentCategory(category)}
                 className={
-                  currentCategory === category
+                  activeCategory === category
                     ? "bg-green-600 hover:bg-green-700"
                     : "border-green-300 dark:border-green-700 text-green-700 dark:text-green-400"
                 }
@@ -179,7 +175,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
           <div
             key={idx}
             className={`transition-opacity duration-300 ${
-              expanded || forceExpanded || category === currentCategory ? "opacity-100" : "opacity-0 hidden"
+              expanded || forceExpanded || category === activeCategory ? "opacity-100" : "opacity-0 hidden"
             }`}
           >
             <h3 className="text-lg font-semibold mb-3 text-green-700 dark:text-green-400">{category}</h3>
@@ -195,7 +191,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
         ))}
 
         {/* Navigation for non-expanded view */}
-        {!expanded && !forceExpanded && uniqueCategories.length > 1 && !currentCategory && (
+        {!expanded && !forceExpanded && uniqueCategories.length > 1 && !activeCategory && (
           <div className="flex justify-center mt-4 space-x-2">
             <Button
               variant="outline"
@@ -322,7 +318,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
     )
   }
 
-  const renderChart = (chartData: ChartData, forceExpanded = false) => {
+  const renderChart = (chartData: ChartData) => {
     // For the Longest and Shortest Surahs chart, use a table representation instead
     if (chartData.title === "Longest and Shortest Surahs (by verses)") {
       return (
@@ -434,7 +430,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
       case "map":
         return renderMap(data as MapLocation[], forceExpanded)
       case "chart":
-        return renderChart(data as ChartData, forceExpanded)
+        return renderChart(data as ChartData)
       default:
         return <div>Infographic type not supported</div>
     }
