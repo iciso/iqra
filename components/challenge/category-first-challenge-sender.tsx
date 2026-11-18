@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-{ Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
+import { Gamepad2, MoveUp, Zap, Bitcoin, Book, BookCopy, BookDashed, Brain, BriefcaseMedical, CirclePlus, 
   Languages, Megaphone, Music, Percent, Scale, Scroll, Calendar1, Church, Telescope, HandCoins, 
   HandHeart, Handshake, Heart, Home, Image, Infinity, Trophy, Clock, Target, History, Milestone, Netowrk, Plane, ScanFace, Sparkles, 
   Sprout, Sun, Tornado, User, Users, Rainbow, Circle, Compass, Globe, AlertCircle, Wind, WineOff, }  from "lucide-react"
@@ -420,6 +420,8 @@ export default function CategoryFirstChallengeSender() {
     }
 
     setSendingChallenge(challengedUser.id)
+
+    try {
 
          const challengerName =
         typeof window !== "undefined"

@@ -123,7 +123,7 @@ const doingTasks: TaskItem[] = [
       <div>
         <span className="font-semibold text-amber-900 block mb-1">Surah Quiz, Challenges & Tamil Categories</span>
         <p className="text-amber-800/90 text-xs leading-relaxed">
-          Complete the work begun on Challenges for Surah Quizzes -> 78 to 114. Also complete Translation from 
+          Complete the work begun on Challenges for Surah Quizzes {"->"} 78 to 114. Also complete Translation from 
           English to Tamil all the 50 English Categories Quizzes.
         </p>
         <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-800 border border-amber-200">
