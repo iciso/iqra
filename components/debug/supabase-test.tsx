@@ -12,7 +12,7 @@ export function SupabaseTest() {
     setLoading(true)
     try {
       // Test basic connection
-      const { data, error } = await supabase.from("profiles").select("count").limit(1)
+      const { error } = await supabase.from("profiles").select("count").limit(1)
 
       if (error) {
         setResult(`Connection Error: ${error.message}`)
@@ -29,7 +29,7 @@ export function SupabaseTest() {
   const testAuth = async () => {
     setLoading(true)
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: "test@example.com",
         password: "testpassword123",
       })

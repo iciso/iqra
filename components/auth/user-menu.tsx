@@ -15,7 +15,7 @@ import { useAuth } from "@/contexts/auth-context"
 import { User, LogOut, Settings } from "lucide-react"
 
 export function UserMenu() {
-  const { user, signOut } = useAuth()
+  const { user, profile, signOut } = useAuth()
   const [loading, setLoading] = useState(false)
 
   const handleSignOut = async () => {
@@ -26,8 +26,8 @@ export function UserMenu() {
 
   if (!user) return null
 
-  const userInitials = user.user_metadata?.full_name
-    ? user.user_metadata.full_name
+  const userInitials = user.fullName
+    ? user.fullName
         .split(" ")
         .map((n: string) => n[0])
         .join("")
@@ -40,8 +40,8 @@ export function UserMenu() {
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
             <AvatarImage
-              src={user.user_metadata?.avatar_url || "/placeholder.svg"}
-              alt={user.user_metadata?.full_name || user.email}
+              src={profile?.avatar_url || "/placeholder.svg"}
+              alt={user.fullName || user.email}
             />
             <AvatarFallback className="bg-green-100 text-green-700">{userInitials}</AvatarFallback>
           </Avatar>
@@ -50,7 +50,7 @@ export function UserMenu() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user.user_metadata?.full_name || "User"}</p>
+            <p className="text-sm font-medium leading-none">{user.fullName || "User"}</p>
             <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
           </div>
         </DropdownMenuLabel>

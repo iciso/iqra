@@ -23,8 +23,8 @@ export default function SimpleDbTest() {
       } else {
         setResult(`Success: Found ${data} total challenges`)
       }
-    } catch (e: any) {
-      setResult(`Exception: ${e.message}`)
+    } catch (e) {
+      setResult(`Exception: ${(e as { message?: string } | null)?.message}`)
     } finally {
       setLoading(false)
     }
@@ -50,8 +50,8 @@ export default function SimpleDbTest() {
       } else {
         setResult(`Success: Found ${data?.length || 0} challenges for user`)
       }
-    } catch (e: any) {
-      setResult(`Exception: ${e.message}`)
+    } catch (e) {
+      setResult(`Exception: ${(e as { message?: string } | null)?.message}`)
     } finally {
       setLoading(false)
     }
@@ -69,8 +69,8 @@ export default function SimpleDbTest() {
       } else {
         setResult(`Success: Found ${data?.length || 0} profiles`)
       }
-    } catch (e: any) {
-      setResult(`Exception: ${e.message}`)
+    } catch (e) {
+      setResult(`Exception: ${(e as { message?: string } | null)?.message}`)
     } finally {
       setLoading(false)
     }

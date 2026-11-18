@@ -12,7 +12,7 @@ interface ConnectionResult {
   name: string
   status: "success" | "error" | "warning"
   message: string
-  details?: any
+  details?: unknown
 }
 
 export default function DatabaseConnectionTest() {
@@ -94,7 +94,7 @@ export default function DatabaseConnectionTest() {
                   <Badge className={getStatusColor(result.status)}>{result.status.toUpperCase()}</Badge>
                 </div>
                 <p className="text-sm text-gray-600 mb-2">{result.message}</p>
-                {result.details && (
+                {!!result.details && (
                   <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
                     {JSON.stringify(result.details, null, 2)}
                   </pre>

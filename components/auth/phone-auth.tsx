@@ -47,7 +47,7 @@ export function PhoneAuth({ onSuccess }: PhoneAuthProps) {
         setSuccess("OTP sent! Check your phone for the verification code.")
         setStep("otp")
       }
-    } catch (err) {
+    } catch {
       setError("Failed to send OTP. Please try again.")
     } finally {
       setLoading(false)
@@ -80,7 +80,7 @@ export function PhoneAuth({ onSuccess }: PhoneAuthProps) {
         setSuccess("Phone verified successfully!")
         onSuccess()
       }
-    } catch (err) {
+    } catch {
       setError("Failed to verify OTP. Please try again.")
     } finally {
       setLoading(false)

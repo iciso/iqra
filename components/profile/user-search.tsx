@@ -39,44 +39,23 @@ export default function UserSearch({
     setDebugInfo((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${message}`])
   }
 
+  // Cancel a pending search on unmount
   useEffect(() => {
-    // Clear previous timeout
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-
-    if (query.length >= 2) {
-      // Set a new timeout for the search
-      timeoutRef.current = setTimeout(() => {
-        searchUsers(query)
-      }, 300)
-    } else {
-      setResults([])
-      setError(null)
-    }
-
-    // Cleanup on unmount
+    const pending = timeoutRef
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
+      if (pending.current) clearTimeout(pending.current)
     }
-  }, [query])
+  }, [])
 
   // Use the EXACT same function structure as the working test
-  const testWithTimeout = async (testName: string, testFunction: () => Promise<any>, timeoutMs = 15000) => {
+  const testWithTimeout = async <T,>(testName: string, testFunction: () => Promise<T>, timeoutMs = 15000) => {
     addDebug(`Testing ${testName}...`)
 
-    try {
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
-      )
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
+    )
 
-      const result = await Promise.race([testFunction(), timeoutPromise])
-      return result
-    } catch (error: any) {
-      throw error
-    }
+    return Promise.race([testFunction(), timeoutPromise])
   }
 
   const searchUsers = async (searchQuery: string) => {
@@ -112,12 +91,31 @@ export default function UserSearch({
 
       addDebug(`Filtered to ${filteredResults.length} users`)
       setResults(filteredResults)
-    } catch (error: any) {
-      addDebug(`Error: ${error.message}`)
-      setError(error.message)
+    } catch (error) {
+      const message = (error as { message?: string } | null)?.message
+      addDebug(`Error: ${message}`)
+      setError(message ?? null)
     } finally {
       addDebug("Search completed")
       setLoading(false)
+    }
+  }
+
+  // Search 300ms after the user stops typing (2+ characters)
+  const handleQueryChange = (value: string) => {
+    setQuery(value)
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
+    if (value.length >= 2) {
+      timeoutRef.current = setTimeout(() => {
+        searchUsers(value)
+      }, 300)
+    } else {
+      setResults([])
+      setError(null)
     }
   }
 
@@ -141,13 +139,13 @@ export default function UserSearch({
           placeholder={placeholder}
           className="pl-9"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => handleQueryChange(e.target.value)}
         />
       </div>
 
       {/* Debug Info */}
       <div className="text-xs text-gray-500 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-        <p>Query: "{query}"</p>
+        <p>Query: &quot;{query}&quot;</p>
         <p>Loading: {loading.toString()}</p>
         <p>Results: {results.length}</p>
         <div className="mt-2">
@@ -175,7 +173,7 @@ export default function UserSearch({
         </div>
       ) : query.length >= 2 && results.length === 0 ? (
         <div className="text-center py-4 text-gray-500">
-          <p>No users found matching "{query}"</p>
+          <p>No users found matching &quot;{query}&quot;</p>
         </div>
       ) : results.length > 0 ? (
         <div className="space-y-2">
