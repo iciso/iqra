@@ -180,7 +180,7 @@ export default function AboutPage() {
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            or This is an ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, 
+            or This is an ongoing charity for the sake of Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, 
             The Entirely Generous.<br />
             Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
           </p>
@@ -596,7 +596,7 @@ export default function AboutPage() {
     
     Help us make IQRA better,
     one thoughtful contribution at a time.
-    May Allah ﷻ reward everyone who contributes
+    May Allah <span className="font-arabic">ﷻ</span> reward everyone who contributes
     sincerely to beneficial Islamic learning. Ameen.
   </p>
 </section>
@@ -644,20 +644,21 @@ export default function AboutPage() {
             <li>Next.js - React framework for server-rendered applications</li>
             <li>TypeScript - For type safety and better developer experience</li>
             <li>Tailwind CSS - For responsive and customizable styling</li>
-            <li>Neon - For authentication and real-time database</li>
+            <li>Supabase - For sign-in (phone authentication)</li>
+            <li>Neon - Serverless Postgres for quiz results, leaderboard, profiles and challenges</li>
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform invert hue-rotate-180 dark:invert-0 dark:hue-rotate-0" />
             <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
-              alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+              alt="Next.js Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
+            All praise and thanks are due to Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
             The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, 
             Ameen, Summa Ameen.
           </p>
@@ -672,7 +673,7 @@ export default function AboutPage() {
               >
                 Mohamed Essa Rafique
               </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. 
-              May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
+              May Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span> reward{" "}
               <a
                 href="https://zettabyteincorp.com/"
                 target="_blank"
@@ -696,7 +697,7 @@ export default function AboutPage() {
               and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.
               <div className="mt-2">
                 <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
-                  alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  alt="Next.js Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
             <li>
@@ -780,7 +781,7 @@ export default function AboutPage() {
                 Meta
               </a>{" "}
           all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, 
-              questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
+              questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
                 <div className="flex flex-wrap gap-4 mt-4 justify-center">
                   <div className="mt-2">
                   <Image src="/meta.png" width={150} height={150} alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
@@ -801,7 +802,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah 
-            <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
+            <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
           </p>
            <div className="flex flex-wrap gap-4 mt-4 justify-center">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">

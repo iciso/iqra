@@ -13,6 +13,10 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			// Scheherazade New is loaded in app/layout.tsx; it has the Arabic ligatures (e.g. U+FDFB) that Inter lacks
+  			arabic: ['"Scheherazade New"', 'serif'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
