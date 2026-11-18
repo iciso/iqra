@@ -2,7 +2,7 @@ import type { QuizCategory } from "@/types/quiz";
 
 export const islamicAlcoholDrugsCategory: QuizCategory = {
   id: "islamic-alcohol-drugs",
-  name: "Alcohol and Drugs in Islam",
+  title: "Alcohol and Drugs in Islam",
   description: "Examine the Islamic rulings, wisdom, prohibitions, and spiritual impacts surrounding intoxicants, alcohol, and addictive substances.",
   icon: "ShieldAlert",
   levels: {

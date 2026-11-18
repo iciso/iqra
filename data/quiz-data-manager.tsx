@@ -132,7 +132,8 @@ export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel
   }
 
   // Get the questions for the specified category and difficulty
-  let questions = category.levels[difficulty] || [];
+  // "mixed" is not a stored level, so it has no questions here.
+  let questions = (difficulty === "mixed" ? undefined : category.levels[difficulty]) || [];
 
   // Assign IDs to questions if they don't have them
   questions = questions.map((question, index) => {
