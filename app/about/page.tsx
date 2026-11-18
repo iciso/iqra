@@ -648,7 +648,7 @@ export default function AboutPage() {
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
             <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
               alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
