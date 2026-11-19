@@ -9,7 +9,7 @@ const ChallengeNotFound = () => {
       <Card className="w-full max-w-md">
         <CardContent className="text-center py-8">
           <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-600 mb-2">Challenge not found</p>
+          <p className="text-gray-600 dark:text-gray-200 mb-2">Challenge not found</p>
           <p className="text-sm text-gray-400 mb-6">
             This challenge may have expired or does not exist.
           </p>
