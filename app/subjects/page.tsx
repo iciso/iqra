@@ -57,7 +57,7 @@ const categories = [
 const categoryGroups = [
   { title: "Quran & Sunnah", ids: ["quran", "tafsir", "hadeeth", "seerah"] },
   { title: "Belief", ids: ["aqeedah", "shirk", "bidah", "islamic-eschatology", "fitnah"] },
-  { title: "Worship", ids: ["salah", "sawm", "chairty", "hajj", "tazkiyah"] },
+  { title: "Prayer", ids: ["salah", "sawm", "chairty", "hajj", "tazkiyah"] },
   { title: "Law", ids: ["fiqh", "madhab", "inheritance", "islamic-medical-ethics"] },
   { title: "Money & Finance", ids: ["riba", "takaful", "islamic-finance", "crypto"] },
   {
