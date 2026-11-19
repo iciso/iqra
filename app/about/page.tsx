@@ -203,7 +203,7 @@ export default function AboutPage() {
             <li><strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics</li>
             <li><strong>Badges & Achievements</strong> - Earn badges as you master different knowledge areas</li>
             <li><strong>Responsive design</strong> - For desktop and mobile use</li>
-            <li><strong>Contributions & Recognitions</strong> - Cash Rewards for identifying errors or suggesting improvements </li>
+            <li><strong>Contributions & Recognitions</strong> - Recognition for identifying errors or suggesting improvements </li>
           </ul>
         </section>
 
@@ -440,11 +440,8 @@ export default function AboutPage() {
               <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
                 No.
               </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-left w-[88%]">
                 💡 Contribution
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
-                💰 Reward
               </th>
             </tr>
           </thead>
@@ -457,7 +454,7 @@ export default function AboutPage() {
                   1
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">📖</span>
                   <div>
@@ -465,9 +462,6 @@ export default function AboutPage() {
                     <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
                   </div>
                 </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
               </td>
             </tr>
 
@@ -478,7 +472,7 @@ export default function AboutPage() {
                   2
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl"> 🕌</span>
                   <div>
@@ -486,9 +480,6 @@ export default function AboutPage() {
                     <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
                   </div>
                 </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
               </td>
             </tr>
 
@@ -499,7 +490,7 @@ export default function AboutPage() {
                   3
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">📗</span>
                   <div>
@@ -508,27 +499,13 @@ export default function AboutPage() {
                   </div>
                 </div>
               </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Total Reward Row */}
-            <tr className="text-lg font-bold text-white">
-              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
-                🎁 Total reward
-              </td>
-              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
-                ⪧ ₹750 ⪦
-              </td>
             </tr>
           </tbody>
         </table>
       </div>
    {/* End of Table */}
 
-    <div className="mx-auto grid max-w-md grid-cols-1
-      gap-3 sm:grid-cols-2">
+    <div className="mx-auto grid max-w-xs grid-cols-1 gap-3">
 
       <div className="rounded-lg bg-green-50 p-4
         dark:bg-green-950">
@@ -541,46 +518,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="rounded-lg bg-amber-50 p-4
-        dark:bg-amber-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Reward Earned
-        </p>
-        <p className="text-3xl font-extrabold text-amber-700
-          dark:text-amber-400">
-          ₹750
-        </p>
-        <p className="mt-1 text-xs text-gray-600
-          dark:text-gray-300">
-          ₹250 per accepted suggestion
-        </p>
-      </div>
-
     </div>
-  </div>
-
-  <div className="rounded-xl bg-green-100 p-5 text-center
-    dark:bg-green-900/50">
-
-    <h3 className="mb-3 text-xl font-bold
-      text-green-800 dark:text-green-300">
-      🎉 Reward Presentation — Insha Allah
-    </h3>
-
-    <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali&apos;s total reward of ₹750 will be presented
-      during the Kattoo Yamani (KY) Family Meet 2026.
-    </p>
-
-    <p className="font-bold text-green-800
-      dark:text-green-300">
-      📅 26 December 2026
-    </p>
-
-    <p className="font-semibold text-gray-700
-      dark:text-gray-200">
-      📍 PWD Beach Rest House, Alleppey
-    </p>
   </div>
 
   <p className="mt-6 text-center text-sm italic
