@@ -532,7 +532,8 @@ export default function QuizContainer({
         )}
       </div>
 
-      <Card className="border-green-200 shadow-lg dark:border-green-800">
+      {/* While loading, the card loses its box so only the spinning loader shows. */}
+      <Card className={isLoading ? "border-0 bg-transparent shadow-none" : "border-green-200 shadow-lg dark:border-green-800"}>
         {isLoading ? (
           <div className="flex min-h-[320px] items-center justify-center p-6">
             <LoadingAnimation size="md" text={getLoadingText()} />
