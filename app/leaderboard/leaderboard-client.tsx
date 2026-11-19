@@ -265,7 +265,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   if (!isClient) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-        <Card className="w-full max-w-4xl border-green-200 shadow-lg">
+        <Card className="w-full max-w-6xl border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading leaderboard...</p>
           </CardContent>
@@ -276,7 +276,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
 
   return (
     <main className="flex min-h-screen flex-col items-center p-2 sm:p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <Card className="w-full max-w-4xl border-green-200 shadow-lg dark:border-green-800 overflow-visible mt-2 sm:mt-0">
+      <Card className="w-full max-w-6xl border-green-200 shadow-lg dark:border-green-800 overflow-visible mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
           <div className="flex justify-center mb-2">
             <Trophy className="w-8 h-8 md:w-12 md:h-12 text-green-600 dark:text-green-400" />
