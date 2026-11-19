@@ -4,7 +4,7 @@ import { useState, useEffect, useEffectEvent, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw, Users, Database } from "lucide-react"
+import { Trophy, RefreshCw, Users } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
 import { getChallengePlayersAction } from "@/app/actions/challenges"
@@ -43,7 +43,8 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
   const [loading, setLoading] = useState(() => usablePlayers(initialPlayers).length === 0)
   const [retryCount, setRetryCount] = useState(0)
   const [showAll, setShowAll] = useState(false)
-  const [dataSource, setDataSource] = useState<string>("Loading...")
+  // Where the players came from is for the console only; players never see it.
+  const [, setDataSource] = useState<string>("Loading...")
   const [isUsingFallback, setIsUsingFallback] = useState(false)
   const mountedRef = useRef(true)
   const loadingRef = useRef(false)
@@ -183,17 +184,7 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
     setTimeout(() => loadPlayers(), 100)
   }
 
-  const getSourceIcon = () => {
-    if (dataSource.includes("Neon")) return <Database className="h-4 w-4" />
-    if (dataSource.includes("Quiz Leaderboard")) return <Trophy className="h-4 w-4" />
-    return <Users className="h-4 w-4" />
-  }
 
-  const getSourceColor = () => {
-    if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
-    if (dataSource.includes("Quiz Leaderboard")) return "bg-green-100 text-green-800"
-    return "bg-purple-100 text-purple-800"
-  }
 
   // Effects below call the latest loadPlayers without re-running when it changes.
   const onLoadPlayers = useEffectEvent(() => {
@@ -302,10 +293,6 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
               <Trophy className="h-4 w-4 md:h-5 md:w-5 text-yellow-500" />
               <span className="text-sm md:text-base">{cardTitle}</span>
             </div>
-            <span className={`text-xs px-1 md:px-2 py-0.5 md:py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
-              {getSourceIcon()}
-              <span className="hidden xs:inline">{dataSource}</span>
-            </span>
           </div>
           <div className="flex gap-1 md:gap-2">
             <Button

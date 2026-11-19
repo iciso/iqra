@@ -3,7 +3,7 @@
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Medal, RefreshCw, Database, Cloud, HardDrive, Target, UserRoundSearch } from "lucide-react"
+import { Trophy, Medal, RefreshCw, Target, UserRoundSearch } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import OpponentProfile from "@/components/challenge/opponent-profile"
 import { Badge } from "@/components/ui/badge"
@@ -48,7 +48,8 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   const isClient = useSyncExternalStore(noSubscribe, onClient, onServer)
   const [loading, setLoading] = useState(true)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
-  const [dataSource, setDataSource] = useState<string>("Loading...")
+  // Where the rows came from is for the console only; players never see it.
+  const [, setDataSource] = useState<string>("Loading...")
 
   // Sort for consistent ranks
   const sortLeaderboard = (entries: LeaderboardEntry[]) => {
@@ -236,18 +237,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     }
   }
 
-  const getSourceIcon = (source: string) => {
-    if (source.includes("Supabase")) return <Cloud className="h-4 w-4" />
-    if (source.includes("Neon")) return <Database className="h-4 w-4" />
-    return <HardDrive className="h-4 w-4" />
-  }
 
-  const getSourceColor = (source: string) => {
-    if (source.includes("Supabase")) return "bg-green-100 text-green-800"
-    if (source.includes("Neon")) return "bg-blue-100 text-blue-800"
-    if (source.includes("Demo")) return "bg-yellow-100 text-yellow-800"
-    return "bg-gray-100 text-gray-800"
-  }
 
   const handleFindMe = () => {
     if (!user) {
@@ -324,16 +314,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
             </div>
 
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
-              <div className="flex items-center justify-between">
-                <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Data source</span>
-                <Badge
-                  variant="outline"
-                  className={`flex items-center gap-1 text-[10px] ${getSourceColor(dataSource)}`}
-                >
-                  {getSourceIcon(dataSource)}
-                  {dataSource}
-                </Badge>
-              </div>
+              <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Next goal</span>
               {nextMilestone ? (
                 <div className="mt-1 flex items-start gap-2">
                   <Target className="h-4 w-4 text-green-600 mt-0.5" />

@@ -29,7 +29,7 @@ const tabFromHash = (hash: string): TabId | null => {
   return tabs.find((tab) => tab.hashes.includes(key))?.id ?? null
 }
 
-const AboutTabs = (props: AboutTabsProps) => {
+export default function AboutTabs(props: AboutTabsProps) {
   const hashTab = useSyncExternalStore(subscribeToHash, () => tabFromHash(window.location.hash), () => null)
   const [picked, setPicked] = useState<TabId | null>(null)
   // The URL hash wins, so a link to /about#iqra-quizzes works even when the page is already open.
@@ -71,5 +71,3 @@ const AboutTabs = (props: AboutTabsProps) => {
     </div>
   )
 }
-
-export default AboutTabs
