@@ -25,7 +25,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4">
+          <nav className="hidden lg:flex items-center space-x-4">
             <Link href="/subjects">
               <Button variant="ghost">Subjects</Button>
             </Link>
@@ -38,6 +38,9 @@ const Header = () => {
             <Link href="/profile">
               <Button variant="ghost">Profile</Button>
             </Link>
+            <Link href="/how">
+              <Button variant="ghost">How it works</Button>
+            </Link>
             <Link href="/about">
               <Button variant="ghost">About</Button>
             </Link>
@@ -45,7 +48,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -73,6 +76,11 @@ const Header = () => {
                   <Link href="/profile" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
                       Profile
+                    </Button>
+                  </Link>
+                  <Link href="/how" onClick={closeMobileMenu}>
+                    <Button variant="ghost" className="w-full justify-start">
+                      How it works
                     </Button>
                   </Link>
                   <Link href="/about" onClick={closeMobileMenu}>
