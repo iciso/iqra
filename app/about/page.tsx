@@ -4,6 +4,7 @@ import React from 'react';
 import { ArrowLeft, Github, Album, Trophy, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
+import AboutTabs from "@/components/about/about-tabs";
 
 /*
 IQRA To do list:
@@ -175,6 +176,9 @@ export default function AboutPage() {
           <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
             The first freeware open-source Islamic knowledge quiz app with competitive challenges
           </p>
+        </section>
+        <AboutTabs mission={<>
+        <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
@@ -204,6 +208,7 @@ export default function AboutPage() {
         </section>
 
                   
+        </>} quizzes={<>
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
 <section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6 dark:border-emerald-800 dark:bg-card">
 
@@ -370,6 +375,7 @@ export default function AboutPage() {
   </div>
         </section>
 
+        </>} players={<>
        {/* Player Contributions & Recognition */}
 <section
   id="player-contributions-dhanish-ali"
@@ -602,6 +608,7 @@ export default function AboutPage() {
 </section>
  {/* End of Player Contributors Note */}
 
+        </>} more={<>
  {/* Open Source & AI  Contributions*/}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
@@ -814,6 +821,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        </>} />
         <div className="flex justify-center mt-8">
           <Link href="/">
             <Button variant="outline">
