@@ -10,7 +10,9 @@ import { useAuth } from "@/contexts/auth-context"
 export default function StatisticsDashboard() {
   const { user, profile } = useAuth()
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  // Placeholder rank and streak (not real data yet), picked once per visit
+  const [placeholderRank] = useState(() => Math.floor(Math.random() * 50) + 1)
+  const [placeholderStreak] = useState(() => Math.floor(Math.random() * 7) + 1)
 
   useEffect(() => {
     // Simple timeout to prevent infinite loading
@@ -122,7 +124,7 @@ export default function StatisticsDashboard() {
                   <div>
                     <p className="text-sm font-medium text-orange-600 dark:text-orange-400">Rank</p>
                     <p className="text-2xl font-bold text-orange-900 dark:text-orange-100">
-                      #{Math.floor(Math.random() * 50) + 1}
+                      #{placeholderRank}
                     </p>
                     <p className="text-xs text-orange-500">Global ranking</p>
                   </div>
@@ -184,7 +186,7 @@ export default function StatisticsDashboard() {
 
                 <div className="flex items-center justify-between">
                   <span className="text-sm">Learning Streak</span>
-                  <Badge variant="secondary">🔥 {Math.floor(Math.random() * 7) + 1} days</Badge>
+                  <Badge variant="secondary">🔥 {placeholderStreak} days</Badge>
                 </div>
 
                 <div className="flex items-center justify-between">

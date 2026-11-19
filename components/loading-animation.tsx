@@ -9,35 +9,35 @@ export function LoadingAnimation({ size = "md", text }: LoadingAnimationProps) {
   const dimensions = {
     sm: {
       container: "w-16 h-16",
-      icons: "w-7 h-7",
+      ring: "border-[3px]",
+      icons: "w-6 h-6",
       text: "text-sm",
     },
     md: {
-      container: "w-24 h-24",
-      icons: "w-10 h-10",
+      container: "w-20 h-20",
+      ring: "border-4",
+      icons: "w-8 h-8",
       text: "text-base",
     },
     lg: {
-      container: "w-32 h-32",
-      icons: "w-14 h-14",
+      container: "w-28 h-28",
+      ring: "border-[5px]",
+      icons: "w-11 h-11",
       text: "text-lg",
     },
   }
 
   return (
     <div className="flex flex-col items-center justify-center gap-4" role="status" aria-label="Loading">
-      <div
-        className={`relative ${dimensions[size].container} bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden`}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-20"></div>
-        <div className="relative flex items-center justify-center w-full h-full">
-          {/* Single Book icon with animation */}
-          <div className="animate-pulse">
-            <BookOpen className={`${dimensions[size].icons} text-green-700 opacity-90`} strokeWidth={1.5} />
-          </div>
-        </div>
+      <div className={`relative ${dimensions[size].container} flex items-center justify-center`}>
+        {/* A spinning ring around a still book: a faint full circle with one bright arc running round it. */}
+        <div
+          className={`absolute inset-0 rounded-full ${dimensions[size].ring} border-green-200 border-t-green-600 animate-spin dark:border-green-900 dark:border-t-green-400`}
+          aria-hidden="true"
+        />
+        <BookOpen className={`${dimensions[size].icons} text-green-600 dark:text-green-400`} strokeWidth={1.5} aria-hidden="true" />
       </div>
-      {text && <p className={`${dimensions[size].text} text-green-700 animate-pulse`}>{text}</p>}
+      {text && <p className={`${dimensions[size].text} text-green-700 dark:text-green-400 animate-pulse`}>{text}</p>}
       <span className="sr-only">Loading...</span>
     </div>
   )

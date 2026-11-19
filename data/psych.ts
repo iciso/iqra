@@ -63,10 +63,6 @@ const psychCategory: QuizCategory = {
         explanation: "The Quran describes the qalb as capable of being sick (2:10), hardened (2:74), or tranquil (13:28). It's the seat of understanding (7:179), faith (49:7), and moral decisions (22:46). Spiritual heart purification involves dhikr (13:28), Quran reflection (47:24), and avoiding sins (83:14)."
       },
       {
-        question: "How does Islam view positive thinking?",
-        explanation: "The Prophet (PBUH) taught: 'Strange are the ways of a believer... If good befalls him, he is thankful; and if evil befalls him, he is patient' (Muslim 2999). Quranic concepts like husn al-dhann (good assumption - 48:6) and tawakkul (3:159) foster optimism. Negative thoughts should be countered with 'la hawla wa la quwwata illa billah'."
-      },
-      {
         question: "What is the Islamic view on dreams?",
         options: [
           "All dreams are meaningless",

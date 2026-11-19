@@ -1,16 +1,11 @@
 import QuizContainer from "@/components/quiz/quiz-container"
+import type { DifficultyLevel, QuizQuestion } from "@/types/quiz"
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 type BaseDifficulty = "easy" | "intermediate" | "advanced"
 type DifficultyLike = BaseDifficulty | "medium" | "hard" | "mixed"
-
-type QuizQuestion = {
-  id?: string
-  question?: string
-  // other fields are not required here
-}
 
 // Number of questions in one numbered section.
 const DEFAULT_SECTION_SIZE = 10
@@ -30,7 +25,7 @@ function normalizeDifficulty(d: string | undefined): DifficultyLike {
 
 // Removes duplicates but KEEPS the original (data-file) order.
 function dedupeQuestions(arr: QuizQuestion[]): QuizQuestion[] {
-  const seen = new Set<string>()
+  const seen = new Set<string | number>()
   const out: QuizQuestion[] = []
   for (const q of arr) {
     const key = q.id || q.question || JSON.stringify(q)
@@ -74,12 +69,12 @@ function seededShuffle<T>(items: T[], seed: string): T[] {
 }
 
 async function loadCategoryAndQuestions(categoryId: string) {
-  const mod: any = await import("@/data/quiz-data-manager")
+  const mod = await import("@/data/quiz-data-manager")
   if (!mod || typeof mod.getCategory !== "function" || typeof mod.getQuizQuestions !== "function") {
     throw new Error("quiz-data-manager exports not found")
   }
-  const getCategory = mod.getCategory as (id: string) => any
-  const getQuizQuestions = mod.getQuizQuestions as (id: string, diff: BaseDifficulty) => QuizQuestion[]
+  const getCategory = mod.getCategory
+  const getQuizQuestions: (id: string, diff: BaseDifficulty) => QuizQuestion[] = mod.getQuizQuestions
   const category = getCategory(categoryId)
   return { category, getQuizQuestions }
 }
@@ -142,9 +137,7 @@ async function resolveChallengeParams(params: URLSearchParams) {
   let challengerTurn = params.get("challengerTurn") === "true"
   const challengeId = params.get("challenge") || undefined
 
-  const sectionParam = Number.parseInt(params.get("section") || "", 10)
-  const section = Number.isFinite(sectionParam) && sectionParam > 0 ? sectionParam : undefined
-  
+
   const needsResolve = !!challengeId && (!category || !difficulty || !questionCount || !opponentId || !opponentName)
 
   if (!needsResolve) {
@@ -174,11 +167,13 @@ async function resolveChallengeParams(params: URLSearchParams) {
       .single()
 
     if (!error && challenge) {
+      // supabase-js types a foreign-key join as an array; this one-to-one join returns one row.
+      const challenger = Array.isArray(challenge.challenger) ? challenge.challenger[0] : challenge.challenger
       category = challenge.category || category
       difficulty = normalizeDifficulty(challenge.difficulty || (difficulty as string))
       questionCount = Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
-      opponentId = opponentId || challenge.challenger?.id || challenge.challenger_id || opponentId
-      opponentName = opponentName || challenge.challenger?.full_name || challenge.challenger?.username || opponentName
+      opponentId = opponentId || challenger?.id || challenge.challenger_id || opponentId
+      opponentName = opponentName || challenger?.full_name || challenger?.username || opponentName
       if (params.get("challengerTurn") === null) {
         challengerTurn = false
       }
@@ -253,8 +248,8 @@ function SectionPicker({
       </div>
 
       <div className="mt-8 text-center">
-        <a href="/categories" className="text-sm text-green-700 underline dark:text-green-400">
-          ← Back to categories
+        <a href="/subjects" className="text-sm text-green-700 underline dark:text-green-400">
+          ← Back to subjects
         </a>
       </div>
     </div>
@@ -283,7 +278,7 @@ export default async function QuizPage({
     ),
   )
 
-  const { category, difficulty, questionCount, opponentId, opponentName, challengerTurn, challengeId } =
+  const { category, difficulty, opponentId, opponentName, challengerTurn, challengeId } =
     await resolveChallengeParams(params)
 
   const { category: cat, getQuizQuestions } = await loadCategoryAndQuestions(category)
@@ -292,9 +287,9 @@ export default async function QuizPage({
     return (
       <div className="container mx-auto py-12 px-4 text-center">
         <h1 className="text-2xl font-bold mb-4">Category Not Found</h1>
-        <p className="mb-6">The requested category "{category}" could not be loaded. Please choose another category.</p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Categories
+        <p className="mb-6">The requested category &quot;{category}&quot; could not be loaded. Please choose another category.</p>
+        <a href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Subjects
         </a>
       </div>
     )
@@ -311,8 +306,8 @@ export default async function QuizPage({
         <p className="mb-6">
           Sorry, there are no questions available for {cat.title} in {String(difficulty)} mode at this time.
         </p>
-        <a href="/categories" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Categories
+        <a href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Browse Subjects
         </a>
       </div>
     )
@@ -355,7 +350,7 @@ export default async function QuizPage({
       <QuizContainer
         questions={finalQuestions}
         category={cat}
-        difficulty={difficulty === "mixed" ? "easy" : (difficulty as any)}
+        difficulty={difficulty === "mixed" ? "easy" : (difficulty as DifficultyLevel)}
         challengeMode={challengeId || params.get("challenge") || undefined}
         opponentId={opponentId}
         opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}

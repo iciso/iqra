@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Trophy, Menu } from "lucide-react"
 import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -14,8 +15,8 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-white shadow-sm border-b dark:bg-gray-900 dark:border-gray-800 w-full overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className=" shadow-sm border-b bg-gray-50  max-w-full  dark:bg-card dark:border-border w-full overflow-x-hidden">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
@@ -25,8 +26,8 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
-            <Link href="/categories">
-              <Button variant="ghost">Quiz</Button>
+            <Link href="/subjects">
+              <Button variant="ghost">Subjects</Button>
             </Link>
             <Link href="/challenges">
               <Button variant="ghost">Challenges</Button>
@@ -40,21 +41,23 @@ const Header = () => {
             <Link href="/about">
               <Button variant="ghost">About</Button>
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" aria-label="Menu">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <div className="flex flex-col space-y-4 mt-8">
-                  <Link href="/categories" onClick={closeMobileMenu}>
+                  <Link href="/subjects" onClick={closeMobileMenu}>
                     <Button variant="ghost" className="w-full justify-start">
-                      Quiz
+                      Subjects
                     </Button>
                   </Link>
                   <Link href="/challenges" onClick={closeMobileMenu}>

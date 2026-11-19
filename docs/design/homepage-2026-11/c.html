@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IQRA C - The Night of Iqra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0B1020;--night2:#141B33;--ink:#EEF0F7;--muted:#9AA3C2;--line:rgba(180,195,240,.16);--lamp:#F5C76A;--sky:#8EC5FF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--night);color:var(--ink);font-family:Figtree,sans-serif;min-height:100vh;overflow-x:hidden}
+.sky{position:relative;min-height:100vh;background:radial-gradient(ellipse 46% 40% at 50% 46%,rgba(245,199,106,.20),transparent 70%),radial-gradient(ellipse at 50% 120%,#1B2550,transparent 60%)}
+nav{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:22px 44px}
+.logo{font-family:'Reem Kufi';font-weight:700;font-size:26px;letter-spacing:.14em}
+nav ul{display:flex;gap:30px;list-style:none;font-size:15px}
+nav a{color:var(--muted);text-decoration:none}
+.pill{padding:9px 20px;border-radius:999px;border:1px solid var(--line);color:var(--ink)!important}
+.astro{position:absolute;left:50%;top:50%;width:min(860px,140vw);height:min(860px,140vw);transform:translate(-50%,-52%);z-index:1;overflow:visible}
+.ring{transform-origin:430px 430px}
+.spin1{animation:spin 240s linear infinite}.spin2{animation:spin 360s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.astro text{font-family:Figtree;font-size:13px;fill:var(--muted);letter-spacing:.12em}
+.center{position:relative;z-index:2;text-align:center;padding:70px 20px 40px}
+.word{font-family:'Reem Kufi';font-weight:700;font-size:190px;line-height:1;direction:rtl;color:#FFF4DC;text-shadow:0 0 40px rgba(245,199,106,.55),0 0 120px rgba(245,199,106,.25)}
+@keyframes lamp{from{text-shadow:0 0 36px rgba(245,199,106,.45),0 0 110px rgba(245,199,106,.2)}to{text-shadow:0 0 48px rgba(245,199,106,.65),0 0 140px rgba(245,199,106,.32)}}
+.gloss{font-family:'Reem Kufi';letter-spacing:.5em;font-size:14px;color:var(--lamp);margin-top:6px;text-transform:uppercase}
+h1{font-family:'Reem Kufi';font-weight:600;font-size:54px;line-height:1.08;margin:34px auto 14px;max-width:760px}
+.lede{color:var(--muted);font-size:18px;line-height:1.6;max-width:520px;margin:0 auto 28px}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{border-radius:999px;padding:14px 30px;font-weight:600;font-size:16px;text-decoration:none;color:var(--night);background:var(--lamp)}
+.btn.ghost{background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(6px)}
+.chips{display:flex;gap:10px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.chip{font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip b{color:var(--sky);font-weight:600}
+@media (max-width:640px){
+ nav{padding:16px}nav ul li:not(:last-child){display:none}
+ .center{padding:60px 16px 30px}
+ .word{font-size:116px}
+ h1{font-size:34px}
+ .lede{font-size:16px}
+ .btn{width:100%;text-align:center}
+ .astro{transform:translate(-50%,-62%)}
+}
+</style></head><body>
+<div class="sky">
+<nav><div class="logo">IQRA</div><ul><li><a href="#">Subjects</a></li><li><a href="#">Challenges</a></li><li><a href="#">Leaderboard</a></li><li><a class="pill" href="#">Sign in</a></li></ul></nav>
+<svg class="astro" viewBox="0 0 860 860" aria-hidden="true">
+ <g fill="none" stroke="rgba(180,195,240,.16)">
+  <circle cx="430" cy="430" r="410"/><circle cx="430" cy="430" r="330" stroke-dasharray="2 6"/><circle cx="430" cy="430" r="250"/>
+ </g>
+ <g class="ring spin1" id="r1"></g>
+ <g class="ring spin2" id="r2"></g>
+</svg>
+<div class="center">
+ <div class="word">اقرأ</div>
+ <p class="gloss">Iqra &middot; Read</p>
+ <h1>Fifty subjects around one first word.</h1>
+ <p class="lede">The first word revealed was <em>Read</em>. Start with a subject that calls you, then test what you learned against a friend.</p>
+ <div class="ctas"><a class="btn" href="#">Choose a subject</a><a class="btn ghost" href="#">Challenge a friend</a></div>
+ <div class="chips"><span class="chip"><b>50</b> subjects</span><span class="chip"><b>3</b> levels</span><span class="chip"><b>40</b> surah quizzes</span><span class="chip">No ads &middot; no donations</span></div>
+</div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const outer=['QURAN','SEERAH','FIQH','HADEETH','AQEEDAH','TAFSIR','HISTORY','RIBA','DAWAH','SALAH','HAJJ','SAWM'];
+function ring(id,r,n,labels){const g=document.getElementById(id);
+ for(let i=0;i<n;i++){const a=i/n*Math.PI*2,x=430+r*Math.cos(a),y=430+r*Math.sin(a);
+  const c=document.createElementNS(NS,'circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',labels&&i%3===0?3.2:1.6);
+  c.setAttribute('fill',labels&&i%3===0?'#F5C76A':'#C9D3F2');c.setAttribute('opacity',labels&&i%3===0?1:.7);g.appendChild(c);
+  if(labels&&i%3===0){const t=document.createElementNS(NS,'text');t.setAttribute('x',x+8);t.setAttribute('y',y+4);t.textContent=labels[(i/3)%labels.length];g.appendChild(t)}}}
+ring('r1',410,36,outer);ring('r2',330,14,null);
+</script>
+</body></html>

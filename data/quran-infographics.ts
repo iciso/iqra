@@ -1,3 +1,5 @@
+import type { QuestionInfographic, QuizQuestion } from "@/types/quiz"
+
 // This file contains infographic data for Quran-related quiz questions
 
 export const quranInfographics = {
@@ -501,9 +503,10 @@ export const quranInfographics = {
 }
 
 // Helper function to get infographic data for a specific question
-export function getQuranInfographic(questionId: string) {
+export function getQuranInfographic(questionId: QuizQuestion["id"]): QuestionInfographic | null {
+  const key = String(questionId)
   // Map for easy questions
-  const easyInfographicMap: Record<string, any> = {
+  const easyInfographicMap: Record<string, QuestionInfographic> = {
     // Question: What is the first Surah (chapter) of the Quran?
     "quran-1": {
       type: "process",
@@ -626,7 +629,7 @@ export function getQuranInfographic(questionId: string) {
   }
 
   // Map for advanced questions
-  const advancedInfographicMap: Record<string, any> = {
+  const advancedInfographicMap: Record<string, QuestionInfographic> = {
     "quran-11": {
       type: "timeline",
       data: [
@@ -718,5 +721,5 @@ export function getQuranInfographic(questionId: string) {
   }
 
   // Check both maps for the question ID
-  return easyInfographicMap[questionId] || advancedInfographicMap[questionId] || null
+  return easyInfographicMap[key] || advancedInfographicMap[key] || null
 }

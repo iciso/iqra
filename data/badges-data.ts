@@ -1,14 +1,15 @@
 import { 
   Award, Zap, Star, Trophy, BookOpen, Crown, Medal, Clock, Sparkles, Target,
   Scale, Book, Heart, Compass, Shield, Users, Globe, Landmark, Coins,
-  Cpu, Brain, Baby, Stethoscope, HeartHandshake, UserCheck
+  Cpu, Brain, Baby, Stethoscope, HeartHandshake, UserCheck,
+  type LucideIcon,
 } from "lucide-react"
 
 export interface Badge {
   id: string
   name: string
   description: string
-  icon: any // Lucide icon component
+  icon: LucideIcon
   color: string
   criteria: {
     type: "challenge" | "score" | "streak" | "category" | "special"

@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ChevronLeft, Maximize2, Minimize2, X } from "lucide-react"
+import { ChevronRight, ChevronLeft, Maximize2, Minimize2 } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface TimelineEvent {
   year: string
@@ -37,7 +38,7 @@ interface ChartData {
 
 interface InfographicProps {
   type: "timeline" | "comparison" | "process" | "map" | "chart"
-  data: any
+  data: unknown
   title: string
 }
 
@@ -58,37 +59,8 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
 
   const uniqueCategories = getUniqueCategories()
 
-  // Set initial category if comparison type
-  useEffect(() => {
-    if (type === "comparison" && uniqueCategories.length > 0 && !currentCategory) {
-      setCurrentCategory(uniqueCategories[0])
-    }
-  }, [type, uniqueCategories, currentCategory])
-
-  // Handle escape key to close full view
-  useEffect(() => {
-    const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && fullViewMode) {
-        setFullViewMode(false)
-      }
-    }
-
-    window.addEventListener("keydown", handleEscapeKey)
-    return () => window.removeEventListener("keydown", handleEscapeKey)
-  }, [fullViewMode])
-
-  // Prevent body scrolling when full view is open
-  useEffect(() => {
-    if (fullViewMode) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
-
-    return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [fullViewMode])
+  // The selected comparison category; the first one until the user picks another
+  const activeCategory = currentCategory ?? (type === "comparison" ? (uniqueCategories[0] ?? null) : null)
 
   const renderTimeline = (events: TimelineEvent[], forceExpanded = false) => {
     return (
@@ -159,11 +131,11 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
             {uniqueCategories.map((category, idx) => (
               <Button
                 key={idx}
-                variant={currentCategory === category ? "default" : "outline"}
+                variant={activeCategory === category ? "default" : "outline"}
                 size="sm"
                 onClick={() => setCurrentCategory(category)}
                 className={
-                  currentCategory === category
+                  activeCategory === category
                     ? "bg-green-600 hover:bg-green-700"
                     : "border-green-300 dark:border-green-700 text-green-700 dark:text-green-400"
                 }
@@ -179,7 +151,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
           <div
             key={idx}
             className={`transition-opacity duration-300 ${
-              expanded || forceExpanded || category === currentCategory ? "opacity-100" : "opacity-0 hidden"
+              expanded || forceExpanded || category === activeCategory ? "opacity-100" : "opacity-0 hidden"
             }`}
           >
             <h3 className="text-lg font-semibold mb-3 text-green-700 dark:text-green-400">{category}</h3>
@@ -195,7 +167,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
         ))}
 
         {/* Navigation for non-expanded view */}
-        {!expanded && !forceExpanded && uniqueCategories.length > 1 && !currentCategory && (
+        {!expanded && !forceExpanded && uniqueCategories.length > 1 && !activeCategory && (
           <div className="flex justify-center mt-4 space-x-2">
             <Button
               variant="outline"
@@ -322,7 +294,7 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
     )
   }
 
-  const renderChart = (chartData: ChartData, forceExpanded = false) => {
+  const renderChart = (chartData: ChartData) => {
     // For the Longest and Shortest Surahs chart, use a table representation instead
     if (chartData.title === "Longest and Shortest Surahs (by verses)") {
       return (
@@ -434,31 +406,10 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
       case "map":
         return renderMap(data as MapLocation[], forceExpanded)
       case "chart":
-        return renderChart(data as ChartData, forceExpanded)
+        return renderChart(data as ChartData)
       default:
         return <div>Infographic type not supported</div>
     }
-  }
-
-  // If in full view mode, render the full screen version
-  if (fullViewMode) {
-    return (
-      <div className="fixed inset-0 z-50 bg-white dark:bg-gray-900 overflow-auto">
-        <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-green-800 dark:text-green-400">{title}</h2>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setFullViewMode(false)}
-            className="border-green-300 dark:border-green-700 text-green-700 dark:text-green-400"
-          >
-            <X className="h-4 w-4 mr-2" />
-            Close
-          </Button>
-        </div>
-        <div className="p-6">{renderInfographic(true)}</div>
-      </div>
-    )
   }
 
   // Regular view
@@ -489,6 +440,16 @@ export default function InteractiveInfographic({ type, data, title }: Infographi
         </div>
       </div>
       <div className="p-4">{renderInfographic(false)}</div>
+
+      {/* Full View opens over the quiz, so the question and its answers stay where they were. */}
+      <Dialog open={fullViewMode} onOpenChange={setFullViewMode}>
+        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-green-800 dark:text-green-400">{title}</DialogTitle>
+          </DialogHeader>
+          {renderInfographic(true)}
+        </DialogContent>
+      </Dialog>
     </Card>
   )
 }

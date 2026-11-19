@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: true,
+  },
+  async redirects() {
+    return [
+      { source: "/categories", destination: "/subjects", permanent: true },
+      { source: "/categories/:path*", destination: "/subjects/:path*", permanent: true },
+    ]
   },
 }
 

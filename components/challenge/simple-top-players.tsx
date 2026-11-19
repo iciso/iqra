@@ -1,12 +1,14 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useEffectEvent, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Trophy, RefreshCw, Users, Database } from "lucide-react"
+import { Trophy, RefreshCw, Users } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import { getChallengePlayersAction } from "@/app/actions/challenges"
+import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 interface Player {
   id: string
@@ -16,20 +18,38 @@ interface Player {
   best_percentage: number
 }
 
-export default function SimpleTopPlayers() {
+interface SimpleTopPlayersProps {
+  // Loaded by the server page. Used for the first paint and the first load; refreshes call the Server Action.
+  initialPlayers?: ChallengePlayersResult
+}
+
+interface StoredLeaderboardEntry {
+  name: string
+  score: number
+  percentage: number
+}
+
+const FALLBACK_PLAYERS: Player[] = [] // Add fallback players if needed
+
+const usablePlayers = (result?: ChallengePlayersResult | null): Player[] =>
+  result?.success && result.players?.length
+    ? result.players.filter((player: Player) => player.username !== "Test User")
+    : []
+
+export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersProps = {}) {
   const { user, loading: authLoading } = useAuth()
-  const [players, setPlayers] = useState<Player[]>([])
-  const [loading, setLoading] = useState(true)
+  const initialRef = useRef<ChallengePlayersResult | null>(initialPlayers ?? null)
+  const [players, setPlayers] = useState<Player[]>(() => usablePlayers(initialPlayers))
+  const [loading, setLoading] = useState(() => usablePlayers(initialPlayers).length === 0)
   const [retryCount, setRetryCount] = useState(0)
   const [showAll, setShowAll] = useState(false)
-  const [dataSource, setDataSource] = useState<string>("Loading...")
+  // Where the players came from is for the console only; players never see it.
+  const [, setDataSource] = useState<string>("Loading...")
   const [isUsingFallback, setIsUsingFallback] = useState(false)
   const mountedRef = useRef(true)
   const loadingRef = useRef(false)
   const [challengeDialogOpen, setChallengeDialogOpen] = useState(false)
   const [selectedOpponent, setSelectedOpponent] = useState<Player | null>(null)
-
-  const fallbackPlayers: Player[] = [] // Add fallback players if needed
 
   const loadPlayers = async () => {
     if (loadingRef.current) {
@@ -43,17 +63,19 @@ export default function SimpleTopPlayers() {
       setIsUsingFallback(false)
       console.log("🏆 Loading top players... (attempt", retryCount + 1, ")")
 
-      // Try the API endpoint first
-      console.log("🔍 Step 1: Trying API endpoint for challenge players...")
+      // Server first: the page's own load on the first pass, the Server Action after that
+      console.log("🔍 Step 1: Loading challenge players from the server...")
       try {
-        const response = await Promise.race([
-          fetch("/api/challenges/players"),
-          new Promise((_, reject) => setTimeout(() => reject(new Error("API timeout")), 5000)),
-        ])
+        const data =
+          initialRef.current ??
+          (await Promise.race([
+            getChallengePlayersAction(),
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error("API timeout")), 5000)),
+          ]))
+        initialRef.current = null
 
-        const data = await response.json()
-        if (data.success && data.players && data.players.length > 0) {
-          const filteredData = data.players.filter((player: Player) => player.username !== "Test User")
+        const filteredData = usablePlayers(data)
+        if (filteredData.length > 0) {
           console.log("✅ Players loaded from API:", filteredData.length, "players")
           if (mountedRef.current) {
             setPlayers(filteredData)
@@ -71,9 +93,9 @@ export default function SimpleTopPlayers() {
         if (typeof window !== "undefined") {
           const stored = localStorage.getItem("quranQuizLeaderboard")
           if (stored) {
-            const leaderboardData = JSON.parse(stored)
-            const storagePlayersMap = new Map<string, any>()
-            leaderboardData.forEach((entry: any) => {
+            const leaderboardData: StoredLeaderboardEntry[] = JSON.parse(stored)
+            const storagePlayersMap = new Map<string, Player>()
+            leaderboardData.forEach((entry) => {
               if (!storagePlayersMap.has(entry.name)) {
                 storagePlayersMap.set(entry.name, {
                   id: `player-${Math.random()}`,
@@ -104,17 +126,17 @@ export default function SimpleTopPlayers() {
 
       console.log("🔍 Step 3: Using registered users as final fallback...")
       if (mountedRef.current) {
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         console.log("✅ Using registered users as fallback:", filteredFallbackPlayers.length, "users")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
       }
-    } catch (err: any) {
-      console.error("❌ Load error:", err.message)
+    } catch (err) {
+      console.error("❌ Load error:", (err as { message?: string } | null)?.message)
       if (mountedRef.current) {
         console.log("🔄 Using registered users as fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
@@ -162,29 +184,27 @@ export default function SimpleTopPlayers() {
     setTimeout(() => loadPlayers(), 100)
   }
 
-  const getSourceIcon = () => {
-    if (dataSource.includes("Neon")) return <Database className="h-4 w-4" />
-    if (dataSource.includes("Quiz Leaderboard")) return <Trophy className="h-4 w-4" />
-    return <Users className="h-4 w-4" />
-  }
 
-  const getSourceColor = () => {
-    if (dataSource.includes("Neon")) return "bg-blue-100 text-blue-800"
-    if (dataSource.includes("Quiz Leaderboard")) return "bg-green-100 text-green-800"
-    return "bg-purple-100 text-purple-800"
-  }
+
+  // Effects below call the latest loadPlayers without re-running when it changes.
+  const onLoadPlayers = useEffectEvent(() => {
+    loadPlayers()
+  })
+  const onShowAllChange = useEffectEvent(() => {
+    if (!authLoading && mountedRef.current) loadPlayers()
+  })
 
   useEffect(() => {
     console.log("🚀 SimpleTopPlayers component mounted")
     mountedRef.current = true
     if (!authLoading) {
       console.log("✅ Auth is ready, loading players...")
-      loadPlayers()
+      onLoadPlayers()
     } else {
       console.log("⏳ Auth still loading, waiting...")
       const timeout = setTimeout(() => {
         console.log("Auth loading timeout - forcing completion")
-        loadPlayers()
+        onLoadPlayers()
       }, 3000)
       return () => clearTimeout(timeout)
     }
@@ -197,21 +217,19 @@ export default function SimpleTopPlayers() {
   useEffect(() => {
     if (!authLoading && user && mountedRef.current) {
       console.log("🔄 Auth state changed, reloading players...")
-      loadPlayers()
+      onLoadPlayers()
     }
   }, [user, authLoading])
 
   useEffect(() => {
-    if (!authLoading && mountedRef.current) {
-      loadPlayers()
-    }
+    onShowAllChange()
   }, [showAll])
 
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
       if (loading && mountedRef.current) {
         console.log("⚠️ Safety timeout triggered - forcing fallback data")
-        const filteredFallbackPlayers = fallbackPlayers.filter((player) => player.username !== "Test User")
+        const filteredFallbackPlayers = FALLBACK_PLAYERS.filter((player) => player.username !== "Test User")
         setPlayers(filteredFallbackPlayers)
         setDataSource("Registered Users")
         setIsUsingFallback(true)
@@ -275,10 +293,6 @@ export default function SimpleTopPlayers() {
               <Trophy className="h-4 w-4 md:h-5 md:w-5 text-yellow-500" />
               <span className="text-sm md:text-base">{cardTitle}</span>
             </div>
-            <span className={`text-xs px-1 md:px-2 py-0.5 md:py-1 rounded flex items-center gap-1 ${getSourceColor()}`}>
-              {getSourceIcon()}
-              <span className="hidden xs:inline">{dataSource}</span>
-            </span>
           </div>
           <div className="flex gap-1 md:gap-2">
             <Button

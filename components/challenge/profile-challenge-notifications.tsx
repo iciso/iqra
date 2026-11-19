@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useSyncExternalStore } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Bell, Check, X, Clock, RefreshCw, User } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
+import { getPendingChallengesAction, respondToChallengeAction } from "@/app/actions/challenges"
 
 interface Challenge {
   id: string
@@ -48,22 +49,43 @@ const categoryLabels: Record<string, string> = {
   hindu: "Hinduism & Islam",
 }
 
+// Saved name from localStorage. Server snapshot is undefined = "not read yet", so the
+// server render and the hydration render agree (both render nothing).
+const subscribeStorage = (onChange: () => void) => {
+  window.addEventListener("storage", onChange)
+  return () => window.removeEventListener("storage", onChange)
+}
+const readSavedName = () => localStorage.getItem(NAME_KEY)
+const noSavedNameOnServer = (): string | null | undefined => undefined
+
+// Only ever called client-side: the component renders nothing until localStorage is read.
+const formatTimeLeft = (dateString: string) => {
+  const diffMs = new Date(dateString).getTime() - Date.now()
+  if (diffMs <= 0) return "Expired"
+  const hours = Math.floor(diffMs / (1000 * 60 * 60))
+  const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))
+  return hours > 0 ? `${hours}h ${minutes}m left` : `${minutes}m left`
+}
+
 export default function ProfileChallengeNotifications() {
   const router = useRouter()
-  const [playerName, setPlayerName] = useState<string | null>(null)
+  const storedName = useSyncExternalStore(subscribeStorage, readSavedName, noSavedNameOnServer)
+  // Set by "Check" (save) and "Not you?" (clear); undefined = follow localStorage.
+  const [nameOverride, setNameOverride] = useState<string | null | undefined>(undefined)
+  const playerName = nameOverride !== undefined ? nameOverride : (storedName ?? null)
+  const checked = storedName !== undefined // has localStorage been read yet?
   const [nameInput, setNameInput] = useState("")
   const [nameError, setNameError] = useState("")
   const [challenges, setChallenges] = useState<Challenge[]>([])
-  const [loading, setLoading] = useState(false)
-  const [checked, setChecked] = useState(false) // has localStorage been read yet?
+  const [loading, setLoading] = useState(true)
 
-  // Read localStorage only on client
+  // First load for a saved name; state is only set in the promise callbacks.
   useEffect(() => {
-    const saved = localStorage.getItem(NAME_KEY)
-    setPlayerName(saved)
-    setChecked(true)
-    if (saved) loadChallenges(saved)
-  }, [])
+    if (!storedName) return
+    getPendingChallengesAction(storedName)
+      .then((rows) => setChallenges(rows || []), () => setChallenges([]))
+      .finally(() => setLoading(false))
+  }, [storedName])
 
   const saveName = () => {
     const trimmed = nameInput.trim()
@@ -73,7 +95,7 @@ export default function ProfileChallengeNotifications() {
     }
     localStorage.setItem(NAME_KEY, trimmed)
     localStorage.setItem("tempChallengerId", trimmed)
-    setPlayerName(trimmed)
+    setNameOverride(trimmed)
     setNameError("")
     loadChallenges(trimmed)
   }
@@ -81,9 +103,7 @@ export default function ProfileChallengeNotifications() {
   const loadChallenges = async (name: string) => {
     setLoading(true)
     try {
-      const res = await fetch(`/api/challenges?name=${encodeURIComponent(name)}`)
-      const result = await res.json()
-      setChallenges(result.challenges || [])
+      setChallenges((await getPendingChallengesAction(name)) || [])
     } catch {
       setChallenges([])
     } finally {
@@ -92,14 +112,10 @@ export default function ProfileChallengeNotifications() {
   }
 
   const respond = async (challengeId: string, action: "accept" | "decline") => {
+    if (!playerName) return
     try {
-      const res = await fetch("/api/challenges/respond", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ challengeId, action }),
-      })
-      const result = await res.json()
-      if (!res.ok) throw new Error(result.error || "Failed")
+      const result = await respondToChallengeAction({ challengeId, action, playerName })
+      if (!result.success) throw new Error(result.error || "Failed")
 
       setChallenges((prev) => prev.filter((c) => c.id !== challengeId))
 
@@ -118,17 +134,9 @@ export default function ProfileChallengeNotifications() {
       router.push(
         `/quiz?category=${c.category}&difficulty=${c.difficulty}&challenge=${c.id}&questions=${c.question_count}${c.section_number ? `&section=${c.section_number}` : ""}&opponentName=${encodeURIComponent(c.challenger_name)}&challengerTurn=false`
       )
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" })
+    } catch (err) {
+      toast({ title: "Error", description: (err as { message?: string } | null)?.message, variant: "destructive" })
     }
-  }
-
-  const formatTimeLeft = (dateString: string) => {
-    const diffMs = new Date(dateString).getTime() - Date.now()
-    if (diffMs <= 0) return "Expired"
-    const hours = Math.floor(diffMs / (1000 * 60 * 60))
-    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))
-    return hours > 0 ? `${hours}h ${minutes}m left` : `${minutes}m left`
   }
 
   // Still reading localStorage — render nothing to avoid flash
@@ -195,7 +203,7 @@ export default function ProfileChallengeNotifications() {
               onClick={() => {
                 localStorage.removeItem(NAME_KEY)
                 localStorage.removeItem("tempChallengerId")
-                setPlayerName(null)
+                setNameOverride(null)
                 setNameInput("")
                 setChallenges([])
               }}

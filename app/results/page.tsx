@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Award, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle, Users } from "lucide-react"
+import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle, Users } from "lucide-react"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
 import badgesData from "@/data/badges-data"
@@ -19,32 +19,122 @@ import { submitQuizResult, getChallenge } from "@/lib/supabase-queries"
 import { NameInputModal } from "@/components/quiz/name-input-modal"
 import { addToLeaderboard } from "@/utils/leaderboard"
 
+// The finished quiz, as quiz-container left it in localStorage.
+interface StoredQuiz {
+  score: number | null
+  totalQuestions: number | null
+  categoryId: string | null
+  categoryTitle: string
+  difficulty: string | null
+  challenge: string | null
+  challengerTurn: boolean
+  opponentId: string | null
+  timeLeft: number | null
+  nextChallenge: { category: string; difficulty: string; challenge: string } | null
+  newBadges: typeof badgesData
+}
+
+const EMPTY_QUIZ: StoredQuiz = {
+  score: null,
+  totalQuestions: null,
+  categoryId: null,
+  categoryTitle: "",
+  difficulty: null,
+  challenge: null,
+  challengerTurn: false,
+  opponentId: null,
+  timeLeft: null,
+  nextChallenge: null,
+  newBadges: [],
+}
+
+// Reads the finished quiz once, when the page mounts in the browser. It also
+// awards any new badges (checkForBadges), so it must run only once per visit.
+function readStoredQuiz(): StoredQuiz {
+  if (typeof window === "undefined") return EMPTY_QUIZ
+  const quiz: StoredQuiz = { ...EMPTY_QUIZ }
+
+  try {
+    const savedScore = localStorage.getItem("quizScore")
+    const savedTotal = localStorage.getItem("totalQuestions")
+    const savedCategory = localStorage.getItem("quizCategory")
+    const savedDifficulty = localStorage.getItem("quizDifficulty")
+    const savedChallenge = localStorage.getItem("quizChallenge")
+    const savedTimeLeft = localStorage.getItem("quizTimeLeft")
+    const savedTimeTotal = localStorage.getItem("quizTimeTotal")
+    const savedChallengerTurn = localStorage.getItem("challengerTurn") === "true"
+
+    console.log("🎯 RESULTS: Challenge detection values:", {
+      savedChallenge,
+      savedChallengerTurn,
+      hasChallenge: !!savedChallenge,
+      isChallengerTurn: savedChallengerTurn,
+      hasScore: !!savedScore,
+      showChallengeSubmitted: !!savedChallenge && savedChallengerTurn && !!savedScore,
+    })
+
+    quiz.challengerTurn = savedChallengerTurn
+    quiz.opponentId = localStorage.getItem("quizOpponentId")
+
+    if (savedScore && savedTotal) {
+      quiz.score = Number.parseInt(savedScore)
+      quiz.totalQuestions = Number.parseInt(savedTotal)
+
+      if (savedChallenge) {
+        quiz.challenge = savedChallenge
+        quiz.nextChallenge = getNextChallenge(savedCategory || undefined, savedDifficulty || undefined)
+      }
+    }
+
+    if (savedCategory) {
+      quiz.categoryId = savedCategory
+      const category = getCategory(savedCategory)
+      if (category) quiz.categoryTitle = category.title
+    }
+
+    if (savedDifficulty) quiz.difficulty = savedDifficulty
+    if (savedTimeLeft) quiz.timeLeft = Number.parseInt(savedTimeLeft)
+
+    // Check for new badges
+    if (savedScore && savedTotal) {
+      const awardedBadgeIds = checkForBadges({
+        score: Number.parseInt(savedScore),
+        totalQuestions: Number.parseInt(savedTotal),
+        category: savedCategory || undefined,
+        difficulty: savedDifficulty || undefined,
+        challenge: savedChallenge || undefined,
+        timeLeft: savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
+        timeTotal: savedTimeTotal ? Number.parseInt(savedTimeTotal) : undefined,
+      })
+
+      if (awardedBadgeIds.length > 0) {
+        quiz.newBadges = badgesData.filter((badge) => awardedBadgeIds.includes(badge.id))
+      }
+    }
+  } catch (error) {
+    console.error("❌ Error accessing localStorage:", error)
+  }
+
+  return quiz
+}
+
+// true in the browser, false on the server and during hydration.
+const noSubscribe = () => () => {}
+const onClient = () => true
+const onServer = () => false
+
 export default function ResultsPage() {
   const router = useRouter()
   const { user, profile, loading } = useAuth()
-  const [score, setScore] = useState<number | null>(null)
-  const [totalQuestions, setTotalQuestions] = useState<number | null>(null)
+  const isClient = useSyncExternalStore(noSubscribe, onClient, onServer)
+  // Read once on mount (lazy initializer), never during server rendering.
+  const [stored] = useState(readStoredQuiz)
+  const { score, totalQuestions, categoryId, categoryTitle, difficulty, challenge, timeLeft, nextChallenge } = stored
   const [submitted, setSubmitted] = useState(false)
-  const [isClient, setIsClient] = useState(false)
-  const [categoryId, setCategoryId] = useState<string | null>(null)
-  const [difficulty, setDifficulty] = useState<string | null>(null)
-  const [challenge, setChallenge] = useState<string | null>(null)
-  const [categoryTitle, setCategoryTitle] = useState("")
-  const [newBadges, setNewBadges] = useState<typeof badgesData>([])
-  const [timeLeft, setTimeLeft] = useState<number | null>(null)
-  const [timeTotal, setTimeTotal] = useState<number | null>(null)
+  const [newBadges, setNewBadges] = useState(stored.newBadges)
   const [opponent, setOpponent] = useState<Opponent | null>(null)
-  const [nextChallenge, setNextChallenge] = useState<{
-    category: string
-    difficulty: string
-    challenge: string
-  } | null>(null)
   const [saving, setSaving] = useState(false)
-  const [challengeData, setChallengeData] = useState<any>(null)
-  const [isChallenger, setIsChallenger] = useState(false)
-  const [challengerTurn, setChallengerTurn] = useState(false)
   const [authReady, setAuthReady] = useState(false)
-  const [showNameModal, setShowNameModal] = useState(false)
   const [nameModalSubmitted, setNameModalSubmitted] = useState(false)
   const saveStartedRef = useRef(false)
   const [saveError, setSaveError] = useState(false)
@@ -83,138 +173,55 @@ export default function ResultsPage() {
     })
   }, [user, profile, loading, authReady])
 
+  // For a challenge, fetch the opponent from Supabase once the user is known.
   useEffect(() => {
-    setIsClient(true)
+    if (!challenge || score === null || totalQuestions === null || !user) return
+    const { challengerTurn, opponentId } = stored
 
-    // Get score from localStorage
-    try {
-      const savedScore = localStorage.getItem("quizScore")
-      const savedTotal = localStorage.getItem("totalQuestions")
-      const savedCategory = localStorage.getItem("quizCategory")
-      const savedDifficulty = localStorage.getItem("quizDifficulty")
-      const savedChallenge = localStorage.getItem("quizChallenge")
-      const savedTimeLeft = localStorage.getItem("quizTimeLeft")
-      const savedTimeTotal = localStorage.getItem("quizTimeTotal")
-      const savedOpponentId = localStorage.getItem("quizOpponentId")
-      const savedChallengerTurn = localStorage.getItem("challengerTurn") === "true"
+    const fetchChallengeData = async () => {
+      try {
+        const challengeData = await getChallenge(challenge)
+        console.log("📋 Challenge data:", challengeData)
 
-      console.log("🎯 RESULTS: Challenge detection values:", {
-        savedChallenge,
-        savedChallengerTurn,
-        hasChallenge: !!savedChallenge,
-        isChallengerTurn: savedChallengerTurn,
-        hasScore: !!savedScore,
-        showChallengeSubmitted: !!savedChallenge && savedChallengerTurn && !!savedScore,
-      })
+        if (challengeData) {
+          const isUserChallenger = challengeData.challenger_id === user.id
 
-      setChallengerTurn(savedChallengerTurn)
-
-      if (savedScore && savedTotal) {
-        const parsedScore = Number.parseInt(savedScore)
-        const parsedTotal = Number.parseInt(savedTotal)
-
-        setScore(parsedScore)
-        setTotalQuestions(parsedTotal)
-
-        // Generate opponent for challenges
-        if (savedChallenge) {
-          setChallenge(savedChallenge)
-
-          // Fetch challenge data from Supabase
-          const fetchChallengeData = async () => {
-            try {
-              if (!user) return
-
-              const challengeData = await getChallenge(savedChallenge)
-              console.log("📋 Challenge data:", challengeData)
-
-              if (challengeData) {
-                setChallengeData(challengeData)
-                const isUserChallenger = challengeData.challenger_id === user.id
-                setIsChallenger(isUserChallenger)
-
-                // Set opponent based on challenge data
-                const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
-                if (opponentData) {
-                  const opponentInfo = {
-                    id: opponentData.id,
-                    name: opponentData.full_name || opponentData.username || "Opponent",
-                    avatar_url: opponentData.avatar_url,
-                    level: savedChallengerTurn ? "Waiting for response" : "Challenger",
-                    score: isUserChallenger ? null : challengeData.challenger_score,
-                  }
-                  setOpponent(opponentInfo)
-                }
-              }
-            } catch (error) {
-              console.error("Error fetching challenge data:", error)
-
-              // Fallback to localStorage opponent
-              const newOpponent = savedOpponentId
-                ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
-                : getRandomOpponent()
-
-              if (newOpponent) {
-                newOpponent.score = generateBotScore(parsedScore, parsedTotal)
-                setOpponent(newOpponent)
-              }
+          // Set opponent based on challenge data
+          const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
+          if (opponentData) {
+            const opponentInfo: Opponent & { avatar_url?: string | null } = {
+              id: opponentData.id,
+              name: opponentData.full_name || opponentData.username || "Opponent",
+              type: "user",
+              avatar_url: opponentData.avatar_url,
+              level: challengerTurn ? "Waiting for response" : "Challenger",
+              score: isUserChallenger ? undefined : (challengeData.challenger_score ?? undefined),
             }
+            setOpponent(opponentInfo)
           }
+        }
+      } catch (error) {
+        console.error("Error fetching challenge data:", error)
 
-          fetchChallengeData()
-          setNextChallenge(getNextChallenge(savedCategory || undefined, savedDifficulty || undefined))
+        // Fallback to localStorage opponent
+        const newOpponent: Opponent | null = opponentId
+          ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+          : getRandomOpponent()
+
+        if (newOpponent) {
+          newOpponent.score = generateBotScore(score, totalQuestions)
+          setOpponent(newOpponent)
         }
       }
-
-      // Set other data
-      if (savedCategory) {
-        setCategoryId(savedCategory)
-        const category = getCategory(savedCategory)
-        if (category) {
-          setCategoryTitle(category.title)
-        }
-      }
-
-      if (savedDifficulty) setDifficulty(savedDifficulty)
-      if (savedTimeLeft) setTimeLeft(Number.parseInt(savedTimeLeft))
-      if (savedTimeTotal) setTimeTotal(Number.parseInt(savedTimeTotal))
-
-      // Check for new badges
-      if (savedScore && savedTotal) {
-        const awardedBadgeIds = checkForBadges({
-          score: Number.parseInt(savedScore),
-          totalQuestions: Number.parseInt(savedTotal),
-          category: savedCategory || undefined,
-          difficulty: savedDifficulty || undefined,
-          challenge: savedChallenge || undefined,
-          timeLeft: savedTimeLeft ? Number.parseInt(savedTimeLeft) : undefined,
-          timeTotal: savedTimeTotal ? Number.parseInt(savedTimeTotal) : undefined,
-        })
-
-        if (awardedBadgeIds.length > 0) {
-          const newBadgeDetails = badgesData.filter((badge) => awardedBadgeIds.includes(badge.id))
-          setNewBadges(newBadgeDetails)
-        }
-      }
-    } catch (error) {
-      console.error("❌ Error accessing localStorage:", error)
     }
-  }, [user])
+
+    fetchChallengeData()
+  }, [user, challenge, score, totalQuestions, stored])
 
   // Show name modal only for non-challenge quizzes.
   // Challenge scores are already saved by the quiz-container with the correct name —
   // showing the modal again would cause a duplicate Neon write.
-  useEffect(() => {
-    if (score !== null && totalQuestions !== null && !nameModalSubmitted) {
-      const savedChallenge = typeof window !== 'undefined' 
-        ? localStorage.getItem('quizChallenge') 
-        : null
-      // Only show modal for regular (non-challenge) quizzes
-      if (!savedChallenge) {
-        setShowNameModal(true)
-      }
-    }
-  }, [score, totalQuestions, nameModalSubmitted])
+  const showNameModal = score !== null && totalQuestions !== null && !nameModalSubmitted && !challenge
 
   // The ONE place a regular (non-challenge) quiz result is written to the database.
   const saveResult = async (name?: string) => {
@@ -275,7 +282,6 @@ export default function ResultsPage() {
 
       localStorage.setItem("nameModalSubmittedThisSession", "true")
       setNameModalSubmitted(true)
-      setShowNameModal(false)
 
       setTimeout(() => {
         router.push("/leaderboard")
@@ -290,7 +296,6 @@ export default function ResultsPage() {
   const handleNameSkip = () => {
     localStorage.setItem("nameModalSubmittedThisSession", "true")
     setNameModalSubmitted(true)
-    setShowNameModal(false)
     void saveResult()
   }
 
@@ -305,17 +310,13 @@ export default function ResultsPage() {
     return "Keep studying. You can improve! Astaghufiruallah!"
   }
 
-  const viewChallenges = () => {
-    router.push("/challenges")
-  }
-
   const tryAgain = () => {
     if (challenge) {
       router.push(`/challenges`)
     } else if (categoryId && difficulty) {
       router.push(`/quiz?category=${categoryId}&difficulty=${difficulty}`)
     } else {
-      router.push("/categories")
+      router.push("/subjects")
     }
   }
 
@@ -332,7 +333,7 @@ export default function ResultsPage() {
   // Show loading state while auth is loading
   if (!isClient || !authReady) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100">
+      <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading your results...</p>
@@ -408,7 +409,7 @@ export default function ResultsPage() {
                 <span className="text-lg font-medium dark:text-white">Waiting for opponent</span>
               </div>
               <p className="text-blue-600 dark:text-blue-400 mb-4">
-                Your challenge has been sent to {opponent?.name || "your opponent"}. You'll be notified when they
+                Your challenge has been sent to {opponent?.name || "your opponent"}. You&apos;ll be notified when they
                 respond.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 w-full">
@@ -428,10 +429,10 @@ export default function ResultsPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4">
-            <Link href="/categories">
+            <Link href="/subjects">
               <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Categories
+                Subjects
               </Button>
             </Link>
             <Button
@@ -449,7 +450,7 @@ export default function ResultsPage() {
             <div className="w-full max-w-md mx-auto mb-6">
               <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
               <ChallengeResultsComparison
-                userName={isAuthenticated ? profile.full_name || profile.username || "You" : "You"}
+                userName={isAuthenticated ? profile?.full_name || profile?.username || "You" : "You"}
                 userScore={score || 0}
                 opponent={opponent}
                 totalQuestions={totalQuestions || 10}
@@ -577,7 +578,7 @@ export default function ResultsPage() {
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Complete a quiz to see your results here!
                     </p>
-                    <Link href="/categories">
+                    <Link href="/subjects">
                       <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                         Start a Quiz
                       </Button>
@@ -586,10 +587,10 @@ export default function ResultsPage() {
                 )}
               </CardContent>
               <CardFooter className="flex justify-center gap-4">
-                <Link href={challenge ? "/challenges" : "/categories"}>
+                <Link href={challenge ? "/challenges" : "/subjects"}>
                   <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    {challenge ? "Challenges" : "Categories"}
+                    {challenge ? "Challenges" : "Subjects"}
                   </Button>
                 </Link>
                 <Button

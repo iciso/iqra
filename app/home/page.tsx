@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
  
 export default function HomePage() {
   return (
-    <div className="container mx-auto py-8 md:py-12 px-4">
+    <div className="container mx-auto py-8 md:py-12 w-full">
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">
           Welcome to the Islamic Knowledge Hub
@@ -24,18 +24,18 @@ export default function HomePage() {
           <CardContent className="flex-grow px-4 py-4 md:px-6">
             <p>
               The IQRA learning mode provides a structured approach to learning about various aspects of Islam. Test
-              your knowledge, learn from explanations, and track your progress across different categories.
+              your knowledge, learn from explanations, and track your progress across different subjects.
             </p>
             <ul className="list-disc list-inside mt-4 space-y-1">
               <li>Multiple difficulty levels</li>
               <li>Detailed explanations for each answer</li>
               <li>Track your learning progress</li>
-              <li>Covers over 30 Islamic knowledge categories</li>
+              <li>Covers over 30 Islamic knowledge subjects</li>
               <li>Introduced interactive Surah quizzes and dedicated Tamil sections</li>
             </ul>
           </CardContent>
           <CardFooter className="px-4 pb-4 md:px-6">
-            <a href="/categories" className="w-full">
+            <a href="/subjects" className="w-full">
               <Button size="lg" className="w-full text-sm md:text-base">
                 Start Learning
               </Button>

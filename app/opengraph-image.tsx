@@ -1,7 +1,10 @@
+import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
-// Route segment config
-export const runtime = "edge"
+// Node runtime (the default): the logo is read from disk below. On the edge
+// runtime a relative src like "/logo.png" fails - ImageResponse needs an
+// absolute URL or inline data, so this route used to error.
 
 // Image metadata
 export const alt = "IQRA Islamic Quiz Rivalry App"
@@ -13,12 +16,14 @@ export const contentType = "image/png"
 
 // Image generation
 export default async function Image() {
+  const logo = await readFile(join(process.cwd(), "public/logo.png"))
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`
+
   return new ImageResponse(
     // ImageResponse JSX element
     <div
       style={{
         fontSize: 128,
-        background: "white",
         width: "100%",
         height: "100%",
         display: "flex",
@@ -29,7 +34,7 @@ export default async function Image() {
       }}
     >
       <img
-        src="/logo.png"
+        src={logoSrc}
         alt="IQRA Logo"
         style={{
           width: "300px",

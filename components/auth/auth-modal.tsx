@@ -38,10 +38,10 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         setError(signInError.message || "Failed to sign in")
       } else {
         onClose()
-        router.push("/categories")
+        router.push("/subjects")
       }
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in")
+    } catch (err) {
+      setError((err as { message?: string } | null)?.message || "Failed to sign in")
     } finally {
       setLoading(false)
     }
@@ -76,10 +76,10 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         setError(signUpError.message || "Failed to sign up")
       } else {
         onClose()
-        router.push("/categories")
+        router.push("/subjects")
       }
-    } catch (err: any) {
-      setError(err.message || "Failed to sign up")
+    } catch (err) {
+      setError((err as { message?: string } | null)?.message || "Failed to sign up")
     } finally {
       setLoading(false)
     }

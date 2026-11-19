@@ -61,26 +61,30 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className="light overflow-x-hidden" style={{ colorScheme: "light" }}>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-hidden" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
+        {/* Root layout <head> applies to every route; this rule targets pages/_document. */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
           rel="stylesheet"
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen bg-emerald-50/30`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <AuthProvider>
-            <div className="min-h-screen flex flex-col w-full max-w-full overflow-x-hidden">
-              <Header />
-              <main className="flex-1 w-full max-w-full overflow-x-hidden px-2 sm:px-4">{children}</main>
-            </div>
-            <Toaster />
-          </AuthProvider>
-        </ThemeProvider>
+      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen bg-emerald-50/30 dark:bg-background`}>
+        <div className="max-w-screen-2xl mx-auto my-auto">
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <AuthProvider>
+          <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
+            <Header />
+            <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+          </div>
+          <Toaster />
+        </AuthProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   )

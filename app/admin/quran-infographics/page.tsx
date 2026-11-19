@@ -5,10 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { getQuizQuestions } from "@/data/quiz-data-manager"
 import { quranInfographicCandidates } from "@/data/quran-infographics-questions"
+import type { QuizQuestion } from "@/types/quiz"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 
 export default function QuranInfographicsPreviewPage() {
-  const [questions, setQuestions] = useState<any[]>([])
+  const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [loaded, setLoaded] = useState(false)
 
   const loadQuestions = () => {
@@ -16,7 +17,7 @@ export default function QuranInfographicsPreviewPage() {
       const quranQuestions = getQuizQuestions("quran", "easy")
       // Filter to only show questions with infographics
       const questionsWithInfographics = quranQuestions.filter(
-        (q) => q.hasInfographic && quranInfographicCandidates.includes(q.id),
+        (q) => q.hasInfographic && quranInfographicCandidates.includes(String(q.id)),
       )
       setQuestions(questionsWithInfographics)
       setLoaded(true)
@@ -64,7 +65,7 @@ export default function QuranInfographicsPreviewPage() {
                   <strong className="text-gray-700 dark:text-gray-300">Explanation:</strong> {question.explanation}
                 </div>
 
-                {question.hasInfographic && (
+                {question.hasInfographic && question.infographicType && (
                   <div className="mt-6">
                     <h3 className="text-lg font-medium mb-3 text-green-700 dark:text-green-400">
                       Interactive Infographic

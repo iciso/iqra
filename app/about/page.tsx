@@ -1,14 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from 'react';
-import { ArrowRight, ArrowLeft, Github, BookOpen, Database, Album, Users, Clock, Trophy, Gamepad2, MessageSquare } from "lucide-react";
+import { ArrowLeft, Github, Album, Trophy, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
+import AboutTabs from "@/components/about/about-tabs";
 
 /*
 IQRA To do list:
 1) To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
 iqra/data/
-iqra/app/categories/page
+iqra/app/subjects/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
 iqra/components/challenge/category-first-challenge-sender.tsx
 iqra/data/quiz-data-manager.tsx 
@@ -164,7 +166,7 @@ const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-background">
       <main className="container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-12">
           <div className="flex justify-center mb-8">
@@ -174,12 +176,15 @@ export default function AboutPage() {
           <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
             The first freeware open-source Islamic knowledge quiz app with competitive challenges
           </p>
+        </section>
+        <AboutTabs mission={<>
+        <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            or This is an ongoing charity for the sake of Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, 
+            or This is an ongoing charity for the sake of Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, 
             The Entirely Generous.<br />
             Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.
           </p>
@@ -198,24 +203,25 @@ export default function AboutPage() {
             <li><strong>Progress Tracking</strong> - Monitor your learning journey with detailed statistics</li>
             <li><strong>Badges & Achievements</strong> - Earn badges as you master different knowledge areas</li>
             <li><strong>Responsive design</strong> - For desktop and mobile use</li>
-            <li><strong>Contributions & Recognitions</strong> - Cash Rewards for identifying errors or suggesting improvements </li>
+            <li><strong>Contributions & Recognitions</strong> - Recognition for identifying errors or suggesting improvements </li>
           </ul>
         </section>
 
                   
+        </>} quizzes={<>
           {/* IQRA Quiz Distribution Table - Newly Introduced */}
-<section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6">
+<section className="my-10 rounded-2xl border border-emerald-200 bg-white p-4 shadow-lg sm:p-6 dark:border-emerald-800 dark:bg-card">
 
                      <div id="iqra-quizzes" className="mb-6 text-center">
-              <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl">
+              <h2 className="text-2xl font-extrabold text-emerald-800 sm:text-3xl dark:text-emerald-300">
                 📊 IQRA Quizzes
               </h2>
             
-              <p className="mt-2 text-sm text-gray-600 sm:text-base">
+              <p className="mt-2 text-sm text-gray-600 sm:text-base dark:text-muted-foreground">
                 Category-wise Distribution of Questions by Difficulty Level
               </p>
             
-              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700">
+              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-gray-700 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
                 <p className="mb-3">
                   <strong>Choose your learning level:</strong>
                   {" "}Select the Level: 
@@ -253,17 +259,17 @@ export default function AboutPage() {
     <table className="w-full min-w-[520px] border-collapse text-sm">
 
       <thead>
-        <tr className="bg-emerald-100 text-emerald-900">
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-left font-bold">
+        <tr className="bg-emerald-100 text-emerald-900 dark:bg-emerald-900/60 dark:text-emerald-100">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-left font-bold">
             Category
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Easy
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Intermediate
           </th>
-          <th className="border-b-2 border-emerald-200 px-3 py-3 text-center font-bold">
+          <th className="border-b-2 border-emerald-200 dark:border-emerald-800 px-3 py-3 text-center font-bold">
             Advanced
           </th>
         </tr>
@@ -275,12 +281,12 @@ export default function AboutPage() {
             key={item.category}
             className={
               index % 2 === 0
-                ? "bg-white hover:bg-emerald-50"
-                : "bg-gray-50 hover:bg-emerald-50"
+                ? "bg-white hover:bg-emerald-50 dark:bg-card dark:hover:bg-emerald-950/60"
+                : "bg-gray-50 hover:bg-emerald-50 dark:bg-muted/40 dark:hover:bg-emerald-950/60"
             }
           >
             
-            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700">
+            <td className="border-b border-gray-100 px-3 py-2.5 font-medium text-gray-700 dark:border-border dark:text-foreground">
             <div className="flex flex-wrap items-center gap-2">
               <span>{item.category}</span>
           
@@ -321,22 +327,22 @@ export default function AboutPage() {
               </a>
             </div>
           </td>
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.easy}
             </td>
 
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.intermediate}
             </td>
 
-            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums">
+            <td className="border-b border-gray-100 px-3 py-2.5 text-center tabular-nums dark:border-border">
               {item.advanced}
             </td>
           </tr>
         ))}
 
         {/* Total Row */}
-        <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900">
+        <tr className="bg-gradient-to-r from-emerald-100 to-amber-100 font-extrabold text-emerald-900 dark:from-emerald-900/70 dark:to-amber-900/50 dark:text-emerald-100">
           <td className="border-t-2 border-emerald-300 px-3 py-4">
             TOTAL {" "}{totalCategory.toLocaleString()}
           </td>
@@ -369,6 +375,7 @@ export default function AboutPage() {
   </div>
         </section>
 
+        </>} players={<>
        {/* Player Contributions & Recognition */}
 <section
   id="player-contributions-dhanish-ali"
@@ -389,7 +396,7 @@ export default function AboutPage() {
 
     <h2 className="mb-4 text-3xl font-extrabold
       text-green-800 dark:text-green-400">
-      Celebrating Our Players' Contributions!
+      Celebrating Our Players&apos; Contributions!
     </h2>
 
     <p className="text-lg leading-relaxed
@@ -397,7 +404,7 @@ export default function AboutPage() {
       IQRA belongs not only to its creators, but also to the
       players who  make it better. Every correction,
       constructive suggestion, and improvement identified by
-      our players can  make IQRA's Islamic knowledge,
+      our players can  make IQRA&apos;s Islamic knowledge,
       data, and user interface more accurate and useful
       for everyone.
     </p>
@@ -433,11 +440,8 @@ export default function AboutPage() {
               <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
                 No.
               </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
+              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-left w-[88%]">
                 💡 Contribution
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
-                💰 Reward
               </th>
             </tr>
           </thead>
@@ -450,7 +454,7 @@ export default function AboutPage() {
                   1
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">📖</span>
                   <div>
@@ -458,9 +462,6 @@ export default function AboutPage() {
                     <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
                   </div>
                 </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
               </td>
             </tr>
 
@@ -471,7 +472,7 @@ export default function AboutPage() {
                   2
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl"> 🕌</span>
                   <div>
@@ -479,9 +480,6 @@ export default function AboutPage() {
                     <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
                   </div>
                 </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
               </td>
             </tr>
 
@@ -492,7 +490,7 @@ export default function AboutPage() {
                   3
                 </span>
               </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
+              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">📗</span>
                   <div>
@@ -501,27 +499,13 @@ export default function AboutPage() {
                   </div>
                 </div>
               </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Total Reward Row */}
-            <tr className="text-lg font-bold text-white">
-              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
-                🎁 Total reward
-              </td>
-              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
-                ⪧ ₹750 ⪦
-              </td>
             </tr>
           </tbody>
         </table>
       </div>
    {/* End of Table */}
 
-    <div className="mx-auto grid max-w-md grid-cols-1
-      gap-3 sm:grid-cols-2">
+    <div className="mx-auto grid max-w-xs grid-cols-1 gap-3">
 
       <div className="rounded-lg bg-green-50 p-4
         dark:bg-green-950">
@@ -534,46 +518,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="rounded-lg bg-amber-50 p-4
-        dark:bg-amber-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Reward Earned
-        </p>
-        <p className="text-3xl font-extrabold text-amber-700
-          dark:text-amber-400">
-          ₹750
-        </p>
-        <p className="mt-1 text-xs text-gray-600
-          dark:text-gray-300">
-          ₹250 per accepted suggestion
-        </p>
-      </div>
-
     </div>
-  </div>
-
-  <div className="rounded-xl bg-green-100 p-5 text-center
-    dark:bg-green-900/50">
-
-    <h3 className="mb-3 text-xl font-bold
-      text-green-800 dark:text-green-300">
-      🎉 Reward Presentation — Insha Allah
-    </h3>
-
-    <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali's total reward of ₹750 will be presented
-      during the Kattoo Yamani (KY) Family Meet 2026.
-    </p>
-
-    <p className="font-bold text-green-800
-      dark:text-green-300">
-      📅 26 December 2026
-    </p>
-
-    <p className="font-semibold text-gray-700
-      dark:text-gray-200">
-      📍 PWD Beach Rest House, Alleppey
-    </p>
   </div>
 
   <p className="mt-6 text-center text-sm italic
@@ -595,12 +540,13 @@ export default function AboutPage() {
     
     Help us make IQRA better,
     one thoughtful contribution at a time.
-    May Allah ﷻ reward everyone who contributes
+    May Allah <span className="font-arabic">ﷻ</span> reward everyone who contributes
     sincerely to beneficial Islamic learning. Ameen.
   </p>
 </section>
  {/* End of Player Contributors Note */}
 
+        </>} more={<>
  {/* Open Source & AI  Contributions*/}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Open Source</h2>
@@ -643,20 +589,21 @@ export default function AboutPage() {
             <li>Next.js - React framework for server-rendered applications</li>
             <li>TypeScript - For type safety and better developer experience</li>
             <li>Tailwind CSS - For responsive and customizable styling</li>
-            <li>Neon - For authentication and real-time database</li>
+            <li>Supabase - For sign-in (phone authentication)</li>
+            <li>Neon - Serverless Postgres for quiz results, leaderboard, profiles and challenges</li>
             <li>Vercel - For deployment and hosting</li>
           </ul>
           <div className="flex flex-wrap gap-4 mt-4 justify-center">
-            <img src="/images/design-mode/logo-dark.png" alt="Neon Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
-            <img src="/images/design-mode/Icon_light_background.png" 
-              alt="Vercel Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
+            <Image src="/images/design-mode/logo-dark.png" width={581} height={113} alt="Supabase Logo" className="h-10 w-auto hover:scale-105 transition-transform invert hue-rotate-180 dark:invert-0 dark:hue-rotate-0" />
+            <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
+              alt="Next.js Logo" className="h-10 w-auto hover:scale-105 transition-transform dark:invert" />
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            All praise and thanks are due to Allah <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
+            All praise and thanks are due to Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
             The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, 
             Ameen, Summa Ameen.
           </p>
@@ -671,7 +618,7 @@ export default function AboutPage() {
               >
                 Mohamed Essa Rafique
               </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. 
-              May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> reward{" "}
+              May Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span> reward{" "}
               <a
                 href="https://zettabyteincorp.com/"
                 target="_blank"
@@ -694,8 +641,8 @@ export default function AboutPage() {
               </a>{" "}
               and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.
               <div className="mt-2">
-                <img src="/images/design-mode/Icon_light_background.png" 
-                  alt="Vercel Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                <Image src="/images/design-mode/Icon_light_background.png" width={180} height={180} 
+                  alt="Next.js Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
             <li>
@@ -731,7 +678,7 @@ export default function AboutPage() {
               for their invaluable assistance in structuring data and curating Islamic content, 
               ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.
               <div className="mt-2">
-                  <img src="/deepseek.svg" alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/deepseek.svg" width={30} height={30} alt="DeepSeek Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
              <li>
@@ -747,7 +694,7 @@ export default function AboutPage() {
               for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, 
                to those without email.
               <div className="mt-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude AI Logo" 
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" width={100} height={100} alt="Claude AI Logo" 
                     className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
             </li>
@@ -765,7 +712,7 @@ export default function AboutPage() {
               for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, 
               Alhamdulillah.
                 <div className="mt-2">
-                  <img src="/gemini.svg" alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/gemini.svg" width={192} height={192} alt="Gemini Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
               </li>
             <li>
@@ -779,17 +726,17 @@ export default function AboutPage() {
                 Meta
               </a>{" "}
           all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, 
-              questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
+              questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span> accept their efforts.
                 <div className="flex flex-wrap gap-4 mt-4 justify-center">
                   <div className="mt-2">
-                  <img src="/meta.png" alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/meta.png" width={150} height={150} alt="Meta WhatsApp Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                       <div className="mt-2">
-                      <img src="/instagram.png" alt="Meta WhatsApp Logo" 
+                      <Image src="/instagram.png" width={1397} height={1403} alt="Meta WhatsApp Logo" 
                         className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                         </div>
                    <div className="mt-2">
-                  <img src="/meta.svg" alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
+                  <Image src="/meta.svg" width={288} height={191} alt="Meta Fb Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
                   </div>
                 </div>
             </li>
@@ -800,7 +747,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah 
-            <span className="text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
+            <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.
           </p>
            <div className="flex flex-wrap gap-4 mt-4 justify-center">
             <Link href="https://tinyurl.com/mchf5tut" target="_blank" rel="noopener noreferrer">
@@ -812,6 +759,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        </>} />
         <div className="flex justify-center mt-8">
           <Link href="/">
             <Button variant="outline">

@@ -106,7 +106,7 @@ export default function HowItWorksPage() {
                 <span><strong>Optional Leaderboard:</strong> Choose whether to submit your score or keep your practice private.</span>
               </div>
               <div className="pt-2">
-                <Link href="/categories">
+                <Link href="/subjects">
                   <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white gap-1.5">
                     Start a Practice Quiz
                     <ArrowRight className="h-4 w-4" />
@@ -230,9 +230,9 @@ export default function HowItWorksPage() {
 
         {/* Footer Action */}
         <div className="text-center pt-2 pb-6">
-          <Link href="/categories">
+          <Link href="/subjects">
             <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-md px-8">
-              Explore All 50 Categories
+              Explore All 50 Subjects
             </Button>
           </Link>
         </div>

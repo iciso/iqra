@@ -1,18 +1,55 @@
 import { supabase } from '@/lib/supabase-client';
-import { saveQuizResultToFallback, initializeFallbackTables } from './neon-fallback';
+import { submitQuizResultAction } from '@/app/actions/quiz';
 
-// Initialize fallback tables
-let fallbackInitialized = false;
-async function ensureFallbackInitialized() {
-  if (!fallbackInitialized) {
-    fallbackInitialized = await initializeFallbackTables();
-  }
-  return fallbackInitialized;
+export interface UserProfile {
+  id: string;
+  username: string;
+  full_name?: string | null;
+  avatar_url?: string | null;
+  bio?: string | null;
+  total_score?: number | null;
+  total_questions?: number | null;
+  best_percentage?: number | null;
+  badges_earned?: string[] | null;
+  is_online?: boolean | null;
+  last_seen?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
+type ProfileSummary = Pick<UserProfile, 'id' | 'username' | 'full_name' | 'avatar_url'>;
+
+export interface Friendship {
+  id: string;
+  requester_id: string;
+  addressee_id: string;
+  status: string;
+  created_at: string;
+  user_profiles?: ProfileSummary | null;
+}
+
+export interface UserChallenge {
+  id: string;
+  challenger_id: string;
+  challenged_id: string;
+  category: string;
+  difficulty: string;
+  question_count: number;
+  time_limit?: number;
+  status: string;
+  challenger_score?: number | null;
+  challenged_score?: number | null;
+  challenger_completed_at?: string | null;
+  challenged_completed_at?: string | null;
+  created_at: string;
+  expires_at?: string;
+  challenger?: ProfileSummary | null;
+  challenged?: ProfileSummary | null;
 }
 
 // User profile functions
 export async function getUserProfile(userId: string) {
-  const { data, error } = await supabase.from('user_profiles').select('*').eq('id', userId).single();
+  const { data, error } = await supabase.from<UserProfile>('user_profiles').select('*').eq('id', userId).single();
 
   if (error) {
     console.error('Error fetching user profile:', error);
@@ -22,8 +59,8 @@ export async function getUserProfile(userId: string) {
   return data;
 }
 
-export async function updateUserProfile(userId: string, updates: any) {
-  const { data, error } = await supabase.from('user_profiles').update(updates).eq('id', userId).select().single();
+export async function updateUserProfile(userId: string, updates: Partial<UserProfile>) {
+  const { data, error } = await supabase.from<UserProfile>('user_profiles').update(updates).eq('id', userId).select().single();
 
   if (error) {
     console.error('Error updating user profile:', error);
@@ -44,7 +81,7 @@ export async function updateUserTotalScore(
 
   try {
     const { data: profile, error: profileError } = await supabase
-      .from('user_profiles')
+      .from<UserProfile>('user_profiles')
       .select('total_score, total_questions, best_percentage')
       .eq('id', userId)
       .single();
@@ -67,7 +104,7 @@ export async function updateUserTotalScore(
     );
 
     const { error: updateError } = await supabase
-      .from('user_profiles')
+      .from<UserProfile>('user_profiles')
       .update({
         total_score: newTotalScore,
         total_questions: newTotalQuestions,
@@ -108,7 +145,7 @@ export async function updateUserOnlineStatus(isOnline: boolean): Promise<boolean
 }
 
 // User search and discovery
-export async function searchUsers(query: string, limit = 30): Promise<any[]> {
+export async function searchUsers(query: string, limit = 30): Promise<UserProfile[]> {
   console.log('🔍 SEARCH USERS FUNCTION: Called with query:', query);
 
   if (!query || query.length < 2) {
@@ -118,7 +155,7 @@ export async function searchUsers(query: string, limit = 30): Promise<any[]> {
 
   try {
     const { data, error } = await supabase
-      .from('user_profiles')
+      .from<UserProfile>('user_profiles')
       .select('*')
       .or(`username.ilike.%${query}%,full_name.ilike.%${query}%`)
       .limit(limit);
@@ -136,9 +173,9 @@ export async function searchUsers(query: string, limit = 30): Promise<any[]> {
   }
 }
 
-export async function getTopPlayers(limit = 30): Promise<any[]> {
+export async function getTopPlayers(limit = 30): Promise<UserProfile[]> {
   const { data, error } = await supabase
-    .from('user_profiles')
+    .from<UserProfile>('user_profiles')
     .select('*')
     .order('total_score', { ascending: false })
     .order('best_percentage', { ascending: false })
@@ -161,7 +198,7 @@ export async function sendFriendRequest(addresseeId: string) {
   }
 
   const { data, error } = await supabase
-    .from('friendships')
+    .from<Friendship>('friendships')
     .insert({
       requester_id: session.user.id,
       addressee_id: addresseeId,
@@ -178,9 +215,9 @@ export async function sendFriendRequest(addresseeId: string) {
   return data;
 }
 
-export async function getFriends(userId: string): Promise<any[]> {
+export async function getFriends(userId: string): Promise<UserProfile[]> {
   const { data, error } = await supabase
-    .from('friendships')
+    .from<Friendship>('friendships')
     .select('*')
     .eq('requester_id', userId)
     .eq('status', 'accepted');
@@ -190,12 +227,13 @@ export async function getFriends(userId: string): Promise<any[]> {
     throw error;
   }
 
-  return data || [];
+  // Rows are friendships; callers (find-challengers-dialog) treat them as profiles. Kept as is.
+  return (data || []) as unknown as UserProfile[];
 }
 
-export async function getPendingFriendRequests(userId: string): Promise<any[]> {
+export async function getPendingFriendRequests(userId: string): Promise<Friendship[]> {
   const { data, error } = await supabase
-    .from('friendships')
+    .from<Friendship>('friendships')
     .select(`
       id,
       requester_id,
@@ -203,6 +241,7 @@ export async function getPendingFriendRequests(userId: string): Promise<any[]> {
       status,
       created_at,
       user_profiles!friendships_requester_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -246,7 +285,7 @@ export async function createChallenge(
     const expiresAt = new Date('9990-12-31T23:59:59Z'); 
     
     const { data, error } = await supabase
-      .from('user_challenges')
+      .from<UserChallenge>('user_challenges')
       .insert({
         challenger_id: session.user.id,
         challenged_id: challengedId,
@@ -275,7 +314,7 @@ export async function createChallenge(
 
 export async function declineChallenge(challengeId: string) {
   const { data, error } = await supabase
-    .from('user_challenges')
+    .from<UserChallenge>('user_challenges')
     .update({ status: 'declined' })
     .eq('id', challengeId)
     .select()
@@ -289,9 +328,9 @@ export async function declineChallenge(challengeId: string) {
   return data;
 }
 
-export async function getPendingChallenges(userId: string): Promise<any[]> {
+export async function getPendingChallenges(userId: string): Promise<UserChallenge[]> {
   const { data, error } = await supabase
-    .from('user_challenges')
+    .from<UserChallenge>('user_challenges')
     .select(`
       id,
       challenger_id,
@@ -303,6 +342,7 @@ export async function getPendingChallenges(userId: string): Promise<any[]> {
       created_at,
       expires_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -319,9 +359,9 @@ export async function getPendingChallenges(userId: string): Promise<any[]> {
   return data || [];
 }
 
-export async function getActiveChallenges(userId: string): Promise<any[]> {
+export async function getActiveChallenges(userId: string): Promise<UserChallenge[]> {
   const { data, error } = await supabase
-    .from('user_challenges')
+    .from<UserChallenge>('user_challenges')
     .select(`
       id,
       challenger_id,
@@ -336,11 +376,13 @@ export async function getActiveChallenges(userId: string): Promise<any[]> {
       challenged_completed_at,
       created_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
       ),
       challenged:user_profiles!user_challenges_challenged_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -357,10 +399,10 @@ export async function getActiveChallenges(userId: string): Promise<any[]> {
   return data || [];
 }
 
-export async function getUserChallenges(userId: string): Promise<any[]> {
+export async function getUserChallenges(userId: string): Promise<UserChallenge[]> {
   try {
     const { data, error } = await supabase
-      .from('user_challenges')
+      .from<UserChallenge>('user_challenges')
       .select(`
         *,
         challenger:user_profiles!user_challenges_challenger_id_fkey(id, username, full_name),
@@ -395,7 +437,7 @@ export async function acceptChallenge(challengeId: string) {
 
   try {
     const { data: challenge, error: fetchError } = await supabase
-      .from('user_challenges')
+      .from<UserChallenge>('user_challenges')
       .select(`
         *,
         challenger:user_profiles!user_challenges_challenger_id_fkey (
@@ -413,10 +455,14 @@ export async function acceptChallenge(challengeId: string) {
       throw fetchError;
     }
 
+    if (!challenge) {
+      throw new Error('Challenge not found');
+    }
+
     console.log(`📋 Full challenge details:`, challenge);
 
     const { data, error } = await supabase
-      .from('user_challenges')
+      .from<UserChallenge>('user_challenges')
       .update({ status: 'accepted' })
       .eq('id', challengeId)
       .select()
@@ -442,6 +488,8 @@ export async function acceptChallenge(challengeId: string) {
     console.log(`🔗 Full challenge URL:`, challengeUrl);
     console.log(`🔗 Challenger ID being passed:`, challenger?.id);
     console.log(`🔗 Challenger name being passed:`, challengerName);
+    // Full page load on purpose: the quiz page reads these params from the URL.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.href = challengeUrl;
 
     return {
@@ -454,9 +502,9 @@ export async function acceptChallenge(challengeId: string) {
   }
 }
 
-export async function getChallenge(challengeId: string) {
+export async function getChallenge(challengeId: string): Promise<UserChallenge | null> {
   const { data, error } = await supabase
-    .from('user_challenges')
+    .from<UserChallenge>('user_challenges')
     .select(`
       id,
       challenger_id,
@@ -471,11 +519,13 @@ export async function getChallenge(challengeId: string) {
       challenged_completed_at,
       created_at,
       challenger:user_profiles!user_challenges_challenger_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
       ),
       challenged:user_profiles!user_challenges_challenged_id_fkey (
+        id,
         username,
         full_name,
         avatar_url
@@ -502,10 +552,12 @@ export async function submitQuizResult(
   category: string, // always pass the category ID (e.g. "surah-78"), never the title
   difficulty: string,
   timeLeft: number = 0,
-  answers?: any,
+  answers?: unknown,
   challengeId?: string,
   userName?: string,
 ) {
+  void timeLeft; // kept so existing positional callers still line up
+  void answers;
   if (!totalQuestions || totalQuestions <= 0) {
     throw new Error('totalQuestions must be greater than 0');
   }
@@ -540,29 +592,21 @@ export async function submitQuizResult(
   });
 
   try {
-    const response = await fetch('/api/quiz/submit-result', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user_id: userId,
-        user_name: userName,
-        score,
-        total_questions: totalQuestions,
-        percentage,
-        category,
-        difficulty,
-        time_left: timeLeft,
-        answers: answers ? JSON.stringify(answers) : null,
-        challenge_id: challengeId || null,
-      }),
+    // Server Action (app/actions/quiz.ts). The player is identified by name; no user id is sent.
+    const saved = await submitQuizResultAction({
+      name: userName,
+      score,
+      totalQuestions,
+      percentage,
+      category,
+      difficulty,
+      challenge: challengeId || null,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API error: ${errorData.error || response.statusText}`);
+    if (!saved.success) {
+      throw new Error(`API error: ${saved.error}`);
     }
 
-    await response.json();
     console.log('✅ SUBMIT QUIZ RESULT: saved');
 
     return { success: true, finalScore: score, bonusPoints: 0, originalScore: score, saved: true };

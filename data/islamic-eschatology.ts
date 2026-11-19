@@ -2,7 +2,7 @@ import type { QuizCategory } from "@/types/quiz";
 
 export const islamicEschatologyCategory: QuizCategory = {
   id: "islamic-eschatology",
-  name: "Islamic Eschatology",
+  title: "Islamic Eschatology",
   description: "Explore the end times, the realm of Barzakh, the Day of Judgment, Paradise, and Hell in Islamic theology.",
   icon: "Clock",
   levels: {

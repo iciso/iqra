@@ -1,8 +1,16 @@
-import type { QuizCategory } from "@/types/quiz"
+import type { QuizQuestion } from "@/types/quiz"
+
+// A flat question list per subject (no levels). Not imported anywhere today.
+interface ExpandedQuestionSet {
+  name: string
+  description: string
+  icon: string
+  questions: QuizQuestion[]
+}
 
 // Contains Quran, Fiqh, Tafseer, Hadeeth, and Aqeedah
 // Expanded Quran Questions
-export const expandedQuranQuestions: QuizCategory = {
+export const expandedQuranQuestions: ExpandedQuestionSet = {
   name: "Quran",
   description: "Test your knowledge of the Holy Quran",
   icon: "book-open",
@@ -98,7 +106,7 @@ export const expandedQuranQuestions: QuizCategory = {
 }
 
 // Expanded Fiqh Questions
-export const expandedFiqhQuestions: QuizCategory = {
+export const expandedFiqhQuestions: ExpandedQuestionSet = {
   name: "Fiqh",
   description: "Test your knowledge of Islamic jurisprudence",
   icon: "scale",
@@ -199,7 +207,7 @@ export const expandedFiqhQuestions: QuizCategory = {
 }
 
 // Expanded Tafsir Questions
-export const expandedTafsirQuestions: QuizCategory = {
+export const expandedTafsirQuestions: ExpandedQuestionSet = {
   name: "Tafsir",
   description: "Test your knowledge of Quranic interpretation",
   icon: "book",
@@ -313,7 +321,7 @@ export const expandedTafsirQuestions: QuizCategory = {
 }
 
 // Expanded Hadeeth Questions
-export const expandedHadeethQuestions: QuizCategory = {
+export const expandedHadeethQuestions: ExpandedQuestionSet = {
   name: "Hadeeth",
   description: "Test your knowledge of Prophetic traditions",
   icon: "message-square",
@@ -422,7 +430,7 @@ export const expandedHadeethQuestions: QuizCategory = {
 }
 
 // Expanded Aqeedah Questions
-export const expandedAqeedahQuestions: QuizCategory = {
+export const expandedAqeedahQuestions: ExpandedQuestionSet = {
   name: "Aqeedah",
   description: "Test your knowledge of Islamic beliefs and creed",
   icon: "heart",

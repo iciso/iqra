@@ -131,7 +131,7 @@ The following changes have been made to your codebase:
 1. Go to `/auth`
 2. Click "Sign In" tab
 3. Enter username or email and password
-4. Redirected to `/categories` on success
+4. Redirected to `/subjects` on success
 
 ### Protected Routes
 All routes except `/`, `/leaderboard`, `/about`, `/why`, `/toc`, and `/auth` require authentication.

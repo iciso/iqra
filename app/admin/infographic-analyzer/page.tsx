@@ -1,26 +1,23 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { getAllCategories } from "@/data/categories"
 import { getQuizQuestions } from "@/data/quiz-data-manager"
 import { batchAnalyzeForInfographics } from "@/utils/infographic-analyzer"
+import type { DifficultyLevel } from "@/types/quiz"
 import { Badge } from "@/components/ui/badge"
 import { AlertCircle, CheckCircle } from "lucide-react"
 
 export default function InfographicAnalyzerPage() {
-  const [categories, setCategories] = useState<any[]>([])
+  // Static data: read once in a lazy initializer instead of a mount effect.
+  const [categories] = useState(getAllCategories)
   const [selectedCategory, setSelectedCategory] = useState("")
   const [difficulty, setDifficulty] = useState("easy")
-  const [analysisResults, setAnalysisResults] = useState<any[]>([])
+  const [analysisResults, setAnalysisResults] = useState<ReturnType<typeof batchAnalyzeForInfographics>>([])
   const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    const allCategories = getAllCategories()
-    setCategories(allCategories)
-  }, [])
 
   const handleAnalyze = () => {
     if (!selectedCategory) return
@@ -28,7 +25,7 @@ export default function InfographicAnalyzerPage() {
     setIsLoading(true)
 
     try {
-      const questions = getQuizQuestions(selectedCategory, difficulty as any)
+      const questions = getQuizQuestions(selectedCategory, difficulty as DifficultyLevel)
       const results = batchAnalyzeForInfographics(questions)
       setAnalysisResults(results)
     } catch (error) {
@@ -48,7 +45,7 @@ export default function InfographicAnalyzerPage() {
     }
   }
 
-  const getInfographicTypeLabel = (type: string) => {
+  const getInfographicTypeLabel = (type?: string) => {
     switch (type) {
       case "timeline":
         return "Timeline"
@@ -168,7 +165,7 @@ export default function InfographicAnalyzerPage() {
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
                     <AlertCircle className="inline-block h-4 w-4 mr-1" />
                     {analysisResults.filter((r) => !r.analysis.needsInfographic).length} questions were analyzed but
-                    don't appear to need infographics.
+                    don&apos;t appear to need infographics.
                   </p>
                   <Button variant="outline" className="text-sm">
                     Show These Questions

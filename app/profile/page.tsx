@@ -1,8 +1,9 @@
 "use client"
 import { getCategory } from "@/data/quiz-data-manager"
+import { getProfileDataAction } from "@/app/actions/profile"
+import type { ProfileChallengeRow, ProfileEntryRow } from "@/lib/server/types"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useEffectEvent, useState, useSyncExternalStore } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -42,105 +43,140 @@ const labelFor = (id?: string | null): string => {
   return prettify(id)
 }
 
+interface CategoryStat {
+  category: string
+  score: number
+  total: number
+  count: number
+  percentage: number
+}
+
+interface ProfileStats {
+  totalScore: number
+  totalQuestions: number
+  overallPercentage: number
+  totalQuizzes: number
+  challengesPlayed: number
+  bestCategory: string
+  bestPercentage: number
+  categoryBreakdown: CategoryStat[]
+  recentQuizzes: ProfileEntryRow[]
+}
+
+const buildStats = (entries: ProfileEntryRow[]): ProfileStats | null => {
+  if (entries.length === 0) return null
+
+  const totalScore = entries.reduce((s, e) => s + e.score, 0)
+  const totalQuestions = entries.reduce((s, e) => s + e.total_questions, 0)
+  const overallPercentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+  const challengeEntries = entries.filter((e) => e.challenge)
+
+  const catMap = new Map<string, { score: number; total: number; count: number }>()
+  entries.forEach((e) => {
+    const key = e.category || "other"
+    const ex = catMap.get(key) || { score: 0, total: 0, count: 0 }
+    catMap.set(key, { score: ex.score + e.score, total: ex.total + e.total_questions, count: ex.count + 1 })
+  })
+  const categoryBreakdown = Array.from(catMap.entries())
+    .map(([category, data]) => ({
+      category, score: data.score, total: data.total, count: data.count,
+      percentage: data.total > 0 ? Math.round((data.score / data.total) * 100) : 0,
+    }))
+    .sort((a, b) => b.percentage - a.percentage)
+
+  const best = categoryBreakdown[0]
+  return {
+    totalScore, totalQuestions, overallPercentage,
+    totalQuizzes: entries.length,
+    challengesPlayed: challengeEntries.length,
+    bestCategory: best ? labelFor(best.category) : "—",
+    bestPercentage: best?.percentage || 0,
+    categoryBreakdown,
+    recentQuizzes: entries.slice(0, 10),
+  }
+}
+
+// The saved name lives in localStorage, which the server cannot see. The server
+// snapshot is `undefined` ("not checked yet"), so the page renders nothing until
+// the browser has read it - the same first paint the old mount effect gave.
+const noSubscribe = () => () => {}
+const readSavedName = () => localStorage.getItem(NAME_KEY)
+const serverSavedName = () => undefined
+
 export default function ProfilePage() {
-  const router = useRouter()
-  const [playerName, setPlayerName] = useState(null)
+  const savedName = useSyncExternalStore(noSubscribe, readSavedName, serverSavedName)
+  const [chosenName, setChosenName] = useState<string | null>(null)
   const [nameInput, setNameInput] = useState("")
   const [editingName, setEditingName] = useState(false)
   const [newName, setNewName] = useState("")
-  const [stats, setStats] = useState(null)
-  const [challenges, setChallenges] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [checked, setChecked] = useState(false)
+  const [stats, setStats] = useState<ProfileStats | null>(null)
+  const [challenges, setChallenges] = useState<ProfileChallengeRow[]>([])
+  // Starts true: a saved name is fetched straight away. The spinner only shows
+  // once a name is known; without one the name form renders instead.
+  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const saved = localStorage.getItem(NAME_KEY)
-    setPlayerName(saved)
-    setChecked(true)
-    if (saved) loadProfile(saved)
-  }, [])
+  const checked = savedName !== undefined
+  const playerName = chosenName ?? savedName ?? null
 
-  const loadProfile = async (name) => {
+  // State is set only in the promise callbacks, after the server answers, so
+  // this is safe to start from an effect. Callers that re-load set `loading` first.
+  // The name lives only in this browser, so the server reads it through a Server Action.
+  const fetchProfile = (name: string) =>
+    getProfileDataAction(name)
+      .then((data) => {
+        setChallenges(data.challenges || [])
+        setStats(buildStats(data.entries || []))
+      })
+      .catch((err: unknown) => {
+        console.error("Profile load error:", err)
+        toast({ title: "Error loading profile", variant: "destructive" })
+      })
+      .finally(() => setLoading(false))
+
+  const loadProfile = (name: string) => {
     setLoading(true)
-    try {
-      const [entriesRes, challengesRes] = await Promise.all([
-        fetch(`/api/profile/entries?name=${encodeURIComponent(name)}`),
-        fetch(`/api/profile/challenges?name=${encodeURIComponent(name)}`),
-      ])
-      const entriesData = await entriesRes.json()
-      const challengesData = await challengesRes.json()
-      const entries = entriesData.entries || []
-      setChallenges(challengesData.challenges || [])
-
-      if (entries.length === 0) { setStats(null); return }
-
-      const totalScore = entries.reduce((s, e) => s + e.score, 0)
-      const totalQuestions = entries.reduce((s, e) => s + e.total_questions, 0)
-      const overallPercentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
-      const challengeEntries = entries.filter((e) => e.challenge)
-
-      const catMap = new Map()
-      entries.forEach((e) => {
-        const key = e.category || "other"
-        const ex = catMap.get(key) || { score: 0, total: 0, count: 0 }
-        catMap.set(key, { score: ex.score + e.score, total: ex.total + e.total_questions, count: ex.count + 1 })
-      })
-      const categoryBreakdown = Array.from(catMap.entries())
-        .map(([category, data]) => ({
-          category, score: data.score, total: data.total, count: data.count,
-          percentage: data.total > 0 ? Math.round((data.score / data.total) * 100) : 0,
-        }))
-        .sort((a, b) => b.percentage - a.percentage)
-
-      const best = categoryBreakdown[0]
-      setStats({
-        totalScore, totalQuestions, overallPercentage,
-        totalQuizzes: entries.length,
-        challengesPlayed: challengeEntries.length,
-        bestCategory: best ? labelFor(best.category) : "—",
-        bestPercentage: best?.percentage || 0,
-        categoryBreakdown,
-        recentQuizzes: entries.slice(0, 10),
-      })
-    } catch (err) {
-      console.error("Profile load error:", err)
-      toast({ title: "Error loading profile", variant: "destructive" })
-    } finally {
-      setLoading(false)
-    }
+    fetchProfile(name)
   }
+
+  // Load the saved player's profile once the browser has read the name.
+  const fetchSavedProfile = useEffectEvent((name: string) => {
+    fetchProfile(name)
+  })
+  useEffect(() => {
+    if (savedName) fetchSavedProfile(savedName)
+  }, [savedName])
 
   const handleSetName = () => {
     const t = nameInput.trim()
     if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
     localStorage.setItem(NAME_KEY, t); localStorage.setItem("tempChallengerId", t)
-    setPlayerName(t); loadProfile(t)
+    setChosenName(t); loadProfile(t)
   }
 
   const handleSaveName = () => {
     const t = newName.trim()
     if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
     localStorage.setItem(NAME_KEY, t); localStorage.setItem("tempChallengerId", t)
-    setPlayerName(t); setEditingName(false); loadProfile(t)
+    setChosenName(t); setEditingName(false); loadProfile(t)
     toast({ title: "Name updated" })
   }
 
-  const initials = (name) => name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-  const fmtDate = (d) => new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
-  const pctColor = (p) => p >= 90 ? "text-green-600" : p >= 70 ? "text-blue-600" : p >= 50 ? "text-yellow-600" : "text-red-600"
+  const initials = (name: string) => name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+  const fmtDate = (d: string) => new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+  const pctColor = (p: number) => p >= 90 ? "text-green-600" : p >= 70 ? "text-blue-600" : p >= 50 ? "text-yellow-600" : "text-red-600"
 
   if (!checked) return null
 
   if (!playerName) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <Trophy className="h-12 w-12 text-green-600 mx-auto mb-2" />
             <CardTitle>View Your Profile</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-gray-600 text-center">Enter the name you use when playing quizzes to see your stats.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">Enter the name you use when playing quizzes to see your stats.</p>
             <div className="flex gap-2">
               <Input placeholder="Your name" value={nameInput} onChange={(e) => setNameInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSetName()} />
               <Button onClick={handleSetName} className="bg-green-600 hover:bg-green-700">View</Button>
@@ -154,7 +190,7 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
-      <div className="max-w-4xl mx-auto pt-4">
+      <div className="max-w-6xl mx-auto pt-4">
         <div className="flex items-center justify-between mb-6">
           <Link href="/"><Button variant="outline" size="sm"><Home className="h-4 w-4 mr-1" />Home</Button></Link>
           <Button variant="outline" size="sm" onClick={() => loadProfile(playerName)} disabled={loading}>
@@ -206,7 +242,7 @@ export default function ProfilePage() {
               <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 mb-2">No quiz history found for <strong>{playerName}</strong></p>
               <p className="text-sm text-gray-400">Play a quiz to start building your profile!</p>
-              <Link href="/categories"><Button className="bg-green-600 hover:bg-green-700 mt-4">Start a Quiz</Button></Link>
+              <Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700 mt-4">Start a Quiz</Button></Link>
             </CardContent>
           </Card>
         ) : (
@@ -253,7 +289,7 @@ export default function ProfilePage() {
                           <Badge variant="outline" className="text-xs">{count}×</Badge>
                         </div>
                       </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-2 bg-gray-100 dark:bg-muted rounded-full overflow-hidden">
                         <div className={`h-full rounded-full ${percentage >= 80 ? "bg-green-500" : percentage >= 60 ? "bg-blue-500" : "bg-orange-400"}`}
                           style={{ width: `${Math.min(percentage, 100)}%` }} />
                       </div>
@@ -304,12 +340,11 @@ export default function ProfilePage() {
                         const myTotal = isChallenger ? c.challenger_total : c.challenged_total
                         const oppScore = isChallenger ? c.challenged_score : c.challenger_score
                         const oppTotal = isChallenger ? c.challenged_total : c.challenger_total
-                        const myPct = myTotal > 0 ? Math.round((myScore / myTotal) * 100) : null
-                        const oppPct = oppTotal > 0 ? Math.round((oppScore / oppTotal) * 100) : null
+                        const myPct = myTotal != null && myTotal > 0 ? Math.round(((myScore ?? 0) / myTotal) * 100) : null
+                        const oppPct = oppTotal != null && oppTotal > 0 ? Math.round(((oppScore ?? 0) / oppTotal) * 100) : null
                         const bothPlayed = myScore !== null && oppScore !== null
                         const iWon = bothPlayed && myScore > oppScore
                         const iLost = bothPlayed && myScore < oppScore
-                        const isTie = bothPlayed && myScore === oppScore
 
                         return (
                           <div key={c.id} className="p-3 border rounded-lg space-y-2">
@@ -349,7 +384,7 @@ export default function ProfilePage() {
                                 {myScore !== null ? (
                                   <>
                                     <p className="font-bold text-base text-green-700">{myScore}/{myTotal}</p>
-                                    <p className={`font-medium ${pctColor(myPct)}`}>{myPct}%</p>
+                                    <p className={`font-medium ${pctColor(myPct ?? 0)}`}>{myPct}%</p>
                                   </>
                                 ) : (
                                   <p className="text-gray-400 italic">Not played</p>
@@ -361,7 +396,7 @@ export default function ProfilePage() {
                                 {oppScore !== null ? (
                                   <>
                                     <p className="font-bold text-base text-blue-700">{oppScore}/{oppTotal}</p>
-                                    <p className={`font-medium ${pctColor(oppPct)}`}>{oppPct}%</p>
+                                    <p className={`font-medium ${pctColor(oppPct ?? 0)}`}>{oppPct}%</p>
                                   </>
                                 ) : (
                                   <p className="text-gray-400 italic">
