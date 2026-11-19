@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef, useSyncExternalStore } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Book, ArrowUp, Bitcoin, Scale, BookCopy, Brain, BriefcaseMedical, BookDashed,
   Calendar1, Church, CirclePlus, HandCoins, Handshake, Home, Heart, Image as ImageIcon, Infinity, Languages, Megaphone, Music, User, Users,
-  Sparkles, History, Scroll, Compass, Globe, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
+  Sparkles, History, Scroll, Compass, Globe, ArrowLeft, ArrowRight, Milestone, Network, ScanFace, Sprout, Sun, Telescope,
   Tornado, Percent, Rainbow, Split, Circle, HandHeart, Wind, WineOff,
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -89,7 +89,7 @@ function ArabicVocabSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="vocab" className="w-full max-w-7xl mt-8 scroll-mt-6">
+    <section id="vocab" className="w-full max-w-7xl mt-2">
       <Card className="border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
@@ -188,7 +188,7 @@ function TamilIslamSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="tamil-islam-studies" className="w-full max-w-7xl mt-8 scroll-mt-6">
+    <section id="tamil-islam-studies" className="w-full max-w-7xl mt-2">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
@@ -276,7 +276,7 @@ function QuranSurahSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="quran-surah-studies" className="w-full max-w-7xl mt-8 scroll-mt-6">
+    <section id="quran-surah-studies" className="w-full max-w-7xl mt-2">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
@@ -329,24 +329,68 @@ const difficultyLevels = [
   { value: "advanced", label: "Advanced", description: "Challenging questions for those with deeper knowledge" },
 ]
 
+type TrackId = "islamic-studies" | "tamil-islam-studies" | "quran-surah-studies" | "vocab"
+
+const tracks: { id: TrackId; title: string; description: string; count: number; icon: typeof Book }[] = [
+  { id: "islamic-studies", title: "Islamic Studies", description: "Quran, belief, worship, law and more", count: categories.length, icon: Book },
+  { id: "quran-surah-studies", title: "Qur’an Surah Studies", description: "Questions from individual Surahs", count: surahCategories.length, icon: Megaphone },
+  { id: "tamil-islam-studies", title: "தமிழ் இஸ்லாமிய ஆய்வுகள்", description: "Islamic Studies in Tamil", count: tamilCategories.length, icon: Languages },
+  { id: "vocab", title: "Arabic Vocabulary", description: "Quranic and Modern Standard Arabic", count: 2, icon: Languages },
+]
+
+const steps = ["Section", "Topic", "Difficulty"]
+
+// Old links such as /subjects#vocab or /subjects#quran-surah-studies open straight on that section's topics.
+const trackFromHash = (hash: string): TrackId | null => {
+  const key = hash.replace(/^#/, "").toLowerCase()
+  return tracks.find((track) => track.id === key)?.id ?? null
+}
+
+const subscribeToHash = (onChange: () => void) => {
+  window.addEventListener("hashchange", onChange)
+  return () => window.removeEventListener("hashchange", onChange)
+}
+
+const topicTitle = (id: string | null) => {
+  if (!id) return ""
+  const all: { id: string; title: string }[] = [
+    ...categories,
+    ...tamilCategories,
+    ...surahCategories,
+    { id: "quranic-arabic-01", title: "Quranic Arabic" },
+    { id: "modern-arabic-01", title: "Modern Standard Arabic" },
+  ]
+  return all.find((topic) => topic.id === id)?.title ?? id
+}
+
 export default function CategoriesPage() {
   const router = useRouter()
+  const hashTrack = useSyncExternalStore(subscribeToHash, () => trackFromHash(window.location.hash), () => null)
+  const [stepState, setStep] = useState<number | null>(null)
+  const [trackState, setTrack] = useState<TrackId | null>(null)
+  // Until the visitor clicks anything, a section named in the URL hash opens on its topics.
+  const step = stepState ?? (hashTrack ? 2 : 1)
+  const track = trackState ?? (stepState === null ? hashTrack : null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null)
-  const difficultyRef = useRef<HTMLDivElement>(null)
+  const topRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (selectedCategory && difficultyRef.current) {
-      const timer = window.setTimeout(() => {
-        difficultyRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
-      }, 100)
-      return () => window.clearTimeout(timer)
-    }
-  }, [selectedCategory])
+  const goTo = (next: number) => {
+    setStep(next)
+    topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  const handleSelectTrack = (id: TrackId) => {
+    setTrack(id)
+    setSelectedCategory(null)
+    setSelectedDifficulty(null)
+    goTo(2)
+  }
 
   const handleSelectCategory = (categoryId: string) => {
     setSelectedCategory(categoryId)
     setSelectedDifficulty(null)
+    goTo(3)
   }
 
   const handleStartQuiz = () => {
@@ -355,76 +399,156 @@ export default function CategoriesPage() {
     }
   }
 
+  const canOpen = (n: number) => n === 1 || (n === 2 && track !== null) || (n === 3 && selectedCategory !== null)
+
   return (
     <main className="flex min-h-screen flex-col items-center p-4 py-8 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <section id="islamic-studies" className="w-full max-w-7xl scroll-mt-6">
-        <Card className="border-green-200 shadow-lg dark:border-green-800">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Islamic Studies</CardTitle>
-            <CardDescription className="text-green-600 dark:text-green-500">
-              Choose an Islamic Studies topic to practise
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-8">
-            {groupedCategories.map((group) => (
-            <div key={group.title}>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
-              {group.title}
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
-              {group.items.map((category) => (
+      <div ref={topRef} className="w-full max-w-7xl scroll-mt-20">
+        <ol aria-label="Quiz setup steps" className="mx-auto mb-6 flex max-w-xl items-center justify-center gap-2">
+          {steps.map((label, index) => {
+            const n = index + 1
+            const isCurrent = step === n
+            const isDone = step > n
+            return (
+              <li key={label} className="flex flex-1 items-center gap-2">
                 <button
                   type="button"
-                  key={category.id}
-                  aria-pressed={selectedCategory === category.id}
-                  className={`p-4 rounded-lg border text-left transition-colors ${
-                    selectedCategory === category.id
-                      ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
-                      : "border-gray-200 hover:border-green-300 dark:border-gray-700 dark:hover:border-green-700"
+                  onClick={() => canOpen(n) && goTo(n)}
+                  disabled={!canOpen(n)}
+                  aria-current={isCurrent ? "step" : undefined}
+                  className={`flex w-full items-center justify-center gap-2 rounded-full border px-3 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed ${
+                    isCurrent
+                      ? "border-green-600 bg-green-600 text-white dark:border-green-500 dark:bg-green-600"
+                      : isDone
+                        ? "border-green-300 bg-white text-green-800 hover:border-green-500 dark:border-green-700 dark:bg-gray-900 dark:text-green-300"
+                        : "border-gray-200 bg-white/60 text-gray-400 dark:border-gray-700 dark:bg-gray-900/60 dark:text-gray-500"
                   }`}
-                  onClick={() => handleSelectCategory(category.id)}
                 >
-                  <span className="flex flex-col items-center text-center">
-                    {category.icon}
-                    <span className="mt-2 font-medium dark:text-white">{category.title}</span>
-                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{category.description}</span>
-                    {selectedCategory === category.id && (
-                      <span className="mt-2 text-xs font-medium text-green-700 dark:text-green-300">Selected ✓</span>
-                    )}
+                  <span
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs ${
+                      isCurrent ? "bg-white text-green-700" : isDone ? "bg-green-600 text-white" : "bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400"
+                    }`}
+                  >
+                    {isDone ? "✓" : n}
                   </span>
+                  <span className="truncate">{label}</span>
                 </button>
-              ))}
-            </div>
-            </div>
-            ))}
-            </div>
-          </CardContent>
-        </Card>
-      </section>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
 
-      <TamilIslamSection
-        selectedCategory={selectedCategory}
-        setSelectedCategory={handleSelectCategory}
-      />
-
-      <QuranSurahSection
-        selectedCategory={selectedCategory}
-        setSelectedCategory={handleSelectCategory}
-      />
-
-      <ArabicVocabSection
-        selectedCategory={selectedCategory}
-        setSelectedCategory={handleSelectCategory}
-      />
-
-      {selectedCategory && (
-        <section ref={difficultyRef} className="w-full max-w-3xl mt-8 scroll-mt-6">
+      {step === 1 && (
+        <section className="w-full max-w-7xl">
           <Card className="border-green-200 shadow-lg dark:border-green-800">
             <CardHeader className="text-center">
-              <CardTitle className="text-xl font-bold text-green-800 dark:text-green-400">Quiz Setup</CardTitle>
+              <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">What do you want to practise?</CardTitle>
+              <CardDescription className="text-green-600 dark:text-green-500">Pick a section to see its topics</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {tracks.map((item) => {
+                  const TrackIcon = item.icon
+                  return (
+                    <button
+                      type="button"
+                      key={item.id}
+                      onClick={() => handleSelectTrack(item.id)}
+                      className={`rounded-lg border p-6 text-center transition-colors ${
+                        track === item.id
+                          ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
+                          : "border-gray-200 hover:border-green-400 dark:border-gray-700 dark:hover:border-green-600"
+                      }`}
+                    >
+                      <span className="flex flex-col items-center">
+                        <TrackIcon className="h-10 w-10 text-green-600 dark:text-green-400" />
+                        <span className="mt-3 text-lg font-semibold dark:text-white">{item.title}</span>
+                        <span className="mt-1 text-sm text-gray-500 dark:text-gray-400">{item.description}</span>
+                        <span className="mt-3 rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
+                          {item.count} {item.count === 1 ? "topic" : "topics"}
+                        </span>
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
+      {step === 2 && (
+        <>
+          <div className="w-full max-w-7xl">
+            <Button variant="outline" onClick={() => goTo(1)} className="mb-2">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              All sections
+            </Button>
+          </div>
+          {track === "islamic-studies" && (
+            <section id="islamic-studies" className="w-full max-w-7xl mt-2">
+              <Card className="border-green-200 shadow-lg dark:border-green-800">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Islamic Studies</CardTitle>
+                  <CardDescription className="text-green-600 dark:text-green-500">
+                    Choose an Islamic Studies topic to practise
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-8">
+                    {groupedCategories.map((group) => (
+                      <div key={group.title}>
+                        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
+                          {group.title}
+                        </h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+                          {group.items.map((category) => (
+                            <button
+                              type="button"
+                              key={category.id}
+                              aria-pressed={selectedCategory === category.id}
+                              className={`p-4 rounded-lg border text-left transition-colors ${
+                                selectedCategory === category.id
+                                  ? "border-green-500 bg-green-50 dark:bg-green-900/50 dark:border-green-600"
+                                  : "border-gray-200 hover:border-green-300 dark:border-gray-700 dark:hover:border-green-700"
+                              }`}
+                              onClick={() => handleSelectCategory(category.id)}
+                            >
+                              <span className="flex flex-col items-center text-center">
+                                {category.icon}
+                                <span className="mt-2 font-medium dark:text-white">{category.title}</span>
+                                <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{category.description}</span>
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </section>
+          )}
+          {track === "tamil-islam-studies" && (
+            <TamilIslamSection selectedCategory={selectedCategory} setSelectedCategory={handleSelectCategory} />
+          )}
+          {track === "quran-surah-studies" && (
+            <QuranSurahSection selectedCategory={selectedCategory} setSelectedCategory={handleSelectCategory} />
+          )}
+          {track === "vocab" && (
+            <ArabicVocabSection selectedCategory={selectedCategory} setSelectedCategory={handleSelectCategory} />
+          )}
+        </>
+      )}
+
+      {step === 3 && (
+        <section className="w-full max-w-3xl">
+          <Card className="border-green-200 shadow-lg dark:border-green-800">
+            <CardHeader className="text-center">
+              <CardTitle className="text-xl font-bold text-green-800 dark:text-green-400">Choose a difficulty</CardTitle>
               <CardDescription className="text-green-600 dark:text-green-500">
-                Choose a difficulty level for the selected category
+                Topic: <span className="font-semibold">{topicTitle(selectedCategory)}</span>
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -445,7 +569,11 @@ export default function CategoriesPage() {
                 </div>
               </RadioGroup>
             </CardContent>
-            <CardFooter className="flex justify-center">
+            <CardFooter className="flex justify-between gap-3">
+              <Button variant="outline" onClick={() => goTo(2)}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Change topic
+              </Button>
               <Button
                 className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
                 onClick={handleStartQuiz}
