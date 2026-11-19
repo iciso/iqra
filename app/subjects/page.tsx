@@ -54,6 +54,33 @@ const categories = [
   { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
 ]
 
+const categoryGroups = [
+  { title: "Quran & Sunnah", ids: ["quran", "tafsir", "hadeeth", "seerah"] },
+  { title: "Belief", ids: ["aqeedah", "shirk", "bidah", "islamic-eschatology", "fitnah"] },
+  { title: "Worship", ids: ["salah", "sawm", "chairty", "hajj", "tazkiyah"] },
+  { title: "Law", ids: ["fiqh", "madhab", "inheritance", "islamic-medical-ethics"] },
+  { title: "Money & Finance", ids: ["riba", "takaful", "islamic-finance", "crypto"] },
+  {
+    title: "Family & Society",
+    ids: ["marriage", "parenting", "gender", "dating", "lgbtq", "psych", "music", "imagery", "islamic-alcohol-drugs"],
+  },
+  { title: "History & Dawah", ids: ["history", "dawah", "new-muslims", "comparative", "christ", "hindu", "peace"] },
+]
+
+const groupedIds = new Set(categoryGroups.flatMap((group) => group.ids))
+const ungrouped = categories.filter((category) => !groupedIds.has(category.id))
+
+// A topic missing from categoryGroups still shows, under "More Topics", so adding one never hides it.
+const groupedCategories = [
+  ...categoryGroups.map((group) => ({
+    title: group.title,
+    items: group.ids
+      .map((id) => categories.find((category) => category.id === id))
+      .filter((category): category is (typeof categories)[number] => Boolean(category)),
+  })),
+  ...(ungrouped.length ? [{ title: "More Topics", items: ungrouped }] : []),
+]
+
 function ArabicVocabSection({
   selectedCategory,
   setSelectedCategory,
@@ -62,7 +89,7 @@ function ArabicVocabSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="vocab" className="w-full max-w-3xl mt-8 scroll-mt-6">
+    <section id="vocab" className="w-full max-w-7xl mt-8 scroll-mt-6">
       <Card className="border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
@@ -73,7 +100,7 @@ function ArabicVocabSection({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card
               className={`border-green-200 hover:border-green-500 transition-colors dark:border-green-800 cursor-pointer ${
                 selectedCategory === "quranic-arabic-01"
@@ -161,7 +188,7 @@ function TamilIslamSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="tamil-islam-studies" className="w-full max-w-3xl mt-8 scroll-mt-6">
+    <section id="tamil-islam-studies" className="w-full max-w-7xl mt-8 scroll-mt-6">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
@@ -172,7 +199,7 @@ function TamilIslamSection({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
             {tamilCategories.map((tamil) => {
               const TamilIcon = tamil.icon
               const isSelected = selectedCategory === tamil.id
@@ -249,7 +276,7 @@ function QuranSurahSection({
   setSelectedCategory: (id: string) => void
 }) {
   return (
-    <section id="quran-surah-studies" className="w-full max-w-3xl mt-8 scroll-mt-6">
+    <section id="quran-surah-studies" className="w-full max-w-7xl mt-8 scroll-mt-6">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
@@ -260,7 +287,7 @@ function QuranSurahSection({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
             {surahCategories.map((surah) => {
               const SurahIcon = surah.icon
               const isSelected = selectedCategory === surah.id
@@ -330,7 +357,7 @@ export default function CategoriesPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 py-8 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-      <section id="islamic-studies" className="w-full max-w-3xl scroll-mt-6">
+      <section id="islamic-studies" className="w-full max-w-7xl scroll-mt-6">
         <Card className="border-green-200 shadow-lg dark:border-green-800">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Islamic Studies</CardTitle>
@@ -339,8 +366,14 @@ export default function CategoriesPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {categories.map((category) => (
+            <div className="space-y-8">
+            {groupedCategories.map((group) => (
+            <div key={group.title}>
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
+              {group.title}
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+              {group.items.map((category) => (
                 <button
                   type="button"
                   key={category.id}
@@ -362,6 +395,9 @@ export default function CategoriesPage() {
                   </span>
                 </button>
               ))}
+            </div>
+            </div>
+            ))}
             </div>
           </CardContent>
         </Card>
