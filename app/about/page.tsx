@@ -8,7 +8,7 @@ import AboutTabs from "@/components/about/about-tabs";
 
 /*
 IQRA To do list:
-1) To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
+1) To Add categories like Ethical AI use,  Sexual Health, Death, Ijtihad, Ihsan or Spiritual Excellence, Fiqh of Trade, choosing form the list in G Docs, add the new files, or alter or add new code at:
 iqra/data/
 iqra/app/subjects/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
