@@ -77,7 +77,7 @@ const doingTasks: TaskItem[] = [
       <div>
         <span className="font-semibold text-amber-900 block mb-1">Adding New Quiz Categories</span>
         <p className="text-amber-800/90 text-xs leading-relaxed mb-2">
-          Integrate Ethical AI Use, Sexual Health, and others from Google Docs.
+          Integrate  Ethical AI use,  Sexual Health, Death, Ijtihad, Ihsan or Spiritual Excellence, Fiqh of Trade, and all subjects prescribed by IOU for Islamic studies and others from Google Docs.
         </p>
         <div className="space-y-1 font-mono text-[11px] text-indigo-600 bg-indigo-50/50 p-2 rounded border border-indigo-100/50 mb-2">
           <div>• iqra/data/</div>
