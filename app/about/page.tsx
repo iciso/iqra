@@ -549,8 +549,8 @@ export default function AboutPage() {
     </h3>
 
     <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali's total reward of ₹{dhanishReward.toLocaleString("en-IN")} will be presented
-      during the Kattoo Yamani (KY) Family Meet 2026.
+      Except for Joy Ahmed who is not resident in India, every one else will be presented their respective 
+      total rewards during the Kattoo Yamani (KY) Family Meet 2026.
     </p>
 
     <p className="font-bold text-green-800
