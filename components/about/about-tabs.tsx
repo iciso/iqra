@@ -24,6 +24,7 @@ const tabs: { id: TabId; label: string; hashes: string[] }[] = [
       "dhanish-ali",
       "feroza-mi",
       "joy-ahmed",
+      "riaz-ahamed",
       // add each new contributor's id here
     ],
   },
