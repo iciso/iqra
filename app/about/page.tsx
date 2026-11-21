@@ -221,9 +221,9 @@ const contributors: Contributor[] = [
     ],
   },
     {
-    id: "riaz-ahmed",
+    id: "riaz-ahamed",
     label: "Our Fourth Celebrated Contributor",
-    name: "Riaz Ahmed Bobby",
+    name: "Riaz Ahamed Bobby",
     intro:
       "With sincere appreciation, we acknowledge Riaz Ahmed Bobby for four suggestions to IQRA's coding and AI, which made coding easier, cheaper, and enjoyable.",
     reward: 1000,
