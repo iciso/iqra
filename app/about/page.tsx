@@ -241,7 +241,9 @@ const contributors: Contributor[] = [
 
 // Used by the Reward Presentation box below (it is about Dhanish Ali)
 const dhanishReward = contributors.find((c) => c.id === "dhanish-ali")?.reward ?? 0
-
+// Grand totals across all contributors (update automatically)
+const totalRewards = contributors.reduce((sum, c) => sum + c.reward, 0)
+const totalContributions = contributors.reduce((sum, c) => sum + c.contributions.length, 0)
 
 
 export default function AboutPage() {
@@ -490,6 +492,25 @@ export default function AboutPage() {
     </p>
   </div>
 
+  {/* Grand total of all rewards given by the IQRA team */}
+<div className="relative my-6 overflow-hidden rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 p-6 text-center shadow-lg dark:border-amber-500 dark:from-amber-600 dark:via-yellow-500 dark:to-amber-600">
+  <span className="absolute left-3 top-2 text-2xl" aria-hidden="true">✨</span>
+  <span className="absolute right-3 top-2 text-2xl" aria-hidden="true">✨</span>
+  <span className="absolute bottom-2 left-4 text-2xl" aria-hidden="true">🌟</span>
+  <span className="absolute bottom-2 right-4 text-2xl" aria-hidden="true">🌟</span>
+
+  <p className="text-4xl" aria-hidden="true">🏆</p>
+  <p className="mt-1 text-sm font-bold uppercase tracking-widest text-amber-900 dark:text-gray-900">
+    Total Rewards Given by the IQRA Team
+  </p>
+  <p className="my-1 text-5xl font-extrabold text-green-800 drop-shadow-sm sm:text-6xl dark:text-gray-900">
+    ₹{totalRewards.toLocaleString("en-IN")}
+  </p>
+  <p className="text-sm font-medium text-amber-900 dark:text-gray-900">
+    to {contributors.length} players for {totalContributions} accepted contributions 🤝
+  </p>
+</div>
+  
   {contributors.map((c) => (
   <div
     key={c.id}
