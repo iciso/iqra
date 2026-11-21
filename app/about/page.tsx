@@ -196,8 +196,8 @@ const contributors: Contributor[] = [
     name: "Feroza MI",
     intro:
       "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. Both suggestions were accepted and implemented by the IQRA coding team.",
-    reward: 250,
-    rewardNote: "Reward for both corrections",
+    reward: 500,
+    rewardNote: "₹250 per accepted suggestion",
     contributions: [
       { icon: "📖", title: "Quran Quiz", detail: "Corrected answer options" },
       { icon: "🕌", title: "Salah Quiz", detail: "Corrected answer options" },
@@ -218,6 +218,21 @@ const contributors: Contributor[] = [
       { icon: "👏", title: "Sleeker UI", detail: "Narrower subject cards" },
       { icon: "🌙", title: "Dark Mode", detail: "Enabled" },
       { icon: "🏠", title: "Mock-ups", detail: "Five mock-ups of the Home page" },
+    ],
+  },
+    {
+    id: "riaz-ahmed",
+    label: "Our Fourth Celebrated Contributor",
+    name: "Riaz Ahmed Bobby",
+    intro:
+      "With sincere appreciation, we acknowledge Riaz Ahmed Bobby for four suggestions to IQRA's coding and AI, which made coding easier, cheaper, and enjoyable.",
+    reward: 1000,
+    rewardNote: "₹250 per suggestion",
+    contributions: [
+      { icon: "🤖", title: "Better AIs", detail: "Grok and Deep Seek" },
+      { icon: "📊", title: "Free DBs", detail: "Change from Supabase to Neon" },
+      { icon: "🔓", title: "No Auth", detail: "Access without Sign-up" },
+      { icon: "👏", title: "Free Domain, Hosting", detail: "Cloudflare" },
     ],
   },
 ]
