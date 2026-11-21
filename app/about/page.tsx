@@ -164,17 +164,69 @@ const totalAdvanced = quizDistribution.reduce(
 
 const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
-// Player contributions: Dhanish Ali
-const REWARD_PER_SUGGESTION = 250
+// Players contributions Dhansih Ali & others
+type Contributor = {
+  id: string // used as the anchor, e.g. /about#dhanish-ali
+  label: string
+  name: string
+  intro: string
+  reward: number // total reward in INR for this contributor
+  rewardNote?: string
+  contributions: { icon: string; title: string; detail: string }[]
+}
 
-const dhanishContributions = [
-  { icon: "📖", title: "Salah Quiz", detail: "Answer Options" },
-  { icon: "🕌", title: "Harun (AS)", detail: "Prophethood" },
-  { icon: "📗", title: "Surah Maryam", detail: "Nabi Reference" },
+const contributors: Contributor[] = [
+  {
+    id: "dhanish-ali",
+    label: "Our First Celebrated Contributor",
+    name: "Dhanish Ali",
+    intro:
+      "With sincere appreciation, we acknowledge Dhanish Ali for identifying and suggesting three corrections to IQRA. All three suggestions were accepted and implemented by the IQRA coding team.",
+    reward: 750,
+    rewardNote: "₹250 per accepted suggestion",
+    contributions: [
+      { icon: "📖", title: "Salah Quiz", detail: "Answer Options" },
+      { icon: "🕌", title: "Harun (AS)", detail: "Prophethood" },
+      { icon: "📗", title: "Surah Maryam", detail: "Nabi Reference" },
+    ],
+  },
+  {
+    id: "feroza-mi",
+    label: "Our Second Celebrated Contributor",
+    name: "Feroza MI",
+    intro:
+      "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. Both suggestions were accepted and implemented by the IQRA coding team.",
+    reward: 250,
+    rewardNote: "Reward for both corrections",
+    contributions: [
+      { icon: "📖", title: "Quran Quiz", detail: "Corrected answer options" },
+      { icon: "🕌", title: "Salah Quiz", detail: "Corrected answer options" },
+    ],
+  },
+  {
+    id: "joy-ahmed",
+    label: "Our Third Celebrated Contributor",
+    name: "Joy Ahmed",
+    intro:
+      "With sincere appreciation, we acknowledge Joy Ahmed for six contributions to IQRA's code and design, which made the app cleaner, more mobile-friendly and easier to use.",
+    reward: 1500,
+    rewardNote: "₹250 per contribution",
+    contributions: [
+      { icon: "💫", title: "Cleaner routing", detail: "Updated URL from /categories to /subjects" },
+      { icon: "📲", title: "Mobile responsiveness", detail: "Layout adapted for mobile devices" },
+      { icon: "💯", title: "Better organization", detail: "Grouped into subsections" },
+      { icon: "👏", title: "Sleeker UI", detail: "Narrower subject cards" },
+      { icon: "🌙", title: "Dark Mode", detail: "Enabled" },
+      { icon: "🏠", title: "Mock-ups", detail: "Five mock-ups of the Home page" },
+    ],
+  },
 ]
 
-const acceptedCount = dhanishContributions.length
-const totalReward = acceptedCount * REWARD_PER_SUGGESTION
+// Used by the Reward Presentation box below (it is about Dhanish Ali)
+const dhanishReward = contributors.find((c) => c.id === "dhanish-ali")?.reward ?? 0
+
+
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-background">
@@ -421,77 +473,58 @@ export default function AboutPage() {
     </p>
   </div>
 
-  <div className="my-6 rounded-xl border border-amber-300
-    bg-white/80 p-5 text-center dark:border-amber-700
-    dark:bg-gray-900/60">
-
-    <p className="mb-2 text-sm font-semibold uppercase
-      tracking-wide text-gray-600 dark:text-gray-300">
-      Our First Celebrated Contributor
+  {contributors.map((c) => (
+  <div
+    key={c.id}
+    id={c.id}
+    className="my-6 scroll-mt-4 rounded-xl border border-amber-300 bg-white/80 p-5 text-center dark:border-amber-700 dark:bg-gray-900/60"
+  >
+    <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+      {c.label}
     </p>
-
-    <h3 className="mb-3 text-3xl font-extrabold
-      text-green-700 dark:text-green-400">
-      🌟 Dhanish Ali 🌟
+    <h3 className="mb-3 text-3xl font-extrabold text-green-700 dark:text-green-400">
+      🌟 {c.name} 🌟
     </h3>
+    <p className="mb-5 text-gray-700 dark:text-gray-200">{c.intro}</p>
 
-    <p className="mb-5 text-gray-700 dark:text-gray-200">
-      With sincere appreciation, we acknowledge Dhanish Ali
-      for identifying and suggesting three corrections
-      to IQRA. All three suggestions were accepted and
-      implemented by the IQRA coding team.
-    </p>
+    <ol aria-label={`Contributions by ${c.name}`} className="mx-auto mb-5 max-w-md space-y-2.5 text-left">
+      {c.contributions.map((item, index) => (
+        <li
+          key={`${c.id}-${index}`}
+          className="flex items-center gap-3 rounded-xl bg-[#F3FBF6] p-3 dark:bg-green-950/60"
+        >
+          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1B7A4B] font-bold text-white">
+            {index + 1}
+          </span>
+          <span className="text-xl" aria-hidden="true">{item.icon}</span>
+          <div className="min-w-0">
+            <p className="font-bold text-[#0C4E2D] dark:text-green-300">{item.title}</p>
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
 
-       {/* Accepted contributions: a list, so it fits any screen width */}
-<ol aria-label="Accepted contributions" className="mx-auto mb-5 max-w-md space-y-2.5 text-left">
-  {dhanishContributions.map((item, index) => (
-    <li
-      key={item.title}
-      className="flex items-center gap-3 rounded-xl bg-[#F3FBF6] p-3 dark:bg-green-950/60"
-    >
-      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1B7A4B] font-bold text-white">
-        {index + 1}
-      </span>
-      <span className="text-xl" aria-hidden="true">{item.icon}</span>
-      <div className="min-w-0">
-        <p className="font-bold text-[#0C4E2D] dark:text-green-300">{item.title}</p>
-        <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.detail}</p>
-      </div>
-    </li>
-  ))}
-</ol>
-    <div className="mx-auto grid max-w-md grid-cols-1
-      gap-3 sm:grid-cols-2">
-
-      <div className="rounded-lg bg-green-50 p-4
-        dark:bg-green-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Accepted Suggestions
-        </p>
-        <p className="text-3xl font-extrabold text-green-700
-          dark:text-green-400">
-          3
+    <div className="mx-auto grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="rounded-lg bg-green-50 p-4 dark:bg-green-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Accepted Contributions</p>
+        <p className="text-3xl font-extrabold text-green-700 dark:text-green-400">
+          {c.contributions.length}
         </p>
       </div>
-
-      <div className="rounded-lg bg-amber-50 p-4
-        dark:bg-amber-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Reward Earned
+      <div className="rounded-lg bg-amber-50 p-4 dark:bg-amber-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Reward Earned</p>
+        <p className="text-3xl font-extrabold text-amber-700 dark:text-amber-400">
+          ₹{c.reward.toLocaleString("en-IN")}
         </p>
-        <p className="text-3xl font-extrabold text-amber-700
-          dark:text-amber-400">
-          ₹750
-        </p>
-        <p className="mt-1 text-xs text-gray-600
-          dark:text-gray-300">
-          ₹250 per accepted suggestion
-        </p>
+        {c.rewardNote && (
+          <p className="mt-1 text-xs text-gray-600 dark:text-gray-300">{c.rewardNote}</p>
+        )}
       </div>
-
     </div>
   </div>
-
+))}
+  
   <div className="rounded-xl bg-green-100 p-5 text-center
     dark:bg-green-900/50">
 
@@ -501,7 +534,7 @@ export default function AboutPage() {
     </h3>
 
     <p className="mb-3 text-gray-700 dark:text-gray-200">
-      Dhanish Ali's total reward of ₹750 will be presented
+      Dhanish Ali's total reward of ₹{dhanishReward.toLocaleString("en-IN")} will be presented
       during the Kattoo Yamani (KY) Family Meet 2026.
     </p>
 
