@@ -164,6 +164,17 @@ const totalAdvanced = quizDistribution.reduce(
 
 const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
+// Player contributions: Dhanish Ali
+const REWARD_PER_SUGGESTION = 250
+
+const dhanishContributions = [
+  { icon: "📖", title: "Salah Quiz", detail: "Answer Options" },
+  { icon: "🕌", title: "Harun (AS)", detail: "Prophethood" },
+  { icon: "📗", title: "Surah Maryam", detail: "Nabi Reference" },
+]
+
+const acceptedCount = dhanishContributions.length
+const totalReward = acceptedCount * REWARD_PER_SUGGESTION
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-background">
@@ -431,102 +442,24 @@ export default function AboutPage() {
       implemented by the IQRA coding team.
     </p>
 
-       {/* Begin Table */}
-      {/* Responsive Table Container */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-separate border-spacing-y-2.5">
-          <thead>
-            <tr className="text-white text-lg font-bold">
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
-                No.
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 text-left w-[58%]">
-                💡 Contribution
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-center w-[30%]">
-                💰 Reward
-              </th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            {/* Item 1 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  1
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📖</span>
-                  <div>
-                    Salah Quiz — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Item 2 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  2
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl"> 🕌</span>
-                  <div>
-                    Harun (AS) — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Item 3 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  3
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📗</span>
-                  <div>
-                    Surah Maryam — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Nabi Reference</span>
-                  </div>
-                </div>
-              </td>
-              <td className="bg-[#FFF9DF] py-3 px-4 text-center rounded-r-xl align-middle font-black text-xl text-[#0C4E2D] border-l-4 border-[#FFF9E6]">
-                ₹250
-              </td>
-            </tr>
-
-            {/* Total Reward Row */}
-            <tr className="text-lg font-bold text-white">
-              <td colSpan={2} className="bg-[#1B7A4B] py-4 px-6 rounded-l-xl text-left align-middle">
-                🎁 Total reward
-              </td>
-              <td className="bg-[#0D6339] py-4 px-4 rounded-r-xl text-center align-middle font-black text-2xl border-l-4 border-[#FFF9E6] tracking-wider">
-                ⪧ ₹750 ⪦
-              </td>
-            </tr>
-          </tbody>
-        </table>
+       {/* Accepted contributions: a list, so it fits any screen width */}
+<ol aria-label="Accepted contributions" className="mx-auto mb-5 max-w-md space-y-2.5 text-left">
+  {dhanishContributions.map((item, index) => (
+    <li
+      key={item.title}
+      className="flex items-center gap-3 rounded-xl bg-[#F3FBF6] p-3 dark:bg-green-950/60"
+    >
+      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1B7A4B] font-bold text-white">
+        {index + 1}
+      </span>
+      <span className="text-xl" aria-hidden="true">{item.icon}</span>
+      <div className="min-w-0">
+        <p className="font-bold text-[#0C4E2D] dark:text-green-300">{item.title}</p>
+        <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.detail}</p>
       </div>
-   {/* End of Table */}
-
+    </li>
+  ))}
+</ol>
     <div className="mx-auto grid max-w-md grid-cols-1
       gap-3 sm:grid-cols-2">
 
