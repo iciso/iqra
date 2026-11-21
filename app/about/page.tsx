@@ -181,13 +181,15 @@ const contributors: Contributor[] = [
     label: "Our First Celebrated Contributor",
     name: "Dhanish Ali",
     intro:
-      "With sincere appreciation, we acknowledge Dhanish Ali for identifying and suggesting three corrections to IQRA. All three suggestions were accepted and implemented by the IQRA coding team.",
-    reward: 750,
+      "With sincere appreciation, we acknowledge Dhanish Ali for identifying and suggesting five corrections to IQRA. All five suggestions were accepted and implemented by the IQRA coding team.",
+    reward: 1250,
     rewardNote: "₹250 per accepted suggestion",
     contributions: [
-      { icon: "📖", title: "Salah Quiz", detail: "Answer Options" },
-      { icon: "🕌", title: "Harun (AS)", detail: "Prophethood" },
-      { icon: "📗", title: "Surah Maryam", detail: "Nabi Reference" },
+      { icon: "🧕", title: "Salah Quiz", detail: "Women leading in Prayer" },
+      { icon: "🏛️", title: "Salah Quiz", detail: "Arkans or Pillars in Salah" },
+      { icon: "🕌", title: "Salah Quiz", detail: "Night Prayer in Islam" },
+      { icon: "📗", title: "Challenges Tabs", detail: "Challenges display correctly" },
+      { icon: "📜", title: "Harun (AS)", detail: "Prophethood & Messengership" },
     ],
   },
   {
@@ -199,8 +201,8 @@ const contributors: Contributor[] = [
     reward: 500,
     rewardNote: "₹250 per accepted suggestion",
     contributions: [
-      { icon: "📖", title: "Quran Quiz", detail: "Corrected answer options" },
-      { icon: "🕌", title: "Salah Quiz", detail: "Corrected answer options" },
+      { icon: "📖", title: "Quran Quiz", detail: "Mother of the Quran or Umm al-Quran" },
+      { icon: "🕌", title: "Salah Quiz", detail: "Performing Salah on Time" },
     ],
   },
   {
