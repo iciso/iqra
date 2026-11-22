@@ -26,7 +26,7 @@ const categories = [
   { id: "tazkiyah", title: "Tazkiyah", description: "Spiritual Purification", icon: <Sparkles className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "salah", title: "Salah", description: "Prayers in Islam", icon: <ArrowUp className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "sawm", title: "Sawm", description: "Fasting & Ramadaan", icon: <Calendar1 className="h-8 w-8 text-green-600 dark:text-green-400" /> },
-  { id: "chairty", title: "Zakat & Sadaqah", description: "Charity in Islam", icon: <HandCoins className="h-8 w-8 text-green-600 dark:text-green-400" /> },
+  { id: "charity", title: "Zakat & Sadaqah", description: "Charity in Islam", icon: <HandCoins className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "hajj", title: "Hajj", description: "Islamic Pilgrimmage", icon: <Compass className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "history", title: "Islamic History", description: "History of Islam", icon: <History className="h-8 w-8 text-green-600 dark:text-green-400" /> },
   { id: "dawah", title: "Dawah", description: "Inviting to Islam", icon: <Users className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -59,7 +59,7 @@ const categories = [
 const categoryGroups = [
   { title: "Quran & Sunnah", ids: ["quran", "tafsir", "hadeeth", "seerah"] },
   { title: "Belief", ids: ["aqeedah", "shirk", "bidah", "islamic-eschatology", "fitnah"] },
-  { title: "Prayer", ids: ["salah", "sawm", "chairty", "hajj", "tazkiyah"] },
+  { title: "Prayer", ids: ["salah", "sawm", "charity", "hajj", "tazkiyah"] },
   { title: "Law", ids: ["fiqh", "madhab", "inheritance", "islamic-medical-ethics"] },
   { title: "Money & Finance", ids: ["riba", "takaful", "islamic-finance", "crypto"] },
   {
