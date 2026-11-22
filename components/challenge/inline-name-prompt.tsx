@@ -29,7 +29,7 @@ export default function InlineNamePrompt({ onSaved }: { onSaved: (name: string) 
       <label htmlFor="inline-player-name" className="block text-sm font-medium">
         What is your name? Your friend will see it on the challenge.
       </label>
-      <div className="flex gap-2">
+      <div className="flex min-w-0 gap-2">
         <Input
           id="inline-player-name"
           value={value}
@@ -40,10 +40,10 @@ export default function InlineNamePrompt({ onSaved }: { onSaved: (name: string) 
           placeholder="Your name"
           autoComplete="nickname"
           maxLength={255}
-          className="h-11 flex-1"
+          className="h-11 min-w-0 flex-1"
           autoFocus
         />
-        <Button type="submit" className="h-11 bg-green-600 hover:bg-green-700">
+        <Button type="submit" className="h-11 shrink-0 bg-green-600 hover:bg-green-700">
           Save
         </Button>
       </div>
