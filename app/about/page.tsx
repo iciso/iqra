@@ -707,7 +707,23 @@ export default function AboutPage() {
               >
                 Joy Ahmed
               </a>{" "}
-              (joy_ahmed_007@yahoo.com) for guiding and mentoring Rafique in this noble endeavor.
+              (
+              <a href="mailto:joy_ahmed_007@yahoo.com" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
+                joy_ahmed_007@yahoo.com
+              </a>
+              ,{" "}
+              <a href="mailto:joy@zettabyteincorp.com" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
+                joy@zettabyteincorp.com
+              </a>
+              {" "}&middot;{" "}
+              <a href="https://zettabyteincorp.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
+                zettabyteincorp.com
+              </a>
+              {" "}&middot;{" "}
+              <a href="https://github.com/joyahmed" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
+                GitHub @joyahmed
+              </a>
+              ) for guiding and mentoring Rafique in this noble endeavor.
             </li>
             <li>
               <strong>Alpha & Beta Versions, Scale-up, Maintenance:</strong> Powered by{" "}
