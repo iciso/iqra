@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect } from "react"
-import { submitQuizResult } from "@/lib/supabase-queries"
+import { submitQuizResult } from "@/lib/quiz-submit"
 import { useAuth } from "@/contexts/auth-context"
 
 interface QuizResultsProps {

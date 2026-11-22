@@ -27,15 +27,6 @@ interface LeaderboardEntry {
   user_id?: string
 }
 
-// Shape of the user_profiles rows getTopPlayers() returns (its client is untyped).
-interface TopPlayerRow {
-  id?: string
-  full_name?: string | null
-  username?: string | null
-  total_score?: number | null
-  total_questions?: number | null
-}
-
 // true in the browser, false while server rendering - no mount effect needed.
 const noSubscribe = () => () => {}
 const onClient = () => true
@@ -91,7 +82,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     }
   }, [sorted, myRank, myEntry])
 
-  // Load data (try Neon + localStorage first, then Supabase fallback).
+  // Load data (Neon + localStorage, then demo data if that fails).
   // Sets state only after its first await, so the mount effect can call it.
   const fetchLeaderboardData = async () => {
     try {
@@ -132,34 +123,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
         console.error("❌ Neon error:", err)
       }
 
-      // 2) Fallback to Supabase or demo if Neon fails
-      try {
-        console.log("📊 Leaderboard: trying Supabase fallback...")
-        const { getTopPlayers } = await import("@/lib/supabase-queries")
-        const topPlayers = await getTopPlayers(1000)
-        if (topPlayers && topPlayers.length > 0) {
-          console.log(`✅ Supabase returned ${topPlayers.length} players`)
-          const formattedData = (topPlayers as TopPlayerRow[]).map((player) => ({
-            name: player.full_name || player.username || "Unknown User",
-            score: player.total_score || 0,
-            totalQuestions: player.total_questions || 0,
-            percentage:
-              player.total_questions ? Math.round(((player.total_score || 0) / player.total_questions) * 100) : 0,
-            date: new Date().toLocaleDateString(),
-            category: "All Categories",
-            challenge: "all",
-            user_id: player.id,
-          }))
-          setLeaderboard(formattedData)
-          setDataSource(`Supabase User Profiles`)
-          setLastRefresh(new Date())
-          return
-        }
-      } catch (err) {
-        console.error("❌ Supabase error:", err)
-      }
-
-      // 3) Demo data if everything fails
+      // 2) Demo data if Neon fails
       console.log("⚠️ All data sources failed, using demo data")
       setLeaderboard([
         {

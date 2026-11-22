@@ -91,7 +91,7 @@ export function deduplicateAndMergeLeaderboard(entries: LeaderboardEntry[]): Lea
 
 // Adds an entry to the LOCAL leaderboard and remembers the player's name.
 // It deliberately does NOT write to the database. submitQuizResult() in
-// lib/supabase-queries.ts is the only database writer.
+// lib/quiz-submit.ts is the only database writer.
 export async function addToLeaderboard(entry: LeaderboardEntry): Promise<void> {
   if (!isBrowser) return
 

@@ -14,7 +14,6 @@ import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
-import { getUserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/components/ui/use-toast"
 import { NameInputModal } from "@/components/quiz/name-input-modal"
 import { savePlayerName } from "@/lib/player-name"
@@ -25,14 +24,6 @@ interface QuizOpponent {
   name: string
   avatar_url?: string | null
   level?: string
-}
-
-// Row shape read from user_profiles (getUserProfile is untyped)
-interface OpponentProfileRow {
-  id: string
-  full_name?: string | null
-  username?: string | null
-  avatar_url?: string | null
 }
 
 // false while the server renders and while React hydrates, true after that.
@@ -146,20 +137,22 @@ export default function QuizContainer({
         ? "profile"
         : "bot"
   const opponentLevel = challengerTurn ? "Waiting for your quiz" : "Challenger"
-  const [profileOpponent, setProfileOpponent] = useState<QuizOpponent | null>(null)
   const botOpponent = useMemo(
     () => (isClient && opponentSource === "bot" ? getRandomOpponent() : null),
     [isClient, opponentSource],
   )
   const opponent: QuizOpponent | null = useMemo(() => {
     if (opponentSource === "url" && opponentName) {
-      // Use opponentName from URL — no Supabase lookup needed
+      // Use opponentName from URL
       return { id: opponentId || opponentName, name: opponentName, avatar_url: null, level: opponentLevel }
     }
-    if (opponentSource === "profile") return profileOpponent
+    // Only an id in the URL: there is no profile store to look it up in, so name it "Challenger".
+    if (opponentSource === "profile" && opponentId) {
+      return { id: opponentId, name: opponentName || "Challenger", avatar_url: null, level: opponentLevel }
+    }
     if (opponentSource === "bot") return botOpponent
     return null
-  }, [opponentSource, opponentId, opponentName, opponentLevel, profileOpponent, botOpponent])
+  }, [opponentSource, opponentId, opponentName, opponentLevel, botOpponent])
 
   useEffect(() => {
     if (challengeMode) {
@@ -174,38 +167,6 @@ export default function QuizContainer({
     console.log("🎯 QUIZ CONTAINER: Setup complete")
     console.log("🎯 QUIZ CONTAINER: Questions loaded:", questions.length)
   }, [questions.length, challengeMode, opponentId, opponentName, challengerTurn, isFallbackChallenge, opponentSource])
-
-  // Fetch the opponent's profile from the database
-  useEffect(() => {
-    if (opponentSource !== "profile" || !opponentId) return
-    let cancelled = false
-    const fallbackOpponent = { id: opponentId, name: opponentName || "Challenger", avatar_url: null, level: opponentLevel }
-    console.log("🎯 QUIZ CONTAINER: Fetching opponent profile from database")
-    getUserProfile(opponentId)
-      .then((data) => {
-        const opponentData = data as OpponentProfileRow | null
-        console.log("🎯 QUIZ CONTAINER: Fetched opponent data:", opponentData)
-        if (cancelled) return
-        if (opponentData) {
-          setProfileOpponent({
-            id: opponentData.id,
-            name: opponentData.full_name || opponentData.username || "Challenger",
-            avatar_url: opponentData.avatar_url,
-            level: opponentLevel,
-          })
-        } else {
-          console.log("🎯 QUIZ CONTAINER: No opponent data found, using fallback")
-          setProfileOpponent(fallbackOpponent)
-        }
-      })
-      .catch((error) => {
-        console.error("🎯 QUIZ CONTAINER: Error fetching opponent:", error)
-        if (!cancelled) setProfileOpponent(fallbackOpponent)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [opponentSource, opponentId, opponentName, opponentLevel])
 
   // Keep the opponent in localStorage for the results page
   useEffect(() => {
@@ -278,7 +239,7 @@ export default function QuizContainer({
   const [nameResolver, setNameResolver] = useState<((name: string | null) => void) | null>(null)
 
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
-    const { submitQuizResult } = await import("@/lib/supabase-queries")
+    const { submitQuizResult } = await import("@/lib/quiz-submit")
 
     // Read player name from localStorage — same key used everywhere
     let playerName = ""

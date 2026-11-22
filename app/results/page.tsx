@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -18,7 +18,7 @@ import { getRandomOpponent, generateBotScore, getNextChallenge } from "@/utils/o
 import type { Opponent } from "@/components/challenge/opponent-profile"
 import ChallengeResultsComparison from "@/components/challenge/challenge-results-comparison"
 import { useAuth } from "@/contexts/auth-context"
-import { submitQuizResult, getChallenge } from "@/lib/supabase-queries"
+import { submitQuizResult } from "@/lib/quiz-submit"
 import { NameInputModal } from "@/components/quiz/name-input-modal"
 import { addToLeaderboard } from "@/utils/leaderboard"
 
@@ -135,7 +135,6 @@ export default function ResultsPage() {
   const { score, totalQuestions, categoryId, categoryTitle, difficulty, challenge, timeLeft, nextChallenge } = stored
   const [submitted, setSubmitted] = useState(false)
   const [newBadges, setNewBadges] = useState(stored.newBadges)
-  const [opponent, setOpponent] = useState<Opponent | null>(null)
   const [saving, setSaving] = useState(false)
   const [authReady, setAuthReady] = useState(false)
   const [nameModalSubmitted, setNameModalSubmitted] = useState(false)
@@ -176,50 +175,17 @@ export default function ResultsPage() {
     })
   }, [user, profile, loading, authReady])
 
-  // For a challenge, fetch the opponent from Supabase once the user is known.
-  useEffect(() => {
-    if (!challenge || score === null || totalQuestions === null || !user) return
-    const { challengerTurn, opponentId } = stored
-
-    const fetchChallengeData = async () => {
-      try {
-        const challengeData = await getChallenge(challenge)
-        console.log("📋 Challenge data:", challengeData)
-
-        if (challengeData) {
-          const isUserChallenger = challengeData.challenger_id === user.id
-
-          // Set opponent based on challenge data
-          const opponentData = isUserChallenger ? challengeData.challenged : challengeData.challenger
-          if (opponentData) {
-            const opponentInfo: Opponent & { avatar_url?: string | null } = {
-              id: opponentData.id,
-              name: opponentData.full_name || opponentData.username || "Opponent",
-              type: "user",
-              avatar_url: opponentData.avatar_url,
-              level: challengerTurn ? "Waiting for response" : "Challenger",
-              score: isUserChallenger ? undefined : (challengeData.challenger_score ?? undefined),
-            }
-            setOpponent(opponentInfo)
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching challenge data:", error)
-
-        // Fallback to localStorage opponent
-        const newOpponent: Opponent | null = opponentId
-          ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
-          : getRandomOpponent()
-
-        if (newOpponent) {
-          newOpponent.score = generateBotScore(score, totalQuestions)
-          setOpponent(newOpponent)
-        }
-      }
-    }
-
-    fetchChallengeData()
-  }, [user, challenge, score, totalQuestions, stored])
+  // For a challenge, show the opponent saved by the quiz (or a bot) once the user is known.
+  // Browser only (localStorage, random bot), so it waits for isClient.
+  const hasUser = Boolean(user)
+  const opponent = useMemo<Opponent | null>(() => {
+    if (!isClient || !challenge || score === null || totalQuestions === null || !hasUser) return null
+    const newOpponent: Opponent | null = stored.opponentId
+      ? JSON.parse(localStorage.getItem("quizOpponent") || "null")
+      : getRandomOpponent()
+    if (newOpponent) newOpponent.score = generateBotScore(score, totalQuestions)
+    return newOpponent
+  }, [isClient, hasUser, challenge, score, totalQuestions, stored])
 
   // Show name modal only for non-challenge quizzes.
   // Challenge scores are already saved by the quiz-container with the correct name —
