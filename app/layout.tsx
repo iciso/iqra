@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-hidden" suppressHydrationWarning>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-clip" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -73,13 +73,13 @@ export default function RootLayout({
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden w-full min-h-screen bg-emerald-50/30 dark:bg-background`}>
+      <body className={`${inter.className} overflow-x-clip w-full min-h-screen bg-emerald-50/30 dark:bg-background`}>
         <div className="max-w-screen-2xl mx-auto my-auto">
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <AuthProvider>
-          <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
+          <div className="min-h-screen flex flex-col w-full">
             <Header />
-            <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+            <main className="flex-1 w-full max-w-full">{children}</main>
           </div>
           <Toaster />
         </AuthProvider>

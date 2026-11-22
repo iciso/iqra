@@ -1,24 +1,69 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Trophy, Menu } from "lucide-react"
 import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
 import ChallengeBell from "@/components/challenge/challenge-bell"
+import { useScrolled } from "@/hooks/use-scrolled"
+import { cn } from "@/lib/utils"
+
+const NAV_ITEMS = [
+  { href: "/subjects", label: "Subjects" },
+  { href: "/challenges", label: "Challenges" },
+  { href: "/leaderboard", label: "Leaderboard" },
+  { href: "/profile", label: "Profile" },
+  { href: "/how", label: "How it works" },
+  { href: "/about", label: "About" },
+]
+
+const isActive = (pathname: string, href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname() ?? "/"
+  const scrolled = useScrolled(8)
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
   }
 
+  const navButton = (item: (typeof NAV_ITEMS)[number], mobile = false) => {
+    const active = isActive(pathname, item.href)
+    return (
+      <Button
+        key={item.href}
+        asChild
+        variant="ghost"
+        className={cn(
+          mobile && "w-full justify-start",
+          active && "bg-accent font-semibold text-green-700 dark:text-green-400",
+        )}
+      >
+        <Link
+          href={item.href}
+          aria-current={active ? "page" : undefined}
+          onClick={mobile ? closeMobileMenu : undefined}
+        >
+          {item.label}
+        </Link>
+      </Button>
+    )
+  }
+
   return (
-    <header className=" shadow-sm border-b bg-gray-50  max-w-full  dark:bg-card dark:border-border w-full overflow-x-hidden">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header
+      data-scrolled={scrolled ? "" : undefined}
+      className={cn(
+        "sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur transition-shadow supports-[backdrop-filter]:bg-background/70",
+        scrolled ? "border-border shadow-sm" : "border-transparent",
+      )}
+    >
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
             <Trophy className="h-5 w-5 text-green-600 dark:text-green-400" />
@@ -26,25 +71,8 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-4">
-            <Link href="/subjects">
-              <Button variant="ghost">Subjects</Button>
-            </Link>
-            <Link href="/challenges">
-              <Button variant="ghost">Challenges</Button>
-            </Link>
-            <Link href="/leaderboard">
-              <Button variant="ghost">Leaderboard</Button>
-            </Link>
-            <Link href="/profile">
-              <Button variant="ghost">Profile</Button>
-            </Link>
-            <Link href="/how">
-              <Button variant="ghost">How it works</Button>
-            </Link>
-            <Link href="/about">
-              <Button variant="ghost">About</Button>
-            </Link>
+          <nav aria-label="Main" className="hidden lg:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => navButton(item))}
             <ChallengeBell />
             <ThemeToggle />
           </nav>
@@ -60,38 +88,9 @@ const Header = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
-                <div className="flex flex-col space-y-4 mt-8">
-                  <Link href="/subjects" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      Subjects
-                    </Button>
-                  </Link>
-                  <Link href="/challenges" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      Challenges
-                    </Button>
-                  </Link>
-                  <Link href="/leaderboard" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      Leaderboard
-                    </Button>
-                  </Link>
-                  <Link href="/profile" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      Profile
-                    </Button>
-                  </Link>
-                  <Link href="/how" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      How it works
-                    </Button>
-                  </Link>
-                  <Link href="/about" onClick={closeMobileMenu}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      About
-                    </Button>
-                  </Link>
-                </div>
+                <nav aria-label="Main" className="flex flex-col space-y-4 mt-8">
+                  {NAV_ITEMS.map((item) => navButton(item, true))}
+                </nav>
               </SheetContent>
             </Sheet>
           </div>
