@@ -318,10 +318,10 @@ export default function AdminTasksPage() {
         </div>
 
         {/* Development Workspace System Note */}
-        <footer className="mt-6 text-center text-xs text-gray-400">
+        <p className="mt-6 text-center text-xs text-gray-400">
           This system configuration ledger is designated for direct administrative tracking. 
           All apps by the IQRA team are open-source and freeware.
-        </footer>
+        </p>
 
       </div>
     </div>
