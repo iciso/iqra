@@ -9,7 +9,7 @@ const PlayerFlowDiagram = () => (
       <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-300">
         Player flow
       </span>
-      <span className="mt-1 block text-lg font-bold text-gray-900 dark:text-gray-50 md:text-xl">{FLOW_TITLE}</span>
+      <span className="font-heading mt-1 block text-lg font-bold text-gray-900 dark:text-gray-50 md:text-xl">{FLOW_TITLE}</span>
     </figcaption>
     <DesktopFlow />
     <MobileFlow />

@@ -62,7 +62,7 @@ export default function HowItWorksPage() {
             title="Quizzes (Answer & Learn)"
             subtitle="Untimed practice designed for thoughtful learning and discovering new knowledge."
             actions={
-              <Button asChild className="w-full gap-1.5 bg-emerald-600 text-white hover:bg-emerald-700">
+              <Button asChild className="w-full gap-1.5 bg-green-700 text-white hover:bg-green-800">
                 <Link href="/subjects">
                   Start a Practice Quiz
                   <ArrowRight className="h-4 w-4" />
