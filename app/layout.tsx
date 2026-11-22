@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Scheherazade_New } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
@@ -10,6 +10,15 @@ import { AuthProvider } from "@/contexts/auth-context"
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"] })
+
+// Arabic text (ayahs, font-arabic): self-hosted by next/font, exposed as --font-arabic for tailwind.
+// It has the Arabic ligatures (e.g. U+FDFB) that Inter lacks.
+const scheherazade = Scheherazade_New({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-arabic",
+})
 
 // One viewport tag for the whole site. Pinch-zoom stays on so readers can enlarge text.
 export const viewport: Viewport = {
@@ -77,18 +86,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-clip" suppressHydrationWarning>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className={`${scheherazade.variable} overflow-x-clip`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
-        {/* Root layout <head> applies to every route; this rule targets pages/_document. */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
-          rel="stylesheet"
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>

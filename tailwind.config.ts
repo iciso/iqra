@@ -14,8 +14,8 @@ const config: Config = {
   theme: {
   	extend: {
   		fontFamily: {
-  			// Scheherazade New is loaded in app/layout.tsx; it has the Arabic ligatures (e.g. U+FDFB) that Inter lacks
-  			arabic: ['"Scheherazade New"', 'serif'],
+  			// Scheherazade New is self-hosted by next/font in app/layout.tsx (--font-arabic); it has the Arabic ligatures (e.g. U+FDFB) that Inter lacks
+  			arabic: ['var(--font-arabic)', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

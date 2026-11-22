@@ -193,7 +193,7 @@ const IqraHero = () => {
         <div data-hero-copy className="contents xl:block">
           <p
             data-hero-acronym
-            className={`${reemKufi.className} mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
+            className={`mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
           >
             {acronym.map((word, i) => (
               <span key={word.initial}>
@@ -205,7 +205,7 @@ const IqraHero = () => {
           </p>
           <h1
             id="iqra-hero-heading"
-            className={`${reemKufi.className} mt-3 text-balance text-[34px] font-semibold leading-[1.08] text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
+            className={`mt-3 text-balance text-[34px] font-bold leading-[1.08] tracking-tight text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
           >
             Quiz to learn. Rival to excel.
           </h1>
@@ -231,7 +231,7 @@ const IqraHero = () => {
                   Track 1 &middot; Quiz
                 </p>
               </div>
-              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-green-900 dark:text-white`}>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-green-900 dark:text-white">
                 <b className="font-bold text-green-700 dark:text-green-300">Quiz</b> &ndash; learn at leisure
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-950/75 dark:text-green-100/80">
@@ -270,7 +270,7 @@ const IqraHero = () => {
                   Track 2 &middot; Rivalry
                 </p>
               </div>
-              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-green-900 dark:text-white`}>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-green-900 dark:text-white">
                 <b className="font-bold text-green-700 underline decoration-green-600/60 decoration-2 underline-offset-[6px] dark:text-green-200 dark:decoration-green-300/70">
                   Rivalry
                 </b>{" "}
