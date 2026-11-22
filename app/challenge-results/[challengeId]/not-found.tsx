@@ -1,7 +1,11 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Trophy } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+
+// Next marks every 404 noindex itself.
+export const metadata: Metadata = { title: "Challenge not found" }
 
 const ChallengeNotFound = () => {
   return (
