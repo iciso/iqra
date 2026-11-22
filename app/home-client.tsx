@@ -21,7 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { IqraLogo } from "@/components/iqra-logo"
+import IqraHero from "@/components/home/iqra-hero"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
@@ -134,31 +134,14 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
 
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb] dark:bg-background">
+      {/* Homepage hero: "The Night of Iqra" (docs/design/homepage-2026-11/c.html) in IQRA green and white. */}
+      <IqraHero />
+
       <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
-        {/* Keep challenge notifications easy to find for returning players. */}
+        {/* Keep challenge notifications easy to find for returning players (/#challenge-name). */}
         <div id="challenge-name" className="mb-6 w-full scroll-mt-4 sm:mb-8">
           <ProfileChallengeNotifications />
         </div>
-
-        {/* IQRA welcome / hero */}
-        <header className="mb-6 w-full text-center sm:mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24 dark:bg-green-900/40">
-            <IqraLogo />
-          </div>
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl dark:text-green-400">
-            IQRA
-          </h1>
-          <p className="text-lg text-green-700 sm:text-xl dark:text-green-300">
-            Islamic Quiz Rivalry App
-          </p>
-          <p className="mt-2 px-2 text-sm text-gray-600 dark:text-muted-foreground sm:mt-4 sm:text-base">
-            ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
-            <br className="hidden sm:block" />
-            <span className="block sm:inline">
-              {" "}of Islam through learning or challenges.
-            </span>
-          </p>
-        </header>
 
         {/* Main destinations. Keep Challenge prominent for returning players. */}
         <section

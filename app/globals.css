@@ -59,3 +59,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Homepage hero: the green halo behind اقرأ breathes. Used only through motion-safe:, so reduced motion keeps it still. */
+@keyframes iqra-halo {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
