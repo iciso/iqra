@@ -178,7 +178,7 @@ export default function IqraHero() {
           <div data-hero-actions className="mt-7 grid w-full grid-cols-1 gap-4 text-left md:grid-cols-2">
             <Card
               data-hero-track="learn"
-              className="flex flex-col rounded-2xl border border-green-200 bg-green-50/80 p-5 shadow-none dark:border-green-800 dark:bg-green-900/30"
+              className="flex flex-col rounded-2xl border border-green-200 bg-white p-5 shadow-none dark:border-green-800 dark:bg-green-900/30"
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green-300 bg-white text-green-700 dark:border-green-700 dark:bg-green-950 dark:text-green-300">
@@ -215,37 +215,37 @@ export default function IqraHero() {
 
             <Card
               data-hero-track="challenge"
-              className="flex flex-col rounded-2xl border border-green-800 bg-green-700 p-5 text-white shadow-lg shadow-green-900/20 dark:border-green-400/60 dark:bg-green-700 dark:shadow-green-400/10"
+              className="flex flex-col rounded-2xl border-2 border-green-600 bg-green-100 p-5 text-green-900 shadow-none dark:border dark:border-green-400/60 dark:bg-green-700 dark:text-white dark:shadow-lg dark:shadow-green-400/10"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-green-700">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-green-700 dark:bg-white">
                   <Footprints aria-hidden="true" className="h-5 w-5" />
                 </span>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-50">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-50">
                   Track 2 &middot; Rivalry
                 </p>
               </div>
-              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-white`}>
-                <b className="font-bold text-green-200 underline decoration-green-300/70 decoration-2 underline-offset-[6px]">
+              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-green-900 dark:text-white`}>
+                <b className="font-bold text-green-700 underline decoration-green-600/60 decoration-2 underline-offset-[6px] dark:text-green-200 dark:decoration-green-300/70">
                   Rivalry
                 </b>{" "}
                 &ndash; race to excel
               </h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-green-50">
+              <p className="mt-2 text-[15px] leading-relaxed text-green-900/80 dark:text-green-50">
                 Send the same quiz to a friend &ndash; the higher score wins. The Prophet (peace be upon him) raced Aisha (RA) and
                 said &ldquo;This is for that&rdquo;: friendly competition is Sunnah.
               </p>
-              <p className="mt-1.5 text-xs text-green-100">Sunan Abi Dawud 2578</p>
+              <p className="mt-1.5 text-xs text-green-800/70 dark:text-green-100">Sunan Abi Dawud 2578</p>
               <ul aria-label="Ways to compete" className="mt-3 flex flex-wrap gap-1.5">
                 {challengeTags.map((tag) => (
-                  <li key={tag} className="rounded-full bg-green-900/50 px-2.5 py-1 text-xs text-white">
+                  <li key={tag} className="rounded-full border border-green-300 bg-white px-2.5 py-1 text-xs text-green-800 dark:border-transparent dark:bg-green-900/50 dark:text-white">
                     {tag}
                   </li>
                 ))}
               </ul>
               <Button
                 asChild
-                className="mt-5 h-11 w-full rounded-full bg-white text-base font-semibold text-green-800 hover:bg-green-50 hover:text-green-900 dark:bg-white dark:text-green-800 dark:hover:bg-green-50"
+                className="mt-5 h-11 w-full rounded-full bg-green-700 text-base font-semibold text-white hover:bg-green-800 hover:text-white dark:bg-white dark:text-green-800 dark:hover:bg-green-50 dark:hover:text-green-900"
               >
                 <Link href="/challenges">
                   <Trophy aria-hidden="true" className="h-4 w-4" />
