@@ -1,52 +1,20 @@
-"use client"
-
-import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { 
-  Home, 
-  HelpCircle, 
-  BookOpen, 
-  Trophy, 
-  Clock, 
-  Sparkles, 
-  ShieldCheck, 
-  ArrowRight, 
-  RotateCw, 
-  Smartphone, 
-  Monitor 
+import PlayerFlowDiagram from "@/components/how/player-flow-diagram"
+import {
+  Home,
+  HelpCircle,
+  BookOpen,
+  Trophy,
+  Clock,
+  Sparkles,
+  ShieldCheck,
+  ArrowRight
 } from "lucide-react"
 
 export default function HowItWorksPage() {
-  const [viewMode, setViewMode] = useState<"portrait" | "landscape">("portrait")
-  const [isAutoDetected, setIsAutoDetected] = useState(false)
-
-  // Auto-detect view orientation based on screen width
-  useEffect(() => {
-    const handleResize = () => {
-      if (!isAutoDetected) {
-        if (window.innerWidth >= 1024) {
-          setViewMode("landscape")
-        } else {
-          setViewMode("portrait")
-        }
-      }
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [isAutoDetected])
-
-  const handleModeChange = (mode: "portrait" | "landscape") => {
-    setViewMode(mode)
-    setIsAutoDetected(true) // User manually toggled
-  }
-
   return (
     <div className="mx-auto w-full max-w-6xl sm:px-6 p-4 md:p-8">
       <div className="max-w-5xl mx-auto space-y-6 pt-2">
@@ -158,73 +126,16 @@ export default function HowItWorksPage() {
         {/* Schematic Flow Diagram Section */}
         <Card className="border-green-200 dark:border-green-800">
           <CardHeader className="pb-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <CardTitle className="text-xl font-bold text-green-900 dark:text-green-100">
-                  Process Flow Diagram
-                </CardTitle>
-                <CardDescription className="text-gray-600 dark:text-gray-300">
-                  How both paths lead to your results and leaderboard placement options.
-                </CardDescription>
-              </div>
-
-              {/* Landscape vs Portrait Manual Switcher */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-gray-500 font-medium hidden sm:inline">Format:</span>
-                <Tabs value={viewMode} onValueChange={(val) => handleModeChange(val as "portrait" | "landscape")}>
-                  <TabsList className="bg-green-100/80 dark:bg-green-900/80">
-                    <TabsTrigger value="portrait" className="text-xs gap-1.5">
-                      <Smartphone className="h-3.5 w-3.5" />
-                      Portrait
-                    </TabsTrigger>
-                    <TabsTrigger value="landscape" className="text-xs gap-1.5">
-                      <Monitor className="h-3.5 w-3.5" />
-                      Landscape
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-            </div>
+            <CardTitle className="text-xl font-bold text-green-900 dark:text-green-100">
+              Process Flow Diagram
+            </CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">
+              How both paths lead to your results and leaderboard placement options.
+            </CardDescription>
           </CardHeader>
 
-          <CardContent className="space-y-4">
-            <div className="relative rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-2 md:p-4 overflow-hidden flex justify-center items-center min-h-[300px]">
-              
-              {viewMode === "portrait" ? (
-                <div className="w-full max-w-md mx-auto">
-                  <Image
-                    src="https://iqrar.vercel.app/flow-portrait.png"
-                    alt="IQRA Player Process Flow - Portrait Layout"
-                    width={800}
-                    height={1200}
-                    className="w-full h-auto object-contain rounded-lg shadow-sm"
-                    priority
-                  />
-                </div>
-              ) : (
-                <div className="w-full max-w-4xl mx-auto">
-                  <Image
-                    src="https://iqrar.vercel.app/flow-landscape.png"
-                    alt="IQRA Player Process Flow - Landscape Layout"
-                    width={1600}
-                    height={900}
-                    className="w-full h-auto object-contain rounded-lg shadow-sm"
-                    priority
-                  />
-                </div>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 px-1">
-              <span>* Displaying auto-optimized diagram for your device view.</span>
-              <button 
-                onClick={() => handleModeChange(viewMode === "portrait" ? "landscape" : "portrait")}
-                className="flex items-center gap-1 hover:text-green-700 dark:hover:text-green-300 transition"
-              >
-                <RotateCw className="h-3 w-3" />
-                Switch Diagram View
-              </button>
-            </div>
+          <CardContent>
+            <PlayerFlowDiagram />
           </CardContent>
         </Card>
 
