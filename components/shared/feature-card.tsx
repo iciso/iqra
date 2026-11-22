@@ -7,16 +7,14 @@ import { cn } from "@/lib/utils"
 // Both tones are the site green family: "green" is the brand green, "emerald" the cooler one.
 const tones = {
   green: {
-    border: "border-green-200 dark:border-green-800",
-    bar: "bg-green-600",
+    surface: "bg-gradient-to-b from-green-50 to-white dark:from-green-950/50 dark:to-card",
     square: "bg-green-50 text-green-600 dark:bg-green-900/40 dark:text-green-400",
     badge: "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900/60 dark:text-green-300",
     title: "text-green-800 dark:text-green-400",
     tag: "bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300",
   },
   emerald: {
-    border: "border-emerald-200 dark:border-emerald-800",
-    bar: "bg-emerald-500",
+    surface: "bg-gradient-to-b from-emerald-50 to-white dark:from-emerald-950/50 dark:to-card",
     square: "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-400",
     badge: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/60 dark:text-emerald-300",
     title: "text-emerald-900 dark:text-emerald-100",
@@ -40,7 +38,8 @@ type FeatureCardProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
   children?: ReactNode
   align?: "center" | "left"
   tone?: keyof typeof tones
-  /** Tone-coloured border and a top bar, for cards that stand side by side as choices. */
+  /** Tone-tinted surface and a raised shadow, for cards that stand side by side as choices.
+   *  Emphasis comes from the surface, never from a coloured outline alone. */
   accent?: boolean
 }
 
@@ -78,11 +77,10 @@ const FeatureCard = ({
       {...rest}
       className={cn(
         "relative flex w-full flex-col overflow-hidden rounded-xl shadow-sm",
-        accent && t.border,
+        accent && cn(t.surface, "shadow-md shadow-green-900/[0.06]"),
         className,
       )}
     >
-      {accent && <div aria-hidden="true" className={cn("absolute inset-x-0 top-0 h-1.5", t.bar)} />}
 
       <CardHeader className={cn("pb-2", centered && "items-center text-center")}>
         {eyebrow ? (

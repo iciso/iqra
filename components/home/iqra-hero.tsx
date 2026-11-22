@@ -260,7 +260,7 @@ const IqraHero = () => {
               data-hero-track="challenge"
               data-reveal=""
               style={{ "--rise-delay": "320ms" } as CSSProperties}
-              className="iqra-rise flex flex-col rounded-2xl border-2 border-green-600 bg-green-100 p-5 text-green-900 shadow-none dark:border dark:border-green-400/60 dark:bg-green-700 dark:text-white dark:shadow-lg dark:shadow-green-400/10"
+              className="iqra-rise flex flex-col rounded-2xl border border-green-200 bg-gradient-to-b from-green-100 to-green-50 p-5 text-green-900 shadow-lg shadow-green-900/10 dark:border-green-400/60 dark:bg-none dark:bg-green-700 dark:text-white dark:shadow-lg dark:shadow-green-400/10"
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-green-700 dark:bg-white">
