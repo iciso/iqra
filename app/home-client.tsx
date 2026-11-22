@@ -213,42 +213,41 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               </CardFooter>
             </Card>
 
-                                   {/* Keep the live player/challenge list, but limit height=other cards on the home page. */}
-                        <Card data-reveal="" className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
-                          <CardHeader className="pb-2 text-center">
-                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16 dark:bg-green-900/40">
-                              <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
-                            </div>
-                            <CardTitle className="text-xl text-green-800 sm:text-2xl dark:text-green-400">
-                              IQRA Players
-                            </CardTitle>
-                            <CardDescription className="text-sm sm:text-base">
-                              Find a player and challenge them
-                            </CardDescription>
-                          </CardHeader>
-                        
-                          <CardContent className="flex min-h-0 flex-1 flex-col px-2 sm:px-6">
-                            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-green-800 dark:text-green-400">
-                              <Trophy className="h-4 w-4" />
-                              Available players and top scores
-                            </div>
-                        
-                            {/* Cap list height so this card matches Surah-Quiz; list scrolls inside */}
-                            <div className="max-h-[280px] w-full overflow-y-auto overflow-x-auto sm:max-h-[320px]">
-                              <SimpleTopPlayers initialPlayers={initialPlayers} />
-                            </div>
-                          </CardContent>
-                        
-                          <CardFooter className="mt-auto flex justify-center pt-0">
-                            <Button
-                              asChild
-                              className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
-                            >
-                              <Link href="/challenges">View All Players</Link>
-                            </Button>
-                          </CardFooter>
-                        </Card>
-                    </div>
+            {/* Live players: the top 8 as one plain list (no inner scroll); every player is on /challenges. */}
+            <Card data-reveal="" data-players-card="" className="w-full border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
+              <CardHeader className="pb-2 text-center">
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16 dark:bg-green-900/40">
+                  <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
+                </div>
+                <CardTitle className="text-xl text-green-800 sm:text-2xl dark:text-green-400">
+                  IQRA Players
+                </CardTitle>
+                <CardDescription className="text-sm sm:text-base">
+                  Find a player and challenge them
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="px-4 sm:px-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b pb-2">
+                  <p className="flex items-center gap-2 text-sm font-medium text-green-800 dark:text-green-400">
+                    <Trophy className="h-4 w-4" />
+                    Available players and top scores
+                  </p>
+                  <p className="text-xs text-muted-foreground">Ranked by best score %, then points</p>
+                </div>
+                <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={8} />
+              </CardContent>
+
+              <CardFooter className="flex justify-center pt-0">
+                <Button
+                  asChild
+                  className="bg-green-700 px-6 py-2 text-sm hover:bg-green-800 sm:text-base"
+                >
+                  <Link href="/challenges">View All Players</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
         </section>
             
                 {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}

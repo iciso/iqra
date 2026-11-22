@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
+import TopPlayersList from "./top-players-list"
 import { getChallengePlayersAction } from "@/app/actions/challenges"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
@@ -21,6 +22,9 @@ interface Player {
 interface SimpleTopPlayersProps {
   // Loaded by the server page. Used for the first paint and the first load; refreshes call the Server Action.
   initialPlayers?: ChallengePlayersResult
+  // Home page: a plain list of the first `limit` players, no card of its own and no inner scroll.
+  compact?: boolean
+  limit?: number
 }
 
 interface StoredLeaderboardEntry {
@@ -36,7 +40,7 @@ const usablePlayers = (result?: ChallengePlayersResult | null): Player[] =>
     ? result.players.filter((player: Player) => player.username !== "Test User")
     : []
 
-export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersProps = {}) {
+export default function SimpleTopPlayers({ initialPlayers, compact = false, limit = 8 }: SimpleTopPlayersProps = {}) {
   const { user, loading: authLoading } = useAuth()
   const initialRef = useRef<ChallengePlayersResult | null>(initialPlayers ?? null)
   const [players, setPlayers] = useState<Player[]>(() => usablePlayers(initialPlayers))
@@ -240,6 +244,31 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
     return () => clearTimeout(safetyTimeout)
   }, [loading])
 
+  const challengeDialog = selectedOpponent && (
+    <CategoryFirstChallengeDialog
+      isOpen={challengeDialogOpen}
+      onClose={() => {
+        setChallengeDialogOpen(false)
+        setSelectedOpponent(null)
+      }}
+      opponent={selectedOpponent}
+    />
+  )
+
+  if (compact) {
+    return (
+      <>
+        <TopPlayersList
+          players={players.slice(0, limit)}
+          loading={players.length === 0 && (authLoading || loading)}
+          onChallenge={handleChallenge}
+          showScores={!isUsingFallback}
+        />
+        {challengeDialog}
+      </>
+    )
+  }
+
   if (authLoading) {
     return (
       <Card>
@@ -369,16 +398,7 @@ export default function SimpleTopPlayers({ initialPlayers }: SimpleTopPlayersPro
           </div>
         )}
       </CardContent>
-      {selectedOpponent && (
-        <CategoryFirstChallengeDialog
-          isOpen={challengeDialogOpen}
-          onClose={() => {
-            setChallengeDialogOpen(false)
-            setSelectedOpponent(null)
-          }}
-          opponent={selectedOpponent}
-        />
-      )}
+      {challengeDialog}
     </Card>
   )
 }
