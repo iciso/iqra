@@ -42,32 +42,42 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 ## Development Setup
 
 1. Clone the repository
-   \`\`\`
+   ```bash
    git clone https://github.com/YOUR-USERNAME/iqra.git
    cd iqra
-   \`\`\`
+   ```
 
-2. Install dependencies
-   \`\`\`
-   npm install
-   # or
-   yarn install
-   \`\`\`
+2. Install dependencies (the project uses pnpm)
+   ```bash
+   pnpm install
+   ```
 
 3. Run the development server
-   \`\`\`
-   npm run dev
-   # or
-   yarn dev
-   \`\`\`
+   ```bash
+   pnpm dev
+   ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+5. Database (optional for browsing quizzes, needed for scores, the leaderboard and challenges)
+
+   IQRA stores quiz results, the leaderboard and challenges in a Neon Postgres database.
+   Create a `.env.local` file in the project root and set ONE of these to your Neon connection string
+   (the code reads them in this order):
+
+   - `DATABASE_URL`
+   - `POSTGRES_URL_NO_SSL`
+   - `NEON_DATABASE_URL`
+
+   The `challenges` and `leaderboard_entries` tables are created automatically on the first write.
+   Without a database the quizzes still work; scores, the leaderboard and challenges stay empty.
+   `NODE_ENV`, `VERCEL_ENV` and `VERCEL_URL` are set by Next.js and Vercel - you do not set them.
 
 ## Pull Request Process
 
 1. Ensure your code follows the project's coding standards
 2. Update the README.md with details of changes if appropriate
-3. The PR should work in development environment
+3. The PR should work in development environment (`pnpm lint` and `pnpm build` pass)
 4. Your PR will be reviewed by maintainers, who may request changes or provide feedback
 5. Once approved, your PR will be merged
 
@@ -81,42 +91,16 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 
 ## Files to update for IQRA new category
 
-- data/new.ts
-- data/quiz-data-manager.tsx
-- components/challenge/category-first-challenge-dialog.tsx
-- app/subjects/page.tsx
-- app/page 
-
-
+- `data/<category-id>.ts` - the new category and its questions (copy an existing file such as `data/charity.ts`; its `id` is the category id used everywhere below)
+- `data/quiz-data-manager.tsx` - import the new file and add it to the list of categories
+- `app/subjects/page.tsx` - add it to the `categories` list and to a group's `ids`
+- `components/challenge/category-first-challenge-dialog.tsx` - add it to the categories a player can be challenged in
+- The subject count ("50 subjects") in `components/home/iqra-hero.tsx`, `lib/seo.ts` and `lib/share-image.tsx`
 
 ## Questions?
 
 If you have any questions, feel free to reach out to the maintainers:
 - Rafique - WhatsApp: +91 7558845528
-- Joy - Email: joy_ahmed_007@yahoo.com
+- Joy - Email: joy_ahmed_007@yahoo.com, joy@zettabyteincorp.com
 
 Thank you for contributing to IQRA!
-\`\`\`
-
-\`\`\`plaintext file="LICENSE"
-MIT License
-
-Copyright (c) 2023 IQRA Project Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
