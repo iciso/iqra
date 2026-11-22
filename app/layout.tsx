@@ -71,13 +71,6 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
-  icons: {
-    icon: [
-      { url: "/logo.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-    apple: { url: "/logo.png", sizes: "180x180" },
-  },
 }
 
 export default function RootLayout({
@@ -93,7 +86,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
-        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${inter.className} w-full min-h-screen overflow-x-clip bg-background text-foreground`}>
         <div>
