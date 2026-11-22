@@ -58,6 +58,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Headings use Reem Kufi (--font-heading, app/layout.tsx); body text stays Inter. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  }
 }
 
 /* ---------------------------------------------------------------------------

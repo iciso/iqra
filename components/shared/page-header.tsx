@@ -29,7 +29,7 @@ const PageHeader = ({ title, subtitle, actions, icon, align = "left", className 
       <div className={cn("flex min-w-0 gap-4", centered ? "flex-col items-center" : "items-center")}>
         {icon && <div className="shrink-0">{icon}</div>}
         <div className="min-w-0">
-          <h1 className="break-words text-3xl font-bold tracking-tight text-green-900 sm:text-4xl dark:text-green-100">
+          <h1 className="font-heading break-words text-3xl font-bold tracking-tight text-green-900 sm:text-4xl dark:text-green-100">
             {title}
           </h1>
           {subtitle && (

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Scheherazade_New } from "next/font/google"
+import { Inter, Reem_Kufi, Scheherazade_New } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
@@ -18,6 +18,15 @@ const scheherazade = Scheherazade_New({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-arabic",
+})
+
+// Every heading (h1-h3, font-heading) and the hero's اقرأ mark: loaded once here as --font-heading.
+// Body text stays Inter.
+const reemKufi = Reem_Kufi({
+  subsets: ["latin", "arabic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-heading",
 })
 
 // One viewport tag for the whole site. Pinch-zoom stays on so readers can enlarge text.
@@ -79,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className={`${scheherazade.variable} overflow-x-clip`} suppressHydrationWarning>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className={`${scheherazade.variable} ${reemKufi.variable} overflow-x-clip`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <script

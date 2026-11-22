@@ -25,7 +25,7 @@ const SectionHeading = ({ eyebrow, title, lede, align = "center", id, className 
           {eyebrow}
         </p>
       )}
-      <h2 id={id} className="text-2xl font-bold tracking-tight text-green-900 dark:text-green-300">
+      <h2 id={id} className="font-heading text-2xl font-bold tracking-tight text-green-900 dark:text-green-300">
         {title}
       </h2>
       {lede && (

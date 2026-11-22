@@ -31,7 +31,7 @@ const EmptyState = ({ icon, title, text, action, compact = false, className }: E
         {icon}
       </div>
     )}
-    <p className="text-sm font-medium text-foreground">{title}</p>
+    <p className="font-heading text-sm font-medium text-foreground">{title}</p>
     {text && <div className="max-w-sm text-sm text-muted-foreground">{text}</div>}
     {action && <div className="mt-2">{action}</div>}
   </div>

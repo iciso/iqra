@@ -16,6 +16,8 @@ const config: Config = {
   		fontFamily: {
   			// Scheherazade New is self-hosted by next/font in app/layout.tsx (--font-arabic); it has the Arabic ligatures (e.g. U+FDFB) that Inter lacks
   			arabic: ['var(--font-arabic)', 'serif'],
+  			// Reem Kufi, loaded once in app/layout.tsx (--font-heading): every heading and the hero mark
+  			heading: ['var(--font-heading)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

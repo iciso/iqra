@@ -91,7 +91,7 @@ const FeatureCard = ({
         ) : (
           <div className="mb-2">{square}</div>
         )}
-        <CardTitle className={cn("text-xl sm:text-2xl", t.title)}>{title}</CardTitle>
+        <CardTitle className={cn("font-heading text-xl sm:text-2xl", t.title)}>{title}</CardTitle>
         {subtitle && <CardDescription className="text-sm sm:text-base">{subtitle}</CardDescription>}
       </CardHeader>
 

@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from "react"
 import Link from "next/link"
-import { Reem_Kufi } from "next/font/google"
 
 import { BookOpen, Footprints, Trophy } from "lucide-react"
 
@@ -10,12 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import StatChip from "@/components/shared/stat-chip"
 import { useOrbitPause } from "@/hooks/use-orbit-pause"
-
-const reemKufi = Reem_Kufi({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-})
 
 // Counted from app/subjects/page.tsx (2026-11-22): 38 Islamic Studies + 5 Surah Studies
 // + 5 Tamil + 2 Arabic Vocabulary = 50 subjects; Easy / Intermediate / Advanced = 3 levels;
@@ -177,12 +170,12 @@ const IqraHero = () => {
             <p
               lang="ar"
               dir="rtl"
-              className={`${reemKufi.className} text-[100px] font-bold leading-none text-green-800 [text-shadow:0_0_36px_rgba(21,128,61,0.35),0_0_100px_rgba(21,128,61,0.18)] dark:text-green-50 dark:[text-shadow:0_0_40px_rgba(74,222,128,0.5),0_0_120px_rgba(74,222,128,0.22)] sm:text-[116px]`}
+              className={`font-heading text-[100px] font-bold leading-none text-green-800 [text-shadow:0_0_36px_rgba(21,128,61,0.35),0_0_100px_rgba(21,128,61,0.18)] dark:text-green-50 dark:[text-shadow:0_0_40px_rgba(74,222,128,0.5),0_0_120px_rgba(74,222,128,0.22)] sm:text-[116px]`}
             >
               اقرأ
             </p>
             <p
-              className={`${reemKufi.className} mt-2 pl-[0.5em] text-xs uppercase tracking-[0.5em] text-green-700 dark:text-green-300 sm:text-sm`}
+              className={`font-heading mt-2 pl-[0.5em] text-xs uppercase tracking-[0.5em] text-green-700 dark:text-green-300 sm:text-sm`}
             >
               Iqra &middot; Read
             </p>
@@ -193,7 +186,7 @@ const IqraHero = () => {
         <div data-hero-copy className="contents xl:block">
           <p
             data-hero-acronym
-            className={`mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
+            className={`font-heading mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
           >
             {acronym.map((word, i) => (
               <span key={word.initial}>
@@ -205,7 +198,7 @@ const IqraHero = () => {
           </p>
           <h1
             id="iqra-hero-heading"
-            className={`mt-3 text-balance text-[34px] font-bold leading-[1.08] tracking-tight text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
+            className={`font-heading mt-3 text-balance text-[34px] font-semibold leading-[1.08] text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
           >
             Quiz to learn. Rival to excel.
           </h1>
@@ -231,7 +224,7 @@ const IqraHero = () => {
                   Track 1 &middot; Quiz
                 </p>
               </div>
-              <h2 className="mt-3 text-2xl font-bold tracking-tight text-green-900 dark:text-white">
+              <h2 className="font-heading mt-3 text-2xl font-semibold text-green-900 dark:text-white">
                 <b className="font-bold text-green-700 dark:text-green-300">Quiz</b> &ndash; learn at leisure
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-950/75 dark:text-green-100/80">
@@ -270,7 +263,7 @@ const IqraHero = () => {
                   Track 2 &middot; Rivalry
                 </p>
               </div>
-              <h2 className="mt-3 text-2xl font-bold tracking-tight text-green-900 dark:text-white">
+              <h2 className="font-heading mt-3 text-2xl font-semibold text-green-900 dark:text-white">
                 <b className="font-bold text-green-700 underline decoration-green-600/60 decoration-2 underline-offset-[6px] dark:text-green-200 dark:decoration-green-300/70">
                   Rivalry
                 </b>{" "}

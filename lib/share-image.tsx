@@ -15,18 +15,25 @@ const acronym = [
 
 const facts = ["50 subjects", "Free", "Open source", "No ads"]
 
-// Literal paths, so the bundler ships just these three files with the image routes.
+// Titles use the site's heading font (Reem Kufi, OFL, static TTFs from Google Fonts); other text stays Inter.
+const HEADING = "Reem Kufi"
+
+// Literal paths, so the bundler ships just these five files with the image routes.
 const loadAssets = async () => {
-  const [logo, semibold, extrabold] = await Promise.all([
+  const [logo, semibold, extrabold, headingSemibold, headingBold] = await Promise.all([
     readFile(join(process.cwd(), "public", "logo.png")),
     readFile(join(process.cwd(), "assets", "fonts", "Inter-600.ttf")),
     readFile(join(process.cwd(), "assets", "fonts", "Inter-800.ttf")),
+    readFile(join(process.cwd(), "assets", "fonts", "ReemKufi-600.ttf")),
+    readFile(join(process.cwd(), "assets", "fonts", "ReemKufi-700.ttf")),
   ])
   return {
     logoSrc: `data:image/png;base64,${logo.toString("base64")}`,
     fonts: [
       { name: "Inter", data: semibold, weight: 600 as const, style: "normal" as const },
       { name: "Inter", data: extrabold, weight: 800 as const, style: "normal" as const },
+      { name: HEADING, data: headingSemibold, weight: 600 as const, style: "normal" as const },
+      { name: HEADING, data: headingBold, weight: 700 as const, style: "normal" as const },
     ],
   }
 }
@@ -74,7 +81,7 @@ export const renderChallengeShareImage = async ({ subject, level, players }: Cha
             {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain img only */}
             <img src={logoSrc} alt="" width={64} height={64} />
           </div>
-          <div style={{ fontSize: 60, fontWeight: 800, letterSpacing: 4, color: "#166534" }}>IQRA</div>
+          <div style={{ fontFamily: HEADING, fontSize: 60, fontWeight: 700, letterSpacing: 4, color: "#166534" }}>IQRA</div>
         </div>
         <div
           style={{
@@ -116,7 +123,7 @@ export const renderChallengeShareImage = async ({ subject, level, players }: Cha
               <div style={{ fontSize: 26, fontWeight: 600, color: player.winner ? "#15803d" : "rgba(5,46,22,0.5)" }}>
                 {player.winner ? "Winner" : index === 0 ? "Challenger" : "Challenged"}
               </div>
-              <div style={{ marginTop: 6, fontSize: 44, fontWeight: 800, color: "#14532d" }}>{clip(player.name, 18)}</div>
+              <div style={{ marginTop: 6, fontFamily: HEADING, fontSize: 44, fontWeight: 700, color: "#14532d" }}>{clip(player.name, 18)}</div>
               <div style={{ marginTop: 10, fontSize: player.score ? 64 : 34, fontWeight: 800, color: "#15803d" }}>
                 {player.score ?? "Yet to play"}
               </div>
@@ -126,7 +133,7 @@ export const renderChallengeShareImage = async ({ subject, level, players }: Cha
       </div>
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", gap: 14, fontSize: 40, fontWeight: 800 }}>
+        <div style={{ display: "flex", gap: 14, fontFamily: HEADING, fontSize: 40, fontWeight: 700 }}>
           <span>Quiz to learn.</span>
           <span style={{ color: "#15803d" }}>Rival to excel.</span>
         </div>
@@ -170,14 +177,14 @@ export const renderShareImage = async () => {
           {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain img only */}
           <img src={logoSrc} alt="" width={96} height={96} />
         </div>
-        <div style={{ fontSize: 104, fontWeight: 800, letterSpacing: 6, color: "#166534", lineHeight: 1 }}>IQRA</div>
+        <div style={{ fontFamily: HEADING, fontSize: 104, fontWeight: 700, letterSpacing: 6, color: "#166534", lineHeight: 1 }}>IQRA</div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", gap: 14, fontSize: 40, fontWeight: 600, color: "rgba(5,46,22,0.6)" }}>
+        <div style={{ display: "flex", gap: 14, fontFamily: HEADING, fontSize: 40, fontWeight: 600, color: "rgba(5,46,22,0.6)" }}>
           {acronym.map((word) => (
             <div key={word.initial} style={{ display: "flex" }}>
-              <span style={{ color: "#15803d", fontWeight: 800 }}>{word.initial}</span>
+              <span style={{ color: "#15803d", fontWeight: 700 }}>{word.initial}</span>
               <span>{word.rest}</span>
             </div>
           ))}
@@ -187,8 +194,9 @@ export const renderShareImage = async () => {
             marginTop: 18,
             display: "flex",
             flexDirection: "column",
+            fontFamily: HEADING,
             fontSize: 76,
-            fontWeight: 800,
+            fontWeight: 700,
             color: "#14532d",
             lineHeight: 1.05,
           }}
