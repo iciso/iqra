@@ -17,11 +17,13 @@ export async function generateMetadata({ params }: ChallengeResultsProps): Promi
   if (!challenge) return { title: "Challenge not found", robots: { index: false, follow: false } }
 
   const { title, description } = describeChallenge(challenge)
-  const base = pageMetadata({ title, description, path: `/challenge-results/${challengeId}`, noindex: true })
+  const path = `/challenge-results/${challengeId}`
+  const base = pageMetadata({ title, description, path, noindex: true })
+  const image = { width: 1200, height: 630, alt: title }
   return {
     ...base,
-    openGraph: { ...base.openGraph, images: undefined },
-    twitter: { ...base.twitter, images: undefined },
+    openGraph: { ...base.openGraph, images: [{ ...image, url: `${path}/opengraph-image` }] },
+    twitter: { ...base.twitter, images: [{ ...image, url: `${path}/twitter-image` }] },
   }
 }
 

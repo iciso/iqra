@@ -92,15 +92,21 @@ export const renderChallengeShareImage = async ({ subject, level, players }: Cha
         </div>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {players.map((player, index) => (
-          <div key={index} style={{ display: "flex", alignItems: "center", gap: 24, flex: 1 }}>
-            {index === 1 && <div style={{ fontSize: 44, fontWeight: 800, color: "rgba(5,46,22,0.35)" }}>vs</div>}
+          <div key={index} style={{ display: "flex", alignItems: "center" }}>
+            {index === 1 && (
+              <div style={{ width: 116, display: "flex", justifyContent: "center", fontSize: 44, fontWeight: 800, color: "rgba(5,46,22,0.35)" }}>
+                vs
+              </div>
+            )}
             <div
               style={{
-                flex: 1,
+                width: 470,
+                height: 236,
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
                 padding: "28px 32px",
                 borderRadius: 28,
                 background: "#ffffff",
