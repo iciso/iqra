@@ -8,7 +8,7 @@ import AboutTabs from "@/components/about/about-tabs";
 
 /*
 IQRA To do list:
-1) To Add categories like Ethical AI use, Sexual Health, choosing form the list in G Docs, add the new files, or alter or add new code at:
+1) To Add categories like Ethical AI use,  Sexual Health, Death, Ijtihad, Ihsan or Spiritual Excellence, Fiqh of Trade, choosing form the list in G Docs, add the new files, or alter or add new code at:
 iqra/data/
 iqra/app/subjects/page
 iqra/components/challenge/category-first-challenge-dialog.tsx
@@ -163,6 +163,88 @@ const totalAdvanced = quizDistribution.reduce(
 );
 
 const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
+
+// Players contributions Dhansih Ali & others
+type Contributor = {
+  id: string // used as the anchor, e.g. /about#dhanish-ali
+  label: string
+  name: string
+  intro: string
+  reward: number // total reward in INR for this contributor
+  rewardNote?: string
+  contributions: { icon: string; title: string; detail: string }[]
+}
+
+const contributors: Contributor[] = [
+  {
+    id: "dhanish-ali",
+    label: "Our First Celebrated Contributor",
+    name: "Dhanish Ali",
+    intro:
+      "With sincere appreciation, we acknowledge Dhanish Ali for identifying and suggesting five corrections to IQRA. All five suggestions were accepted and implemented by the IQRA coding team.",
+    reward: 1250,
+    rewardNote: "₹250 per accepted suggestion",
+    contributions: [
+      { icon: "🧕", title: "Salah Quiz", detail: "Women leading in Prayer" },
+      { icon: "🏛️", title: "Salah Quiz", detail: "Arkans or Pillars in Salah" },
+      { icon: "🕌", title: "Salah Quiz", detail: "Night Prayer in Islam" },
+      { icon: "📗", title: "Challenges Tabs", detail: "Challenges display correctly" },
+      { icon: "📜", title: "Harun (AS)", detail: "Prophethood & Messengership" },
+    ],
+  },
+  {
+    id: "feroza-mi",
+    label: "Our Second Celebrated Contributor",
+    name: "Feroza MI",
+    intro:
+      "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. Both suggestions were accepted and implemented by the IQRA coding team.",
+    reward: 500,
+    rewardNote: "₹250 per accepted suggestion",
+    contributions: [
+      { icon: "📖", title: "Quran Quiz", detail: "Mother of the Quran or Umm al-Quran" },
+      { icon: "🕌", title: "Salah Quiz", detail: "Performing Salah on Time" },
+    ],
+  },
+  {
+    id: "joy-ahmed",
+    label: "Our Third Celebrated Contributor",
+    name: "Joy Ahmed",
+    intro:
+      "With sincere appreciation, we acknowledge Joy Ahmed for six contributions to IQRA's code and design, which made the app cleaner, more mobile-friendly and easier to use.",
+    reward: 1500,
+    rewardNote: "₹250 per contribution",
+    contributions: [
+      { icon: "💫", title: "Cleaner routing", detail: "Updated URL from /categories to /subjects" },
+      { icon: "📲", title: "Mobile responsiveness", detail: "Layout adapted for mobile devices" },
+      { icon: "💯", title: "Better organization", detail: "Grouped into subsections" },
+      { icon: "👏", title: "Sleeker UI", detail: "Narrower subject cards" },
+      { icon: "🌙", title: "Dark Mode", detail: "Enabled" },
+      { icon: "🏠", title: "Mock-ups", detail: "Five mock-ups of the Home page" },
+    ],
+  },
+    {
+    id: "riaz-ahamed",
+    label: "Our Fourth Celebrated Contributor",
+    name: "Riaz Ahamed Bobby",
+    intro:
+      "With sincere appreciation, we acknowledge Riaz Ahmed Bobby for four suggestions to IQRA's coding and AI, which made coding easier, cheaper, and enjoyable.",
+    reward: 1000,
+    rewardNote: "₹250 per suggestion",
+    contributions: [
+      { icon: "🤖", title: "Better AIs", detail: "Grok and Deep Seek" },
+      { icon: "📊", title: "Free DBs", detail: "Change from Supabase to Neon" },
+      { icon: "🔓", title: "No Auth", detail: "Access without Sign-up" },
+      { icon: "👏", title: "Free Domain, Hosting", detail: "Cloudflare" },
+    ],
+  },
+]
+
+// Used by the Reward Presentation box below (it is about Dhanish Ali)
+const dhanishReward = contributors.find((c) => c.id === "dhanish-ali")?.reward ?? 0
+// Grand totals across all contributors (update automatically)
+const totalRewards = contributors.reduce((sum, c) => sum + c.reward, 0)
+const totalContributions = contributors.reduce((sum, c) => sum + c.contributions.length, 0)
+
 
 export default function AboutPage() {
   return (
@@ -376,7 +458,7 @@ export default function AboutPage() {
         </section>
 
         </>} players={<>
-       {/* Player Contributions & Recognition */}
+           {/* Player Contributions & Recognition */}
 <section
   id="player-contributions-dhanish-ali"
   className="mb-12 rounded-2xl border-2 border-amber-400
@@ -396,7 +478,7 @@ export default function AboutPage() {
 
     <h2 className="mb-4 text-3xl font-extrabold
       text-green-800 dark:text-green-400">
-      Celebrating Our Players&apos; Contributions!
+      Celebrating Our Players' Contributions!
     </h2>
 
     <p className="text-lg leading-relaxed
@@ -404,121 +486,105 @@ export default function AboutPage() {
       IQRA belongs not only to its creators, but also to the
       players who  make it better. Every correction,
       constructive suggestion, and improvement identified by
-      our players can  make IQRA&apos;s Islamic knowledge,
+      our players can  make IQRA's Islamic knowledge,
       data, and user interface more accurate and useful
       for everyone.
     </p>
   </div>
 
-  <div className="my-6 rounded-xl border border-amber-300
-    bg-white/80 p-5 text-center dark:border-amber-700
-    dark:bg-gray-900/60">
+  {/* Grand total of all rewards given by the IQRA team */}
+<div className="relative my-6 overflow-hidden rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 p-6 text-center shadow-lg dark:border-amber-500 dark:from-amber-600 dark:via-yellow-500 dark:to-amber-600">
+  <span className="absolute left-3 top-2 text-2xl" aria-hidden="true">✨</span>
+  <span className="absolute right-3 top-2 text-2xl" aria-hidden="true">✨</span>
+  <span className="absolute bottom-2 left-4 text-2xl" aria-hidden="true">🌟</span>
+  <span className="absolute bottom-2 right-4 text-2xl" aria-hidden="true">🌟</span>
 
-    <p className="mb-2 text-sm font-semibold uppercase
-      tracking-wide text-gray-600 dark:text-gray-300">
-      Our First Celebrated Contributor
+  <p className="text-4xl" aria-hidden="true">🏆</p>
+  <p className="mt-1 text-sm font-bold uppercase tracking-widest text-amber-900 dark:text-gray-900">
+    Total Rewards Given by the IQRA Team
+  </p>
+  <p className="my-1 text-5xl font-extrabold text-green-800 drop-shadow-sm sm:text-6xl dark:text-gray-900">
+    ₹{totalRewards.toLocaleString("en-IN")}
+  </p>
+  <p className="text-sm font-medium text-amber-900 dark:text-gray-900">
+    to {contributors.length} players for {totalContributions} accepted contributions 🤝
+  </p>
+</div>
+  
+  {contributors.map((c) => (
+  <div
+    key={c.id}
+    id={c.id}
+    className="my-6 scroll-mt-4 rounded-xl border border-amber-300 bg-white/80 p-5 text-center dark:border-amber-700 dark:bg-gray-900/60"
+  >
+    <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+      {c.label}
     </p>
+    <h3 className="mb-3 text-3xl font-extrabold text-green-700 dark:text-green-400">
+      🌟 {c.name} 🌟
+    </h3>
+    <p className="mb-5 text-gray-700 dark:text-gray-200">{c.intro}</p>
 
-    <h3 className="mb-3 text-3xl font-extrabold
-      text-green-700 dark:text-green-400">
-      🌟 Dhanish Ali 🌟
+    <ol aria-label={`Contributions by ${c.name}`} className="mx-auto mb-5 max-w-md space-y-2.5 text-left">
+      {c.contributions.map((item, index) => (
+        <li
+          key={`${c.id}-${index}`}
+          className="flex items-center gap-3 rounded-xl bg-[#F3FBF6] p-3 dark:bg-green-950/60"
+        >
+          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1B7A4B] font-bold text-white">
+            {index + 1}
+          </span>
+          <span className="text-xl" aria-hidden="true">{item.icon}</span>
+          <div className="min-w-0">
+            <p className="font-bold text-[#0C4E2D] dark:text-green-300">{item.title}</p>
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div className="mx-auto grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="rounded-lg bg-green-50 p-4 dark:bg-green-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Accepted Contributions</p>
+        <p className="text-3xl font-extrabold text-green-700 dark:text-green-400">
+          {c.contributions.length}
+        </p>
+      </div>
+      <div className="rounded-lg bg-amber-50 p-4 dark:bg-amber-950">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Reward Earned</p>
+        <p className="text-3xl font-extrabold text-amber-700 dark:text-amber-400">
+          ₹{c.reward.toLocaleString("en-IN")}
+        </p>
+        {c.rewardNote && (
+          <p className="mt-1 text-xs text-gray-600 dark:text-gray-300">{c.rewardNote}</p>
+        )}
+      </div>
+    </div>
+  </div>
+))}
+  
+  <div className="rounded-xl bg-green-100 p-5 text-center
+    dark:bg-green-900/50">
+
+    <h3 className="mb-3 text-xl font-bold
+      text-green-800 dark:text-green-300">
+      🎉 Reward Presentation — Insha Allah
     </h3>
 
-    <p className="mb-5 text-gray-700 dark:text-gray-200">
-      With sincere appreciation, we acknowledge Dhanish Ali
-      for identifying and suggesting three corrections
-      to IQRA. All three suggestions were accepted and
-      implemented by the IQRA coding team.
+    <p className="mb-3 text-gray-700 dark:text-gray-200">
+      Except for Joy Ahmed who is not resident in India, every one else will be presented their respective 
+      total rewards during the Kattoo Yamani (KY) Family Meet 2026.
     </p>
 
-       {/* Begin Table */}
-      {/* Responsive Table Container */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-separate border-spacing-y-2.5">
-          <thead>
-            <tr className="text-white text-lg font-bold">
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-l-xl text-center w-[12%]">
-                No.
-              </th>
-              <th className="bg-[#1B7A4B] py-3.5 px-4 rounded-r-xl text-left w-[88%]">
-                💡 Contribution
-              </th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            {/* Item 1 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  1
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📖</span>
-                  <div>
-                    Salah Quiz — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Answer Options</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
+    <p className="font-bold text-green-800
+      dark:text-green-300">
+      📅 26 December 2026
+    </p>
 
-            {/* Item 2 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  2
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl"> 🕌</span>
-                  <div>
-                    Harun (AS) — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Prophethood</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            {/* Item 3 */}
-            <tr className="text-base">
-              <td className="bg-[#F3FBF6] py-3 px-2 text-center rounded-l-xl align-middle">
-                <span className="inline-flex items-center justify-center bg-[#1B7A4B] text-white font-bold w-8 h-8 rounded-full">
-                  3
-                </span>
-              </td>
-              <td className="bg-[#F3FBF6] py-3 px-4 rounded-r-xl text-left align-middle font-bold text-[#0C4E2D]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">📗</span>
-                  <div>
-                    Surah Maryam — 
-                    <span className="block text-sm text-gray-600 font-medium mt-0.5">Nabi Reference</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-   {/* End of Table */}
-
-    <div className="mx-auto grid max-w-xs grid-cols-1 gap-3">
-
-      <div className="rounded-lg bg-green-50 p-4
-        dark:bg-green-950">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          Accepted Suggestions
-        </p>
-        <p className="text-3xl font-extrabold text-green-700
-          dark:text-green-400">
-          3
-        </p>
-      </div>
-
-    </div>
+    <p className="font-semibold text-gray-700
+      dark:text-gray-200">
+      📍 PWD Beach Rest House, Alleppey
+    </p>
   </div>
 
   <p className="mt-6 text-center text-sm italic
@@ -528,7 +594,7 @@ export default function AboutPage() {
       <span>
             Send suggestions by WhatsApp to {" "}
                 <a
-                href="https://wa.me"
+                href="https://wa.me/917558845528?text=Hi%20Rafique%2C%0AMy%20suggestion%20for%20IQRA%20is"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline"
@@ -540,7 +606,7 @@ export default function AboutPage() {
     
     Help us make IQRA better,
     one thoughtful contribution at a time.
-    May Allah <span className="font-arabic">ﷻ</span> reward everyone who contributes
+    May Allah ﷻ reward everyone who contributes
     sincerely to beneficial Islamic learning. Ameen.
   </p>
 </section>

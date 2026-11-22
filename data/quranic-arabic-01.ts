@@ -678,7 +678,7 @@ const quranicArabic01Category: QuizCategory = {
         question: "What does أَب (ab) mean?",
         options: ["Mother", "Father", "Brother", "Son"],
         correctAnswer: "Father",
-        explanation: "أَب (ab) means “father”. The phrase رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ (rabbanā-ghfir lī wa li-wālidayya – “Our Lord, forgive me and my parents”) is in Surah Ibrahim (14:41)."
+        explanation: "أَب (ab) means “father”. The phrase يَا أَبَتِ افْعَلْ مَا تُؤْمَرُ (Yā abati if‘al mā tu’mar – “O my father, do as you are commanded.”) is in Surah As-Saffat (37:102)."
       },
       {
         id: "qav-easy-097",
