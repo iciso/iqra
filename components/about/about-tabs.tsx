@@ -28,7 +28,7 @@ const tabs: { id: TabId; label: string; hashes: string[] }[] = [
       // add each new contributor's id here
     ],
   },
-  { id: "more", label: "Open Source & Thanks", hashes: ["open-source"] },
+  { id: "more", label: "Open Source & Thanks", hashes: ["open-source", "ai-credits"] },
 ]
 
 const subscribeToHash = (onChange: () => void) => {

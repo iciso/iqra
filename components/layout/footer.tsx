@@ -69,6 +69,14 @@ const Footer = () => {
           )}
         </nav>
 
+        {/* Keeps the meaning of the old "Iqra 💡 Team AI" footer link: credits for the AI help, on /about. */}
+        <p data-footer-row="" className="text-xs">
+          {/* Plain <a>, not <Link>: a hash-only change must fire "hashchange" so About opens the right tab. */}
+          <a href="/about#ai-credits" data-footer-ai-credits="" className={linkClass}>
+            Built with AI assistance – see credits
+          </a>
+        </p>
+
         <p data-footer-row="" className="text-xs">
           © {year} IQRA
         </p>

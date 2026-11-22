@@ -258,6 +258,16 @@ export default function AboutPage() {
           <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
             The first freeware open-source Islamic knowledge quiz app with competitive challenges
           </p>
+          {/* Rafique's original homepage welcome line (moved here from the old home header in cc12ec8). */}
+          <p
+            data-about-welcome=""
+            className="mx-auto mt-6 max-w-2xl rounded-xl border bg-muted/50 px-5 py-4 text-center text-base leading-relaxed text-muted-foreground"
+          >
+            <span dir="rtl" lang="ar" className="font-arabic text-2xl text-foreground align-middle">
+              ما شاء الله
+            </span>{" "}
+            (Masha Allah!) Welcome to IQRA. Test your knowledge of Islam through learning or challenges.
+          </p>
         </section>
         <AboutTabs mission={<>
         <section className="mb-12">
@@ -666,7 +676,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mb-12">
+        {/* #ai-credits: the footer's "Built with AI assistance" link lands here (Grok/xAI, DeepSeek, Claude, Gemini, Meta). */}
+        <section id="ai-credits" className="mb-12 scroll-mt-32">
           <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             All praise and thanks are due to Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
