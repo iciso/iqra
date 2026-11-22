@@ -249,8 +249,6 @@ const contributors: Contributor[] = [
   },
 ]
 
-// Used by the Reward Presentation box below (it is about Dhanish Ali)
-const dhanishReward = contributors.find((c) => c.id === "dhanish-ali")?.reward ?? 0
 // Grand totals across all contributors (update automatically)
 const totalRewards = contributors.reduce((sum, c) => sum + c.reward, 0)
 const totalContributions = contributors.reduce((sum, c) => sum + c.contributions.length, 0)
@@ -675,7 +673,6 @@ export default function AboutPage() {
             <li>Next.js - React framework for server-rendered applications</li>
             <li>TypeScript - For type safety and better developer experience</li>
             <li>Tailwind CSS - For responsive and customizable styling</li>
-            <li>Supabase - For sign-in (phone authentication)</li>
             <li>Neon - Serverless Postgres for quiz results, leaderboard, profiles and challenges</li>
             <li>Vercel - For deployment and hosting</li>
           </ul>

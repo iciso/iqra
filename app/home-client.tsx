@@ -88,7 +88,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                 <>
                   Learn vocabulary from specific Surahs. Browse through Surahs in KALAM
                   to study their context, meaning, and rulings. Self-test your
-                  knowledge on the nearly 40 completed Surahs in KALAM,
+                  knowledge on the 39 completed Surahs in KALAM,
                   without entry into a Leaderboard.
                 </>
               }
@@ -102,7 +102,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Start Easy Quiz: 40 Surahs
+                      Start Easy Quiz: 39 Surahs
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className={outlineButtonClass}>
@@ -112,8 +112,8 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               }
             >
               <p className={noteClass}>
-                Also Surah-Quizzes are available in Easy or Translation only Quizzes in KALAM app, and
-                as an Expert version with Translation, Tafsir, and Vocab Quizzes in IQRA app.
+                Surah quizzes are also available in the KALAM app as Easy or Translation-only quizzes,
+                and in IQRA as an Expert version with Translation, Tafsir and Vocabulary quizzes.
               </p>
             </FeatureCard>
 
@@ -184,21 +184,21 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
               actions={
                 <Button asChild className={primaryButtonClass}>
-                  <Link href="/subjects#Vocab">Explore Modern Vocabulary</Link>
+                  <Link href="/subjects#vocab">Explore Modern Vocabulary</Link>
                 </Button>
               }
             />
           </div>
           <p data-reveal="" className={`mt-6 text-center ${noteClass}`}>
-            Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks.
-            For challenges go to the{" "}
+            Both the Arabic Vocabulary and Surah Quiz buttons lead to self-learning tracks.
+            For challenges, go to the{" "}
             <Link
               href="/challenges"
               className="font-medium text-green-700 underline underline-offset-4 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
             >
               Challenges
             </Link>{" "}
-            page
+            page.
           </p>
         </section>
 

@@ -73,7 +73,7 @@ export default function HowItWorksPage() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <Sparkles aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                <span><strong>No Timer:</strong> Read explanations carefully without any rush. Become an Instant Quality Regligious Authority(IQRA)</span>
+                <span><strong>No Timer:</strong> Read explanations carefully without any rush. Become an Instant Quality Religious Authority (IQRA).</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <ShieldCheck aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
