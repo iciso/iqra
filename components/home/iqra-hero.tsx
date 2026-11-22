@@ -8,6 +8,7 @@ import { BookOpen, Footprints, Trophy } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import StatChip from "@/components/shared/stat-chip"
 import { useOrbitPause } from "@/hooks/use-orbit-pause"
 
 const reemKufi = Reem_Kufi({
@@ -107,9 +108,6 @@ const ringStroke = "stroke-green-700/20 dark:stroke-green-300/20"
 const labelText = "fill-green-900/60 tracking-[0.12em] dark:fill-green-100/70"
 const keyDot = "fill-green-600 dark:fill-green-400"
 const minorDot = "fill-green-700/35 dark:fill-green-200/45"
-const chipClass =
-  "rounded-full border border-green-200 px-3.5 py-1.5 text-[13px] text-green-950/70 dark:border-green-800 dark:text-green-100/75"
-
 const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => (
   <svg
     viewBox={orbit.viewBox}
@@ -308,19 +306,9 @@ const IqraHero = () => {
             style={{ "--rise-delay": "400ms" } as CSSProperties}
             className="iqra-rise mt-7 flex flex-wrap justify-center gap-2.5 xl:justify-start">
             {facts.map((fact) => (
-              <li key={fact.label} className={chipClass}>
-                <b className="font-semibold text-green-700 dark:text-green-300">{fact.value}</b> {fact.label}
-              </li>
+              <StatChip key={fact.label} value={fact.value} label={fact.label} />
             ))}
-            <li className={chipClass}>
-              <a
-                href="#no-donations"
-                title="Why no donations - Surah Sad 38:86"
-                aria-label="Why no donations - Surah Sad 38:86"
-                className="rounded-full underline-offset-4 hover:text-green-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 dark:hover:text-green-200 dark:focus-visible:ring-green-400">
-                No ads &middot; no donations
-              </a>
-            </li>
+            <StatChip href="#no-donations" title="Why no donations - Surah Sad 38:86" label={<>No ads &middot; no donations</>} />
           </ul>
         </div>
       </div>
