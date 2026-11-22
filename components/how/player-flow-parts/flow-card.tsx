@@ -17,7 +17,7 @@ const FlowCard = ({ step }: FlowCardProps) => {
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-300">
             {step.eyebrow}
           </p>
-          <h3 className="mt-0.5 text-[15px] tracking-normal [word-spacing:0.12em] font-semibold leading-snug text-gray-900 dark:text-gray-50">{step.title}</h3>
+          <h3 className="mt-0.5 text-[15px] tracking-normal font-semibold leading-snug text-gray-900 dark:text-gray-50">{step.title}</h3>
         </div>
       </div>
       <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{step.body}</p>

@@ -64,6 +64,13 @@
   h3 {
     font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   }
+  /* Reem Kufi's own word space is narrow; widen it for every heading-font text. */
+  h1,
+  h2,
+  h3,
+  .font-heading {
+    word-spacing: 0.12em;
+  }
 }
 
 /* ---------------------------------------------------------------------------
