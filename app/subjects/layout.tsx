@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: "Browse 50 Islamic quiz subjects and pick one to play at your own level.",
     path: "/subjects",
   }),
-  title: { default: `Subjects · ${SITE_NAME}`, template: `%s · ${SITE_NAME}` },
+  title: { default: "Subjects", template: `%s · ${SITE_NAME}` },
 }
 
 const SubjectsLayout = ({ children }: { children: React.ReactNode }) => <>{children}</>
