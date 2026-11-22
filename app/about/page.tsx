@@ -8,6 +8,13 @@ import AboutTabs from "@/components/about/about-tabs";
 import SectionHeading from "@/components/shared/section-heading";
 import PageHeader from "@/components/shared/page-header";
 import { pageContainerClass } from "@/lib/page-layout";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "About",
+  description: "Who builds IQRA, why it is free and open source, and the tools it is built with.",
+  path: "/about",
+});
 
 /*
 IQRA To do list:

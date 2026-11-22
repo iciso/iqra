@@ -7,22 +7,37 @@ import { Toaster } from "@/components/ui/toaster"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { AuthProvider } from "@/contexts/auth-context"
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"] })
 
-// Fix for auto-fit / auto-zoom issue on mobile web views
+// One viewport tag for the whole site. Pinch-zoom stays on so readers can enlarge text.
 export const viewport: Viewport = {
   themeColor: "#10b981",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+}
+
+// Search engines read this as a description of the app itself.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: SITE_NAME,
+  alternateName: "Islamic Quiz Rivalry App",
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Web",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: 0, priceCurrency: "USD" },
+  inLanguage: "en",
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://iqrar.vercel.app/"),
-  title: "IQRA 🏆 Islamic Quiz Rivalry App",
-  description: "Test your Islamic knowledge with quizzes💡🎯 and challenges",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
   keywords:
     "Quran vocabulary, Arabic learning, interactive games, Islamic education, Quranic words, language learning, Arabic flashcards, Infographic, Quiz, Surah vocabulary",
   manifest: "/manifest.json",
@@ -34,17 +49,18 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
     title: "IQRA",
   },
+  // The share image comes from app/opengraph-image.tsx and app/twitter-image.tsx.
   openGraph: {
-    title: "IQRA 🏆 Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge with quizzes💡🎯and challenges",
-    images: [{ url: "/logo.png" }],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: SITE_NAME,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IQRA 🏆 Islamic Quiz Rivalry App",
-    description: "Test your Islamic knowledge with quizzes💡🎯and challenges",
-    images: [{ url: "/logo.png" }],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   icons: {
     icon: [
@@ -53,7 +69,6 @@ export const metadata: Metadata = {
     ],
     apple: { url: "/logo.png", sizes: "180x180" },
   },
-  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -64,8 +79,11 @@ export default function RootLayout({
   return (
     <html prefix="og: https://ogp.me/ns#" lang="en" className="overflow-x-clip" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
         {/* Root layout <head> applies to every route; this rule targets pages/_document. */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link

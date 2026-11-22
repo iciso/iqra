@@ -1,5 +1,13 @@
 import QuizContainer from "@/components/quiz/quiz-container"
 import type { DifficultyLevel, QuizQuestion } from "@/types/quiz"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "Quiz",
+  description: "Answer the questions one by one and see your score at the end.",
+  path: "/quiz",
+  noindex: true,
+})
 
 // ---------------------------------------------------------------------------
 // Types
