@@ -1,12 +1,20 @@
 import type { Opponent, OpponentType } from "@/components/challenge/opponent-profile"
 
+// Uniform random integer in [0, n) from the platform's secure generator
+function randomInt(n: number): number {
+  if (n <= 0) return 0
+  const buf = new Uint32Array(1)
+  globalThis.crypto.getRandomValues(buf)
+  return buf[0] % n
+}
+
 // Generate a random score within a range close to the user's score
 export function generateBotScore(userScore: number, totalQuestions: number): number {
   // Bots should be challenging but beatable
   // Score range is between -2 and +2 of user's score, but always between 0 and totalQuestions
   const min = Math.max(0, userScore - 2)
   const max = Math.min(totalQuestions, userScore + 2)
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return randomInt(max - min + 1) + min
 }
 
 // Predefined list of opponents
@@ -57,7 +65,7 @@ const opponentsList: Opponent[] = [
 export function getRandomOpponent(preferredType?: OpponentType): Opponent {
   const filteredOpponents = preferredType ? opponentsList.filter((o) => o.type === preferredType) : opponentsList
 
-  const randomIndex = Math.floor(Math.random() * filteredOpponents.length)
+  const randomIndex = randomInt(filteredOpponents.length)
   return { ...filteredOpponents[randomIndex] }
 }
 
