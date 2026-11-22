@@ -126,7 +126,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
       <div className="mx-auto flex w-full max-w-6xl flex-grow flex-col px-4 sm:px-6">
         {/* Rafique's Surah-Quiz and IQRA Players cards. */}
         <section aria-label="More IQRA features and players" className={sectionClass}>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
             <Card data-reveal="" className={`flex flex-col ${cardClass}`}>
               <CardHeader className="pb-2 text-center">
                 <div className={iconCircleClass}>
@@ -137,7 +137,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                   Focus on vocabulary from a specific Surah
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1">
+              <CardContent>
                 <p className={`mb-4 ${bodyClass}`}>
                   Learn vocabulary from specific Surahs. Browse through Surahs in KALAM
                   to study their context, meaning, and rulings. Self-test your
@@ -156,7 +156,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                   as an Expert version with Translation, Tafsir, and Vocab Quizzes in IQRA app.
                 </p>
               </CardContent>
-              <CardFooter className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <CardFooter className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 {/* KALAM is a separate site, so this one still opens in a new tab. */}
                 <Button asChild className={primaryButtonClass}>
                   <Link
@@ -173,7 +173,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               </CardFooter>
             </Card>
 
-            {/* Live players: the top 8 as one plain list (no inner scroll); every player is on /challenges. */}
+            {/* Live players: the top 6 as one plain list (no inner scroll); every player is on /challenges. */}
             <Card data-reveal="" data-players-card="" className={`flex flex-col ${cardClass}`}>
               <CardHeader className="pb-2 text-center">
                 <div className={iconCircleClass}>
@@ -193,7 +193,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                   </p>
                   <p className="text-xs text-muted-foreground">Ranked by best score %, then points</p>
                 </div>
-                <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={8} />
+                <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={6} />
               </CardContent>
 
               <CardFooter className="flex justify-center">
