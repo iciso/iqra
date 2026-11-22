@@ -67,7 +67,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 - Rafique - WhatsApp: +91 7558845528
-- Joy - Email: joy_ahmed_007@yahoo.com
+- Joy - Email: joy_ahmed_007@yahoo.com, joy@zettabyteincorp.com
 
 ---
 
