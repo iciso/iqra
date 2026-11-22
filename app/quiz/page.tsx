@@ -140,7 +140,7 @@ async function resolveChallengeParams(params: URLSearchParams) {
   let category = params.get("category") || "quran"
   let difficulty = normalizeDifficulty(params.get("difficulty") || "easy")
   let questionCount = Number.parseInt(params.get("questions") || String(DEFAULT_SECTION_SIZE), 10)
-  let opponentId = params.get("opponent") || undefined
+  const opponentId = params.get("opponent") || undefined
   let opponentName = params.get("opponentName") || undefined
   let challengerTurn = params.get("challengerTurn") === "true"
   const challengeId = params.get("challenge") || undefined
@@ -153,35 +153,18 @@ async function resolveChallengeParams(params: URLSearchParams) {
   }
 
   try {
-    const { createClient } = await import("@supabase/supabase-js")
-    const url = process.env.SUPABASE_URL as string
-    const key = (process.env.SUPABASE_SERVICE_ROLE_KEY as string) || (process.env.SUPABASE_ANON_KEY as string)
-    const supabase = createClient(url, key)
+    // Challenges live in Neon (lib/server/challenge-data.ts). Values already in the URL win;
+    // the database only fills what the link left out. Returns null for an unknown id.
+    const { getChallengeResult } = await import("@/lib/server/challenge-data")
+    const challenge = await getChallengeResult(challengeId)
 
-    const { data: challenge, error } = await supabase
-      .from("user_challenges")
-      .select(
-        `
-        id,
-        challenger_id,
-        challenged_id,
-        category,
-        difficulty,
-        question_count,
-        challenger:user_profiles!user_challenges_challenger_id_fkey ( id, full_name, username )
-      `,
-      )
-      .eq("id", challengeId)
-      .single()
-
-    if (!error && challenge) {
-      // supabase-js types a foreign-key join as an array; this one-to-one join returns one row.
-      const challenger = Array.isArray(challenge.challenger) ? challenge.challenger[0] : challenge.challenger
-      category = challenge.category || category
-      difficulty = normalizeDifficulty(challenge.difficulty || (difficulty as string))
-      questionCount = Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
-      opponentId = opponentId || challenger?.id || challenge.challenger_id || opponentId
-      opponentName = opponentName || challenger?.full_name || challenger?.username || opponentName
+    if (challenge) {
+      category = params.get("category") || challenge.category || category
+      difficulty = params.get("difficulty") ? difficulty : normalizeDifficulty(challenge.difficulty || (difficulty as string))
+      questionCount = params.get("questions")
+        ? questionCount
+        : Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
+      opponentName = opponentName || challenge.challenger_name || opponentName
       if (params.get("challengerTurn") === null) {
         challengerTurn = false
       }
