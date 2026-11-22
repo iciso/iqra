@@ -700,7 +700,7 @@ export default function AboutPage() {
               </a>, whose vision and dedication brought IQRA to life, Alhamdulillah. 
               May Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span> reward{" "}
               <a
-                href="https://zettabyteincorp.com/"
+                href="https://joy.zettabyteincorp.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline"
@@ -714,10 +714,6 @@ export default function AboutPage() {
               ,{" "}
               <a href="mailto:joy@zettabyteincorp.com" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
                 joy@zettabyteincorp.com
-              </a>
-              {" "}&middot;{" "}
-              <a href="https://zettabyteincorp.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
-                zettabyteincorp.com
               </a>
               {" "}&middot;{" "}
               <a href="https://github.com/joyahmed" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">
