@@ -16,6 +16,8 @@ import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
 import { getUserProfile } from "@/lib/supabase-queries"
 import { toast } from "@/components/ui/use-toast"
+import { NameInputModal } from "@/components/quiz/name-input-modal"
+import { savePlayerName } from "@/lib/player-name"
 
 // The opponent shown during a challenge quiz (and saved to localStorage for /results)
 interface QuizOpponent {
@@ -272,6 +274,9 @@ export default function QuizContainer({
     }, 800)
   }
 
+  // Set while the name modal is open; calling it hands the typed name (or null on Skip) back.
+  const [nameResolver, setNameResolver] = useState<((name: string | null) => void) | null>(null)
+
   const submitQuizWithTimeout = async (timeoutMs = 5000) => {
     const { submitQuizResult } = await import("@/lib/supabase-queries")
 
@@ -282,9 +287,11 @@ export default function QuizContainer({
     }
 
     if (!playerName || playerName.length < 2) {
-      throw new Error(
-        "No player name found — please enter your name with more than 2 characters on the homepage first.",
-      )
+      // No saved name: ask for it here (the same modal the results page uses), then carry on.
+      const typed = await new Promise<string | null>((resolve) => setNameResolver(() => resolve))
+      setNameResolver(null)
+      if (!typed) throw new Error("No player name given, so the score was not saved.")
+      playerName = typed
     }
 
     const timeoutPromise = new Promise((_, reject) => {
@@ -682,6 +689,15 @@ export default function QuizContainer({
           </>
         )}
       </Card>
+
+      <NameInputModal
+        isOpen={nameResolver !== null}
+        onSubmit={async (name) => nameResolver?.(savePlayerName(name))}
+        onSkip={() => nameResolver?.(null)}
+        score={score}
+        totalQuestions={questions.length}
+        percentage={questions.length ? Math.round((score / questions.length) * 100) : 0}
+      />
     </div>
   )
 }

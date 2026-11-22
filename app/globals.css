@@ -59,3 +59,170 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Homepage motion (components/home/iqra-hero.tsx, hooks/use-reveal-on-scroll.ts).
+   Every animation sits inside prefers-reduced-motion: no-preference, so reduced
+   motion gets the plain static page. Without CSS trig support the orbit stays
+   where its SVG attributes put it (the old still layout).
+   --------------------------------------------------------------------------- */
+
+/* One animated angle turns the whole orbit; labels and dots are placed from it. */
+@property --orbit-a {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@supports (width: calc(1px * cos(0deg))) {
+  .iqra-orbit-label {
+    --t: calc(var(--a0) + var(--orbit-a));
+  }
+  /* The dot rides the ring. The SVG attributes hold its start point, so this moves it by the difference. */
+  .iqra-orbit-dot {
+    transform: translate(
+      calc(cos(var(--t)) * var(--r) - var(--dx)),
+      calc(sin(var(--t)) * var(--r) - var(--dy))
+    );
+  }
+  /* The label stays upright and sits just outside its dot: further out at the sides, where the word is wide. */
+  .iqra-orbit-text {
+    --d: calc(
+      var(--r) + 9px + var(--hw) * max(cos(var(--t)), -1 * cos(var(--t))) + 8px * max(sin(var(--t)), -1 * sin(var(--t)))
+    );
+    transform: translate(
+      calc(cos(var(--t)) * var(--d) - var(--sx)),
+      calc(sin(var(--t)) * var(--d) - var(--sy))
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Idle: one slow turn every 110 s, starting once the intro has settled. Stepped 15 times a
+     second (under 1px per step at this speed): measured 2026-11-22, idle main thread 9.5% every
+     frame vs ~4% stepped, in headless Chrome at 1440. */
+  .iqra-orbit {
+    animation: iqra-orbit-turn 110s steps(1650) 1.4s infinite;
+  }
+  /* Intro: the outer ring draws itself from the top. */
+  .iqra-orbit-ring {
+    stroke-dasharray: 1;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    animation: iqra-ring-draw 700ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+  /* The inner dotted ring fades in, then turns the other way, a little faster. */
+  .iqra-orbit-inner {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      iqra-ring-in 600ms cubic-bezier(0.23, 1, 0.32, 1) 120ms both,
+      iqra-orbit-counter 70s steps(1050) 1.4s infinite;
+  }
+  /* Labels arrive one by one, drifting a few pixels outward. */
+  .iqra-orbit-label {
+    animation: iqra-label-in 420ms cubic-bezier(0.23, 1, 0.32, 1) calc(420ms + var(--i) * 60ms) both;
+  }
+  /* One dot at a time gets a soft glow, going round every 24 s. */
+  .iqra-orbit-glint {
+    animation: iqra-glint 24s ease-in-out calc(3s + var(--i) * 3s) infinite;
+  }
+  .iqra-mark-in {
+    animation: iqra-mark-in 500ms cubic-bezier(0.23, 1, 0.32, 1) 0ms both;
+  }
+  /* The halo fades in with the mark, then breathes. */
+  .iqra-halo {
+    animation:
+      iqra-fade-in 900ms ease-out 550ms both,
+      iqra-halo 6s ease-in-out 1450ms infinite alternate-reverse;
+  }
+  /* Hero cards and chips rise in on load (CSS only, so it works before JavaScript). */
+  .iqra-rise {
+    animation: iqra-rise 480ms cubic-bezier(0.23, 1, 0.32, 1) var(--rise-delay, 0ms) backwards;
+  }
+  /* Hero off-screen: stop the idle loops. */
+  [data-orbit-paused] .iqra-orbit,
+  [data-orbit-paused] .iqra-orbit *,
+  [data-orbit-paused] .iqra-halo {
+    animation-play-state: paused;
+  }
+
+  /* Scroll reveal: JavaScript marks only what is below the fold as pending, after hydration. */
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  [data-reveal="in"] {
+    transition:
+      opacity 480ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 480ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+@keyframes iqra-orbit-turn {
+  to {
+    --orbit-a: 360deg;
+  }
+}
+@keyframes iqra-orbit-counter {
+  to {
+    rotate: -360deg;
+  }
+}
+@keyframes iqra-ring-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes iqra-ring-in {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+}
+@keyframes iqra-label-in {
+  from {
+    opacity: 0;
+    translate: calc(cos(var(--a0)) * -10px) calc(sin(var(--a0)) * -10px);
+  }
+}
+@keyframes iqra-glint {
+  0%,
+  14%,
+  100% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 0.35;
+  }
+}
+@keyframes iqra-mark-in {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+@keyframes iqra-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes iqra-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+/* The green halo behind اقرأ breathes. */
+@keyframes iqra-halo {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}

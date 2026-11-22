@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Trophy, Gamepad2, Home, BarChart2, RefreshCw, Edit, Save, X, Shield } from "lucide-react"
 import Link from "next/link"
 import { toast } from "@/hooks/use-toast"
+import { savePlayerName } from "@/lib/player-name"
 
 const NAME_KEY = "userNameForLeaderboard"
 
@@ -149,14 +150,14 @@ export default function ProfilePage() {
   const handleSetName = () => {
     const t = nameInput.trim()
     if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
-    localStorage.setItem(NAME_KEY, t); localStorage.setItem("tempChallengerId", t)
+    savePlayerName(t)
     setChosenName(t); loadProfile(t)
   }
 
   const handleSaveName = () => {
     const t = newName.trim()
     if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
-    localStorage.setItem(NAME_KEY, t); localStorage.setItem("tempChallengerId", t)
+    savePlayerName(t)
     setChosenName(t); setEditingName(false); loadProfile(t)
     toast({ title: "Name updated" })
   }

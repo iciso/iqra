@@ -21,9 +21,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { IqraLogo } from "@/components/iqra-logo"
+import IqraHero from "@/components/home/iqra-hero"
+import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
-import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 function FeatureCard({
@@ -47,6 +47,7 @@ function FeatureCard({
 }) {
   return (
     <Card
+      data-reveal=""
       className={`w-full border-0 bg-white shadow-sm dark:bg-card ${
         prominent
           ? "ring-2 ring-green-500 shadow-md"
@@ -129,71 +130,25 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
     }
   }, [])
 
+  // Sections below the hero rise in once as they scroll into view.
+  useRevealOnScroll()
+
   const tagClass =
     "rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
 
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb] dark:bg-background">
+      {/* Homepage hero: "The Night of Iqra" (docs/design/homepage-2026-11/c.html) in IQRA green and white. */}
+      <IqraHero />
+
       <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
-        {/* Keep challenge notifications easy to find for returning players. */}
-        <div id="challenge-name" className="mb-6 w-full scroll-mt-4 sm:mb-8">
-          <ProfileChallengeNotifications />
-        </div>
-
-        {/* IQRA welcome / hero */}
-        <header className="mb-6 w-full text-center sm:mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#e0f2e3] sm:h-24 sm:w-24 dark:bg-green-900/40">
-            <IqraLogo />
-          </div>
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-green-800 sm:text-4xl dark:text-green-400">
-            IQRA
-          </h1>
-          <p className="text-lg text-green-700 sm:text-xl dark:text-green-300">
-            Islamic Quiz Rivalry App
-          </p>
-          <p className="mt-2 px-2 text-sm text-gray-600 dark:text-muted-foreground sm:mt-4 sm:text-base">
-            ما شاء الله (Masha Allah!) Welcome to IQRA. Test your knowledge
-            <br className="hidden sm:block" />
-            <span className="block sm:inline">
-              {" "}of Islam through learning or challenges.
-            </span>
-          </p>
-        </header>
-
-        {/* Main destinations. Keep Challenge prominent for returning players. */}
-        <section
-          aria-label="Main IQRA features"
-          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2"
-        >
-          <FeatureCard
-            icon={<BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />}
-            title="IQRA Learn"
-            subtitle="Learn at your own pace"
-            description="Browse 50 Islamic subjects with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
-            tags={["Quran", "Fiqh", "Tafsir", "Hadeeth", "Aqeedah"]}
-            href="/subjects"
-            buttonText="Start Learning"
-          />
-
-          <FeatureCard
-            prominent
-            icon={<Trophy className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />}
-            title="IQRA Challenge"
-            subtitle="Your next challenge is only a click away"
-            description="Challenge your friends or compete with other IQRA players. Test your knowledge, climb the leaderboard, and earn badges."
-            tags={["Friend Challenge", "Daily Challenge", "Player Rivalry"]}
-            href="/challenges"
-            buttonText="Start Challenges"
-          />
-        </section>
-
         {/* Existing Surah Quiz and Top Players cards are retained. */}
         <section
           aria-label="More IQRA features and players"
           className="mx-auto mt-8 w-full max-w-6xl"
         >
           <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-            <Card className="w-full border-0 bg-white shadow-sm dark:bg-card">
+            <Card data-reveal="" className="w-full border-0 bg-white shadow-sm dark:bg-card">
               <CardHeader className="pb-2 text-center">
                 <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 sm:h-16 sm:w-16 dark:bg-green-900/40">
                   <BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
@@ -260,7 +215,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             </Card>
 
                                    {/* Keep the live player/challenge list, but limit height=other cards on the home page. */}
-                        <Card className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
+                        <Card data-reveal="" className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
                           <CardHeader className="pb-2 text-center">
                             <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16 dark:bg-green-900/40">
                               <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
@@ -302,7 +257,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
           aria-labelledby="arabic-vocabulary-heading"
           className="mx-auto mt-8 w-full max-w-6xl"
         >
-          <div className="mb-4 text-center">
+          <div data-reveal="" className="mb-4 text-center">
             <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
               New learning tracks
             </p>
@@ -343,7 +298,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               buttonText="Explore Modern Vocabulary"
             />
           </div>
-              <p className="mt-3 text-center text-xs text-gray-500 dark:text-muted-foreground"> 
+              <p data-reveal="" className="mt-3 text-center text-xs text-gray-500 dark:text-muted-foreground"> 
                   Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. 
                   For challenges go to the{' '} 
                   <a href="/challenges" target="_blank" rel="noopener noreferrer" className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"> 
@@ -355,8 +310,8 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
         
 
         {/* Existing no-donations statement retained. */}
-        <section className="mx-auto mb-12 mt-8 w-full max-w-6xl">
-          <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
+        <section id="no-donations" className="mx-auto mb-12 mt-8 w-full max-w-6xl scroll-mt-20">
+          <div data-reveal="" className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
             <h2 className="mb-4 text-xl font-bold text-emerald-800 sm:text-2xl dark:text-emerald-300">
               No Donations &amp; Charity
             </h2>

@@ -2,19 +2,19 @@
 
 import Link from "next/link"
 
-// Bookmark on the Home page (id is set in app/page.tsx)
-export const NAME_BOOKMARK = "/#challenge-name"
+// The name is set (and changed) on the Profile page.
+export const NAME_PAGE = "/profile"
 
 export function NameRequiredMessage({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <span>
-      Please enter your name in the Challenge Notifications box on the Home page first.{" "}
+      Please set your name on your Profile page first.{" "}
       <Link
-        href={NAME_BOOKMARK}
+        href={NAME_PAGE}
         onClick={onNavigate}
         className="font-semibold underline underline-offset-2"
       >
-        Go to Home page →
+        Go to Profile →
       </Link>
     </span>
   )

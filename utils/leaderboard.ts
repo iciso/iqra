@@ -1,3 +1,5 @@
+import { savePlayerName } from "@/lib/player-name"
+
 export interface LeaderboardEntry {
   id?: string
   name: string
@@ -106,11 +108,7 @@ export async function addToLeaderboard(entry: LeaderboardEntry): Promise<void> {
 
     // Remember the name for future sessions
     if (entry.name) {
-      try {
-        localStorage.setItem("userNameForLeaderboard", entry.name)
-      } catch (e) {
-        console.warn("[v0] Could not save name to localStorage:", e)
-      }
+      savePlayerName(entry.name)
     }
 
     leaderboard.push(newEntry)
