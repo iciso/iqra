@@ -316,7 +316,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
         
 
         {/* Existing no-donations statement retained. */}
-        <section className="mx-auto mb-12 mt-8 w-full max-w-6xl">
+        <section id="no-donations" className="mx-auto mb-12 mt-8 w-full max-w-6xl scroll-mt-20">
           <div data-reveal="" className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
             <h2 className="mb-4 text-xl font-bold text-emerald-800 sm:text-2xl dark:text-emerald-300">
               No Donations &amp; Charity

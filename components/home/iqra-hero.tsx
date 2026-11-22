@@ -282,7 +282,7 @@ const IqraHero = () => {
                 Send the same quiz to a friend &ndash; the higher score wins. The Prophet (peace be upon him) raced Aisha (RA) and
                 said &ldquo;This is for that&rdquo;: friendly competition is Sunnah.
               </p>
-              <p className="mt-1.5 text-xs text-green-800/70 dark:text-green-100">Sunan Abi Dawud 2578</p>
+              <p className="mt-1.5 text-xs text-green-800/70 dark:text-green-100">Sunan Abi Dawud 2578 · Sahih (al-Albani)</p>
               <ul aria-label="Ways to compete" className="mt-3 flex flex-wrap gap-1.5">
                 {challengeTags.map((tag) => (
                   <li key={tag} className="rounded-full border border-green-300 bg-white px-2.5 py-1 text-xs text-green-800 dark:border-transparent dark:bg-green-900/50 dark:text-white">
@@ -312,7 +312,15 @@ const IqraHero = () => {
                 <b className="font-semibold text-green-700 dark:text-green-300">{fact.value}</b> {fact.label}
               </li>
             ))}
-            <li className={chipClass}>No ads &middot; no donations</li>
+            <li className={chipClass}>
+              <a
+                href="#no-donations"
+                title="Why no donations - Surah Sad 38:86"
+                aria-label="Why no donations - Surah Sad 38:86"
+                className="rounded-full underline-offset-4 hover:text-green-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 dark:hover:text-green-200 dark:focus-visible:ring-green-400">
+                No ads &middot; no donations
+              </a>
+            </li>
           </ul>
         </div>
       </div>
