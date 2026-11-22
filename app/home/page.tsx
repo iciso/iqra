@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
  
@@ -35,11 +36,11 @@ export default function HomePage() {
             </ul>
           </CardContent>
           <CardFooter className="px-4 pb-4 md:px-6">
-            <a href="/subjects" className="w-full">
+            <Link href="/subjects" className="w-full">
               <Button size="lg" className="w-full text-sm md:text-base">
                 Start Learning
               </Button>
-            </a>
+            </Link>
           </CardFooter>
         </Card>
 

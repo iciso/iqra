@@ -2,6 +2,7 @@
 
 import { useState, useRef, useSyncExternalStore } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -353,17 +354,18 @@ const subscribeToHash = (onChange: () => void) => {
   return () => window.removeEventListener("hashchange", onChange)
 }
 
-const topicTitle = (id: string | null) => {
-  if (!id) return ""
-  const all: { id: string; title: string }[] = [
-    ...categories,
-    ...tamilCategories,
-    ...surahCategories,
-    { id: "quranic-arabic-01", title: "Quranic Arabic" },
-    { id: "modern-arabic-01", title: "Modern Standard Arabic" },
-  ]
-  return all.find((topic) => topic.id === id)?.title ?? id
-}
+const allTopics: { id: string; title: string }[] = [
+  ...categories,
+  ...tamilCategories,
+  ...surahCategories,
+  { id: "quranic-arabic-01", title: "Quranic Arabic" },
+  { id: "modern-arabic-01", title: "Modern Standard Arabic" },
+]
+
+const topicTitle = (id: string | null) => (id ? (allTopics.find((topic) => topic.id === id)?.title ?? id) : "")
+
+// Every subject has its own page (app/subjects/[slug]); this list links them all for search engines and readers.
+const topicsAtoZ = [...allTopics].sort((a, b) => a.title.localeCompare(b.title))
 
 export default function CategoriesPage() {
   const router = useRouter()
@@ -552,6 +554,14 @@ export default function CategoriesPage() {
               <CardTitle className="text-xl font-bold text-green-800 dark:text-green-400">Choose a difficulty</CardTitle>
               <CardDescription className="text-green-600 dark:text-green-500">
                 Topic: <span className="font-semibold">{topicTitle(selectedCategory)}</span>
+                {selectedCategory && (
+                  <>
+                    {" · "}
+                    <Link href={`/subjects/${selectedCategory}`} className="underline underline-offset-4 hover:text-green-800 dark:hover:text-green-300">
+                      About this subject
+                    </Link>
+                  </>
+                )}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -589,6 +599,24 @@ export default function CategoriesPage() {
           </Card>
         </section>
       )}
+
+      <section aria-labelledby="all-subjects-heading" className="mt-12 w-full max-w-7xl">
+        <h2 id="all-subjects-heading" className="mb-3 text-center text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
+          All {allTopics.length} subjects, A–Z
+        </h2>
+        <ul className="flex flex-wrap justify-center gap-2">
+          {topicsAtoZ.map((topic) => (
+            <li key={topic.id}>
+              <Link
+                href={`/subjects/${topic.id}`}
+                className="inline-block rounded-full border border-green-200 px-3 py-1 text-xs text-green-900 hover:border-green-500 hover:bg-green-50 dark:border-green-800 dark:text-green-100 dark:hover:bg-green-900/40"
+              >
+                {topic.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }

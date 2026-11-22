@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { SITE_URL } from "@/lib/seo"
+import { subjectPath, subjects } from "@/lib/subjects"
 
 const routes: { path: string; priority: number; changeFrequency: "daily" | "weekly" | "monthly" }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
@@ -10,6 +11,8 @@ const routes: { path: string; priority: number; changeFrequency: "daily" | "week
   { path: "/badges", priority: 0.5, changeFrequency: "monthly" },
   { path: "/about", priority: 0.5, changeFrequency: "monthly" },
   { path: "/profile", priority: 0.3, changeFrequency: "monthly" },
+  // One page per quiz subject (app/subjects/[slug]).
+  ...subjects.map((subject) => ({ path: subjectPath(subject.slug), priority: 0.7, changeFrequency: "monthly" as const })),
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
