@@ -71,24 +71,24 @@ IQRA is the first freeware open-source Islamic knowledge quiz app. Increase your
 ### Installation
 
 1. Clone the repository
-   \`\`\`
+   ```bash
    git clone https://github.com/iciso/iqra.git
    cd iqra
-   \`\`\`
+   ```
 
 2. Install dependencies
-   \`\`\`
+   ```bash
    npm install
    # or
    yarn install
-   \`\`\`
+   ```
 
 3. Run the development server
-   \`\`\`
+   ```bash
    npm run dev
    # or
    yarn dev
-   \`\`\`
+   ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
