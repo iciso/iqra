@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
   if (!playerName) {
     return (
-      <div className="flex items-center justify-center p-4">
+      <div className="mx-auto w-full max-w-6xl sm:px-6 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <Trophy className="h-12 w-12 text-green-600 mx-auto mb-2" />
@@ -190,7 +190,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="p-4">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 p-4">
       <div className="max-w-6xl mx-auto pt-4">
         <div className="flex items-center justify-between mb-6">
           <Link href="/"><Button variant="outline" size="sm"><Home className="h-4 w-4 mr-1" />Home</Button></Link>

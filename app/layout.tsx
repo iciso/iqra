@@ -75,12 +75,12 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${inter.className} w-full min-h-screen overflow-x-clip bg-background text-foreground`}>
-        <div className="max-w-screen-2xl mx-auto my-auto">
+        <div>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <AuthProvider>
-          <div className="min-h-screen flex flex-col w-full">
+          <div className="flex min-h-dvh w-full flex-col">
             <Header />
-            <main className="flex-1 w-full max-w-full">{children}</main>
+            <main className="w-full flex-1">{children}</main>
             <Footer />
           </div>
           <Toaster />

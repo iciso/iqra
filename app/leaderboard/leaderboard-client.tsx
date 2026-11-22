@@ -254,18 +254,18 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
 
   if (!isClient) {
     return (
-      <main className="flex flex-col items-center justify-center p-4">
+      <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-6xl border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading leaderboard...</p>
           </CardContent>
         </Card>
-      </main>
+      </div>
     )
   }
 
   return (
-    <main className="flex flex-col items-center p-2 sm:p-4">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center p-2 sm:p-4">
       <Card className="w-full max-w-6xl border-green-200 shadow-lg dark:border-green-800 overflow-visible mt-2 sm:mt-0">
         <CardHeader className="text-center p-4 md:p-6">
           <div className="flex justify-center mb-2">
@@ -449,6 +449,6 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
           </a>
         </CardFooter>
       </Card>
-    </main>
+    </div>
   )
 }

@@ -136,11 +136,11 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
     "rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
+    <div className="flex w-full flex-col">
       {/* Homepage hero: "The Night of Iqra" (docs/design/homepage-2026-11/c.html) in IQRA green and white. */}
       <IqraHero />
 
-      <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-grow flex-col px-4 py-6 sm:px-6 sm:py-12">
         {/* Existing Surah Quiz and Top Players cards are retained. */}
         <section
           aria-label="More IQRA features and players"
@@ -328,7 +328,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             </p>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   )
 }

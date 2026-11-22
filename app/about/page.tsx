@@ -166,8 +166,8 @@ const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      <main className="container mx-auto px-4 py-8 max-w-3xl">
+    <div>
+      <div className="container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-12">
           <div className="flex justify-center mb-8">
             <IqraLogo size="lg" showText={false} />
@@ -768,7 +768,7 @@ export default function AboutPage() {
             </Button>
           </Link>
         </div>
-      </main>
+      </div>
       <div className="border-t border-gray-200 p-4 text-center text-sm text-gray-700 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 w-full mt-8 rounded-lg">
         <div className="flex items-center justify-center mb-1">
           <MessageSquare className="mr-1 h-4 w-4 shrink-0 text-green-600 sm:h-5 sm:w-5 dark:text-green-400" />

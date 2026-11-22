@@ -54,7 +54,7 @@ export function ProtectedRoute({ children, redirectTo = "/" }: ProtectedRoutePro
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="flex items-center justify-center px-4 py-16">
         <div className="text-center">
           <IqraLogo />
           <p className="text-green-700 dark:text-green-400 text-sm sm:text-base">Checking authentication...</p>

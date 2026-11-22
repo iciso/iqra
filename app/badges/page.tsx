@@ -29,16 +29,16 @@ export default function BadgesPage() {
   // If we're not on the client yet, show a simple loading state
   if (!isClient) {
     return (
-      <main className="flex flex-col items-center justify-center p-4">
+      <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
         <div className="text-center">
           <p>Loading badges...</p>
         </div>
-      </main>
+      </div>
     )
   }
 
   return (
-    <main className="flex flex-col items-center pt-16 p-4">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center pt-16 p-4">
     
       <h1 className="text-3xl font-bold text-center mb-6 text-green-800 dark:text-green-400">Your Badge Collection</h1>
       <p className="text-center mb-8 text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -49,6 +49,6 @@ export default function BadgesPage() {
       <div className="w-full max-w-4xl">
         <BadgesCollection earnedBadges={earnedBadges} />
       </div>
-    </main>
+    </div>
   )
 }

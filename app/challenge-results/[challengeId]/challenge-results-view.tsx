@@ -89,7 +89,7 @@ export default function ChallengeResultsView({ challenge }: { challenge: Challen
   }
 
   return (
-    <div className="p-4">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 p-4">
       <div className="max-w-2xl mx-auto pt-8">
 
         {/* Back button */}

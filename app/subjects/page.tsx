@@ -402,7 +402,7 @@ export default function CategoriesPage() {
   const canOpen = (n: number) => n === 1 || (n === 2 && track !== null) || (n === 3 && selectedCategory !== null)
 
   return (
-    <main className="flex flex-col items-center p-4 py-8">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center p-4 py-8">
       <div ref={topRef} className="w-full max-w-7xl scroll-mt-20">
         <ol aria-label="Quiz setup steps" className="mx-auto mb-6 flex max-w-xl items-center justify-center gap-2">
           {steps.map((label, index) => {
@@ -586,6 +586,6 @@ export default function CategoriesPage() {
           </Card>
         </section>
       )}
-    </main>
+    </div>
   )
 }

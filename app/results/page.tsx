@@ -333,13 +333,13 @@ export default function ResultsPage() {
   // Show loading state while auth is loading
   if (!isClient || !authReady) {
     return (
-      <main className="flex flex-col items-center justify-center p-4">
+      <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
             <p>Loading your results...</p>
           </CardContent>
         </Card>
-      </main>
+      </div>
     )
   }
 
@@ -357,7 +357,7 @@ export default function ResultsPage() {
   const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
 
   return (
-    <main className="flex flex-col items-center justify-center p-4">
+    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
       {showChallengeSubmitted ? (
@@ -627,6 +627,6 @@ export default function ResultsPage() {
         totalQuestions={totalQuestions || 0}
         percentage={score && totalQuestions ? Math.round((score / totalQuestions) * 100) : 0}
       />
-    </main>
+    </div>
   )
 }
