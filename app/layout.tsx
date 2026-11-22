@@ -74,7 +74,7 @@ export default function RootLayout({
         />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={`${inter.className} overflow-x-clip w-full min-h-screen bg-emerald-50/30 dark:bg-background`}>
+      <body className={`${inter.className} w-full min-h-screen overflow-x-clip bg-background text-foreground`}>
         <div className="max-w-screen-2xl mx-auto my-auto">
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <AuthProvider>

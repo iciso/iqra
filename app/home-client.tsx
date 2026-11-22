@@ -136,7 +136,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
     "rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[#e6f7eb] dark:bg-background">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
       {/* Homepage hero: "The Night of Iqra" (docs/design/homepage-2026-11/c.html) in IQRA green and white. */}
       <IqraHero />
 

@@ -48,7 +48,7 @@ export default function HowItWorksPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4 md:p-8">
+    <div className="p-4 md:p-8">
       <div className="max-w-5xl mx-auto space-y-6 pt-2">
         
         {/* Navigation Header */}

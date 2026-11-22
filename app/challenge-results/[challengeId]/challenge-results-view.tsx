@@ -89,7 +89,7 @@ export default function ChallengeResultsView({ challenge }: { challenge: Challen
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
+    <div className="p-4">
       <div className="max-w-2xl mx-auto pt-8">
 
         {/* Back button */}

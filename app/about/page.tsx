@@ -166,7 +166,7 @@ const grandTotal = totalEasy + totalIntermediate + totalAdvanced;
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-background">
+    <div className="min-h-screen">
       <main className="container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-12">
           <div className="flex justify-center mb-8">

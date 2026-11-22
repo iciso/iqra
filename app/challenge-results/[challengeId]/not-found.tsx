@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 const ChallengeNotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-4">
+    <div className="flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardContent className="text-center py-8">
           <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
