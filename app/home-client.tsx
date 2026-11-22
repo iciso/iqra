@@ -22,6 +22,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import IqraHero from "@/components/home/iqra-hero"
+import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
@@ -47,6 +48,7 @@ function FeatureCard({
 }) {
   return (
     <Card
+      data-reveal=""
       className={`w-full border-0 bg-white shadow-sm dark:bg-card ${
         prominent
           ? "ring-2 ring-green-500 shadow-md"
@@ -129,6 +131,9 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
     }
   }, [])
 
+  // Sections below the hero rise in once as they scroll into view.
+  useRevealOnScroll()
+
   const tagClass =
     "rounded bg-green-50 px-2 py-1 text-xs text-green-700 dark:bg-green-900/40 dark:text-green-300"
 
@@ -149,7 +154,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
           className="mx-auto mt-8 w-full max-w-6xl"
         >
           <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-            <Card className="w-full border-0 bg-white shadow-sm dark:bg-card">
+            <Card data-reveal="" className="w-full border-0 bg-white shadow-sm dark:bg-card">
               <CardHeader className="pb-2 text-center">
                 <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 sm:h-16 sm:w-16 dark:bg-green-900/40">
                   <BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
@@ -216,7 +221,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             </Card>
 
                                    {/* Keep the live player/challenge list, but limit height=other cards on the home page. */}
-                        <Card className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
+                        <Card data-reveal="" className="flex h-full w-full flex-col border-2 border-green-200 bg-white shadow-md dark:border-green-800 dark:bg-card">
                           <CardHeader className="pb-2 text-center">
                             <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16 dark:bg-green-900/40">
                               <Users className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />
@@ -258,7 +263,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
           aria-labelledby="arabic-vocabulary-heading"
           className="mx-auto mt-8 w-full max-w-6xl"
         >
-          <div className="mb-4 text-center">
+          <div data-reveal="" className="mb-4 text-center">
             <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
               New learning tracks
             </p>
@@ -299,7 +304,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
               buttonText="Explore Modern Vocabulary"
             />
           </div>
-              <p className="mt-3 text-center text-xs text-gray-500 dark:text-muted-foreground"> 
+              <p data-reveal="" className="mt-3 text-center text-xs text-gray-500 dark:text-muted-foreground"> 
                   Both Arabic Vocabulary, and Surah Quiz buttons lead to self-learning tracks. 
                   For challenges go to the{' '} 
                   <a href="/challenges" target="_blank" rel="noopener noreferrer" className="text-green-700 underline hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"> 
@@ -312,7 +317,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
 
         {/* Existing no-donations statement retained. */}
         <section className="mx-auto mb-12 mt-8 w-full max-w-6xl">
-          <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
+          <div data-reveal="" className="rounded-lg border border-emerald-100 bg-emerald-50 p-4 sm:p-6 dark:border-emerald-800 dark:bg-emerald-900/20">
             <h2 className="mb-4 text-xl font-bold text-emerald-800 sm:text-2xl dark:text-emerald-300">
               No Donations &amp; Charity
             </h2>

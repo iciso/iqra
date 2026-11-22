@@ -1,3 +1,6 @@
+"use client"
+
+import type { CSSProperties } from "react"
 import Link from "next/link"
 import { Reem_Kufi } from "next/font/google"
 
@@ -5,6 +8,7 @@ import { BookOpen, Footprints, Trophy } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { useOrbitPause } from "@/hooks/use-orbit-pause"
 
 const reemKufi = Reem_Kufi({
   subsets: ["arabic", "latin"],
@@ -34,12 +38,15 @@ const challengeTags = ["Friend Challenge", "Daily Challenge", "Player Rivalry"]
 
 const round = (n: number) => Math.round(n * 100) / 100
 
-// A still orbit around the word only, so no label can drift off the screen edge or
-// under the headline and track cards. Phone shows 6 labels; 640px+ adds the two side labels.
-// (The wide turning astrolabe was removed when the two track cards arrived: they cannot fit inside its ring.)
-const COMPACT_CENTER = 200
-const COMPACT_RADIUS = 150
-const compactLabels = [
+// The orbit around the word. It turns once every 110 s (app/globals.css, one animated angle,
+// --orbit-a); every label stays upright and sits just outside its dot, pushed further out at the
+// sides where the word is wide, so it never covers the dot or leaves the orbit box.
+// Phone shows 6 labels on a smaller ring (the box is 400 wide); 640px+ adds the two side labels.
+// The SVG attributes below are the start position, so without CSS trig the old still orbit remains.
+const CENTER = 200
+const LABEL_GAP = 9 // dot radius + breathing room, user units
+const LABEL_HALF_HEIGHT = 8
+const orbitLabels = [
   { label: "SALAH", angle: -90, tabletOnly: false },
   { label: "QURAN", angle: -45, tabletOnly: false },
   { label: "HAJJ", angle: 0, tabletOnly: true },
@@ -48,30 +55,53 @@ const compactLabels = [
   { label: "SEERAH", angle: 135, tabletOnly: false },
   { label: "RIBA", angle: 180, tabletOnly: true },
   { label: "DAWAH", angle: -135, tabletOnly: false },
-].map((item) => {
-  const rad = (item.angle * Math.PI) / 180
-  const cos = Math.cos(rad)
-  const sin = Math.sin(rad)
-  const x = round(COMPACT_CENTER + COMPACT_RADIUS * cos)
-  const y = round(COMPACT_CENTER + COMPACT_RADIUS * sin)
-  const anchor: "start" | "middle" | "end" = cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle"
-  return {
-    ...item,
-    x,
-    y,
-    anchor,
-    textX: anchor === "start" ? x + 10 : anchor === "end" ? x - 10 : x,
-    textY: anchor === "middle" ? (sin < 0 ? y - 12 : y + 22) : y + 4,
-  }
-})
+]
 
-const compactDots = Array.from({ length: 14 }, (_, i) => {
-  const angle = (i / 14) * Math.PI * 2
-  return {
-    x: round(COMPACT_CENTER + 118 * Math.cos(angle)),
-    y: round(COMPACT_CENTER + 118 * Math.sin(angle)),
-  }
-})
+// Measured 2026-11-22: 13px uppercase at 0.12em tracking is 35-62 units wide, about 10 per letter.
+const halfWidth = (label: string) => label.length * 5 + 1.5
+
+const orbitGeometry = (tablet: boolean) => {
+  const radius = tablet ? 150 : 140
+  const labels = orbitLabels
+    .filter((item) => tablet || !item.tabletOnly)
+    .map((item, i) => {
+      const rad = (item.angle * Math.PI) / 180
+      const cos = Math.cos(rad)
+      const sin = Math.sin(rad)
+      const hw = halfWidth(item.label)
+      // Same distance formula as .iqra-orbit-text in globals.css, at the start angle.
+      const d = radius + LABEL_GAP + hw * Math.abs(cos) + LABEL_HALF_HEIGHT * Math.abs(sin)
+      const dx = round(radius * cos)
+      const dy = round(radius * sin)
+      const sx = round(d * cos)
+      const sy = round(d * sin)
+      return {
+        ...item,
+        dot: { x: CENTER + dx, y: CENTER + dy },
+        text: { x: CENTER + sx, y: CENTER + sy },
+        style: {
+          "--a0": `${item.angle}deg`,
+          "--hw": `${hw}px`,
+          "--i": i,
+          "--dx": `${dx}px`,
+          "--dy": `${dy}px`,
+          "--sx": `${sx}px`,
+          "--sy": `${sy}px`,
+        } as CSSProperties,
+      }
+    })
+  const innerRadius = radius - 32
+  const dots = Array.from({ length: 14 }, (_, i) => {
+    const angle = (i / 14) * Math.PI * 2
+    return { x: round(CENTER + innerRadius * Math.cos(angle)), y: round(CENTER + innerRadius * Math.sin(angle)) }
+  })
+  return { radius, innerRadius, labels, dots }
+}
+
+const orbits = [
+  { tablet: false, viewBox: "0 0 400 400", className: "sm:hidden", ...orbitGeometry(false) },
+  { tablet: true, viewBox: "-60 0 520 400", className: "hidden sm:block", ...orbitGeometry(true) },
+]
 
 const ringStroke = "stroke-green-700/20 dark:stroke-green-300/20"
 const labelText = "fill-green-900/60 tracking-[0.12em] dark:fill-green-100/70"
@@ -80,59 +110,72 @@ const minorDot = "fill-green-700/35 dark:fill-green-200/45"
 const chipClass =
   "rounded-full border border-green-200 px-3.5 py-1.5 text-[13px] text-green-950/70 dark:border-green-800 dark:text-green-100/75"
 
-function CompactOrbit({ tablet }: { tablet: boolean }) {
-  return (
-    <svg
-      viewBox={tablet ? "-60 0 520 400" : "0 0 400 400"}
-      aria-hidden="true"
-      data-orbit={tablet ? "tablet" : "phone"}
-      className={`absolute inset-0 h-full w-full ${tablet ? "hidden sm:block" : "sm:hidden"}`}
-    >
-      <g fill="none" className={ringStroke}>
-        <circle cx={COMPACT_CENTER} cy={COMPACT_CENTER} r={COMPACT_RADIUS} />
-        <circle cx={COMPACT_CENTER} cy={COMPACT_CENTER} r={118} strokeDasharray="2 6" />
+const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => (
+  <svg
+    viewBox={orbit.viewBox}
+    aria-hidden="true"
+    data-orbit={orbit.tablet ? "tablet" : "phone"}
+    className={`iqra-orbit absolute inset-0 h-full w-full ${orbit.className}`}
+    style={{ "--r": `${orbit.radius}px` } as CSSProperties}
+  >
+    <circle
+      cx={CENTER}
+      cy={CENTER}
+      r={orbit.radius}
+      pathLength={1}
+      fill="none"
+      className={`iqra-orbit-ring ${ringStroke}`}
+    />
+    <g className="iqra-orbit-inner">
+      <circle cx={CENTER} cy={CENTER} r={orbit.innerRadius} fill="none" strokeDasharray="2 6" className={ringStroke} />
+      {orbit.dots.map((dot, i) => (
+        <circle key={i} cx={dot.x} cy={dot.y} r={1.6} className={minorDot} />
+      ))}
+    </g>
+    {orbit.labels.map((item) => (
+      <g key={item.label} data-label={item.label} className="iqra-orbit-label" style={item.style}>
+        <g className="iqra-orbit-dot">
+          <circle cx={item.dot.x} cy={item.dot.y} r={8} opacity={0} className={`iqra-orbit-glint ${keyDot}`} />
+          <circle cx={item.dot.x} cy={item.dot.y} r={3.2} className={keyDot} />
+        </g>
+        <text
+          x={item.text.x}
+          y={item.text.y}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fontSize={13}
+          className={`iqra-orbit-text ${labelText}`}
+        >
+          {item.label}
+        </text>
       </g>
-      <g
-        className="motion-safe:animate-[spin_240s_linear_infinite]"
-        style={{ transformOrigin: `${COMPACT_CENTER}px ${COMPACT_CENTER}px` }}
-      >
-        {compactDots.map((dot, i) => (
-          <circle key={i} cx={dot.x} cy={dot.y} r={1.6} className={minorDot} />
-        ))}
-      </g>
-      {compactLabels
-        .filter((item) => tablet || !item.tabletOnly)
-        .map((item) => (
-          <g key={item.label}>
-            <circle cx={item.x} cy={item.y} r={3.2} className={keyDot} />
-            <text x={item.textX} y={item.textY} textAnchor={item.anchor} fontSize={13} className={labelText}>
-              {item.label}
-            </text>
-          </g>
-        ))}
-    </svg>
-  )
-}
+    ))}
+  </svg>
+)
 
-export default function IqraHero() {
+const IqraHero = () => {
+  const heroRef = useOrbitPause<HTMLElement>()
+
   return (
     <section
+      ref={heroRef}
       aria-labelledby="iqra-hero-heading"
       className="relative w-full overflow-hidden bg-white dark:bg-green-950"
     >
-      {/* Soft green halo behind the word; it breathes only when motion is allowed. The Arabic text never moves. */}
+      {/* Soft green halo behind the word: fades in with the mark, then breathes (motion allowed only). */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_22%,rgba(21,128,61,0.14),transparent_70%)] motion-safe:animate-[iqra-halo_6s_ease-in-out_infinite_alternate] dark:bg-[radial-gradient(ellipse_60%_30%_at_50%_22%,rgba(34,197,94,0.24),transparent_70%)] xl:bg-[radial-gradient(ellipse_30%_40%_at_28%_50%,rgba(21,128,61,0.14),transparent_70%)] dark:xl:bg-[radial-gradient(ellipse_30%_40%_at_28%_50%,rgba(34,197,94,0.24),transparent_70%)]"
+        className="iqra-halo pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_22%,rgba(21,128,61,0.14),transparent_70%)] dark:bg-[radial-gradient(ellipse_60%_30%_at_50%_22%,rgba(34,197,94,0.24),transparent_70%)] xl:bg-[radial-gradient(ellipse_30%_40%_at_28%_50%,rgba(21,128,61,0.14),transparent_70%)] dark:xl:bg-[radial-gradient(ellipse_30%_40%_at_28%_50%,rgba(34,197,94,0.24),transparent_70%)]"
       />
       <div
         data-hero-content
         className="relative z-10 mx-auto flex w-full max-w-[640px] flex-col items-center px-4 pb-12 pt-6 text-center sm:pt-8 xl:grid xl:max-w-[1240px] xl:grid-cols-[minmax(0,4fr)_minmax(0,5fr)] xl:gap-10 xl:px-8 xl:py-14 xl:text-left"
       >
         <div className="relative aspect-square w-full max-w-[400px] sm:aspect-[13/10] sm:max-w-[520px] xl:mx-auto">
-          <CompactOrbit tablet={false} />
-          <CompactOrbit tablet />
-          <div data-hero-mark className="absolute inset-0 flex flex-col items-center justify-center">
+          {orbits.map((orbit) => (
+            <Orbit key={orbit.viewBox} orbit={orbit} />
+          ))}
+          <div data-hero-mark className="iqra-mark-in absolute inset-0 flex flex-col items-center justify-center">
             <p
               lang="ar"
               dir="rtl"
@@ -178,7 +221,9 @@ export default function IqraHero() {
           <div data-hero-actions className="mt-7 grid w-full grid-cols-1 gap-4 text-left md:grid-cols-2">
             <Card
               data-hero-track="learn"
-              className="flex flex-col rounded-2xl border border-green-200 bg-white p-5 shadow-none dark:border-green-800 dark:bg-green-900/30"
+              data-reveal=""
+              style={{ "--rise-delay": "250ms" } as CSSProperties}
+              className="iqra-rise flex flex-col rounded-2xl border border-green-200 bg-white p-5 shadow-none dark:border-green-800 dark:bg-green-900/30"
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green-300 bg-white text-green-700 dark:border-green-700 dark:bg-green-950 dark:text-green-300">
@@ -215,7 +260,9 @@ export default function IqraHero() {
 
             <Card
               data-hero-track="challenge"
-              className="flex flex-col rounded-2xl border-2 border-green-600 bg-green-100 p-5 text-green-900 shadow-none dark:border dark:border-green-400/60 dark:bg-green-700 dark:text-white dark:shadow-lg dark:shadow-green-400/10"
+              data-reveal=""
+              style={{ "--rise-delay": "320ms" } as CSSProperties}
+              className="iqra-rise flex flex-col rounded-2xl border-2 border-green-600 bg-green-100 p-5 text-green-900 shadow-none dark:border dark:border-green-400/60 dark:bg-green-700 dark:text-white dark:shadow-lg dark:shadow-green-400/10"
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-green-700 dark:bg-white">
@@ -255,7 +302,11 @@ export default function IqraHero() {
             </Card>
           </div>
 
-          <ul data-hero-chips className="mt-7 flex flex-wrap justify-center gap-2.5 xl:justify-start">
+          <ul
+            data-hero-chips
+            data-reveal=""
+            style={{ "--rise-delay": "400ms" } as CSSProperties}
+            className="iqra-rise mt-7 flex flex-wrap justify-center gap-2.5 xl:justify-start">
             {facts.map((fact) => (
               <li key={fact.label} className={chipClass}>
                 <b className="font-semibold text-green-700 dark:text-green-300">{fact.value}</b> {fact.label}
@@ -268,3 +319,5 @@ export default function IqraHero() {
     </section>
   )
 }
+
+export default IqraHero
