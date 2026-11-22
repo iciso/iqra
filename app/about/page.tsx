@@ -5,6 +5,7 @@ import { ArrowLeft, Github, Album, Trophy, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
 import AboutTabs from "@/components/about/about-tabs";
+import SectionHeading from "@/components/shared/section-heading";
 
 /*
 IQRA To do list:
@@ -271,7 +272,7 @@ export default function AboutPage() {
         </section>
         <AboutTabs mission={<>
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
+          <SectionHeading align="left" className="mb-4" title="Our Mission" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             بِرٌّ هَذِهِ صَدَقَةٌ جَارِيَةٌ لِوَجْهِ اللهِ تَعَالَى
           </p>
@@ -287,7 +288,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Features</h2>
+          <SectionHeading align="left" className="mb-4" title="Features" />
           <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
             <li><strong>Comprehensive Quiz System</strong> - Test your knowledge across multiple Islamic topics</li>
             <li><strong>Challenge Friends</strong> - Send challenges to friends and compare your Islamic knowledge</li>
@@ -625,7 +626,7 @@ export default function AboutPage() {
         </>} more={<>
  {/* Open Source & AI  Contributions*/}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Open Source</h2>
+          <SectionHeading align="left" className="mb-4" title="Open Source" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists,
             Quran scholars, and anyone passionate about making Islamic knowledge more accessible.
@@ -659,7 +660,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Technology</h2>
+          <SectionHeading align="left" className="mb-4" title="Technology" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">IQRA is built using modern web technologies:</p>
           <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
             <li>Next.js - React framework for server-rendered applications</li>
@@ -678,7 +679,7 @@ export default function AboutPage() {
 
         {/* #ai-credits: the footer's "Built with AI assistance" link lands here (Grok/xAI, DeepSeek, Claude, Gemini, Meta). */}
         <section id="ai-credits" className="mb-12 scroll-mt-32">
-          <h2 className="text-2xl font-bold mb-4">Acknowledgments</h2>
+          <SectionHeading align="left" className="mb-4" title="Acknowledgments" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             All praise and thanks are due to Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
             The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, 
@@ -821,7 +822,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">IQRA Papers</h2>
+          <SectionHeading align="left" className="mb-4" title="IQRA Papers" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah 
             <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, The Entirely Generous.

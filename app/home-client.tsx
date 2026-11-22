@@ -23,6 +23,7 @@ import {
 import IqraHero from "@/components/home/iqra-hero"
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
+import SectionHeading from "@/components/shared/section-heading"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 // One card family for every homepage card (Surah-Quiz, Players, Vocabulary, No Donations).
@@ -207,20 +208,13 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
 
         {/* New Arabic vocabulary tracks. Both jump to the Vocabulary section. */}
         <section aria-labelledby="arabic-vocabulary-heading" className={`border-t ${sectionClass}`}>
-          <div data-reveal="" className="mb-8 text-center">
-            <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
-              New learning tracks
-            </p>
-            <h2
+          <div data-reveal="">
+            <SectionHeading
               id="arabic-vocabulary-heading"
-              className="text-2xl font-bold text-green-900 sm:text-3xl dark:text-green-300"
-            >
-              Arabic Vocabulary
-            </h2>
-            <p className={`mx-auto mt-2 max-w-2xl ${bodyClass}`}>
-              Choose the vocabulary that matches your learning goal. Each track
-              opens the Vocabulary section on the Subjects page.
-            </p>
+              eyebrow="New learning tracks"
+              title="Arabic Vocabulary"
+              lede="Choose the vocabulary that matches your learning goal. Each track opens the Vocabulary section on the Subjects page."
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

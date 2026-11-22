@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import PlayerFlowDiagram from "@/components/how/player-flow-diagram"
+import SectionHeading from "@/components/shared/section-heading"
 import {
   Home,
   HelpCircle,
@@ -126,12 +127,12 @@ export default function HowItWorksPage() {
         {/* Schematic Flow Diagram Section */}
         <Card className="border-green-200 dark:border-green-800">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-green-900 dark:text-green-100">
-              Process Flow Diagram
-            </CardTitle>
-            <CardDescription className="text-gray-600 dark:text-gray-300">
-              How both paths lead to your results and leaderboard placement options.
-            </CardDescription>
+            <SectionHeading
+              align="left"
+              className="mb-0"
+              title="Process Flow Diagram"
+              lede="How both paths lead to your results and leaderboard placement options."
+            />
           </CardHeader>
 
           <CardContent>
