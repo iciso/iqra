@@ -232,7 +232,7 @@ export default function AdminTasksPage() {
               <span className="text-gray-300">•</span>
               <span className="text-gray-500 font-mono text-[11px] lowercase">iqra/app/admin/tasks/page.tsx</span>
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900">Project Engine Roadmap & Backlog</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Project Engine Roadmap & Backlog</h1>
           </div>
           <div className="flex items-center gap-3 text-xs">
             <Link 
