@@ -45,12 +45,13 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   // Where the rows came from is for the console only; players never see it.
   const [, setDataSource] = useState<string>("Loading...")
 
-  // Sort for consistent ranks
+  // Sort for consistent ranks: total points, then best %, then name (same as the home and challenges lists).
+  // Your Rank and Next goal both read this order.
   const sortLeaderboard = (entries: LeaderboardEntry[]) => {
     return [...entries].sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score
       if (b.percentage !== a.percentage) return b.percentage - a.percentage
-      return b.totalQuestions - a.totalQuestions
+      return a.name.localeCompare(b.name)
     })
   }
 

@@ -114,7 +114,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
 
             if (storagePlayersMap.size > 0) {
               const storagePlayers = Array.from(storagePlayersMap.values())
-                .sort((a, b) => b.best_percentage - a.best_percentage || b.total_score - a.total_score)
+                .sort((a, b) => b.total_score - a.total_score || b.best_percentage - a.best_percentage || (a.full_name ?? "").localeCompare(b.full_name ?? ""))
               console.log("✅ Players loaded from localStorage:", storagePlayers.length, "players")
               if (mountedRef.current) {
                 setPlayers(storagePlayers)

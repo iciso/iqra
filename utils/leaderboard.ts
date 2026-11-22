@@ -76,14 +76,15 @@ export function deduplicateAndMergeLeaderboard(entries: LeaderboardEntry[]): Lea
     }
   })
 
+  // Same order as every other ranking: total points, then best %, then name.
   deduplicated.sort((a, b) => {
-    if (b.percentage !== a.percentage) {
-      return b.percentage - a.percentage
-    }
     if (b.score !== a.score) {
       return b.score - a.score
     }
-    return new Date(b.submittedAt || b.date).getTime() - new Date(a.submittedAt || a.date).getTime()
+    if (b.percentage !== a.percentage) {
+      return b.percentage - a.percentage
+    }
+    return a.name.localeCompare(b.name)
   })
 
   return deduplicated

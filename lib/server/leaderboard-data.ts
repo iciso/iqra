@@ -85,7 +85,7 @@ export async function getChallengePlayers(): Promise<ChallengePlayersResult> {
           AND name != ''
           AND LENGTH(name) >= 2
         GROUP BY name
-        ORDER BY best_percentage DESC, total_score DESC
+        ORDER BY total_score DESC, best_percentage DESC, name ASC
       `)
 
       const players: ChallengePlayer[] = result.rows.map((row: Record<string, unknown>, index: number) => ({

@@ -135,7 +135,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                     <Trophy className="h-4 w-4" />
                     Available players and top scores
                   </p>
-                  <p className="text-xs text-muted-foreground">Ranked by best score %, then points</p>
+                  <p className="text-xs text-muted-foreground">Ranked by total points, then best %</p>
                 </div>
                 <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={6} />
               </CardContent>
