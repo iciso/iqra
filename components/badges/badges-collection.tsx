@@ -2,7 +2,9 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BadgeItem from "./badge-item"
+import { Award } from "lucide-react"
 import badgesData from "@/data/badges-data"
+import EmptyState from "@/components/shared/empty-state"
 
 interface BadgesCollectionProps {
   earnedBadges: string[]
@@ -36,9 +38,7 @@ export default function BadgesCollection({ earnedBadges }: BadgesCollectionProps
         {Object.entries(categories).map(([key, badges]) => (
           <TabsContent key={key} value={key}>
             {badges.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                <p className="text-sm">No badges in this category yet.</p>
-              </div>
+              <EmptyState icon={<Award />} title="No badges in this category yet." />
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2">
                 {badges.map((badge) => (

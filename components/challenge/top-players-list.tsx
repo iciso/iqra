@@ -1,7 +1,9 @@
+import { Users } from "lucide-react"
 import Link from "next/link"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import EmptyState from "@/components/shared/empty-state"
 
 export interface TopPlayer {
   id: string
@@ -40,16 +42,19 @@ const TopPlayersList = ({ players, loading, onChallenge, showScores = true }: To
 
   if (players.length === 0) {
     return (
-      <div className="py-8 text-center text-sm text-muted-foreground">
-        <p className="mb-2 font-medium text-foreground">No players yet</p>
-        <p>
-          Be the first:{" "}
-          <Link href="/subjects" className="font-medium text-green-700 underline-offset-4 dark:text-green-400 hover:underline">
-            pick a subject and take a quiz
-          </Link>
-          .
-        </p>
-      </div>
+      <EmptyState
+        icon={<Users />}
+        title="No players yet"
+        text={
+          <>
+            Be the first:{" "}
+            <Link href="/subjects" className="font-medium text-green-700 underline-offset-4 dark:text-green-400 hover:underline">
+              pick a subject and take a quiz
+            </Link>
+            .
+          </>
+        }
+      />
     )
   }
 

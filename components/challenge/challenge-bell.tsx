@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Bell, Check, Clock, X } from "lucide-react"
+import EmptyState from "@/components/shared/empty-state"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -53,9 +54,10 @@ export default function ChallengeBell() {
           {loading ? (
             <p className="px-2 py-4 text-center text-sm text-muted-foreground">Checking for challenges...</p>
           ) : count === 0 ? (
-            <p className="px-2 py-4 text-center text-sm text-muted-foreground">
-              {failed ? "Could not check for challenges right now. We will try again soon." : "No challenges yet"}
-            </p>
+            <EmptyState
+              compact
+              title={failed ? "Could not check for challenges right now. We will try again soon." : "No challenges yet"}
+            />
           ) : (
             <ul className="space-y-2">
               {challenges.map((c) => (

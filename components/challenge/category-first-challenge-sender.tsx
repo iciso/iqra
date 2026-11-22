@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { NameRequiredMessage } from "./name-required-message"
 import { Button } from "@/components/ui/button"
+import EmptyState from "@/components/shared/empty-state"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -707,12 +708,15 @@ export default function CategoryFirstChallengeSender() {
                   <span className="ml-2 text-sm text-gray-500">Loading top players...</span>
                 </div>
               ) : topPlayers.length === 0 ? (
-                <div className="text-center py-4 text-gray-500">
-                  <p>No other players found</p>
-                  <Button onClick={loadTopPlayers} variant="outline" className="mt-2">
-                    Refresh
-                  </Button>
-                </div>
+                <EmptyState
+                  compact
+                  title="No other players found"
+                  action={
+                    <Button onClick={loadTopPlayers} variant="outline">
+                      Refresh
+                    </Button>
+                  }
+                />
               ) : (
                 <div className="grid gap-3">
                   {topPlayers.map((player, index) => (

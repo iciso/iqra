@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Trophy, RefreshCw, Users } from "lucide-react"
+import EmptyState from "@/components/shared/empty-state"
 import { useAuth } from "@/contexts/auth-context"
 import CategoryFirstChallengeDialog from "./category-first-challenge-dialog"
 import TopPlayersList from "./top-players-list"
@@ -347,9 +348,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
       </CardHeader>
       <CardContent className="px-3 md:px-6 py-2 md:py-4 max-h-[70vh] overflow-y-auto">
         {players.length === 0 ? (
-          <div className="text-center py-4">
-            <p className="text-gray-500 mb-2 text-sm">No players found</p>
-          </div>
+          <EmptyState compact icon={<Users />} title="No players found" />
         ) : (
           <div className="space-y-2 md:space-y-3">
             {players.map((player, index) => (

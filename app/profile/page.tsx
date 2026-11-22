@@ -6,6 +6,7 @@ import type { ProfileChallengeRow, ProfileEntryRow } from "@/lib/server/types"
 import { useEffect, useEffectEvent, useState, useSyncExternalStore } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import PageHeader from "@/components/shared/page-header"
+import EmptyState from "@/components/shared/empty-state"
 import { pageContainerClass } from "@/lib/page-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -248,11 +249,13 @@ export default function ProfilePage() {
           </div>
         ) : !stats ? (
           <Card>
-            <CardContent className="text-center py-12">
-              <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500 mb-2">No quiz history found for <strong>{playerName}</strong></p>
-              <p className="text-sm text-gray-400">Play a quiz to start building your profile!</p>
-              <Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700 mt-4">Start a Quiz</Button></Link>
+            <CardContent className="py-6">
+              <EmptyState
+                icon={<Trophy />}
+                title={<>No quiz history found for <strong>{playerName}</strong></>}
+                text="Play a quiz to start building your profile!"
+                action={<Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700">Start a Quiz</Button></Link>}
+              />
             </CardContent>
           </Card>
         ) : (
@@ -337,10 +340,7 @@ export default function ProfilePage() {
                 <CardHeader className="pb-2"><CardTitle className="text-base">Challenge History</CardTitle></CardHeader>
                 <CardContent className="p-4">
                   {challenges.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                      <Gamepad2 className="h-12 w-12 mx-auto mb-2 opacity-30" />
-                      <p className="text-sm">No challenges yet</p>
-                    </div>
+                    <EmptyState icon={<Gamepad2 />} title="No challenges yet" />
                   ) : (
                     <div className="space-y-2">
                       {challenges.map((c) => {

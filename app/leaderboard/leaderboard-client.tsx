@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/auth-context"
 import { getLeaderboardEntriesAction } from "@/app/actions/leaderboard"
 import type { LeaderboardEntriesResult } from "@/lib/server/leaderboard-data"
 import PageHeader from "@/components/shared/page-header"
+import EmptyState from "@/components/shared/empty-state"
 import { pageContainerClass } from "@/lib/page-layout"
 
 interface LeaderboardEntry {
@@ -439,9 +440,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
               </div>
             </>
           ) : (
-            <div className="text-center py-6 md:py-8 text-gray-500 dark:text-gray-400">
-              <p className="text-sm">No players yet. Play a quiz to appear on the leaderboard.</p>
-            </div>
+            <EmptyState title="No players yet." text="Play a quiz to appear on the leaderboard." />
           )}
         </CardContent>
 

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import PageHeader from "@/components/shared/page-header"
+import EmptyState from "@/components/shared/empty-state"
 import { pageContainerClass } from "@/lib/page-layout"
 import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle, Users } from "lucide-react"
 import { getCategory } from "@/data/quiz-data-manager"
@@ -574,17 +575,18 @@ export default function ResultsPage() {
                     )}
                   </>
                 ) : (
-                  <div className="text-center py-8">
-                    <p className="dark:text-white mb-4">No quiz results found.</p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      Complete a quiz to see your results here!
-                    </p>
-                    <Link href="/subjects">
-                      <Button className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                        Start a Quiz
-                      </Button>
-                    </Link>
-                  </div>
+                  <EmptyState
+                    icon={<Trophy />}
+                    title="No quiz results found."
+                    text="Complete a quiz to see your results here!"
+                    action={
+                      <Link href="/subjects">
+                        <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
+                          Start a Quiz
+                        </Button>
+                      </Link>
+                    }
+                  />
                 )}
               </CardContent>
               <CardFooter className="flex justify-center gap-4">

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Search, AlertCircle } from "lucide-react"
+import EmptyState from "@/components/shared/empty-state"
 import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/contexts/auth-context"
 
@@ -172,9 +173,7 @@ export default function UserSearch({
           </div>
         </div>
       ) : query.length >= 2 && results.length === 0 ? (
-        <div className="text-center py-4 text-gray-500">
-          <p>No users found matching &quot;{query}&quot;</p>
-        </div>
+        <EmptyState compact icon={<Search />} title={<>No users found matching &quot;{query}&quot;</>} />
       ) : results.length > 0 ? (
         <div className="space-y-2">
           {results.map((user) => (
