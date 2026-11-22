@@ -143,33 +143,6 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
           <ProfileChallengeNotifications />
         </div>
 
-        {/* Main destinations. Keep Challenge prominent for returning players. */}
-        <section
-          aria-label="Main IQRA features"
-          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2"
-        >
-          <FeatureCard
-            icon={<BookOpen className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />}
-            title="IQRA Learn"
-            subtitle="Learn at your own pace"
-            description="Browse 50 Islamic subjects with easy, intermediate, and advanced difficulty levels. Test your knowledge and learn at your own pace."
-            tags={["Quran", "Fiqh", "Tafsir", "Hadeeth", "Aqeedah"]}
-            href="/subjects"
-            buttonText="Start Learning"
-          />
-
-          <FeatureCard
-            prominent
-            icon={<Trophy className="h-6 w-6 text-green-700 sm:h-7 sm:w-7" />}
-            title="IQRA Challenge"
-            subtitle="Your next challenge is only a click away"
-            description="Challenge your friends or compete with other IQRA players. Test your knowledge, climb the leaderboard, and earn badges."
-            tags={["Friend Challenge", "Daily Challenge", "Player Rivalry"]}
-            href="/challenges"
-            buttonText="Start Challenges"
-          />
-        </section>
-
         {/* Existing Surah Quiz and Top Players cards are retained. */}
         <section
           aria-label="More IQRA features and players"
