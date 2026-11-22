@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import PlayerFlowDiagram from "@/components/how/player-flow-diagram"
 import SectionHeading from "@/components/shared/section-heading"
+import PageHeader from "@/components/shared/page-header"
+import { pageContainerClass } from "@/lib/page-layout"
 import {
   Home,
   HelpCircle,
@@ -17,33 +19,27 @@ import {
 
 export default function HowItWorksPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl sm:px-6 p-4 md:p-8">
-      <div className="max-w-5xl mx-auto space-y-6 pt-2">
-        
-        {/* Navigation Header */}
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <Button variant="outline" size="sm" className="bg-white/80 dark:bg-gray-800 backdrop-blur">
-              <Home className="h-4 w-4 mr-1.5" />
-              Home
-            </Button>
-          </Link>
-          <Badge variant="secondary" className="px-3 py-1 bg-green-200 dark:bg-green-800 text-green-900 dark:text-green-100">
-            <HelpCircle className="h-3.5 w-3.5 mr-1" />
-            Guide & Overview
-          </Badge>
-        </div>
-
-        {/* Hero Banner */}
-        <div className="text-center space-y-3 py-4">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-green-900 dark:text-green-100 tracking-tight">
-            How IQRA Works
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm md:text-base">
-            Whether you want to learn at your own pace or test your knowledge against time and friends, 
-            IQRA provides two tailored tracks to suit your learning style.
-          </p>
-        </div>
+    <div className={pageContainerClass}>
+      <div className="space-y-6">
+        <PageHeader
+          className="mb-2"
+          title="How IQRA Works"
+          subtitle="Whether you want to learn at your own pace or test your knowledge against time and friends, IQRA provides two tailored tracks to suit your learning style."
+          actions={
+            <>
+              <Button asChild variant="outline" size="sm">
+                <Link href="/">
+                  <Home className="mr-1.5 h-4 w-4" />
+                  Home
+                </Link>
+              </Button>
+              <Badge variant="secondary" className="bg-green-100 px-3 py-1 text-green-900 dark:bg-green-900/60 dark:text-green-100">
+                <HelpCircle className="mr-1 h-3.5 w-3.5" />
+                Guide & Overview
+              </Badge>
+            </>
+          }
+        />
 
         {/* Two Tracks Comparison Cards */}
         <div className="grid md:grid-cols-2 gap-6">

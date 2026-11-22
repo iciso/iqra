@@ -12,6 +12,8 @@ import {
 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
+import PageHeader from "@/components/shared/page-header"
+import { pageContainerClass } from "@/lib/page-layout"
 
 const categories = [
   { id: "quran", title: "Quran", description: "Quran Basics", icon: <Book className="h-8 w-8 text-green-600 dark:text-green-400" /> },
@@ -402,7 +404,8 @@ export default function CategoriesPage() {
   const canOpen = (n: number) => n === 1 || (n === 2 && track !== null) || (n === 3 && selectedCategory !== null)
 
   return (
-    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center p-4 py-8">
+    <div className={`${pageContainerClass} flex flex-col items-center`}>
+      <PageHeader title="Subjects" subtitle="Pick a section, then a topic and a difficulty to start a quiz." />
       <div ref={topRef} className="w-full max-w-7xl scroll-mt-20">
         <ol aria-label="Quiz setup steps" className="mx-auto mb-6 flex max-w-xl items-center justify-center gap-2">
           {steps.map((label, index) => {

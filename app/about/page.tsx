@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { IqraLogo } from "@/components/iqra-logo";
 import AboutTabs from "@/components/about/about-tabs";
 import SectionHeading from "@/components/shared/section-heading";
+import PageHeader from "@/components/shared/page-header";
+import { pageContainerClass } from "@/lib/page-layout";
 
 /*
 IQRA To do list:
@@ -249,16 +251,16 @@ const totalContributions = contributors.reduce((sum, c) => sum + c.contributions
 
 export default function AboutPage() {
   return (
-    <div>
-      <div className="container mx-auto px-4 py-8 max-w-3xl">
+    <div className={pageContainerClass}>
+      <div className="mx-auto max-w-3xl">
         <section className="mb-12">
-          <div className="flex justify-center mb-8">
-            <IqraLogo size="lg" showText={false} />
-          </div>
-          <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-400 mb-2">About IQRA</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl">
-            The first freeware open-source Islamic knowledge quiz app with competitive challenges
-          </p>
+          <PageHeader
+            align="center"
+            className="mb-0"
+            icon={<IqraLogo size="lg" showText={false} />}
+            title="About IQRA"
+            subtitle="The first freeware open-source Islamic knowledge quiz app with competitive challenges"
+          />
           {/* Rafique's original homepage welcome line (moved here from the old home header in cc12ec8). */}
           <p
             data-about-welcome=""

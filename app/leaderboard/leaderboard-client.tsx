@@ -2,7 +2,7 @@
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Trophy, Medal, RefreshCw, Target, UserRoundSearch } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import OpponentProfile from "@/components/challenge/opponent-profile"
@@ -11,6 +11,8 @@ import { useToast } from "@/components/ui/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { getLeaderboardEntriesAction } from "@/app/actions/leaderboard"
 import type { LeaderboardEntriesResult } from "@/lib/server/leaderboard-data"
+import PageHeader from "@/components/shared/page-header"
+import { pageContainerClass } from "@/lib/page-layout"
 
 interface LeaderboardEntry {
   name: string
@@ -254,8 +256,16 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
 
   if (!isClient) {
     return (
-      <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
-        <Card className="w-full max-w-6xl border-green-200 shadow-lg">
+      <div className={pageContainerClass}>
+      <PageHeader
+        title="IQRA Quiz Hall of Fame"
+        icon={
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
+            <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
+          </span>
+        }
+      />
+        <Card className="w-full border-green-200 shadow-sm dark:border-green-800">
           <CardContent className="text-center py-8">
             <p>Loading leaderboard...</p>
           </CardContent>
@@ -265,18 +275,19 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center p-2 sm:p-4">
-      <Card className="w-full max-w-6xl border-green-200 shadow-lg dark:border-green-800 overflow-visible mt-2 sm:mt-0">
-        <CardHeader className="text-center p-4 md:p-6">
-          <div className="flex justify-center mb-2">
-            <Trophy className="w-8 h-8 md:w-12 md:h-12 text-green-600 dark:text-green-400" />
-          </div>
-          <CardTitle className="text-xl md:text-2xl font-bold text-green-800 dark:text-green-400">
-            IQRA Quiz Hall of Fame
-          </CardTitle>
-
+    <div className={pageContainerClass}>
+      <PageHeader
+        title="IQRA Quiz Hall of Fame"
+        icon={
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
+            <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
+          </span>
+        }
+      />
+      <Card className="w-full border-green-200 shadow-sm dark:border-green-800 overflow-visible">
+        <CardHeader className="p-4 md:p-6">
           {/* Simple motivation summary */}
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 text-left">
+          <div className="grid gap-2 sm:grid-cols-2 text-left">
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
                 <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Your Rank</span>

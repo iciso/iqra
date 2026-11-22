@@ -4,7 +4,9 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import PageHeader from "@/components/shared/page-header"
+import { pageContainerClass } from "@/lib/page-layout"
 import { Trophy, Award, ArrowLeft, ArrowRight, Clock, CheckCircle, Users } from "lucide-react"
 import { getCategory } from "@/data/quiz-data-manager"
 import { checkForBadges } from "@/utils/badges"
@@ -357,22 +359,28 @@ export default function ResultsPage() {
   const showChallengeSubmitted = currentChallenge && currentChallengerTurn && currentScore !== null
 
   return (
-    <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
+    <div className={`${pageContainerClass} flex flex-col items-center`}>
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
+
+      <PageHeader
+        title={showChallengeSubmitted ? "Challenge Sent!" : "Quiz Results"}
+        subtitle={
+          categoryTitle && difficulty ? (
+            <>
+              {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+              {(showChallengeSubmitted || challenge) && " Challenge"}
+            </>
+          ) : undefined
+        }
+      />
 
       {showChallengeSubmitted ? (
         // Challenge submitted view - show when challenger has just completed their turn
         <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
           <CardHeader className="text-center">
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center">
               <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400" />
             </div>
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Challenge Sent!</CardTitle>
-            {categoryTitle && difficulty && (
-              <p className="text-green-600 dark:text-green-500 mt-1">
-                {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Challenge
-              </p>
-            )}
           </CardHeader>
           <CardContent className="text-center">
             <div className="mb-6">
@@ -461,16 +469,9 @@ export default function ResultsPage() {
           <div className="w-full max-w-3xl flex flex-col md:flex-row gap-6">
             <Card className="w-full max-w-md mx-auto border-green-200 shadow-lg dark:border-green-800">
               <CardHeader className="text-center">
-                <div className="flex justify-center mb-2">
+                <div className="flex justify-center">
                   <Trophy className="w-12 h-12 text-green-600 dark:text-green-400" />
                 </div>
-                <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Quiz Results</CardTitle>
-                {categoryTitle && difficulty && (
-                  <p className="text-green-600 dark:text-green-500 mt-1">
-                    {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-                    {challenge && " Challenge"}
-                  </p>
-                )}
               </CardHeader>
               <CardContent className="text-center">
                 {score !== null && totalQuestions !== null ? (

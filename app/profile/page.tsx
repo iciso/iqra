@@ -4,7 +4,9 @@ import { getProfileDataAction } from "@/app/actions/profile"
 import type { ProfileChallengeRow, ProfileEntryRow } from "@/lib/server/types"
 
 import { useEffect, useEffectEvent, useState, useSyncExternalStore } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import PageHeader from "@/components/shared/page-header"
+import { pageContainerClass } from "@/lib/page-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -170,14 +172,18 @@ export default function ProfilePage() {
 
   if (!playerName) {
     return (
-      <div className="mx-auto w-full max-w-6xl sm:px-6 flex items-center justify-center p-4">
+      <div className={pageContainerClass}>
+        <PageHeader
+          title="View Your Profile"
+          subtitle="Enter the name you use when playing quizzes to see your stats."
+          icon={
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
+              <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
+            </span>
+          }
+        />
         <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <Trophy className="h-12 w-12 text-green-600 mx-auto mb-2" />
-            <CardTitle>View Your Profile</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">Enter the name you use when playing quizzes to see your stats.</p>
+          <CardContent className="space-y-4 pt-6">
             <div className="flex gap-2">
               <Input placeholder="Your name" value={nameInput} onChange={(e) => setNameInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSetName()} />
               <Button onClick={handleSetName} className="bg-green-600 hover:bg-green-700">View</Button>
@@ -190,48 +196,51 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl sm:px-6 p-4">
-      <div className="max-w-6xl mx-auto pt-4">
-        <div className="flex items-center justify-between mb-6">
-          <Link href="/"><Button variant="outline" size="sm"><Home className="h-4 w-4 mr-1" />Home</Button></Link>
-          <Button variant="outline" size="sm" onClick={() => loadProfile(playerName)} disabled={loading}>
-            <RefreshCw className={`h-4 w-4 mr-1 ${loading ? "animate-spin" : ""}`} />Refresh
-          </Button>
-        </div>
-
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-20 w-20">
-                <AvatarFallback className="bg-green-100 text-green-700 text-2xl font-bold">{initials(playerName)}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                {editingName ? (
-                  <div className="flex gap-2 items-center">
-                    <Input value={newName} onChange={(e) => setNewName(e.target.value)} className="max-w-xs" autoFocus />
-                    <Button size="sm" onClick={handleSaveName} className="bg-green-600 hover:bg-green-700"><Save className="h-4 w-4" /></Button>
-                    <Button size="sm" variant="outline" onClick={() => setEditingName(false)}><X className="h-4 w-4" /></Button>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-bold text-green-800 dark:text-green-200">{playerName}</h1>
-                    <Button size="sm" variant="ghost" onClick={() => { setNewName(playerName); setEditingName(true) }}>
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-                <p className="text-gray-500 text-sm mt-1">IQRA Quiz Player</p>
-                {stats && (
-                  <div className="flex gap-4 mt-2 text-sm">
-                    <span className="text-gray-600">{stats.totalQuizzes} quizzes</span>
-                    <span className="text-gray-600">{stats.challengesPlayed} challenges</span>
-                    <span className={`font-medium ${pctColor(stats.overallPercentage)}`}>{stats.overallPercentage}% overall</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+    <div className={pageContainerClass}>
+      <div>
+        <PageHeader
+          icon={
+            <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
+              <AvatarFallback className="bg-green-100 text-green-700 text-2xl font-bold">{initials(playerName)}</AvatarFallback>
+            </Avatar>
+          }
+          title={
+            editingName ? (
+              <span className="flex items-center gap-2">
+                <Input value={newName} onChange={(e) => setNewName(e.target.value)} className="max-w-xs text-base font-normal" autoFocus />
+                <Button size="sm" onClick={handleSaveName} className="bg-green-600 hover:bg-green-700"><Save className="h-4 w-4" /></Button>
+                <Button size="sm" variant="outline" onClick={() => setEditingName(false)}><X className="h-4 w-4" /></Button>
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                {playerName}
+                <Button size="sm" variant="ghost" onClick={() => { setNewName(playerName); setEditingName(true) }}>
+                  <Edit className="h-4 w-4" />
+                </Button>
+              </span>
+            )
+          }
+          subtitle={
+            <>
+              <p>IQRA Quiz Player</p>
+              {stats && (
+                <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+                  <span>{stats.totalQuizzes} quizzes</span>
+                  <span>{stats.challengesPlayed} challenges</span>
+                  <span className={`font-medium ${pctColor(stats.overallPercentage)}`}>{stats.overallPercentage}% overall</span>
+                </div>
+              )}
+            </>
+          }
+          actions={
+            <>
+              <Button asChild variant="outline" size="sm"><Link href="/"><Home className="h-4 w-4 mr-1" />Home</Link></Button>
+              <Button variant="outline" size="sm" onClick={() => loadProfile(playerName)} disabled={loading}>
+                <RefreshCw className={`h-4 w-4 mr-1 ${loading ? "animate-spin" : ""}`} />Refresh
+              </Button>
+            </>
+          }
+        />
 
         {loading ? (
           <div className="flex justify-center py-12">
