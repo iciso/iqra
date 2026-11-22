@@ -14,6 +14,7 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Gamepad2, Zap } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
+import { savePlayerName } from "@/lib/player-name"
 
 // Kept for compatibility with whatever still imports this type from elsewhere.
 // Not used to look up real accounts any more - there are none.
@@ -86,8 +87,7 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
     setIsSubmitting(true)
     try {
       // Remember the challenger's name for next time, same key used by the leaderboard flow
-      localStorage.setItem(NAME_STORAGE_KEY, trimmedYourName)
-      localStorage.setItem("tempChallengerId", trimmedYourName)
+      savePlayerName(trimmedYourName)
 
       const response = await fetch("/api/challenges/create", {
         method: "POST",

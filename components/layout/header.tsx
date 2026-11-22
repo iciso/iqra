@@ -6,6 +6,7 @@ import { Trophy, Menu } from "lucide-react"
 import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
+import ChallengeBell from "@/components/challenge/challenge-bell"
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -44,11 +45,13 @@ const Header = () => {
             <Link href="/about">
               <Button variant="ghost">About</Button>
             </Link>
+            <ChallengeBell />
             <ThemeToggle />
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1">
+            <ChallengeBell />
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>

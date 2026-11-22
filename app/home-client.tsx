@@ -24,7 +24,6 @@ import {
 import IqraHero from "@/components/home/iqra-hero"
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
-import ProfileChallengeNotifications from "@/components/challenge/profile-challenge-notifications"
 import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 function FeatureCard({
@@ -143,11 +142,6 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
       <IqraHero />
 
       <main className="container mx-auto flex w-full max-w-full flex-grow flex-col px-4 py-6 sm:py-12">
-        {/* Keep challenge notifications easy to find for returning players (/#challenge-name). */}
-        <div id="challenge-name" className="mb-6 w-full scroll-mt-4 sm:mb-8">
-          <ProfileChallengeNotifications />
-        </div>
-
         {/* Existing Surah Quiz and Top Players cards are retained. */}
         <section
           aria-label="More IQRA features and players"

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { NameRequiredMessage } from "./name-required-message"
+import InlineNamePrompt from "./inline-name-prompt"
+import { savePlayerName } from "@/lib/player-name"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
@@ -690,16 +691,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         setNameRequired(true)
         toast({
           title: "Name required",
-          description: <NameRequiredMessage onNavigate={onClose} />,
-          variant: "destructive",
-          duration: 10000,
+          description: "Enter your name below, then the challenge is sent.",
         })
         setIsSubmitting(false)
         return
       }
 
-      localStorage.setItem("userNameForLeaderboard", challengerName)
-      localStorage.setItem("tempChallengerId", challengerName)
+      savePlayerName(challengerName)
 
       const challengedName = opponent.full_name || opponent.username
 
@@ -820,14 +818,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               </div>
 
                 {nameRequired && (
-                  <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start gap-3">
-                    <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-red-800">Name required</p>
-                      <p className="text-red-700 text-sm">
-                        <NameRequiredMessage onNavigate={onClose} />
-                      </p>
-                    </div>
+                  <div className="rounded-md border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-950">
+                    <InlineNamePrompt
+                      onSaved={() => {
+                        setNameRequired(false)
+                        void handleSendChallenge()
+                      }}
+                    />
                   </div>
                 )}
                     
