@@ -160,7 +160,9 @@ async function resolveChallengeParams(params: URLSearchParams) {
 
     if (challenge) {
       category = params.get("category") || challenge.category || category
-      difficulty = params.get("difficulty") ? difficulty : normalizeDifficulty(challenge.difficulty || (difficulty as string))
+      // Older challenges were saved as "mixed", which no longer has questions; keep the default level then.
+      const storedDifficulty = normalizeDifficulty(challenge.difficulty || (difficulty as string))
+      if (!params.get("difficulty") && storedDifficulty !== "mixed") difficulty = storedDifficulty
       questionCount = params.get("questions")
         ? questionCount
         : Number.isFinite(challenge.question_count) ? challenge.question_count : questionCount
