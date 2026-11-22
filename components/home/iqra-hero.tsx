@@ -21,6 +21,14 @@ const facts = [
   { value: "5", label: "surah quizzes" },
 ]
 
+// The name spelled out, initials in brand green: the acronym is the introduction.
+const acronym = [
+  { initial: "I", rest: "slamic" },
+  { initial: "Q", rest: "uiz" },
+  { initial: "R", rest: "ivalry" },
+  { initial: "A", rest: "pp" },
+]
+
 const learnTags = ["Easy", "Intermediate", "Advanced"]
 const challengeTags = ["Friend Challenge", "Daily Challenge", "Player Rivalry"]
 
@@ -142,15 +150,28 @@ export default function IqraHero() {
 
         {/* Phones and tablets: these children join the column above. 1280px+: the right-hand column. */}
         <div data-hero-copy className="contents xl:block">
+          <p
+            data-hero-acronym
+            className={`${reemKufi.className} mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
+          >
+            {acronym.map((word, i) => (
+              <span key={word.initial}>
+                {i > 0 && " "}
+                <b className="text-[1.3em] font-bold text-green-700 dark:text-green-300">{word.initial}</b>
+                {word.rest}
+              </span>
+            ))}
+          </p>
           <h1
             id="iqra-hero-heading"
-            className={`${reemKufi.className} mt-2 text-balance text-[34px] font-semibold leading-[1.08] text-green-900 dark:text-white sm:text-[44px] xl:mt-0 xl:text-[48px]`}
+            className={`${reemKufi.className} mt-3 text-balance text-[34px] font-semibold leading-[1.08] text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
           >
-            Fifty subjects around one first word.
+            Quiz to learn. Rival to excel.
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-base xl:mx-0 leading-relaxed text-green-950/70 dark:text-green-100/75 sm:text-lg">
-            The first word revealed was <em>Read</em>. Start with a subject that calls you, then test what you
-            learned against a friend.
+            Two tracks, one name: <b className="font-semibold text-green-800 dark:text-green-200">Quiz</b> any of 50
+            subjects at your own pace, or turn it into a{" "}
+            <b className="font-semibold text-green-800 dark:text-green-200">Rivalry</b> and challenge a friend.
           </p>
 
           {/* Two tracks, side by side from md up: a calm one for learning, an energetic one for racing a friend. */}
@@ -164,11 +185,11 @@ export default function IqraHero() {
                   <BookOpen aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-300">
-                  Track 1 &middot; Learn
+                  Track 1 &middot; Quiz
                 </p>
               </div>
               <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-green-900 dark:text-white`}>
-                Learn at leisure
+                <b className="font-bold text-green-700 dark:text-green-300">Quiz</b> &ndash; learn at leisure
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-950/75 dark:text-green-100/80">
                 Pick any of 50 subjects at your own level. No clock, no rival &ndash; just you and the subject.
@@ -201,10 +222,15 @@ export default function IqraHero() {
                   <Footprints aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-50">
-                  Track 2 &middot; Challenge
+                  Track 2 &middot; Rivalry
                 </p>
               </div>
-              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-white`}>Race to excel</h2>
+              <h2 className={`${reemKufi.className} mt-3 text-2xl font-semibold text-white`}>
+                <b className="font-bold text-green-200 underline decoration-green-300/70 decoration-2 underline-offset-[6px]">
+                  Rivalry
+                </b>{" "}
+                &ndash; race to excel
+              </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-50">
                 Send the same quiz to a friend &ndash; the higher score wins. The Prophet (peace be upon him) raced Aisha (RA) and
                 said &ldquo;This is for that&rdquo;: friendly competition is Sunnah.
