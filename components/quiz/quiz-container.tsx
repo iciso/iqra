@@ -108,7 +108,7 @@ export default function QuizContainer({
   // One answer slot per question; the selected answer is the slot of the current question
   const [answers, setAnswers] = useState<string[]>(() => Array(questions.length).fill(""))
   const selectedAnswer = answers[currentQuestion] || ""
-  const progress = (currentQuestion / questions.length) * 100
+  const progress = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0
 
   const [showExplanation, setShowExplanation] = useState(false)
   // Challenge mode is timed; the timer starts as soon as the quiz is on screen
