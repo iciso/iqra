@@ -478,7 +478,7 @@ export default function AboutPage() {
 
     <h2 className="mb-4 text-3xl font-extrabold
       text-green-800 dark:text-green-400">
-      Celebrating Our Players' Contributions!
+      Celebrating Our Players&apos; Contributions!
     </h2>
 
     <p className="text-lg leading-relaxed
@@ -486,7 +486,7 @@ export default function AboutPage() {
       IQRA belongs not only to its creators, but also to the
       players who  make it better. Every correction,
       constructive suggestion, and improvement identified by
-      our players can  make IQRA's Islamic knowledge,
+      our players can  make IQRA&apos;s Islamic knowledge,
       data, and user interface more accurate and useful
       for everyone.
     </p>
