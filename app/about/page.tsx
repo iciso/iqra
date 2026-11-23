@@ -682,8 +682,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* #ai-credits: the footer's "Built with AI assistance" link lands here (Grok/xAI, DeepSeek, Claude, Gemini, Meta). */}
-        <section id="ai-credits" className="mb-12 scroll-mt-32">
+        {/* #acknowledgments: the people and services IQRA thanks. #ai-credits (the footer's "Built with AI assistance" link) is the first AI-tool item below, so it does not land on a person. */}
+        <section id="acknowledgments" className="mb-12 scroll-mt-32">
           <SectionHeading align="left" className="mb-4" title="Acknowledgments" />
           <p className="mb-4 text-gray-600 dark:text-gray-300">
             All praise and thanks are due to Allah <span className="font-arabic text-3xl font-normal align-middle">ﷻ</span>, The Entirely Merciful, 
@@ -740,7 +740,7 @@ export default function AboutPage() {
                   alt="Next.js Logo" className="h-8 w-auto inline-block hover:scale-105 transition-transform dark:invert" />
               </div>
             </li>
-            <li>
+            <li id="ai-credits" className="scroll-mt-32">
               <strong>AI-Powered Debugging & Code Optimization:</strong> Special thanks to{" "}
               <a
                 href="https://x.ai"
