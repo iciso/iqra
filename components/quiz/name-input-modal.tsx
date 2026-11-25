@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Trans, useTranslation } from "react-i18next"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,6 +24,7 @@ export function NameInputModal({
   totalQuestions,
   percentage,
 }: NameInputModalProps) {
+  const { t } = useTranslation("profile")
   const [name, setName] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -48,12 +50,12 @@ export function NameInputModal({
     setError("")
 
     if (!name.trim()) {
-      setError("Please enter your name")
+      setError(t("nameModal.errEmpty"))
       return
     }
 
     if (name.trim().length < 2) {
-      setError("Name must be at least 2 characters")
+      setError(t("nameModal.errShort"))
       return
     }
 
@@ -61,7 +63,7 @@ export function NameInputModal({
     try {
       await onSubmit(name.trim())
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to save your name")
+      setError(err instanceof Error ? err.message : t("nameModal.errSave"))
       setLoading(false)
     }
   }
@@ -73,11 +75,11 @@ export function NameInputModal({
           <div className="flex justify-center mb-4">
             <Trophy className="w-10 h-10 text-green-600 dark:text-green-400" />
           </div>
-          <DialogTitle className="text-center text-xl">Congratulations! 🎉</DialogTitle>
+          <DialogTitle className="text-center text-xl">{t("nameModal.congrats")}</DialogTitle>
           <DialogDescription className="text-center">
             <div className="mt-2 mb-4">
               <p className="font-semibold text-foreground mb-1">
-                You scored {score} out of {totalQuestions}
+                {t("nameModal.scored", { score, total: totalQuestions })}
               </p>
               <p className="text-lg font-bold text-green-600 dark:text-green-400">{percentage}%</p>
             </div>
@@ -87,8 +89,7 @@ export function NameInputModal({
         <div className="space-y-4">
           <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
             <p className="text-sm text-blue-900 dark:text-blue-200">
-              <strong>Want to appear on the Leaderboard?</strong> Enter your name to see your score ranked with other
-              players.
+              <Trans i18nKey="nameModal.leaderboardPrompt" ns="profile" components={{ b: <strong /> }} />
             </p>
           </div>
 
@@ -96,7 +97,7 @@ export function NameInputModal({
             <div>
               <Input
                 type="text"
-                placeholder="Enter your name"
+                placeholder={t("nameModal.placeholder")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={loading}
@@ -112,16 +113,16 @@ export function NameInputModal({
                 disabled={loading}
                 className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
               >
-                {loading ? "Saving..." : "Add to Leaderboard"}
+                {loading ? t("nameModal.saving") : t("nameModal.add")}
               </Button>
               <Button type="button" variant="outline" onClick={onSkip} disabled={loading} className="flex-1">
-                Skip
+                {t("nameModal.skip")}
               </Button>
             </div>
           </form>
 
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            You can also navigate away using the Subjects or Try Again buttons below.
+            {t("nameModal.hint")}
           </p>
         </div>
       </DialogContent>

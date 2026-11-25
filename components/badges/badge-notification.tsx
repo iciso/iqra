@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import type { Badge } from "@/data/badges-data"
 import BadgeItem from "./badge-item"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -13,6 +14,7 @@ interface BadgeNotificationProps {
 }
 
 export default function BadgeNotification({ badges, onClose }: BadgeNotificationProps) {
+  const { t } = useTranslation("profile")
   const [open, setOpen] = useState(badges.length > 0)
 
   useEffect(() => {
@@ -36,10 +38,10 @@ export default function BadgeNotification({ badges, onClose }: BadgeNotification
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl">
-            {badges.length > 1 ? "New Badges Earned!" : "New Badge Earned!"}
+            {badges.length > 1 ? t("badges.newMany") : t("badges.newOne")}
           </DialogTitle>
           <DialogDescription className="sr-only">
-            Congratulations on earning new badges for your achievements!
+            {t("badges.congrats")}
           </DialogDescription>
         </DialogHeader>
 
@@ -48,8 +50,8 @@ export default function BadgeNotification({ badges, onClose }: BadgeNotification
             {badges.map((badge) => (
               <div key={badge.id} className="flex flex-col items-center">
                 <BadgeItem badge={badge} earned={true} size="lg" showTooltip={false} />
-                <h3 className="mt-2 font-bold text-lg">{badge.name}</h3>
-                <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-1">{badge.description}</p>
+                <h3 className="mt-2 font-bold text-lg">{t(`badges.items.${badge.id}.name`, { defaultValue: badge.name })}</h3>
+                <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-1">{t(`badges.items.${badge.id}.description`, { defaultValue: badge.description })}</p>
               </div>
             ))}
           </div>
@@ -58,7 +60,7 @@ export default function BadgeNotification({ badges, onClose }: BadgeNotification
             onClick={handleClose}
             className="mt-4 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
           >
-            Awesome!
+            {t("badges.awesome")}
           </Button>
         </div>
       </DialogContent>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -17,6 +18,7 @@ import badgesData from "@/data/badges-data"
 import { getEarnedBadges } from "@/utils/badges"
 
 export default function BadgesProfile() {
+  const { t } = useTranslation("profile")
   const [isOpen, setIsOpen] = useState(false)
   const earnedBadges = getEarnedBadges()
 
@@ -32,10 +34,10 @@ export default function BadgesProfile() {
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-medium flex items-center dark:text-white">
             <Shield className="w-5 h-5 mr-2 text-green-600 dark:text-green-400" />
-            Your Badges
+            {t("badges.yourBadges")}
           </h3>
           <span className="text-sm text-gray-500 dark:text-gray-400">
-            {earnedBadges.length} of {badgesData.length}
+            {t("badges.ofTotal", { n: earnedBadges.length, total: badgesData.length })}
           </span>
         </div>
 
@@ -52,21 +54,21 @@ export default function BadgesProfile() {
           </div>
         ) : (
           <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-            <p className="mb-2">You haven&apos;t earned any badges yet.</p>
-            <p className="text-sm">Complete challenges and quizzes to earn badges!</p>
+            <p className="mb-2">{t("badges.noneEarned")}</p>
+            <p className="text-sm">{t("badges.noneEarnedHint")}</p>
           </div>
         )}
 
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button variant="outline" className="w-full mt-2 dark:border-green-700 dark:text-green-400">
-              View All Badges
+              {t("badges.viewAll")}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Your Badge Collection</DialogTitle>
-              <DialogDescription>Earn badges by completing challenges and achieving milestones</DialogDescription>
+              <DialogTitle>{t("badges.title")}</DialogTitle>
+              <DialogDescription>{t("badges.dialogDesc")}</DialogDescription>
             </DialogHeader>
             <BadgesCollection earnedBadges={earnedBadges} />
           </DialogContent>

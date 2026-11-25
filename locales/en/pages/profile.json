@@ -1,1 +1,241 @@
-{}
+{
+  "profile": {
+    "viewTitle": "View Your Profile",
+    "viewSubtitle": "Enter the name you use when playing quizzes to see your stats.",
+    "namePlaceholder": "Your name",
+    "view": "View",
+    "home": "Home",
+    "refresh": "Refresh",
+    "player": "IQRA Quiz Player",
+    "quizzesCount": "{{n}} quizzes",
+    "challengesCount": "{{n}} challenges",
+    "overallPct": "{{n}}% overall",
+    "loadError": "Error loading profile",
+    "nameTooShort": "Name must be at least 2 characters",
+    "nameUpdated": "Name updated",
+    "noHistory": "No quiz history found for <b>{{name}}</b>",
+    "noHistoryText": "Play a quiz to start building your profile!",
+    "startQuiz": "Start a Quiz",
+    "tabStats": "Stats",
+    "tabHistory": "History",
+    "tabChallenges": "Challenges",
+    "tabBadges": "Badges",
+    "totalScore": "Total Score",
+    "overallLabel": "Overall %",
+    "quizzesPlayed": "Quizzes Played",
+    "bestCategory": "Best Category",
+    "byCategory": "Performance by Category",
+    "timesPlayed": "{{n}}×",
+    "recent": "Recent Quizzes (last 10)",
+    "challengeTag": "Challenge",
+    "challengeHistory": "Challenge History",
+    "noChallenges": "No challenges yet",
+    "youChallenged": "You challenged ",
+    "challengeFrom": "Challenge from ",
+    "you": "You",
+    "notPlayed": "Not played",
+    "awaiting": "Awaiting",
+    "won": "Won 🏆",
+    "lost": "Lost",
+    "tie": "Tie 🤝",
+    "other": "Other",
+    "redirecting": "Redirecting to your Badges Collection...",
+    "goBadges": "Go to Badges Page"
+  },
+  "status": {
+    "pending": "pending",
+    "accepted": "accepted",
+    "completed": "completed",
+    "declined": "declined",
+    "expired": "expired"
+  },
+  "categories": {
+    "quran": "Quran",
+    "seerah": "Seerah",
+    "fiqh": "Fiqh",
+    "hadeeth": "Hadeeth",
+    "aqeedah": "Aqeedah",
+    "tafsir": "Tafsir",
+    "comparative": "Comparative Religion",
+    "islamic-finance": "Islamic Finance",
+    "tazkiyah": "Tazkiyah",
+    "history": "Islamic History",
+    "dawah": "Dawah",
+    "salah": "Salah",
+    "sawm": "Sawm",
+    "new-muslims": "New Muslims",
+    "islamic-medical-ethics": "Islamic Medical Ethics",
+    "crypto": "Crypto & Islam",
+    "gender": "Gender in Islam",
+    "lgbtq": "LGBTQ & Islam",
+    "psych": "Islamic Psychology",
+    "parenting": "Islamic Parenting",
+    "peace": "Peace & Islam",
+    "christ": "Christianity & Islam",
+    "hindu": "Hinduism & Islam"
+  },
+  "badges": {
+    "loading": "Loading badges...",
+    "title": "Your Badge Collection",
+    "subtitle": "Earn badges by completing challenges, achieving high scores, and maintaining learning streaks. Each badge represents a milestone in your Islamic knowledge journey.",
+    "tabAll": "All ({{n}})",
+    "tabEarned": "Earned ({{n}})",
+    "tabChallenge": "Challenge ({{n}})",
+    "tabAchievement": "Achievement ({{n}})",
+    "noneInCategory": "No badges in this category yet.",
+    "yourBadges": "Your Badges",
+    "ofTotal": "{{n}} of {{total}}",
+    "noneEarned": "You haven't earned any badges yet.",
+    "noneEarnedHint": "Complete challenges and quizzes to earn badges!",
+    "viewAll": "View All Badges",
+    "dialogDesc": "Earn badges by completing challenges and achieving milestones",
+    "earned": "Earned",
+    "locked": "Locked",
+    "newMany": "New Badges Earned!",
+    "newOne": "New Badge Earned!",
+    "congrats": "Congratulations on earning new badges for your achievements!",
+    "awesome": "Awesome!",
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "legendary": "Legendary"
+    },
+    "items": {
+      "first_step": {
+        "name": "First Step",
+        "description": "Completed your first quiz"
+      },
+      "daily_challenge": {
+        "name": "Daily Scholar",
+        "description": "Completed the Daily Quiz Challenge"
+      },
+      "high_score": {
+        "name": "Distinguished Scholar",
+        "description": "Scored at least 80% in any challenge or quiz"
+      },
+      "perfect_score": {
+        "name": "Perfect Scholar",
+        "description": "Achieved a perfect score in any challenge or quiz"
+      },
+      "speed_demon": {
+        "name": "Speed of Light",
+        "description": "Completed a quiz with at least 80% accuracy in half the allotted time"
+      },
+      "weekly_streak": {
+        "name": "Consistent Student",
+        "description": "Completed at least one challenge every day for a week"
+      },
+      "explorer": {
+        "name": "Knowledge Explorer",
+        "description": "Completed at least one quiz in all 23 categories"
+      },
+      "badge_quran": {
+        "name": "Quran Master",
+        "description": "Completed a quiz in the Quran category"
+      },
+      "badge_fiqh": {
+        "name": "Fiqh Expert",
+        "description": "Completed a quiz in the Fiqh category"
+      },
+      "badge_tafsir": {
+        "name": "Tafsir Analyst",
+        "description": "Completed a quiz in the Tafsir category"
+      },
+      "badge_hadeeth": {
+        "name": "Hadith Guardian",
+        "description": "Completed a quiz in the Hadeeth category"
+      },
+      "badge_aqeedah": {
+        "name": "Aqeedah Anchor",
+        "description": "Completed a quiz in the Aqeedah category"
+      },
+      "badge_seerah": {
+        "name": "Prophet's Companion",
+        "description": "Completed a quiz in the Seerah category"
+      },
+      "badge_tazkiyah": {
+        "name": "Purified Soul",
+        "description": "Completed a quiz in the Tazkiyah category"
+      },
+      "badge_salah": {
+        "name": "Pillar of Prayer",
+        "description": "Completed a quiz in the Salah category"
+      },
+      "badge_sawm": {
+        "name": "Devout Fasting",
+        "description": "Completed a quiz in the Sawm category"
+      },
+      "badge_islamic_history": {
+        "name": "History Chronicler",
+        "description": "Completed a quiz in the Islamic History category"
+      },
+      "badge_dawah": {
+        "name": "Caller to Good",
+        "description": "Completed a quiz in the Dawah category"
+      },
+      "badge_new_muslims": {
+        "name": "Welcoming Light",
+        "description": "Completed a quiz in the New Muslims category"
+      },
+      "badge_comparative_religion": {
+        "name": "Interfaith Scholar",
+        "description": "Completed a quiz in the Comparative Religion category"
+      },
+      "badge_christianity": {
+        "name": "Christianity Studies",
+        "description": "Completed a quiz in the Christianity category"
+      },
+      "badge_hinduism": {
+        "name": "Hinduism Studies",
+        "description": "Completed a quiz in the Hinduism category"
+      },
+      "badge_islamic_finance": {
+        "name": "Halal Wealth Guide",
+        "description": "Completed a quiz in the Islamic Finance category"
+      },
+      "badge_crypto_blockchain": {
+        "name": "FinTech Pioneer",
+        "description": "Completed a quiz in the Crypto & Blockchain category"
+      },
+      "badge_gender": {
+        "name": "Gender & Ethics Thinker",
+        "description": "Completed a quiz in the Gender category"
+      },
+      "badge_lgbtqia": {
+        "name": "Contemporary Discourse",
+        "description": "Completed a quiz in the Islam and LGBTQIA+ category"
+      },
+      "badge_islamic_psychology": {
+        "name": "Mind & Soul Explorer",
+        "description": "Completed a quiz in the Islamic Psychology category"
+      },
+      "badge_islamic_parenting": {
+        "name": "Nurturing Guardian",
+        "description": "Completed a quiz in the Islamic Parenting category"
+      },
+      "badge_medical_ethics": {
+        "name": "Bioethics Scholar",
+        "description": "Completed a quiz in the Medical Ethics category"
+      },
+      "badge_peace": {
+        "name": "Ambassador of Peace",
+        "description": "Completed a quiz in the Peace category"
+      }
+    }
+  },
+  "nameModal": {
+    "congrats": "Congratulations! 🎉",
+    "scored": "You scored {{score}} out of {{total}}",
+    "leaderboardPrompt": "<b>Want to appear on the Leaderboard?</b> Enter your name to see your score ranked with other players.",
+    "placeholder": "Enter your name",
+    "errEmpty": "Please enter your name",
+    "errShort": "Name must be at least 2 characters",
+    "errSave": "Failed to save your name",
+    "saving": "Saving...",
+    "add": "Add to Leaderboard",
+    "skip": "Skip",
+    "hint": "You can also navigate away using the Subjects or Try Again buttons below."
+  }
+}

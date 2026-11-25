@@ -4,6 +4,7 @@ import { getProfileDataAction } from "@/app/actions/profile"
 import type { ProfileChallengeRow, ProfileEntryRow } from "@/lib/server/types"
 
 import { useEffect, useEffectEvent, useState, useSyncExternalStore } from "react"
+import { Trans, useTranslation } from "react-i18next"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import PageHeader from "@/components/shared/page-header"
 import EmptyState from "@/components/shared/empty-state"
@@ -35,7 +36,7 @@ const prettify = (id: string) =>
   id.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
 
 // Legacy label map first, then the category's real title, then a prettified id.
-const labelFor = (id?: string | null): string => {
+const baseLabelFor = (id?: string | null): string => {
   if (!id) return "Other"
   if (categoryLabels[id]) return categoryLabels[id]
   try {
@@ -93,7 +94,7 @@ const buildStats = (entries: ProfileEntryRow[]): ProfileStats | null => {
     totalScore, totalQuestions, overallPercentage,
     totalQuizzes: entries.length,
     challengesPlayed: challengeEntries.length,
-    bestCategory: best ? labelFor(best.category) : "—",
+    bestCategory: best ? best.category : "",
     bestPercentage: best?.percentage || 0,
     categoryBreakdown,
     recentQuizzes: entries.slice(0, 10),
@@ -108,6 +109,7 @@ const readSavedName = () => localStorage.getItem(NAME_KEY)
 const serverSavedName = () => undefined
 
 export default function ProfilePage() {
+  const { t, i18n } = useTranslation("profile")
   const savedName = useSyncExternalStore(noSubscribe, readSavedName, serverSavedName)
   const [chosenName, setChosenName] = useState<string | null>(null)
   const [nameInput, setNameInput] = useState("")
@@ -133,7 +135,7 @@ export default function ProfilePage() {
       })
       .catch((err: unknown) => {
         console.error("Profile load error:", err)
-        toast({ title: "Error loading profile", variant: "destructive" })
+        toast({ title: t("profile.loadError"), variant: "destructive" })
       })
       .finally(() => setLoading(false))
 
@@ -151,22 +153,31 @@ export default function ProfilePage() {
   }, [savedName])
 
   const handleSetName = () => {
-    const t = nameInput.trim()
-    if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
-    savePlayerName(t)
-    setChosenName(t); loadProfile(t)
+    const trimmed = nameInput.trim()
+    if (!trimmed || trimmed.length < 2) { toast({ title: t("profile.nameTooShort"), variant: "destructive" }); return }
+    savePlayerName(trimmed)
+    setChosenName(trimmed); loadProfile(trimmed)
   }
 
   const handleSaveName = () => {
-    const t = newName.trim()
-    if (!t || t.length < 2) { toast({ title: "Name must be at least 2 characters", variant: "destructive" }); return }
-    savePlayerName(t)
-    setChosenName(t); setEditingName(false); loadProfile(t)
-    toast({ title: "Name updated" })
+    const trimmed = newName.trim()
+    if (!trimmed || trimmed.length < 2) { toast({ title: t("profile.nameTooShort"), variant: "destructive" }); return }
+    savePlayerName(trimmed)
+    setChosenName(trimmed); setEditingName(false); loadProfile(trimmed)
+    toast({ title: t("profile.nameUpdated") })
   }
 
   const initials = (name: string) => name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-  const fmtDate = (d: string) => new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+  // Latin digits in every language, as the rest of the app shows numbers.
+  const dateLocale = ({ bn: "bn-BD", ta: "ta-IN" } as Record<string, string>)[i18n.language] ?? "en-US"
+  const fmtDate = (d: string) =>
+    new Date(d).toLocaleDateString(`${dateLocale}-u-nu-latn`, { year: "numeric", month: "short", day: "numeric" })
+  const labelFor = (id?: string | null): string => {
+    if (!id) return t("profile.other")
+    return t(`categories.${id}`, { defaultValue: baseLabelFor(id) })
+  }
+  const diffLabel = (d: string | null) => !d ? "" : t(`difficulty.${d}`, { ns: "common", defaultValue: d })
+  const statusLabel = (s: string) => t(`status.${s}`, { defaultValue: s })
   const pctColor = (p: number) => p >= 90 ? "text-green-600" : p >= 70 ? "text-blue-600" : p >= 50 ? "text-yellow-600" : "text-red-600"
 
   if (!checked) return null
@@ -175,8 +186,8 @@ export default function ProfilePage() {
     return (
       <div className={pageContainerClass}>
         <PageHeader
-          title="View Your Profile"
-          subtitle="Enter the name you use when playing quizzes to see your stats."
+          title={t("profile.viewTitle")}
+          subtitle={t("profile.viewSubtitle")}
           icon={
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
               <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -186,10 +197,10 @@ export default function ProfilePage() {
         <Card className="w-full max-w-md">
           <CardContent className="space-y-4 pt-6">
             <div className="flex gap-2">
-              <Input placeholder="Your name" value={nameInput} onChange={(e) => setNameInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSetName()} />
-              <Button onClick={handleSetName} className="bg-green-600 hover:bg-green-700">View</Button>
+              <Input placeholder={t("profile.namePlaceholder")} value={nameInput} onChange={(e) => setNameInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSetName()} />
+              <Button onClick={handleSetName} className="bg-green-600 hover:bg-green-700">{t("profile.view")}</Button>
             </div>
-            <div className="text-center"><Link href="/"><Button variant="outline" size="sm"><Home className="h-4 w-4 mr-1" />Home</Button></Link></div>
+            <div className="text-center"><Link href="/"><Button variant="outline" size="sm"><Home className="h-4 w-4 mr-1" />{t("profile.home")}</Button></Link></div>
           </CardContent>
         </Card>
       </div>
@@ -223,21 +234,21 @@ export default function ProfilePage() {
           }
           subtitle={
             <>
-              <p>IQRA Quiz Player</p>
+              <p>{t("profile.player")}</p>
               {stats && (
                 <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
-                  <span>{stats.totalQuizzes} quizzes</span>
-                  <span>{stats.challengesPlayed} challenges</span>
-                  <span className={`font-medium ${pctColor(stats.overallPercentage)}`}>{stats.overallPercentage}% overall</span>
+                  <span>{t("profile.quizzesCount", { n: stats.totalQuizzes })}</span>
+                  <span>{t("profile.challengesCount", { n: stats.challengesPlayed })}</span>
+                  <span className={`font-medium ${pctColor(stats.overallPercentage)}`}>{t("profile.overallPct", { n: stats.overallPercentage })}</span>
                 </div>
               )}
             </>
           }
           actions={
             <>
-              <Button asChild variant="outline" size="sm"><Link href="/"><Home className="h-4 w-4 mr-1" />Home</Link></Button>
+              <Button asChild variant="outline" size="sm"><Link href="/"><Home className="h-4 w-4 mr-1" />{t("profile.home")}</Link></Button>
               <Button variant="outline" size="sm" onClick={() => loadProfile(playerName)} disabled={loading}>
-                <RefreshCw className={`h-4 w-4 mr-1 ${loading ? "animate-spin" : ""}`} />Refresh
+                <RefreshCw className={`h-4 w-4 mr-1 ${loading ? "animate-spin" : ""}`} />{t("profile.refresh")}
               </Button>
             </>
           }
@@ -252,33 +263,33 @@ export default function ProfilePage() {
             <CardContent className="py-6">
               <EmptyState
                 icon={<Trophy />}
-                title={<>No quiz history found for <strong>{playerName}</strong></>}
-                text="Play a quiz to start building your profile!"
-                action={<Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700">Start a Quiz</Button></Link>}
+                title={<Trans i18nKey="profile.noHistory" ns="profile" values={{ name: playerName }} components={{ b: <strong /> }} />}
+                text={t("profile.noHistoryText")}
+                action={<Link href="/subjects"><Button className="bg-green-600 hover:bg-green-700">{t("profile.startQuiz")}</Button></Link>}
               />
             </CardContent>
           </Card>
         ) : (
           <Tabs defaultValue="stats">
             <TabsList className="mb-4 w-full">
-              <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />Stats</TabsTrigger>
-              <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />History</TabsTrigger>
-              <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />Challenges</TabsTrigger>
+              <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />{t("profile.tabStats")}</TabsTrigger>
+              <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />{t("profile.tabHistory")}</TabsTrigger>
+              <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />{t("profile.tabChallenges")}</TabsTrigger>
               <Link 
                     href="/badges" 
                     className="flex-1 inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all hover:bg-white/50"
                   >
-                    <Shield className="h-4 w-4 mr-1" />Badges
+                    <Shield className="h-4 w-4 mr-1" />{t("profile.tabBadges")}
                   </Link>           
             </TabsList>
 
             <TabsContent value="stats" className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { label: "Total Score", value: `${stats.totalScore}/${stats.totalQuestions}` },
-                  { label: "Overall %", value: `${stats.overallPercentage}%`, color: pctColor(stats.overallPercentage) },
-                  { label: "Quizzes Played", value: stats.totalQuizzes },
-                  { label: "Best Category", value: stats.bestCategory, small: true },
+                  { label: t("profile.totalScore"), value: `${stats.totalScore}/${stats.totalQuestions}` },
+                  { label: t("profile.overallLabel"), value: `${stats.overallPercentage}%`, color: pctColor(stats.overallPercentage) },
+                  { label: t("profile.quizzesPlayed"), value: stats.totalQuizzes },
+                  { label: t("profile.bestCategory"), value: stats.bestCategory ? labelFor(stats.bestCategory) : "—", small: true },
                 ].map(({ label, value, color, small }) => (
                   <Card key={label}>
                     <CardContent className="p-4 text-center">
@@ -290,7 +301,7 @@ export default function ProfilePage() {
               </div>
 
               <Card>
-                <CardHeader className="pb-2"><CardTitle className="text-base">Performance by Category</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-base">{t("profile.byCategory")}</CardTitle></CardHeader>
                 <CardContent className="p-4 space-y-3">
                   {stats.categoryBreakdown.map(({ category, score, total, percentage, count }) => (
                     <div key={category}>
@@ -299,7 +310,7 @@ export default function ProfilePage() {
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-500">{score}/{total}</span>
                           <span className={`text-sm font-bold ${pctColor(percentage)}`}>{percentage}%</span>
-                          <Badge variant="outline" className="text-xs">{count}×</Badge>
+                          <Badge variant="outline" className="text-xs">{t("profile.timesPlayed", { n: count })}</Badge>
                         </div>
                       </div>
                       <div className="h-2 bg-gray-100 dark:bg-muted rounded-full overflow-hidden">
@@ -314,16 +325,16 @@ export default function ProfilePage() {
 
             <TabsContent value="history">
               <Card>
-                <CardHeader className="pb-2"><CardTitle className="text-base">Recent Quizzes (last 10)</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-base">{t("profile.recent")}</CardTitle></CardHeader>
                 <CardContent className="p-4 space-y-2">
                   {stats.recentQuizzes.map((entry) => (
                     <div key={entry.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="text-sm font-medium">
                           {labelFor(entry.category)}
-                          {entry.challenge && <Badge variant="outline" className="ml-2 text-xs">Challenge</Badge>}
+                          {entry.challenge && <Badge variant="outline" className="ml-2 text-xs">{t("profile.challengeTag")}</Badge>}
                         </p>
-                        <p className="text-xs text-gray-500">{entry.difficulty} · {fmtDate(entry.date)}</p>
+                        <p className="text-xs text-gray-500">{diffLabel(entry.difficulty)} · {fmtDate(entry.date)}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-medium">{entry.score}/{entry.total_questions}</p>
@@ -337,10 +348,10 @@ export default function ProfilePage() {
 
             <TabsContent value="challenges">
               <Card>
-                <CardHeader className="pb-2"><CardTitle className="text-base">Challenge History</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-base">{t("profile.challengeHistory")}</CardTitle></CardHeader>
                 <CardContent className="p-4">
                   {challenges.length === 0 ? (
-                    <EmptyState icon={<Gamepad2 />} title="No challenges yet" />
+                    <EmptyState icon={<Gamepad2 />} title={t("profile.noChallenges")} />
                   ) : (
                     <div className="space-y-2">
                       {challenges.map((c) => {
@@ -362,11 +373,11 @@ export default function ProfilePage() {
                             <div className="flex items-start justify-between">
                               <div>
                                 <p className="text-sm font-medium">
-                                  {isChallenger ? "You challenged " : "Challenge from "}
+                                  {isChallenger ? t("profile.youChallenged") : t("profile.challengeFrom")}
                                   <span className="text-green-700 dark:text-green-400">{opponent}</span>
                                 </p>
                                 <p className="text-xs text-gray-500">
-                                  {labelFor(c.category)} · {c.difficulty} · {fmtDate(c.created_at)}
+                                  {labelFor(c.category)} · {diffLabel(c.difficulty)} · {fmtDate(c.created_at)}
                                 </p>
                               </div>
                               <div className="flex flex-col items-end gap-1">
@@ -374,13 +385,13 @@ export default function ProfilePage() {
                                   variant={c.status === "accepted" ? "default" : c.status === "pending" ? "secondary" : "outline"}
                                   className="text-xs"
                                 >
-                                  {c.status}
+                                  {statusLabel(c.status)}
                                 </Badge>
                                 {bothPlayed && (
                                   <Badge
                                     className={`text-xs ${iWon ? "bg-green-100 text-green-800" : iLost ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800"}`}
                                   >
-                                    {iWon ? "Won 🏆" : iLost ? "Lost" : "Tie 🤝"}
+                                    {iWon ? t("profile.won") : iLost ? t("profile.lost") : t("profile.tie")}
                                   </Badge>
                                 )}
                               </div>
@@ -390,14 +401,14 @@ export default function ProfilePage() {
                             <div className="flex gap-3 text-xs">
                               {/* My score */}
                               <div className="flex-1 bg-green-50 dark:bg-green-900/30 rounded p-2 text-center">
-                                <p className="text-gray-500 mb-1">You</p>
+                                <p className="text-gray-500 mb-1">{t("profile.you")}</p>
                                 {myScore !== null ? (
                                   <>
                                     <p className="font-bold text-base text-green-700">{myScore}/{myTotal}</p>
                                     <p className={`font-medium ${pctColor(myPct ?? 0)}`}>{myPct}%</p>
                                   </>
                                 ) : (
-                                  <p className="text-gray-400 italic">Not played</p>
+                                  <p className="text-gray-400 italic">{t("profile.notPlayed")}</p>
                                 )}
                               </div>
                               {/* Opponent score */}
@@ -410,7 +421,7 @@ export default function ProfilePage() {
                                   </>
                                 ) : (
                                   <p className="text-gray-400 italic">
-                                    {c.status === "pending" ? "Awaiting" : "Not played"}
+                                    {c.status === "pending" ? t("profile.awaiting") : t("profile.notPlayed")}
                                   </p>
                                 )}
                               </div>
@@ -428,9 +439,9 @@ export default function ProfilePage() {
               <Card>
                 <CardContent className="p-6">
                   <Shield className="h-12 w-12 text-green-600 mx-auto mb-2" />
-                  <p className="text-gray-600 mb-4">Redirecting to your Badges Collection...</p>
+                  <p className="text-gray-600 mb-4">{t("profile.redirecting")}</p>
                   <Link href="/badges">
-                    <Button className="bg-green-600 hover:bg-green-700">Go to Badges Page</Button>
+                    <Button className="bg-green-600 hover:bg-green-700">{t("profile.goBadges")}</Button>
                   </Link>
                 </CardContent>
               </Card>

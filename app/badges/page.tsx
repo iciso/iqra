@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useSyncExternalStore } from "react"
+import { useTranslation } from "react-i18next"
 import BadgesCollection from "@/components/badges/badges-collection"
 import PageHeader from "@/components/shared/page-header"
 import { pageContainerClass } from "@/lib/page-layout"
@@ -23,6 +24,7 @@ function parseBadges(raw: string | null | undefined): string[] {
 }
 
 export default function BadgesPage() {
+  const { t } = useTranslation("profile")
   const badgesRaw = useSyncExternalStore(noSubscribe, readBadgesRaw, serverBadgesRaw)
   const isClient = badgesRaw !== undefined
   // Re-parse only when the stored string changes.
@@ -33,7 +35,7 @@ export default function BadgesPage() {
     return (
       <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
         <div className="text-center">
-          <p>Loading badges...</p>
+          <p>{t("badges.loading")}</p>
         </div>
       </div>
     )
@@ -42,8 +44,8 @@ export default function BadgesPage() {
   return (
     <div className={pageContainerClass}>
       <PageHeader
-        title="Your Badge Collection"
-        subtitle="Earn badges by completing challenges, achieving high scores, and maintaining learning streaks. Each badge represents a milestone in your Islamic knowledge journey."
+        title={t("badges.title")}
+        subtitle={t("badges.subtitle")}
       />
 
       <div className="mx-auto w-full max-w-4xl">

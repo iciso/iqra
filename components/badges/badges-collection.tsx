@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslation } from "react-i18next"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BadgeItem from "./badge-item"
 import { Award } from "lucide-react"
@@ -11,6 +12,7 @@ interface BadgesCollectionProps {
 }
 
 export default function BadgesCollection({ earnedBadges }: BadgesCollectionProps) {
+  const { t } = useTranslation("profile")
   const categories = {
     all: badgesData,
     earned: badgesData.filter((b) => earnedBadges.includes(b.id)),
@@ -19,10 +21,10 @@ export default function BadgesCollection({ earnedBadges }: BadgesCollectionProps
   }
 
   const labels: Record<string, string> = {
-    all: `All (${badgesData.length})`,
-    earned: `Earned (${categories.earned.length})`,
-    challenge: `Challenge (${categories.challenge.length})`,
-    achievement: `Achievement (${categories.achievement.length})`,
+    all: t("badges.tabAll", { n: badgesData.length }),
+    earned: t("badges.tabEarned", { n: categories.earned.length }),
+    challenge: t("badges.tabChallenge", { n: categories.challenge.length }),
+    achievement: t("badges.tabAchievement", { n: categories.achievement.length }),
   }
 
   return (
@@ -38,13 +40,13 @@ export default function BadgesCollection({ earnedBadges }: BadgesCollectionProps
         {Object.entries(categories).map(([key, badges]) => (
           <TabsContent key={key} value={key}>
             {badges.length === 0 ? (
-              <EmptyState icon={<Award />} title="No badges in this category yet." />
+              <EmptyState icon={<Award />} title={t("badges.noneInCategory")} />
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2">
                 {badges.map((badge) => (
                   <div key={badge.id} className="flex flex-col items-center text-center">
                     <BadgeItem badge={badge} earned={earnedBadges.includes(badge.id)} size="md" />
-                    <span className="text-xs mt-1 font-medium truncate max-w-full">{badge.name}</span>
+                    <span className="text-xs mt-1 font-medium truncate max-w-full">{t(`badges.items.${badge.id}.name`, { defaultValue: badge.name })}</span>
                   </div>
                 ))}
               </div>

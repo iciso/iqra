@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import type { Badge } from "@/data/badges-data"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -12,6 +13,7 @@ interface BadgeItemProps {
 }
 
 export default function BadgeItem({ badge, earned, size = "md", showTooltip = true }: BadgeItemProps) {
+  const { t } = useTranslation("profile")
   const [isOpen, setIsOpen] = useState(false)
 
   const IconComponent = badge.icon
@@ -58,10 +60,10 @@ export default function BadgeItem({ badge, earned, size = "md", showTooltip = tr
         </TooltipTrigger>
         <TooltipContent side="top" className="max-w-xs">
           <div className="text-center">
-            <h4 className="font-bold">{badge.name}</h4>
-            <p className="text-sm">{badge.description}</p>
+            <h4 className="font-bold">{t(`badges.items.${badge.id}.name`, { defaultValue: badge.name })}</h4>
+            <p className="text-sm">{t(`badges.items.${badge.id}.description`, { defaultValue: badge.description })}</p>
             <div className="text-xs mt-1 opacity-70">
-              {earned ? "Earned" : "Locked"} • {badge.rarity.charAt(0).toUpperCase() + badge.rarity.slice(1)}
+              {earned ? t("badges.earned") : t("badges.locked")} • {t(`badges.rarity.${badge.rarity}`)}
             </div>
           </div>
         </TooltipContent>
