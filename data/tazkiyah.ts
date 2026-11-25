@@ -8,6 +8,7 @@ const tazkiyahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "tazkiyah-easy-1",
         question: "What is the meaning of 'Tazkiyah'?",
         options: ["Physical cleanliness", "Spiritual purification", "Financial charity", "Ritual prayer"],
         correctAnswer: "Spiritual purification",
@@ -15,6 +16,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tazkiyah refers to the purification of the soul, which involves cleansing the heart from spiritual diseases and cultivating virtuous qualities.",
       },
       {
+        id: "tazkiyah-easy-2",
         question: "Which of the following is NOT considered a spiritual disease of the heart?",
         options: ["Envy (Hasad)", "Pride (Kibr)", "Generosity (Sakha)", "Showing off (Riya)"],
         correctAnswer: "Generosity (Sakha)",
@@ -22,6 +24,7 @@ const tazkiyahCategory: QuizCategory = {
           "Generosity (Sakha) is a virtuous quality, while envy, pride, and showing off are spiritual diseases that need to be purified from the heart.",
       },
       {
+        id: "tazkiyah-easy-3",
         question: "What is 'Taqwa'?",
         options: ["Fasting during Ramadan", "Consciousness and fear of Allah", "Giving charity", "Performing Hajj"],
         correctAnswer: "Consciousness and fear of Allah",
@@ -29,6 +32,7 @@ const tazkiyahCategory: QuizCategory = {
           "Taqwa refers to God-consciousness, being aware of Allah's presence and fearing His displeasure, which leads to righteous actions.",
       },
       {
+        id: "tazkiyah-easy-4",
         question: "What is 'Dhikr'?",
         options: ["Fasting", "Remembrance of Allah", "Charity", "Pilgrimage"],
         correctAnswer: "Remembrance of Allah",
@@ -36,6 +40,7 @@ const tazkiyahCategory: QuizCategory = {
           "Dhikr is the practice of remembering Allah through various forms of glorification, such as reciting His names, praising Him, and supplicating to Him.",
       },
       {
+        id: "tazkiyah-easy-5",
         question: "What is 'Sabr'?",
         options: ["Patience", "Generosity", "Knowledge", "Wisdom"],
         correctAnswer: "Patience",
@@ -43,6 +48,7 @@ const tazkiyahCategory: QuizCategory = {
           "Sabr refers to patience and perseverance in the face of difficulties, an essential quality for spiritual purification.",
       },
       {
+        id: "tazkiyah-easy-6",
         question: "What is 'Istighfar'?",
         options: ["Seeking knowledge", "Seeking forgiveness", "Giving charity", "Performing extra prayers"],
         correctAnswer: "Seeking forgiveness",
@@ -50,6 +56,7 @@ const tazkiyahCategory: QuizCategory = {
           "Istighfar is the act of seeking forgiveness from Allah for one's sins, an essential practice for purifying the soul.",
       },
       {
+        id: "tazkiyah-easy-7",
         question: "What is 'Tawbah'?",
         options: ["Charity", "Repentance", "Fasting", "Pilgrimage"],
         correctAnswer: "Repentance",
@@ -57,6 +64,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawbah is the act of repenting for one's sins, turning back to Allah with sincere regret and a firm resolve not to repeat the sin.",
       },
       {
+        id: "tazkiyah-easy-8",
         question: "What is 'Muraqabah'?",
         options: ["Self-criticism", "Self-awareness and vigilance", "Self-praise", "Self-indulgence"],
         correctAnswer: "Self-awareness and vigilance",
@@ -64,6 +72,7 @@ const tazkiyahCategory: QuizCategory = {
           "Muraqabah is the practice of being constantly aware that Allah is watching over us, leading to vigilance in one's actions and thoughts.",
       },
       {
+        id: "tazkiyah-easy-9",
         question: "What is 'Ikhlas'?",
         options: ["Showing off", "Sincerity", "Hypocrisy", "Jealousy"],
         correctAnswer: "Sincerity",
@@ -71,6 +80,7 @@ const tazkiyahCategory: QuizCategory = {
           "Ikhlas refers to sincerity of intention, performing acts of worship solely for the sake of Allah, not for recognition or praise from others.",
       },
       {
+        id: "tazkiyah-easy-10",
         question: "What is 'Riya'?",
         options: ["Sincerity", "Showing off in worship", "Patience", "Gratitude"],
         correctAnswer: "Showing off in worship",
@@ -79,6 +89,7 @@ const tazkiyahCategory: QuizCategory = {
       },
       // Additional 20 Easy Questions
       {
+        id: "tazkiyah-easy-11",
         question: "What is the role of gratitude (Shukr) in Tazkiyah?",
         options: [
           "It is unimportant",
@@ -91,6 +102,7 @@ const tazkiyahCategory: QuizCategory = {
           "Shukr (gratitude) fosters contentment and purifies the heart by acknowledging Allah’s blessings, as emphasized in Surah Ibrahim (14:7).",
       },
       {
+        id: "tazkiyah-easy-12",
         question: "Which Quranic verse emphasizes the importance of purifying the soul?",
         options: [
           "Surah Al-Baqarah (2:222)",
@@ -103,6 +115,7 @@ const tazkiyahCategory: QuizCategory = {
           "Surah Ash-Shams (91:9-10) states, 'He has succeeded who purifies it, and he has failed who instills it with corruption,' highlighting Tazkiyah’s importance.",
       },
       {
+        id: "tazkiyah-easy-13",
         question: "What is the opposite of hypocrisy (Nifaq) in Tazkiyah?",
         options: ["Pride", "Sincerity (Ikhlas)", "Envy", "Greed"],
         correctAnswer: "Sincerity (Ikhlas)",
@@ -110,6 +123,7 @@ const tazkiyahCategory: QuizCategory = {
           "Hypocrisy (Nifaq) involves insincere intentions, while Ikhlas (sincerity) ensures actions are for Allah alone, purifying the heart.",
       },
       {
+        id: "tazkiyah-easy-14",
         question: "What is the benefit of regular Salah in Tazkiyah?",
         options: [
           "It is only for physical exercise",
@@ -122,6 +136,7 @@ const tazkiyahCategory: QuizCategory = {
           "Surah Al-Ankabut (29:45) states, 'Indeed, prayer prohibits immorality and wrongdoing,' making Salah vital for spiritual purification.",
       },
       {
+        id: "tazkiyah-easy-15",
         question: "What is ‘Tawakkul’ in Tazkiyah?",
         options: [
           "Relying on oneself completely",
@@ -134,6 +149,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawakkul involves trusting Allah while making effort, strengthening reliance on Him and aiding Tazkiyah (Surah Al-Imran 3:159).",
       },
       {
+        id: "tazkiyah-easy-16",
         question: "What is the significance of fasting in Tazkiyah?",
         options: [
           "It is only for physical health",
@@ -146,6 +162,7 @@ const tazkiyahCategory: QuizCategory = {
           "Fasting fosters Taqwa and self-discipline, as stated in Surah Al-Baqarah (2:183), making it essential for Tazkiyah.",
       },
       {
+        id: "tazkiyah-easy-17",
         question: "What is the role of charity (Sadaqah) in Tazkiyah?",
         options: [
           "It is only for the poor",
@@ -158,6 +175,7 @@ const tazkiyahCategory: QuizCategory = {
           "Sadaqah purifies wealth and the heart by fostering generosity, as mentioned in Surah At-Tawbah (9:103).",
       },
       {
+        id: "tazkiyah-easy-18",
         question: "What does the Quran say about a sound heart in Tazkiyah?",
         options: [
           "The heart is unimportant",
@@ -170,6 +188,7 @@ const tazkiyahCategory: QuizCategory = {
           "Surah Ash-Shu’ara (26:89) states, 'The Day when neither wealth nor children will avail, but only one who comes to Allah with a sound heart.'",
       },
       {
+        id: "tazkiyah-easy-19",
         question: "What is the role of good company in Tazkiyah?",
         options: [
           "It has no impact",
@@ -182,6 +201,7 @@ const tazkiyahCategory: QuizCategory = {
           "The Prophet (PBUH) said, 'A person is likely to follow the faith of his friend' (Abu Dawud), emphasizing good company’s role in Tazkiyah.",
       },
       {
+        id: "tazkiyah-easy-20",
         question: "What is ‘Hubb al-Dunya’ in Tazkiyah?",
         options: [
           "Love for charity",
@@ -194,6 +214,7 @@ const tazkiyahCategory: QuizCategory = {
           "Hubb al-Dunya (excessive love for worldly matters) corrupts the heart, hindering Tazkiyah (Hadith: Muslim).",
       },
       {
+        id: "tazkiyah-easy-21",
         question: "What is the importance of seeking knowledge in Tazkiyah?",
         options: [
           "It is optional",
@@ -206,6 +227,7 @@ const tazkiyahCategory: QuizCategory = {
           "Islamic knowledge clarifies obligations and purifies intentions, vital for Tazkiyah (Hadith: 'Seeking knowledge is obligatory' - Ibn Majah).",
       },
       {
+        id: "tazkiyah-easy-22",
         question: "What is the role of supplication (Dua) in Tazkiyah?",
         options: [
           "It is irrelevant",
@@ -218,6 +240,7 @@ const tazkiyahCategory: QuizCategory = {
           "Dua fosters humility and reliance on Allah, as the Prophet (PBUH) said, 'Dua is the essence of worship' (Tirmidhi).",
       },
       {
+        id: "tazkiyah-easy-23",
         question: "What is ‘Hilm’ in Tazkiyah?",
         options: ["Anger", "Forbearance", "Pride", "Jealousy"],
         correctAnswer: "Forbearance",
@@ -225,6 +248,7 @@ const tazkiyahCategory: QuizCategory = {
           "Hilm refers to forbearance and gentleness, a quality that purifies the heart by controlling anger (Hadith: Bukhari).",
       },
       {
+        id: "tazkiyah-easy-24",
         question: "What is the role of reflection (Tafakkur) in Tazkiyah?",
         options: [
           "It is unnecessary",
@@ -237,6 +261,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tafakkur (reflection) on Allah’s creation strengthens faith, as encouraged in Surah Al-Imran (3:191).",
       },
       {
+        id: "tazkiyah-easy-25",
         question: "What is the harm of backbiting (Gheebah) in Tazkiyah?",
         options: [
           "It purifies the heart",
@@ -249,6 +274,7 @@ const tazkiyahCategory: QuizCategory = {
           "Gheebah is forbidden in Surah Al-Hujurat (49:12) and corrupts the heart by fostering negativity.",
       },
       {
+        id: "tazkiyah-easy-26",
         question: "What is the role of humility (Tawadu) in Tazkiyah?",
         options: [
           "It increases pride",
@@ -261,6 +287,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawadu (humility) purifies the heart, as the Prophet (PBUH) said, 'He who humbles himself for Allah’s sake, Allah elevates him' (Muslim).",
       },
       {
+        id: "tazkiyah-easy-27",
         question: "What is the effect of excessive speech in Tazkiyah?",
         options: [
           "It strengthens the heart",
@@ -273,6 +300,7 @@ const tazkiyahCategory: QuizCategory = {
           "The Prophet (PBUH) warned that excessive speech can lead to sins, harming Tazkiyah (Hadith: Tirmidhi).",
       },
       {
+        id: "tazkiyah-easy-28",
         question: "What is the role of Quran recitation in Tazkiyah?",
         options: [
           "It is only for scholars",
@@ -285,6 +313,7 @@ const tazkiyahCategory: QuizCategory = {
           "Reciting the Quran purifies the heart, as it is described as a healing and mercy (Surah Al-Isra 17:82).",
       },
       {
+        id: "tazkiyah-easy-29",
         question: "What is the concept of ‘Zuhd’ in Tazkiyah?",
         options: [
           "Excessive love for wealth",
@@ -297,6 +326,7 @@ const tazkiyahCategory: QuizCategory = {
           "Zuhd is detachment from worldly desires, focusing on the Hereafter, which purifies the heart (Hadith: Ibn Majah).",
       },
       {
+        id: "tazkiyah-easy-30",
         question: "What is the benefit of night prayer (Qiyam al-Layl) in Tazkiyah?",
         options: [
           "It is only for Ramadan",
@@ -311,6 +341,7 @@ const tazkiyahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "tazkiyah-advanced-1",
         question: "According to Imam Al-Ghazali, what is the key to purifying the heart?",
         options: [
           "Accumulating wealth",
@@ -323,6 +354,7 @@ const tazkiyahCategory: QuizCategory = {
           "Imam Al-Ghazali, in 'Ihya Ulum al-Din,' emphasizes that Tazkiyah involves removing diseases like envy and pride while cultivating virtues like sincerity and humility.",
       },
       {
+        id: "tazkiyah-advanced-2",
         question: "What is the difference between ‘Tawbah’ and ‘Istighfar’?",
         options: [
           "They are the same",
@@ -335,6 +367,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawbah involves sincere regret and resolve not to sin again, while Istighfar is the act of seeking Allah’s forgiveness, often as a general practice.",
       },
       {
+        id: "tazkiyah-advanced-3",
         question: "What is the role of ‘Muhasabah’ (self-accountability) in Tazkiyah?",
         options: [
           "Judging others",
@@ -347,6 +380,7 @@ const tazkiyahCategory: QuizCategory = {
           "Muhasabah involves regularly assessing one’s actions and intentions to identify and correct faults, a key practice in Tazkiyah.",
       },
       {
+        id: "tazkiyah-advanced-4",
         question: "What is the impact of ‘Hasad’ (envy) on the heart according to Islamic teachings?",
         options: [
           "It strengthens faith",
@@ -359,6 +393,7 @@ const tazkiyahCategory: QuizCategory = {
           "The Prophet (PBUH) said, 'Beware of envy, for it consumes good deeds like fire consumes wood' (Abu Dawud), showing its harm to Tazkiyah.",
       },
       {
+        id: "tazkiyah-advanced-5",
         question: "What is the concept of ‘Tawheed’ in relation to Tazkiyah?",
         options: [
           "It is unrelated to Tazkiyah",
@@ -371,6 +406,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawheed, particularly Tawheed al-Uluhiyyah, ensures that worship is directed solely to Allah, purifying intentions and aiding Tazkiyah.",
       },
       {
+        id: "tazkiyah-advanced-6",
         question: "What is the significance of ‘Sidq’ (truthfulness) in Tazkiyah?",
         options: [
           "It is only about speech",
@@ -383,6 +419,7 @@ const tazkiyahCategory: QuizCategory = {
           "Sidq (truthfulness) in speech, actions, and intentions purifies the heart, as emphasized in Surah Al-Ahzab (33:35).",
       },
       {
+        id: "tazkiyah-advanced-7",
         question: "What is the role of ‘Adl’ (justice) in Tazkiyah?",
         options: [
           "It is only for judges",
@@ -395,6 +432,7 @@ const tazkiyahCategory: QuizCategory = {
           "Adl (justice) in dealings purifies the heart by fostering fairness and integrity, as commanded in Surah An-Nisa (4:135).",
       },
       {
+        id: "tazkiyah-advanced-8",
         question: "What is the impact of ‘Kibr’ (pride) on Tazkiyah?",
         options: [
           "It enhances spiritual growth",
@@ -407,6 +445,7 @@ const tazkiyahCategory: QuizCategory = {
           "The Prophet (PBUH) said, 'He who has an atom’s weight of pride in his heart will not enter Paradise' (Muslim), showing Kibr’s harm to Tazkiyah.",
       },
       {
+        id: "tazkiyah-advanced-9",
         question: "What is the role of ‘Ihsan’ in Tazkiyah?",
         options: [
           "Worshipping as if you see Allah",
@@ -419,6 +458,7 @@ const tazkiyahCategory: QuizCategory = {
           "Ihsan, as defined in Hadith Jibril (Bukhari), is to worship Allah as if you see Him, purifying the heart through heightened awareness.",
       },
       {
+        id: "tazkiyah-advanced-10",
         question: "What is the concept of ‘Qalb Saleem’ (sound heart) in Tazkiyah?",
         options: [
           "A heart free of physical disease",
@@ -432,6 +472,7 @@ const tazkiyahCategory: QuizCategory = {
       },
       // Additional 20 Advanced Questions
       {
+        id: "tazkiyah-advanced-11",
         question: "How does ‘Rida’ (contentment) contribute to Tazkiyah?",
         options: [
           "It increases desire for wealth",
@@ -444,6 +485,7 @@ const tazkiyahCategory: QuizCategory = {
           "Rida involves accepting Allah’s decree with contentment, purifying the heart from discontent (Hadith: Muslim).",
       },
       {
+        id: "tazkiyah-advanced-12",
         question: "What is the role of ‘Khushu’ (humility in prayer) in Tazkiyah?",
         options: [
           "It is only for scholars",
@@ -456,6 +498,7 @@ const tazkiyahCategory: QuizCategory = {
           "Khushu ensures focus and humility in prayer, purifying the heart (Surah Al-Mu’minun 23:2).",
       },
       {
+        id: "tazkiyah-advanced-13",
         question: "What is the impact of ‘Ghaflah’ (heedlessness) on Tazkiyah?",
         options: [
           "It enhances focus on Allah",
@@ -468,6 +511,7 @@ const tazkiyahCategory: QuizCategory = {
           "Ghaflah leads to spiritual neglect, as warned in Surah Al-A’raf (7:205), harming Tazkiyah.",
       },
       {
+        id: "tazkiyah-advanced-14",
         question: "What is the role of ‘Haya’ (modesty) in Tazkiyah?",
         options: [
           "It is only for women",
@@ -480,6 +524,7 @@ const tazkiyahCategory: QuizCategory = {
           "Haya is a branch of faith that prevents sin, purifying the heart (Hadith: Bukhari).",
       },
       {
+        id: "tazkiyah-advanced-15",
         question: "How does ‘Tawadud’ (love and friendliness) aid Tazkiyah?",
         options: [
           "It distracts from worship",
@@ -492,6 +537,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tawadud fosters love and unity, purifying the heart (Hadith: 'None of you truly believes until he loves for his brother what he loves for himself' - Bukhari).",
       },
       {
+        id: "tazkiyah-advanced-16",
         question: "What is the danger of ‘Ujb’ (self-admiration) in Tazkiyah?",
         options: [
           "It enhances self-esteem",
@@ -504,6 +550,7 @@ const tazkiyahCategory: QuizCategory = {
           "Ujb leads to arrogance by attributing blessings to oneself, harming Tazkiyah (Al-Ghazali, Ihya).",
       },
       {
+        id: "tazkiyah-advanced-17",
         question: "What is the role of ‘Sabr’ in facing trials for Tazkiyah?",
         options: [
           "It is irrelevant",
@@ -516,6 +563,7 @@ const tazkiyahCategory: QuizCategory = {
           "Sabr in trials purifies the heart, as Allah says, 'We will surely test you… but give good tidings to the patient' (Surah Al-Baqarah 2:155).",
       },
       {
+        id: "tazkiyah-advanced-18",
         question: "What is the role of ‘Adab’ (good manners) in Tazkiyah?",
         options: [
           "It is only for social settings",
@@ -528,6 +576,7 @@ const tazkiyahCategory: QuizCategory = {
           "Adab reflects a purified heart, as the Prophet (PBUH) said, 'The best of you are those with the best manners' (Bukhari).",
       },
       {
+        id: "tazkiyah-advanced-19",
         question: "What is the impact of ‘Raghbah’ (excessive desire) on Tazkiyah?",
         options: [
           "It strengthens faith",
@@ -540,6 +589,7 @@ const tazkiyahCategory: QuizCategory = {
           "Raghbah distracts from the Hereafter, harming Tazkiyah (Surah Al-Takathur 102:1-2).",
       },
       {
+        id: "tazkiyah-advanced-20",
         question: "What is the role of ‘Tafwid’ (delegating affairs to Allah) in Tazkiyah?",
         options: [
           "It leads to laziness",
@@ -552,6 +602,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tafwid involves entrusting outcomes to Allah, purifying the heart from worry (Hadith: Tirmidhi).",
       },
       {
+        id: "tazkiyah-advanced-21",
         question: "How does ‘Qana’ah’ (contentment with sufficiency) aid Tazkiyah?",
         options: [
           "It increases greed",
@@ -564,6 +615,7 @@ const tazkiyahCategory: QuizCategory = {
           "Qana’ah fosters satisfaction with what Allah provides, purifying the heart (Hadith: Muslim).",
       },
       {
+        id: "tazkiyah-advanced-22",
         question: "What is the role of ‘Tadabbur’ (contemplation of the Quran) in Tazkiyah?",
         options: [
           "It is only for scholars",
@@ -576,6 +628,7 @@ const tazkiyahCategory: QuizCategory = {
           "Tadabbur involves reflecting on the Quran’s meanings, purifying the heart (Surah Sad 38:29).",
       },
       {
+        id: "tazkiyah-advanced-23",
         question: "What is the danger of ‘Takabbur’ (arrogance) in Tazkiyah?",
         options: [
           "It enhances status",
@@ -588,6 +641,7 @@ const tazkiyahCategory: QuizCategory = {
           "Takabbur is a major sin that corrupts the heart, as Allah says, 'I will turn away from My signs those who are arrogant' (Surah Al-A’raf 7:146).",
       },
       {
+        id: "tazkiyah-advanced-24",
         question: "What is the role of ‘Suhbah’ (companionship) in Tazkiyah?",
         options: [
           "It distracts from worship",
@@ -600,6 +654,7 @@ const tazkiyahCategory: QuizCategory = {
           "Righteous companionship purifies the heart, as the Prophet (PBUH) said, 'A good friend is like a perfume seller' (Muslim).",
       },
       {
+        id: "tazkiyah-advanced-25",
         question: "What is the impact of ‘Hirs’ (greed) on Tazkiyah?",
         options: [
           "It strengthens faith",
@@ -612,6 +667,7 @@ const tazkiyahCategory: QuizCategory = {
           "Hirs leads to spiritual corruption by focusing on wealth, harming Tazkiyah (Hadith: Bukhari).",
       },
       {
+        id: "tazkiyah-advanced-26",
         question: "What is the role of ‘Istiqamah’ (steadfastness) in Tazkiyah?",
         options: [
           "It is irrelevant",
@@ -624,6 +680,7 @@ const tazkiyahCategory: QuizCategory = {
           "Istiqamah ensures consistent righteousness, purifying the heart (Surah Fussilat 41:30).",
       },
       {
+        id: "tazkiyah-advanced-27",
         question: "What is the role of ‘Wara’ (scrupulousness) in Tazkiyah?",
         options: [
           "It leads to doubt",
@@ -636,6 +693,7 @@ const tazkiyahCategory: QuizCategory = {
           "Wara involves avoiding doubtful matters to protect faith, aiding Tazkiyah (Hadith: Bukhari).",
       },
       {
+        id: "tazkiyah-advanced-28",
         question: "What is the impact of ‘Rancor’ (holding grudges) on Tazkiyah?",
         options: [
           "It strengthens bonds",
@@ -648,6 +706,7 @@ const tazkiyahCategory: QuizCategory = {
           "Holding grudges corrupts the heart, as the Prophet (PBUH) encouraged forgiveness (Hadith: Muslim).",
       },
       {
+        id: "tazkiyah-advanced-29",
         question: "What is the role of ‘Ta’ah’ (obedience to Allah) in Tazkiyah?",
         options: [
           "It is optional",
@@ -660,6 +719,7 @@ const tazkiyahCategory: QuizCategory = {
           "Ta’ah ensures submission to Allah’s commands, purifying the heart (Surah Al-Nur 24:54).",
       },
       {
+        id: "tazkiyah-advanced-30",
         question: "What is the role of ‘Khawf’ (fear of Allah) in Tazkiyah?",
         options: [
           "It leads to despair",

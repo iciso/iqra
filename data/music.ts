@@ -8,6 +8,7 @@ const musicCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "music-easy-1",
         question: "According to the majority of scholars, what is the ruling on musical instruments in Islam?",
         options: [
           "Permissible in all cases",
@@ -20,6 +21,7 @@ const musicCategory: QuizCategory = {
           "The four Imams (Abu Hanifah, Malik, al-Shafi'i and Ahmad) and the majority of scholars hold that all musical instruments are prohibited. This is based on authentic Hadith and the interpretation of Quranic verses.",
       },
       {
+        id: "music-easy-2",
         question: "Which Quranic verse is most commonly cited regarding 'idle talk' (lahw al-hadith) in the context of music?",
         options: [
           "Surah Al-Baqarah 2:255",
@@ -32,6 +34,7 @@ const musicCategory: QuizCategory = {
           "Allah says: 'And of mankind is he who purchases idle talks (lahw al-hadith) to mislead (men) from the path of Allah...' (31:6). The majority of the early scholars interpreted this as referring to singing and musical instruments.",
       },
       {
+        id: "music-easy-3",
         question: "What did Abdullah ibn Mas'ud (RA) say about the meaning of 'lahw al-hadith' in Surah Luqman 31:6?",
         options: [
           "It means business transactions",
@@ -44,6 +47,7 @@ const musicCategory: QuizCategory = {
           "Abdullah ibn Mas'ud (RA) swore by Allah that 'lahw al-hadith' refers to singing. Similar interpretations were reported from Ibn Abbas and other Companions.",
       },
       {
+        id: "music-easy-4",
         question: "In the famous Hadith narrated in Sahih al-Bukhari, which four things will some people from the Ummah regard as permissible?",
         options: [
           "Prayer, fasting, zakat and Hajj",
@@ -56,6 +60,7 @@ const musicCategory: QuizCategory = {
           "The Prophet (PBUH) said: 'There will be among my ummah people who will regard as permissible zina, silk, alcohol and musical instruments (ma'azif).' (Sahih al-Bukhari, narrated as mu'allaq and authenticated by major Hadith scholars).",
       },
       {
+        id: "music-easy-5",
         question: "What does the Arabic term 'ma'azif' refer to in the Hadith?",
         options: [
           "Only stringed instruments",
@@ -68,6 +73,7 @@ const musicCategory: QuizCategory = {
           "According to the scholars of the Arabic language and the early commentators, ma'azif is a term that includes all musical instruments used for entertainment.",
       },
       {
+        id: "music-easy-6",
         question: "According to Shaykh al-Islam Ibn Taymiyyah, what is the view of the four Imams regarding musical instruments?",
         options: [
           "They differed greatly",
@@ -80,6 +86,7 @@ const musicCategory: QuizCategory = {
           "Ibn Taymiyyah stated: 'The view of the four Imams is that all musical instruments are prohibited.' He further noted that none of their followers mentioned any dispute on this matter.",
       },
       {
+        id: "music-easy-7",
         question: "Which musical instrument is generally excepted by scholars for certain occasions?",
         options: [
           "The flute",
@@ -92,6 +99,7 @@ const musicCategory: QuizCategory = {
           "The majority of scholars allow the duff (a simple tambourine-like drum without metal rings) for women at weddings and Eids, based on authentic narrations from the time of the Prophet (PBUH).",
       },
       {
+        id: "music-easy-8",
         question: "What is the ruling on listening to songs that contain musical instruments?",
         options: [
           "Permissible if the lyrics are good",
@@ -104,6 +112,7 @@ const musicCategory: QuizCategory = {
           "Since musical instruments are prohibited according to the authentic Hadith and the consensus of the four schools, listening to songs that include them is also prohibited, regardless of the lyrical content.",
       },
       {
+        id: "music-easy-9",
         question: "What negative effect did Ibn Mas'ud (RA) attribute to music regarding the heart?",
         options: [
           "It strengthens faith",
@@ -116,6 +125,7 @@ const musicCategory: QuizCategory = {
           "It is reported from Abdullah ibn Mas'ud (RA) that singing and musical instruments plant hypocrisy in the heart just as water causes plants to grow.",
       },
       {
+        id: "music-easy-10",
         question: "Is singing without any musical instruments always prohibited?",
         options: [
           "Yes, always prohibited",
@@ -128,6 +138,7 @@ const musicCategory: QuizCategory = {
           "The basic ruling on pure singing (without instruments) is permissibility when the content is wholesome, it does not lead to neglect of obligations, and the proper Islamic etiquette of gender interaction is observed.",
       },
       {
+        id: "music-easy-11",
         question: "What did the Prophet (PBUH) say about two types of voices that are cursed?",
         options: [
           "Loud prayer and quiet prayer",
@@ -140,6 +151,7 @@ const musicCategory: QuizCategory = {
           "Anas ibn Malik (RA) reported that the Prophet (PBUH) said there are two cursed sounds: the sound of musical instruments at the time of joy and the sound of wailing at the time of calamity. (Classed as hasan by al-Albani).",
       },
       {
+        id: "music-easy-12",
         question: "According to many scholars, what happens when a person prefers music over the Quran?",
         options: [
           "It is a sign of strong faith",
@@ -152,6 +164,7 @@ const musicCategory: QuizCategory = {
           "Scholars note that a person who loves music and finds the Quran burdensome when given the choice between them has been affected by the distraction of lahw, as warned in the Quran and explained by the early scholars.",
       },
       {
+        id: "music-easy-13",
         question: "What is the ruling on so-called 'Islamic nasheeds' that contain musical instruments?",
         options: [
           "Fully permissible because they are Islamic",
@@ -164,6 +177,7 @@ const musicCategory: QuizCategory = {
           "Islamqa and the majority of scholars state that adding the label 'Islamic' does not make musical instruments permissible. The prohibition applies to the instruments themselves.",
       },
       {
+        id: "music-easy-14",
         question: "In the Hadith of the two young girls singing on Eid in Aisha's house, what did Abu Bakr (RA) call their singing?",
         options: [
           "Beautiful poetry",
@@ -176,6 +190,7 @@ const musicCategory: QuizCategory = {
           "Abu Bakr (RA) said: 'Musical instruments of Shaytan in the presence of the Messenger of Allah?' The Prophet (PBUH) did not correct this description; he only allowed the young girls to continue because it was the days of Eid.",
       },
       {
+        id: "music-easy-15",
         question: "What is the correct Islamic alternative to music for filling one's time with beneficial sound?",
         options: [
           "Any form of entertainment",
@@ -188,6 +203,7 @@ const musicCategory: QuizCategory = {
           "The Prophet (PBUH) and the righteous predecessors filled their time with the Quran and beneficial speech. This is the prescribed replacement for the idle talk condemned in the Quran.",
       },
       {
+        id: "music-easy-16",
         question: "According to the Standing Committee for Academic Research and Issuing Fatwas, is there any text in the Quran that forbids singing and music?",
         options: [
           "No text exists",
@@ -200,6 +216,7 @@ const musicCategory: QuizCategory = {
           "The Standing Committee affirmed that the claim of 'no Quranic text' reflects ignorance of the Quran, because 31:6 was understood by the majority of the early scholars as referring to singing and musical instruments.",
       },
       {
+        id: "music-easy-17",
         question: "What is the ruling on a man listening to a non-mahram woman singing?",
         options: [
           "Permissible if the voice is beautiful",
@@ -212,6 +229,7 @@ const musicCategory: QuizCategory = {
           "Scholars prohibit a man listening to a non-mahram woman singing because the voice in a melodious, entertaining manner is considered a means of temptation, in addition to any instrumental accompaniment.",
       },
       {
+        id: "music-easy-18",
         question: "Did the Prophet (PBUH) ever command the destruction of musical instruments?",
         options: [
           "No, never",
@@ -224,6 +242,7 @@ const musicCategory: QuizCategory = {
           "There are reports in which the Prophet (PBUH) stated that he was sent to destroy musical instruments. While some specific chains are discussed for strength, the general prohibition of instruments is established by stronger authentic texts.",
       },
       {
+        id: "music-easy-19",
         question: "What is the position of Imam al-Shafi'i regarding a type of singing that diverts people from the Quran?",
         options: [
           "He encouraged it",
@@ -236,6 +255,7 @@ const musicCategory: QuizCategory = {
           "Imam al-Shafi'i said about a form of singing (taghbeer) that he left behind in Baghdad: it was innovated by the heretics and diverts people from the Quran.",
       },
       {
+        id: "music-easy-20",
         question: "Is the prohibition of music limited only to 'bad' or immoral lyrics?",
         options: [
           "Yes, only immoral lyrics are forbidden",
@@ -248,6 +268,7 @@ const musicCategory: QuizCategory = {
           "The authentic Hadith and the statements of the Imams prohibit the instruments (ma'azif) as such. Clean lyrics do not make the forbidden instruments permissible.",
       },
       {
+        id: "music-easy-21",
         question: "What did the Prophet (PBUH) allow the young girls to do on the days of Eid?",
         options: [
           "Play any musical instrument",
@@ -260,6 +281,7 @@ const musicCategory: QuizCategory = {
           "Aisha (RA) reported that two young girls were singing the poetry of the Ansar about Bu'ath. When Abu Bakr objected, the Prophet (PBUH) said to let them, because they were the days of Eid.",
       },
       {
+        id: "music-easy-22",
         question: "According to scholars, why is music considered harmful to one's relationship with the Quran?",
         options: [
           "It has no effect",
@@ -272,6 +294,7 @@ const musicCategory: QuizCategory = {
           "Ibn al-Qayyim and others explained that you will not find a person who loves music and instrumental entertainment except that he is somewhat distant from the path of guidance and prefers music to the Quran.",
       },
       {
+        id: "music-easy-23",
         question: "What is the ruling on making or selling musical instruments?",
         options: [
           "Fully permissible",
@@ -284,6 +307,7 @@ const musicCategory: QuizCategory = {
           "Ibn Taymiyyah and other scholars stated that it is not permissible to manufacture musical instruments, and it is permissible to destroy them. Selling them is assisting in what is prohibited.",
       },
       {
+        id: "music-easy-24",
         question: "In the view of the majority, does the prohibition of musical instruments include modern electronic instruments?",
         options: [
           "No, only ancient ones",
@@ -296,6 +320,7 @@ const musicCategory: QuizCategory = {
           "Scholars state that the prohibition of ma'azif is not limited to the instruments known in the 7th century; it includes every instrument that serves the same purpose of entertainment and distraction.",
       },
       {
+        id: "music-easy-25",
         question: "What did the Prophet (PBUH) say would happen to some of those who regard musical instruments as permissible?",
         options: [
           "They will be rewarded",
@@ -308,6 +333,7 @@ const musicCategory: QuizCategory = {
           "In the authentic Hadith, the Prophet (PBUH) mentioned that Allah will destroy some of those people and transform others into monkeys and pigs until the Day of Resurrection.",
       },
       {
+        id: "music-easy-26",
         question: "Is poetry itself prohibited in Islam?",
         options: [
           "Yes, all poetry is haram",
@@ -320,6 +346,7 @@ const musicCategory: QuizCategory = {
           "The Prophet (PBUH) listened to and sometimes requested poetry that contained good meanings. The prohibition relates to musical accompaniment and immoral content, not to poetry as such.",
       },
       {
+        id: "music-easy-27",
         question: "What is the ruling on beatboxing that imitates the sound of musical instruments?",
         options: [
           "Fully permissible",
@@ -332,6 +359,7 @@ const musicCategory: QuizCategory = {
           "Islamqa and contemporary scholars have ruled that producing sounds from the mouth that resemble musical instruments is prohibited, as it falls under the same meaning and effect as the forbidden instruments.",
       },
       {
+        id: "music-easy-28",
         question: "According to the majority, is there scholarly consensus (ijma') on the prohibition of musical instruments?",
         options: [
           "No consensus exists",
@@ -344,6 +372,7 @@ const musicCategory: QuizCategory = {
           "Scholars such as Ibn Taymiyyah, Ibn al-Qayyim, al-Qurtubi and others reported that the four Imams and the early generations were agreed on the prohibition of musical instruments.",
       },
       {
+        id: "music-easy-29",
         question: "What should a Muslim do if he has become accustomed to listening to music?",
         options: [
           "Continue because it is hard to stop",
@@ -356,6 +385,7 @@ const musicCategory: QuizCategory = {
           "The path of repentance includes stopping the sin, removing the means that lead to it, and filling the void with what Allah loves – especially the Quran, which softens the heart that music hardens.",
       },
       {
+        id: "music-easy-30",
         question: "Is the duff allowed for men according to the majority of scholars?",
         options: [
           "Yes, freely",
@@ -368,6 +398,7 @@ const musicCategory: QuizCategory = {
           "While some allow limited use, the more cautious and widely held position is that the explicit concession in the Sunnah was for women on the occasions of Eid and marriage celebrations.",
       },
       {
+        id: "music-easy-31",
         question: "What is the linguistic meaning of 'lahw' that appears in the Quranic verse about idle talk?",
         options: [
           "Serious discussion",
@@ -380,6 +411,7 @@ const musicCategory: QuizCategory = {
           "Lahw means that which distracts and diverts a person from what is more important. In 31:6 it is linked to speech or sound that misleads from the path of Allah.",
       },
       {
+        id: "music-easy-32",
         question: "Did any of the righteous early generations gather regularly to listen to musical entertainment for 'purifying the hearts'?",
         options: [
           "Yes, it was common",
@@ -392,6 +424,7 @@ const musicCategory: QuizCategory = {
           "Ibn Taymiyyah stated that during the best three generations there was no practice among the people of knowledge and religion of gathering to listen to this type of singing for the purpose of purifying the hearts.",
       },
       {
+        id: "music-easy-33",
         question: "What is the ruling on music that is used in the background of lectures or videos?",
         options: [
           "Permissible if the lecture is Islamic",
@@ -404,6 +437,7 @@ const musicCategory: QuizCategory = {
           "The presence of an Islamic lecture does not cancel the prohibition of the instruments. Scholars advise removing background music from beneficial content.",
       },
       {
+        id: "music-easy-34",
         question: "According to the Hadith, what will some people do with alcohol and musical instruments at the end of time?",
         options: [
           "They will abandon them",
@@ -416,6 +450,7 @@ const musicCategory: QuizCategory = {
           "The Prophet (PBUH) foretold that people would declare these prohibited things lawful, and he mentioned the severe consequences that would follow.",
       },
       {
+        id: "music-easy-35",
         question: "Is there a difference between 'music' and 'singing' in the classical Islamic terminology?",
         options: [
           "No difference at all",
@@ -428,6 +463,7 @@ const musicCategory: QuizCategory = {
           "Classical texts distinguish between musical instruments (ma'azif) which are prohibited, and pure singing (ghina') which may be permissible under conditions.",
       },
       {
+        id: "music-easy-36",
         question: "What did Imam Ahmad ibn Hanbal say about the narration claiming molten lead will be poured into the ears of music listeners?",
         options: [
           "He authenticated it fully",
@@ -440,6 +476,7 @@ const musicCategory: QuizCategory = {
           "While music is prohibited on stronger evidence, specific narrations about molten lead have been declared baseless by Imam Ahmad and other Hadith critics. The prohibition does not rest on weak reports.",
       },
       {
+        id: "music-easy-37",
         question: "Can a person who listens to music still be a Muslim?",
         options: [
           "No, it takes one out of Islam",
@@ -452,6 +489,7 @@ const musicCategory: QuizCategory = {
           "Listening to music is a serious sin according to the majority, but it does not expel a person from Islam. Declaring it lawful while knowing the evidence can be more severe.",
       },
       {
+        id: "music-easy-38",
         question: "What is the recommended way to celebrate a wedding according to the Sunnah regarding sound?",
         options: [
           "Loud music and dancing",
@@ -464,6 +502,7 @@ const musicCategory: QuizCategory = {
           "The Sunnah encourages making the marriage public. The duff and appropriate singing by women were practiced and allowed, while other instruments were not.",
       },
       {
+        id: "music-easy-39",
         question: "Why do scholars say that music and the Quran cannot share the same heart comfortably?",
         options: [
           "Because both use the same notes",
@@ -476,6 +515,7 @@ const musicCategory: QuizCategory = {
           "Ibn al-Qayyim and others explained that the Quran and the 'recitation of Shaytan' (songs) cannot be combined in a balanced way in the heart of the believer; one will dominate.",
       },
       {
+        id: "music-easy-40",
         question: "What is the first practical step a person should take if they want to leave music?",
         options: [
           "Listen to more of it to get bored",
@@ -490,6 +530,7 @@ const musicCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "music-intermediate-1",
         question: "What is the status of the Hadith about musical instruments in Sahih al-Bukhari (the mu'allaq report)?",
         options: [
           "It is weak and rejected",
@@ -502,6 +543,7 @@ const musicCategory: QuizCategory = {
           "Although recorded by al-Bukhari in mu'allaq form, the Hadith has been narrated with connected chains by al-Tabarani, al-Bayhaqi and others, and was graded sahih by Ibn Hajar, Ibn al-Qayyim and al-Albani.",
       },
       {
+        id: "music-intermediate-2",
         question: "How did the early mufassirun (Quran commentators) interpret 'lahw al-hadith' in 31:6?",
         options: [
           "Only as business",
@@ -514,6 +556,7 @@ const musicCategory: QuizCategory = {
           "Al-Tabari, Ibn Abi al-Dunya, Ibn al-Jawzi and many others reported that the Companions and Tabi'in understood the verse as referring to singing and the instruments that accompany it.",
       },
       {
+        id: "music-intermediate-3",
         question: "What distinction did classical scholars make between the duff and other drums?",
         options: [
           "No distinction",
@@ -526,6 +569,7 @@ const musicCategory: QuizCategory = {
           "The concession is specific to the simple duff. Other percussion instruments that produce stronger entertainment sounds remain under the general prohibition of ma'azif.",
       },
       {
+        id: "music-intermediate-4",
         question: "According to Ibn Hajar al-Haytami, is there any difference of opinion among reliable scholars on stringed instruments?",
         options: [
           "Yes, many allowed them",
@@ -538,6 +582,7 @@ const musicCategory: QuizCategory = {
           "Ibn Hajar al-Haytami explicitly said that stringed instruments such as the tanbur, oud and similar instruments are prohibited with no difference of opinion among the scholars whose views carry weight.",
       },
       {
+        id: "music-intermediate-5",
         question: "What is the ruling on a woman singing in front of other women without instruments?",
         options: [
           "Always prohibited",
@@ -550,6 +595,7 @@ const musicCategory: QuizCategory = {
           "When free of instruments and immoral content, and performed in a private setting among women, singing is generally allowed within the limits of moderation.",
       },
       {
+        id: "music-intermediate-6",
         question: "Why did the Prophet (PBUH) not object to Abu Bakr calling the girls' singing 'of Shaytan'?",
         options: [
           "Because he disagreed but stayed silent",
@@ -562,6 +608,7 @@ const musicCategory: QuizCategory = {
           "Scholars explain that the Prophet's approval of the description shows the blameworthy nature of such singing in general, while the concession was specific to the young girls and the days of Eid.",
       },
       {
+        id: "music-intermediate-7",
         question: "What is the view of the majority regarding the use of the duff by men?",
         options: [
           "Completely unrestricted",
@@ -574,6 +621,7 @@ const musicCategory: QuizCategory = {
           "The authentic reports involve women. Some later scholars extended a limited concession to men, but the more cautious view keeps the primary ruling for women.",
       },
       {
+        id: "music-intermediate-8",
         question: "How does music create hypocrisy in the heart according to the reports from the Salaf?",
         options: [
           "It has no such effect",
@@ -586,6 +634,7 @@ const musicCategory: QuizCategory = {
           "The Salaf explained that constant exposure to music weakens the heart's attachment to the Quran and remembrance of Allah, producing a form of practical hypocrisy.",
       },
       {
+        id: "music-intermediate-9",
         question: "What is the ruling on attending a wedding where prohibited musical instruments are being played?",
         options: [
           "Fully permissible",
@@ -598,6 +647,7 @@ const musicCategory: QuizCategory = {
           "The principle of forbidding evil includes not sitting in a gathering where Allah's limits are violated when one has the ability to remove oneself.",
       },
       {
+        id: "music-intermediate-10",
         question: "Did Imam Malik consider music and singing as something that the people of knowledge practiced?",
         options: [
           "Yes, he encouraged it",
@@ -610,6 +660,7 @@ const musicCategory: QuizCategory = {
           "The reports from the early Imams show that the practice of gathering for musical entertainment was foreign to the way of the scholars of the first generations.",
       },
       {
+        id: "music-intermediate-11",
         question: "What is the correct understanding of the Hadith in which the Prophet (PBUH) told Anjashah to slow down because of the 'glass vessels'?",
         options: [
           "It prohibits all beautiful voices",
@@ -622,6 +673,7 @@ const musicCategory: QuizCategory = {
           "The Hadith demonstrates that a pleasant voice in a non-entertaining, functional context is not the same as the prohibited singing with instruments or seductive performance.",
       },
       {
+        id: "music-intermediate-12",
         question: "According to Ibn al-Qayyim, what is the relationship between music and the remembrance of Allah?",
         options: [
           "They support each other",
@@ -634,6 +686,7 @@ const musicCategory: QuizCategory = {
           "Ibn al-Qayyim explained in detail that the love of music and the love of the Quran cannot fully coexist; one will push the other out of the heart.",
       },
       {
+        id: "music-intermediate-13",
         question: "Is there a difference between listening to music intentionally and hearing it unintentionally in the street?",
         options: [
           "No difference",
@@ -646,6 +699,7 @@ const musicCategory: QuizCategory = {
           "Scholars distinguish between the one who seeks out music and the one who hears it without choice and turns away from it in his heart.",
       },
       {
+        id: "music-intermediate-14",
         question: "What was the reaction of the Companions when they heard musical instruments or singing that was blameworthy?",
         options: [
           "They joined in",
@@ -658,6 +712,7 @@ const musicCategory: QuizCategory = {
           "The natural reaction of the Companions was to reject and denounce such sounds, showing that the prohibition was understood early in Islam.",
       },
       {
+        id: "music-intermediate-15",
         question: "How do scholars respond to the claim that 'there is no clear text prohibiting music'?",
         options: [
           "They agree with the claim",
@@ -670,6 +725,7 @@ const musicCategory: QuizCategory = {
           "The claim of 'no text' is rejected by the major fatwa bodies and classical scholars who list the Quranic verse, the authentic Hadith, and the ijma' of the Imams.",
       },
       {
+        id: "music-intermediate-16",
         question: "What is the ruling on using musical ringtones on a phone?",
         options: [
           "Permissible because it is short",
@@ -682,6 +738,7 @@ const musicCategory: QuizCategory = {
           "The prohibition applies to the nature of the sound. Replacing musical ringtones with permissible alternatives is the consistent application of the ruling.",
       },
       {
+        id: "music-intermediate-17",
         question: "Did any of the four Imams permit the use of the flute or wind instruments for entertainment?",
         options: [
           "Yes, all of them",
@@ -694,6 +751,7 @@ const musicCategory: QuizCategory = {
           "The statements collected by later scholars from the four schools show a consistent prohibition of the instruments of entertainment, including wind instruments.",
       },
       {
+        id: "music-intermediate-18",
         question: "What is the wisdom mentioned by scholars behind the prohibition of music?",
         options: [
           "There is no wisdom",
@@ -706,6 +764,7 @@ const musicCategory: QuizCategory = {
           "The scholars of the heart (Ibn al-Qayyim, Ibn Taymiyyah and others) explained that the prohibition is a mercy that preserves the spiritual health of the believer.",
       },
       {
+        id: "music-intermediate-19",
         question: "Is it permissible to listen to the human voice alone if it is imitating the melody and style of famous singers of entertainment?",
         options: [
           "Yes, freely",
@@ -718,6 +777,7 @@ const musicCategory: QuizCategory = {
           "Even without instruments, imitating the manner of those known for sin and entertainment can fall under the principle of not resembling the disobedient and avoiding the means that lead to fitnah.",
       },
       {
+        id: "music-intermediate-20",
         question: "What did the Prophet (PBUH) say about the two foolish and sinful voices?",
         options: [
           "The Adhan and the Iqamah",
@@ -730,6 +790,7 @@ const musicCategory: QuizCategory = {
           "In the Hadith concerning the death of his son Ibrahim, the Prophet (PBUH) clarified that he did not forbid weeping itself, but forbade the two foolish voices: those of entertainment and those of excessive mourning.",
       },
       {
+        id: "music-intermediate-21",
         question: "According to the majority, can the presence of good intentions make musical instruments permissible?",
         options: [
           "Yes, intention changes the ruling",
@@ -742,6 +803,7 @@ const musicCategory: QuizCategory = {
           "The principle is that the ends do not justify the means when the means are explicitly prohibited. Using haram instruments for a 'good' purpose does not lift the prohibition.",
       },
       {
+        id: "music-intermediate-22",
         question: "What is the ruling on teaching or learning to play musical instruments?",
         options: [
           "Recommended as a skill",
@@ -754,6 +816,7 @@ const musicCategory: QuizCategory = {
           "Since playing the instruments is prohibited, teaching and learning them falls under assisting in sin and is likewise forbidden according to the majority.",
       },
       {
+        id: "music-intermediate-23",
         question: "How should a Muslim respond when invited to a gathering that will feature prohibited music?",
         options: [
           "Attend and enjoy",
@@ -766,6 +829,7 @@ const musicCategory: QuizCategory = {
           "The duty of enjoining good and forbidding evil, and the prohibition of sitting in a gathering of sin, require a Muslim to avoid or leave such environments when able.",
       },
       {
+        id: "music-intermediate-24",
         question: "Is there an authentic report that the Prophet (PBUH) covered his ears when he heard a shepherd's flute?",
         options: [
           "Yes, and it is used as evidence of prohibition",
@@ -778,6 +842,7 @@ const musicCategory: QuizCategory = {
           "A narration about the Prophet covering his ears from a flute exists, but Hadith scholars differ on its strength. The primary evidences remain the authentic texts already cited.",
       },
       {
+        id: "music-intermediate-25",
         question: "What is the position of the Standing Committee (Saudi) on singing accompanied by musical instruments?",
         options: [
           "They permit it",
@@ -790,6 +855,7 @@ const musicCategory: QuizCategory = {
           "The Standing Committee has issued clear statements confirming that singing with musical instruments is prohibited, citing 31:6 and the Hadith of ma'azif.",
       },
       {
+        id: "music-intermediate-26",
         question: "Can nasheeds that praise Allah or the Prophet be accompanied by the duff according to some scholars?",
         options: [
           "Never",
@@ -802,6 +868,7 @@ const musicCategory: QuizCategory = {
           "The concession of the duff is tied to specific occasions. Extending it beyond those occasions is where scholarly discussion occurs; unrestricted use is not the majority view.",
       },
       {
+        id: "music-intermediate-27",
         question: "What is the danger of becoming attached to music according to the spiritual insights of the scholars?",
         options: [
           "No danger",
@@ -814,6 +881,7 @@ const musicCategory: QuizCategory = {
           "The scholars of the heart warned that what a person loves to listen to repeatedly shapes the heart. Preferring music over the Quran is a sign of a heart that needs purification.",
       },
       {
+        id: "music-intermediate-28",
         question: "Is the prohibition of music considered one of the matters on which the Ummah has a clear majority position?",
         options: [
           "No, it is highly disputed",
@@ -826,6 +894,7 @@ const musicCategory: QuizCategory = {
           "While isolated voices have differed, the dominant and continuous position across the madhhabs is the prohibition of musical instruments.",
       },
       {
+        id: "music-intermediate-29",
         question: "What should be done with musical instruments that a person already owns?",
         options: [
           "Keep them for decoration",
@@ -838,6 +907,7 @@ const musicCategory: QuizCategory = {
           "Ibn Taymiyyah and others stated that it is permissible to destroy musical instruments. Selling them would be assisting others in sin.",
       },
       {
+        id: "music-intermediate-30",
         question: "In the context of the Hadith of ma'azif, why is the comparison with zina and alcohol significant?",
         options: [
           "It shows they are all minor issues",
@@ -852,6 +922,7 @@ const musicCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "music-advanced-1",
         question: "What is the precise technical meaning of 'ma'azif' according to the scholars of the Arabic language and Hadith commentators?",
         options: [
           "Only the voice",
@@ -864,6 +935,7 @@ const musicCategory: QuizCategory = {
           "The linguistic authorities and the Hadith scholars (including Ibn Hajar and others) explain that ma'azif is a generic term for the instruments used for lahw (entertainment).",
       },
       {
+        id: "music-advanced-2",
         question: "How did Ibn Hazm's position on the Hadith of ma'azif differ from the majority, and how was it answered?",
         options: [
           "He fully accepted it",
@@ -876,6 +948,7 @@ const musicCategory: QuizCategory = {
           "Ibn Hazm's criticism was answered by Ibn al-Qayyim, Ibn Hajar and al-Albani, who demonstrated that the Hadith is established through multiple routes and the mu'allaq form in Bukhari is not a weakness in this case.",
       },
       {
+        id: "music-advanced-3",
         question: "What is the Usuli (legal-theory) status of the prohibition of musical instruments according to the majority?",
         options: [
           "It is only a weak opinion",
@@ -888,6 +961,7 @@ const musicCategory: QuizCategory = {
           "Although some debate the strength of individual evidences, the cumulative case and the continuous practice of the schools give the prohibition a firm standing in traditional Islamic law.",
       },
       {
+        id: "music-advanced-4",
         question: "How did the scholars reconcile the Hadith of the two young girls on Eid with the general prohibition?",
         options: [
           "They said the prohibition was abrogated",
@@ -900,6 +974,7 @@ const musicCategory: QuizCategory = {
           "This is the classical method of reconciliation: the specific permission does not cancel the general rule; it creates a limited exception.",
       },
       {
+        id: "music-advanced-5",
         question: "What was Imam al-Shafi'i's reported statement about the 'taghbeer' that he encountered in Baghdad?",
         options: [
           "He recommended it",
@@ -912,6 +987,7 @@ const musicCategory: QuizCategory = {
           "This statement is frequently cited to show that even forms of singing claimed to be spiritual were rejected by the early Imams when they diverted from the Quran.",
       },
       {
+        id: "music-advanced-6",
         question: "In the works of Ibn al-Qayyim (especially Ighathat al-Lahfan), what extensive treatment does music receive?",
         options: [
           "He defends it",
@@ -924,6 +1000,7 @@ const musicCategory: QuizCategory = {
           "Ighathat al-Lahfan contains one of the most detailed classical discussions on the prohibition of singing and musical instruments and their effect on the heart.",
       },
       {
+        id: "music-advanced-7",
         question: "What is the difference between the Hanafi school's approach to the illah of the prohibition and a purely textualist approach?",
         options: [
           "There is no difference",
@@ -936,6 +1013,7 @@ const musicCategory: QuizCategory = {
           "While the practical ruling is the same (prohibition), the legal reasoning can differ in emphasis between those who stress the effective cause of entertainment and those who stress the explicit textual prohibition.",
       },
       {
+        id: "music-advanced-8",
         question: "How do contemporary fatwa bodies such as islamqa.info treat the minority opinions that permit musical instruments?",
         options: [
           "They adopt them",
@@ -948,6 +1026,7 @@ const musicCategory: QuizCategory = {
           "Islamqa and similar traditional fatwa sites consistently state that the minority views do not override the clear Hadith and the agreement of the four Imams.",
       },
       {
+        id: "music-advanced-9",
         question: "What is the ruling on 'digital' or software-generated music that has no physical instrument?",
         options: [
           "Fully permissible because no physical instrument is used",
@@ -960,6 +1039,7 @@ const musicCategory: QuizCategory = {
           "Scholars apply the prohibition to the resulting sound and its effect on the heart, not merely to the physical object that produces it. Digital music falls under the same ruling.",
       },
       {
+        id: "music-advanced-10",
         question: "In Usul al-Fiqh terms, is the prohibition of music considered 'ta'abbudi' (purely devotional) or is there an discernible wisdom?",
         options: [
           "Purely ta'abbudi with no wisdom",
@@ -972,6 +1052,7 @@ const musicCategory: QuizCategory = {
           "The prohibition is textually grounded, yet the scholars of the heart and the jurists have consistently explained the beneficial purposes behind it.",
       },
       {
+        id: "music-advanced-11",
         question: "What is the status of the narration 'I was sent to destroy musical instruments'?",
         options: [
           "Sahih according to all",
@@ -984,6 +1065,7 @@ const musicCategory: QuizCategory = {
           "Hadith specialists note the weakness of this particular wording, while affirming the prohibition on the basis of the authentic Hadith of ma'azif and other evidences.",
       },
       {
+        id: "music-advanced-12",
         question: "How did the scholars of the four schools treat the claim that music is permissible because 'everything is permissible until proven otherwise'?",
         options: [
           "They accepted the claim fully",
@@ -996,6 +1078,7 @@ const musicCategory: QuizCategory = {
           "The principle of original permissibility is acknowledged, but once clear evidence of prohibition is present, the matter is removed from the realm of the default.",
       },
       {
+        id: "music-advanced-13",
         question: "What is the advanced scholarly discussion regarding the 'voice of a non-mahram woman' in the context of singing?",
         options: [
           "The voice is never a fitnah",
@@ -1008,6 +1091,7 @@ const musicCategory: QuizCategory = {
           "The distinction between ordinary speech (which may be necessary) and melodious singing (which is for entertainment and more affecting) is made by numerous jurists.",
       },
       {
+        id: "music-advanced-14",
         question: "In the methodology of the Salaf, how was the interpretation of 'lahw al-hadith' given weight?",
         options: [
           "It was ignored",
@@ -1020,6 +1104,7 @@ const musicCategory: QuizCategory = {
           "In traditional tafsir methodology, the understanding of the Companions regarding the meaning of a verse is given strong precedence, especially when they are numerous and agree.",
       },
       {
+        id: "music-advanced-15",
         question: "What is the ruling on music therapy or using music for medical purposes according to traditional fatwa bodies?",
         options: [
           "Fully encouraged",
@@ -1032,6 +1117,7 @@ const musicCategory: QuizCategory = {
           "Necessity (darurah) can lift a prohibition temporarily when the conditions are strictly met. Most traditional bodies still emphasise seeking alternatives first.",
       },
       {
+        id: "music-advanced-16",
         question: "How does the prohibition of music relate to the broader Maqasid of protecting the intellect and religion?",
         options: [
           "It has no relation",
@@ -1044,6 +1130,7 @@ const musicCategory: QuizCategory = {
           "Although not always listed as a primary maqsad in the classical five, the scholars link the ruling to the preservation of the religious state of the heart and clarity of mind.",
       },
       {
+        id: "music-advanced-17",
         question: "What was the position of the early Hanbali scholars regarding the destruction of musical instruments?",
         options: [
           "They forbade destroying them",
@@ -1056,6 +1143,7 @@ const musicCategory: QuizCategory = {
           "Consistent with the view that the instruments are prohibited, the Hanbali tradition (and others) allowed their destruction so they could not be used for the forbidden purpose.",
       },
       {
+        id: "music-advanced-18",
         question: "In advanced discussions, what is the difference between 'sama'' in the Sufi tradition and the general ruling on music?",
         options: [
           "There is no difference",
@@ -1068,6 +1156,7 @@ const musicCategory: QuizCategory = {
           "While some Sufi orders developed practices of listening, the major jurists of the four schools maintained the prohibition of instruments and cautioned against any practice that contradicted the Sunnah.",
       },
       {
+        id: "music-advanced-19",
         question: "What is the strongest single textual evidence used by the majority for the prohibition of musical instruments?",
         options: [
           "A weak Hadith about molten lead",
@@ -1080,6 +1169,7 @@ const musicCategory: QuizCategory = {
           "This combination – a Hadith graded authentic by major authorities, a Quranic verse explained by the Companions, and the agreement of the four Imams – forms the core of the majority position.",
       },
       {
+        id: "music-advanced-20",
         question: "How should a student of knowledge approach the minority opinions that permit music when advising the general public?",
         options: [
           "Present both as equal options",
@@ -1092,6 +1182,7 @@ const musicCategory: QuizCategory = {
           "The responsibility of the advisor is to convey the most correct view according to the evidence, not to create artificial equality between the established position and anomalous views.",
       },
       {
+        id: "music-advanced-21",
         question: "What is the relationship between the prohibition of music and the prohibition of 'lahw' in general in Islamic ethics?",
         options: [
           "They are unrelated",
@@ -1104,6 +1195,7 @@ const musicCategory: QuizCategory = {
           "The Quranic condemnation of lahw al-hadith is part of a broader ethic that prioritises the remembrance of Allah over idle entertainment that hardens the heart.",
       },
       {
+        id: "music-advanced-22",
         question: "In the advanced fiqh of the duff, what conditions do the strictest scholars place on its use?",
         options: [
           "No conditions",
@@ -1116,6 +1208,7 @@ const musicCategory: QuizCategory = {
           "The more restrictive scholarly position keeps the concession tightly bound to the conditions found in the authentic reports.",
       },
       {
+        id: "music-advanced-23",
         question: "What is the final practical advice given by traditional scholars to a person struggling to leave music?",
         options: [
           "Continue until it becomes easy",
@@ -1128,6 +1221,7 @@ const musicCategory: QuizCategory = {
           "The path of change in the Sunnah and the advice of the scholars of the heart combines decisive action, replacement with good, and reliance upon Allah through du'a and good company.",
       },
       {
+        id: "music-advanced-24",
         question: "Why do the scholars consider the love of music a possible sign of hypocrisy in the heart?",
         options: [
           "Because it is listed as a minor sin",
@@ -1140,6 +1234,7 @@ const musicCategory: QuizCategory = {
           "The statement of Ibn Mas'ud and the explanations of later scholars treat the attachment to music as a symptom of a deeper spiritual disease that needs treatment through the Quran.",
       },
       {
+        id: "music-advanced-25",
         question: "What is the comprehensive conclusion of the majority of traditional scholars on the topic of music?",
         options: [
           "Music is fully permissible",
@@ -1152,6 +1247,7 @@ const musicCategory: QuizCategory = {
           "This summary reflects the balanced yet firm position derived from the Quran, the authentic Sunnah, the understanding of the Companions, and the continuous teaching of the four schools of law.",
       },
       {
+        id: "music-advanced-26",
         question: "According to the detailed analysis of Ibn al-Qayyim, what happens to the heart that is constantly exposed to music?",
         options: [
           "It becomes stronger in faith",
@@ -1164,6 +1260,7 @@ const musicCategory: QuizCategory = {
           "Ibn al-Qayyim explains that the heart has a limited capacity; when it is filled with the love of music, the love of the Quran is diminished, and the person finds the Quran heavy while finding music light and enjoyable.",
       },
       {
+        id: "music-advanced-27",
         question: "What is the ruling on a person who defends musical instruments by saying 'the Hadith is only about people who declare them lawful, not about those who listen while knowing they are haram'?",
         options: [
           "This is a valid distinction that makes listening permissible",
@@ -1176,6 +1273,7 @@ const musicCategory: QuizCategory = {
           "The Hadith shows the severity by mentioning those who will go further and declare the prohibited as lawful. The underlying prohibition of the instruments themselves remains, and acting upon a known prohibition is sinful.",
       },
       {
+        id: "music-advanced-28",
         question: "In the works of the major Hadith commentators, how is the mu'allaq Hadith of ma'azif in Sahih al-Bukhari treated for practical legal purposes?",
         options: [
           "It is ignored completely",
@@ -1188,6 +1286,7 @@ const musicCategory: QuizCategory = {
           "Although presented in mu'allaq form by al-Bukhari, the Hadith is corroborated by connected narrations and has been judged sahih by Ibn Hajar, Ibn al-Qayyim, al-Albani and others for the purpose of deriving the legal ruling.",
       },
       {
+        id: "music-advanced-29",
         question: "What is the final counsel of the traditional scholars regarding the competition between the Quran and music in a Muslim's life?",
         options: [
           "Balance both equally",
@@ -1200,6 +1299,7 @@ const musicCategory: QuizCategory = {
           "The consistent advice of the scholars of the heart is that the Quran is the true polish of the heart. Whatever competes with it should be removed so that the believer can taste the sweetness that Allah has placed in His Book.",
       },
       {
+        id: "music-advanced-30",
         question: "How do the scholars view the claim that 'music is a universal language that brings people together' in light of the Islamic sources?",
         options: [
           "They fully accept it as a justification",

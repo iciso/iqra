@@ -2,26 +2,10 @@ import type { QuizQuestion } from "@/types/quiz"
 import { getQuranInfographic } from "./quran-infographics"
 import { ibnKathirFatihaDetailed } from "./ibn-kathir-fatiha-detailed"
 
-// Function to assign IDs to questions if they don't have them
-function assignQuestionIds(categoryId: string, questions: QuizQuestion[]): QuizQuestion[] {
-  return questions.map((question, index) => {
-    if (!question.id) {
-      return {
-        ...question,
-        id: `${categoryId}-${index + 1}`,
-      }
-    }
-    return question
-  })
-}
-
 // Function to enhance questions with infographics
 export function enhanceQuestionsWithInfographics(categoryId: string, questions: QuizQuestion[]): QuizQuestion[] {
-  // First assign IDs to all questions
-  const questionsWithIds = assignQuestionIds(categoryId, questions)
-
   // Then enhance with infographics
-  return questionsWithIds.map((question) => {
+  return questions.map((question) => {
     if (categoryId === "quran") {
       // Special case for question about the first Surah
       if (

@@ -10,13 +10,15 @@ export interface QuestionInfographic {
 
 export interface QuizQuestion {
   // Data files use both: numbers (bidah, charity, dating, imagery, madhab, ta-*) and strings.
-  // quiz-data-manager fills a missing id with "<categoryId>-<n>".
+  // Every question has one: "<categoryId>-<level>-<n>" for most, older ones keep theirs. Unique within a category.
   id?: string | number
   question: string
   // Answer options as shown to the player.
   options: string[]
   // The correct option TEXT (not an index): quiz-container compares option === correctAnswer.
   correctAnswer: string
+  // Index of correctAnswer in options. Set by quiz-data-manager when the data loads (not written in data files).
+  correctIndex?: number
   explanation?: string
   // Source citation, e.g. "Sahih Muslim: Hadith of Jibril". Not shown in the UI today.
   references?: string

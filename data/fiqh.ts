@@ -8,6 +8,7 @@ const fiqhCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "fiqh-easy-1",
         question: "What is the first obligation upon a Muslim?",
         options: [
           "To pray five times a day",
@@ -19,24 +20,28 @@ const fiqhCategory: QuizCategory = {
         explanation: "The Shahada (declaration of faith) is the first and most fundamental pillar of Islam, as established in the famous Hadith of Jibril and Quran 2:177.",
       },
       {
+        id: "fiqh-easy-2",
         question: "How many obligatory prayers are there in a day?",
         options: ["3", "4", "5", "6"],
         correctAnswer: "5",
         explanation: "There are five obligatory prayers in a day: Fajr, Dhuhr, Asr, Maghrib, and Isha, based on Quran 11:114, 17:78 and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-3",
         question: "What is the minimum amount of wealth (nisab) required for Zakat on gold?",
         options: ["50 grams", "85 grams", "100 grams", "200 grams"],
         correctAnswer: "85 grams",
         explanation: "The nisab for gold is 85 grams (or its equivalent value in currency), derived from the Prophet's (PBUH) teachings recorded in authentic Hadith.",
       },
       {
+        id: "fiqh-easy-4",
         question: "What is the Arabic term for ritual purification?",
         options: ["Salat", "Wudu", "Taharah", "Tayammum"],
         correctAnswer: "Taharah",
         explanation: "Taharah refers to the state of ritual purity and the process of purification in Islam, a prerequisite for prayer as per Quran 5:6.",
       },
       {
+        id: "fiqh-easy-5",
         question: "Which of the following invalidates the fast?",
         options: [
           "Unintentional vomiting",
@@ -48,24 +53,28 @@ const fiqhCategory: QuizCategory = {
         explanation: "Intentionally eating or drinking invalidates the fast, while unintentional actions do not, based on Quran 2:187 and authentic Hadith.",
       },
       {
+        id: "fiqh-easy-6",
         question: "What is the term for the intention to perform a religious act?",
         options: ["Niyyah", "Ijma", "Qiyas", "Ijtihad"],
         correctAnswer: "Niyyah",
         explanation: "Niyyah refers to the intention one must have before performing any act of worship in Islam, as the Prophet (PBUH) said: 'Actions are but by intentions' (Bukhari & Muslim).",
       },
       {
+        id: "fiqh-easy-7",
         question: "What is 'Ghusl' in Islamic jurisprudence?",
         options: ["Dry ablution", "Partial ablution", "Full body ritual bath", "Washing hands before eating"],
         correctAnswer: "Full body ritual bath",
         explanation: "Ghusl refers to the ritual bath or full body washing required after sexual intercourse, menstruation, or other major impurities, as detailed in Quran 5:6 and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-8",
         question: "What is the term for the direction Muslims face during prayer?",
         options: ["Mihrab", "Qiblah", "Ka'bah", "Sajdah"],
         correctAnswer: "Qiblah",
         explanation: "Qiblah is the direction that Muslims face during prayer, toward the Ka'bah in Makkah, as commanded in Quran 2:144.",
       },
       {
+        id: "fiqh-easy-9",
         question: "What is 'Zakatul-Fitr'?",
         options: [
           "Regular annual charity",
@@ -77,24 +86,28 @@ const fiqhCategory: QuizCategory = {
         explanation: "Zakatul-Fitr is obligatory charity given by every Muslim before the Eid prayer at the end of Ramadan, as established by the Prophet (PBUH) in Bukhari and Muslim.",
       },
       {
+        id: "fiqh-easy-10",
         question: "What is the ruling on praying the five daily prayers on time?",
         options: ["Recommended (Mustahabb)", "Obligatory (Fard)", "Optional (Nafl)", "Emphasized Sunnah"],
         correctAnswer: "Obligatory (Fard)",
         explanation: "Performing the five daily prayers on their prescribed times is obligatory (Fard) upon every adult Muslim of sound mind, as per Quran 4:103.",
       },
       {
+        id: "fiqh-easy-11",
         question: "What is the minimum amount of wealth (nisab) required for Zakat on silver?",
         options: ["200 dirhams", "400 dirhams", "595 grams", "1 kg"],
         correctAnswer: "595 grams",
         explanation: "The nisab for silver is 595 grams (or its equivalent value in currency), based on the Prophet's (PBUH) teachings.",
       },
       {
+        id: "fiqh-easy-12",
         question: "Which prayer is known as 'the middle prayer' in the Quran?",
         options: ["Fajr", "Dhuhr", "Asr", "Isha"],
         correctAnswer: "Asr",
         explanation: "Allah mentions 'the middle prayer' in Quran 2:238, which most scholars identify as the Asr prayer due to its special emphasis.",
       },
       {
+        id: "fiqh-easy-13",
         question: "What is 'Tayammum'?",
         options: [
           "Dry ablution using clean earth",
@@ -106,12 +119,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Tayammum is the dry purification method using clean earth when water is unavailable or its use would be harmful, as permitted in Quran 4:43 and 5:6.",
       },
       {
+        id: "fiqh-easy-14",
         question: "How many Rak'ahs are in the Fajr prayer?",
         options: ["2", "3", "4", "5"],
         correctAnswer: "2",
         explanation: "The Fajr prayer consists of 2 Rak'ahs, as consistently practiced by the Prophet (PBUH) and preserved in authentic Hadith.",
       },
       {
+        id: "fiqh-easy-15",
         question: "What is the ruling on combining prayers during travel?",
         options: [
           "Always obligatory",
@@ -123,6 +138,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Combining Dhuhr with Asr and Maghrib with Isha is permitted during travel based on the Prophet's (PBUH) practice, though not obligatory.",
       },
       {
+        id: "fiqh-easy-16",
         question: "What invalidates Wudu?",
         options: [
           "Deep sleep",
@@ -134,6 +150,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Among the things that nullify Wudu are passing wind, answering the call of nature, and deep sleep, as established in authentic Hadith.",
       },
       {
+        id: "fiqh-easy-17",
         question: "What is the minimum duration for fasting each day during Ramadan?",
         options: [
           "From sunrise to sunset",
@@ -145,6 +162,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fasting begins at true dawn (Fajr) and ends at sunset (Maghrib), as specified in Quran 2:187 and practiced by the Prophet (PBUH).",
       },
       {
+        id: "fiqh-easy-18",
         question: "What is 'Sunnah Mu'akkadah'?",
         options: [
           "Highly recommended Prophetic practices",
@@ -156,6 +174,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sunnah Mu'akkadah refers to practices the Prophet (PBUH) consistently performed and encouraged, like the Sunnah prayers before/after obligatory prayers.",
       },
       {
+        id: "fiqh-easy-19",
         question: "What is the ruling on Friday (Jumu'ah) prayer?",
         options: [
           "Obligatory for all Muslims",
@@ -167,6 +186,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Jumu'ah prayer is obligatory for adult, sane, resident Muslim men based on Quran 62:9 and authentic Sunnah, while recommended for women.",
       },
       {
+        id: "fiqh-easy-20",
         question: "What is 'Qunut' in prayer?",
         options: [
           "A special supplication during prayer",
@@ -178,6 +198,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Qunut refers to a special supplication made during prayer, particularly in Witr prayer or times of calamity, following the Prophet's (PBUH) practice.",
       },
       {
+        id: "fiqh-easy-21",
         question: "What is the ruling on eating pork?",
         options: [
           "Permissible in small amounts",
@@ -189,6 +210,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Pork is categorically prohibited in Islam as stated in Quran 2:173, 5:3, 6:145, and 16:115, with no exceptions except life-threatening necessity.",
       },
       {
+        id: "fiqh-easy-22",
         question: "What is 'Ihram'?",
         options: [
           "The sacred state for Hajj/Umrah",
@@ -200,6 +222,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Ihram is the sacred state entered for Hajj or Umrah, marked by specific clothing and restrictions, based on Quran 2:197 and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-23",
         question: "What is the ruling on paying Zakat?",
         options: [
           "Only for the wealthy",
@@ -211,6 +234,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Zakat becomes obligatory when one possesses the nisab amount for a complete lunar year, as established in Quran 9:103 and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-24",
         question: "What is 'Eid ul-Fitr'?",
         options: [
           "The festival at Hajj completion",
@@ -222,12 +246,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Eid ul-Fitr marks the end of Ramadan, celebrated on 1st Shawwal, as established by the Prophet (PBUH) and mentioned in authentic Hadith.",
       },
       {
+        id: "fiqh-easy-25",
         question: "What is the minimum age for Hajj obligation?",
         options: ["12 years", "15 years", "Puberty", "18 years"],
         correctAnswer: "Puberty",
         explanation: "Hajj becomes obligatory upon reaching puberty (along with ability and means), as Islamic obligations generally begin at this stage based on Quranic principles and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-26",
         question: "What is 'Riba' in Islam?",
         options: [
           "Any business transaction",
@@ -239,6 +265,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Riba refers to interest or usury, strictly prohibited in Quran 2:275-279 and 3:130, with severe warnings against it in authentic Hadith.",
       },
       {
+        id: "fiqh-easy-27",
         question: "What is 'Halal' slaughter?",
         options: [
           "Any meat from Muslim countries",
@@ -250,6 +277,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Halal slaughter requires mentioning Allah's name while cutting the throat, esophagus and jugular veins of permissible animals, as per Quran 6:118-121 and authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-28",
         question: "What is 'Sujud al-Sahw'?",
         options: [
           "Prostration of forgetfulness",
@@ -261,6 +289,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sujud al-Sahw are two prostrations performed to compensate for certain mistakes in prayer, based on the Prophet's (PBUH) consistent practice.",
       },
       {
+        id: "fiqh-easy-29",
         question: "What is 'Taraweeh' prayer?",
         options: [
           "Night prayer during Ramadan",
@@ -272,6 +301,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Taraweeh refers to the special night prayers performed during Ramadan, traditionally 20 Rak'ahs in most schools following the practice of Caliph Umar and the companions.",
       },
       {
+        id: "fiqh-easy-30",
         question: "What is the ruling on backbiting (Ghibah)?",
         options: [
           "Permissible if true",
@@ -284,18 +314,21 @@ const fiqhCategory: QuizCategory = {
       },
       // Additional easy questions
       {
+        id: "fiqh-easy-31",
         question: "How many pillars of Islam are there?",
         options: ["3", "4", "5", "6"],
         correctAnswer: "5",
         explanation: "The five pillars of Islam are Shahada, Salah, Zakat, Sawm (fasting in Ramadan), and Hajj, as stated in the Hadith of Ibn Umar narrated in Bukhari and Muslim.",
       },
       {
+        id: "fiqh-easy-32",
         question: "What is the Arabic term for the call to prayer?",
         options: ["Iqamah", "Adhan", "Takbir", "Tashahhud"],
         correctAnswer: "Adhan",
         explanation: "The Adhan is the call to prayer announced before the prescribed prayer times, established by the Prophet (PBUH) upon the suggestion of Abdullah ibn Zayd.",
       },
       {
+        id: "fiqh-easy-33",
         question: "Which of the following is a condition for the validity of Salah?",
         options: [
           "Facing the Qiblah",
@@ -307,6 +340,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Facing the Qiblah is a necessary condition for the validity of prayer, as commanded in Quran 2:144 and confirmed in authentic Sunnah.",
       },
       {
+        id: "fiqh-easy-34",
         question: "What breaks the fast if done intentionally during the day in Ramadan?",
         options: [
           "Swallowing saliva",
@@ -318,6 +352,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Intentional sexual intercourse during the day in Ramadan invalidates the fast and requires both making up the day and expiation (Kaffarah), based on authentic Hadith in Bukhari and Muslim.",
       },
       {
+        id: "fiqh-easy-35",
         question: "What is the ruling on fasting for a traveler?",
         options: [
           "Obligatory to fast",
@@ -329,6 +364,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "A traveler is permitted to break the fast and make up the missed days later, as stated in Quran 2:184-185.",
       },
       {
+        id: "fiqh-easy-36",
         question: "What is 'Sadaqah'?",
         options: [
           "Obligatory charity only",
@@ -340,12 +376,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sadaqah generally refers to voluntary charity given seeking the pleasure of Allah, distinct from the obligatory Zakat, encouraged throughout the Quran and Sunnah.",
       },
       {
+        id: "fiqh-easy-37",
         question: "How many times is the Takbir said in the opening of Salah?",
         options: ["Once", "Twice", "Three times", "Four times"],
         correctAnswer: "Once",
         explanation: "The opening Takbir (Takbiratul-Ihram) is said once at the beginning of Salah, as practiced by the Prophet (PBUH).",
       },
       {
+        id: "fiqh-easy-38",
         question: "What is the minimum amount for Zakat on cash or currency?",
         options: [
           "Equivalent of 85 grams of gold or 595 grams of silver",
@@ -357,6 +395,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Zakat on cash is due when it reaches the nisab of gold or silver and a lunar year has passed, based on authentic Hadith and scholarly consensus.",
       },
       {
+        id: "fiqh-easy-39",
         question: "What is 'Witr' prayer?",
         options: [
           "An odd-numbered prayer performed at night",
@@ -368,6 +407,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Witr is a highly emphasized Sunnah prayer of odd number of Rak'ahs performed after Isha, based on numerous authentic Hadith.",
       },
       {
+        id: "fiqh-easy-40",
         question: "What is the ruling on alcohol in Islam?",
         options: [
           "Permissible in moderation",
@@ -381,6 +421,7 @@ const fiqhCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "fiqh-intermediate-1",
         question: "What is the ruling on missing a prayer intentionally?",
         options: [
           "It can be made up anytime without sin",
@@ -392,6 +433,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Intentionally missing a prayer is a major sin. The prayer must be made up as soon as possible, based on the seriousness of Salah in Quran 19:59 and authentic Hadith.",
       },
       {
+        id: "fiqh-intermediate-2",
         question: "When does the time for Maghrib prayer begin?",
         options: [
           "At sunset when the sun disappears below the horizon",
@@ -403,6 +445,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Maghrib begins at sunset, when the disk of the sun disappears below the horizon, as established in authentic Hadith describing the prayer times.",
       },
       {
+        id: "fiqh-intermediate-3",
         question: "What is the status of the two Rak'ahs before Fajr?",
         options: [
           "Obligatory",
@@ -414,6 +457,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The two Rak'ahs before Fajr are Sunnah Mu'akkadah. The Prophet (PBUH) never left them and described them as better than the world and what is in it (Muslim).",
       },
       {
+        id: "fiqh-intermediate-4",
         question: "What is required for a traveler to shorten (Qasr) the prayers?",
         options: [
           "Traveling a certain distance (generally around 80 km or more)",
@@ -425,6 +469,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Shortening the four-Rak'ah prayers to two is permitted for a traveler who covers the distance of travel as defined by the majority of scholars, based on Quran 4:101 and the Prophet's practice.",
       },
       {
+        id: "fiqh-intermediate-5",
         question: "What is the ruling on fasting on the day of Eid al-Fitr?",
         options: [
           "Obligatory",
@@ -436,6 +481,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fasting on the two Eids (Eid al-Fitr and Eid al-Adha) is prohibited, as stated in authentic Hadith narrated by Abu Sa'id al-Khudri in Bukhari and Muslim.",
       },
       {
+        id: "fiqh-intermediate-6",
         question: "What is 'Kaffarah' for intentionally breaking a Ramadan fast by intercourse?",
         options: [
           "Feeding ten poor people",
@@ -447,6 +493,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The expiation for intercourse during the day in Ramadan is sequential: free a slave, if unable then fast two consecutive months, if unable then feed sixty poor people, based on the Hadith of Abu Hurayrah in Bukhari and Muslim.",
       },
       {
+        id: "fiqh-intermediate-7",
         question: "What is the ruling regarding the beard in Islamic jurisprudence according to the majority?",
         options: [
           "Obligatory to grow and not shave",
@@ -458,6 +505,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The majority of scholars hold that growing the beard is obligatory based on the command of the Prophet (PBUH): 'Trim the mustache and let the beard grow' (Bukhari & Muslim).",
       },
       {
+        id: "fiqh-intermediate-8",
         question: "When is Zakat on agricultural produce due?",
         options: [
           "At the time of harvest",
@@ -469,12 +517,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Zakat on crops is due at the time of harvest, as indicated in Quran 6:141, without the condition of a full year passing.",
       },
       {
+        id: "fiqh-intermediate-9",
         question: "What is the share of a wife in her husband's inheritance if there are no children?",
         options: ["One-half", "One-fourth", "One-eighth", "One-third"],
         correctAnswer: "One-fourth",
         explanation: "If a husband dies leaving no children, the wife inherits one-fourth of the estate, as specified in Quran 4:12.",
       },
       {
+        id: "fiqh-intermediate-10",
         question: "What is the ruling on music and musical instruments according to the majority of classical scholars?",
         options: [
           "Permissible without restriction",
@@ -486,6 +536,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The majority of classical scholars held musical instruments to be prohibited based on authentic Hadith such as the narration in Bukhari regarding wind and string instruments, and related verses.",
       },
       {
+        id: "fiqh-intermediate-11",
         question: "What is 'Istinja'?",
         options: [
           "Cleaning the private parts after relieving oneself",
@@ -497,12 +548,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Istinja is the act of cleaning the private parts with water or pure solid material after urination or defecation, a necessary part of purification before Wudu.",
       },
       {
+        id: "fiqh-intermediate-12",
         question: "How many days of Tashriq are there after Eid al-Adha?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Three",
         explanation: "The days of Tashriq are the 11th, 12th, and 13th of Dhul-Hijjah. Fasting on these days is prohibited, as stated in authentic Hadith.",
       },
       {
+        id: "fiqh-intermediate-13",
         question: "What is the ruling on a woman leading men in obligatory prayer?",
         options: [
           "Permissible",
@@ -514,12 +567,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "It is not permissible for a woman to lead men in obligatory prayer according to the consensus of the four schools and the practice of the Prophet (PBUH) and companions.",
       },
       {
+        id: "fiqh-intermediate-14",
         question: "What is the minimum number of people required for Jumu'ah prayer according to the majority?",
         options: ["2", "3", "4", "40"],
         correctAnswer: "3",
         explanation: "The majority of scholars (Maliki, Shafi'i, Hanbali with variations) hold that a minimum of three (or more) is required for the validity of Jumu'ah, based on the linguistic meaning of congregation.",
       },
       {
+        id: "fiqh-intermediate-15",
         question: "What is 'Masah' over the socks (Khuffayn)?",
         options: [
           "Wiping over leather socks instead of washing the feet in Wudu",
@@ -531,6 +586,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Wiping over the Khuffayn is a concession established by numerous authentic Hadith, allowed for a resident for one day and night and for a traveler for three days and nights.",
       },
       {
+        id: "fiqh-intermediate-16",
         question: "What is the ruling on delaying Maghrib until the stars appear clearly?",
         options: [
           "Recommended",
@@ -542,6 +598,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "It is disliked to delay Maghrib until the stars appear clearly. The Prophet (PBUH) said: 'My Ummah will continue to be upon good as long as they do not delay Maghrib until the stars appear' (Ahmad and others).",
       },
       {
+        id: "fiqh-intermediate-17",
         question: "What is the status of the prayer of a person who has major impurity (Janabah) without Ghusl?",
         options: [
           "Valid if he makes intention",
@@ -553,6 +610,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Prayer performed while in a state of major impurity without performing Ghusl (or Tayammum when applicable) is invalid, as purity is a condition for Salah (Quran 5:6).",
       },
       {
+        id: "fiqh-intermediate-18",
         question: "What is the ruling on fasting six days of Shawwal?",
         options: [
           "Obligatory",
@@ -564,6 +622,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fasting six days of Shawwal is highly recommended. The Prophet (PBUH) said: 'Whoever fasts Ramadan and follows it with six days of Shawwal, it is as if he fasted the whole year' (Muslim).",
       },
       {
+        id: "fiqh-intermediate-19",
         question: "What is 'Aqiqah'?",
         options: [
           "Sacrifice offered for a newborn child",
@@ -575,6 +634,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Aqiqah is the sacrifice of animals offered for a newborn (two sheep for a boy, one for a girl according to the preferred view), based on authentic Hadith of the Prophet (PBUH).",
       },
       {
+        id: "fiqh-intermediate-20",
         question: "What is the ruling on covering the Awrah in prayer?",
         options: [
           "Recommended",
@@ -586,6 +646,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Covering the Awrah is an obligatory condition for the validity of prayer for both men and women, based on Quran 7:31 and authentic Sunnah.",
       },
       {
+        id: "fiqh-intermediate-21",
         question: "What is the difference between Fard and Sunnah prayers in terms of obligation?",
         options: [
           "Both are equal",
@@ -597,6 +658,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fard (obligatory) prayers must be performed; abandoning them is a major sin. Sunnah prayers are highly recommended but not obligatory in the same sense.",
       },
       {
+        id: "fiqh-intermediate-22",
         question: "When does the time for Isha prayer end according to the preferred view?",
         options: [
           "At midnight",
@@ -608,6 +670,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The time for Isha extends until the appearance of true dawn (Fajr), although it is preferred to pray it before midnight, based on authentic Hadith describing the prayer times.",
       },
       {
+        id: "fiqh-intermediate-23",
         question: "What is the ruling on praying while wearing shoes if they are pure?",
         options: [
           "Prohibited",
@@ -619,6 +682,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "It is permissible to pray while wearing pure shoes, as the Prophet (PBUH) prayed in his shoes and instructed the companions to do so when they are clean (Abu Dawud and others).",
       },
       {
+        id: "fiqh-intermediate-24",
         question: "What is 'Fidya' in the context of fasting?",
         options: [
           "A ransom paid by feeding a poor person for each missed day when one cannot fast or make up",
@@ -630,6 +694,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fidya is the compensation of feeding a poor person for each day for those who cannot fast due to permanent inability (elderly or chronically ill), based on Quran 2:184.",
       },
       {
+        id: "fiqh-intermediate-25",
         question: "What is the ruling on the Adhan and Iqamah for women when praying alone or in a group of women?",
         options: [
           "Obligatory",
@@ -641,6 +706,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Women may give Adhan and Iqamah among themselves without raising the voice in a way that non-mahram men hear, according to many scholars; it is not obligatory upon them like upon men.",
       },
       {
+        id: "fiqh-intermediate-26",
         question: "What invalidates the prayer among the following?",
         options: [
           "Slight movement",
@@ -652,6 +718,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Intentional speech invalidates the prayer, based on the Hadith that the Prophet (PBUH) said prayer is not valid with the speech of people (Muslim and others).",
       },
       {
+        id: "fiqh-intermediate-27",
         question: "What is the ruling on combining Maghrib and Isha due to rain?",
         options: [
           "Permissible according to many scholars",
@@ -663,12 +730,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "Combining Maghrib and Isha due to rain or hardship is permitted according to the majority of scholars, based on authentic reports of the companions and the principle of removing hardship.",
       },
       {
+        id: "fiqh-intermediate-28",
         question: "What is the share of a daughter when she is the only child of the deceased?",
         options: ["One-half", "One-third", "Two-thirds", "The entire estate"],
         correctAnswer: "One-half",
         explanation: "A single daughter inherits one-half of the estate when there is no son, as specified in Quran 4:11.",
       },
       {
+        id: "fiqh-intermediate-29",
         question: "What is 'Sunnah Ratibah'?",
         options: [
           "The regular Sunnah prayers associated with the five obligatory prayers",
@@ -680,6 +749,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sunnah Ratibah are the confirmed Sunnah prayers performed before or after the five daily obligatory prayers, totaling twelve Rak'ahs according to the well-known Hadith in Muslim.",
       },
       {
+        id: "fiqh-intermediate-30",
         question: "What is the ruling on eating or drinking forgetfully while fasting?",
         options: [
           "The fast is broken and must be made up",
@@ -691,6 +761,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "If one eats or drinks forgetfully while fasting, the fast remains valid. The Prophet (PBUH) said: 'Whoever forgets that he is fasting and eats or drinks, let him complete his fast, for it is Allah who has fed him and given him drink' (Bukhari & Muslim).",
       },
       {
+        id: "fiqh-intermediate-31",
         question: "What is the preferred time for the Witr prayer?",
         options: [
           "Immediately after Maghrib",
@@ -702,6 +773,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The best time for Witr is at the end of the night for those who can wake up, as the Prophet (PBUH) said the night prayer is the best after the obligatory and advised making Witr the last prayer of the night.",
       },
       {
+        id: "fiqh-intermediate-32",
         question: "What is the ruling on a menstruating woman touching the Quran?",
         options: [
           "Permissible according to some scholars, prohibited according to others",
@@ -713,6 +785,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "There is a difference of opinion. The majority of classical scholars prohibit a menstruating woman from touching the Mushaf, based on the Hadith 'None should touch the Quran except one who is pure,' while some contemporary scholars allow it with conditions.",
       },
       {
+        id: "fiqh-intermediate-33",
         question: "What is 'Tahajjud'?",
         options: [
           "Voluntary night prayer after sleeping",
@@ -724,6 +797,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Tahajjud is the voluntary night prayer performed after waking from sleep, highly praised in Quran 17:79 and the Sunnah of the Prophet (PBUH).",
       },
       {
+        id: "fiqh-intermediate-34",
         question: "What is the ruling on delaying Zakat beyond its due time without excuse?",
         options: [
           "Permissible",
@@ -735,6 +809,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Delaying the payment of Zakat after it becomes due without a valid excuse is sinful, as Zakat is an immediate obligation once the conditions are met.",
       },
       {
+        id: "fiqh-intermediate-35",
         question: "What is the minimum distance for a journey that allows shortening of prayer according to the majority?",
         options: [
           "Approximately 80 kilometers (48 miles)",
@@ -746,6 +821,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The majority of scholars set the distance for Qasr at approximately four burud (about 80 km / 48 miles), based on the practices and statements of the companions.",
       },
       {
+        id: "fiqh-intermediate-36",
         question: "What is the ruling on praying the Sunnah of Fajr after the obligatory Fajr if one missed it?",
         options: [
           "It can be prayed after sunrise",
@@ -757,6 +833,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "If one misses the two Sunnah Rak'ahs of Fajr, they may be made up after sunrise, based on the practice of the Prophet (PBUH) when he and his companions overslept.",
       },
       {
+        id: "fiqh-intermediate-37",
         question: "What is 'Istikharah'?",
         options: [
           "A prayer and supplication seeking guidance from Allah in a decision",
@@ -768,6 +845,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Salat al-Istikharah is a two-Rak'ah prayer followed by a specific Du'a taught by the Prophet (PBUH) for seeking Allah's guidance when making an important decision (Bukhari).",
       },
       {
+        id: "fiqh-intermediate-38",
         question: "What is the ruling on a woman praying in a congregation behind men?",
         options: [
           "Permissible and rewarded",
@@ -779,6 +857,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "It is permissible and rewarding for women to pray in congregation behind men in the mosque, as the women of the companions did during the time of the Prophet (PBUH).",
       },
       {
+        id: "fiqh-intermediate-39",
         question: "What is the status of the Dhuha (Chaasht) prayer?",
         options: [
           "Obligatory",
@@ -790,6 +869,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The Dhuha prayer is a recommended Sunnah. The Prophet (PBUH) encouraged it and said it is the prayer of the oft-returning (Awwabin).",
       },
       {
+        id: "fiqh-intermediate-40",
         question: "What breaks Wudu according to the four schools regarding touching a woman?",
         options: [
           "Any touch invalidates according to all",
@@ -803,36 +883,42 @@ const fiqhCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "fiqh-advanced-1",
         question: "What is the term for consensus of Islamic scholars?",
         options: ["Qiyas", "Ijma", "Ijtihad", "Istihsan"],
         correctAnswer: "Ijma",
         explanation: "Ijma refers to the consensus of qualified Islamic scholars on a point of Islamic law after the time of the Prophet (PBUH), considered a binding source of law.",
       },
       {
+        id: "fiqh-advanced-2",
         question: "What is the minimum period of waiting (Iddah) for a divorced woman who menstruates?",
         options: ["1 month", "3 menstrual cycles", "4 months and 10 days", "1 year"],
         correctAnswer: "3 menstrual cycles",
         explanation: "The standard Iddah for a divorced woman who menstruates is three menstrual cycles, as stated in Quran 2:228.",
       },
       {
+        id: "fiqh-advanced-3",
         question: "What is the term for legal reasoning by analogy?",
         options: ["Ijma", "Qiyas", "Istihsan", "Ijtihad"],
         correctAnswer: "Qiyas",
         explanation: "Qiyas is the process of deductive analogy used to apply a known ruling from the Quran or Sunnah to a new situation that shares the same effective cause ('Illah).",
       },
       {
+        id: "fiqh-advanced-4",
         question: "Which school of thought was founded by the students of Imam Abu Hanifa?",
         options: ["Maliki", "Shafi'i", "Hanbali", "Hanafi"],
         correctAnswer: "Hanafi",
         explanation: "The Hanafi school of thought was founded by Imam Abu Hanifa (d. 150 AH) and developed by his students, and is one of the four major Sunni schools of jurisprudence.",
       },
       {
+        id: "fiqh-advanced-5",
         question: "What is 'Ijma' in Islamic jurisprudence?",
         options: ["Consensus", "Analogy", "Precedent", "Interpretation"],
         correctAnswer: "Consensus",
         explanation: "'Ijma' refers to the consensus of Muslim scholars on a matter of Islamic law, serving as a definitive source after the Quran and Sunnah.",
       },
       {
+        id: "fiqh-advanced-6",
         question: "What is the difference between Fard and Wajib in the Hanafi school?",
         options: [
           "They are the same thing",
@@ -844,12 +930,14 @@ const fiqhCategory: QuizCategory = {
         explanation: "In the Hanafi school, Fard is an obligation established by definitive evidence (Qat'i), while Wajib is established by probable evidence (Zanni).",
       },
       {
+        id: "fiqh-advanced-7",
         question: "What is 'Urf' in Islamic jurisprudence?",
         options: ["Legal precedent", "Custom or common practice", "Scholarly opinion", "Textual interpretation"],
         correctAnswer: "Custom or common practice",
         explanation: "'Urf refers to the custom or common practice of a society that is considered in Islamic legal rulings when it does not contradict Islamic principles.",
       },
       {
+        id: "fiqh-advanced-8",
         question: "What is the concept of 'Istihsan' in Islamic jurisprudence?",
         options: [
           "Consensus of scholars",
@@ -861,6 +949,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Istihsan is a method of juristic preference where a stronger evidence is given preference over a weaker one, or an exception is made to a general rule based on evidence, particularly used in the Hanafi school.",
       },
       {
+        id: "fiqh-advanced-9",
         question: "What is the difference between 'Qada' and 'Qadar' in Islamic theology?",
         options: [
           "They are synonyms",
@@ -872,6 +961,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Qada refers to Allah's eternal decree or decision, while Qadar refers to the execution or manifestation of that decree in creation.",
       },
       {
+        id: "fiqh-advanced-10",
         question: "What is 'Istishab' in Islamic jurisprudence?",
         options: [
           "Presumption of continuity",
@@ -883,6 +973,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Istishab is the legal principle that assumes the continuation of a previous state until evidence establishes otherwise, used in resolving doubtful matters.",
       },
       {
+        id: "fiqh-advanced-11",
         question: "What is 'Faskh' in Islamic marriage law?",
         options: [
           "Divorce initiated by husband",
@@ -894,6 +985,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Faskh refers to the judicial dissolution of marriage by an Islamic court due to valid reasons such as impotence, abuse, or failure to provide maintenance.",
       },
       {
+        id: "fiqh-advanced-12",
         question: "What is 'Diyah' in Islamic penal law?",
         options: [
           "Blood money for accidental killing or injury",
@@ -905,6 +997,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Diyah is the financial compensation paid to victims or their heirs in cases of accidental killing or bodily harm, with amounts specified in authentic Sunnah.",
       },
       {
+        id: "fiqh-advanced-13",
         question: "What is 'Hadd' punishment for theft under the strict conditions?",
         options: [
           "Imprisonment",
@@ -916,6 +1009,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The Hadd punishment for theft under strict conditions (nisab, secure place, etc.) is cutting the hand, based on Quran 5:38. These conditions are numerous and rarely met in full.",
       },
       {
+        id: "fiqh-advanced-14",
         question: "What is 'Bay' al-Salam' in Islamic finance?",
         options: [
           "Forward sale with deferred delivery and advance payment",
@@ -927,6 +1021,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Bay' al-Salam is a permissible forward sale where the price is paid upfront for goods to be delivered later, with strict conditions to avoid Gharar (uncertainty).",
       },
       {
+        id: "fiqh-advanced-15",
         question: "What is 'Ijara' in Islamic finance?",
         options: [
           "Leasing contract",
@@ -938,6 +1033,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Ijara refers to an Islamic leasing contract where assets are rented for a fee, structured according to Shariah principles to avoid interest (Riba).",
       },
       {
+        id: "fiqh-advanced-16",
         question: "What is 'Talaq al-Bid'ah'?",
         options: [
           "Divorce during wife's purity period",
@@ -949,6 +1045,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Talaq al-Bid'ah refers to the innovated practice of pronouncing three divorces at once, which is considered valid but sinful according to the majority view of classical scholars.",
       },
       {
+        id: "fiqh-advanced-17",
         question: "What is 'Khula' in Islamic law?",
         options: [
           "Divorce initiated by wife with compensation",
@@ -960,6 +1057,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Khula is when a wife seeks dissolution of marriage by returning the dowry or providing compensation, based on Quran 2:229 and the authentic Hadith of the wife of Thabit ibn Qays.",
       },
       {
+        id: "fiqh-advanced-18",
         question: "What is 'Mudaraba' in Islamic finance?",
         options: [
           "Profit-sharing partnership where one provides capital and the other labor",
@@ -971,6 +1069,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Mudaraba is an Islamic profit-sharing partnership in which one party provides capital and the other provides labor and expertise, with profits shared according to a pre-agreed ratio.",
       },
       {
+        id: "fiqh-advanced-19",
         question: "What is 'Aqd al-Mu'allaq'?",
         options: [
           "Suspended contract whose execution depends on a future condition",
@@ -982,6 +1081,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Aqd al-Mu'allaq refers to a contract whose execution is suspended upon a future condition; such contracts are generally considered invalid in Islamic law due to excessive uncertainty (Gharar).",
       },
       {
+        id: "fiqh-advanced-20",
         question: "What is 'Tahleel marriage'?",
         options: [
           "Temporary marriage",
@@ -993,6 +1093,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Tahleel marriage is when a woman who has been irrevocably divorced marries another man so that she may become permissible to her first husband again after a subsequent divorce or death; it is valid only if the second marriage is genuinely intended and not a mere legal device.",
       },
       {
+        id: "fiqh-advanced-21",
         question: "What is 'Bay' al-'Inah'?",
         options: [
           "Prohibited sale to circumvent interest",
@@ -1004,6 +1105,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Bay' al-'Inah is a controversial transaction involving an immediate sale and repurchase at a different price to simulate a loan with interest; it is prohibited by the majority of scholars.",
       },
       {
+        id: "fiqh-advanced-22",
         question: "What is 'Waqf' in Islamic law?",
         options: [
           "Permanent charitable endowment",
@@ -1015,6 +1117,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Waqf refers to dedicating property in perpetuity for religious or charitable purposes, a practice established by the Prophet (PBUH) and the companions.",
       },
       {
+        id: "fiqh-advanced-23",
         question: "What is 'Hiyal' in Islamic jurisprudence?",
         options: [
           "Legal stratagems to circumvent the spirit of Shariah",
@@ -1026,6 +1129,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Hiyal refers to legal devices or stratagems designed to technically comply with the letter of the law while violating its spirit and objectives; they are generally discouraged or rejected by many scholars.",
       },
       {
+        id: "fiqh-advanced-24",
         question: "What is 'Fara'id' in Islamic law?",
         options: [
           "Obligatory prayers",
@@ -1037,6 +1141,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Fara'id refers to the fixed shares of inheritance specified in Quran 4:11-12 and 4:176, forming a precise mathematical distribution system.",
       },
       {
+        id: "fiqh-advanced-25",
         question: "What is 'Tazir' punishment?",
         options: [
           "Fixed punishments in Quran and Sunnah",
@@ -1048,6 +1153,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Tazir refers to discretionary punishments administered by Islamic judges for offenses that do not have fixed Hadd or Qisas penalties, aimed at reform and deterrence.",
       },
       {
+        id: "fiqh-advanced-26",
         question: "What is 'Shuf'ah' in Islamic law?",
         options: [
           "Pre-emptive right in property",
@@ -1059,6 +1165,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Shuf'ah is the right of a co-owner or neighbor to purchase a property before others when it is sold, based on authentic Hadith of the Prophet (PBUH).",
       },
       {
+        id: "fiqh-advanced-27",
         question: "What is 'Qisas' in Islamic penal law?",
         options: [
           "Retributive justice principle",
@@ -1070,6 +1177,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Qisas is the principle of retributive justice ('life for life, eye for eye') for intentional murder or bodily harm, with the option for the victim's heirs to forgive or accept compensation, as in Quran 2:178.",
       },
       {
+        id: "fiqh-advanced-28",
         question: "What is 'Bay' al-Gharar'?",
         options: [
           "Sale involving excessive uncertainty",
@@ -1081,6 +1189,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Bay' al-Gharar refers to sales involving excessive uncertainty or risk that may lead to dispute and injustice; such sales are prohibited in Islam.",
       },
       {
+        id: "fiqh-advanced-29",
         question: "What is 'Sarf' in Islamic finance?",
         options: [
           "Currency exchange",
@@ -1092,6 +1201,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sarf refers to currency exchange transactions, which must be conducted hand-to-hand and in equal amounts if the currencies are the same, based on the Prophet's (PBUH) prohibition of Riba al-Fadl.",
       },
       {
+        id: "fiqh-advanced-30",
         question: "What is 'Hudud' in Islamic law?",
         options: [
           "Boundaries of Allah – fixed punishments for specific crimes",
@@ -1104,6 +1214,7 @@ const fiqhCategory: QuizCategory = {
       },
       // Additional advanced questions
       {
+        id: "fiqh-advanced-31",
         question: "What is 'Maslahah Mursalah' in Usul al-Fiqh?",
         options: [
           "Public interest not directly indicated by a specific text but consistent with the objectives of Shariah",
@@ -1115,6 +1226,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Maslahah Mursalah refers to unrestricted public interest that is not explicitly supported or contradicted by a specific text but aligns with the higher objectives (Maqasid) of the Shariah; it is accepted as a secondary source by Maliki and some other scholars.",
       },
       {
+        id: "fiqh-advanced-32",
         question: "What is the ruling on triple Talaq pronounced in one sitting according to the classical majority?",
         options: [
           "It counts as one divorce only",
@@ -1126,6 +1238,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "According to the classical majority of the four schools, pronouncing three divorces in one sitting counts as three and results in an irrevocable (Baynunah Kubra) divorce, although it is considered a sinful innovation (Bid'ah).",
       },
       {
+        id: "fiqh-advanced-33",
         question: "What is 'Maqasid al-Shariah'?",
         options: [
           "The higher objectives and goals of Islamic law",
@@ -1137,6 +1250,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Maqasid al-Shariah are the higher objectives of Islamic law, classically categorized as the preservation of religion, life, intellect, lineage, and wealth (and sometimes honor).",
       },
       {
+        id: "fiqh-advanced-34",
         question: "What is the difference between 'Riba al-Nasi'ah' and 'Riba al-Fadl'?",
         options: [
           "Riba al-Nasi'ah is delay-based interest; Riba al-Fadl is excess in same-genus exchange",
@@ -1148,6 +1262,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Riba al-Nasi'ah is the interest charged for delay in repayment of a loan. Riba al-Fadl is the excess taken in the exchange of the same type of commodity (e.g., gold for gold) without equality and immediacy.",
       },
       {
+        id: "fiqh-advanced-35",
         question: "What is 'Istihsan bi al-Nass'?",
         options: [
           "Juristic preference based on a specific text that makes an exception to a general rule",
@@ -1159,6 +1274,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Istihsan bi al-Nass is a form of juristic preference in which a specific textual evidence is used to make an exception to a general analogical ruling.",
       },
       {
+        id: "fiqh-advanced-36",
         question: "What is the Iddah of a pregnant divorced or widowed woman?",
         options: [
           "Until she gives birth",
@@ -1170,6 +1286,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "The Iddah of a pregnant woman (whether divorced or widowed) ends when she gives birth, as stated in Quran 65:4.",
       },
       {
+        id: "fiqh-advanced-37",
         question: "What is 'Bay' al-Murabahah'?",
         options: [
           "A cost-plus sale in which the seller discloses the cost and profit margin",
@@ -1181,6 +1298,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Murabahah is a permissible sale in which the seller discloses the acquisition cost and adds an agreed profit margin; it is widely used in modern Islamic finance when structured correctly.",
       },
       {
+        id: "fiqh-advanced-38",
         question: "What is the ruling on a woman inheriting from her deceased husband if she is divorced with a revocable divorce and the husband dies during the Iddah?",
         options: [
           "She inherits",
@@ -1192,6 +1310,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "A wife in the Iddah of a revocable divorce still inherits from her husband if he dies during that period, because the marriage bond is not completely severed.",
       },
       {
+        id: "fiqh-advanced-39",
         question: "What is 'Sadd al-Dhara'i'?",
         options: [
           "Blocking the means that lead to prohibited ends",
@@ -1203,6 +1322,7 @@ const fiqhCategory: QuizCategory = {
         explanation: "Sadd al-Dhara'i is the principle of blocking lawful means that are likely to lead to unlawful ends, used especially by the Maliki and Hanbali schools.",
       },
       {
+        id: "fiqh-advanced-40",
         question: "What is the status of a sale contract that involves Gharar Fahish (excessive uncertainty)?",
         options: [
           "Valid",

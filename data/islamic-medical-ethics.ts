@@ -8,186 +8,217 @@ const  medicalEthicsCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "islamic-medical-ethics-easy-1",
         question: "What is the primary principle in Islamic medical ethics?",
         options: ["Profit maximization", "Preserving life (Hifz al-Nafs)", "Personal convenience", "Social status"],  
         correctAnswer: "Preserving life (Hifz al-Nafs)",
         explanation: "Preserving life (Hifz al-Nafs) is one of the five essential values (Maqasid) in Islamic law and the foundation of medical ethics."
       },
       {
+        id: "islamic-medical-ethics-easy-2",
         question: "What does Islam say about seeking medical treatment?",
         options: ["It is forbidden", "It is optional", "It is recommended and sometimes obligatory", "It shows lack of faith"],
         correctAnswer: "It is recommended and sometimes obligatory",
         explanation: "The Prophet (PBUH) said 'Allah has not created a disease without creating a cure for it.' Seeking treatment is encouraged and can be obligatory."
       },
       {
+        id: "islamic-medical-ethics-easy-3",
         question: "What is the Islamic view on patient confidentiality?",
         options: ["Not important", "Only for wealthy patients", "Highly emphasized and protected", "Optional for doctors"],
         correctAnswer: "Highly emphasized and protected",
         explanation: "Islam strongly emphasizes protecting people's privacy and secrets. Medical confidentiality is a sacred trust."
       },
       {
+        id: "islamic-medical-ethics-easy-4",
         question: "What should a Muslim doctor prioritize when treating patients?",
         options: ["Payment first", "Patient's wellbeing regardless of background", "Only Muslim patients", "Personal relationships"],
         correctAnswer: "Patient's wellbeing regardless of background",
         explanation: "Islam teaches justice and compassion for all humanity. Medical care should be provided based on need, not discrimination."
       },
       {
+        id: "islamic-medical-ethics-easy-5",
         question: "What is the Islamic ruling on autopsy?",
         options: ["Always forbidden", "Allowed when there is a legitimate need", "Only for non-Muslims", "Only with family consent"],
         correctAnswer: "Allowed when there is a legitimate need",
         explanation: "While respecting the deceased is important, autopsy is permitted when there's a legitimate medical or legal need that serves the greater good."
       },
       {
+        id: "islamic-medical-ethics-easy-6",
         question: "What does Islam teach about informed consent?",
         options: ["Not necessary", "Only for major surgeries", "Essential for all medical procedures", "Only for experimental treatments"],
         correctAnswer: "Essential for all medical procedures",
         explanation: "Islam emphasizes the importance of knowledge and consent. Patients have the right to understand their treatment."
       },
       {
+        id: "islamic-medical-ethics-easy-7",
         question: "How should Muslim healthcare providers approach end-of-life care?",
         options: ["Extend life at any cost", "Focus on comfort and dignity while accepting Allah's decree", "Avoid the topic entirely", "Leave decisions to family only"],
         correctAnswer: "Focus on comfort and dignity while accepting Allah's decree",
         explanation: "Islam teaches to provide compassionate care while accepting that life and death are in Allah's hands."
       },
       {
+        id: "islamic-medical-ethics-easy-8",
         question: "What is the Islamic view on organ donation?",
         options: ["Completely forbidden", "Allowed to save lives with proper conditions", "Only between family members", "Only after death"],
         correctAnswer: "Allowed to save lives with proper conditions",
         explanation: "Many Islamic scholars permit organ donation to save lives, following the principle that saving one life is like saving all humanity."
       },
       {
+        id: "islamic-medical-ethics-easy-9",
         question: "What should guide a Muslim doctor's treatment decisions?",
         options: ["Personal profit", "Hospital policies only", "Islamic ethics and medical best practices", "Patient's wealth"],
         correctAnswer: "Islamic ethics and medical best practices",
         explanation: "Muslim doctors should integrate Islamic ethical principles with sound medical practice for the best patient care."
       },
       {
+        id: "islamic-medical-ethics-easy-10",
         question: "What is the Islamic approach to medical research?",
         options: ["Forbidden entirely", "Encouraged when it benefits humanity", "Only for Muslim researchers", "Only theoretical research"],
         correctAnswer: "Encouraged when it benefits humanity",
         explanation: "Islam encourages seeking knowledge and research that benefits humanity, following ethical guidelines."
       },
       {
+        id: "islamic-medical-ethics-easy-11",
         question: "What is the Islamic ruling on abortion?",
         options: ["Always permitted", "Permitted only to save mother's life", "Permitted in first 120 days with valid reasons", "Never permitted under any circumstances"],
         correctAnswer: "Permitted in first 120 days with valid reasons",
         explanation: "Most scholars allow abortion before ensoulment (120 days) for serious reasons, with stricter conditions afterward."
       },
       {
+        id: "islamic-medical-ethics-easy-12",
         question: "How should Muslim doctors handle patients of the opposite gender?",
         options: ["Avoid treating them", "Treat with necessary medical care while observing modesty", "Only treat with family present", "No special considerations needed"],
         correctAnswer: "Treat with necessary medical care while observing modesty",
         explanation: "Medical necessity overrides gender restrictions, but modesty should be maintained through proper conduct and chaperones when possible."
       },
       {
+        id: "islamic-medical-ethics-easy-13",
         question: "What is the Islamic view on alternative medicine?",
         options: ["Completely forbidden", "Permitted if proven effective and safe", "Only prophetic medicine allowed", "Preferred over modern medicine"],
         correctAnswer: "Permitted if proven effective and safe",
         explanation: "Islam permits any treatment that is beneficial and not harmful, whether modern or traditional, as long as it doesn't involve prohibited elements."
       },
       {
+        id: "islamic-medical-ethics-easy-14",
         question: "What is the Islamic perspective on pain management?",
         options: ["Pain should be endured as test from Allah", "Pain relief is encouraged within safe limits", "Only natural pain relief allowed", "Pain medication is forbidden"],
         correctAnswer: "Pain relief is encouraged within safe limits",
         explanation: "Alleviating suffering is a noble goal in Islam, and pain management is encouraged while avoiding harmful substances."
       },
       {
+        id: "islamic-medical-ethics-easy-15",
         question: "How does Islam view the doctor-patient relationship?",
         options: ["Purely business transaction", "Sacred trust (Amanah)", "Doctor has absolute authority", "Patient has no rights"],
         correctAnswer: "Sacred trust (Amanah)",
         explanation: "The doctor-patient relationship is considered an Amanah (trust) in Islam, carrying great responsibility and accountability."
       },
       {
+        id: "islamic-medical-ethics-easy-16",
         question: "What is the Islamic ruling on cosmetic surgery?",
         options: ["Always forbidden", "Permitted for correcting deformities", "Allowed for any aesthetic improvement", "Only for women"],
         correctAnswer: "Permitted for correcting deformities",
         explanation: "Cosmetic surgery is permitted for correcting genuine deformities or injuries, but generally prohibited for mere vanity without medical need."
       },
       {
+        id: "islamic-medical-ethics-easy-17",
         question: "What is the Islamic view on vaccination?",
         options: ["Forbidden as it alters Allah's creation", "Obligatory for all Muslims", "Permitted when benefits outweigh risks", "Only for children"],
         correctAnswer: "Permitted when benefits outweigh risks",
         explanation: "Vaccination is generally permitted in Islam as a means of disease prevention, following the principle of 'no harm, no harassment'."
       },
       {
+        id: "islamic-medical-ethics-easy-18",
         question: "How should Muslim doctors handle mistakes in treatment?",
         options: ["Cover them up", "Disclose and take responsibility", "Blame the hospital", "Only admit if caught"],
         correctAnswer: "Disclose and take responsibility",
         explanation: "Islam emphasizes honesty and accountability. Medical errors should be disclosed to learn from them and prevent future harm."
       },
       {
+        id: "islamic-medical-ethics-easy-19",
         question: "What is the Islamic perspective on mental health treatment?",
         options: ["Mental illness isn't real", "Only spiritual treatment allowed", "Integrated spiritual and medical approach", "Medication is forbidden"],
         correctAnswer: "Integrated spiritual and medical approach",
         explanation: "Islam recognizes mental health conditions and supports treatment combining medical care with spiritual support like prayer and patience."
       },
       {
+        id: "islamic-medical-ethics-easy-20",
         question: "What is the Islamic ruling on fertility treatments?",
         options: ["All forms forbidden", "Permitted for married couples using their own gametes", "Any method is acceptable", "Only natural methods allowed"],
         correctAnswer: "Permitted for married couples using their own gametes",
         explanation: "Assisted reproduction is generally permitted for married couples as long as it doesn't involve third-party genetic material."
       },
       {
+        id: "islamic-medical-ethics-easy-21",
         question: "How should Muslim doctors handle terminal illness disclosure?",
         options: ["Never tell the patient", "Always tell bluntly", "Disclose with wisdom and compassion", "Let family decide"],
         correctAnswer: "Disclose with wisdom and compassion",
         explanation: "Islamic ethics encourages truthful communication while considering the patient's emotional state and need for hope."
       },
       {
+        id: "islamic-medical-ethics-easy-22",
         question: "What is the Islamic view on palliative care?",
         options: ["Forbidden as it hastens death", "Highly recommended to relieve suffering", "Only for Muslims", "Only pain medication allowed"],
         correctAnswer: "Highly recommended to relieve suffering",
         explanation: "Palliative care aligns with Islamic values of mercy and dignity in end-of-life care."
       },
       {
+        id: "islamic-medical-ethics-easy-23",
         question: "What is the Islamic ruling on breastfeeding in Islam?",
         options: ["Only biological mothers can breastfeed", "Permitted through milk kinship with conditions", "Only for first two years", "Not regulated in Islam"],
         correctAnswer: "Permitted through milk kinship with conditions",
         explanation: "Islam recognizes milk kinship with specific regulations about who can breastfeed and the resulting familial relationships."
       },
       {
+        id: "islamic-medical-ethics-easy-24",
         question: "How does Islam view the use of animal-derived medications?",
         options: ["Completely forbidden", "Permitted if no alternatives exist", "Only from halal animals", "Permitted if beneficial and from permissible sources"],
         correctAnswer: "Permitted if beneficial and from permissible sources",
         explanation: "Medicines derived from permissible animals are allowed, especially when needed for treatment and no alternatives exist."
       },
       {
+        id: "islamic-medical-ethics-easy-25",
         question: "What is the Islamic perspective on doctor's fees?",
         options: ["Should be exorbitant", "Should be reasonable and just", "Free service only", "Depends on patient's wealth"],
         correctAnswer: "Should be reasonable and just",
         explanation: "Islam encourages fair compensation for services while discouraging exploitation of patients' needs."
       },
       {
+        id: "islamic-medical-ethics-easy-26",
         question: "What is the Islamic ruling on treating non-Muslim patients?",
         options: ["Forbidden", "Optional", "Obligatory when needed", "Only if they convert"],
         correctAnswer: "Obligatory when needed",
         explanation: "Islamic medical ethics requires treating all patients equally regardless of faith, as the Prophet treated non-Muslims."
       },
       {
+        id: "islamic-medical-ethics-easy-27",
         question: "How should Muslim doctors handle time management?",
         options: ["Prioritize quantity over quality", "Give each patient full attention needed", "See as many patients as possible", "Only during certain hours"],
         correctAnswer: "Give each patient full attention needed",
         explanation: "Islam teaches thoroughness and excellence in all work, including giving proper time and attention to each patient."
       },
       {
+        id: "islamic-medical-ethics-easy-28",
         question: "What is the Islamic view on medical confidentiality after death?",
         options: ["No longer applies", "Still binding unless public interest requires", "Family can access all records", "Only for Muslim patients"],
         correctAnswer: "Still binding unless public interest requires",
         explanation: "The ethical obligation of confidentiality generally continues after death unless there's an overriding benefit to disclosure."
       },
       {
+        id: "islamic-medical-ethics-easy-29",
         question: "What is the Islamic approach to medical education?",
         options: ["Forbidden for women", "Obligatory on capable Muslims", "Only for those from medical families", "Permitted but discouraged"],
         correctAnswer: "Obligatory on capable Muslims",
         explanation: "Seeking medical knowledge is a communal obligation (Fard Kifayah) in Islam to ensure healthcare needs are met."
       },
       {
+        id: "islamic-medical-ethics-easy-30",
         question: "What is the Islamic ruling on using human stem cells for research?",
         options: ["Completely forbidden", "Permitted from permissible sources with ethical guidelines", "Only from adults", "No restrictions"],
         correctAnswer: "Permitted from permissible sources with ethical guidelines",
         explanation: "Stem cell research is generally permitted when using ethically obtained sources like adult stem cells or umbilical cord blood."
       },
       {
+        id: "islamic-medical-ethics-easy-31",
         question: "What does the Quran state in Surah al-Ma'idah (5:32) regarding the immense moral value of saving a single human life?",
         options: [
           "It is equivalent to donating half of one's wealth",
@@ -200,6 +231,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Surah al-Ma'idah (5:32) establishes the foundational sanctity of human life in Islamic medical ethics: 'Whoever kills a soul... it is as if he had slain mankind entirely, and whoever saves one life, it is as if he had saved mankind entirely.'",
       },
       {
+        id: "islamic-medical-ethics-easy-32",
         question: "According to the authentic hadith in Sunan Abi Dawood, what single condition did the Prophet (PBUH) mention that has no medical cure?",
         options: ["Leprosy", "Blindness", "Old age (Al-Haram)", "Fever"],
         correctAnswer: "Old age (Al-Haram)",
@@ -207,6 +239,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) said: 'Make use of medical treatment, for Allah has not made a disease without appointing a remedy for it, with the exception of one disease, namely old age' (Abu Dawood, at-Tirmidhi).",
       },
       {
+        id: "islamic-medical-ethics-easy-33",
         question: "What groundbreaking epidemiological guideline did Prophet Muhammad (PBUH) establish regarding pandemic quarantine in Sahih al-Bukhari?",
         options: [
           "Travel to healthy towns to seek refuge",
@@ -219,6 +252,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Recorded in Sahih al-Bukhari and Muslim, the Prophet (PBUH) laid down the foundational protocol of modern public health quarantine: restricting travel into and out of contagion zones to curb disease transmission.",
       },
       {
+        id: "islamic-medical-ethics-easy-34",
         question: "According to authentic hadith in Sahih al-Bukhari, what spiritual benefit does a Muslim derive when afflicted with physical illness, pain, or fatigue?",
         options: [
           "Immediate elevation to worldly political leadership",
@@ -231,6 +265,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) said: 'No fatigue, illness, anxiety, grief, hurt, or sorrow afflicts a Muslim, even the prick of a thorn, except that Allah expiates some of his sins thereby' (Sahih al-Bukhari).",
       },
       {
+        id: "islamic-medical-ethics-easy-35",
         question: "What is the legal status and importance of visiting the sick (Iyadah al-Marid) in Islamic medical culture?",
         options: [
           "A prohibited distraction for medical staff",
@@ -243,6 +278,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Sahih Muslim, the Prophet (PBUH) declared visiting the sick as one of the essential rights of a Muslim upon fellow Muslims, bringing comfort to the ailing and carrying immense divine rewards.",
       },
       {
+        id: "islamic-medical-ethics-easy-36",
         question: "Which verse in Surah an-Nisa explicitly forbids taking one's own life, forming the basis for the prohibition of suicide and active euthanasia?",
         options: [
           "Surah an-Nisa (4:29)",
@@ -255,6 +291,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Allah commands in Surah an-Nisa (4:29): 'And do not kill yourselves [or one another]. Indeed, Allah is to you ever Merciful.' Because life is a divine trust (Amanah), taking one's life is strictly unlawful.",
       },
       {
+        id: "islamic-medical-ethics-easy-37",
         question: "What is the Shariah ruling regarding an ill patient who is medically advised that fasting during Ramadan will worsen their sickness or delay recovery?",
         options: [
           "They must fast regardless of health consequences",
@@ -267,6 +304,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Allah states in Surah al-Baqarah (2:185): 'Whoever is ill or on a journey, then an equal number of other days.' Causing self-harm by fasting during dangerous illness violates the objective of preserving life.",
       },
       {
+        id: "islamic-medical-ethics-easy-38",
         question: "What are the three essential conditions agreed upon by scholars for faith-healing (Ruqyah) to be lawful in Islam?",
         options: [
           "It must use Quran/authentic supplications, in understandable language, and with conviction that cure comes solely from Allah",
@@ -279,6 +317,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "As summarized by Ibn Hajar al-Asqalani, Ruqyah is permissible only if: (1) it uses the Word of Allah or His Names/Attributes; (2) in clear, intelligible Arabic or understood words; and (3) one believes the cure is from Allah alone, not the healer or words themselves.",
       },
       {
+        id: "islamic-medical-ethics-easy-39",
         question: "What is the Islamic ruling on seeking medical cures or diagnostics from fortune-tellers, astrologers, or practitioners of black magic (Sihr)?",
         options: [
           "Recommended when modern medicine fails",
@@ -291,6 +330,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) severely condemned visiting soothsayers or occultists: 'Whoever goes to a fortune-teller and believes what he says has disbelieved in what was revealed to Muhammad' (Abu Dawood).",
       },
       {
+        id: "islamic-medical-ethics-easy-40",
         question: "What is the Prophetic tradition regarding honey, cupping (Hijama), and black seed (Habbah al-Sawda)?",
         options: [
           "They were condemned as pagan superstitions",
@@ -305,6 +345,7 @@ const  medicalEthicsCategory: QuizCategory = {
       ],
     intermediate: [
       {
+        id: "islamic-medical-ethics-intermediate-1",
         question: "What foundational Islamic legal maxim (Qawa'id Fiqhiyyah) forms the primary basis for the clinical principle of 'primum non nocere' (first, do no harm)?",
         options: [
           "Al-Umur bi-Maqasidiha (Matters are judged by their intentions)",
@@ -317,6 +358,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Derived from the authentic hadith in Sunan Ibn Majah, 'La Darar wa la Dirar' is a core legal maxim in Islamic bioethics requiring healthcare providers to eliminate harm, prevent harmful side effects, and never subject patients to needless risks.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-2",
         question: "How does the legal maxim 'Al-Darurah tuqaddaru bi-qadariha' (Necessity is measured by its proportion) apply to clinical examinations?",
         options: [
           "A physician may expose the patient's entire body regardless of the affected area",
@@ -329,6 +371,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "While medical examination permits looking at parts of the body normally considered Awrah under the rule of necessity, this necessity is strictly confined to what the medical procedure directly requires, maintaining modesty as much as possible.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-3",
         question: "What did the Prophet (PBUH) rule regarding medical malpractice and unqualified practitioners in Sunan Abi Dawood?",
         options: [
           "Unqualified practitioners are exempt from blame if they intended well",
@@ -341,6 +384,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) stated: 'Whoever practices medicine when he is not known to possess medical knowledge, and causes harm, is liable' (Abu Dawood, an-Nasa'i). This establishes strict medical liability, malpractice standards, and professional licensing in Islam.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-4",
         question: "According to the International Islamic Fiqh Academy, what is the legal ruling regarding deceased organ donation?",
         options: [
           "Strictly prohibited under all circumstances as desecration of the body",
@@ -353,6 +397,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Resolution No. 26 of the Islamic Fiqh Academy permits deceased organ donation as an altruistic act of perpetual charity (Ihsan), provided proper consent is secured, medical death is certified, and human organs are never commercialized.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-5",
         question: "Why is the commercial buying and selling of human organs unanimously prohibited in Islamic bioethics?",
         options: [
           "Because organs have no cash value in market economics",
@@ -365,6 +410,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Allah states: 'And We have certainly honored the children of Adam' (Surah al-Isra 17:70). Islamic jurisprudence affirms that the human body is a divine trust, not commercial property (Mal), protecting the poor from predatory exploitation.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-6",
         question: "According to authentic Hadith in Sahih al-Bukhari, when is the soul (Ruh) breathed into the human embryo (Nafkh al-Ruh)?",
         options: [
           "At the moment of fertilization (conception)",
@@ -377,6 +423,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Sahih al-Bukhari, Abdullah ibn Mas'ud narrated that the Prophet (PBUH) described the creation of a human in the mother's womb in 40-day intervals, after which the angel is sent to breathe the soul into it at 120 days.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-7",
         question: "What is the consensus of Islamic Fiqh councils regarding abortion after 120 days of pregnancy?",
         options: [
           "Permissible for any family planning reason",
@@ -389,6 +436,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "After 120 days (ensoulment), abortion is treated as homicide in Shariah. The sole exception recognized by jurists is when reliable medical experts verify that carrying the pregnancy will result in the mother's death, prioritizing the mother's established life.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-8",
         question: "What is the established Islamic preference regarding the gender of the examining healthcare provider for a female patient?",
         options: [
           "Any doctor is identical without any preference",
@@ -401,6 +449,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Classical jurists formulated this sequence to balance modesty (Awrah) with health preservation: same-gender care is preferred first, but when medical competence or emergencies demand, cross-gender care is completely lawful.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-9",
         question: "Why is the presence of a chaperone (such as a female nurse or Mahram) required when a male doctor examines a female patient in a closed room?",
         options: [
           "To take administrative payment notes",
@@ -413,6 +462,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) warned: 'No man is alone with a woman except that Satan is the third among them' (at-Tirmidhi). Having a professional chaperone present fulfills clinical ethics, eliminates suspicion, and adheres to Islamic law.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-10",
         question: "What is the Shariah ruling on a 'Do Not Resuscitate' (DNR) order for a terminally ill patient in irreversible multi-organ failure?",
         options: [
           "Strictly prohibited as it constitutes active murder",
@@ -425,6 +475,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic Fiqh Academy Resolution No. 120 and Saudi Senior Scholars Council Fatwa No. 12086 permit DNR orders when multiple specialists determine resuscitation is medically futile, distinguishing withholding futile interventions from active euthanasia.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-11",
         question: "How does Islamic bioethics view palliative sedation and high-dose opioid analgesia for terminally ill patients experiencing intractable suffering?",
         options: [
           "Prohibited because all pain medications cloud the intellect",
@@ -437,6 +488,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Under the principle 'Innama al-a'malu bin-niyyat' and the doctrine of double effect recognized in Fiqh, administering analgesics with the sole intention of alleviating severe distress is lawful, distinct from administering lethal doses intending death.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-12",
         question: "What is the Islamic ruling regarding In-Vitro Fertilization (IVF) to overcome infertility between married couples?",
         options: [
           "Completely forbidden as artificial interference in divine decree",
@@ -449,6 +501,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Islamic Fiqh Academy declared IVF lawful to assist married couples, provided there is zero introduction of third-party genetic material (donor sperm, donor eggs, or surrogate wombs) to protect the purity of lineage (Hifz al-Nasl).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-13",
         question: "Why has the Islamic Fiqh Academy unanimously ruled commercial and gestational surrogacy to be impermissible in Islam?",
         options: [
           "Because hospitals charge high maintenance fees",
@@ -461,6 +514,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Surrogacy introduces profound ethical and legal confusion regarding the real mother (the genetic egg provider vs. the carrying birth mother who experiences labor, Surah Luqman 31:14), violating Islamic principles of lineage and family sanctity.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-14",
         question: "What is the authentic hadith precedent regarding contraception, and what is the modern ruling on temporary family planning?",
         options: [
           "The Prophet (PBUH) prohibited all contraception under penalty of law",
@@ -473,6 +527,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Jabir (RA) narrated in Sahih al-Bukhari: 'We used to practice 'Azl during the time of the Prophet while the Quran was being revealed.' Scholars derive that reversible contraception for spacing or health is lawful with mutual agreement.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-15",
         question: "What is the Islamic ruling on permanent surgical sterilization (e.g., vasectomy or tubal ligation) for purely lifestyle or convenience reasons?",
         options: [
           "Permissible without restriction",
@@ -485,6 +540,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic jurisprudence prohibits irreversible destruction of bodily organs and faculties without compelling health necessity. If a mother's life is endangered by pregnancy and other contraceptives fail, tubal ligation is permitted.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-16",
         question: "What is the historical and religious basis for male circumcision (Khitan) in Islamic medical practice?",
         options: [
           "A medieval cultural invention",
@@ -497,6 +553,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) listed circumcision among the five innate virtues of human purity (Sunan al-Fitrah), promoting hygiene and preventing various urinary tract and penile pathologies.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-17",
         question: "In what circumstances is a physician religiously and ethically required to breach patient confidentiality under Islamic law?",
         options: [
           "To share medical gossip with coworkers",
@@ -509,6 +566,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "While medical privacy is a sacred trust (Amanah), Islamic legal maxims dictate that public societal harm (Darar 'Amm) takes precedence over individual private harm (Darar Khass). Preventing harm to innocent third parties overrides secrecy.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-18",
         question: "What is the classical hadith foundation that governs the reverence and sanctity due to a deceased human body during post-mortem handling and autopsies?",
         options: [
           "\"Dead bodies have no rights in Islam\"",
@@ -521,6 +579,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Recorded in Sunan Abi Dawood and Ibn Majah, this authentic hadith establishes that human dignity persists after death. Post-mortem examinations are only tolerated for compelling judicial crime investigation or vital pathology, and must minimize bodily desecration.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-19",
         question: "How does the chemical transformation concept of 'Istihalah' apply to pharmaceuticals derived from porcine or non-halal origins?",
         options: [
           "It has no bearing on Islamic law",
@@ -533,6 +592,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Istihalah is the complete chemical transmutation of an impure substance into a totally distinct compound with different properties. The Islamic Organization for Medical Sciences (IOMS) applied this to substances like highly processed gelatin and insulin.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-20",
         question: "What is the ruling on using ethyl alcohol as a topical antiseptic and disinfectant in healthcare settings?",
         options: [
           "Prohibited because all forms of alcohol are physical filth (Najasah)",
@@ -545,6 +605,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Contemporary scholars and Fiqh councils distinguish between intoxicating beverages meant for ingestion and synthetic topical alcohols used for sterilization. External medical application does not invalidate ritual purity (Taharah).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-21",
         question: "What is the authentic Prophetic precedent regarding reconstructive surgery for physical defects, as recorded in Sunan Abi Dawood?",
         options: [
           "The Prophet forbade repairing any battlefield injury",
@@ -557,6 +618,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "When Arfajah's artificial silver nose caused an offensive odor, the Prophet (PBUH) explicitly authorized him to replace it with a prosthesis fashioned of gold (Sunan Abi Dawood, at-Tirmidhi), proving the lawfulness of reconstructive surgery to restore natural function and appearance.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-22",
         question: "How does Islamic jurisprudence distinguish between lawful reconstructive surgery and impermissible aesthetic cosmetic surgery?",
         options: [
           "By the financial cost of the hospital bill",
@@ -569,6 +631,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Correcting congenital anomalies (e.g., cleft palate), burns, or accident trauma is restorative and permissible (I'adat al-khalq). Conversely, elective surgery aimed at altering normal anatomy solely for youthful appearance or fashion is condemned as altering Allah's creation (Surah an-Nisa 4:119).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-23",
         question: "What is the Islamic bioethical stance on premarital genetic screening for inherited disorders such as Thalassemia or Sickle Cell Anemia?",
         options: [
           "Forbidden as a form of fortune-telling",
@@ -581,6 +644,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Scholarly bodies endorse premarital genetic screening under the objectives of Shariah (Maqasid) to protect offspring (Hifz al-Nasl) and prevent severe hereditary suffering, exemplifying the maxim 'prevention is better than cure' (Dir' al-mafasid).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-24",
         question: "Can Pre-implantation Genetic Diagnosis (PGD) be utilized during IVF for non-medical family balancing (sex selection) in Islamic law?",
         options: [
           "Freely permitted for any parents wanting a boy or girl",
@@ -593,6 +657,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Islamic Fiqh Academy prohibited using PGD solely for gender preference because it encourages gender discrimination, commodifies reproduction, and alters natural societal sex ratios, allowing it only to prevent transmission of severe genetic pathologies.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-25",
         question: "What is the authentic Islamic perspective on clinical psychiatric disorders like major depression and schizophrenia?",
         options: [
           "They are exclusively signs of weak faith and demon possession, and medical treatment is forbidden",
@@ -605,6 +670,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islam rejects the harmful stigma that mental illness is merely a lack of piety. The mind (Aql) is one of the five essential values protected by Shariah, and seeking psychiatric therapy and pharmacotherapy falls under the Prophetic command: 'Seek treatment, O servants of Allah.'",
       },
       {
+        id: "islamic-medical-ethics-intermediate-26",
         question: "Which types of medical injections are recognized by the Islamic Fiqh Academy as NOT invalidating the Ramadan fast?",
         options: [
           "Total parenteral nutrition (TPN) glucose infusions",
@@ -617,6 +683,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The International Islamic Fiqh Academy affirmed that non-nutritional injections (such as insulin, pain relievers, vaccines, and antibiotics) do not invalidate the fast because they do not enter the stomach through the normal alimentary canal and do not serve as food or drink.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-27",
         question: "What is the contemporary scholarly consensus regarding asthma inhalers and oxygen therapy during the Ramadan fast?",
         options: [
           "They permanently nullify the fast and require a major penalty (Kaffarah)",
@@ -629,6 +696,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Because pressurized gas from an inhaler expands primarily into the bronchial tree rather than acting as food or beverage, scholars (including the Islamic Fiqh Academy and IslamQA) rule that patients in need may use their inhalers without breaking their fast.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-28",
         question: "What is the ethical duty of a Muslim doctor when communicating a terminal, incurable diagnosis to a patient?",
         options: [
           "Deceive the patient completely and tell them they are perfectly healthy",
@@ -641,6 +709,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic ethics forbids lying while mandating compassion and wisdom (Hikmah). A doctor gently informs the patient of their prognosis so they can make informed medical choices, seek repentance, fulfill debts, and prepare spiritually for meeting Allah.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-29",
         question: "What is the Islamic ruling regarding blood transfusions between individuals of different religious beliefs?",
         options: [
           "Prohibited; a Muslim can only receive blood from another practicing Muslim",
@@ -653,6 +722,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Saving human life is universal in Shariah. Unlike wet-nursing (breast milk), blood transfusions do not transfer genealogical prohibitions or create foster relationships, and receiving blood from non-Muslims is universally permitted.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-30",
         question: "Why did the Council of the Islamic Fiqh Academy reject the establishment of human milk banks (Bunuk al-Laban) for premature infants in Muslim countries?",
         options: [
           "Because human milk expires too quickly",
@@ -665,6 +735,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Islamic jurisprudence, consuming breast milk from a woman creates marital prohibitions (Mahram status) between the child and the foster mother's lineage. Mixing anonymous donor milk makes tracking foster relations impossible, risking unlawful marriages.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-31",
         question: "How does Islamic medical ethics evaluate the use of Placebos in double-blind randomized clinical drug trials?",
         options: [
           "Placebos are considered malicious lying and are universally banned",
@@ -677,6 +748,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Placebo-controlled trials are ethically acceptable in Islam when evaluating new interventions against non-life-threatening conditions, provided participants are informed that they may receive a control, and no standard life-saving therapy is withheld.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-32",
         question: "What is the legal standing of dental orthodontics (braces) and corrective dental implants in Islamic jurisprudence?",
         options: [
           "Impermissible because it changes the teeth",
@@ -689,6 +761,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Hadiths condemning filing spaces between teeth (Washr) specifically target vain cosmetic alteration of normal teeth. Orthodontic treatment to align crooked teeth or fix malocclusion is considered restorative medical treatment (Tadawi).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-33",
         question: "What is the Islamic humanitarian principle regarding treating wounded enemy combatants during armed conflicts?",
         options: [
           "Deny medical treatment to captured soldiers",
@@ -701,6 +774,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic warfare ethics strictly mandate humane treatment of prisoners: 'And they give food in spite of love for it to the needy, the orphan, and the captive' (Surah al-Insan 76:8). Denying medical attention to wounded captives is prohibited in Shariah.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-34",
         question: "Can a Muslim healthcare professional exercise 'conscientious objection' when asked to participate in procedures that violate Islamic law (such as elective abortion or euthanasia)?",
         options: [
           "No, a doctor must perform any legal procedure requested by a secular employer",
@@ -713,6 +787,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Prophet (PBUH) stated: 'There is no obedience to creation in disobedience to the Creator' (Ahmad). A physician may refuse participation in un-Islamic procedures while ensuring professional handover so that emergency care is not abandoned.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-35",
         question: "What is an Islamic 'Advance Medical Directive' or Living Will (Wasiyyah Tibbiyyah)?",
         options: [
           "A document demanding active euthanasia when one becomes tired of life",
@@ -725,6 +800,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "A Muslim may author an advance directive appointing a trusted healthcare proxy (Wakil) and expressing wishes against futile interventions, provided the document does not request suicide or active euthanasia.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-36",
         question: "What is the ruling on clinical autopsy performed for forensic, judicial crime investigation (Tashrih Jinai)?",
         options: [
           "Strictly prohibited even if murderers escape justice",
@@ -737,6 +813,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "The Islamic Fiqh Academy ruled that forensic autopsies ordered by judicial authorities are permissible under the principle of balancing harms, ensuring justice and community safety while treating the deceased with care.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-37",
         question: "How does Islamic law view taking medications containing porcine-derived gelatin (such as certain vaccine stabilizers or capsule casings) when no synthetic or bovine halal alternative exists?",
         options: [
           "Patients must refuse treatment and accept death",
@@ -749,6 +826,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Surah al-Baqarah (2:173) states: 'Whoever is forced by necessity, neither desiring [it] nor transgressing... there is no sin upon him.' When life or vital health is at stake and halal substitutes are unavailable, Shariah permits such medications.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-38",
         question: "What is the Shariah principle regarding a physician's moral duty when a patient's family demands that the patient NOT be told about their cancer diagnosis?",
         options: [
           "The doctor must always obey the family and lie to the patient",
@@ -761,6 +839,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Islamic ethics, a competent adult possesses personal autonomy and financial/religious obligations that require knowing the truth of their health. Collusion with family to deceive a competent patient violates Amanah (trust).",
       },
       {
+        id: "islamic-medical-ethics-intermediate-39",
         question: "Can a living person donate an essential, single vital organ (such as their heart or entire liver) to save another person's life?",
         options: [
           "Yes, it is the highest form of martyrdom",
@@ -773,6 +852,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic jurisprudence permits live organ donation only for paired organs (e.g., one kidney) or regenerable tissues (e.g., partial liver) where the donor can survive safely. Donating a single vital organ while alive is suicide, which is strictly forbidden.",
       },
       {
+        id: "islamic-medical-ethics-intermediate-40",
         question: "What is the Islamic ethical principle governing medical research on vulnerable populations (such as prisoners, orphans, or refugees)?",
         options: [
           "They should be prioritized for risky experiments because they have less social value",
@@ -787,168 +867,196 @@ const  medicalEthicsCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "islamic-medical-ethics-advanced-1",
         question: "What are the key considerations in Islamic bioethics regarding genetic engineering?",
         options: ["Completely prohibited", "Allowed for therapeutic purposes with ethical safeguards", "Only for cosmetic improvements", "No Islamic guidance exists"],
         correctAnswer: "Allowed for therapeutic purposes with ethical safeguards",
         explanation: "Islamic bioethics generally supports therapeutic genetic interventions while prohibiting enhancements that alter Allah's creation unnecessarily."
       },
       {
+        id: "islamic-medical-ethics-advanced-2",
         question: "How does the concept of Maslaha (public interest) apply to medical ethics?",
         options: ["Individual needs always come first", "Public health can override individual preferences when necessary", "It doesn't apply to medicine", "Only applies to infectious diseases"],
         correctAnswer: "Public health can override individual preferences when necessary",
         explanation: "Maslaha allows for prioritizing public health interests while respecting individual rights, such as in pandemic responses."
       },
       {
+        id: "islamic-medical-ethics-advanced-3",
         question: "What is the Islamic ruling on withdrawing life support?",
         options: ["Never permitted", "Permitted when treatment is futile and causes more harm", "Only family can decide", "Always required to continue"],
         correctAnswer: "Permitted when treatment is futile and causes more harm",
         explanation: "Islamic ethics permits withdrawing futile treatment that causes more harm than benefit, distinguishing between ordinary and extraordinary means."
       },
       {
+        id: "islamic-medical-ethics-advanced-4",
         question: "How should Muslim healthcare providers handle conflicts between Islamic values and secular medical ethics?",
         options: ["Always follow secular ethics", "Always follow Islamic ethics exclusively", "Seek consultation and find compatible solutions", "Avoid treating such patients"],
         correctAnswer: "Seek consultation and find compatible solutions",
         explanation: "Muslim healthcare providers should seek scholarly consultation and find solutions that honor both Islamic principles and professional obligations."
       },
       {
+        id: "islamic-medical-ethics-advanced-5",
         question: "What is the Islamic perspective on clinical trials and human experimentation?",
         options: ["Completely forbidden", "Permitted with informed consent and potential benefit", "Only on volunteers", "Only observational studies allowed"],
         correctAnswer: "Permitted with informed consent and potential benefit",
         explanation: "Clinical trials are permitted when they follow ethical guidelines, have potential benefits, and participants give informed consent."
       },
       {
+        id: "islamic-medical-ethics-advanced-6",
         question: "How does Islamic medical ethics address healthcare resource allocation during scarcity?",
         options: ["First come, first served only", "Based on ability to pay", "Consider medical need, prognosis, and social benefit", "Random selection"],
         correctAnswer: "Consider medical need, prognosis, and social benefit",
         explanation: "Islamic ethics considers multiple factors including medical need, likelihood of benefit, and broader social considerations in resource allocation."
       },
       {
+        id: "islamic-medical-ethics-advanced-7",
         question: "What is the Islamic ruling on surrogate pregnancy?",
         options: ["Universally accepted", "Universally forbidden", "Scholarly disagreement with conditions", "Only for married couples"],
         correctAnswer: "Scholarly disagreement with conditions",
         explanation: "There is scholarly disagreement on surrogacy, with some permitting it under strict conditions while others prohibit it entirely."
       },
       {
+        id: "islamic-medical-ethics-advanced-8",
         question: "How should Muslim doctors approach patients who refuse treatment for religious reasons?",
         options: ["Force treatment anyway", "Respect autonomy while providing education", "Discharge immediately", "Ignore religious concerns"],
         correctAnswer: "Respect autonomy while providing education",
         explanation: "Islamic ethics emphasizes respecting patient autonomy while providing education and exploring religiously acceptable alternatives."
       },
       {
+        id: "islamic-medical-ethics-advanced-9",
         question: "What is the Islamic approach to mental health treatment?",
         options: ["Only spiritual healing", "Only medical treatment", "Integrated spiritual and medical approach", "Mental illness doesn't exist in Islam"],
         correctAnswer: "Integrated spiritual and medical approach",
         explanation: "Islam recognizes mental health as important and supports integrated approaches combining spiritual guidance with medical treatment."
       },
       {
+        id: "islamic-medical-ethics-advanced-10",
         question: "How does Islamic medical ethics address conflicts of interest in healthcare?",
         options: ["Conflicts are acceptable", "Must be disclosed and managed ethically", "Only financial conflicts matter", "Doctors can ignore conflicts"],
         correctAnswer: "Must be disclosed and managed ethically",
         explanation: "Islamic ethics emphasizes honesty and trustworthiness, requiring disclosure and ethical management of all conflicts of interest."
       },
       {
+        id: "islamic-medical-ethics-advanced-11",
         question: "What is the Islamic ruling on gender reassignment surgery?",
         options: ["Permitted without conditions", "Forbidden entirely", "Permitted for intersex individuals", "Only male-to-female allowed"],
         correctAnswer: "Permitted for intersex individuals",
         explanation: "Most scholars permit gender reassignment only for intersex cases where biological sex is ambiguous, not for psychological gender dysphoria."
       },
       {
+        id: "islamic-medical-ethics-advanced-12",
         question: "How does Islam view the use of AI in medical decision-making?",
         options: ["Completely forbidden", "Permitted as assistive tool with human oversight", "Should replace human doctors", "Only for diagnosis"],
         correctAnswer: "Permitted as assistive tool with human oversight",
         explanation: "AI can be used as a tool in medicine as long as final decisions remain with qualified human doctors who maintain ethical responsibility."
       },
       {
+        id: "islamic-medical-ethics-advanced-13",
         question: "What is the Islamic perspective on physician-assisted suicide?",
         options: ["Permitted in terminal cases", "Completely forbidden", "Patient's choice only", "Permitted with family consent"],
         correctAnswer: "Completely forbidden",
         explanation: "Islam prohibits active euthanasia and physician-assisted suicide as they constitute taking life, which is Allah's exclusive right."
       },
       {
+        id: "islamic-medical-ethics-advanced-14",
         question: "How should Islamic medical ethics approach transhumanism?",
         options: ["Fully embrace all enhancements", "Reject all technological enhancements", "Evaluate based on therapeutic benefit vs. altering creation", "Only for prolonging life"],
         correctAnswer: "Evaluate based on therapeutic benefit vs. altering creation",
         explanation: "Islamic ethics cautiously evaluates transhumanist technologies, permitting therapeutic uses while rejecting unnecessary alterations to human nature."
       },
       {
+        id: "islamic-medical-ethics-advanced-15",
         question: "What is the Islamic ruling on three-parent IVF?",
         options: ["Completely permitted", "Permitted only to prevent mitochondrial diseases", "Forbidden entirely", "Only for married couples over 40"],
         correctAnswer: "Permitted only to prevent mitochondrial diseases",
         explanation: "Some scholars conditionally permit three-parent IVF when strictly necessary to prevent serious genetic diseases, not for routine use."
       },
       {
+        id: "islamic-medical-ethics-advanced-16",
         question: "How does Islamic ethics view the concept of brain death?",
         options: ["Equivalent to clinical death", "Not recognized as death", "Only with family consent", "Requires two doctors' confirmation"],
         correctAnswer: "Equivalent to clinical death",
         explanation: "Many Islamic scholars recognize brain death as actual death when properly diagnosed, permitting organ donation and cessation of life support."
       },
       {
+        id: "islamic-medical-ethics-advanced-17",
         question: "What is the Islamic approach to allocating scarce COVID vaccines?",
         options: ["First come first served", "Prioritize based on medical need and social benefit", "Only for Muslims", "Sell to highest bidders"],
         correctAnswer: "Prioritize based on medical need and social benefit",
         explanation: "Islamic ethics would prioritize healthcare workers, high-risk individuals, and those essential for societal functioning during a pandemic."
       },
       {
+        id: "islamic-medical-ethics-advanced-18",
         question: "How does Islam view the use of CRISPR gene editing?",
         options: ["Forbidden as playing God", "Permitted for somatic cell therapy", "Allowed for all applications", "Only for research purposes"],
         correctAnswer: "Permitted for somatic cell therapy",
         explanation: "Most scholars permit therapeutic gene editing of somatic (non-reproductive) cells to treat diseases, while prohibiting germline modifications."
       },
       {
+        id: "islamic-medical-ethics-advanced-19",
         question: "What is the Islamic perspective on medical patents?",
         options: ["Completely forbidden", "Permitted with reasonable limits", "Only for Muslim inventors", "No time restrictions"],
         correctAnswer: "Permitted with reasonable limits",
         explanation: "While knowledge should be shared, Islam permits reasonable intellectual property rights that don't prevent access to essential medicines."
       },
       {
+        id: "islamic-medical-ethics-advanced-20",
         question: "How should Muslim doctors handle requests for virginity certificates?",
         options: ["Always provide", "Refuse entirely", "Provide only medically accurate information", "Only for legal cases"],
         correctAnswer: "Provide only medically accurate information",
         explanation: "Doctors should provide factual medical information without moral judgments, while counseling patients about Islamic values regarding chastity."
       },
       {
+        id: "islamic-medical-ethics-advanced-21",
         question: "What is the Islamic ruling on face transplants?",
         options: ["Forbidden as altering Allah's creation", "Permitted for severe disfigurement", "Only partial transplants allowed", "Only for burn victims"],
         correctAnswer: "Permitted for severe disfigurement",
         explanation: "Most scholars permit face transplants when medically necessary to restore normal function and relieve severe psychological distress."
       },
       {
+        id: "islamic-medical-ethics-advanced-22",
         question: "How does Islamic ethics view the sale of human organs?",
         options: ["Permitted free market", "Completely forbidden", "Allowed with government regulation", "Only between family members"],
         correctAnswer: "Completely forbidden",
         explanation: "Islam prohibits commercial trade in human organs as it commodifies the human body, though altruistic donation is encouraged."
       },
       {
+        id: "islamic-medical-ethics-advanced-23",
         question: "What is the Islamic approach to psychedelic therapy?",
         options: ["Completely forbidden", "Permitted for treatment-resistant conditions", "Only natural psychedelics allowed", "No restrictions"],
         correctAnswer: "Permitted for treatment-resistant conditions",
         explanation: "Under strict medical supervision, some scholars permit psychedelic therapy for severe mental health conditions when conventional treatments fail."
       },
       {
+        id: "islamic-medical-ethics-advanced-24",
         question: "How should Islamic medical ethics approach artificial wombs?",
         options: ["Fully embrace the technology", "Reject entirely", "Evaluate based on medical necessity and ethical impact", "Only for research"],
         correctAnswer: "Evaluate based on medical necessity and ethical impact",
         explanation: "Islamic scholars would carefully evaluate artificial womb technology considering its impact on family structure and necessity for saving premature babies."
       },
       {
+        id: "islamic-medical-ethics-advanced-25",
         question: "What is the Islamic ruling on using pig-derived medical products?",
         options: ["Completely forbidden", "Permitted if no alternatives exist", "Only external use allowed", "Permitted if chemically transformed"],
         correctAnswer: "Permitted if no alternatives exist",
         explanation: "The principle of necessity (darura) allows using prohibited substances like porcine products when no alternatives exist to save life or health."
       },
       {
+        id: "islamic-medical-ethics-advanced-26",
         question: "How does Islam view the use of blockchain in medical records?",
         options: ["Forbidden as too complex", "Permitted if it enhances security and privacy", "Only for Muslim patients", "No need for such technology"],
         correctAnswer: "Permitted if it enhances security and privacy",
         explanation: "Islam encourages technologies that improve healthcare delivery and protect patient confidentiality, as long as they're ethically implemented."
       },
       {
+        id: "islamic-medical-ethics-advanced-27",
         question: "What is the Islamic perspective on neuroenhancement for healthy individuals?",
         options: ["Encouraged", "Permitted with limits", "Forbidden as unnecessary alteration", "Only for students"],
         correctAnswer: "Forbidden as unnecessary alteration",
         explanation: "Islamic ethics generally prohibits cognitive enhancement for healthy individuals as it constitutes unnecessary tampering with Allah's creation."
       },
       {
+        id: "islamic-medical-ethics-advanced-28",
         question: "What is the Islamic ruling on using human-animal chimeras for organ transplantation?",
         options: [
           "Completely permitted without restrictions",
@@ -960,6 +1068,7 @@ const  medicalEthicsCategory: QuizCategory = {
         explanation: "Some Islamic scholars conditionally permit human-animal chimeras for organ transplantation when there's critical need and no alternatives exist, provided strict ethical guidelines prevent the mixing of human and animal reproductive cells or neural tissues."
       },
       {
+        id: "islamic-medical-ethics-advanced-29",
         question: "How does Islamic medical ethics view the use of nanotechnology in targeted drug delivery?",
         options: [
           "Forbidden as it alters the body at molecular level",
@@ -971,12 +1080,14 @@ const  medicalEthicsCategory: QuizCategory = {
         explanation: "Islamic ethics generally permits nanotechnology in medicine when it demonstrates clear therapeutic benefits, undergoes rigorous safety testing, and receives proper ethical review, following the principle of 'bringing benefit and preventing harm' (jalb al-masalih wa dar' al-mafasid)."
       },
       {
+        id: "islamic-medical-ethics-advanced-30",
         question: "How should Muslim doctors approach cultural competency training?",
         options: ["Unnecessary", "Essential part of medical education", "Only about Muslim cultures", "Only for doctors abroad"],
         correctAnswer: "Essential part of medical education",
         explanation: "Islam teaches respect for all people, making cultural competency essential for providing sensitive, effective care to diverse populations."
       },
         {
+        id: "islamic-medical-ethics-advanced-31",
         question: "What is the official resolution of the International Islamic Fiqh Academy regarding human reproductive cloning via somatic cell nuclear transfer (SCNT)?",
         options: [
           "Permissible to help infertile couples have children",
@@ -989,6 +1100,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Resolution No. 100 (10/3), the Islamic Fiqh Academy categorically prohibited all forms of human reproductive cloning, affirming that it contradicts the divine design of spousal procreation (Surah an-Najm 53:45-46) and dismantles the foundational concept of kinship and parenthood.",
       },
       {
+        id: "islamic-medical-ethics-advanced-32",
         question: "In Islamic bioethics, what is the critical legal distinction between somatic cell gene editing and human germline (heritable) gene editing?",
         options: [
           "There is no legal difference between them",
@@ -1001,6 +1113,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic scholars permit gene therapy targeting somatic cells to cure illnesses like sickle cell disease. However, editing germline embryos intended for gestation is prohibited because it permanently alters the human genome across generations, opening the door to eugenics and designer babies.",
       },
       {
+        id: "islamic-medical-ethics-advanced-33",
         question: "Why did major Islamic Fiqh councils prohibit Mitochondrial Replacement Therapy (the 'three-parent baby' IVF technique)?",
         options: [
           "Because mitochondria contain no biological function",
@@ -1013,6 +1126,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic jurisprudence requires that an embryo's genetic makeup derive exclusively from the legal husband and wife. Introducing donor mitochondrial DNA creates ethical ambiguities over maternal genetic contribution and lineage integrity.",
       },
       {
+        id: "islamic-medical-ethics-advanced-34",
         question: "What is the stance of the Islamic Fiqh Academy regarding anencephalic infants (babies born without higher cerebral cortex) as prospective organ donors?",
         options: [
           "Their organs may be harvested immediately at birth regardless of vital signs",
@@ -1025,6 +1139,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Islamic Fiqh Academy Resolution No. 46 affirmed that anencephalic babies cannot have their lives prematurely ended or organs harvested while their brainstem maintains spontaneous breathing and heartbeat, preserving human sanctity until confirmed death.",
       },
       {
+        id: "islamic-medical-ethics-advanced-35",
         question: "Under what jurisprudential criteria may Artificial Nutrition and Hydration (ANH) via feeding tubes be withdrawn or withheld from a patient in an irreversible persistent vegetative state (PVS)?",
         options: [
           "It must always be maintained forever, even if the body is decaying",
@@ -1037,6 +1152,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Many contemporary jurists (including the Islamic Organization for Medical Sciences) classify artificial enteral/parenteral tube feeding as a medical intervention rather than basic sustenance. If physicians verify it causes harm or futilely prolongs dying, withholding it is permissible.",
       },
       {
+        id: "islamic-medical-ethics-advanced-36",
         question: "In bioethical triage during extreme disaster scenarios (such as ventilator shortages during a pandemic), which Islamic legal maxim guides resource allocation?",
         options: [
           "Al-Ghurmu bil-Ghunm (Risk belongs to the gainer)",
@@ -1049,6 +1165,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "When medical supplies cannot treat all patients, Islamic law applies 'Akhaf al-Dararayn' and 'Dir' al-Mafasid': triage must strictly rely on objective medical clinical indicators (survival likelihood and maximizing lives saved), strictly prohibiting discrimination by age, social rank, or wealth.",
       },
       {
+        id: "islamic-medical-ethics-advanced-37",
         question: "What is the Shariah ruling on pharmaceutical companies providing monetary kickbacks, luxury gifts, or sponsored recreational trips to physicians to incentivize prescribing their brand medications?",
         options: [
           "Permissible as customary commercial marketing discounts",
@@ -1061,6 +1178,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "In Musnad Ahmad, the Prophet (PBUH) declared: 'Gifts given to officials are bribery (Ghulul).' Such incentives corrupt medical impartiality, violate fiduciary duties to patients, and artificially increase healthcare costs, rendering them strictly unlawful.",
       },
       {
+        id: "islamic-medical-ethics-advanced-38",
         question: "What is the Islamic bioethical ruling regarding Xenotransplantation (transplanting animal organs or tissues, such as porcine bioprosthetic heart valves, into humans)?",
         options: [
           "Universally prohibited under all circumstances because all animals are impure",
@@ -1073,6 +1191,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "Under the principle 'Necessities make permissible what is forbidden' (Al-Darurat tubih al-mahzurat), the Islamic Organization for Medical Sciences (IOMS) and major Fiqh academies ruled that animal valves/tissues are lawful to save human life when no alternative is available.",
       },
       {
+        id: "islamic-medical-ethics-advanced-39",
         question: "What is the juristic controversy regarding the definition of 'Death' between whole-brain death criteria and traditional cardiopulmonary cessation in Islamic jurisprudence?",
         options: [
           "There has never been any scholarly debate",
@@ -1085,6 +1204,7 @@ const  medicalEthicsCategory: QuizCategory = {
           "While the OIC Fiqh Academy (1986) affirmed brain death as legal death, eminent scholars (including Shaykh Ibn Uthaymeen and certain juristic assemblies) maintained caution, requiring complete cessation of the cardiovascular system before treating the person as deceased for inheritance and organ retrieval.",
       },
       {
+        id: "islamic-medical-ethics-advanced-40",
         question: "What is the Islamic bioethical view on 'Transhumanism' and radical technological cognitive/physical enhancements for healthy humans?",
         options: [
           "Fully embraced as an obligatory religious goal",

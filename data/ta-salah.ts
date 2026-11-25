@@ -8,6 +8,7 @@ const salahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "ta-salah-easy-1",
         question: "இஸ்லாத்தில் தினசரி ஐந்து வேளைத் தொழுகையைக் குறிக்கும் அரபுச் சொல் எது?",
         options: ["ஸகாத்", "ஸவ்ம்", "ஸலாஹ்", "ஹஜ்"],
         correctAnswer: "ஸலாஹ்",
@@ -15,6 +16,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-easy-2",
         question: "முஸ்லிம்களுக்கு ஒரு நாளில் எத்தனை வேளை தொழுகை கடமையாக்கப்பட்டுள்ளது?",
         options: ["மூன்று", "நான்கு", "ஐந்து", "ஏழு"],
         correctAnswer: "ஐந்து",
@@ -22,6 +24,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 77"
       },
       {
+        id: "ta-salah-easy-3",
         question: "ஒரு நாளின் முதல் கடமையான தொழுகை எது?",
         options: ["ளுஹ்ர்", "ஃபஜ்ர்", "மஃக்ரிப்", "இஷா"],
         correctAnswer: "ஃபஜ்ர்",
@@ -29,6 +32,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "ta-salah-easy-4",
         question: "தொழுகையின் போது முஸ்லிம்கள் எந்தத் திசையை முன்னோக்குகிறார்கள்?",
         options: ["கிழக்கு", "வடக்கு", "கிப்லா", "மக்கா"],
         correctAnswer: "கிப்லா",
@@ -36,6 +40,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "ta-salah-easy-5",
         question: "உடலின் குறிப்பிட்ட உறுப்புகளைக் கழுவித் தூய்மைப்படுத்தும் தொழுகைக்கான முன்நிபந்தனை எது?",
         options: ["குஸ்ல்", "தயம்மும்", "உளூ", "இஸ்தின்ஜா"],
         correctAnswer: "உளூ",
@@ -43,6 +48,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 21"
       },
       {
+        id: "ta-salah-easy-6",
         question: "ஃபஜ்ர் கடமையான தொழுகையில் எத்தனை ரக்அத்கள் உள்ளன?",
         options: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
         correctAnswer: "இரண்டு",
@@ -50,6 +56,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "ta-salah-easy-7",
         question: "தொழுகையில் 'ரக்அத்' என்ற சொல் எதனைக் குறிக்கிறது?",
         options: ["தொழுகையின் ஒரு பகுதி/சுழற்சி", "ஒரு சஜ்தா", "ஒரு கிராஅத் ஓதுதல்", "ஒரு ருகூவு"],
         correctAnswer: "தொழுகையின் ஒரு பகுதி/சுழற்சி",
@@ -57,6 +64,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "ta-salah-easy-8",
         question: "தொழுகை (ஸலாஹ்) இஸ்லாத்தின் எத்தனையாவது தூணாகக் கருதப்படுகிறது?",
         options: ["முதலாவது", "இரண்டாவது", "மூன்றாவது", "ஐந்தாவது"],
         correctAnswer: "இரண்டாவது",
@@ -64,6 +72,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-easy-9",
         question: "கடமையான தொழுகையை வேண்டுமென்றே விடுவது எத்தகைய குற்றமாகும்?",
         options: ["சிறு பாவம்", "பெரும் பாவம்", "தண்டனை இல்லை", "அறிவுரை மட்டுமே"],
         correctAnswer: "பெரும் பாவம்",
@@ -71,6 +80,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "ta-salah-easy-10",
         question: "தொழுகைகளை உரிய நேரத்தில் நிறைவேற்றுவதன் நற்பலன் என்ன?",
         options: ["பாவங்கள் மன்னிக்கப்படுதல்", "சொர்க்கப் பிரவேசம்", "A மற்றும் B ஆகிய இரண்டும்", "குறிப்பிட்ட எதுவும் இல்லை"],
         correctAnswer: "A மற்றும் B ஆகிய இரண்டும்",
@@ -78,6 +88,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 85"
       },
       {
+        id: "ta-salah-easy-11",
         question: "ளுஹ்ர் கடமையான தொழுகையில் எத்தனை ரக்அத்கள் உள்ளன?",
         options: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
         correctAnswer: "நான்கு",
@@ -85,6 +96,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "ta-salah-easy-12",
         question: "சூரிய அஸ்தமனத்திற்குப் பின் உடனடியாகத் தொழப்படும் தொழுகையின் பெயர் என்ன?",
         options: ["அஸ்ர்", "மஃக்ரிப்", "இஷா", "ஃபஜ்ர்"],
         correctAnswer: "மஃக்ரிப்",
@@ -92,6 +104,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "ta-salah-easy-13",
         question: "கூட்டுத் தொழுகையில் (ஜமாஅத்தில்) பெண்கள் ஆண்களுக்குத் தலைமை தாங்கி இமாமத் செய்யலாமா?",
         options: ["ஆம், எப்போதும் செய்யலாம்", "இல்லை", "சிறப்புச் சூழல்களில் மட்டும்", "ஆண்கள் எவரும் இல்லையெனில் மட்டும்"],
         correctAnswer: "இல்லை",
@@ -99,6 +112,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 121"
       },
       {
+        id: "ta-salah-easy-14",
         question: "தொழுகையில் 'அதான்' (பாங்கு) என்றால் என்ன?",
         options: ["தொழுகைக்கான அழைப்பு", "உளூச் செய்தல்", "ஸஜ்தா செய்தல்", "ஜுமுஆ பிரசங்கம் (குத்பா)"],
         correctAnswer: "தொழுகைக்கான அழைப்பு",
@@ -106,6 +120,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 151"
       },
       {
+        id: "ta-salah-easy-15",
         question: "அஸ்ர் கடமையான தொழுகையில் எத்தனை ரக்அத்கள் உள்ளன?",
         options: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
         correctAnswer: "நான்கு",
@@ -113,6 +128,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "ta-salah-easy-16",
         question: "திருக்குர்ஆனின் கூற்றுப்படி தொழுகையின் நோக்கம் என்ன?",
         options: ["செல்வத்தைத் தேடுதல்", "அல்லாஹ்வை நினைவு கூருதல்", "சமூக உறவை வளர்த்தல்", "உடற்பயிற்சி செய்தல்"],
         correctAnswer: "அல்லாஹ்வை நினைவு கூருதல்",
@@ -120,6 +136,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-easy-17",
         question: "'இகாமத்' என்றால் என்ன?",
         options: ["தொழுகை தொடங்குவதற்கான இரண்டாவது அழைப்பு", "முதல் அழைப்பு (பாங்கு)", "உளூவிற்கான அழைப்பு", "தொழுகையின் முடிவு"],
         correctAnswer: "தொழுகை தொடங்குவதற்கான இரண்டாவது அழைப்பு",
@@ -127,6 +144,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 155"
       },
       {
+        id: "ta-salah-easy-18",
         question: "இஷா கடமையான தொழுகையில் எத்தனை ரக்அத்கள் உள்ளன?",
         options: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
         correctAnswer: "நான்கு",
@@ -134,6 +152,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "ta-salah-easy-19",
         question: "பின்வருவனவற்றில் உளூவை முறிப்பது எது?",
         options: ["உணவு உண்பது", "ஆழ்ந்து உறங்குவது", "நடப்பது", "பேசுவது"],
         correctAnswer: "ஆழ்ந்து உறங்குவது",
@@ -141,6 +160,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "ta-salah-easy-20",
         question: "தொழுகையில் 'குனூத்' என்றால் என்ன?",
         options: ["வித்ர் தொழுகையில் ஓதப்படும் பிரார்த்தனை", "ஒரு ருகூவு", "ஒரு ஸஜ்தா", "குர்ஆன் ஓதுதல்"],
         correctAnswer: "வித்ர் தொழுகையில் ஓதப்படும் பிரார்த்தனை",
@@ -148,6 +168,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "ta-salah-easy-21",
         question: "பயணத்தில் உள்ள ஒருவருக்குத் தொழுகை எவ்வாறு கடமையாகும்?",
         options: ["ஆம், முழுமையாகத் தொழ வேண்டும்", "சுருக்கித் தொழ வேண்டும் (கஸ்ர்)", "தொழுகை விலக்களிக்கப்படும்", "இரட்டிப்பாகத் தொழ வேண்டும்"],
         correctAnswer: "சுருக்கித் தொழ வேண்டும் (கஸ்ர்)",
@@ -155,6 +176,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 169"
       },
       {
+        id: "ta-salah-easy-22",
         question: "கூட்டுத் தொழுகையின் நன்மையைப் பெற குறைந்தபட்சம் எத்தனை நபர்கள் தேவை?",
         options: ["ஒருவர்", "இருவர்", "மூவர்", "நால்வர்"],
         correctAnswer: "இருவர்",
@@ -162,6 +184,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 117"
       },
       {
+        id: "ta-salah-easy-23",
         question: "தொழுகையில் 'ஸஜ்தா' என்றால் என்ன?",
         options: ["நிற்றல்", "குனிதல்", "சிரம்பணிதல் (நெற்றி நிலம்பட வீழ்தல்)", "அமர்தல்"],
         correctAnswer: "சிரம்பணிதல் (நெற்றி நிலம்பட வீழ்தல்)",
@@ -169,6 +192,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 105"
       },
       {
+        id: "ta-salah-easy-24",
         question: "தண்ணீர் கிடைக்காத போது உளூ இன்றி தொழலாமா?",
         options: ["கூடாது", "ஆம், தயம்மும் செய்து தொழலாம்", "வீட்டில் இருந்தால் மட்டுமே", "ஒருபோதும் தொழ முடியாது"],
         correctAnswer: "ஆம், தயம்மும் செய்து தொழலாம்",
@@ -176,6 +200,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 65"
       },
       {
+        id: "ta-salah-easy-25",
         question: "கூட்டுத் தொழுகையில் முதல் வரிசையில் நிற்பவருக்குரிய நன்மை என்ன?",
         options: ["வழக்கமான நன்மை", "மிக உயர்ந்த நற்பலன்", "நன்மை இல்லை", "அரைப்பங்கு நன்மை"],
         correctAnswer: "மிக உயர்ந்த நற்பலன்",
@@ -183,6 +208,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 119"
       },
       {
+        id: "ta-salah-easy-26",
         question: "தொழுகையில் உள்ள கடமையான அடிப்படைத் தூண்கள் (அர்கான்கள்) எத்தனை?",
         options: ["ஐந்து", "ஆறு", "ஏழு", "பதினான்கு"],
         correctAnswer: "பதினான்கு",
@@ -190,6 +216,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "ta-salah-easy-27",
         question: "தொழுகையில் 'ருகூவு' என்றால் என்ன?",
         options: ["சிரம்பணிதல்", "குனிதல் (இறைவனைப் போற்றுதல்)", "நிற்றல்", "அமர்தல்"],
         correctAnswer: "குனிதல் (இறைவனைப் போற்றுதல்)",
@@ -197,6 +224,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "ta-salah-easy-28",
         question: "ஜுமுஆ (வெள்ளிக்கிழமை) தொழுகை பெண்கள் மீது கட்டாயக் கடமையா?",
         options: ["ஆம்", "இல்லை; ஆனால் விரும்பத்தக்கது", "இயன்றால் மட்டுமே", "முற்றிலும் விலக்களிக்கப்பட்டது"],
         correctAnswer: "இல்லை; ஆனால் விரும்பத்தக்கது",
@@ -204,6 +232,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 193"
       },
       {
+        id: "ta-salah-easy-29",
         question: "ஹதீஸின்படி தொழுகையின் ஆன்மீகப் பயன் என்ன?",
         options: ["உள்ளத்தைத் தூய்மைப்படுத்துதல்", "செல்வம் ஈட்டுதல்", "எதிரிகளை எதிர்த்துப் போரிடுதல்", "பயணம் மேற்கொள்வது"],
         correctAnswer: "உள்ளத்தைத் தூய்மைப்படுத்துதல்",
@@ -211,6 +240,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-easy-30",
         question: "மஃக்ரிப் கடமையான தொழுகையில் எத்தனை ரக்அத்கள் உள்ளன?",
         options: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
         correctAnswer: "மூன்று",
@@ -220,6 +250,7 @@ const salahCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "ta-salah-intermediate-1",
         question: "காலணிகள் (ஷூ/செருப்பு) அணிந்து தொழுவதன் மார்க்கத் தீர்ப்பு என்ன?",
         options: ["முற்றிலும் தடுக்கப்பட்டது", "அவை தூய்மையாக இருந்தால் கூடும்", "ஆண்களுக்கு மட்டுமே கூடும்", "பள்ளிவாசலுக்கு வெளியே மட்டுமே கூடும்"],
         correctAnswer: "அவை தூய்மையாக இருந்தால் கூடும்",
@@ -227,6 +258,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "ta-salah-intermediate-2",
         question: "தொழுகையின் போது ஆண்கள் மறைக்க வேண்டிய குறைந்தபட்ச உடற்பகுதி (அவ்ரத்) எது?",
         options: ["தொப்புள் முதல் முழங்கால் வரை", "முகம் தவிர்த்து உடல் முழுவதும்", "மறைவிட உறுப்புகள் மட்டும்", "தோள்பட்டை முதல் கணுக்கால் வரை"],
         correctAnswer: "தொப்புள் முதல் முழங்கால் வரை",
@@ -234,6 +266,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 87"
       },
       {
+        id: "ta-salah-intermediate-3",
         question: "ருகூவு மற்றும் ஸஜ்தாவில் திருக்குர்ஆன் வசனங்களை ஓதுவதன் சட்டம் என்ன?",
         options: ["அனுமதிக்கப்பட்டது", "தடை செய்யப்பட்டது", "விரும்பத்தக்கது", "கடமை"],
         correctAnswer: "தடை செய்யப்பட்டது",
@@ -241,6 +274,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "ta-salah-intermediate-4",
         question: "நகரும் வாகனத்தில் (ரயில்/விமானம்/கப்பல்) தொழுவதன் மார்க்கத் தீர்ப்பு என்ன?",
         options: ["செல்லாது", "நிபந்தனைகளுடன் கூடும்", "பயணிகளுக்கு மட்டுமே", "எந்த நேரத்திலும் வழக்கம் போல கூடும்"],
         correctAnswer: "நிபந்தனைகளுடன் கூடும்",
@@ -248,6 +282,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "ta-salah-intermediate-5",
         question: "ளுஹ்ர் தொழுகைக்கான நேர வரம்பு எது?",
         options: ["சூரிய உதயம் முதல் உச்சி வரை", "சூரியன் உச்சியிலிருந்து சாய்ந்தது முதல் ஒரு பொருளின் நிழல் அதன் அளவுக்குச் சமமாகும் வரை", "நண்பகல் முதல் அஸ்ர் முடியும் வரை", "நண்பகல் முதல் சூரிய அஸ்தமனம் வரை"],
         correctAnswer: "சூரியன் உச்சியிலிருந்து சாய்ந்தது முதல் ஒரு பொருளின் நிழல் அதன் அளவுக்குச் சமமாகும் வரை",
@@ -255,6 +290,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "ta-salah-intermediate-6",
         question: "பயணத்தின் போது தொழுகைகளைச் சேர்த்துத் தொழுவதன் (ஜம்உ) சட்டம் என்ன?",
         options: ["அனுமதிக்கப்படவில்லை", "ளுஹ்ர் மற்றும் அஸ்ருக்கு மட்டுமே கூடும்", "மஃக்ரிப் மற்றும் இஷாவுக்கு மட்டுமே கூடும்", "ளுஹ்ர்-அஸ்ர் மற்றும் மஃக்ரிப்-இஷா ஆகியவற்றைச் சேர்த்துத் தொழ அனுமதிக்கப்பட்டுள்ளது"],
         correctAnswer: "ளுஹ்ர்-அஸ்ர் மற்றும் மஃக்ரிப்-இஷா ஆகியவற்றைச் சேர்த்துத் தொழ அனுமதிக்கப்பட்டுள்ளது",
@@ -262,6 +298,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 171"
       },
       {
+        id: "ta-salah-intermediate-7",
         question: "பயணத்தின் போது சுன்னத் தொழுகைகளைத் தொழுவதன் சட்டம் என்ன?",
         options: ["கடமையானது", "விரும்பத்தக்கது (சுன்னத்)", "விரும்பத்தகாதது", "தடை செய்யப்பட்டது"],
         correctAnswer: "விரும்பத்தக்கது (சுன்னத்)",
@@ -269,6 +306,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 173"
       },
       {
+        id: "ta-salah-intermediate-8",
         question: "தயம்மும்மை முறிப்பது எது?",
         options: ["உணவு உண்பது", "உறங்குவது", "தண்ணீர் கிடைத்து அதைப் பயன்படுத்தும் வாய்ப்பு ஏற்படுவது", "மேற்கண்ட அனைத்தும்"],
         correctAnswer: "தண்ணீர் கிடைத்து அதைப் பயன்படுத்தும் வாய்ப்பு ஏற்படுவது",
@@ -276,6 +314,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 71"
       },
       {
+        id: "ta-salah-intermediate-9",
         question: "கூட்டுத் தொழுகையில் இமாமைப் பின்பற்றுவதாக எண்ணம் (நிய்யத்) கொள்வதன் சட்டம் என்ன?",
         options: ["அவசியமில்லை", "கட்டாயக் கடமை (வாஜிப்/ஃபர்ள்)", "விரும்பத்தக்கது மட்டுமே", "தொழுகையை முறித்துவிடும்"],
         correctAnswer: "கட்டாயக் கடமை (வாஜிப்/ஃபர்ள்)",
@@ -283,6 +322,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 117"
       },
       {
+        id: "ta-salah-intermediate-10",
         question: "தவறிப்போன தொழுகைகளை களாச் செய்து நிறைவேற்றுவதன் சட்டம் என்ன?",
         options: ["தேவையில்லை", "சமீபத்தில் விடுபட்டதற்கு மட்டுமே தேவை", "எப்போதும் கடமையாகும்", "ஃபஜ்ர் தொழுகைக்கு மட்டுமே தேவை"],
         correctAnswer: "எப்போதும் கடமையாகும்",
@@ -290,6 +330,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 185"
       },
       {
+        id: "ta-salah-intermediate-11",
         question: "ஒவ்வொரு ரக்அத்திலும் ஓத வேண்டிய குறைந்தபட்ச அத்தியாவசிய ஓதல் எது?",
         options: ["சூரா அல்-ஃபாத்திஹா மட்டும்", "குர்ஆனின் ஏதேனும் ஒரு வசனம்", "சூரா அல்-ஃபாத்திஹாவும் மற்றொரு சூராவும்", "குறிப்பிட்ட எந்த வரம்பும் இல்லை"],
         correctAnswer: "சூரா அல்-ஃபாத்திஹா மட்டும்",
@@ -297,6 +338,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 99"
       },
       {
+        id: "ta-salah-intermediate-12",
         question: "நோயின் காரணமாக அமர்ந்து தொழுவதன் சட்ட நிலை என்ன?",
         options: ["செல்லாது", "நிபந்தனையுடன் செல்லும் (கூடும்)", "முதியவர்களுக்கு மட்டுமே", "ஃபர்ள் தொழுகைகளுக்கு மட்டுமே கூடும்"],
         correctAnswer: "நிபந்தனையுடன் செல்லும் (கூடும்)",
@@ -304,6 +346,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "ta-salah-intermediate-13",
         question: "ஃபஜ்ர் தொழுகைக்கான நேர வரம்பு எது?",
         options: ["அதிகாலை வைகறை (சுப்ஹ் சாதிக்) முதல் சூரிய உதயம் வரை", "நள்ளிரவு முதல் சூரிய உதயம் வரை", "விடியல் முதல் முழுப் பகல் வரை", "அதிகாலை முதல் நண்பகல் வரை"],
         correctAnswer: "அதிகாலை வைகறை (சுப்ஹ் சாதிக்) முதல் சூரிய உதயம் வரை",
@@ -311,6 +354,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "ta-salah-intermediate-14",
         question: "ஃபஜ்ர், மஃக்ரிப், மற்றும் இஷா தொழுகைகளில் சப்தமிட்டு (ஜஹ்ராக) ஓதுவதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை", "சுன்னத் (விரும்பத்தக்கது)", "விருப்பத் தேர்வு", "தடை செய்யப்பட்டது"],
         correctAnswer: "சுன்னத் (விரும்பத்தக்கது)",
@@ -318,6 +362,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "ta-salah-intermediate-15",
         question: "உளூவில் சந்தேகம் உள்ள ஒரு இமாமின் பின்னால் தொழுகை கூடுவதன் சட்டம் என்ன?",
         options: ["செல்லும்", "செல்லாது", "மக்ரூஹ்", "வேறு இமாம் இல்லாத போது மட்டுமே"],
         correctAnswer: "செல்லும்",
@@ -325,6 +370,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 123"
       },
       {
+        id: "ta-salah-intermediate-16",
         question: "அரபு அல்லாத வேறு மொழிகளில் தொழுகையின் குர்ஆன் வசனங்களை ஓதுவதன் சட்டம் என்ன?",
         options: ["அரபு அறியாதவர்களுக்குக் கூடும்", "புதிதாக இஸ்லாத்தைத் தழுவியவர்களுக்கு மட்டுமே", "கூடாது (செல்லாது)", "நபில் தொழுகைகளுக்கு மட்டுமே கூடும்"],
         correctAnswer: "கூடாது (செல்லாது)",
@@ -332,6 +378,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 99"
       },
       {
+        id: "ta-salah-intermediate-17",
         question: "உடலிலோ ஆடையிலோ அசுத்தம் (நஜஸ்) உள்ள நிலையில் தொழுவதன் சட்டம் என்ன?",
         options: ["செல்லாது", "குறைந்த அளவாக இருந்தால் செல்லும்", "அறியாமல் இருந்தால் செல்லும்", "நீக்கக் கடினமாக இருந்தால் செல்லும்"],
         correctAnswer: "செல்லாது",
@@ -339,6 +386,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "ta-salah-intermediate-18",
         question: "சூரியன் மஞ்சள் நிறமாகும் வரை அஸ்ர் தொழுகையைப் பிந்தப்படுத்துவதன் சட்டம் என்ன?",
         options: ["கூடும்", "மக்ரூஹ் (வெறுக்கத்தக்கது)", "விரும்பத்தக்கது", "தடை செய்யப்பட்டது"],
         correctAnswer: "மக்ரூஹ் (வெறுக்கத்தக்கது)",
@@ -346,6 +394,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "ta-salah-intermediate-19",
         question: "சூரிய உதயம், உச்சி நேரம், மற்றும் அஸ்தமன நேரங்களில் நஃபில் தொழுகை தொழுவதன் சட்டம் என்ன?",
         options: ["கூடும்", "விரும்பத்தக்கது", "மக்ரூஹ்", "தடை செய்யப்பட்டது (ஹராம்/தடுக்கப்பட்ட நேரம்)"],
         correctAnswer: "தடை செய்யப்பட்டது (ஹராம்/தடுக்கப்பட்ட நேரம்)",
@@ -353,6 +402,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 147"
       },
       {
+        id: "ta-salah-intermediate-20",
         question: "ஜுமுஆ தொழுகைக்குத் தேவையான குறைந்தபட்ச நபர்களின் எண்ணிக்கை என்ன?",
         options: ["மூன்று", "ஐந்து", "நாற்பது", "குறிப்பிட்ட வரம்பில்லை (ஜமாஅத் அமைந்தால் கூடும்)"],
         correctAnswer: "குறிப்பிட்ட வரம்பில்லை (ஜமாஅத் அமைந்தால் கூடும்)",
@@ -360,6 +410,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 191"
       },
       {
+        id: "ta-salah-intermediate-21",
         question: "உணவு பரிமாறப்பட்டு மிகுந்த பசியோடு இருக்கும் போது தொழுகையின் நிலை என்ன?",
         options: ["தொழுகையைத் தொடர வேண்டும்", "தொழுகையை நிறுத்திவிட்டு முதலில் உணவு உண்ண வேண்டும்", "மிகக் கடுமையான பசி இருந்தால் மட்டுமே", "விரைவாகத் தொழுதுவிட்டு உண்ண வேண்டும்"],
         correctAnswer: "தொழுகையை நிறுத்திவிட்டு முதலில் உணவு உண்ண வேண்டும்",
@@ -367,6 +418,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 149"
       },
       {
+        id: "ta-salah-intermediate-22",
         question: "கல்லறைகள் உள்ள மையவாடியில் தொழுவதன் சட்டம் என்ன?",
         options: ["கூடும்", "மக்ரூஹ்", "தடை செய்யப்பட்டது", "ஜனாஸா தொழுகைக்கு மட்டுமே கூடும்"],
         correctAnswer: "தடை செய்யப்பட்டது",
@@ -374,6 +426,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "ta-salah-intermediate-23",
         question: "பூமியோடு இணைந்த அல்லது தரையில் உறுதியாகப் படும் பொருளின் மீது ஸஜ்தா செய்வதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை", "விரும்பத்தக்கது", "அனுமதிக்கப்பட்டது", "தேவையில்லை"],
         correctAnswer: "கட்டாயக் கடமை",
@@ -381,6 +434,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 105"
       },
       {
+        id: "ta-salah-intermediate-24",
         question: "உயிரினங்களின் படங்கள் உள்ள ஆடையை அணிந்து தொழுவதன் சட்டம் என்ன?",
         options: ["கூடும்", "மக்ரூஹ் (வெறுக்கத்தக்கது)", "முற்றிலும் தடையானது", "சிறிய படமாக இருந்தால் கூடும்"],
         correctAnswer: "மக்ரூஹ் (வெறுக்கத்தக்கது)",
@@ -388,6 +442,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "ta-salah-intermediate-25",
         question: "தொழுகையில் பிஸ்மில்லாஹ்வை சப்தமிட்டு ஓதுவதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை", "விரும்பத்தக்கது", "விருப்பத் தேர்வு (மெதுவாகவோ சப்தமிட்டோ ஓதலாம்)", "தடை செய்யப்பட்டது"],
         correctAnswer: "விருப்பத் தேர்வு (மெதுவாகவோ சப்தமிட்டோ ஓதலாம்)",
@@ -395,6 +450,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "ta-salah-intermediate-26",
         question: "இயற்கைக் கடன்களை (மலம்/சிறுநீர்) அடக்கிக் கொண்டு தொழுவதன் சட்டம் என்ன?",
         options: ["செல்லும்", "செல்லாது", "மக்ரூஹ் (வெறுக்கத்தக்கது)", "அவசரமாக இருந்தால் மட்டுமே"],
         correctAnswer: "மக்ரூஹ் (வெறுக்கத்தக்கது)",
@@ -402,6 +458,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "ta-salah-intermediate-27",
         question: "தொழுகையைத் தொடங்கும் தக்பீரத்துல் இஹ்ராமில் கைகளை உயர்த்துவதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை", "சுன்னத் (விரும்பத்தக்கது)", "விருப்பத் தேர்வு", "தடை செய்யப்பட்டது"],
         correctAnswer: "சுன்னத் (விரும்பத்தக்கது)",
@@ -409,6 +466,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 97"
       },
       {
+        id: "ta-salah-intermediate-28",
         question: "இரவு நஃபில் தொழுகைகளை அமர்ந்து தொழுவதன் சட்டம் என்ன?",
         options: ["அனுமதிக்கப்பட்டது", "செல்லாது", "நோயாளிக்கு மட்டுமே", "பாதி நன்மையுடன்"],
         correctAnswer: "அனுமதிக்கப்பட்டது",
@@ -416,6 +474,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "ta-salah-intermediate-29",
         question: "சூரா அல்-ஃபாத்திஹாவிற்குப் பிறகு 'ஆமீன்' கூறுவதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை", "சுன்னத் (விரும்பத்தக்கது)", "விருப்பத் தேர்வு", "தடை செய்யப்பட்டது"],
         correctAnswer: "சுன்னத் (விரும்பத்தக்கது)",
@@ -423,6 +482,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "ta-salah-intermediate-30",
         question: "தொழுகையின் இறுதியில் ஸலாம் கொடுப்பதன் மார்க்கத் தீர்ப்பு என்ன?",
         options: ["கட்டாயக் கடமை (ஃபர்ள்/ருக்னு)", "விரும்பத்தக்கது", "விருப்பத் தேர்வு", "தடை செய்யப்பட்டது"],
         correctAnswer: "கட்டாயக் கடமை (ஃபர்ள்/ருக்னு)",
@@ -432,6 +492,7 @@ const salahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "ta-salah-advanced-1",
         question: "ஹனஃபி ஃபிக்ஹின்படி தகுந்த காரணமின்றி தொழுகையை நேரம் கடத்துவதன் சட்டம் என்ன?",
         options: ["மக்ரூஹ்", "ஹராம் (பாவமானது)", "முபாஹ் (அனுமதிக்கப்பட்டது)", "வாஜிப்"],
         correctAnswer: "ஹராம் (பாவமானது)",
@@ -439,6 +500,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "ta-salah-advanced-2",
         question: "ஃபஜ்ர் கூட்டுத் தொழுகையின் நன்மையை விளக்கும் ஹதீஸின் கருத்து என்ன?",
         options: ["ஒரு இரவு முழுவதும் நோன்பு நோற்பதற்கு நிகரானது", "27 மடங்கு தொழுகைகளுக்கு நிகரானது", "ஹஜ்ஜுக்கு நிகரானது", "தர்மத்திற்கு நிகரானது"],
         correctAnswer: "27 மடங்கு தொழுகைகளுக்கு நிகரானது",
@@ -446,6 +508,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 119"
       },
       {
+        id: "ta-salah-advanced-3",
         question: "ஷாஃபிஈ ஃபிக்ஹின்படி தொழுகையின் அத்தியாவசியத் தூண்கள் (அர்கான்கள்) எத்தனை?",
         options: ["12", "13", "14", "17"],
         correctAnswer: "17",
@@ -453,6 +516,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "ta-salah-advanced-4",
         question: "மஸ்ஜிதுல் ஹராமில் தொழப்படும் தொழுகைக்கான சிறப்புக் கூலி என்ன?",
         options: ["1000 மடங்கு நன்மை", "500 மடங்கு", "27 மடங்கு", "100,000 மடங்கு"],
         correctAnswer: "1000 மடங்கு நன்மை",
@@ -460,6 +524,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "ta-salah-advanced-5",
         question: "பெரும்பாலான சட்ட அறிஞர்களின்படி தொழுகையை உடனடியாக முறிப்பது எது?",
         options: ["வேண்டுமென்றே பேசுவது", "இருமல்", "கொட்டாவி விடுவது", "சிறிதளவு அசைவது"],
         correctAnswer: "வேண்டுமென்றே பேசுவது",
@@ -467,6 +532,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 115"
       },
       {
+        id: "ta-salah-advanced-6",
         question: "ஹதீஸின்படி தொழுகையைக் கைவிடுவதன் கடுமையான எச்சரிக்கை என்ன?",
         options: ["நயவஞ்சகன்", "இஸ்லாமிய வரம்பை விட்டும் வெளியேறுதல் (குஃப்ர்)", "சிறு பாவம் மட்டுமே", "தண்டனை இல்லை"],
         correctAnswer: "இஸ்லாமிய வரம்பை விட்டும் வெளியேறுதல் (குஃப்ர்)",
@@ -474,6 +540,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "ta-salah-advanced-7",
         question: "மாலிகி ஃபிக்ஹின்படி அந்நியப் பெண்ணைத் தொடுவது உளூவை முறிக்குமா?",
         options: ["ஆம், எப்போதும் முறிக்கும்", "இல்லை, இச்சை அல்லது உணர்ச்சியோடு தொட்டால் மட்டுமே முறிக்கும்", "காம உணர்வு இருந்தால் மட்டுமே", "ஒருபோதும் முறிக்காது"],
         correctAnswer: "இல்லை, இச்சை அல்லது உணர்ச்சியோடு தொட்டால் மட்டுமே முறிக்கும்",
@@ -481,6 +548,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "ta-salah-advanced-8",
         question: "'ஸலாத்துழ் ளுஹா' (முற்பகல் தொழுகை) என்பதன் சட்ட நிலை என்ன?",
         options: ["ஃபர்ள் தொழுகை", "சுன்னத் முஅக்கதா", "நஃபில் (உபரியான விரும்பத்தக்கத் தொழுகை)", "வித்ர்"],
         correctAnswer: "நஃபில் (உபரியான விரும்பத்தக்கத் தொழுகை)",
@@ -488,6 +556,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 145"
       },
       {
+        id: "ta-salah-advanced-9",
         question: "நபிமொழியின்படி சொர்க்கத்தின் திறவுகோலாக வர்ணிக்கப்படுவது எது?",
         options: ["நோன்பு", "ஸகாத்", "ஸலாஹ் (தொழுகை)", "ஷஹாதா"],
         correctAnswer: "ஸலாஹ் (தொழுகை)",
@@ -495,6 +564,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-advanced-10",
         question: "ஹன்பலி ஃபிக்ஹின்படி ஸஜ்தா நிலையிலுள்ள இமாமைப் பின்பற்றுவதன் நிலை என்ன?",
         options: ["செல்லாது", "வேறு வழியின்றி இணையும் போது செல்லும்", "எப்போதும் செல்லும்", "மக்ரூஹ்"],
         correctAnswer: "வேறு வழியின்றி இணையும் போது செல்லும்",
@@ -502,6 +572,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 123"
       },
       {
+        id: "ta-salah-advanced-11",
         question: "'இஸ்திஸ்கா' தொழுகை எதற்காகத் தொழப்படுகிறது?",
         options: ["மழை வேண்டி", "பாவமன்னிப்பிற்காக", "பயணத்திற்காக", "நோயிலிருந்து குணமடைய"],
         correctAnswer: "மழை வேண்டி",
@@ -509,6 +580,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 209"
       },
       {
+        id: "ta-salah-advanced-12",
         question: "அஹ்லுஸ் சுன்னாவின் பெரும்பாலான வழக்கத்தின்படி வித்ர் தொழுகை எத்தனை ரக்அத்கள்?",
         options: ["ஒரு ரக்அத் மட்டுமே", "மூன்று ரக்அத்கள்", "பதினொரு ரக்அத்கள்", "பதின்மூன்று ரக்அத்கள்"],
         correctAnswer: "மூன்று ரக்அத்கள்",
@@ -516,6 +588,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 141"
       },
       {
+        id: "ta-salah-advanced-13",
         question: "ளுஹ்ரையும் அஸ்ரையும் சேர்த்துத் தொழுவதற்கான (ஜம்உ) காரணங்கள் யாவை?",
         options: ["ஒருபோதும் கூடாது", "பயணத்தில் மட்டுமே", "மழை அல்லது தகுந்த சிரமமான சூழலில்", "எந்த நேரத்திலும்"],
         correctAnswer: "மழை அல்லது தகுந்த சிரமமான சூழலில்",
@@ -523,6 +596,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 171"
       },
       {
+        id: "ta-salah-advanced-14",
         question: "ஹதீஸில் தீய செயல்களைத் தடுப்பதில் தொழுகையின் பங்கு எவ்வாறு உவமிக்கப்பட்டுள்ளது?",
         options: ["மானக்கேடான செயல்களைத் தடுப்பதில் ஆற்றல் மிக்கது", "தொழுகை விபச்சாரத்தை உண்டாக்கும்", "எந்தத் தொடர்பும் இல்லை", "பாவங்கள் தொழுகையைத் தடுக்கும்"],
         correctAnswer: "மானக்கேடான செயல்களைத் தடுப்பதில் ஆற்றல் மிக்கது",
@@ -530,6 +604,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-advanced-15",
         question: "தொழுகையில் 'அத்தஹிய்யாத்' (தஷஹ்ஹுத்) அமர்வில் என்ன செய்யப்படுகிறது?",
         options: ["அமர்ந்த நிலையில் ஷஹாதா மற்றும் ஸலவாத் ஓதி சாட்சி பகர்தல்", "சூரா பாத்திஹா ஓதுதல்", "தக்பீர் கூறுதல் மட்டும்", "தஸ்பீஹ் மட்டும்"],
         correctAnswer: "அமர்ந்த நிலையில் ஷஹாதா மற்றும் ஸலவாத் ஓதி சாட்சி பகர்தல்",
@@ -537,6 +612,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 109"
       },
       {
+        id: "ta-salah-advanced-16",
         question: "ஷாஃபிஈ மத்ஹபின்படி ஆண்களின் ஆடை முழங்காலை மறைப்பது அவசியமா?",
         options: ["ஆம்", "இல்லை, விரும்பத்தக்கது மட்டுமே", "கூட்டுத் தொழுகையில் மட்டுமே", "ஒருபோதும் தேவையில்லை"],
         correctAnswer: "ஆம்",
@@ -544,6 +620,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 87"
       },
       {
+        id: "ta-salah-advanced-17",
         question: "தினமும் 12 ரக்அத்கள் சுன்னத் தொழுபவருக்கு ஹதீஸில் வாக்களிக்கப்பட்ட பரிசு என்ன?",
         options: ["சொர்க்கத்தில் ஒரு மாளிகை", "பாவமன்னிப்பு மட்டும்", "10 ஆண்டுகள் வணங்கிய நன்மை", "1000 நன்மைகள்"],
         correctAnswer: "சொர்க்கத்தில் ஒரு மாளிகை",
@@ -551,6 +628,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 145"
       },
       {
+        id: "ta-salah-advanced-18",
         question: "ஹனஃபி ஃபிக்ஹின்படி உளூவை முறிக்கும் மற்றொரு உடல் வெளிப்பாடு எது?",
         options: ["சிரிப்பு", "இரத்தம் வழிந்தோடி வெளியேறுதல்", "பேரீச்சம்பழம் உண்பது", "நடப்பது"],
         correctAnswer: "இரத்தம் வழிந்தோடி வெளியேறுதல்",
@@ -558,6 +636,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "ta-salah-advanced-19",
         question: "'தராவீஹ்' தொழுகை என்றால் என்ன?",
         options: ["ரமளான் மாத இரவுத் தொழுகை", "ஜனாஸா தொழுகை", "கிரகணத் தொழுகை", "அச்ச நேரத் தொழுகை"],
         correctAnswer: "ரமளான் மாத இரவுத் தொழுகை",
@@ -565,6 +644,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "ta-salah-advanced-20",
         question: "பக்குவப்படுத்தப்படாத (பதனிடப்படாத) விலங்குத் தோலின் மீது தொழுவதன் சட்டம் என்ன?",
         options: ["பதனிடப்படாவிட்டால் தொழுகை கூடாது", "எப்போதும் கூடும்", "கம்பளியாக இருந்தால் மட்டுமே கூடும்", "கூடவே கூடாது"],
         correctAnswer: "பதனிடப்படாவிட்டால் தொழுகை கூடாது",
@@ -572,6 +652,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "ta-salah-advanced-21",
         question: "ஹதீஸில் தொழுகை எவ்வாறு ஒளியாக (நூராக) வர்ணிக்கப்பட்டுள்ளது?",
         options: ["நம்பிக்கையாளரின் முகத்தில் ஒளி", "உள்ளத்தில் ஒளி", "மறுமைப் பாதையில் வழிகாட்டும் ஒளி", "மேற்கூறிய அனைத்தும்"],
         correctAnswer: "மேற்கூறிய அனைத்தும்",
@@ -579,6 +660,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-advanced-22",
         question: "'ஸலாத்துல் குஸூஃப்' என்றால் என்ன?",
         options: ["சூரிய / சந்திர கிரகணத் தொழுகை", "மழைத் தொழுகை", "வெற்றித் தொழுகை", "நோய்க்கான தொழுகை"],
         correctAnswer: "சூரிய / சந்திர கிரகணத் தொழுகை",
@@ -586,6 +668,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 207"
       },
       {
+        id: "ta-salah-advanced-23",
         question: "மாலிகி மத்ஹபின்படி தொழுகைக்கான நிய்யத் நாவால் உச்சரிக்கப்பட வேண்டுமா?",
         options: ["ஆம்", "இல்லை, உள்ளத்தில் நினைப்பதே போதுமானது", "இரண்டும்", "தேவையில்லை"],
         correctAnswer: "இல்லை, உள்ளத்தில் நினைப்பதே போதுமானது",
@@ -593,6 +676,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "ta-salah-advanced-24",
         question: "மையவாடியில் தொழுகை நிறைவேற்றுவதன் பொதுவான ஃபிக்ஹ் நிலை என்ன?",
         options: ["தடை செய்யப்பட்டது (ஹராம்)", "மெதுவாக ஓதித் தொழலாம்", "விரும்பத்தக்கது", "ஜனாஸா மட்டுமே கூடும்"],
         correctAnswer: "தடை செய்யப்பட்டது (ஹராம்)",
@@ -600,6 +684,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "ta-salah-advanced-25",
         question: "ஹன்பலி ஃபிக்ஹின்படி ருகூவு மற்றும் ஸஜ்தாவில் தஸ்பீஹ் குறைந்தபட்சம் எத்தனை முறை கூறப்பட வேண்டும்?",
         options: ["ஒவ்வொன்றிலும் மூன்று முறை", "ஒவ்வொன்றிலும் ஐந்து முறை", "ஸஜ்தாவில் ஏழு முறை", "மொத்தம் பத்து முறை"],
         correctAnswer: "ஒவ்வொன்றிலும் மூன்று முறை",
@@ -607,6 +692,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "ta-salah-advanced-26",
         question: "தொழுகையை ஒரு முஃமினின் விண்ணுலகப் பயணம் (மிஃராஜ்) எனக் குறிப்பிடும் கூற்று எது?",
         options: ["இரவுப் பயணம்", "தினசரி ஏறுமுகம்", "நபியின் அற்புதம்", "முஃமினின் மிஃராஜ்"],
         correctAnswer: "முஃமினின் மிஃராஜ்",
@@ -614,6 +700,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "ta-salah-advanced-27",
         question: "'இஸ்திகாரா' தொழுகை என்றால் என்ன?",
         options: ["நல்வழிகாட்டல் மற்றும் முடிவுக்கான தொழுகை", "பாவமன்னிப்புத் தொழுகை", "மழைத் தொழுகை", "வெற்றித் தொழுகை"],
         correctAnswer: "நல்வழிகாட்டல் மற்றும் முடிவுக்கான தொழுகை",
@@ -621,6 +708,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 147"
       },
       {
+        id: "ta-salah-advanced-28",
         question: "ஷாஃபிஈ மத்ஹபில் ஃபஜ்ர் தொழுகையில் குனூத் ஓதுவதன் சட்டம் என்ன?",
         options: ["கட்டாயக் கடமை (ஃபர்ள்)", "சுன்னத் முஅக்கதா (வலியுறுத்தப்பட்ட சுன்னத்)", "சிரமமான காலங்களில் மட்டும்", "ஒருபோதும் ஓதக்கூடாது"],
         correctAnswer: "சுன்னத் முஅக்கதா (வலியுறுத்தப்பட்ட சுன்னத்)",
@@ -628,6 +716,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "ta-salah-advanced-29",
         question: "தொழுகையில் நெஞ்சில் கைகளைக் கட்டி நிற்பதன் மார்க்கத் தீர்ப்பு என்ன?",
         options: ["கட்டாயக் கடமை", "சுன்னத் (நபிவழி)", "மக்ரூஹ்", "தடை செய்யப்பட்டது"],
         correctAnswer: "சுன்னத் (நபிவழி)",
@@ -635,6 +724,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 97"
       },
       {
+        id: "ta-salah-advanced-30",
         question: "ஹதீஸின்படி கடமையான தொழுகைக்கு அடுத்தபடியாக மிகச் சிறந்த தொழுகை எது?",
         options: ["தஹஜ்ஜுத் (இரவுத் தொழுகை)", "வித்ர்", "ளுஹா", "ஸலாத்துத் தஸ்பீஹ்"],
         correctAnswer: "தஹஜ்ஜுத் (இரவுத் தொழுகை)",

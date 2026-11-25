@@ -116,7 +116,7 @@ console.log(
   quizData.map((cat) => `${cat.id} (${cat.levels.easy.length} easy, ${cat.levels.advanced.length} advanced questions)`),
 );
 
-// Update the getQuizQuestions function to handle intermediate difficulty and assign IDs
+// Returns the questions of one level. Every question already has a stable id (see scripts/check-questions.ts).
 export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel): QuizQuestion[] {
   console.log(`Fetching questions for category: ${categoryId}, difficulty: ${difficulty}`);
   const category = quizData.find((cat) => cat.id === categoryId);
@@ -133,18 +133,7 @@ export function getQuizQuestions(categoryId: string, difficulty: DifficultyLevel
 
   // Get the questions for the specified category and difficulty
   // "mixed" is not a stored level, so it has no questions here.
-  let questions = (difficulty === "mixed" ? undefined : category.levels[difficulty]) || [];
-
-  // Assign IDs to questions if they don't have them
-  questions = questions.map((question, index) => {
-    if (!question.id) {
-      return {
-        ...question,
-        id: `${categoryId}-${index + 1}`,
-      };
-    }
-    return question;
-  });
+  const questions = (difficulty === "mixed" ? undefined : category.levels[difficulty]) || [];
 
   console.log(`Found ${questions.length} questions for ${categoryId}/${difficulty}`);
 
@@ -164,6 +153,17 @@ export function getCategory(categoryId: string): QuizCategory | undefined {
 
 export function getAllCategories(): QuizCategory[] {
   return quizData;
+}
+
+// Index of the correct option, so the answer can be shown in any language.
+// correctAnswer text stays in the data files; quiz-container still compares text.
+// A question shared by two levels (intermediate = easy.slice(0, 10)) is the same object, set twice.
+for (const category of quizData) {
+  for (const level of [category.levels.easy, category.levels.intermediate, category.levels.advanced]) {
+    for (const question of level ?? []) {
+      question.correctIndex = question.options.indexOf(question.correctAnswer)
+    }
+  }
 }
 
 // Verify all categories have questions or not 

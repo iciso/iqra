@@ -8,6 +8,7 @@ const fitnahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "fitnah-easy-1",
         question: "What is the primary linguistic meaning of the word 'fitnah' in Arabic?",
         options: ["Only killing", "Testing, trial and purification (as gold is tested by fire)", "Only wealth", "Only political rebellion"],
         correctAnswer: "Testing, trial and purification (as gold is tested by fire)",
@@ -15,6 +16,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical Arabic lexicons; Tafsir of the scholars on the root f-t-n"
       },
       {
+        id: "fitnah-easy-2",
         question: "According to the Quran, what do people often mistakenly think about simply declaring faith?",
         options: ["That it is enough without any test", "That it requires no action", "That it is only for the rich", "That it ends all trials"],
         correctAnswer: "That it is enough without any test",
@@ -22,6 +24,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-'Ankabut 29:2"
       },
       {
+        id: "fitnah-easy-3",
         question: "What did the Prophet ﷺ say about the one who truly upholds the ties of kinship (Silat ar-Rahim)?",
         options: ["The one who only responds when relatives are kind", "The one who maintains the ties even when the relatives cut him off", "The one who only visits during Eid", "The one who gives money only"],
         correctAnswer: "The one who maintains the ties even when the relatives cut him off",
@@ -29,6 +32,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5991"
       },
       {
+        id: "fitnah-easy-4",
         question: "What is one of the great rewards promised for maintaining family ties?",
         options: ["Only worldly fame", "Expansion of provision and prolongation of life", "Exemption from all trials", "Guaranteed wealth without effort"],
         correctAnswer: "Expansion of provision and prolongation of life",
@@ -36,6 +40,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5986; Sahih Muslim 2557"
       },
       {
+        id: "fitnah-easy-5",
         question: "What does Allah link the word 'rahm' (womb / kinship) to?",
         options: ["His Name Ar-Rahman (The Most Merciful)", "Only to the mother", "To wealth", "To political power"],
         correctAnswer: "His Name Ar-Rahman (The Most Merciful)",
@@ -43,6 +48,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5988"
       },
       {
+        id: "fitnah-easy-6",
         question: "According to the Quran, what is worse than killing in certain contexts?",
         options: ["Silence", "Fitnah (persecution / trial that turns people from the religion)", "Poverty", "Travel"],
         correctAnswer: "Fitnah (persecution / trial that turns people from the religion)",
@@ -50,6 +56,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:191"
       },
       {
+        id: "fitnah-easy-7",
         question: "What should a Muslim do when fitnah and division become widespread and there is no clear united jama'ah?",
         options: ["Join every group", "Keep away from all the conflicting groups as much as possible", "Create a new party", "Remain silent forever"],
         correctAnswer: "Keep away from all the conflicting groups as much as possible",
@@ -57,6 +64,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 7084; Sahih Muslim"
       },
       {
+        id: "fitnah-easy-8",
         question: "What did the Prophet ﷺ say about the one who severs the ties of kinship?",
         options: ["He will enter Paradise easily", "He will not enter Paradise", "He is only mildly disliked", "It has no consequence"],
         correctAnswer: "He will not enter Paradise",
@@ -64,6 +72,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5984; Sahih Muslim"
       },
       {
+        id: "fitnah-easy-9",
         question: "What is one of the meanings of fitnah mentioned in the Quran regarding wealth and children?",
         options: ["They are only a blessing with no test", "They are a trial (fitnah)", "They are always a curse", "They have no religious significance"],
         correctAnswer: "They are a trial (fitnah)",
@@ -71,6 +80,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah At-Taghabun 64:15"
       },
       {
+        id: "fitnah-easy-10",
         question: "What does Allah command the believers regarding the ties of kinship in Surah An-Nisa?",
         options: ["Ignore them", "Fear Allah through Whom you demand your mutual rights, and do not cut the relations of the wombs", "Only maintain ties with the wealthy", "Sever them for the sake of independence"],
         correctAnswer: "Fear Allah through Whom you demand your mutual rights, and do not cut the relations of the wombs",
@@ -78,6 +88,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1"
       },
       {
+        id: "fitnah-easy-11",
         question: "What is the prophetic advice when trials come like patches of a dark night?",
         options: ["Rush into every dispute", "Hasten to do good deeds before the trials arrive", "Abandon all good deeds", "Argue more"],
         correctAnswer: "Hasten to do good deeds before the trials arrive",
@@ -85,6 +96,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "fitnah-easy-12",
         question: "What is the status of maintaining family ties in Islam?",
         options: ["Optional recommendation only", "An obligation linked to belief in Allah and the Last Day", "Only for parents", "A cultural custom"],
         correctAnswer: "An obligation linked to belief in Allah and the Last Day",
@@ -92,6 +104,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari"
       },
       {
+        id: "fitnah-easy-13",
         question: "What does the Quran warn will happen if Muslims do not support one another?",
         options: ["Nothing", "There will be fitnah on earth and great corruption", "Only minor inconvenience", "Increased wealth"],
         correctAnswer: "There will be fitnah on earth and great corruption",
@@ -99,6 +112,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Anfal 8:73"
       },
       {
+        id: "fitnah-easy-14",
         question: "What is one of the most effective ways to protect oneself and the community from fitnah?",
         options: ["Spreading every rumour", "Holding firmly to the rope of Allah all together and not becoming divided", "Creating more groups", "Ignoring the Quran"],
         correctAnswer: "Holding firmly to the rope of Allah all together and not becoming divided",
@@ -106,6 +120,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Aal 'Imran 3:103"
       },
       {
+        id: "fitnah-easy-15",
         question: "What did the Prophet ﷺ teach about responding when relatives cut you off and mistreat you?",
         options: ["Cut them off completely", "Continue to uphold the ties, treat them well and be patient; Allah will support you", "Respond with the same mistreatment", "Publicly shame them"],
         correctAnswer: "Continue to uphold the ties, treat them well and be patient; Allah will support you",
@@ -113,6 +128,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim"
       },
       {
+        id: "fitnah-easy-16",
         question: "What is the first practical step a Muslim should take when sensing the beginning of discord in the family or community?",
         options: ["Immediately take sides and escalate", "Pause, seek Allah's help, speak gently and try to de-escalate with wisdom", "Spread the issue widely", "Cut all contact"],
         correctAnswer: "Pause, seek Allah's help, speak gently and try to de-escalate with wisdom",
@@ -120,6 +136,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nahl 16:125; general prophetic guidance on speech and patience"
       },
       {
+        id: "fitnah-easy-17",
         question: "What did the Prophet ﷺ say about the trials falling upon the houses of the Muslims?",
         options: ["They will never come", "I see the trials falling upon your houses like the falling of rain", "They only affect non-Muslims", "They are a sign of success"],
         correctAnswer: "I see the trials falling upon your houses like the falling of rain",
@@ -127,6 +144,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 7060"
       },
       {
+        id: "fitnah-easy-18",
         question: "What is the ruling on deliberately spreading tales or gossip that creates discord between people?",
         options: ["It is recommended for entertainment", "It is a major sin and one of the causes of fitnah", "It is only disliked", "It has no ruling"],
         correctAnswer: "It is a major sin and one of the causes of fitnah",
@@ -134,6 +152,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim; Surah Al-Hujurat 49:12"
       },
       {
+        id: "fitnah-easy-19",
         question: "What does Allah say about those who sever the ties of kinship after the covenant?",
         options: ["They are praised", "On them is the curse of Allah and for them is an evil home", "They receive extra reward", "It is a private matter"],
         correctAnswer: "On them is the curse of Allah and for them is an evil home",
@@ -141,6 +160,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Ar-Ra'd 13:25"
       },
       {
+        id: "fitnah-easy-20",
         question: "What is the best response when two groups of believers begin to fight or argue?",
         options: ["Join the stronger side", "Make peace between them with justice", "Ignore them completely forever", "Fuel the argument"],
         correctAnswer: "Make peace between them with justice",
@@ -148,6 +168,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Hujurat 49:9"
       },
       {
+        id: "fitnah-easy-21",
         question: "What did the Prophet ﷺ seek refuge from in his daily prayers regarding fitnah?",
         options: ["Only from poverty", "From the trials of life and death, the trial of the Dajjal, and the punishment of the grave", "Only from illness", "From good deeds"],
         correctAnswer: "From the trials of life and death, the trial of the Dajjal, and the punishment of the grave",
@@ -155,6 +176,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim"
       },
       {
+        id: "fitnah-easy-22",
         question: "What is one of the clearest signs that a person is falling into the trap of fitnah in personal relationships?",
         options: ["Increased patience and forgiveness", "Suspicion, holding grudges, and cutting off contact over small matters", "Increased charity", "More Quran reading"],
         correctAnswer: "Suspicion, holding grudges, and cutting off contact over small matters",
@@ -162,6 +184,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Hujurat 49:12; prophetic teachings on husn al-zann"
       },
       {
+        id: "fitnah-easy-23",
         question: "What is the Quranic command regarding holding to the community of believers?",
         options: ["Divide into as many groups as possible", "Hold firmly to the rope of Allah together and do not become divided", "Follow only one's own opinion", "Abandon the community"],
         correctAnswer: "Hold firmly to the rope of Allah together and do not become divided",
@@ -169,6 +192,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Aal 'Imran 3:103"
       },
       {
+        id: "fitnah-easy-24",
         question: "What did the Prophet ﷺ say about the one who is patient when relatives mistreat him while he continues to treat them well?",
         options: ["He is wasting his time", "Allah will continue to support him as long as he continues that behaviour", "He should stop immediately", "He will lose his reward"],
         correctAnswer: "Allah will continue to support him as long as he continues that behaviour",
@@ -176,6 +200,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim"
       },
       {
+        id: "fitnah-easy-25",
         question: "What is the relationship between Silat ar-Rahim and the mercy of Allah?",
         options: ["There is no relationship", "Maintaining the ties is a means of receiving Allah's connection and mercy; severing them brings severance from Allah", "Only parents receive mercy", "It is only worldly"],
         correctAnswer: "Maintaining the ties is a means of receiving Allah's connection and mercy; severing them brings severance from Allah",
@@ -183,6 +208,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5988"
       },
       {
+        id: "fitnah-easy-26",
         question: "What should a Muslim prioritise when family members are involved in sin or causing fitnah?",
         options: ["Completely abandon them in every case", "Maintain the minimal ties of kinship while protecting one's own faith, advising gently, and making du'a for their guidance", "Join them in the sin", "Publicly expose every fault"],
         correctAnswer: "Maintain the minimal ties of kinship while protecting one's own faith, advising gently, and making du'a for their guidance",
@@ -190,6 +216,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles derived from the Quran and Sunnah; fatwas of the scholars"
       },
       {
+        id: "fitnah-easy-27",
         question: "What is one of the main purposes of trials (fitan) according to the Quran?",
         options: ["To destroy the believers", "To make evident those who are truthful and those who are liars", "To enrich only the strong", "To end all good"],
         correctAnswer: "To make evident those who are truthful and those who are liars",
@@ -197,6 +224,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-'Ankabut 29:3"
       },
       {
+        id: "fitnah-easy-28",
         question: "What did the Prophet ﷺ say about the one sitting during times of widespread fitnah compared to the one who rushes into it?",
         options: ["The one rushing is better", "The one sitting is better than the one standing, who is better than the one walking, who is better than the one running into it", "Everyone is equal", "Running is obligatory"],
         correctAnswer: "The one sitting is better than the one standing, who is better than the one walking, who is better than the one running into it",
@@ -204,6 +232,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 7081, 7082"
       },
       {
+        id: "fitnah-easy-29",
         question: "What is a practical daily way to uphold the ties of kinship?",
         options: ["Only contacting relatives when one needs something", "Regular greetings of salam, visits, calls, gifts, and checking on their needs", "Waiting for them to contact first", "Only meeting at funerals"],
         correctAnswer: "Regular greetings of salam, visits, calls, gifts, and checking on their needs",
@@ -211,6 +240,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical explanations of the hadith on Silat ar-Rahim"
       },
       {
+        id: "fitnah-easy-30",
         question: "What does the Quran say about the one who causes corruption on earth and severs the ties of kinship?",
         options: ["He is successful", "Allah has cursed them and made them deaf and blinded their sight", "He receives extra provision", "It is a sign of strength"],
         correctAnswer: "Allah has cursed them and made them deaf and blinded their sight",
@@ -218,6 +248,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Muhammad 47:22-23"
       },
       {
+        id: "fitnah-easy-31",
         question: "What is the connection between guarding the tongue and preventing fitnah?",
         options: ["No connection", "Most fitnah in families and communities begins with careless or malicious speech; controlling the tongue prevents much discord", "Speaking more always helps", "Silence is always wrong"],
         correctAnswer: "Most fitnah in families and communities begins with careless or malicious speech; controlling the tongue prevents much discord",
@@ -225,6 +256,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim; Surah Qaf 50:18"
       },
       {
+        id: "fitnah-easy-32",
         question: "What should be the attitude of a Muslim toward differences of opinion that do not involve clear sin or innovation?",
         options: ["Declare everyone who differs a deviant", "Maintain respect, avoid personal attacks, and preserve the broader brotherhood", "Cut off all who disagree", "Publicly mock them"],
         correctAnswer: "Maintain respect, avoid personal attacks, and preserve the broader brotherhood",
@@ -232,6 +264,7 @@ const fitnahCategory: QuizCategory = {
         references: "Practice of the Salaf; principles of adab al-ikhtilaf"
       },
       {
+        id: "fitnah-easy-33",
         question: "What is one of the greatest protections against the fitnah of the heart?",
         options: ["Constant entertainment", "Regular remembrance of Allah, Quran, and sincere du'a for protection", "Isolation from all people", "Accumulating more wealth"],
         correctAnswer: "Regular remembrance of Allah, Quran, and sincere du'a for protection",
@@ -239,6 +272,7 @@ const fitnahCategory: QuizCategory = {
         references: "Quranic commands to remember Allah; prophetic du'as seeking refuge from the evils of the self and Shaytan"
       },
       {
+        id: "fitnah-easy-34",
         question: "What did the Prophet ﷺ describe as half of knowledge in some narrations, highlighting the importance of learning certain sciences?",
         options: ["Only poetry", "The science of inheritance (Fara'id) — related to preventing family fitnah over wealth", "Only grammar", "Only history"],
         correctAnswer: "The science of inheritance (Fara'id) — related to preventing family fitnah over wealth",
@@ -246,6 +280,7 @@ const fitnahCategory: QuizCategory = {
         references: "Narrations in Ibn Majah and others regarding Fara'id"
       },
       {
+        id: "fitnah-easy-35",
         question: "What is the ultimate goal of recognising fitnah early and responding with wisdom?",
         options: ["To win every argument", "To protect one's own heart, preserve family and community bonds, and remain among those who obey Allah and His Messenger", "To dominate others", "To avoid all difficulty"],
         correctAnswer: "To protect one's own heart, preserve family and community bonds, and remain among those who obey Allah and His Messenger",
@@ -255,6 +290,7 @@ const fitnahCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "fitnah-intermediate-1",
         question: "What is the precise meaning of the Quranic warning: 'And fear a trial which will not strike those who have wronged among you exclusively'?",
         options: ["Only the sinners will be affected", "Fitnah can afflict the whole community if evil is not restrained, so the righteous must also act to prevent it", "It only applied to the Companions", "It means trials never come"],
         correctAnswer: "Fitnah can afflict the whole community if evil is not restrained, so the righteous must also act to prevent it",
@@ -262,6 +298,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Anfal 8:25; Tafsir Ibn Kathir and reports from the Companions"
       },
       {
+        id: "fitnah-intermediate-2",
         question: "What is the ruling when maintaining family ties would expose a person to clear religious harm or major fitnah?",
         options: ["Ties must still be maintained in every circumstance", "One may limit contact to the minimum required while still fulfilling the basic duty of kinship in a safe manner (advice, gifts, messages) and protecting one's faith", "All ties must be permanently severed", "One must join the sinful behaviour"],
         correctAnswer: "One may limit contact to the minimum required while still fulfilling the basic duty of kinship in a safe manner (advice, gifts, messages) and protecting one's faith",
@@ -269,6 +306,7 @@ const fitnahCategory: QuizCategory = {
         references: "Fatwas of Ibn Baz and other scholars on maintaining ties when fitnah is feared"
       },
       {
+        id: "fitnah-intermediate-3",
         question: "What is the advanced understanding of why the Prophet ﷺ compared fitnah to rain falling on houses?",
         options: ["It is only about weather", "It indicates that trials will be widespread, enter every household, and be difficult to avoid completely — hence the need for constant vigilance and preparation", "It means trials are rare", "It is only about the Companions"],
         correctAnswer: "It indicates that trials will be widespread, enter every household, and be difficult to avoid completely — hence the need for constant vigilance and preparation",
@@ -276,6 +314,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 7060; explanations of the scholars"
       },
       {
+        id: "fitnah-intermediate-4",
         question: "What is the correct approach when adult heirs freely agree after a death to redistribute the estate differently from the Quranic shares?",
         options: ["It is always forbidden", "If all adult heirs freely consent without coercion and the rights of minors are protected, many scholars permit mutual settlement as a voluntary gift among themselves", "It is obligatory to ignore the shares", "Only the eldest may decide"],
         correctAnswer: "If all adult heirs freely consent without coercion and the rights of minors are protected, many scholars permit mutual settlement as a voluntary gift among themselves",
@@ -283,6 +322,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical discussions on settlement (sulh) among heirs"
       },
       {
+        id: "fitnah-intermediate-5",
         question: "What is the relationship between backbiting (ghibah) and the spread of fitnah in families?",
         options: ["No relationship", "Backbiting is one of the primary fuels of family discord; it plants suspicion and resentment that can last for years", "Backbiting strengthens family ties", "It is only a minor issue"],
         correctAnswer: "Backbiting is one of the primary fuels of family discord; it plants suspicion and resentment that can last for years",
@@ -290,6 +330,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Hujurat 49:12; prophetic warnings against ghibah"
       },
       {
+        id: "fitnah-intermediate-6",
         question: "What is the prophetic guidance when one finds oneself in the middle of two conflicting groups during fitnah?",
         options: ["Immediately pick a side based on emotion", "If there is a clear aggressor, support the wronged party with justice; if the matter is obscure, avoid both sides as much as possible", "Join the louder group", "Remain completely silent forever"],
         correctAnswer: "If there is a clear aggressor, support the wronged party with justice; if the matter is obscure, avoid both sides as much as possible",
@@ -297,6 +338,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah Al-Hujurat 49:9; explanations of the hadith on sitting being better than running into fitnah"
       },
       {
+        id: "fitnah-intermediate-7",
         question: "What is the wisdom behind the command to maintain ties even when the other side has severed them?",
         options: ["It is only for show", "It breaks the cycle of mutual cutting, softens hearts, earns the support of Allah, and prevents the permanent loss of family bonds that Shaytan desires", "It is a sign of weakness", "It only benefits the other party"],
         correctAnswer: "It breaks the cycle of mutual cutting, softens hearts, earns the support of Allah, and prevents the permanent loss of family bonds that Shaytan desires",
@@ -304,6 +346,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5991 and the hadith of the man who was mistreated by relatives"
       },
       {
+        id: "fitnah-intermediate-8",
         question: "What is the status of a person who uses legal structures or gifts during life with the clear intention of preventing the Quranic shares from reaching the rightful heirs?",
         options: ["It is intelligent planning", "It is a blameworthy attempt to defeat the limits set by Allah, even if the individual transactions appear legally valid", "It is recommended", "It has no religious consequence"],
         correctAnswer: "It is a blameworthy attempt to defeat the limits set by Allah, even if the individual transactions appear legally valid",
@@ -311,6 +354,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of intention and sadd al-dhara'i; Surah An-Nisa 4:13-14"
       },
       {
+        id: "fitnah-intermediate-9",
         question: "What is the advanced understanding of the phrase in the Quran that wealth and children are a fitnah?",
         options: ["They are pure evil", "They are a test of whether the believer will prioritise Allah's commands over emotional attachment and worldly desire", "They are only a blessing", "They have no effect on faith"],
         correctAnswer: "They are a test of whether the believer will prioritise Allah's commands over emotional attachment and worldly desire",
@@ -318,6 +362,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah At-Taghabun 64:15; Tafsir of the scholars; hadith of Hasan and Husayn"
       },
       {
+        id: "fitnah-intermediate-10",
         question: "What should a Muslim do when family members pressure him to take sides in a dispute that involves injustice?",
         options: ["Always side with blood relatives regardless of truth", "Stand with justice even if it is against one's own relatives, while still treating them with the basic rights of kinship", "Remain completely neutral and never speak", "Publicly attack the relatives"],
         correctAnswer: "Stand with justice even if it is against one's own relatives, while still treating them with the basic rights of kinship",
@@ -325,6 +370,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:135; Surah Al-Ma'idah 5:8"
       },
       {
+        id: "fitnah-intermediate-11",
         question: "What is the connection between the command to join the ties of kinship and the Name of Allah Ar-Rahman?",
         options: ["There is no connection", "The rahm is derived from Ar-Rahman; maintaining it is a practical expression of living under the mercy of Allah, while severing it is a rejection of that mercy", "It is only linguistic", "It applies only to mothers"],
         correctAnswer: "The rahm is derived from Ar-Rahman; maintaining it is a practical expression of living under the mercy of Allah, while severing it is a rejection of that mercy",
@@ -332,6 +378,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 5988; Surah An-Nisa 4:1"
       },
       {
+        id: "fitnah-intermediate-12",
         question: "What is the ruling on delaying the distribution of an estate for years without valid reason, causing harm to the heirs?",
         options: ["It is allowed for investment", "It is a form of injustice and withholding the rights of the heirs; the estate should be distributed promptly after debts and necessary procedures", "It is recommended", "It has no religious ruling"],
         correctAnswer: "It is a form of injustice and withholding the rights of the heirs; the estate should be distributed promptly after debts and necessary procedures",
@@ -339,6 +386,7 @@ const fitnahCategory: QuizCategory = {
         references: "General principles of rights and justice in the Shariah"
       },
       {
+        id: "fitnah-intermediate-13",
         question: "What is the correct response when a relative spreads false information about you that damages your reputation in the family?",
         options: ["Respond with equal or greater falsehood", "Clarify the truth with wisdom where necessary, avoid escalating, forgive for the sake of Allah, and continue to uphold the basic ties", "Cut all contact permanently and publicly attack", "Ignore it completely and never speak"],
         correctAnswer: "Clarify the truth with wisdom where necessary, avoid escalating, forgive for the sake of Allah, and continue to uphold the basic ties",
@@ -346,6 +394,7 @@ const fitnahCategory: QuizCategory = {
         references: "Prophetic example of patience and the command to maintain ties"
       },
       {
+        id: "fitnah-intermediate-14",
         question: "What is the advanced understanding of why the Prophet ﷺ emphasised learning the shares of inheritance?",
         options: ["It is only for judges", "Because disputes over wealth after death are among the most common causes of permanent family fitnah and the severing of kinship", "It is obsolete knowledge", "It is only for the rich"],
         correctAnswer: "Because disputes over wealth after death are among the most common causes of permanent family fitnah and the severing of kinship",
@@ -353,6 +402,7 @@ const fitnahCategory: QuizCategory = {
         references: "Narrations on the virtue of learning Fara'id; practical reality of family disputes"
       },
       {
+        id: "fitnah-intermediate-15",
         question: "What is the ruling on a person who forces other heirs to accept a distribution that contradicts the Quranic shares through social or financial pressure?",
         options: ["It is valid if they eventually accept", "Acceptance under pressure is not true consent; the rights of the heirs remain and the forced distribution is a form of consuming wealth unjustly", "Pressure is allowed for the eldest", "It has no religious consequence"],
         correctAnswer: "Acceptance under pressure is not true consent; the rights of the heirs remain and the forced distribution is a form of consuming wealth unjustly",
@@ -360,6 +410,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of consent and the prohibition of consuming wealth in falsehood (Surah An-Nisa 4:29)"
       },
       {
+        id: "fitnah-intermediate-16",
         question: "What is the precise relationship between Silat ar-Rahim and the prevention of community-wide fitnah?",
         options: ["They are unrelated", "Strong family units that maintain internal justice and mercy become the building blocks of a stable community; broken families become sources of wider discord", "Family ties cause community fitnah", "Only political unity matters"],
         correctAnswer: "Strong family units that maintain internal justice and mercy become the building blocks of a stable community; broken families become sources of wider discord",
@@ -367,6 +418,7 @@ const fitnahCategory: QuizCategory = {
         references: "Overall structure of Islamic social teachings; Surah An-Nisa 4:1"
       },
       {
+        id: "fitnah-intermediate-17",
         question: "What is the correct attitude toward a relative who has wronged you severely in the past but now shows signs of regret?",
         options: ["Never forgive and keep the grudge forever", "Accept the apology, forgive for the sake of Allah, and gradually restore the relationship while remaining cautious if necessary", "Demand public humiliation first", "Cut them off permanently"],
         correctAnswer: "Accept the apology, forgive for the sake of Allah, and gradually restore the relationship while remaining cautious if necessary",
@@ -374,6 +426,7 @@ const fitnahCategory: QuizCategory = {
         references: "Quranic encouragement of forgiveness; prophetic example"
       },
       {
+        id: "fitnah-intermediate-18",
         question: "What is the wisdom in the hadith that the one sitting during fitnah is better than the one standing, etc.?",
         options: ["It means one should never defend the truth", "It teaches proportional danger: the more one immerses oneself in chaotic and confusing trials, the greater the risk of being destroyed by them", "It is only about physical posture", "It encourages complete isolation always"],
         correctAnswer: "It teaches proportional danger: the more one immerses oneself in chaotic and confusing trials, the greater the risk of being destroyed by them",
@@ -381,6 +434,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 7081; explanations of the scholars"
       },
       {
+        id: "fitnah-intermediate-19",
         question: "What is the ruling on using social media or group chats to air private family grievances publicly?",
         options: ["It is recommended for transparency", "It is a form of spreading fitnah, exposing faults, and often leads to greater discord and irreversible damage to relationships", "It has no ruling", "It is obligatory"],
         correctAnswer: "It is a form of spreading fitnah, exposing faults, and often leads to greater discord and irreversible damage to relationships",
@@ -388,6 +442,7 @@ const fitnahCategory: QuizCategory = {
         references: "Prophetic prohibitions on revealing faults and spreading namimah"
       },
       {
+        id: "fitnah-intermediate-20",
         question: "What is the advanced understanding of the statement that the shares of inheritance are 'limits set by Allah'?",
         options: ["They are flexible suggestions", "They are divine boundaries; deliberately transgressing them is a major sin that the Quran links to the threat of the Fire", "They apply only in certain countries", "They are cultural"],
         correctAnswer: "They are divine boundaries; deliberately transgressing them is a major sin that the Quran links to the threat of the Fire",
@@ -395,6 +450,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:13-14"
       },
       {
+        id: "fitnah-intermediate-21",
         question: "What should a Muslim prioritise when a family conflict is causing him to lose his temper and say things he will regret?",
         options: ["Continue the argument until he 'wins'", "Remove himself from the situation, seek refuge with Allah from Shaytan, and return only when calm", "Raise his voice louder", "Involve more people immediately"],
         correctAnswer: "Remove himself from the situation, seek refuge with Allah from Shaytan, and return only when calm",
@@ -402,6 +458,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari; Sahih Muslim on anger"
       },
       {
+        id: "fitnah-intermediate-22",
         question: "What is the precise meaning of 'kalalah' in the context of inheritance and how it relates to family structure?",
         options: ["A person with many children", "A person who dies leaving neither descendants nor ascendants (no child and no parent), so that siblings inherit", "Only a person with no siblings", "A type of gift"],
         correctAnswer: "A person who dies leaving neither descendants nor ascendants (no child and no parent), so that siblings inherit",
@@ -409,6 +466,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:12, 4:176; Tafsir"
       },
       {
+        id: "fitnah-intermediate-23",
         question: "What is the ruling on a gift made during terminal illness (marad al-mawt) that favours one heir?",
         options: ["It is fully valid like any other gift", "It is treated like a bequest: limited to one-third and requires the consent of the other heirs for any portion given to an heir", "It is invalid", "It is obligatory"],
         correctAnswer: "It is treated like a bequest: limited to one-third and requires the consent of the other heirs for any portion given to an heir",
@@ -416,6 +474,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical fiqh of marad al-mawt"
       },
       {
+        id: "fitnah-intermediate-24",
         question: "What is the comprehensive reason why both equity in lifetime gifts and adherence to the Quranic shares after death protect family unity?",
         options: ["They do not protect unity", "Equity while alive prevents resentment among siblings; adherence to the fixed shares after death prevents conflict over the estate — together they remove the two main wealth-related causes of permanent estrangement", "Only one of them matters", "They encourage conflict"],
         correctAnswer: "Equity while alive prevents resentment among siblings; adherence to the fixed shares after death prevents conflict over the estate — together they remove the two main wealth-related causes of permanent estrangement",
@@ -423,6 +482,7 @@ const fitnahCategory: QuizCategory = {
         references: "Hadith of Nu'man ibn Bashir; Surah An-Nisa 4:11-14; principles of Silat ar-Rahim"
       },
       {
+        id: "fitnah-intermediate-25",
         question: "What is the correct approach when a parent favours one child with large gifts without a valid need-based reason?",
         options: ["It is fully recommended", "It is a form of injustice; the Prophet ﷺ commanded justice among children, and many scholars require rectification", "It is obligatory for the eldest", "It has no religious consequence"],
         correctAnswer: "It is a form of injustice; the Prophet ﷺ commanded justice among children, and many scholars require rectification",
@@ -430,6 +490,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2587; Sahih Muslim 1623"
       },
       {
+        id: "fitnah-intermediate-26",
         question: "What is the advanced understanding of the role of the bayt al-mal when there are no residuary heirs?",
         options: ["It has no role", "In the classical system the residue may revert to the public treasury for the benefit of the Muslims when there are no asaba and radd is not applied to certain heirs", "It always takes the entire estate", "It only receives debts"],
         correctAnswer: "In the classical system the residue may revert to the public treasury for the benefit of the Muslims when there are no asaba and radd is not applied to certain heirs",
@@ -437,6 +498,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical Fara'id works"
       },
       {
+        id: "fitnah-intermediate-27",
         question: "What is the ruling on a person who hides the existence of some heirs in order to take a larger share?",
         options: ["It is clever planning", "It is a major form of injustice and consuming the wealth of others unlawfully; the hidden heirs retain their full rights", "It is allowed if one is needy", "It has no consequence"],
         correctAnswer: "It is a major form of injustice and consuming the wealth of others unlawfully; the hidden heirs retain their full rights",
@@ -444,6 +506,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:29; general principles of justice"
       },
       {
+        id: "fitnah-intermediate-28",
         question: "What is the precise relationship between the prohibition of severing kinship and the laws of inheritance?",
         options: ["They are unrelated", "Disputes over inheritance and unequal gifts are among the most common causes of the permanent severance of family ties; the divine system is designed to remove that cause", "Inheritance laws cause severance", "Only emotional factors matter"],
         correctAnswer: "Disputes over inheritance and unequal gifts are among the most common causes of the permanent severance of family ties; the divine system is designed to remove that cause",
@@ -451,6 +514,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Hadith on Silat ar-Rahim; Hadith of Nu'man"
       },
       {
+        id: "fitnah-intermediate-29",
         question: "What is the advanced ruling on a wasiyyah made for a sinful purpose?",
         options: ["It is valid", "A bequest for a sinful purpose is invalid and is not executed", "It is recommended", "It is only disliked"],
         correctAnswer: "A bequest for a sinful purpose is invalid and is not executed",
@@ -458,6 +522,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical conditions of the wasiyyah"
       },
       {
+        id: "fitnah-intermediate-30",
         question: "What is the share of the son's son when the son is not alive and there are daughters?",
         options: ["He is excluded", "He inherits as a residuary (asaba) and takes the remainder after the fixed shares of the daughters and others", "He takes the same as a daughter", "He takes one-sixth"],
         correctAnswer: "He inherits as a residuary (asaba) and takes the remainder after the fixed shares of the daughters and others",
@@ -465,6 +530,7 @@ const fitnahCategory: QuizCategory = {
         references: "Rules of asaba and representation in Fara'id"
       },
       {
+        id: "fitnah-intermediate-31",
         question: "What is the ruling on the one who, after the death of the parent, agrees with the other heirs to redistribute the estate differently from the Quranic shares?",
         options: ["It is always forbidden", "If all the adult heirs freely agree without coercion and the rights of minors are protected, many scholars allow it as mutual settlement", "It is obligatory to redistribute", "Only the eldest may decide"],
         correctAnswer: "If all the adult heirs freely agree without coercion and the rights of minors are protected, many scholars allow it as mutual settlement",
@@ -472,6 +538,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical discussions on settlement among heirs"
       },
       {
+        id: "fitnah-intermediate-32",
         question: "What is the precise meaning of the statement that the shares are 'a duty ordained by Allah'?",
         options: ["They are recommendations", "They are binding obligations that form part of the limits of Allah, and adherence to them is an act of worship and obedience", "They are cultural guidelines", "They apply only in certain eras"],
         correctAnswer: "They are binding obligations that form part of the limits of Allah, and adherence to them is an act of worship and obedience",
@@ -479,6 +546,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:11, 4:13-14"
       },
       {
+        id: "fitnah-intermediate-33",
         question: "What is the advanced ruling on a person who uses a trust or company structure to effectively control the distribution of wealth after death in a way that contradicts the Fara'id?",
         options: ["It is always valid modern planning", "If the structure is used as a device to defeat the Quranic shares, it is contrary to the purpose of the Shariah, even if it is legally effective in civil law", "It is recommended", "It is the only fair method"],
         correctAnswer: "If the structure is used as a device to defeat the Quranic shares, it is contrary to the purpose of the Shariah, even if it is legally effective in civil law",
@@ -486,6 +554,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of intention and sadd al-dhara'i"
       },
       {
+        id: "fitnah-intermediate-34",
         question: "What is the ultimate criterion for success in the matter of inheritance, gifts, and family ties according to the Quran and Sunnah?",
         options: ["Maximising one's own share", "Adherence to the limits set by Allah, justice among the children during life, prompt and fair distribution after death, and the preservation of family mercy and unity", "Following local custom only", "Leaving everything to the eldest son"],
         correctAnswer: "Adherence to the limits set by Allah, justice among the children during life, prompt and fair distribution after death, and the preservation of family mercy and unity",
@@ -493,6 +562,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:13-14; Sahih al-Bukhari 2587; principles of Silat ar-Rahim"
       },
       {
+        id: "fitnah-intermediate-35",
         question: "What is the final comprehensive principle that a Muslim should hold regarding wealth, family, and the decree of Allah in the matter of inheritance and gifts?",
         options: ["Wealth belongs only to the strong", "All wealth is a trust from Allah; its transfer during life must be just, its distribution after death must follow His fixed limits, and both are means of preserving the family ties that He has linked to His Name Ar-Rahman and of attaining His pleasure", "Only the Hereafter matters and wealth has no rules", "Family ties are independent of divine law"],
         correctAnswer: "All wealth is a trust from Allah; its transfer during life must be just, its distribution after death must follow His fixed limits, and both are means of preserving the family ties that He has linked to His Name Ar-Rahman and of attaining His pleasure",
@@ -502,6 +572,7 @@ const fitnahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "fitnah-advanced-1",
         question: "What is the precise distinction between the legal effectiveness of an unequal Hiba and its moral/religious ruling?",
         options: ["There is no distinction", "An unequal gift may be legally effective (ownership transfers) if the conditions of Hiba are met, yet it remains religiously blameworthy and may require rectification according to the command of justice", "Unequal gifts are always invalid", "Unequal gifts are always recommended"],
         correctAnswer: "An unequal gift may be legally effective (ownership transfers) if the conditions of Hiba are met, yet it remains religiously blameworthy and may require rectification according to the command of justice",
@@ -509,6 +580,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2587; Sahih Muslim 1623; classical discussions"
       },
       {
+        id: "fitnah-advanced-2",
         question: "What is the ruling of the majority of scholars on the obligation of equality in gifts to children?",
         options: ["It is merely recommended", "Many scholars, including the Hanbalis and a strong view among others, hold that justice is obligatory and that favouritism without valid reason is sinful and must be corrected", "It is never obligatory", "It applies only to sons"],
         correctAnswer: "Many scholars, including the Hanbalis and a strong view among others, hold that justice is obligatory and that favouritism without valid reason is sinful and must be corrected",
@@ -516,6 +588,7 @@ const fitnahCategory: QuizCategory = {
         references: "Ibn Qudamah, al-Mughni; views of the schools"
       },
       {
+        id: "fitnah-advanced-3",
         question: "What is the precise Quranic basis for the priority of debts over the fixed shares?",
         options: ["There is no basis", "The repeated phrase in 4:11 and 4:12 'after any bequest he may have made or debt' establishes that debts and bequests are settled before the shares", "Debts are paid last", "Only funeral costs are paid first"],
         correctAnswer: "The repeated phrase in 4:11 and 4:12 'after any bequest he may have made or debt' establishes that debts and bequests are settled before the shares",
@@ -523,6 +596,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:11-12; Hadith of Ali"
       },
       {
+        id: "fitnah-advanced-4",
         question: "What is the advanced understanding of the principle 'no bequest for an heir'?",
         options: ["Heirs can never receive anything extra", "A bequest to a legal heir is not valid without the consent of the other heirs after the death, because Allah has already assigned their shares", "Bequests to heirs are always valid", "The principle is only recommended"],
         correctAnswer: "A bequest to a legal heir is not valid without the consent of the other heirs after the death, because Allah has already assigned their shares",
@@ -530,6 +604,7 @@ const fitnahCategory: QuizCategory = {
         references: "Sunan Abu Dawud 2870; Tirmidhi; consensus of the majority"
       },
       {
+        id: "fitnah-advanced-5",
         question: "What is the effect of 'awl (proportional reduction) when the fixed shares exceed the whole estate?",
         options: ["Some heirs are excluded", "All the fixed shares are reduced proportionally so that they fit within the estate", "The residue is increased", "The distribution is cancelled"],
         correctAnswer: "All the fixed shares are reduced proportionally so that they fit within the estate",
@@ -537,6 +612,7 @@ const fitnahCategory: QuizCategory = {
         references: "Practice of the Companions; classical Fara'id"
       },
       {
+        id: "fitnah-advanced-6",
         question: "What is the effect of radd (proportional return) when the fixed shares do not exhaust the estate and there are no residuary heirs?",
         options: ["The remainder goes to the state only", "In the view of the majority of scholars, the remainder is returned to the fixed-share heirs in proportion to their shares (except the spouse in the classical Hanafi view)", "The remainder is left undistributed", "The shares are increased arbitrarily"],
         correctAnswer: "In the view of the majority of scholars, the remainder is returned to the fixed-share heirs in proportion to their shares (except the spouse in the classical Hanafi view)",
@@ -544,6 +620,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical Fara'id works"
       },
       {
+        id: "fitnah-advanced-7",
         question: "What is the precise ruling on a gift made during the final illness (marad al-mawt) to an heir?",
         options: ["It is fully valid like any other gift", "It is treated as a bequest and is not effective for more than one-third, and requires the consent of the other heirs for the portion given to an heir", "It is invalid", "It is obligatory"],
         correctAnswer: "It is treated as a bequest and is not effective for more than one-third, and requires the consent of the other heirs for the portion given to an heir",
@@ -551,6 +628,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical fiqh of marad al-mawt"
       },
       {
+        id: "fitnah-advanced-8",
         question: "What is the advanced understanding of the wisdom behind the 2:1 ratio between male and female shares in many cases?",
         options: ["It is unjust", "It is linked to the financial responsibilities placed on the male (maintenance of wife and family), while the female's share is her own absolute property without corresponding obligations", "It means women have no rights", "It is only a cultural rule"],
         correctAnswer: "It is linked to the financial responsibilities placed on the male (maintenance of wife and family), while the female's share is her own absolute property without corresponding obligations",
@@ -558,6 +636,7 @@ const fitnahCategory: QuizCategory = {
         references: "Tafsir and explanations of the scholars"
       },
       {
+        id: "fitnah-advanced-9",
         question: "What is the ruling on the one who uses lifetime gifts systematically to ensure that after his death the distribution will not follow the Quranic shares?",
         options: ["It is intelligent estate planning", "It is a blameworthy attempt to defeat the limits set by Allah; even if individual gifts are valid, the overall intention is contrary to the Shariah", "It is recommended", "It is the only fair way"],
         correctAnswer: "It is a blameworthy attempt to defeat the limits set by Allah; even if individual gifts are valid, the overall intention is contrary to the Shariah",
@@ -565,6 +644,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of sadd al-dhara'i and the limits of Allah in 4:13-14"
       },
       {
+        id: "fitnah-advanced-10",
         question: "What is the status of the science of Fara'id in the view of the Prophet ﷺ and the early scholars?",
         options: ["It is a minor branch", "It was described as half of knowledge and was among the first sciences to be lost, hence the strong encouragement to learn and teach it", "It is only for judges", "It is obsolete"],
         correctAnswer: "It was described as half of knowledge and was among the first sciences to be lost, hence the strong encouragement to learn and teach it",
@@ -572,6 +652,7 @@ const fitnahCategory: QuizCategory = {
         references: "Narrations in Ibn Majah and others; statements of the Salaf"
       },
       {
+        id: "fitnah-advanced-11",
         question: "What is the precise interaction between Silat ar-Rahim and the laws of inheritance and gifts?",
         options: ["They are unrelated", "Equity in gifts and adherence to the divine shares are practical means of upholding the ties of kinship and preventing the severance of family bonds that Allah has forbidden", "Inheritance laws destroy family ties", "Only emotional ties matter"],
         correctAnswer: "Equity in gifts and adherence to the divine shares are practical means of upholding the ties of kinship and preventing the severance of family bonds that Allah has forbidden",
@@ -579,6 +660,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1, 4:11-14; Hadith of Nu'man; Hadith on Silat ar-Rahim"
       },
       {
+        id: "fitnah-advanced-12",
         question: "What is the ruling on a person who dies leaving no heirs at all?",
         options: ["The estate is left unclaimed", "The estate goes to the bayt al-mal (public treasury) for the benefit of the Muslims", "Anyone may take it", "It is buried with the deceased"],
         correctAnswer: "The estate goes to the bayt al-mal (public treasury) for the benefit of the Muslims",
@@ -586,6 +668,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical Fara'id works"
       },
       {
+        id: "fitnah-advanced-13",
         question: "What is the advanced ruling on the exclusion (hajb) of siblings by the father or the son?",
         options: ["Siblings always inherit", "The presence of a son or father excludes the siblings from inheritance in most cases (they are barred by hajb)", "Siblings exclude the father", "Exclusion is not part of the system"],
         correctAnswer: "The presence of a son or father excludes the siblings from inheritance in most cases (they are barred by hajb)",
@@ -593,6 +676,7 @@ const fitnahCategory: QuizCategory = {
         references: "Rules of hajb in Fara'id"
       },
       {
+        id: "fitnah-advanced-14",
         question: "What is the precise meaning of the Quranic warning that those who transgress the limits of the inheritance shares will enter the Fire?",
         options: ["It is only a metaphor", "It is a severe threat indicating that deliberate alteration or consumption of the fixed shares is a major sin that leads to punishment in the Hereafter unless repented from", "It applies only to non-Muslims", "It is not to be taken seriously"],
         correctAnswer: "It is a severe threat indicating that deliberate alteration or consumption of the fixed shares is a major sin that leads to punishment in the Hereafter unless repented from",
@@ -600,6 +684,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:13-14"
       },
       {
+        id: "fitnah-advanced-15",
         question: "What is the ruling on a gift that is made with the condition that the recipient will not sell or give away the property?",
         options: ["It is always valid", "Conditions that restrict the ownership after the gift is complete are generally not binding in the view of many scholars; once ownership transfers, the recipient has full rights", "It is the recommended form", "The gift is invalid"],
         correctAnswer: "Conditions that restrict the ownership after the gift is complete are generally not binding in the view of many scholars; once ownership transfers, the recipient has full rights",
@@ -607,6 +692,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical discussions on conditions in Hiba"
       },
       {
+        id: "fitnah-advanced-16",
         question: "What is the advanced understanding of the phrase 'you do not know which of them is nearer to you in benefit' in Surah An-Nisa 4:11?",
         options: ["It means parents and children are equal", "It teaches that the divine distribution is based on Allah's perfect knowledge of benefit, not on human assumptions about who deserves more", "It means one may ignore the shares", "It is only about the mother"],
         correctAnswer: "It teaches that the divine distribution is based on Allah's perfect knowledge of benefit, not on human assumptions about who deserves more",
@@ -614,6 +700,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:11; Tafsir"
       },
       {
+        id: "fitnah-advanced-17",
         question: "What is the ruling on the one who distributes the estate according to the civil law of a non-Muslim country when it contradicts the Quranic shares?",
         options: ["It is fully acceptable", "A Muslim is still religiously obligated to ensure that the Quranic shares are given to the entitled heirs, even if civil procedures must also be followed", "Civil law always overrides the Shariah", "The Quranic shares are only for Muslim countries"],
         correctAnswer: "A Muslim is still religiously obligated to ensure that the Quranic shares are given to the entitled heirs, even if civil procedures must also be followed",
@@ -621,6 +708,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of the obligation of the Fara'id"
       },
       {
+        id: "fitnah-advanced-18",
         question: "What is the precise relationship between the command of justice in gifts and the prohibition of severing the ties of kinship?",
         options: ["They are separate", "Injustice in gifts is a common cause of the severance of family ties; the command of justice is therefore a practical protection of the command to maintain the rahm", "Justice in gifts causes severance", "There is no relationship"],
         correctAnswer: "Injustice in gifts is a common cause of the severance of family ties; the command of justice is therefore a practical protection of the command to maintain the rahm",
@@ -628,6 +716,7 @@ const fitnahCategory: QuizCategory = {
         references: "Hadith of Nu'man; Surah An-Nisa 4:1; Hadith on Silat ar-Rahim"
       },
       {
+        id: "fitnah-advanced-19",
         question: "What is the advanced ruling on a person who dies having made a series of gifts that leave almost nothing for the heirs?",
         options: ["The heirs have no claim", "If the gifts were completed with full ownership transfer while the person was healthy, they stand; however, if they were made with the clear intention of harming the heirs or during final illness, they may be challenged or limited", "All gifts are reversed", "The heirs take everything"],
         correctAnswer: "If the gifts were completed with full ownership transfer while the person was healthy, they stand; however, if they were made with the clear intention of harming the heirs or during final illness, they may be challenged or limited",
@@ -635,6 +724,7 @@ const fitnahCategory: QuizCategory = {
         references: "Rules of Hiba and marad al-mawt"
       },
       {
+        id: "fitnah-advanced-20",
         question: "What is the comprehensive wisdom of the Islamic system of Mirath and the rules of Hiba in relation to family unity?",
         options: ["They have no relation to unity", "By fixing the shares after death and commanding justice in gifts during life, the Shariah removes the two main causes of wealth-related family conflict, thereby protecting the sacred ties of kinship that are linked to the Name of Allah Ar-Rahman", "They encourage conflict", "They are only about wealth"],
         correctAnswer: "By fixing the shares after death and commanding justice in gifts during life, the Shariah removes the two main causes of wealth-related family conflict, thereby protecting the sacred ties of kinship that are linked to the Name of Allah Ar-Rahman",
@@ -642,6 +732,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1, 4:11-14; Sahih al-Bukhari 2587, 5988; overall objectives of the Shariah"
       },
       {
+        id: "fitnah-advanced-21",
         question: "What is the final outcome for the one who adheres to the limits of Allah in the distribution of inheritance and justice in gifts?",
         options: ["Only worldly benefit", "The promise of Paradise and the great triumph, as stated by Allah after mentioning the shares, and the preservation of family mercy and unity in this life", "No special outcome", "Only difficulty"],
         correctAnswer: "The promise of Paradise and the great triumph, as stated by Allah after mentioning the shares, and the preservation of family mercy and unity in this life",
@@ -649,6 +740,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:13; Hadith on justice and Silat ar-Rahim"
       },
       {
+        id: "fitnah-advanced-22",
         question: "What is the precise ruling on a gift of real estate that is not registered in the name of the recipient during the lifetime of the giver?",
         options: ["It is always complete", "In many legal systems and according to the conditions of Hiba, ownership may not transfer fully until possession or registration is completed; the gift may remain incomplete", "Registration is irrelevant", "It becomes inheritance automatically"],
         correctAnswer: "In many legal systems and according to the conditions of Hiba, ownership may not transfer fully until possession or registration is completed; the gift may remain incomplete",
@@ -656,6 +748,7 @@ const fitnahCategory: QuizCategory = {
         references: "Conditions of Hiba in classical fiqh"
       },
       {
+        id: "fitnah-advanced-23",
         question: "What is the advanced understanding of the role of the bayt al-mal when there are no residuary heirs?",
         options: ["It has no role", "In the classical system the residue may go to the public treasury for the benefit of the Muslims when there are no asaba and radd is not applied to certain heirs", "It takes all the estate always", "It only receives debts"],
         correctAnswer: "In the classical system the residue may go to the public treasury for the benefit of the Muslims when there are no asaba and radd is not applied to certain heirs",
@@ -663,6 +756,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical Fara'id works"
       },
       {
+        id: "fitnah-advanced-24",
         question: "What is the ruling on a person who forces the other heirs to accept a distribution that contradicts the Quranic shares by using social or financial pressure?",
         options: ["It is valid if they accept", "The acceptance under pressure is not a true consent; the rights of the heirs remain, and the forced distribution is a form of injustice", "Pressure is allowed for the eldest", "It has no religious consequence"],
         correctAnswer: "The acceptance under pressure is not a true consent; the rights of the heirs remain, and the forced distribution is a form of injustice",
@@ -670,6 +764,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of consent and the prohibition of consuming wealth unjustly"
       },
       {
+        id: "fitnah-advanced-25",
         question: "What is the precise relationship between the prohibition of severing the ties of kinship and the laws of inheritance?",
         options: ["They are unrelated", "Disputes over inheritance and unequal gifts are among the most common causes of the severance of family ties; the divine system is designed to remove that cause", "Inheritance laws cause severance", "Only emotional factors matter"],
         correctAnswer: "Disputes over inheritance and unequal gifts are among the most common causes of the severance of family ties; the divine system is designed to remove that cause",
@@ -677,6 +772,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Hadith on Silat ar-Rahim; Hadith of Nu'man"
       },
       {
+        id: "fitnah-advanced-26",
         question: "What is the advanced ruling on a wasiyyah that is made for a purpose that is sinful?",
         options: ["It is valid", "A bequest for a sinful purpose is invalid and is not executed", "It is recommended", "It is only disliked"],
         correctAnswer: "A bequest for a sinful purpose is invalid and is not executed",
@@ -684,6 +780,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical conditions of the wasiyyah"
       },
       {
+        id: "fitnah-advanced-27",
         question: "What is the share of the son's son when the son is not alive and there are daughters?",
         options: ["He is excluded", "He inherits as a residuary (asaba) and takes the remainder after the fixed shares of the daughters and others", "He takes the same as a daughter", "He takes one-sixth"],
         correctAnswer: "He inherits as a residuary (asaba) and takes the remainder after the fixed shares of the daughters and others",
@@ -691,6 +788,7 @@ const fitnahCategory: QuizCategory = {
         references: "Rules of asaba and representation in Fara'id"
       },
       {
+        id: "fitnah-advanced-28",
         question: "What is the ruling on the one who hides the existence of some heirs in order to take a larger share?",
         options: ["It is clever", "It is a major form of injustice and consuming the wealth of others unlawfully; the hidden heirs retain their rights", "It is allowed if one is needy", "It has no consequence"],
         correctAnswer: "It is a major form of injustice and consuming the wealth of others unlawfully; the hidden heirs retain their rights",
@@ -698,6 +796,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:29; general principles of justice"
       },
       {
+        id: "fitnah-advanced-29",
         question: "What is the advanced understanding of why the Quran mentions the shares of the spouses in a separate verse from the children and parents?",
         options: ["It is random", "The structure emphasises the different categories of heirs and the conditions that change their shares, providing a complete and clear system", "Spouses are less important", "It has no significance"],
         correctAnswer: "The structure emphasises the different categories of heirs and the conditions that change their shares, providing a complete and clear system",
@@ -705,6 +804,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:11-12; Tafsir"
       },
       {
+        id: "fitnah-advanced-30",
         question: "What is the ruling on a gift that is made by a person who is not of sound mind or is under interdiction?",
         options: ["It is valid", "It is not valid; the giver must have the legal capacity to dispose of their property", "It is recommended", "It is only disliked"],
         correctAnswer: "It is not valid; the giver must have the legal capacity to dispose of their property",
@@ -712,6 +812,7 @@ const fitnahCategory: QuizCategory = {
         references: "Conditions of Hiba in classical fiqh"
       },
       {
+        id: "fitnah-advanced-31",
         question: "What is the comprehensive final principle that unites the fiqh of Mirath, the rules of Hiba, and the command to maintain family ties?",
         options: ["Wealth is the most important thing", "Justice in the transfer of wealth — whether during life or after death — is a means of protecting the sacred bonds of kinship that Allah has linked to His Name Ar-Rahman, and of submitting to the limits He has set", "Family ties are independent of wealth rules", "Only the Hereafter matters"],
         correctAnswer: "Justice in the transfer of wealth — whether during life or after death — is a means of protecting the sacred bonds of kinship that Allah has linked to His Name Ar-Rahman, and of submitting to the limits He has set",
@@ -719,6 +820,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1, 4:11-14; Sahih al-Bukhari 2587, 5988; overall objectives of the Shariah"
       },
       {
+        id: "fitnah-advanced-32",
         question: "What is the ruling on the one who, after the death of the parent, agrees with the other heirs to redistribute the estate in a way that differs from the Quranic shares?",
         options: ["It is always forbidden", "If all the adult heirs freely agree to a different distribution after the death, many scholars allow it as a form of mutual settlement, provided no one is coerced and the rights of minors are protected", "It is obligatory to redistribute", "Only the eldest may decide"],
         correctAnswer: "If all the adult heirs freely agree to a different distribution after the death, many scholars allow it as a form of mutual settlement, provided no one is coerced and the rights of minors are protected",
@@ -726,6 +828,7 @@ const fitnahCategory: QuizCategory = {
         references: "Classical discussions on settlement among heirs"
       },
       {
+        id: "fitnah-advanced-33",
         question: "What is the precise meaning of the statement that the shares are 'a duty ordained by Allah'?",
         options: ["They are recommendations", "They are binding obligations that form part of the limits of Allah, and adherence to them is an act of worship and obedience", "They are cultural guidelines", "They apply only in certain eras"],
         correctAnswer: "They are binding obligations that form part of the limits of Allah, and adherence to them is an act of worship and obedience",
@@ -733,6 +836,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:11, 4:13-14"
       },
       {
+        id: "fitnah-advanced-34",
         question: "What is the advanced ruling on a person who uses a trust or company structure to effectively control the distribution of wealth after death in a way that contradicts the Fara'id?",
         options: ["It is always valid modern planning", "If the structure is used as a device to defeat the Quranic shares, it is contrary to the purpose of the Shariah, even if it is legally effective in civil law", "It is recommended", "It is the only fair method"],
         correctAnswer: "If the structure is used as a device to defeat the Quranic shares, it is contrary to the purpose of the Shariah, even if it is legally effective in civil law",
@@ -740,6 +844,7 @@ const fitnahCategory: QuizCategory = {
         references: "Principles of intention and sadd al-dhara'i"
       },
       {
+        id: "fitnah-advanced-35",
         question: "What is the ultimate criterion for success in the matter of inheritance and gifts according to the Quran and Sunnah?",
         options: ["Maximising one's own share", "Adherence to the limits set by Allah, justice among the children during life, prompt and fair distribution after death, and the preservation of family mercy and unity", "Following local custom only", "Leaving everything to the eldest son"],
         correctAnswer: "Adherence to the limits set by Allah, justice among the children during life, prompt and fair distribution after death, and the preservation of family mercy and unity",
@@ -747,6 +852,7 @@ const fitnahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:13-14; Sahih al-Bukhari 2587; principles of Silat ar-Rahim"
       },
       {
+        id: "fitnah-advanced-36",
         question: "What is the final comprehensive principle that a Muslim should hold regarding wealth, family, and the decree of Allah in the matter of inheritance and gifts?",
         options: ["Wealth belongs only to the strong", "All wealth is a trust from Allah; its transfer during life must be just, its distribution after death must follow His fixed limits, and both are means of preserving the family ties that He has linked to His Name Ar-Rahman and of attaining His pleasure", "Only the Hereafter matters and wealth has no rules", "Family ties are independent of divine law"],
         correctAnswer: "All wealth is a trust from Allah; its transfer during life must be just, its distribution after death must follow His fixed limits, and both are means of preserving the family ties that He has linked to His Name Ar-Rahman and of attaining His pleasure",

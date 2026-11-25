@@ -8,6 +8,7 @@ const marriageCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "marriage-easy-1",
         question: "What is the Arabic term for the Islamic marriage contract?",
         options: ["Talaq", "Nikah", "Iddah", "Mahr"],
         correctAnswer: "Nikah",
@@ -15,6 +16,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:3; Sahih Bukhari"
       },
       {
+        id: "marriage-easy-2",
         question: "According to the Quran, from what did Allah create the spouse of the first human?",
         options: ["From clay separately", "From the same soul (one soul)", "From light", "From fire"],
         correctAnswer: "From the same soul (one soul)",
@@ -22,6 +24,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1"
       },
       {
+        id: "marriage-easy-3",
         question: "What is one of the main purposes of marriage mentioned in the Quran?",
         options: ["Only to increase wealth", "To find tranquillity, affection, and mercy between spouses", "To gain social status only", "To avoid work"],
         correctAnswer: "To find tranquillity, affection, and mercy between spouses",
@@ -29,6 +32,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21"
       },
       {
+        id: "marriage-easy-4",
         question: "What did the Prophet ﷺ advise young people who are able to marry?",
         options: ["Delay marriage as long as possible", "Marry, because it helps lower the gaze and guard chastity", "Only marry after becoming wealthy", "Avoid marriage entirely"],
         correctAnswer: "Marry, because it helps lower the gaze and guard chastity",
@@ -36,6 +40,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5066; Sahih Muslim 1400"
       },
       {
+        id: "marriage-easy-5",
         question: "What should a person do if they are unable to marry due to lack of means?",
         options: ["Despair", "Fast, as it is a shield (protection from desire)", "Seek haram means", "Blame others"],
         correctAnswer: "Fast, as it is a shield (protection from desire)",
@@ -43,6 +48,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5066"
       },
       {
+        id: "marriage-easy-6",
         question: "What is the linguistic connection between 'Rahm' (womb/kinship) and Allah's Name?",
         options: ["No connection", "Rahm derives its name from Ar-Rahman (The Most Merciful)", "Rahm means power", "Rahm is unrelated to mercy"],
         correctAnswer: "Rahm derives its name from Ar-Rahman (The Most Merciful)",
@@ -50,6 +56,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; Sahih Muslim"
       },
       {
+        id: "marriage-easy-7",
         question: "What is Silat ar-Rahim?",
         options: ["Cutting family ties", "Maintaining and upholding the ties of kinship", "Only visiting parents", "Giving charity to strangers only"],
         correctAnswer: "Maintaining and upholding the ties of kinship",
@@ -57,6 +64,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Sahih Bukhari"
       },
       {
+        id: "marriage-easy-8",
         question: "What did the Prophet ﷺ say about the one who severs the ties of kinship?",
         options: ["He will enter Paradise easily", "He will not enter Paradise", "He is the best of people", "It has no consequence"],
         correctAnswer: "He will not enter Paradise",
@@ -64,6 +72,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5984; Sahih Muslim"
       },
       {
+        id: "marriage-easy-9",
         question: "What is one of the rewards for maintaining family ties?",
         options: ["Decrease in provision", "Increase in provision and prolongation of life", "No worldly benefit", "Only reward in the Hereafter with no worldly effect"],
         correctAnswer: "Increase in provision and prolongation of life",
@@ -71,6 +80,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5986; Sahih Muslim 2557"
       },
       {
+        id: "marriage-easy-10",
         question: "In the Friday sermon, which Quranic theme is often emphasized regarding creation and family?",
         options: ["Only the creation of the heavens", "Creation from one soul, its mate, and the spreading of many men and women, and the importance of the wombs (kinship)", "Only the stories of previous nations", "Only the Day of Judgment"],
         correctAnswer: "Creation from one soul, its mate, and the spreading of many men and women, and the importance of the wombs (kinship)",
@@ -78,6 +88,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1"
       },
       {
+        id: "marriage-easy-11",
         question: "What is the mahr in Islamic marriage?",
         options: ["A tax paid to the state", "The obligatory gift given by the husband to the wife at the time of marriage", "A gift from the bride's family", "An optional present"],
         correctAnswer: "The obligatory gift given by the husband to the wife at the time of marriage",
@@ -85,6 +96,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:4"
       },
       {
+        id: "marriage-easy-12",
         question: "Is forced marriage allowed in Islam?",
         options: ["Yes, if the parents insist", "No, both the man and the woman must give their free consent", "Only for young girls", "Only in certain cultures"],
         correctAnswer: "No, both the man and the woman must give their free consent",
@@ -92,6 +104,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5136; Sahih Muslim"
       },
       {
+        id: "marriage-easy-13",
         question: "What is the best quality to seek in a spouse according to the Prophet ﷺ?",
         options: ["Wealth", "Beauty", "Family status", "Religion (deen)"],
         correctAnswer: "Religion (deen)",
@@ -99,6 +112,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5090; Sahih Muslim"
       },
       {
+        id: "marriage-easy-14",
         question: "What did the Prophet ﷺ say about delaying three things?",
         options: ["Prayer, funeral, and marriage of a single woman when a suitable match is found", "Eating, sleeping, and traveling", "Work, study, and travel", "Only prayer"],
         correctAnswer: "Prayer, funeral, and marriage of a single woman when a suitable match is found",
@@ -106,6 +120,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi"
       },
       {
+        id: "marriage-easy-15",
         question: "What is the status of marriage in Islam for the one who fears falling into sin?",
         options: ["Optional", "Obligatory (wajib)", "Disliked", "Forbidden"],
         correctAnswer: "Obligatory (wajib)",
@@ -113,6 +128,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh works; IslamQA"
       },
       {
+        id: "marriage-easy-16",
         question: "What is the connection between the womb and mercy in Islam?",
         options: ["No connection", "The womb (rahm) is named from Ar-Rahman, embodying mercy as a mother shows to her child", "The womb is only a physical organ", "Mercy is only for the Hereafter"],
         correctAnswer: "The womb (rahm) is named from Ar-Rahman, embodying mercy as a mother shows to her child",
@@ -120,6 +136,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; Hadith Qudsi"
       },
       {
+        id: "marriage-easy-17",
         question: "Does maintaining family ties require that relatives also maintain ties with you?",
         options: ["Yes, only reciprocate", "No, the true maintainer of ties is the one who upholds them even when others cut them off", "Only with parents", "Only with siblings"],
         correctAnswer: "No, the true maintainer of ties is the one who upholds them even when others cut them off",
@@ -127,6 +144,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5991"
       },
       {
+        id: "marriage-easy-18",
         question: "What is one of the rights of the wife over her husband?",
         options: ["To provide for herself completely", "Financial maintenance (nafaqah), housing, and kind treatment", "To work and support the husband", "No rights"],
         correctAnswer: "Financial maintenance (nafaqah), housing, and kind treatment",
@@ -134,6 +152,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:19; Surah At-Talaq 65:7"
       },
       {
+        id: "marriage-easy-19",
         question: "What is one of the rights of the husband over his wife?",
         options: ["To take her wealth freely", "Respect, trust, and cooperation in guarding the home and family in a reasonable manner", "Absolute control without kindness", "No rights"],
         correctAnswer: "Respect, trust, and cooperation in guarding the home and family in a reasonable manner",
@@ -141,6 +160,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:228; Sahih Muslim"
       },
       {
+        id: "marriage-easy-20",
         question: "What did Allah place between spouses as a sign?",
         options: ["Only hardship", "Affection (mawaddah) and mercy (rahmah)", "Only competition", "Only silence"],
         correctAnswer: "Affection (mawaddah) and mercy (rahmah)",
@@ -148,6 +168,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21"
       },
       {
+        id: "marriage-easy-21",
         question: "Is it recommended to delay marriage until old age in Islam?",
         options: ["Yes, to gain more experience", "No, the Sunnah encourages marrying when one is able, especially the youth, and not delaying without valid reason", "Only for men", "Only for women"],
         correctAnswer: "No, the Sunnah encourages marrying when one is able, especially the youth, and not delaying without valid reason",
@@ -155,6 +176,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sunan at-Tirmidhi"
       },
       {
+        id: "marriage-easy-22",
         question: "What is the minimum number of witnesses generally required for a valid nikah according to the majority?",
         options: ["None", "One", "Two", "Four"],
         correctAnswer: "Two",
@@ -162,6 +184,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh; Hadith"
       },
       {
+        id: "marriage-easy-23",
         question: "Who is the wali in the context of marriage?",
         options: ["The husband's friend", "The bride's guardian (usually her father) who is involved in the marriage contract", "The imam only", "Any relative"],
         correctAnswer: "The bride's guardian (usually her father) who is involved in the marriage contract",
@@ -169,6 +192,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan Abu Dawud; Tirmidhi"
       },
       {
+        id: "marriage-easy-24",
         question: "What is the ruling on cutting off family ties deliberately?",
         options: ["It is a minor matter", "It is a major sin; Allah has cursed those who sever the ties of kinship", "It is recommended for peace", "It has no religious consequence"],
         correctAnswer: "It is a major sin; Allah has cursed those who sever the ties of kinship",
@@ -176,6 +200,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Ra'd 13:25; Surah Muhammad 47:22-23"
       },
       {
+        id: "marriage-easy-25",
         question: "What did the Prophet ﷺ say about the best of people regarding their wives?",
         options: ["The best are those who are strictest", "The best of you are those who are best to their wives", "Wives have no rights", "Treatment does not matter"],
         correctAnswer: "The best of you are those who are best to their wives",
@@ -183,6 +208,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi; Ibn Majah"
       },
       {
+        id: "marriage-easy-26",
         question: "What is the purpose of the mahr?",
         options: ["To buy the wife", "An obligatory gift of honor from the husband to the wife that becomes her property", "A payment to the bride's father", "An optional gesture"],
         correctAnswer: "An obligatory gift of honor from the husband to the wife that becomes her property",
@@ -190,6 +216,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:4"
       },
       {
+        id: "marriage-easy-27",
         question: "Can a poor person marry according to the Quran?",
         options: ["No, only the rich should marry", "Yes, Allah promises to enrich them from His bounty if they marry", "Only if they wait until wealthy", "Poverty prevents marriage permanently"],
         correctAnswer: "Yes, Allah promises to enrich them from His bounty if they marry",
@@ -197,6 +224,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nur 24:32"
       },
       {
+        id: "marriage-easy-28",
         question: "What is the status of kindness to relatives in the Quran?",
         options: ["Optional", "Commanded immediately after the command to worship Allah alone and be good to parents", "Only for close family", "Not mentioned"],
         correctAnswer: "Commanded immediately after the command to worship Allah alone and be good to parents",
@@ -204,6 +232,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:36"
       },
       {
+        id: "marriage-easy-29",
         question: "What is the meaning of 'spouses are garments for one another'?",
         options: ["They cover each other's faults and provide comfort and protection", "They are only for appearance", "They have no deeper meaning", "It refers only to clothing"],
         correctAnswer: "They cover each other's faults and provide comfort and protection",
@@ -211,6 +240,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:187"
       },
       {
+        id: "marriage-easy-30",
         question: "Is marriage only for fulfilling desire according to Islam?",
         options: ["Yes, that is the only purpose", "No, it is also for tranquillity, building a family, protecting chastity, and completing half of one's religion", "Only for having children", "Only for social status"],
         correctAnswer: "No, it is also for tranquillity, building a family, protecting chastity, and completing half of one's religion",
@@ -218,6 +248,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21; Hadith"
       },
       {
+        id: "marriage-easy-31",
         question: "What should a person do when a suitable, religious match is found?",
         options: ["Delay for years to be sure", "Not delay the marriage without valid reason", "Wait until old age", "Reject it to stay single"],
         correctAnswer: "Not delay the marriage without valid reason",
@@ -225,6 +256,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi"
       },
       {
+        id: "marriage-easy-32",
         question: "What is the consequence of breaking the ties of kinship according to the Hadith Qudsi?",
         options: ["Allah will still maintain ties with the person", "Allah will sever His connection with the one who severs the ties of kinship", "No consequence", "Only a small sin"],
         correctAnswer: "Allah will sever His connection with the one who severs the ties of kinship",
@@ -232,6 +264,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988"
       },
       {
+        id: "marriage-easy-33",
         question: "What is the primary criterion for choosing a spouse emphasized by the Prophet ﷺ?",
         options: ["Wealth and beauty only", "Religion and character", "Family name only", "Physical strength only"],
         correctAnswer: "Religion and character",
@@ -239,6 +272,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5090"
       },
       {
+        id: "marriage-easy-34",
         question: "Is it permissible to marry for the sake of worldly benefits alone while ignoring religion?",
         options: ["Yes, completely fine", "It is disliked; the primary consideration should be religion", "It is obligatory", "It is the best approach"],
         correctAnswer: "It is disliked; the primary consideration should be religion",
@@ -246,6 +280,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5090"
       },
       {
+        id: "marriage-easy-35",
         question: "What does the Quran say about the relationship between fear of Allah and the wombs (kinship)?",
         options: ["They are unrelated", "Fear Allah and (respect) the wombs; Allah is ever Watchful over you", "Only fear Allah, ignore family", "Family ties are more important than Taqwa"],
         correctAnswer: "Fear Allah and (respect) the wombs; Allah is ever Watchful over you",
@@ -253,6 +288,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1"
       },
       {
+        id: "marriage-easy-36",
         question: "What is a practical way to maintain family ties?",
         options: ["Only when convenient", "Visiting, giving gifts, helping in need, speaking kindly, and keeping contact even if others cut off", "Only on Eid", "Only with those who visit you first"],
         correctAnswer: "Visiting, giving gifts, helping in need, speaking kindly, and keeping contact even if others cut off",
@@ -262,6 +298,7 @@ const marriageCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "marriage-intermediate-1",
         question: "What is the ruling on delaying marriage when a suitable match is available and there is fear of falling into sin?",
         options: ["It is recommended to delay", "It is disliked or even sinful if it leads to haram; marriage should not be delayed without valid reason", "It is obligatory to delay", "Delay has no ruling"],
         correctAnswer: "It is disliked or even sinful if it leads to haram; marriage should not be delayed without valid reason",
@@ -269,6 +306,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi; classical fiqh"
       },
       {
+        id: "marriage-intermediate-2",
         question: "What is the relationship between Silat ar-Rahim and Allah's Name Ar-Rahman?",
         options: ["No relationship", "The womb (rahm) is named from Ar-Rahman, and Allah maintains connection with those who maintain family ties", "Only a linguistic coincidence", "It applies only to mothers"],
         correctAnswer: "The womb (rahm) is named from Ar-Rahman, and Allah maintains connection with those who maintain family ties",
@@ -276,6 +314,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; Sahih Muslim"
       },
       {
+        id: "marriage-intermediate-3",
         question: "What is the minimum obligation in maintaining family ties according to many scholars?",
         options: ["Buying expensive gifts only", "At least exchanging the greeting of salam and not cutting off completely", "Living in the same house", "Giving all one's wealth"],
         correctAnswer: "At least exchanging the greeting of salam and not cutting off completely",
@@ -283,6 +322,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh works; IslamQA"
       },
       {
+        id: "marriage-intermediate-4",
         question: "Does the obligation of Silat ar-Rahim apply only to Muslim relatives?",
         options: ["Yes, only Muslims", "No, it applies to blood relatives even if they are non-Muslims, though the manner may differ", "Only to parents", "Only to those who are kind"],
         correctAnswer: "No, it applies to blood relatives even if they are non-Muslims, though the manner may differ",
@@ -290,6 +330,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Luqman 31:15; classical rulings"
       },
       {
+        id: "marriage-intermediate-5",
         question: "What is the ruling on a father delaying his daughter's marriage when a suitable, religious proposal is received?",
         options: ["He may delay indefinitely", "It is disliked; he should not delay without valid reason", "He must delay until she is 30", "He has complete free choice with no guidance"],
         correctAnswer: "It is disliked; he should not delay without valid reason",
@@ -297,6 +338,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi"
       },
       {
+        id: "marriage-intermediate-6",
         question: "What are the main financial rights of the wife over her husband?",
         options: ["None", "Mahr, nafaqah (maintenance), and housing according to his means", "Only mahr", "Only clothing"],
         correctAnswer: "Mahr, nafaqah (maintenance), and housing according to his means",
@@ -304,6 +346,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:4; Surah At-Talaq 65:7; Sahih Muslim"
       },
       {
+        id: "marriage-intermediate-7",
         question: "What is the status of the wife's own wealth after marriage?",
         options: ["It becomes the husband's", "It remains her exclusive property; the husband has no right to take it without her consent", "It is shared equally", "It goes to the children"],
         correctAnswer: "It remains her exclusive property; the husband has no right to take it without her consent",
@@ -311,6 +354,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:4; classical fiqh"
       },
       {
+        id: "marriage-intermediate-8",
         question: "What is the meaning of the hadith that marriage is 'half of the religion'?",
         options: ["Marriage replaces all other acts of worship", "It helps complete and protect one's faith by safeguarding chastity and providing a lawful outlet, making the practice of the rest of the deen easier", "It is only a cultural saying", "It means marriage is more important than prayer"],
         correctAnswer: "It helps complete and protect one's faith by safeguarding chastity and providing a lawful outlet, making the practice of the rest of the deen easier",
@@ -318,6 +362,7 @@ const marriageCategory: QuizCategory = {
         references: "Hadith narrated in various collections with similar meaning"
       },
       {
+        id: "marriage-intermediate-9",
         question: "Is the consent of a mature woman required for her marriage?",
         options: ["No, the father decides alone", "Yes, her permission must be sought; a forced marriage is not valid in the proper sense", "Only if she is previously married", "Consent is never required"],
         correctAnswer: "Yes, her permission must be sought; a forced marriage is not valid in the proper sense",
@@ -325,6 +370,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5136; Sahih Muslim"
       },
       {
+        id: "marriage-intermediate-10",
         question: "What is the ruling on maintaining ties with relatives who have cut off ties with you?",
         options: ["You may also cut them off", "You are still required to maintain ties from your side; the reward is greater", "Ignore them completely", "Only contact them once a year"],
         correctAnswer: "You are still required to maintain ties from your side; the reward is greater",
@@ -332,6 +378,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5991"
       },
       {
+        id: "marriage-intermediate-11",
         question: "What is the connection between the creation of spouses and the signs of Allah?",
         options: ["No connection", "The creation of mates from yourselves, with affection and mercy between them, is one of the signs of Allah for people who reflect", "It is only a biological fact", "It is not mentioned as a sign"],
         correctAnswer: "The creation of mates from yourselves, with affection and mercy between them, is one of the signs of Allah for people who reflect",
@@ -339,6 +386,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21"
       },
       {
+        id: "marriage-intermediate-12",
         question: "What is the ruling on a man marrying a woman solely for her beauty while ignoring her religion?",
         options: ["It is the best choice", "It is contrary to the Prophetic advice; religion should be the primary criterion", "It is obligatory", "Beauty is the only criterion"],
         correctAnswer: "It is contrary to the Prophetic advice; religion should be the primary criterion",
@@ -346,6 +394,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5090"
       },
       {
+        id: "marriage-intermediate-13",
         question: "What is the role of the wali in the Hanafi school compared to the majority?",
         options: ["Identical in all schools", "The majority require the wali; the Hanafi school allows an adult sane woman to contract her own marriage (with conditions), while giving the wali a right to object in certain cases", "No school requires a wali", "Only the mother is the wali"],
         correctAnswer: "The majority require the wali; the Hanafi school allows an adult sane woman to contract her own marriage (with conditions), while giving the wali a right to object in certain cases",
@@ -353,6 +402,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh comparisons"
       },
       {
+        id: "marriage-intermediate-14",
         question: "What is the consequence of severing family ties in this world according to the Hadith?",
         options: ["No worldly consequence", "Allah may hasten the punishment in this world in addition to what is stored in the Hereafter", "Only loss of money", "Increase in wealth"],
         correctAnswer: "Allah may hasten the punishment in this world in addition to what is stored in the Hereafter",
@@ -360,6 +410,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan Abu Dawud; Ibn Majah"
       },
       {
+        id: "marriage-intermediate-15",
         question: "What is the proper attitude toward the wife's family after marriage?",
         options: ["Cut them off completely", "Maintain good relations and kindness as part of Silat ar-Rahim and good character", "Only contact them for money", "Ignore them"],
         correctAnswer: "Maintain good relations and kindness as part of Silat ar-Rahim and good character",
@@ -367,6 +418,7 @@ const marriageCategory: QuizCategory = {
         references: "General principles of Silat ar-Rahim and good treatment"
       },
       {
+        id: "marriage-intermediate-16",
         question: "What is the ruling on secret marriage (without witnesses or public knowledge) in the view of the majority?",
         options: ["It is preferred", "It is not valid according to the majority because witnesses are required", "It is the Sunnah", "It is only for the poor"],
         correctAnswer: "It is not valid according to the majority because witnesses are required",
@@ -374,6 +426,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh"
       },
       {
+        id: "marriage-intermediate-17",
         question: "What is the meaning of living with wives 'in kindness' (bil-ma'ruf)?",
         options: ["Only providing money", "Treating them with good character, fairness, patience, and respect according to what is recognized as good", "Strict control only", "Ignoring their feelings"],
         correctAnswer: "Treating them with good character, fairness, patience, and respect according to what is recognized as good",
@@ -381,6 +434,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:19"
       },
       {
+        id: "marriage-intermediate-18",
         question: "Is it permissible for a woman to stipulate conditions in the marriage contract?",
         options: ["No, never", "Yes, she may stipulate conditions that are beneficial and not contrary to the Shariah (e.g., not to take another wife, or to live in a certain place), according to many scholars", "Only the man can stipulate", "Conditions invalidate the marriage"],
         correctAnswer: "Yes, she may stipulate conditions that are beneficial and not contrary to the Shariah (e.g., not to take another wife, or to live in a certain place), according to many scholars",
@@ -388,6 +442,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh discussions"
       },
       {
+        id: "marriage-intermediate-19",
         question: "What is the relationship between marriage and lowering the gaze?",
         options: ["No relationship", "Marriage is a means that helps a person lower the gaze and protect chastity", "Marriage increases the need to look", "Only fasting helps"],
         correctAnswer: "Marriage is a means that helps a person lower the gaze and protect chastity",
@@ -395,6 +450,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5066"
       },
       {
+        id: "marriage-intermediate-20",
         question: "What is the ruling on a person who is able to marry but deliberately remains single without valid reason while exposed to temptation?",
         options: ["It is recommended", "It is contrary to the Sunnah and may be sinful if it leads to haram", "It is the highest form of piety", "It has no ruling"],
         correctAnswer: "It is contrary to the Sunnah and may be sinful if it leads to haram",
@@ -402,6 +458,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; classical rulings"
       },
       {
+        id: "marriage-intermediate-21",
         question: "What is the proper response when relatives treat you poorly?",
         options: ["Cut them off permanently", "Continue to maintain ties from your side for the sake of Allah, while protecting yourself from harm", "Seek revenge", "Ignore the command of Silat ar-Rahim"],
         correctAnswer: "Continue to maintain ties from your side for the sake of Allah, while protecting yourself from harm",
@@ -409,6 +466,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5991"
       },
       {
+        id: "marriage-intermediate-22",
         question: "What is the significance of the verse 'He created for you from yourselves mates'?",
         options: ["Spouses are created from different species", "Spouses are of the same human nature, suited for companionship and tranquillity", "Only men are created", "It has no practical meaning"],
         correctAnswer: "Spouses are of the same human nature, suited for companionship and tranquillity",
@@ -416,6 +474,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21; Surah An-Nahl 16:72"
       },
       {
+        id: "marriage-intermediate-23",
         question: "What is the ruling on the husband's responsibility when he has more than one wife?",
         options: ["He may favor one completely", "He must maintain justice between them in material rights and time as much as possible", "Justice is not required", "He should neglect all"],
         correctAnswer: "He must maintain justice between them in material rights and time as much as possible",
@@ -423,6 +482,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:3"
       },
       {
+        id: "marriage-intermediate-24",
         question: "What is the connection between family ties and the expansion of provision?",
         options: ["No connection", "Maintaining family ties is a cause for the expansion of provision and blessing in life, by the promise of the Prophet ﷺ", "Only work expands provision", "Family ties decrease provision"],
         correctAnswer: "Maintaining family ties is a cause for the expansion of provision and blessing in life, by the promise of the Prophet ﷺ",
@@ -430,6 +490,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5986"
       },
       {
+        id: "marriage-intermediate-25",
         question: "What is the proper Islamic view on delaying marriage for the sake of lengthy education or career without balancing religious needs?",
         options: ["It is always better", "One should weigh the benefits against the risk of falling into sin; the Sunnah prioritizes protecting chastity", "Education always comes first without limit", "Marriage is never important"],
         correctAnswer: "One should weigh the benefits against the risk of falling into sin; the Sunnah prioritizes protecting chastity",
@@ -437,6 +498,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; scholarly discussions"
       },
       {
+        id: "marriage-intermediate-26",
         question: "What is the ruling on a woman working outside the home after marriage?",
         options: ["Absolutely forbidden", "Permissible with conditions: the work is lawful, her husband consents (or it does not conflict with his rights), and her religious obligations and family duties are not neglected", "Obligatory", "Only if the husband is poor"],
         correctAnswer: "Permissible with conditions: the work is lawful, her husband consents (or it does not conflict with his rights), and her religious obligations and family duties are not neglected",
@@ -444,6 +506,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical and contemporary fatwas"
       },
       {
+        id: "marriage-intermediate-27",
         question: "What is the meaning of the Quranic phrase 'and the wombs' in Surah An-Nisa 4:1?",
         options: ["Only the physical organ", "A command to respect and maintain the ties of kinship that originate from the womb", "Only mothers", "It is a metaphor for the earth"],
         correctAnswer: "A command to respect and maintain the ties of kinship that originate from the womb",
@@ -451,6 +514,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Tafsir Ibn Kathir and others"
       },
       {
+        id: "marriage-intermediate-28",
         question: "What is the ruling on giving preference to wealthier relatives over poorer ones in maintaining ties?",
         options: ["It is correct", "One should maintain ties with all according to the closeness of relation and need; neglecting poor relatives while favoring the rich is blameworthy", "Only the rich deserve ties", "Poverty ends the obligation"],
         correctAnswer: "One should maintain ties with all according to the closeness of relation and need; neglecting poor relatives while favoring the rich is blameworthy",
@@ -458,6 +522,7 @@ const marriageCategory: QuizCategory = {
         references: "General principles of Silat ar-Rahim and charity"
       },
       {
+        id: "marriage-intermediate-29",
         question: "What is the Prophetic guidance regarding the treatment of wives during times of disagreement?",
         options: ["Harshness is always required", "Kindness, patience, and living with them in ma'ruf even in difficulty", "Immediate divorce", "Silence forever"],
         correctAnswer: "Kindness, patience, and living with them in ma'ruf even in difficulty",
@@ -465,6 +530,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:19; Hadith"
       },
       {
+        id: "marriage-intermediate-30",
         question: "What is the status of the marriage contract if the mahr is not specified at the time of the contract?",
         options: ["The marriage is invalid", "According to many scholars the marriage is still valid, and a proper mahr (mahr al-mithl) is due", "No mahr is ever due", "The wife loses all rights"],
         correctAnswer: "According to many scholars the marriage is still valid, and a proper mahr (mahr al-mithl) is due",
@@ -472,6 +538,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh"
       },
       {
+        id: "marriage-intermediate-31",
         question: "What is the connection between mercy in the family and the Name of Allah Ar-Rahman?",
         options: ["No connection", "The womb is the embodiment of mercy, named from Ar-Rahman; family relationships should reflect that mercy", "Mercy is only for the poor", "Family is unrelated to divine names"],
         correctAnswer: "The womb is the embodiment of mercy, named from Ar-Rahman; family relationships should reflect that mercy",
@@ -479,6 +546,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; linguistic analysis"
       },
       {
+        id: "marriage-intermediate-32",
         question: "What is the ruling on a person who maintains ties only for worldly benefit (e.g., inheritance or gifts)?",
         options: ["It is the highest form", "The intention should be for the sake of Allah; maintaining ties purely for worldly gain diminishes the reward", "Intention does not matter", "It is forbidden"],
         correctAnswer: "The intention should be for the sake of Allah; maintaining ties purely for worldly gain diminishes the reward",
@@ -486,6 +554,7 @@ const marriageCategory: QuizCategory = {
         references: "General principles of ikhlas"
       },
       {
+        id: "marriage-intermediate-33",
         question: "What is the proper Islamic approach to the modern trend of delaying marriage until late age for career or lifestyle reasons?",
         options: ["It is fully aligned with the Sunnah", "It often contradicts the Prophetic encouragement to marry when able and the warning against unnecessary delay", "It is obligatory in modern times", "The Sunnah has no guidance on timing"],
         correctAnswer: "It often contradicts the Prophetic encouragement to marry when able and the warning against unnecessary delay",
@@ -493,6 +562,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sunan at-Tirmidhi; scholarly discussions"
       },
       {
+        id: "marriage-intermediate-34",
         question: "What is the ruling on the one who severs ties with his parents?",
         options: ["It is a minor issue", "It is one of the major sins; disobedience to parents and severing ties with them is severely condemned", "It is allowed if they are strict", "It has no special ruling"],
         correctAnswer: "It is one of the major sins; disobedience to parents and severing ties with them is severely condemned",
@@ -500,6 +570,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:36; Sahih Bukhari"
       },
       {
+        id: "marriage-intermediate-35",
         question: "What is the wisdom behind the command to marry the 'loving and fertile' (wadud walud)?",
         options: ["Only for increasing numbers without purpose", "To build loving families and increase the ummah in a blessed way, as the Prophet ﷺ will boast of the numbers of his ummah", "Fertility is the only criterion", "Love is not important"],
         correctAnswer: "To build loving families and increase the ummah in a blessed way, as the Prophet ﷺ will boast of the numbers of his ummah",
@@ -507,6 +578,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan Abu Dawud; Nasa'i"
       },
       {
+        id: "marriage-intermediate-36",
         question: "What is the ruling on a person who is financially able and desires marriage but delays it solely for cultural trends of late marriage?",
         options: ["It is the preferred modern path", "It goes against the Prophetic encouragement to marry when able and the warning against unnecessary delay", "It is obligatory in all cases", "The Sunnah encourages maximum delay"],
         correctAnswer: "It goes against the Prophetic encouragement to marry when able and the warning against unnecessary delay",
@@ -516,6 +588,7 @@ const marriageCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "marriage-advanced-1",
         question: "What is the precise theological link between Ar-Rahman, the rahm (womb), and Silat ar-Rahim?",
         options: ["Only a linguistic curiosity", "Allah named the womb from His Name Ar-Rahman and pledged to join those who join the ties of kinship and cut off those who cut them off, making family ties a direct manifestation of divine mercy", "The womb has no link to Allah's Names", "It applies only to the physical act of birth"],
         correctAnswer: "Allah named the womb from His Name Ar-Rahman and pledged to join those who join the ties of kinship and cut off those who cut them off, making family ties a direct manifestation of divine mercy",
@@ -523,6 +596,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; Sahih Muslim; Tafsir"
       },
       {
+        id: "marriage-advanced-2",
         question: "How does Surah An-Nisa 4:1 integrate the themes of creation, marriage, and kinship?",
         options: ["It only mentions creation", "It begins with the creation of humanity from one soul, the creation of its mate, the spreading of many men and women, then commands Taqwa of Allah and of the wombs (kinship ties)", "It only discusses inheritance", "It has no link to family"],
         correctAnswer: "It begins with the creation of humanity from one soul, the creation of its mate, the spreading of many men and women, then commands Taqwa of Allah and of the wombs (kinship ties)",
@@ -530,6 +604,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Tafsir Ibn Kathir"
       },
       {
+        id: "marriage-advanced-3",
         question: "What is the ruling on a condition in the marriage contract that the husband will not take another wife?",
         options: ["It is invalid and the marriage is void", "According to many scholars it is a valid and binding condition; if he violates it, she may have the right to seek annulment or divorce", "It is always forbidden", "It has no legal effect"],
         correctAnswer: "According to many scholars it is a valid and binding condition; if he violates it, she may have the right to seek annulment or divorce",
@@ -537,6 +612,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh discussions (e.g., Hanbali and others)"
       },
       {
+        id: "marriage-advanced-4",
         question: "What is the precise understanding of justice (adl) required between wives?",
         options: ["Emotional equality in the heart is required", "Justice in material rights, time, and outward treatment is required; complete equality of the heart's inclination is not possible and not demanded", "No justice is required", "Only financial equality"],
         correctAnswer: "Justice in material rights, time, and outward treatment is required; complete equality of the heart's inclination is not possible and not demanded",
@@ -544,6 +620,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:129"
       },
       {
+        id: "marriage-advanced-5",
         question: "What is the status of a marriage conducted without the bride's consent in the view of the majority of scholars?",
         options: ["Fully valid", "Invalid or at least the woman has the right to annul it; forced marriage is not the Islamic model", "Only valid if the father forces", "Valid only for minors"],
         correctAnswer: "Invalid or at least the woman has the right to annul it; forced marriage is not the Islamic model",
@@ -551,6 +628,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sahih Muslim; classical rulings"
       },
       {
+        id: "marriage-advanced-6",
         question: "How does the concept of 'garments for one another' inform the mutual rights of spouses?",
         options: ["It has no practical implication", "It indicates closeness, protection, covering of faults, comfort, and mutual adornment — requiring kindness, privacy, and support from both sides", "It only means physical covering", "It means one spouse owns the other"],
         correctAnswer: "It indicates closeness, protection, covering of faults, comfort, and mutual adornment — requiring kindness, privacy, and support from both sides",
@@ -558,6 +636,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:187; Tafsir"
       },
       {
+        id: "marriage-advanced-7",
         question: "What is the ruling on the one who maintains outward family ties while harboring hatred and cutting off the spirit of the relationship?",
         options: ["It fully fulfills the obligation", "The outward acts are good, but the heart should also be reformed; complete Silat ar-Rahim includes good intention and avoidance of harm", "Intention is irrelevant", "Outward acts are forbidden"],
         correctAnswer: "The outward acts are good, but the heart should also be reformed; complete Silat ar-Rahim includes good intention and avoidance of harm",
@@ -565,6 +644,7 @@ const marriageCategory: QuizCategory = {
         references: "General principles of ikhlas and Silat ar-Rahim"
       },
       {
+        id: "marriage-advanced-8",
         question: "What is the relationship between the fear of Allah (Taqwa) and the command regarding the wombs in Surah An-Nisa 4:1?",
         options: ["They are separate commands", "Taqwa of Allah is linked directly to reverence for the ties of kinship; the same watchfulness of Allah applies to both", "Only Taqwa matters", "Kinship is more important than Taqwa"],
         correctAnswer: "Taqwa of Allah is linked directly to reverence for the ties of kinship; the same watchfulness of Allah applies to both",
@@ -572,6 +652,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Tafsir"
       },
       {
+        id: "marriage-advanced-9",
         question: "What is the advanced understanding of why the Prophet ﷺ linked marriage to the protection of the private parts and lowering of the gaze?",
         options: ["Only a physical recommendation", "Marriage provides a lawful means for the fulfillment of desire, thereby protecting the individual and society from the widespread corruption of zina and its consequences", "It has no social dimension", "It is only for the weak"],
         correctAnswer: "Marriage provides a lawful means for the fulfillment of desire, thereby protecting the individual and society from the widespread corruption of zina and its consequences",
@@ -579,6 +660,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5066; scholarly explanations"
       },
       {
+        id: "marriage-advanced-10",
         question: "What is the ruling on a guardian who refuses a suitable, religious proposal for his daughter without valid Shariah reason?",
         options: ["He has absolute right", "He is sinful for preventing a suitable marriage; in some cases the authority may transfer to another guardian or the judge", "The daughter has no recourse", "It is recommended to refuse"],
         correctAnswer: "He is sinful for preventing a suitable marriage; in some cases the authority may transfer to another guardian or the judge",
@@ -586,6 +668,7 @@ const marriageCategory: QuizCategory = {
         references: "Classical fiqh; Hadith on not delaying marriage"
       },
       {
+        id: "marriage-advanced-11",
         question: "How does the Quranic description of spouses as a source of 'tranquillity' (sakinah) inform the purpose of marriage beyond mere physical relation?",
         options: ["Tranquillity is only physical", "Marriage is intended to provide emotional, psychological, and spiritual rest and stability, making the home a place of peace", "Tranquillity is not important", "Only children provide tranquillity"],
         correctAnswer: "Marriage is intended to provide emotional, psychological, and spiritual rest and stability, making the home a place of peace",
@@ -593,6 +676,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21; Tafsir"
       },
       {
+        id: "marriage-advanced-12",
         question: "What is the precise meaning of the hadith that the one who severs kinship will not enter Paradise?",
         options: ["He is permanently barred with no hope", "It refers to the one who persists in severing ties without repentance; the threat is severe but repentance is accepted", "It is only a metaphor", "It applies only to cutting parents"],
         correctAnswer: "It refers to the one who persists in severing ties without repentance; the threat is severe but repentance is accepted",
@@ -600,6 +684,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5984; explanations of the scholars"
       },
       {
+        id: "marriage-advanced-13",
         question: "What is the advanced ruling on the mahr when the marriage is consummated and then ended?",
         options: ["The full mahr is always returned", "If the marriage is consummated, the full mahr is due to the wife; if divorced before consummation, half is due unless she or the one on her side waives it", "No mahr is ever due after divorce", "The husband keeps everything"],
         correctAnswer: "If the marriage is consummated, the full mahr is due to the wife; if divorced before consummation, half is due unless she or the one on her side waives it",
@@ -607,6 +692,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:236-237"
       },
       {
+        id: "marriage-advanced-14",
         question: "What is the relationship between the command to marry and the protection of the broader society from fitnah?",
         options: ["No relationship", "When suitable marriages are facilitated and not delayed, it reduces the prevalence of zina and social corruption; when delayed without reason, temptation and corruption increase", "Marriage has no social effect", "Only individual piety matters"],
         correctAnswer: "When suitable marriages are facilitated and not delayed, it reduces the prevalence of zina and social corruption; when delayed without reason, temptation and corruption increase",
@@ -614,6 +700,7 @@ const marriageCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi; related narrations"
       },
       {
+        id: "marriage-advanced-15",
         question: "What is the correct understanding of the husband's degree (darajah) over the wife mentioned in the Quran?",
         options: ["It means absolute tyranny", "It refers to a degree of responsibility and leadership in the family, accompanied by greater obligations, not oppression", "It means the wife has no rights", "It is abrogated"],
         correctAnswer: "It refers to a degree of responsibility and leadership in the family, accompanied by greater obligations, not oppression",
@@ -621,6 +708,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:228; Surah An-Nisa 4:34; Tafsir"
       },
       {
+        id: "marriage-advanced-16",
         question: "How should a Muslim balance the modern emphasis on prolonged single life for self-development with the Prophetic guidance on marriage?",
         options: ["Completely ignore the Sunnah", "Pursue beneficial education and stability while not unnecessarily delaying marriage when one is able and a suitable match is available, prioritizing the protection of chastity", "Never marry until age 40", "Marriage is only for the uneducated"],
         correctAnswer: "Pursue beneficial education and stability while not unnecessarily delaying marriage when one is able and a suitable match is available, prioritizing the protection of chastity",
@@ -628,6 +716,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; scholarly contemporary discussions"
       },
       {
+        id: "marriage-advanced-17",
         question: "What is the ruling on the one who maintains family ties selectively — only with those who benefit him — while neglecting others?",
         options: ["It fully fulfills Silat ar-Rahim", "It is deficient; true Silat ar-Rahim includes maintaining ties according to the degree of kinship and need, not only worldly benefit", "Selectivity is recommended", "Only the rich deserve ties"],
         correctAnswer: "It is deficient; true Silat ar-Rahim includes maintaining ties according to the degree of kinship and need, not only worldly benefit",
@@ -635,6 +724,7 @@ const marriageCategory: QuizCategory = {
         references: "Principles of Silat ar-Rahim"
       },
       {
+        id: "marriage-advanced-18",
         question: "What is the advanced understanding of the phrase 'Allah will enrich them from His bounty' in the context of marriage for the poor?",
         options: ["It is a guarantee of sudden wealth", "It is a promise that Allah will provide sufficiency and blessing for those who marry seeking His pleasure, removing the fear of poverty as a barrier to marriage", "It means poverty is preferred", "It has no practical meaning"],
         correctAnswer: "It is a promise that Allah will provide sufficiency and blessing for those who marry seeking His pleasure, removing the fear of poverty as a barrier to marriage",
@@ -642,6 +732,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nur 24:32; Tafsir"
       },
       {
+        id: "marriage-advanced-19",
         question: "What is the precise role of affection (mawaddah) and mercy (rahmah) in the Quranic vision of marriage?",
         options: ["They are optional feelings", "They are divinely placed components that make the marital relationship a source of tranquillity and a sign of Allah; spouses should nurture them", "They are only for the beginning of marriage", "They are unrelated to the purpose of marriage"],
         correctAnswer: "They are divinely placed components that make the marital relationship a source of tranquillity and a sign of Allah; spouses should nurture them",
@@ -649,6 +740,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21"
       },
       {
+        id: "marriage-advanced-20",
         question: "What is the ruling on a person who cuts off ties with relatives because of a worldly dispute over inheritance or property?",
         options: ["It is justified", "It is still a form of severing the ties of kinship and is sinful; worldly disputes do not cancel the religious obligation", "Inheritance ends all ties", "Only the one who is wronged may cut off"],
         correctAnswer: "It is still a form of severing the ties of kinship and is sinful; worldly disputes do not cancel the religious obligation",
@@ -656,6 +748,7 @@ const marriageCategory: QuizCategory = {
         references: "General rulings on Silat ar-Rahim"
       },
       {
+        id: "marriage-advanced-21",
         question: "How does the Prophet's ﷺ own example of marriage inform the timing and approach to nikah?",
         options: ["He delayed all marriages until old age", "He married at various stages, encouraged the youth, and his household demonstrated kindness, patience, and fulfilment of rights", "He avoided marriage", "His example has no relevance today"],
         correctAnswer: "He married at various stages, encouraged the youth, and his household demonstrated kindness, patience, and fulfilment of rights",
@@ -663,6 +756,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sahih Muslim; Seerah"
       },
       {
+        id: "marriage-advanced-22",
         question: "What is the advanced understanding of the mutual rights described as 'similar to what is reasonable' (bil-ma'ruf)?",
         options: ["Rights are identical in every detail", "Rights are reciprocal in the sense of fairness and kindness according to what is recognized as good, while acknowledging the different roles and responsibilities of each spouse", "The husband has all rights", "The wife has all rights"],
         correctAnswer: "Rights are reciprocal in the sense of fairness and kindness according to what is recognized as good, while acknowledging the different roles and responsibilities of each spouse",
@@ -670,6 +764,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:228; Tafsir"
       },
       {
+        id: "marriage-advanced-23",
         question: "What is the ruling on the one who uses the excuse of 'modern life' or 'career first' to indefinitely postpone marriage while able and exposed to temptation?",
         options: ["It is fully Islamic", "It requires serious self-examination; the Prophetic guidance prioritizes protecting chastity and does not endorse indefinite delay without justification", "It is the only correct path", "The Sunnah is silent on the matter"],
         correctAnswer: "It requires serious self-examination; the Prophetic guidance prioritizes protecting chastity and does not endorse indefinite delay without justification",
@@ -677,6 +772,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sunan at-Tirmidhi; contemporary scholarly advice"
       },
       {
+        id: "marriage-advanced-24",
         question: "What is the comprehensive wisdom behind linking the womb to the Name of Allah Ar-Rahman in the context of family and society?",
         options: ["Only a linguistic note", "It teaches that the family bond is sacred, rooted in divine mercy, and that maintaining it is a way of connecting to Allah's mercy, while severing it is a way of being cut off from that mercy", "It has no social implication", "It only concerns mothers and children"],
         correctAnswer: "It teaches that the family bond is sacred, rooted in divine mercy, and that maintaining it is a way of connecting to Allah's mercy, while severing it is a way of being cut off from that mercy",
@@ -684,6 +780,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5988; linguistic and theological analysis"
       },
       {
+        id: "marriage-advanced-25",
         question: "What is the final outcome promised to those who maintain family ties and fear Allah regarding the wombs?",
         options: ["Only worldly benefit", "Increase in provision, prolongation of life, connection with Allah's mercy, and ultimately Paradise, while the one who severs is under threat of being cut off from that mercy", "No special outcome", "Only punishment"],
         correctAnswer: "Increase in provision, prolongation of life, connection with Allah's mercy, and ultimately Paradise, while the one who severs is under threat of being cut off from that mercy",
@@ -691,6 +788,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5986, 5988; Surah An-Nisa 4:1; Surah Ar-Ra'd 13:21, 13:25"
       },
       {
+        id: "marriage-advanced-26",
         question: "What is the advanced balance between the rights of the husband and the rights of the wife in light of the Quran and Sunnah?",
         options: ["One side has all rights", "Both have rights and responsibilities; the husband has a degree of leadership with greater financial and protective duties, while the wife has rights to kind treatment, maintenance, and dignity, and both are commanded to live in ma'ruf", "Rights are identical in every function", "The concept of rights is modern and not Islamic"],
         correctAnswer: "Both have rights and responsibilities; the husband has a degree of leadership with greater financial and protective duties, while the wife has rights to kind treatment, maintenance, and dignity, and both are commanded to live in ma'ruf",
@@ -698,6 +796,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:228; Surah An-Nisa 4:19, 4:34; Hadith"
       },
       {
+        id: "marriage-advanced-27",
         question: "What is the ultimate purpose of marriage and family ties in the larger framework of Islamic life?",
         options: ["Only worldly comfort", "To achieve tranquillity, protect chastity, build a righteous family that worships Allah, maintain the sacred bonds of kinship that reflect divine mercy, and ultimately attain the pleasure of Allah and Paradise", "Only to increase population", "Only to fulfill social expectations"],
         correctAnswer: "To achieve tranquillity, protect chastity, build a righteous family that worships Allah, maintain the sacred bonds of kinship that reflect divine mercy, and ultimately attain the pleasure of Allah and Paradise",
@@ -705,6 +804,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah Ar-Rum 30:21; Surah An-Nisa 4:1; Sahih Bukhari; overall Quranic worldview"
       },
       {
+        id: "marriage-advanced-28",
         question: "What is the precise implication of the Hadith that kinship (rahm) stood up and sought protection from being cut off?",
         options: ["It is a metaphorical story only", "It establishes that the bond of kinship has a real status with Allah, who grants its request to maintain those who maintain it and cut off those who cut it off", "It has no practical ruling", "It only concerns mothers"],
         correctAnswer: "It establishes that the bond of kinship has a real status with Allah, who grants its request to maintain those who maintain it and cut off those who cut it off",
@@ -712,6 +812,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari; Sahih Muslim"
       },
       {
+        id: "marriage-advanced-29",
         question: "What is the ruling on a marriage in which the primary intention is solely worldly (status, wealth, or beauty) with no regard for religion?",
         options: ["It is the ideal", "It is valid as a contract if the pillars are present, but it is contrary to the Prophetic advice and likely to lack barakah", "It is invalid", "Intention has no effect"],
         correctAnswer: "It is valid as a contract if the pillars are present, but it is contrary to the Prophetic advice and likely to lack barakah",
@@ -719,6 +820,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5090"
       },
       {
+        id: "marriage-advanced-30",
         question: "How does the Quranic command to 'live with them in kindness' interact with the husband's degree of responsibility?",
         options: ["The degree cancels kindness", "The degree of qiwamah (responsibility) is exercised through and limited by the obligation of kind treatment; it is not a license for harshness", "Kindness is only for the wife to show", "There is no interaction"],
         correctAnswer: "The degree of qiwamah (responsibility) is exercised through and limited by the obligation of kind treatment; it is not a license for harshness",
@@ -726,6 +828,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:19, 4:34; Hadith"
       },
       {
+        id: "marriage-advanced-31",
         question: "What is the advanced understanding of why Allah links the command regarding the wombs immediately with the command to fear Him?",
         options: ["It is coincidental", "Because the ties of kinship are so important that reverence for them is placed alongside Taqwa, and both are under Allah's watchful observation", "Kinship is more important than Taqwa", "Taqwa cancels family obligations"],
         correctAnswer: "Because the ties of kinship are so important that reverence for them is placed alongside Taqwa, and both are under Allah's watchful observation",
@@ -733,6 +836,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Tafsir"
       },
       {
+        id: "marriage-advanced-32",
         question: "What is the ruling on a person who fulfills the outward forms of Silat ar-Rahim (visits, gifts) but does so with arrogance or to seek praise?",
         options: ["It is the highest form", "The outward acts are still beneficial, but the lack of sincerity reduces or nullifies the spiritual reward; intention must be for Allah", "Outward acts are forbidden without perfect intention", "Intention is irrelevant"],
         correctAnswer: "The outward acts are still beneficial, but the lack of sincerity reduces or nullifies the spiritual reward; intention must be for Allah",
@@ -740,6 +844,7 @@ const marriageCategory: QuizCategory = {
         references: "General principles of ikhlas"
       },
       {
+        id: "marriage-advanced-33",
         question: "What is the precise balance between the encouragement of early marriage and the requirement of capability (ability to maintain and fulfill rights)?",
         options: ["Marry regardless of ability", "The encouragement is for those who are able; capability includes financial, physical, and mental readiness to fulfill the rights of marriage", "Ability is never considered", "Only age matters"],
         correctAnswer: "The encouragement is for those who are able; capability includes financial, physical, and mental readiness to fulfill the rights of marriage",
@@ -747,6 +852,7 @@ const marriageCategory: QuizCategory = {
         references: "Sahih Bukhari 5066; classical fiqh"
       },
       {
+        id: "marriage-advanced-34",
         question: "What is the ruling on cutting off a relative who is openly engaged in major sin or harm, while still maintaining the basic tie?",
         options: ["Complete severance is required", "One may limit interaction to protect oneself and one's family from harm, while not completely severing the blood tie and still offering the basic rights of kinship where possible", "No limitation is allowed", "One must support the sin"],
         correctAnswer: "One may limit interaction to protect oneself and one's family from harm, while not completely severing the blood tie and still offering the basic rights of kinship where possible",
@@ -754,6 +860,7 @@ const marriageCategory: QuizCategory = {
         references: "Scholarly discussions on Silat ar-Rahim with harmful relatives"
       },
       {
+        id: "marriage-advanced-35",
         question: "What is the comprehensive Quranic vision of the family as presented in the opening of Surah An-Nisa?",
         options: ["Only a social unit", "A divinely originated institution beginning from one soul, expanded through the spouse, multiplied into humanity, and bound by the sacred ties of the womb that must be revered under the watch of Allah", "Only about inheritance", "Only about gender roles"],
         correctAnswer: "A divinely originated institution beginning from one soul, expanded through the spouse, multiplied into humanity, and bound by the sacred ties of the womb that must be revered under the watch of Allah",
@@ -761,6 +868,7 @@ const marriageCategory: QuizCategory = {
         references: "Surah An-Nisa 4:1; Tafsir"
       },
       {
+        id: "marriage-advanced-36",
         question: "What is the ultimate criterion for success in marriage and family life according to the combined teachings of the Quran and Sunnah?",
         options: ["Wealth and status", "Taqwa, kind treatment, fulfilment of mutual rights, maintenance of kinship ties for the sake of Allah, and seeking the tranquillity and mercy that Allah places between spouses", "Only the number of children", "Social appearance"],
         correctAnswer: "Taqwa, kind treatment, fulfilment of mutual rights, maintenance of kinship ties for the sake of Allah, and seeking the tranquillity and mercy that Allah places between spouses",

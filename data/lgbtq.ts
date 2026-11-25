@@ -8,6 +8,7 @@ const lgbtqCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "lgbtq-easy-1",
         question: "Which Surah in the Quran mentions the story of the people of Lut (Lot)?",
         options: [
           "Surah Al-Baqarah",
@@ -20,6 +21,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 11:77-83"
       },
       {
+        id: "lgbtq-easy-2",
         question: "In the story of Lut, what was the primary sin for which his people were condemned?",
         options: [
           "Worshipping idols",
@@ -32,6 +34,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 27:55"
       },
       {
+        id: "lgbtq-easy-3",
         question: "The term 'liwat' in Islamic jurisprudence is commonly used to refer to what?",
         options: [
           "Lying",
@@ -44,6 +47,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Al-Mawsu’ah Al-Fiqhiyyah Al-Kuwaitiyyah"
       },
       {
+        id: "lgbtq-easy-4",
         question: "According to the Quran, how did the people of Lut react when Prophet Lut advised them to abandon their practices?",
         options: [
           "They listened and repented",
@@ -56,6 +60,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 27:56"
       },
       {
+        id: "lgbtq-easy-5",
         question: "What is the Islamic legal term for illicit sexual relations outside of marriage?",
         options: [
           "Zina",
@@ -68,6 +73,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 17:32"
       },
       {
+        id: "lgbtq-easy-6",
         question: "In the Islamic tradition, the concept of gender is generally understood to be what?",
         options: [
           "A social construct",
@@ -80,6 +86,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 49:13, 53:45"
       },
       {
+        id: "lgbtq-easy-7",
         question: "What term is used in hadith to describe men who imitate women?",
         options: [
           "Mukhannathun",
@@ -92,6 +99,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih al-Bukhari, Book of Dress, Hadith 5885"
       },
       {
+        id: "lgbtq-easy-8",
         question: "The Quran mentions the creation of spouses (azwaj) for what purpose?",
         options: [
           "To gain wealth",
@@ -104,6 +112,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 30:21"
       },
       {
+        id: "lgbtq-easy-9",
         question: "What is the general Islamic ruling on changing one's gender, as a matter of jurisprudence?",
         options: [
           "It is encouraged for personal happiness",
@@ -116,6 +125,7 @@ const lgbtqCategory: QuizCategory = {
         references: "See Tafsir of Quran 4:119 regarding changing the creation of Allah; Fatwas from Al-Azhar"
       },
       {
+        id: "lgbtq-easy-10",
         question: "Which term is used for individuals who are born with ambiguous genitalia, having both male and female characteristics?",
         options: [
           "Mutashabih",
@@ -128,6 +138,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fiqh literature on Khuntha"
       },
       {
+        id: "lgbtq-easy-11",
         question: "The prohibition of 'Zina' (fornication and adultery) in Islam is intended to protect what?",
         options: [
           "The economic stability of a society",
@@ -140,6 +151,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 17:32; Tafsir of Ibn Kathir"
       },
       {
+        id: "lgbtq-easy-12",
         question: "What is the general Islamic stance on showing compassion and kindness to all people, regardless of their background?",
         options: [
           "It is only for Muslims",
@@ -152,6 +164,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 21:107; Hadith on being kind to all of Allah's creation"
       },
       {
+        id: "lgbtq-easy-13",
         question: "According to the Quran, what is the role of Prophet Lut's wife in his story?",
         options: [
           "She was a devout believer",
@@ -164,6 +177,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 66:10"
       },
       {
+        id: "lgbtq-easy-14",
         question: "The story of the people of Lut is mentioned in the Quran as a warning against what?",
         options: [
           "Disobedience to parents",
@@ -176,6 +190,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 29:34"
       },
       {
+        id: "lgbtq-easy-15",
         question: "What is the primary purpose of marriage in Islam?",
         options: [
           "For political alliances",
@@ -188,6 +203,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 30:21"
       },
       {
+        id: "lgbtq-easy-16",
         question: "What is a general principle in Islam regarding a person's private life and sins?",
         options: [
           "They should be publicly exposed",
@@ -200,6 +216,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih Muslim, Hadith 2590"
       },
       {
+        id: "lgbtq-easy-17",
         question: "What is the concept of fitrah (natural disposition) in Islam?",
         options: [
           "A person's social status",
@@ -212,6 +229,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih al-Bukhari, Hadith 1385"
       },
       {
+        id: "lgbtq-easy-18",
         question: "According to the Quran, what is the fate of those who repent for their sins?",
         options: [
           "They will be punished regardless",
@@ -224,6 +242,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 39:53"
       },
       {
+        id: "lgbtq-easy-19",
         question: "What is the Islamic perspective on gender roles and responsibilities in marriage?",
         options: [
           "They are identical for both husband and wife",
@@ -236,6 +255,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:34"
       },
       {
+        id: "lgbtq-easy-20",
         question: "In the story of Lut, what was the reason for the punishment that befell his people?",
         options: [
           "A natural disaster",
@@ -248,6 +268,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 26:173"
       },
       {
+        id: "lgbtq-easy-21",
         question: "According to the Quran, how is the act of sexual intimacy between a husband and wife described?",
         options: [
           "As a necessary evil",
@@ -260,6 +281,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 30:21"
       },
       {
+        id: "lgbtq-easy-22",
         question: "What is the primary reason why Islamic law prohibits marriage between individuals of the same gender?",
         options: [
           "Because it is a recent social development",
@@ -272,6 +294,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fiqh literature on marriage (Nikah)"
       },
       {
+        id: "lgbtq-easy-23",
         question: "In the story of Lut, which phrase is used by his people to describe their actions?",
         options: [
           "It is a new religion",
@@ -284,6 +307,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 7:81"
       },
       {
+        id: "lgbtq-easy-24",
         question: "What is the general Islamic teaching on the responsibility of a ruler or authority?",
         options: [
           "To punish all wrongdoers publicly",
@@ -296,6 +320,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:58-59"
       },
       {
+        id: "lgbtq-easy-25",
         question: "What is the concept of 'tawbah' (repentance) in Islam?",
         options: [
           "A single act of asking for forgiveness",
@@ -308,6 +333,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 66:8"
       },
       {
+        id: "lgbtq-easy-26",
         question: "In Islamic law, what is the status of the 'khuntha mushkil' (intersex person with ambiguous gender)?",
         options: [
           "They are considered to be of a third gender",
@@ -320,6 +346,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fiqh literature on inheritance and gender"
       },
       {
+        id: "lgbtq-easy-27",
         question: "What is the primary role of the institution of marriage in Islam?",
         options: [
           "To fulfill carnal desires",
@@ -332,6 +359,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:1"
       },
       {
+        id: "lgbtq-easy-28",
         question: "According to Islamic teachings, what is the proper form of attraction and love between two people?",
         options: [
           "Any form of attraction is valid",
@@ -344,6 +372,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 30:21"
       },
       {
+        id: "lgbtq-easy-29",
         question: "What is the general Islamic position on gender identity, as distinct from biological sex?",
         options: [
           "Gender identity is a matter of personal feeling",
@@ -356,6 +385,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Islamic Fiqh Council resolutions"
       },
       {
+        id: "lgbtq-easy-30",
         question: "Which term is used for a man who is effeminate in his mannerisms?",
         options: [
           "Dayaath",
@@ -370,6 +400,7 @@ const lgbtqCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "lgbtq-intermediate-1",
         question: "What was the Buggery Act of 1533 in England?",
         options: [
           "A law promoting same-sex marriage",
@@ -382,6 +413,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Buggery Act 1533, https://en.wikipedia.org/wiki/Buggery_Act_1533"
       },
       {
+        id: "lgbtq-intermediate-2",
         question: "The Sexual Offences Act 1967 in the UK did what?",
         options: [
           "Banned all homosexual acts",
@@ -394,6 +426,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Sexual Offences Act 1967, https://en.wikipedia.org/wiki/Sexual_Offences_Act_1967"
       },
       {
+        id: "lgbtq-intermediate-3",
         question: "What pivotal event in 1969 marked a turning point for LGBTQ rights?",
         options: [
           "The Kinsey Report",
@@ -406,6 +439,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Stonewall riots, https://en.wikipedia.org/wiki/Stonewall_riots"
       },
       {
+        id: "lgbtq-intermediate-4",
         question: "In 1973, what did the American Psychiatric Association do regarding homosexuality?",
         options: [
           "Classified it as a sociopathic disorder",
@@ -418,6 +452,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Homosexuality in the DSM, https://en.wikipedia.org/wiki/Homosexuality_in_the_DSM"
       },
       {
+        id: "lgbtq-intermediate-5",
         question: "The 2015 Supreme Court case Obergefell v. Hodges guaranteed what right?",
         options: [
           "Adoption by same-sex couples",
@@ -430,6 +465,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Obergefell v. Hodges, https://en.wikipedia.org/wiki/Obergefell_v._Hodges"
       },
       {
+        id: "lgbtq-intermediate-6",
         question: "What did the Offences Against the Person Act 1828 replace in UK law?",
         options: [
           "Civil partnerships",
@@ -442,6 +478,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Human Dignity Trust - A History of LGBT Criminalisation, https://www.humandignitytrust.org/lgbt-the-law/a-history-of-criminalisation/"
       },
       {
+        id: "lgbtq-intermediate-7",
         question: "The Civil Partnership Act 2004 in the UK granted what to same-sex couples?",
         options: [
           "Full marriage rights",
@@ -454,6 +491,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Civil Partnership Act 2004, https://en.wikipedia.org/wiki/Civil_Partnership_Act_2004"
       },
       {
+        id: "lgbtq-intermediate-8",
         question: "What did the Marriage (Same-Sex Couples) Act 2013 allow in England and Wales?",
         options: [
           "Civil partnerships for opposite-sex",
@@ -466,6 +504,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Marriage (Same Sex Couples) Act 2013, https://en.wikipedia.org/wiki/Marriage_(Same_Sex_Couples)_Act_2013"
       },
       {
+        id: "lgbtq-intermediate-9",
         question: "The 2003 Lawrence v. Texas ruling declared what unconstitutional?",
         options: [
           "Same-sex marriage bans",
@@ -478,6 +517,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Lawrence v. Texas, https://en.wikipedia.org/wiki/Lawrence_v._Texas"
       },
       {
+        id: "lgbtq-intermediate-10",
         question: "When was the Homosexual Law Reform Society founded in the UK?",
         options: [
           "1967",
@@ -490,6 +530,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Homosexual Law Reform Society, https://en.wikipedia.org/wiki/Homosexual_Law_Reform_Society"
       },
       {
+        id: "lgbtq-intermediate-11",
         question: "The Gay Liberation Front was established in which year post-Stonewall?",
         options: [
           "1978",
@@ -502,6 +543,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Gay Liberation Front, https://en.wikipedia.org/wiki/Gay_Liberation_Front"
       },
       {
+        id: "lgbtq-intermediate-12",
         question: "Stonewall UK was co-founded in response to what in 1989?",
         options: [
           "Stonewall Riots anniversary",
@@ -514,6 +556,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Stonewall (charity), https://en.wikipedia.org/wiki/Stonewall_(charity)"
       },
       {
+        id: "lgbtq-intermediate-13",
         question: "In 1992, what did the World Health Organization do regarding homosexuality?",
         options: [
           "Classified it as a disorder",
@@ -526,6 +569,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Psychology Today - When Homosexuality Stopped Being a Mental Disorder, https://www.psychologytoday.com/us/blog/hide-and-seek/201509/when-homosexuality-stopped-being-a-mental-disorder"
       },
       {
+        id: "lgbtq-intermediate-14",
         question: "The term 'homosexual' was first used in what year?",
         options: [
           "1948",
@@ -538,6 +582,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Terminology of homosexuality, https://en.wikipedia.org/wiki/Terminology_of_homosexuality"
       },
       {
+        id: "lgbtq-intermediate-15",
         question: "What did the 1948 Kinsey Report introduce regarding sexuality?",
         options: [
           "Binary views",
@@ -550,6 +595,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Kinsey Reports, https://en.wikipedia.org/wiki/Kinsey_Reports"
       },
       {
+        id: "lgbtq-intermediate-16",
         question: "John Money's work in 1966 influenced perceptions of what?",
         options: [
           "Evolution",
@@ -562,6 +608,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - John Money, https://en.wikipedia.org/wiki/John_Money"
       },
       {
+        id: "lgbtq-intermediate-17",
         question: "The Rainbow Flag was first flown in what year as a symbol of LGBTQ pride?",
         options: [
           "1969",
@@ -574,6 +621,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Rainbow flag (LGBTQ), https://en.wikipedia.org/wiki/Rainbow_flag_(LGBTQ)"
       },
       {
+        id: "lgbtq-intermediate-18",
         question: "The sexual revolution of the 1960s led to greater acceptance of what?",
         options: [
           "Traditional marriage",
@@ -586,6 +634,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Sexual revolution in 1960s United States, https://en.wikipedia.org/wiki/Sexual_revolution_in_1960s_United_States"
       },
       {
+        id: "lgbtq-intermediate-19",
         question: "Ellen DeGeneres publicly came out in what year?",
         options: [
           "1989",
@@ -598,6 +647,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - The Puppy Episode, https://en.wikipedia.org/wiki/The_Puppy_Episode"
       },
       {
+        id: "lgbtq-intermediate-20",
         question: "The 1998 murder of Matthew Shepard highlighted the need for what?",
         options: [
           "Marriage equality",
@@ -610,6 +660,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Matthew Shepard, https://en.wikipedia.org/wiki/Matthew_Shepard"
       },
       {
+        id: "lgbtq-intermediate-21",
         question: "In 2001, the age of consent for gay men in the UK was lowered to what?",
         options: [
           "18",
@@ -622,6 +673,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Age-of-consent reform in the United Kingdom, https://en.wikipedia.org/wiki/Age-of-consent_reform_in_the_United_Kingdom"
       },
       {
+        id: "lgbtq-intermediate-22",
         question: "In the 1952 DSM, homosexuality was classified as what?",
         options: [
           "A normal variation",
@@ -634,6 +686,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Homosexuality in the DSM, https://en.wikipedia.org/wiki/Homosexuality_in_the_DSM"
       },
       {
+        id: "lgbtq-intermediate-23",
         question: "The DSM-II in 1968 continued to classify homosexuality as what?",
         options: [
           "Not a disorder",
@@ -646,6 +699,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Wikipedia - Homosexuality in the DSM, https://en.wikipedia.org/wiki/Homosexuality_in_the_DSM"
       },
       {
+        id: "lgbtq-intermediate-24",
         question: "What is rapid onset gender dysphoria according to Lisa Littman's 2018 study?",
         options: [
           "Childhood onset",
@@ -658,6 +712,7 @@ const lgbtqCategory: QuizCategory = {
         references: "PLOS One - Parent reports of adolescents... 2018, https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330"
       },
       {
+        id: "lgbtq-intermediate-25",
         question: "In the Demi Minor case, what happened to the transgender prisoner in New Jersey?",
         options: [
           "Released early",
@@ -670,6 +725,7 @@ const lgbtqCategory: QuizCategory = {
         references: "NBC News - N.J. trans prisoner... 2022, https://www.nbcnews.com/nbc-out/out-news/nj-trans-prisoner-impregnated-2-inmates-transferred-mens-facility-rcna38947"
       },
       {
+        id: "lgbtq-intermediate-26",
         question: "According to a hadith in Ibn Majah, what spreads when immorality is committed openly?",
         options: [
           "Wealth",
@@ -682,6 +738,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sunnah.com - Sunan Ibn Majah 4019, https://sunnah.com/ibnmajah:4019"
       },
       {
+        id: "lgbtq-intermediate-27",
         question: "Leviticus 20:13 in the Bible states what about male same-sex relations?",
         options: [
           "They are blessed",
@@ -694,6 +751,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Bible Gateway - Leviticus 20:13, https://www.biblegateway.com/passage/?search=Leviticus+20%3A13&version=ESV"
       },
       {
+        id: "lgbtq-intermediate-28",
         question: "Genesis 19 describes the destruction of Sodom and Gomorrah due to what attempted act?",
         options: [
           "Theft",
@@ -706,6 +764,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Bible Gateway - Genesis 19, https://www.biblegateway.com/passage/?search=Genesis+19&version=ESV"
       },
       {
+        id: "lgbtq-intermediate-29",
         question: "Romans 1:26-27 describes same-sex relations among Gentiles as what?",
         options: [
           "Natural",
@@ -718,6 +777,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Bible Gateway - Romans 1:26-27, https://www.biblegateway.com/passage/?search=Romans+1%3A26-27&version=ESV"
       },
       {
+        id: "lgbtq-intermediate-30",
         question: "1 Corinthians 6:9-10 lists what regarding those who will not inherit the kingdom of God?",
         options: [
           "The rich",
@@ -732,6 +792,7 @@ const lgbtqCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "lgbtq-advanced-1",
         question: "What is the general Islamic position on intersex individuals seeking surgery?",
         options: [
           "It is forbidden in all cases",
@@ -744,6 +805,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Al-Mawsu'ah Al-Fiqhiyyah Al-Kuwaitiyyah"
       },
       {
+        id: "lgbtq-advanced-2",
         question: "Which of the following is not a primary source for the prohibition of homosexuality in Islam?",
         options: [
           "The story of Prophet Yusuf's brothers",
@@ -756,6 +818,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 12:7-101; Quran 7:80-84; Sahih al-Bukhari 5885"
       },
       {
+        id: "lgbtq-advanced-3",
         question: "According to classical Islamic jurisprudence, what is the legal category of the act of 'liwat'?",
         options: [
           "It is considered a minor sin (saghira)",
@@ -768,6 +831,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Ibn Hajar al-Haytami, Al-Zawaajir 'an Iqtiraaf al-Kaba'ir"
       },
       {
+        id: "lgbtq-advanced-4",
         question: "Which of the following is a primary legal text (fiqh) that discusses the rules and categories of intersex individuals (khuntha)?",
         options: [
           "Fath al-Bari",
@@ -780,6 +844,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Al-Mughni by Ibn Qudamah"
       },
       {
+        id: "lgbtq-advanced-5",
         question: "In the context of the story of Lut, the Quran mentions the 'fiqh' of the people of Lut. What does 'fiqh' mean in this context?",
         options: [
           "Their understanding of Islamic law",
@@ -792,6 +857,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 27:54; Tafsir al-Tabari"
       },
       {
+        id: "lgbtq-advanced-6",
         question: "According to tafsir, why did the people of Lut reject his message, even though he was a prophet?",
         options: [
           "They did not understand his language",
@@ -804,6 +870,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Tafsir of Ibn Kathir on Quran 29:28-29"
       },
       {
+        id: "lgbtq-advanced-7",
         question: "What is the scholarly consensus (ijma) on the punishment for homosexual acts in Islam?",
         options: [
           "There is no punishment",
@@ -816,6 +883,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fiqh literature on Hudud penalties; Al-Mawsu’ah Al-Fiqhiyyah Al-Kuwaitiyyah"
       },
       {
+        id: "lgbtq-advanced-8",
         question: "How does the hadith tradition distinguish between a 'mukhannath' (effeminate man) who is naturally effeminate versus one who does it intentionally?",
         options: [
           "Both are punished equally",
@@ -828,6 +896,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Ibn Hajar al-'Asqalani, Fath al-Bari"
       },
       {
+        id: "lgbtq-advanced-9",
         question: "What is the concept of 'Ibn al-Sabil' (the traveler) in the context of the people of Lut's actions?",
         options: [
           "A prophet who traveled to their city",
@@ -840,6 +909,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 29:29; Tafsir al-Tabari"
       },
       {
+        id: "lgbtq-advanced-10",
         question: "What is the Islamic legal principle concerning a person's physical appearance and clothing?",
         options: [
           "There are no rules, it is a personal choice",
@@ -852,6 +922,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih al-Bukhari, Hadith 5885"
       },
       {
+        id: "lgbtq-advanced-11",
         question: "In the Quran, what phrase is used to describe the people of Lut's actions?",
         options: [
           "A simple mistake",
@@ -864,6 +935,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 7:80-81"
       },
       {
+        id: "lgbtq-advanced-12",
         question: "The prohibition of 'tahawwul al-jinsi' (gender reassignment) is primarily based on which Islamic legal source?",
         options: [
           "The consensus of contemporary scholars",
@@ -876,6 +948,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:119; Fatwas of Islamic Fiqh Academies"
       },
       {
+        id: "lgbtq-advanced-13",
         question: "How do Islamic scholars distinguish between a 'khuntha' (intersex) and a 'mukhannath' (effeminate man)?",
         options: [
           "There is no distinction, they are the same",
@@ -888,6 +961,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Al-Mawsu’ah Al-Fiqhiyyah Al-Kuwaitiyyah"
       },
       {
+        id: "lgbtq-advanced-14",
         question: "The legal responsibility and rights of a person in Islam are based on what?",
         options: [
           "Their self-declared gender identity",
@@ -900,6 +974,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fiqh literature on legal capacity and rights"
       },
       {
+        id: "lgbtq-advanced-15",
         question: "The Quran uses the story of the people of Lut as an example of a specific type of societal decline. What is it?",
         options: [
           "Economic greed",
@@ -912,6 +987,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 26:165-166"
       },
       {
+        id: "lgbtq-advanced-16",
         question: "What is the position of some contemporary Islamic scholars on homosexual feelings versus homosexual acts?",
         options: [
           "Both feelings and acts are sinful",
@@ -924,6 +1000,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fatwas by contemporary scholars like Shaykh al-Qaradawi"
       },
       {
+        id: "lgbtq-advanced-17",
         question: "Which of the following phrases from the Quran is often cited in discussions on gender and creation?",
         options: [
           "\"He created from water a human being\"",
@@ -936,6 +1013,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:1"
       },
       {
+        id: "lgbtq-advanced-18",
         question: "In tafsir, what is the significance of the people of Lut being described as 'al-musrifun' (the transgressors)?",
         options: [
           "It means they were wealthy",
@@ -948,6 +1026,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Tafsir al-Jalalayn on Quran 7:81"
       },
       {
+        id: "lgbtq-advanced-19",
         question: "What is the Islamic ethical principle of 'sitr al-muslim' (covering the sins of a Muslim)?",
         options: [
           "It is mandatory to expose all sins",
@@ -960,6 +1039,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih Muslim, Hadith 2590"
       },
       {
+        id: "lgbtq-advanced-20",
         question: "The Quran mentions the creation of pairs for a specific reason. What is it?",
         options: [
           "To cause conflict and war",
@@ -972,6 +1052,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 30:21"
       },
       {
+        id: "lgbtq-advanced-21",
         question: "What does the Quran mention about the final outcome for the people of Lut?",
         options: [
           "They were given a second chance",
@@ -984,6 +1065,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 26:173-174"
       },
       {
+        id: "lgbtq-advanced-22",
         question: "The Quran mentions the story of the people of Lut to address which specific vice?",
         options: [
           "Lying and deceit",
@@ -996,6 +1078,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 27:54-55"
       },
       {
+        id: "lgbtq-advanced-23",
         question: "According to the Sunnah, what is the role of modesty (Haya) in a Muslim's life?",
         options: [
           "It is a sign of weakness",
@@ -1008,6 +1091,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Sahih al-Bukhari, Hadith 9"
       },
       {
+        id: "lgbtq-advanced-24",
         question: "What is the general Islamic position on the distinction between a 'sin' and a 'sinner'?",
         options: [
           "There is no distinction, the person is defined by their sin",
@@ -1020,6 +1104,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 39:53"
       },
       {
+        id: "lgbtq-advanced-25",
         question: "What is the primary objective of Islamic law regarding gender relations?",
         options: [
           "To establish dominance of one gender over the other",
@@ -1032,6 +1117,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:34"
       },
       {
+        id: "lgbtq-advanced-26",
         question: "The Quran describes the people of Lut's actions as 'al-fahsha'. What does this term imply about the act itself?",
         options: [
           "It was a new and innovative act",
@@ -1044,6 +1130,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Tafsir al-Tabari on Quran 7:80"
       },
       {
+        id: "lgbtq-advanced-27",
         question: "According to the Quran, what is the purpose of gender differentiation in creation?",
         options: [
           "To create a division in society",
@@ -1056,6 +1143,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 4:1"
       },
       {
+        id: "lgbtq-advanced-28",
         question: "How do Islamic scholars deal with gender identity issues in the modern context?",
         options: [
           "They have completely adopted modern secular views",
@@ -1068,6 +1156,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Fatwas from various contemporary Islamic councils"
       },
       {
+        id: "lgbtq-advanced-29",
         question: "The story of the people of Lut serves as a warning against which of the following?",
         options: [
           "Pride and arrogance",
@@ -1080,6 +1169,7 @@ const lgbtqCategory: QuizCategory = {
         references: "Quran 26:167-173"
       },
       {
+        id: "lgbtq-advanced-30",
         question: "What is the concept of 'Ibtila' (trial) in Islam, and how does it relate to personal struggles?",
         options: [
           "It is a sign of Allah's punishment",

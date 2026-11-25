@@ -9,6 +9,7 @@ const comparativeReligionCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "comparative-easy-1",
         question: "What is the Islamic view on the existence of other religions?",
         options: [
           "Islam rejects all other religions completely",
@@ -21,6 +22,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islam teaches that Allah sent messengers to all nations throughout history with the same core message of monotheism, though the details of practice may have differed. The Quran states: 'And for every nation there is a messenger' (10:47).",
       },
       {
+    id: "comparative-easy-2",
     question: "What does Islam teach about the original message of all prophets?",
     options: [
       "Each prophet brought a completely different religion",
@@ -32,6 +34,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: 'And We did not send any messenger before you except that We revealed to him that there is no deity except Me, so worship Me.' (21:25). This establishes that the core message of all prophets was monotheism."
   },
   {
+    id: "comparative-easy-3",
     question: "How does Islam view the concept of the afterlife in other Abrahamic religions?",
     options: [
       "Islam completely rejects any concept of afterlife in other religions",
@@ -43,6 +46,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran acknowledges that previous scriptures contained teachings about the afterlife (e.g., 2:4, 2:62), but maintains that these teachings were subject to distortion over time, while Islam presents the complete and preserved truth."
   },
   {
+    id: "comparative-easy-4",
     question: "What is the Islamic view about the Bible?",
     options: [
       "It is completely false with no truth in it",
@@ -54,6 +58,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran recognizes the Torah and Gospel as previous revelations (3:3-4, 5:46), but states that their texts were subject to alteration (2:79). Muslims believe these scriptures contained truth when originally revealed but were not preserved perfectly."
   },
   {
+    id: "comparative-easy-5",
     question: "How does Islam view the concept of original sin?",
     options: [
       "Islam fully accepts the Christian doctrine of original sin",
@@ -65,6 +70,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islam teaches that each person is born in a state of purity (fitrah) and is responsible only for their own sins. The Quran states: 'And no bearer of burdens will bear the burden of another' (35:18). Adam and Eve's story in Islam differs significantly from the Christian narrative."
   },
   {
+    id: "comparative-easy-6",
     question: "What is the Islamic position on images of prophets?",
     options: [
       "Islam encourages artistic depictions of all prophets",
@@ -76,6 +82,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic tradition strongly discourages visual representations of any prophets to prevent idolatry or exaggeration in their veneration. This is based on numerous hadiths warning against image-making that could lead to shirk (associating partners with Allah)."
   },
   {
+    id: "comparative-easy-7",
     question: "How does Islam view monasticism?",
     options: [
       "Islam considers it the highest form of worship",
@@ -87,6 +94,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: '...But as for monasticism, they invented it - We had not prescribed it for them...' (57:27), indicating that while asceticism was originally part of divine guidance, later innovations distorted its practice."
   },
   {
+    id: "comparative-easy-8",
     question: "What is the Islamic view about the crucifixion of Jesus (pbuh)?",
     options: [
       "Islam confirms the Christian account of crucifixion",
@@ -98,6 +106,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: 'And they did not kill him, nor did they crucify him; but another was made to resemble him to them... Rather, Allah raised him to Himself' (4:157-158). Muslims believe God saved Jesus (pbuh) from crucifixion and raised him to heaven."
   },
   {
+    id: "comparative-easy-9",
     question: "How does Islam view the concept of divine incarnation?",
     options: [
       "Islam accepts it fully as in Christianity and Hinduism",
@@ -109,6 +118,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran strongly emphasizes God's transcendence and uniqueness (112:1-4), rejecting any concept that God could take human form. This contrasts with Christian incarnation theology and Hindu avatar concepts."
   },
   {
+    id: "comparative-easy-10",
     question: "What is the Islamic perspective on interfaith marriage?",
     options: [
       "Muslim men can marry Jewish or Christian women",
@@ -120,6 +130,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran permits Muslim men to marry chaste women from the People of the Book (5:5), while Muslim women are generally restricted to marrying Muslim men to ensure the Islamic upbringing of children and maintain the woman's religious rights."
   },
   {
+    id: "comparative-easy-11",
     question: "How does Islam view the concept of saints?",
     options: [
       "Islam rejects any concept of sainthood",
@@ -131,6 +142,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islam recognizes righteous believers as 'awliya Allah' (friends of God, 10:62-64), but differs from Christian sainthood in that they are not intermediaries between God and humans, nor are they objects of worship or veneration."
   },
   {
+    id: "comparative-easy-12",
     question: "What is the Islamic view on the concept of Trinity?",
     options: [
       "Islam fully accepts the Christian doctrine of Trinity",
@@ -142,6 +154,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran explicitly addresses the Trinity (5:73), considering it a deviation from pure monotheism. Islamic theology maintains strict monotheism (tawhid) and views the Trinity as compromising God's absolute oneness."
   },
   {
+    id: "comparative-easy-13",
     question: "How does Islam view the concept of salvation?",
     options: [
       "Salvation comes only through formal conversion to Islam",
@@ -153,6 +166,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "While Islam teaches that submission to God (Islam) is the ideal path, the Quran mentions that people of other faiths who believe in God and do righteous deeds may receive reward (2:62). Ultimately, salvation depends on God's mercy and justice."
   },
   {
+    id: "comparative-easy-14",
     question: "What is the Islamic view about miracles performed by prophets of other religions?",
     options: [
       "Islam denies that any prophets performed miracles",
@@ -164,6 +178,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran recounts numerous miracles by prophets like Moses (staff/snake, parting sea) and Jesus (healing, raising dead) (5:110). These are accepted as authentic signs from God to validate their prophethood."
   },
   {
+    id: "comparative-easy-15",
     question: "How does Islam view the concept of religious conversion?",
     options: [
       "Forced conversion is mandatory in Islam",
@@ -175,6 +190,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: 'There is no compulsion in religion' (2:256). While Islam encourages people to accept its message, conversion must be by free choice. Forced conversions are invalid in Islamic law."
   },
   {
+    id: "comparative-easy-16",
     question: "What is the Islamic perspective on the concept of divine revelation?",
     options: [
       "Only the Quran is considered divine revelation",
@@ -186,6 +202,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islam teaches that God sent revelations to all nations through their prophets (10:47, 35:24). The Torah, Psalms, and Gospel are specifically mentioned as previous revelations (3:3-4), though Muslims believe they were not perfectly preserved."
   },
   {
+    id: "comparative-easy-17",
     question: "How does Islam view the concept of prophethood compared to other religions?",
     options: [
       "Only Muhammad (pbuh) was a real prophet",
@@ -197,6 +214,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: 'For every nation there is a messenger' (10:47), and mentions prophets sent to various civilizations including some not in the Bible. Islam recognizes thousands of prophets, with 25 specifically named in the Quran."
   },
   {
+    id: "comparative-easy-18",
     question: "What is the Islamic view about the concept of angels in other religions?",
     options: [
       "Islam completely denies the existence of angels",
@@ -208,6 +226,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islam affirms angels as spiritual beings created from light who serve God (2:285), but rejects any depiction of them as female (43:19) or as divine intermediaries who can be worshipped. They are God's obedient servants with specific roles."
   },
   {
+    id: "comparative-easy-19",
     question: "How does Islam view the concept of religious rituals from other faiths?",
     options: [
       "All non-Islamic rituals are invalid",
@@ -219,6 +238,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islam teaches that previous prophets were given forms of worship (21:73), but many practices were changed over time. For example, Muslim pilgrimage shares some elements with Abrahamic tradition but differs in its details and interpretation."
   },
   {
+    id: "comparative-easy-20",
     question: "What is the Islamic position on the concept of divine forgiveness in other religions?",
     options: [
       "Only Islam teaches that God can forgive sins",
@@ -230,6 +250,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "While forgiveness is a theme in many religions, Islam balances God's mercy (39:53) with justice (4:48). True forgiveness requires repentance and amendment, not just verbal declaration, and God's mercy encompasses all things (7:156)."
   },
   {
+    id: "comparative-easy-21",
     question: "How does Islam view the concept of religious leadership compared to other faiths?",
     options: [
       "Islam has no concept of religious leadership",
@@ -241,6 +262,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Unlike some religions with ordained priesthoods, Islam considers all believers equal before God. While there are religious scholars (ulama), they are not intermediaries between God and humans, and their authority comes from knowledge, not sacramental power."
   },
       {
+        id: "comparative-easy-22",
         question: "What is the Islamic perspective on Jesus (peace be upon him)?",
         options: [
           "He was not a real historical figure",
@@ -253,6 +275,7 @@ const comparativeReligionCategory: QuizCategory = {
           "In Islam, Jesus (Isa) peace be upon him is revered as one of the mightiest messengers of Allah. Muslims believe in his miraculous birth to the Virgin Mary, his miracles, and his message, but do not believe he was divine or the son of God.",
       },
       {
+        id: "comparative-easy-23",
         question: "How does Islam view science and scientific inquiry?",
         options: [
           "Islam opposes scientific inquiry",
@@ -265,6 +288,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islam strongly encourages the pursuit of knowledge, including scientific inquiry. The Prophet Muhammad (peace be upon him) said: 'Seeking knowledge is an obligation upon every Muslim.' The Quran also contains many verses encouraging observation and reflection on the natural world.",
       },
       {
+        id: "comparative-easy-24",
         question: "What is the Islamic view on the relationship between faith and reason?",
         options: [
           "Faith and reason are completely opposed",
@@ -277,6 +301,7 @@ const comparativeReligionCategory: QuizCategory = {
           "In Islamic thought, faith (iman) and reason (aql) are seen as complementary rather than contradictory. The Quran repeatedly calls on people to use their reason, reflect, and ponder, suggesting that proper use of reason leads to faith.",
       },
       {
+        id: "comparative-easy-25",
         question: "What is the concept of 'Fitrah' in Islam?",
         options: [
           "The Islamic calendar",
@@ -289,6 +314,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Fitrah refers to the natural, innate inclination of human beings to recognize and worship God. According to Islamic belief, every person is born with this natural disposition, though it may be altered by external influences.",
       },
       {
+        id: "comparative-easy-26",
         question: "How does Islam view atheism?",
         options: [
           "As a valid philosophical position",
@@ -301,6 +327,7 @@ const comparativeReligionCategory: QuizCategory = {
           "In Islamic thought, atheism is viewed as a rejection of the natural human disposition (fitrah) to recognize the Creator. The Quran addresses those who deny God's existence with arguments about the origins and design of the universe.",
       },
       {
+        id: "comparative-easy-27",
         question: "What is the Islamic perspective on evolution?",
         options: [
           "Islam categorically rejects all aspects of evolution",
@@ -314,6 +341,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Contemporary Islamic scholars hold diverse views on evolution. Many accept microevolution (changes within species) while questioning macroevolution (one species evolving into another), particularly regarding human origins. Some scholars attempt to reconcile evolutionary science with Quranic accounts of creation.",
       },
       {
+        id: "comparative-easy-28",
         question: "What is the Islamic view on the concept of 'People of the Book'?",
         options: [
           "It refers only to Muslims who read the Quran",
@@ -326,6 +354,7 @@ const comparativeReligionCategory: QuizCategory = {
           "In Islam, 'People of the Book' (Ahl al-Kitab) primarily refers to Jews and Christians who received divine revelations through Moses and Jesus respectively. The Quran acknowledges their scriptures as having divine origin, though Muslims believe these texts were altered over time.",
       },
       {
+        id: "comparative-easy-29",
         question: "How does Islam view religious pluralism?",
         options: [
           "Islam teaches that all religions are equally valid paths to God",
@@ -339,6 +368,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islam acknowledges that other religions, particularly monotheistic faiths, contain elements of truth as they originated from divine revelation. However, Islamic teaching holds that Islam represents the complete and final revelation from God, perfecting and superseding previous messages.",
       },
       {
+        id: "comparative-easy-30",
         question: "What is the Islamic perspective on the relationship between religion and state?",
         options: [
           "Islam mandates a specific form of government",
@@ -353,6 +383,7 @@ const comparativeReligionCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "comparative-advanced-1",
         question: "How does the Islamic concept of God (Allah) differ from the Christian concept of the Trinity?",
         options: [
           "There is no significant difference",
@@ -365,6 +396,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islam emphasizes the absolute oneness of God (Tawhid), rejecting any division or plurality within the divine nature. This differs from mainstream Christianity's trinitarian concept of God as Father, Son, and Holy Spirit - three persons in one divine essence. The Quran explicitly addresses this difference in Surah Al-Ikhlas and 4:171.",
       },
       {
+    id: "comparative-advanced-2",
     question: "How does Islamic theology interpret the Quranic verse 'To you your religion, and to me mine' (109:6) in relation to religious pluralism?",
     options: [
       "It means all religions are equally true",
@@ -376,6 +408,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "This verse from Surah Al-Kafirun establishes a principle of peaceful coexistence while maintaining clear theological distinctions. Classical scholars interpreted it as defining Islam's relationship with persistent disbelief, not endorsing religious relativism. The verse's historical context shows it was revealed regarding pagan Quraysh's attempt to compromise Islamic monotheism."
   },
   {
+    id: "comparative-advanced-3",
     question: "What is the Islamic theological perspective on the concept of 'abrogation' (naskh) in relation to previous scriptures?",
     options: [
       "Islam rejects any concept of abrogation between revelations",
@@ -387,6 +420,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic theology teaches that divine revelation progressed through history, with each message suited to its time, culminating in the final revelation to Muhammad (pbuh). The Quran describes itself as 'confirming what came before it and as a guardian over it' (5:48). Abrogation (naskh) refers to this progressive revelation, not cancellation, where later revelations build upon and perfect earlier ones."
   },
   {
+    id: "comparative-advanced-4",
     question: "How does classical Islamic philosophy reconcile divine omniscience with human free will?",
     options: [
       "By adopting complete determinism (jabr)",
@@ -398,6 +432,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Ash'ari school developed the theory of 'kasb' (acquisition) to balance divine omnipotence with human responsibility. God creates all acts, but humans 'acquire' them and are thus accountable. This differs from Mu'tazilite emphasis on complete human freedom and from pure determinism. The position maintains God's complete knowledge (including of future choices) without negating genuine human agency."
   },
   {
+    id: "comparative-advanced-5",
     question: "What is the Islamic theological response to the problem of suffering in light of divine justice (al-'adl)?",
     options: [
       "All suffering is punishment for sins",
@@ -409,6 +444,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic theodicy addresses suffering through several lenses: 1) Test and trial (2:155-157); 2) Consequence of human actions (42:30); 3) Means of spiritual elevation; 4) Manifestation of divine names (e.g., The Healer); 5) Temporary in light of eternal justice. The concept of divine wisdom (hikma) acknowledges that not all purposes are immediately apparent to human understanding."
   },
   {
+    id: "comparative-advanced-6",
     question: "How does Islamic theology interpret the concept of 'Ummah' in relation to religious communities outside Islam?",
     options: [
       "The term applies exclusively to the Muslim community",
@@ -420,6 +456,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "While the Quran uses 'Ummah' in various contexts (e.g., 2:143 refers specifically to the Muslim community as the 'middle nation'), in classical Islamic discourse it primarily denotes the global Muslim community bound by shared beliefs and practices. Other faith communities are typically referred to by their specific names (e.g., Ahl al-Kitab). Modern reinterpretations sometimes expand this concept, but the classical usage maintains this distinction."
   },
   {
+    id: "comparative-advanced-7",
     question: "What is the Islamic theological perspective on the concept of 'natural law' in comparison to Western philosophical traditions?",
     options: [
       "Islam completely rejects any concept of natural law",
@@ -431,6 +468,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Islamic concept of fitrah (30:30) shares similarities with natural law in positing an innate human recognition of moral truths, but differs by grounding this in divine creation rather than pure reason. Additionally, Islamic 'maqasid al-sharia' (higher objectives of law) identify universal principles like protection of life, religion, intellect, lineage, and property that resemble natural law categories but derive from revelation."
   },
   {
+    id: "comparative-advanced-8",
     question: "How does Islamic theology interpret the Quranic description of Jews and Christians as 'nearest in affection' to Muslims (5:82) in light of other verses that criticize them?",
     options: [
       "The verse was abrogated by later, more critical verses",
@@ -442,6 +480,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Classical commentators like Al-Tabari and Ibn Kathir interpreted this verse as indicating a special relationship with monotheists who share many ethical values with Muslims. Other verses criticizing Jewish and Christian communities address specific historical incidents or theological errors, not blanket condemnation. The Islamic tradition maintains this nuanced approach - theological critique coexisting with social cooperation where possible."
   },
   {
+    id: "comparative-advanced-9",
     question: "What is the Islamic theological position on the concept of 'consensus' (ijma') in matters where other religions differ?",
     options: [
       "Muslims must conform to majority interfaith opinions",
@@ -453,6 +492,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Ijma' (consensus) in Islamic jurisprudence refers to agreement among qualified scholars on matters of interpretation, not conformity with other religious communities. While Islam acknowledges truths in other traditions, its theological and legal conclusions derive from its own revelatory sources. The principle of ijma' ensures continuity while allowing for legitimate diversity of opinion within Islamic parameters."
   },
   {
+    id: "comparative-advanced-10",
     question: "How does Islamic theology interpret the concept of 'covenant' in relation to other Abrahamic faiths?",
     options: [
       "Islam completely rejects any concept of covenant",
@@ -464,6 +504,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quranic concept of 'mithaq' (covenant) includes: 1) The primordial covenant with all humanity (7:172); 2) Covenants with various prophets and their communities; 3) A specific covenant with the People of the Book to recognize Muhammad (pbuh) when he came (3:81). Islamic theology sees these covenants as culminating in the final revelation, with Islam preserving the original monotheistic tradition."
   },
   {
+    id: "comparative-advanced-11",
     question: "What is the Islamic theological response to claims of particularism (e.g., 'chosen people' concepts) in other religions?",
     options: [
       "Islam makes identical claims of being the only chosen nation",
@@ -475,6 +516,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran states: 'Indeed, the most noble of you in the sight of Allah is the most righteous of you' (49:13). While Islam considers the Muslim ummah as the 'best nation' (3:110), this is conditional on enjoining good and forbidding evil, not inherent or exclusive. This contrasts with ethnic or unconditional election concepts in some interpretations of other traditions."
   },
   {
+    id: "comparative-advanced-12",
     question: "How does Islamic theology interpret the concept of 'shirk' (associating partners with God) in relation to other monotheistic religions?",
     options: [
       "All non-Muslims automatically commit shirk",
@@ -486,6 +528,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic theology makes careful distinctions in its critique of other monotheisms. While recognizing Jews and Christians as People of the Book, it identifies certain theological concepts (Trinity, divine incarnation, saint veneration) as compromising pure monotheism (tawhid). The Quran critiques these specifically (e.g., 5:72-73, 9:31) while acknowledging these communities' monotheistic roots."
   },
   {
+    id: "comparative-advanced-13",
     question: "What is the Islamic theological perspective on the concept of 'revelation' (wahy) compared to prophetic experience in other traditions?",
     options: [
       "Only Islamic revelation is real; other traditions merely have human inspiration",
@@ -497,6 +540,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic theology distinguishes between: 1) Direct revelation (wahy) to prophets; 2) Inspiration (ilham) to saints; 3) Human philosophical insight. While affirming genuine revelation to previous prophets, Islam teaches the Quran is unique as the final, perfectly preserved, universal message (15:9). This creates a theological hierarchy recognizing truths in other traditions while asserting Islam's completeness."
   },
   {
+    id: "comparative-advanced-14",
     question: "How does Islamic theology interpret the concept of 'sacred history' in relation to other religious narratives?",
     options: [
       "Islamic sacred history completely contradicts all other religious histories",
@@ -508,6 +552,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "The Quran frequently references events known to Jewish and Christian traditions (e.g., stories of Moses, Jesus, etc.) but often with different emphases or corrections (e.g., 28:48). Islamic 'sacred history' serves theological purposes - demonstrating prophetic continuity, divine mercy and justice - rather than being purely chronological record. This creates both common ground and distinctiveness with other traditions."
   },
   {
+    id: "comparative-advanced-15",
     question: "What is the Islamic theological position on the concept of 'salvation history' as understood in Christianity?",
     options: [
       "Islam has an identical concept of salvation history",
@@ -519,6 +564,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Unlike Christianity's focus on salvation history culminating in Christ's sacrifice, Islam emphasizes: 1) Continuous prophetic guidance throughout history; 2) Each individual's direct accountability before God; 3) Final judgment based on belief and deeds rather than collective historical events. While Islam recognizes divine intervention in history, it doesn't center on a single salvific event."
   },
   {
+    id: "comparative-advanced-16",
     question: "How does Islamic theology interpret the concept of 'religious experience' compared to mystical traditions in other faiths?",
     options: [
       "Islam rejects all forms of religious experience as delusion",
@@ -530,6 +576,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic Sufism developed sophisticated approaches to spiritual experience (kashf, dhawq) resembling other mystical traditions in practice (e.g., meditation, divine love). However, it remains grounded in Islamic theology - strict monotheism, prophetic finality, and sharia compliance. Scholars like Al-Ghazali systematized this balance between spiritual experience and orthodox doctrine."
   },
   {
+    id: "comparative-advanced-17",
     question: "What is the Islamic theological response to the concept of 'non-literal interpretation' of scripture as practiced in other traditions?",
     options: [
       "Islam rejects any non-literal interpretation as heresy",
@@ -541,6 +588,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic exegesis includes: 1) Literal (zahir) interpretation; 2) Allegorical (batin) for certain verses (3:7); 3) Contextual analysis. Schools differ on permissible interpretation boundaries, but all require rigorous methodology rooted in Arabic language, prophetic tradition, and scholarly consensus. This creates both parallels and distinctions with other hermeneutical traditions."
   },
   {
+    id: "comparative-advanced-18",
     question: "How does Islamic theology interpret the concept of 'religious language' compared to other traditions' approaches?",
     options: [
       "Religious language is purely symbolic in Islam",
@@ -552,6 +600,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic theology considers the Quran's Arabic text as divine speech (kalam Allah), with meticulous preservation of both form and content. Interpretation balances: 1) Literal meanings where applicable; 2) Recognized metaphorical usages; 3) Unseen matters (ghayb) taken at face value. This creates a distinctive approach to religious language compared to traditions with more fluid scripture concepts."
   },
   {
+    id: "comparative-advanced-19",
     question: "What is the Islamic theological position on the concept of 'secularism' as developed in Western thought?",
     options: [
       "Islam fully embraces secular separation of religion and state",
@@ -563,6 +612,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Classical Islamic governance integrated religious values with statecraft without creating a 'theocracy' in the Western sense. The concept of 'siyasa shar'iyya' (governance according to sharia principles) allows flexibility in administrative matters while maintaining ethical foundations. This differs from both secularism and theocracy as commonly understood."
   },
   {
+    id: "comparative-advanced-20",
     question: "How does Islamic theology interpret the concept of 'human rights' in relation to modern Western conceptions?",
     options: [
       "Islamic human rights are identical to Western secular models",
@@ -574,6 +624,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic law developed comprehensive rights concepts - rights of God (huquq Allah) and rights of humans (huquq al-'ibad) - covering individual, social, and spiritual dimensions. While sharing some common ground with modern human rights, the Islamic framework differs in its theological grounding, balance of rights and responsibilities, and specific applications (e.g., gender roles, religious expression)."
   },
   {
+    id: "comparative-advanced-21",
     question: "What is the Islamic theological perspective on the concept of 'religious reform' compared to reformation movements in other traditions?",
     options: [
       "Islam needs exactly the same kind of reformation as Christianity experienced",
@@ -585,6 +636,7 @@ const comparativeReligionCategory: QuizCategory = {
     explanation: "Islamic tradition recognizes cyclical renewal (tajdid) as prophesied by Muhammad (pbuh), but this means reviving original teachings, not doctrinal revisionism. Reform occurs within parameters of established sources (Quran, Sunnah) and methodologies (ijtihad). This contrasts with Protestant-style reformation that challenged traditional authority structures and interpretations more fundamentally."
   },
       {
+        id: "comparative-advanced-22",
         question: "What is the epistemological framework for knowledge in Islamic thought?",
         options: [
           "Only revelation (wahy) is considered valid knowledge",
@@ -597,6 +649,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic epistemology recognizes multiple sources of knowledge: revelation (wahy), reason (aql), sense perception (hawas), and intuition (ilham/kashf). These sources are seen as complementary, with revelation guiding reason and reason helping to understand revelation. This integrated approach was developed by scholars like Al-Ghazali, Ibn Rushd, and Ibn Sina.",
       },
       {
+        id: "comparative-advanced-23",
         question: "How does Islamic philosophy address the problem of evil?",
         options: [
           "Evil does not exist in Islamic theology",
@@ -610,6 +663,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic philosophy addresses the problem of evil through several approaches: 1) Evil is relative, not absolute; 2) Humans have free will, making moral choices possible; 3) This world is a test and temporary; 4) Suffering can lead to spiritual growth; 5) Ultimate justice will be established in the afterlife. Scholars like Ibn Sina and Al-Ghazali developed these theodicies in depth.",
       },
       {
+        id: "comparative-advanced-24",
         question: "What is the Islamic perspective on the historical development of religions?",
         options: [
           "All religions evolved naturally without divine intervention",
@@ -623,6 +677,7 @@ const comparativeReligionCategory: QuizCategory = {
           "According to Islamic theology, all authentic religions began with the same core message of monotheism (tawhid) delivered by divinely appointed messengers. Over time, human intervention led to alterations in many of these teachings, resulting in deviations from pure monotheism. This perspective is expressed in the Quran's narrative of progressive revelation culminating in the final message to Prophet Muhammad.",
       },
       {
+        id: "comparative-advanced-25",
         question: "How does Islam view the relationship between divine predestination (Qadar) and human free will?",
         options: [
           "Islam teaches absolute determinism with no human free will",
@@ -636,6 +691,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic theology maintains a balanced position on predestination and free will. Allah's knowledge encompasses all events past and future, and nothing occurs outside His will. Simultaneously, humans have real moral agency and responsibility for their choices. This nuanced position avoids both absolute determinism (jabr) and the denial of divine foreknowledge (qadariyyah), positions rejected by mainstream Islamic theology.",
       },
       {
+        id: "comparative-advanced-26",
         question: "What is the Islamic approach to religious texts compared to modern historical-critical methods?",
         options: [
           "Islam rejects all historical-critical analysis of texts",
@@ -649,6 +705,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic scholarship developed sophisticated methods of textual analysis (usul al-tafsir, usul al-hadith) that share some features with modern historical-critical methods, such as contextual interpretation, linguistic analysis, and authentication of transmission chains. However, traditional Islamic approaches differ by maintaining the divine origin of the Quran and working within a framework that accepts supernatural intervention, while seeking to understand the text's meaning and application.",
       },
       {
+        id: "comparative-advanced-27",
         question:
           "How does Islamic philosophy address the cosmological argument for God's existence compared to Western philosophical traditions?",
         options: [
@@ -663,6 +720,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic philosophers like Al-Kindi, Al-Farabi, Ibn Sina (Avicenna), and Ibn Rushd (Averroes) developed sophisticated cosmological arguments for God's existence, particularly the argument from contingency. Ibn Sina's distinction between essence and existence and his necessary being argument significantly influenced Western scholastic philosophy, including Thomas Aquinas. These arguments were not mere borrowings from Greek sources but represented original developments within Islamic philosophical tradition.",
       },
       {
+        id: "comparative-advanced-28",
         question: "What is the Islamic perspective on religious diversity in light of Quranic verse 5:48?",
         options: [
           "Religious diversity is a mistake that should be eliminated",
@@ -675,6 +733,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Quran 5:48 states: 'To each of you We have prescribed a law and a method. Had Allah willed, He would have made you one nation, but [He intended] to test you in what He has given you; so compete with one another in good deeds.' This verse suggests that religious diversity exists by divine will and serves the purpose of testing humanity through competition in righteousness and good deeds, rather than being a mistake or merely tolerated necessity.",
       },
       {
+        id: "comparative-advanced-29",
         question: "How does Islamic theology address the concept of religious exclusivism versus inclusivism?",
         options: [
           "Islam is purely exclusivist, teaching that only Muslims can attain salvation",
@@ -688,6 +747,7 @@ const comparativeReligionCategory: QuizCategory = {
           "Islamic theology presents a nuanced position on salvation. While affirming Islam as the final and complete revelation, the Quran also states: 'Indeed, those who believed and those who were Jews or Christians or Sabeans - those who believed in Allah and the Last Day and did righteousness - will have their reward with their Lord' (2:62). Scholars have interpreted such verses differently, with some emphasizing the universal aspects of divine mercy and others focusing on the necessity of accepting the final revelation.",
       },
       {
+        id: "comparative-advanced-30",
         question:
           "What is the Islamic perspective on the relationship between religion and science compared to the historical Christian experience?",
         options: [

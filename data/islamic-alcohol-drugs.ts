@@ -342,7 +342,7 @@ export const islamicAlcoholDrugsCategory: QuizCategory = {
         id: "alcohol-drugs-i-14",
         question: "What is the spiritual significance of purity (Taharah) in Islam, and how does it relate to intoxicants?",
         options: ["Purity is only about washing hands", "Taharah encompasses physical, moral, and spiritual cleanliness, making the consumption of impure and mind-clouding substances a contradiction to clean faith", "Purity has no connection to food", "Purity applies only to clothing"],
-        correctAnswer: "Taharah encompasses physical, moral, and spiritual cleanliness, making the consumption of impure and moral-clouding substances a contradiction to clean faith",
+        correctAnswer: "Taharah encompasses physical, moral, and spiritual cleanliness, making the consumption of impure and mind-clouding substances a contradiction to clean faith",
         explanation: "Islam places immense emphasis on purity inside and out; intoxicants contaminate both the physical body and the clarity of the soul."
       },
       {

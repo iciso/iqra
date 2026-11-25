@@ -8,6 +8,7 @@ const christCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "christ-easy-1",
         question: "How do Islam and Christianity view biblical prophets?",
         options: [
           "Only local leaders",
@@ -19,6 +20,7 @@ const christCategory: QuizCategory = {
         explanation: "Both honor prophets as God's messengers. The Quran names 25 prophets also in the Bible (e.g., Noah, Abraham, Moses), stating 'We sent every community a warner' (Quran 35:24). Jesus called Elijah 'a prophet' (Matthew 17:12 RSV), and Peter cited 'all the prophets from Samuel onward' (Acts 3:24 RSV)."
       },
       {
+        id: "christ-easy-2",
         question: "What is the shared concept of God in Islam and Christianity?",
         options: [
           "Multiple gods",
@@ -30,6 +32,7 @@ const christCategory: QuizCategory = {
         explanation: "Both affirm one supreme God: 'Hear O Israel: The Lord our God is one Lord' (Deuteronomy 6:4 RSV) and 'Your God is One God' (Quran 2:163). Shared attributes include omniscience (Psalm 147:5/Quran 6:59) and mercy (Psalm 86:15/Quran 1:3)."
       },
       {
+        id: "christ-easy-3",
         question: "Which prophet is most frequently mentioned in the Quran?",
         options: [
           "Abraham",
@@ -41,6 +44,7 @@ const christCategory: QuizCategory = {
         explanation: "Moses (Musa) is mentioned 136 times in the Quran, emphasizing his role in both traditions. The Exodus story appears in Quran 20:9-99 and Exodus 14. Both scriptures describe his miracles (Exodus 4:3/Quran 20:17-23) and reception of divine law (Exodus 20/Quran 7:143)."
       },
       {
+        id: "christ-easy-4",
         question: "What do both faiths teach about the Virgin Mary?",
         options: [
           "She was divine",
@@ -52,6 +56,7 @@ const christCategory: QuizCategory = {
         explanation: "Both honor Mary (Maryam): 'You are highly favored! The Lord is with you' (Luke 1:28 RSV) and 'The angels said: O Mary, Allah has chosen you' (Quran 3:42). A full chapter (19) bears her name in the Quran, more than in the New Testament."
       },
       {
+        id: "christ-easy-5",
         question: "How do both religions view Satan?",
         options: [
           "As a metaphor for evil",
@@ -63,6 +68,7 @@ const christCategory: QuizCategory = {
         explanation: "Both describe Satan's rebellion: 'I saw Satan fall like lightning' (Luke 10:18 RSV) and 'He refused and was proud' (Quran 2:34). He tempts humans (Genesis 3:1-5/Quran 7:20-22) but has no ultimate power over believers (James 4:7/Quran 15:42)."
       },
       {
+        id: "christ-easy-6",
         question: "What is the shared stance on murder in both faiths?",
         options: [
           "Permitted in war",
@@ -74,6 +80,7 @@ const christCategory: QuizCategory = {
         explanation: "'You shall not murder' (Exodus 20:13 RSV) and 'Do not kill the soul which Allah has forbidden' (Quran 6:151). Exceptions like just war have similar conditions in both (Deuteronomy 20:10-15/Quran 2:190)."
       },
       {
+        id: "christ-easy-7",
         question: "Which of these is a shared dietary prohibition?",
         options: [
           "All seafood",
@@ -85,6 +92,7 @@ const christCategory: QuizCategory = {
         explanation: "'The pig is unclean to you' (Leviticus 11:7 RSV) and 'Forbidden to you is the flesh of swine' (Quran 5:3). Early Christian texts like Didache 6:3 maintained this before Pauline reforms (Acts 10:9-15)."
       },
       {
+        id: "christ-easy-8",
         question: "What do both say about helping the poor?",
         options: [
           "Optional charity",
@@ -96,6 +104,7 @@ const christCategory: QuizCategory = {
         explanation: "'Give to everyone who begs from you' (Luke 6:30 RSV) and 'The right of the poor is due in their wealth' (Quran 51:19). Zakat (2.5% wealth) parallels tithing (Malachi 3:10), both with detailed rules (Leviticus 27:30/Quran 9:60)."
       },
       {
+        id: "christ-easy-9",
         question: "How do both view the Golden Rule?",
         options: [
           "As outdated",
@@ -107,6 +116,7 @@ const christCategory: QuizCategory = {
         explanation: "'Do to others as you would have them do to you' (Luke 6:31 RSV) and 'No one of you is a believer until he loves for his brother what he loves for himself' (Hadith, Bukhari 13). This ethic appears in Torah (Leviticus 19:18) and Quran (83:1-6)."
       },
       {
+        id: "christ-easy-10",
         question: "What is the shared teaching about prayer?",
         options: [
           "Only in emergencies",
@@ -118,6 +128,7 @@ const christCategory: QuizCategory = {
         explanation: "Daniel prayed three times daily (Daniel 6:10 RSV), while Muslims pray five times (Quran 17:78). Both include bowing (Psalm 95:6/Quran 48:29) and prostration (Matthew 26:39/Quran 3:43). Early Christians kept prayer hours (Acts 3:1)."
       },
       {
+        id: "christ-easy-11",
         question: "Which angel is recognized in both traditions?",
         options: [
           "Gabriel",
@@ -129,6 +140,7 @@ const christCategory: QuizCategory = {
         explanation: "Gabriel (Jibril) announced Jesus' birth (Luke 1:26 RSV) and brought Quranic revelations (Quran 2:97). He's called 'who stands in the presence of God' (Luke 1:19) and 'the trustworthy spirit' (Quran 26:193)."
       },
       {
+        id: "christ-easy-12",
         question: "What do both say about usury/interest?",
         options: [
           "Encouraged",
@@ -140,6 +152,7 @@ const christCategory: QuizCategory = {
         explanation: "'Do not charge interest' (Leviticus 25:36 RSV) and 'Allah has permitted trade and forbidden usury' (Quran 2:275). Early Church Fathers like Basil condemned it, while Islamic finance maintains prohibition through profit-sharing models."
       },
       {
+        id: "christ-easy-13",
         question: "How do both view the afterlife?",
         options: [
           "Only metaphorical",
@@ -151,6 +164,7 @@ const christCategory: QuizCategory = {
         explanation: "'All in the tombs will hear His voice and come out' (John 5:28-29 RSV) and 'The earth will cast out its burdens' (Quran 99:1-4). Both describe Paradise (Revelation 22:1-2/Quran 47:15) and Hell (Mark 9:43/Quran 104:4-7)."
       },
       {
+        id: "christ-easy-14",
         question: "What is the shared position on adultery?",
         options: [
           "Permitted between consenting adults",
@@ -162,6 +176,7 @@ const christCategory: QuizCategory = {
         explanation: "'You shall not commit adultery' (Exodus 20:14 RSV) and 'Do not approach adultery' (Quran 17:32). Both prescribe severe consequences (Deuteronomy 22:22/Quran 24:2) while encouraging repentance (John 8:11/Quran 24:31)."
       },
       {
+        id: "christ-easy-15",
         question: "Which of these is a shared eschatological sign?",
         options: [
           "Global internet outage",
@@ -173,6 +188,7 @@ const christCategory: QuizCategory = {
         explanation: "'This Jesus will come in the same way' (Acts 1:11 RSV) and 'He will descend near Damascus' (Hadith, Muslim 2937). Both associate his return with defeating false messiahs (1 John 2:18/Quran 43:61) and establishing justice."
       },
       {
+        id: "christ-easy-16",
         question: "What do both teach about honoring parents?",
         options: [
           "Only if they're believers",
@@ -184,6 +200,7 @@ const christCategory: QuizCategory = {
         explanation: "'Honor your father and mother' (Exodus 20:12 RSV) and 'Be kind to parents' (Quran 17:23). Both exempt disobedience if they demand shirk (Matthew 10:37/Quran 29:8), but otherwise emphasize lifelong care (Mark 7:10-13/Quran 31:14)."
       },
       {
+        id: "christ-easy-17",
         question: "How do both view monasticism?",
         options: [
           "Required for all believers",
@@ -195,6 +212,7 @@ const christCategory: QuizCategory = {
         explanation: "Jesus praised celibacy 'for the kingdom' (Matthew 19:12 RSV), while Quran says 'We did not prescribe monasticism for them' (57:27). Islamic Sufism parallels Christian mysticism in seeking divine closeness while maintaining social duties."
       },
       {
+        id: "christ-easy-18",
         question: "What is the shared teaching about truthfulness?",
         options: [
           "Permitted in diplomacy",
@@ -206,6 +224,7 @@ const christCategory: QuizCategory = {
         explanation: "'Do not lie to one another' (Colossians 3:9 RSV) and 'O you who believe, fear Allah and speak truth' (Quran 33:70). Both warn against false testimony (Exodus 20:16/Quran 25:72) and praise truth-tellers (Psalm 15:2/Hadith, Bukhari 6094)."
       },
       {
+        id: "christ-easy-19",
         question: "Which biblical figure has a Quranic chapter named after him?",
         options: [
           "Jonah",
@@ -217,6 +236,7 @@ const christCategory: QuizCategory = {
         explanation: "Surah 12 (Yusuf) details Joseph's story with parallels to Genesis 37-50: betrayal by brothers (Genesis 37:18/Quran 12:8), Potiphar's wife (Genesis 39:7/Quran 12:23), and rise to power (Genesis 41:41/Quran 12:54). It's called 'the most beautiful story' (Quran 12:3)."
       },
       {
+        id: "christ-easy-20",
         question: "What do both say about repentance?",
         options: [
           "Only before age 40",
@@ -228,6 +248,7 @@ const christCategory: QuizCategory = {
         explanation: "'If we confess our sins, He is faithful to forgive' (1 John 1:9 RSV) and 'Allah accepts repentance from those who repent' (Quran 9:104). Both require remorse (Psalm 51:17/Quran 66:8), reparation (Luke 19:8/Hadith, Muslim 1688), and resolve to change."
       },
       {
+        id: "christ-easy-21",
         question: "How do both view the Torah?",
         options: [
           "As completely abrogated",
@@ -239,6 +260,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms original Torah as guidance (5:44) but notes textual alterations (5:13). Similarly, New Testament references Torah while revising laws (Matthew 5:21-48). Both maintain core commandments (Mark 12:28-31/Quran 4:36) while differing on legal details."
       },
       {
+        id: "christ-easy-22",
         question: "What is the shared position on gambling?",
         options: [
           "Permitted recreationally",
@@ -250,6 +272,7 @@ const christCategory: QuizCategory = {
         explanation: "'Do not wear yourself out to get rich' (Proverbs 23:4 RSV) and 'Satan seeks to sow enmity through intoxicants and gambling' (Quran 5:90-91). Both warn against addiction (1 Timothy 6:10/Hadith, Abu Dawood 4289) and family neglect."
       },
       {
+        id: "christ-easy-23",
         question: "Which of these is a shared miracle story?",
         options: [
           "Parting of the Red Sea",
@@ -261,6 +284,7 @@ const christCategory: QuizCategory = {
         explanation: "Moses' miracle appears in Exodus 14:21-22 and Quran 26:63. Both describe drowning Pharaoh's army (Exodus 14:28/Quran 10:90-92). The Quran adds Pharaoh's last-moment faith (10:90), showing Allah's mercy even to oppressors."
       },
       {
+        id: "christ-easy-24",
         question: "What do both teach about fasting?",
         options: [
           "Only for monks",
@@ -272,6 +296,7 @@ const christCategory: QuizCategory = {
         explanation: "Jesus fasted 40 days (Matthew 4:2 RSV) as Muslims do Ramadan (Quran 2:185). Both exempt the ill (Matthew 9:14-15/Quran 2:184) and value night prayers (Luke 6:12/Quran 73:6). Early Christians fasted Wednesdays/Fridays (Didache 8)."
       },
       {
+        id: "christ-easy-25",
         question: "How do both view the Psalms of David?",
         options: [
           "As lost scripture",
@@ -283,6 +308,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran calls Psalms (Zabur) revealed scripture (4:163, 17:55). Many biblical psalms parallel Quranic themes: God's majesty (Psalm 8/Quran 67:3-5), repentance (Psalm 51/Quran 39:53), and praise (Psalm 150/Quran 17:111)."
       },
       {
+        id: "christ-easy-26",
         question: "What is the shared teaching about arrogance?",
         options: [
           "Virtue for leaders",
@@ -294,6 +320,7 @@ const christCategory: QuizCategory = {
         explanation: "'God opposes the proud' (James 4:6 RSV) and 'Do not walk arrogantly on earth' (Quran 17:37). Both cite Satan's fall (Isaiah 14:12-15/Quran 7:13) and praise humility (Matthew 23:12/Quran 28:83). Muhammad said 'No one enters Paradise with pride' (Muslim 91)."
       },
       {
+        id: "christ-easy-27",
         question: "Which prophet's birth narrative appears in both scriptures?",
         options: [
           "John the Baptist",
@@ -305,6 +332,7 @@ const christCategory: QuizCategory = {
         explanation: "John (Yahya) appears in Luke 1:5-25 (angelic birth announcement to Zechariah) and Quran 19:2-15 (Allah's gift to aged parents). Both note his asceticism (стора Matthew 3:4/Quran 19:12-14) and role preparing for Jesus (John 1:29-34/Quran 3:39)."
       },
       {
+        id: "christ-easy-28",
         question: "What do both say about backbiting?",
         options: [
           "Social necessity",
@@ -316,6 +344,7 @@ const christCategory: QuizCategory = {
         explanation: "'Do not speak against one another' (James 4:11 RSV) and 'Do not backbite... would any of you like to eat his brother's dead flesh?' (Quran 49:12). Both require repentance (Matthew 5:23-24/Hadith, Abu Dawood 4874) and repairing reputations damaged."
       },
         {
+        id: "christ-easy-29",
         question: "How does Christology differ between Islam and Christianity?",
         options: [
           "Both affirm Trinity",
@@ -327,6 +356,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms Jesus' virgin birth (3:47), miracles (5:110), and return (43:61) but rejects divinity (5:72-75) and crucifixion (4:157). Contrast Nicene Creed's 'true God from true God.' Both agree on his eschatological role (Matthew 24:30-31/Quran 4:159)."
       },
       {
+        id: "christ-easy-30",
         question: "How do both religions view the Sabbath?",
         options: [
           "Transferred to Sunday",
@@ -340,6 +370,7 @@ const christCategory: QuizCategory = {
     ],
     advanced: [
        {
+        id: "christ-advanced-1",
         question: "What is the Islamic view of Pauline theology?",
         options: [
           "Fully accepted",
@@ -351,6 +382,7 @@ const christCategory: QuizCategory = {
         explanation: "Paul's doctrines (original sin-Romans 5:12, abrogation of law-Galatians 3:13) contradict Quranic teachings: no inherited sin (17:15), Torah still valid (5:43-48). Early sects like Ebionites also rejected Paul. Islamic sources identify him as a corrupter (Ibn Kathir's Qisas al-Anbiya)."
       },
       {
+        id: "christ-advanced-2",
         question: "How do eschatological timelines compare?",
         options: [
           "Identical sequence",
@@ -362,6 +394,7 @@ const christCategory: QuizCategory = {
         explanation: "Shared signs: moral decay (2 Timothy 3:1-5/Hadith, Muslim 2670), Dajjal/Antichrist (1 John 2:18/Hadith, Muslim 2934). Differences: Islamic Mahdi (Hadith, Abu Dawood 4282) vs. Christian Millennium (Revelation 20:4), duration of tribulation (Daniel 12:11 vs. Hadith, Muslim 2937)."
       },
       {
+        id: "christ-advanced-3",
         question: "What is the Islamic position on biblical canon formation?",
         options: [
           "Accepts all 66 books",
@@ -373,6 +406,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms original Torah/Injeel (5:44,48) but notes alterations (5:13,15). Early Muslim scholars identified specific changes: crucifixion denial (4:157) vs. Gospel accounts. Textual criticism now confirms variants like Comma Johanneum (1 John 5:7) missing in earliest manuscripts."
       },
       {
+        id: "christ-advanced-4",
         question: "How does Islamic law compare to Mosaic law?",
         options: [
           "Identical punishments",
@@ -384,6 +418,7 @@ const christCategory: QuizCategory = {
         explanation: "Shared crimes: theft (Exodus 22:1/Quran 5:38), adultery (Leviticus 20:10/Quran 24:2). Key differences: Islam requires 4 eyewitnesses for adultery (24:4) vs. Deuteronomy 22:22's two; encourages victim pardon (5:34); prohibits collective punishment (Hadith, Bukhari 6916) unlike Achan's family (Joshua 7:24-25)."
       },
       {
+        id: "christ-advanced-5",
         question: "What is the Islamic critique of atonement theology?",
         options: [
           "Accepts it fully",
@@ -395,6 +430,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran states 'No soul bears another's burden' (53:38), rejecting substitutionary atonement (Romans 5:8). Abraham's sacrifice was a test (37:102-107), not proto-crucifixion. Salvation comes through repentance (25:70) and grace (3:31), not juridical satisfaction. Early sects like Nestorians also rejected penal substitution."
       },
       {
+        id: "christ-advanced-6",
         question: "How do Christ's miracles compare in both traditions?",
         options: [
           "Quran denies all miracles",
@@ -406,6 +442,7 @@ const christCategory: QuizCategory = {
         explanation: "Shared miracles: healing (Matthew 8:1-3/Quran 3:49), raising dead (John 11:43-44/Quran 3:49). Unique to Quran: speaking in cradle (19:29-33), clay birds (3:49 vs. non-canonical Infancy Gospel of Thomas 2:1-5). Bible has more nature miracles (calming storm-Mark 4:39)."
       },
       {
+        id: "christ-advanced-7",
         question: "What is the Islamic view of the Ecumenical Councils?",
         options: [
           "Accepts all decisions",
@@ -417,6 +454,7 @@ const christCategory: QuizCategory = {
         explanation: "Councils like Nicea (325 CE) established Trinity doctrine absent in early texts. Quranic verses like 4:171 oppose triune concepts. Muslim scholars note political influences (Arius' exile) and chronological distance from Jesus. Early unitarian Christians (Ebionites) shared Islamic objections."
       },
       {
+        id: "christ-advanced-8",
         question: "How does predestination theology differ?",
         options: [
           "Islam has no concept",
@@ -428,6 +466,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms Allah's foreknowledge (57:22) but holds humans accountable (18:29). Contrast Calvinist predestination (Romans 9:16) with Arminian free will parallels. Ash'ari theology posits acquisition (kasb) of preordained actions, avoiding either extreme (Hadith, Muslim 2653)."
       },
       {
+        id: "christ-advanced-9",
         question: "What is the Islamic position on original sin?",
         options: [
           "Affirms it fully",
@@ -439,6 +478,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran states Adam repented and was forgiven (2:37, 7:23-24), with no transmission of guilt (17:15). Contrast Augustine's interpretation of Romans 5:12. Islamic view aligns with Pelagius' rejected teaching that humans aren't born sinful. Children die in fitrah (pure state)-Hadith, Muslim 2658."
       },
       {
+        id: "christ-advanced-10",
         question: "How do Mary's narratives differ?",
         options: [
           "Quran denies her virginity",
@@ -450,6 +490,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran details Mary's (Maryam) upbringing (3:35-37), miraculous sustenance (3:37), and annunciation (19:16-21). Bible begins at betrothal (Matthew 1:18). Quran calls her 'sister of Aaron' (19:28) likely denoting Levitical lineage. Both affirm virgin birth (Luke 1:34/Quran 19:20)."
       },
       {
+        id: "christ-advanced-11",
         question: "What is the Islamic view of the Eucharist?",
         options: [
           "Accepts transubstantiation",
@@ -461,6 +502,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran rejects Jesus as divine sacrifice (4:157) or God incarnate (5:17). Consuming flesh/blood violates 5:3's prohibition. Early Muslim scholars like Ibn Taymiyyah critiqued 'real presence' doctrine as idolatry. Last Supper narrative differs in Quran (5:112-115) with no sacrificial language."
       },
       {
+        id: "christ-advanced-12",
         question: "How does Islamic angelology compare?",
         options: [
           "Denies all angels",
@@ -472,6 +514,7 @@ const christCategory: QuizCategory = {
         explanation: "Both recognize Gabriel, Michael (Daniel 10:13/Quran 2:98), and angelic functions (Luke 1:19/Quran 13:11). Islam adds names like Malik (hell's keeper-43:77) and Munkar/Nakir (grave angels-Hadith, Abu Dawood 4753). Quran rejects angelic intercession (53:26) unlike Catholic tradition."
       },
       {
+        id: "christ-advanced-13",
         question: "What is the Islamic critique of monasticism?",
         options: [
           "Fully endorses it",
@@ -483,6 +526,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran states 'We did not prescribe monasticism for them' (57:27), criticizing extremes. But Sufi asceticism parallels desert fathers in moderation. Muhammad praised controlled self-denial (Hadith, Tirmidhi 2378) but mandated marriage for capable (Hadith, Ibn Majah 1845), unlike 1 Timothy 5:9-12's widow restrictions."
       },
       {
+        id: "christ-advanced-14",
         question: "How do creation accounts align?",
         options: [
           "Identical six-day sequence",
@@ -494,6 +538,7 @@ const christCategory: QuizCategory = {
         explanation: "'God said, Let there be light' (Genesis 1:3) and 'Our command is but one word, as the twinkling of an eye' (Quran 54:50). Differences: Quran notes angels prostrating to Adam (2:34) vs. no biblical parallel; six 'ayyam' (periods-41:9-12) vs. 24-hour days debate."
       },
       {
+        id: "christ-advanced-15",
         question: "What is the Islamic position on the Holy Spirit?",
         options: [
           "Third person of Trinity",
@@ -505,6 +550,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran identifies the 'Holy Spirit' (Ruh al-Qudus) as Gabriel (2:97, 16:102). Contrast Trinitarian view (Matthew 28:19). Islamic theology sees 'spirit' as created (17:85), rejecting Johannine Paraclete (John 14:26) as referring to Muhammad (Ibn Ishaq's Sira)."
       },
       {
+        id: "christ-advanced-16",
         question: "How does Islamic jurisprudence approach biblical laws?",
         options: [
           "Adopts all Mosaic law",
@@ -516,6 +562,7 @@ const christCategory: QuizCategory = {
         explanation: "Examples: Retributive justice (Exodus 21:24/Quran 5:45) maintained but with victim pardon emphasis (5:34). Pork prohibition (Leviticus 11:7/Quran 5:3) kept. Circumcision (Genesis 17:10) practiced but not Quran-mandated. Stoning for adultery (Deuteronomy 22:21) replaced with lashing (Quran 24:2)."
       },
       {
+        id: "christ-advanced-17",
         question: "What is the Islamic view of Church sacraments?",
         options: [
           "Accepts all seven",
@@ -527,6 +574,7 @@ const christCategory: QuizCategory = {
         explanation: "Islam has no sacramental theology. Shahadah replaces baptism (Hadith, Bukhari 1292), salat replaces Eucharist, zakah replaces tithing. Marriage is civil contract, not sacrament. Hajj parallels pilgrimage but with Kaaba focus. Confirmation/ordination have no equivalents in Sunni Islam."
       },
       {
+        id: "christ-advanced-18",
         question: "How do salvation mechanisms differ?",
         options: [
           "Both require blood atonement",
@@ -538,6 +586,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran states 'Those who believe and do righteous deeds' (2:25, 5:9) attain paradise. Contrast sola fide (Romans 3:28). Islamic 'grace' (fadl) enables works (49:17), while Catholic/Orthodox synergism somewhat parallels. Protestant imputed righteousness differs from Quranic 'scale' of deeds (21:47)."
       },
       {
+        id: "christ-advanced-19",
         question: "What is the Islamic view of the Old Testament prophets?",
         options: [
           "Only recognizes Moses",
@@ -549,6 +598,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms Noah (71:1), Abraham (19:41), David (38:17) etc. as prophets but notes textual distortion (5:13-15). Stories differ: Sodom's destruction (Genesis 19:24/Quran 11:77-83) omits Lot's incest. Jonah's account (37:139-148) lacks Nineveh's repentance details (Jonah 3:5-10)."
       },
       {
+        id: "christ-advanced-20",
         question: "How does Islamic theology view the Fall?",
         options: [
           "As cosmic catastrophe",
@@ -560,6 +610,7 @@ const christCategory: QuizCategory = {
         explanation: "Adam's error (2:35-37) was disobedience, not original sin. After repentance (7:23), he became first prophet (Hadith, Bukhari 3336). Contrast Augustinian 'total depravity.' Islamic view closer to Eastern Orthodox 'ancestral sin' without guilt transmission. Earth was always meant as testing ground (2:30)."
       },
       {
+        id: "christ-advanced-21",
         question: "What is the Islamic position on biblical kings?",
         options: [
           "Only David was righteous",
@@ -571,6 +622,7 @@ const christCategory: QuizCategory = {
         explanation: "David (Dawud) and Solomon (Sulayman) are prophets in Islam (4:163, 27:15-44) with miracles (34:10-13). Saul (Talut) appears positively (2:247-251). Other kings like Ahab omitted. Quran critiques Jewish monarchy demands (2:246) as distrust in divine governance, paralleling 1 Samuel 8:7's 'rejection of Me.'"
       },
       {
+        id: "christ-advanced-22",
         question: "How do purity laws compare?",
         options: [
           "Identical requirements",
@@ -582,6 +634,7 @@ const christCategory: QuizCategory = {
         explanation: "Shared: menstrual separation (Leviticus 15:19/Quran 2:222), ritual washing (Exodus 30:19-21/Hadith, Muslim 225). Differences: Islamic wudu (5:6) replaces full immersion; pork prohibition remains (5:3) while Acts 10:15 abolishes kosher restrictions. Islamic taharah extends to prayer preparedness."
       },
       {
+        id: "christ-advanced-23",
         question: "What is the Islamic view of the Book of Revelation?",
         options: [
           "Accepts as fully authentic",
@@ -593,6 +646,7 @@ const christCategory: QuizCategory = {
         explanation: "Muslim scholars reject Revelation's canonicity due to: late authorship disputes, symbolic confusion (Hadith eschatology is more literal), and trinitarian language (1:4-5). Some parallel motifs (Dajjal/Antichrist, Gog-Magog/Yajuj-Majuj) but attribute these to shared ancient Near Eastern tropes."
       },
       {
+        id: "christ-advanced-24",
         question: "How does Islamic inheritance law compare to Mosaic law?",
         options: [
           "Identical distributions",
@@ -604,6 +658,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran mandates shares for daughters (4:11), wives (4:12), and mothers (4:11) where Numbers 27:8-11 only mentions sons. Male double share balances financial responsibilities (4:34). Contrast Levirate marriage (Deuteronomy 25:5-10) with Islamic widow autonomy (2:234-240). Both maintain testamentary limits."
       },
       {
+        id: "christ-advanced-25",
         question: "What is the Islamic critique of iconography?",
         options: [
           "Fully embraces religious art",
@@ -615,6 +670,7 @@ const christCategory: QuizCategory = {
         explanation: "Based on 'Those who make images will be punished' (Hadith, Bukhari 5951), Islam avoids figural representation, especially of prophets, contrasting Christian iconodulism (John of Damascus' defense). Quranic emphasis on Allah's transcendence (42:11) parallels Byzantine iconoclasm periods. Calligraphy replaces visual depictions."
       },
       {
+        id: "christ-advanced-26",
         question: "What is the Islamic view of the Promised Land?",
         options: [
           "Islam rejects any sacred geography",
@@ -626,6 +682,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran affirms Allah's earth is spacious (4:97, 29:56), criticizing Jewish exclusivism. Abrahamic promise (2:124) isn't land-based. Hajj reorients sacred geography to Mecca (3:96-97). Contrast Zionist interpretations of Genesis 15:18. Some parallels in Christian supersessionism (Romans 4:13)."
       },
       {
+        id: "christ-advanced-27",
         question: "What is the Islamic position on biblical apocrypha?",
         options: [
           "Accepts all deuterocanonical books",
@@ -637,6 +694,7 @@ const christCategory: QuizCategory = {
         explanation: "Quran references stories like Saul's kingship (2:246-251) resembling 1 Samuel, and Alexander's wall (18:83-98) similar to 4 Ezra's Gog-Magog. Rejected are doctrinally problematic texts (Tobit's angelology, Maccabees' Hanukkah). Islamic sources like al-Tabari's history critically evaluate biblical material."
       },
       {
+        id: "christ-advanced-28",
         question: "What is the Islamic view of the Ecclesiastical hierarchy?",
         options: [
           "Accepts papal supremacy",
@@ -648,6 +706,7 @@ const christCategory: QuizCategory = {
         explanation: "Islam has no priesthood; all believers access God directly (2:186). Scholars are guides, not intermediaries. Contrast Catholic apostolic succession (1 Timothy 4:14) or Orthodox apostolicity. Sunni Islam's scholarly consensus (ijma) somewhat parallels conciliarism but lacks institutional hierarchy."
       },
       {
+        id: "christ-advanced-29",
         question: "How does jihad compare to Crusade theology?",
         options: [
           "Identical holy war concepts",
@@ -659,6 +718,7 @@ const christCategory: QuizCategory = {
         explanation: "Islamic jus ad bellum: no aggression (2:190), no compulsion in religion (2:256), only under state authority. Contrast Urban II's 'Deus vult' call. Crusader massacres (Jerusalem 1099) violate Quranic 'Do not kill monks' (Ibn Kathir's chronicles). Defensive jihad parallels just war theory with stricter civilian protections."
       },
       {
+        id: "christ-advanced-30",
         question: "What is the Islamic view of the Synoptic Problem?",
         options: [
           "Affirms Markan priority",
