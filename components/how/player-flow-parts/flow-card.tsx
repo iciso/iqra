@@ -1,8 +1,12 @@
+"use client"
+
+import { useTranslation } from "react-i18next"
 import type { FlowStep } from "./flow-data"
 
 type FlowCardProps = { step: FlowStep }
 
 const FlowCard = ({ step }: FlowCardProps) => {
+  const { t } = useTranslation("how")
   const Icon = step.icon
   return (
     <div
@@ -15,12 +19,12 @@ const FlowCard = ({ step }: FlowCardProps) => {
         </span>
         <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-300">
-            {step.eyebrow}
+            {t(`flow.${step.id}.eyebrow`)}
           </p>
-          <h3 className="mt-0.5 text-[15px] tracking-normal font-semibold leading-snug text-gray-900 dark:text-gray-50">{step.title}</h3>
+          <h3 className="mt-0.5 text-[15px] tracking-normal font-semibold leading-snug text-gray-900 dark:text-gray-50">{t(`flow.${step.id}.title`)}</h3>
         </div>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{step.body}</p>
+      <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{t(`flow.${step.id}.body`)}</p>
     </div>
   )
 }

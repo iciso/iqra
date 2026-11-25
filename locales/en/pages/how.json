@@ -1,1 +1,67 @@
-{}
+{
+  "title": "How IQRA Works",
+  "subtitle": "Whether you want to learn at your own pace or test your knowledge against time and friends, IQRA provides two tailored tracks to suit your learning style.",
+  "home": "Home",
+  "badge": "Guide & Overview",
+  "track1": {
+    "eyebrow": "Track 1",
+    "title": "Quizzes (Answer & Learn)",
+    "subtitle": "Untimed practice designed for thoughtful learning and discovering new knowledge.",
+    "cta": "Start a Practice Quiz",
+    "noTimerLabel": "No Timer:",
+    "noTimer": "Read explanations carefully without any rush. Become an Instant Quality Religious Authority (IQRA).",
+    "leaderboardLabel": "Optional Leaderboard:",
+    "leaderboard": "Choose whether to submit your score or keep your practice private."
+  },
+  "track2": {
+    "eyebrow": "Track 2",
+    "title": "Challenges (Play & Compete)",
+    "subtitle": "Timed quizzes to test your speed, unlock badges, and challenge peers.",
+    "cta": "Enter Challenge Mode",
+    "timerLabel": "Countdown Timer:",
+    "timer": "Speed & accuracy combine for bonus points.",
+    "postingLabel": "Flexible Posting:",
+    "posting": "Post scores to global ranks or play strictly for fun."
+  },
+  "flowSection": {
+    "title": "Process Flow Diagram",
+    "lede": "How both paths lead to your results and leaderboard placement options."
+  },
+  "explore": "Explore All 50 Subjects",
+  "flow": {
+    "label": "Player flow",
+    "title": "IQRA Player Flow: Quizzes vs Challenge Track",
+    "or": "or",
+    "step1": "Step 1: choose a track.",
+    "step2": "Step 2: both tracks lead to the results page.",
+    "step3": "Step 3:",
+    "mobileChoose": "Choose a track",
+    "mobileResults": "See your results",
+    "decision": "Leaderboard Decision Point",
+    "track-1": {
+      "eyebrow": "Track 1 · Quiz",
+      "title": "Quizzes Track (Answer & Learn)",
+      "body": "Untimed gameplay focused on self-paced study across major Islamic subjects."
+    },
+    "track-2": {
+      "eyebrow": "Track 2 · Rivalry",
+      "title": "Challenge Track (Play Challenge)",
+      "body": "Timed competitive gameplay designed to test quick recall and subject mastery."
+    },
+    "results": {
+      "eyebrow": "Both tracks meet here",
+      "title": "Common Results Page",
+      "body": "Convergence point displaying total score, accuracy breakdown, and performance statistics."
+    },
+    "submit": {
+      "eyebrow": "Option 1",
+      "title": "Submit to Leaderboard",
+      "body": "Players choose to submit their score publicly."
+    },
+    "skip": {
+      "eyebrow": "Option 2",
+      "title": "Skip Submission",
+      "body": "Players choose to skip submission."
+    }
+  }
+}
