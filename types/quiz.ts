@@ -19,6 +19,9 @@ export interface QuizQuestion {
   correctAnswer: string
   // Index of correctAnswer in options. Set by quiz-data-manager when the data loads (not written in data files).
   correctIndex?: number
+  // pinned[i]: options[i] stays at the end when options are shuffled ("All of the above").
+  // Set on the server from the ENGLISH text (lib/i18n/content.server.ts), so it survives translation.
+  pinned?: boolean[]
   explanation?: string
   // Source citation, e.g. "Sahih Muslim: Hadith of Jibril". Not shown in the UI today.
   references?: string
@@ -44,5 +47,8 @@ export interface QuizCategory {
     advanced: QuizQuestion[]
   }
 }
+
+// Review state of a translated category file (locales/<lng>/<categoryId>.json, _meta.status).
+export type ContentStatus = "review" | "approved" | "hidden"
 
 export type DifficultyLevel = QuizLevel | "mixed"

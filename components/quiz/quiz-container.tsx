@@ -11,13 +11,16 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Clock, Info } from "lucide-react"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
+import type { QuizQuestion, QuizCategory, DifficultyLevel, ContentStatus } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
 import InteractiveInfographic from "@/components/quiz/interactive-infographic"
+import TranslationBanner from "@/components/quiz/translation-banner"
+import VerseMeaning from "@/components/quiz/verse-meaning"
 import { toast } from "@/components/ui/use-toast"
 import { NameInputModal } from "@/components/quiz/name-input-modal"
 import { savePlayerName } from "@/lib/player-name"
+import { shuffleOptions } from "@/lib/quiz-options"
 
 // The opponent shown during a challenge quiz (and saved to localStorage for /results)
 interface QuizOpponent {
@@ -45,26 +48,6 @@ function challengeMinutes(challengeMode?: string) {
   return 5
 }
 
-// Fisher–Yates shuffle – returns a new array
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array]
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-  }
-  return shuffled
-}
-
-// Options like "All of the above" or "Both A and B" only make sense in their
-// original place, so they are kept at the end (in their original order).
-const PINNED_OPTION = /(all|none|both|neither) of (the above|these|them)|^\s*(both\s+)?[a-d]\s*(and|&|,)\s*[a-d]\b/i
-
-function shuffleOptions(options: string[]): string[] {
-  const movable = options.filter((o) => !PINNED_OPTION.test(o))
-  const pinned = options.filter((o) => PINNED_OPTION.test(o))
-  return [...shuffleArray(movable), ...pinned]
-}
-
 interface QuizContainerProps {
   questions: QuizQuestion[]
   category: QuizCategory
@@ -73,6 +56,8 @@ interface QuizContainerProps {
   opponentId?: string
   opponentName?: string
   challengerTurn?: boolean
+  // Review state of the reader's translation of this category (null: English or no file).
+  translationStatus?: ContentStatus | null
 }
 
 export default function QuizContainer({
@@ -83,6 +68,7 @@ export default function QuizContainer({
   opponentId,
   opponentName,
   challengerTurn,
+  translationStatus = null,
 }: QuizContainerProps) {
   const router = useRouter()
   const { t } = useTranslation()
@@ -118,7 +104,7 @@ export default function QuizContainer({
       isClient
         ? questions.map((q) => ({
             ...q,
-            options: shuffleOptions(q.options),
+            options: shuffleOptions(q.options, q.pinned),
           }))
         : questions,
     [isClient, questions],
@@ -285,6 +271,8 @@ export default function QuizContainer({
       localStorage.setItem("quizScore", score.toString())
       localStorage.setItem("totalQuestions", questions.length.toString())
       localStorage.setItem("quizCategory", category.id)
+      // The title as the player saw it (translated when their language has one); /results shows it.
+      localStorage.setItem("quizCategoryTitle", category.title)
       localStorage.setItem("quizDifficulty", difficulty)
       localStorage.setItem("quizChallenge", challengeMode || "")
       localStorage.setItem("quizTimeLeft", timeLeft.toString())
@@ -505,6 +493,8 @@ export default function QuizContainer({
         )}
       </div>
 
+      <TranslationBanner status={translationStatus} categoryId={category.id} questionId={question.id} />
+
       {/* While loading, the card loses its box so only the spinning loader shows. */}
       <Card className={isLoading ? "border-0 bg-transparent shadow-none" : "border-green-200 shadow-lg dark:border-green-800"}>
         {isLoading ? (
@@ -595,6 +585,7 @@ export default function QuizContainer({
                               <div>
                                 <strong className="block mb-1">{t("quiz.explanation")}</strong>
                                 {question.explanation}
+                                <VerseMeaning text={question.explanation} />
                               </div>
                             </div>
                           </AlertDescription>

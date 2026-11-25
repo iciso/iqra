@@ -92,8 +92,11 @@ function readStoredQuiz(): StoredQuiz {
 
     if (savedCategory) {
       quiz.categoryId = savedCategory
+      // The title the quiz showed (translated when it was); the English one for older saves.
+      const savedTitle = localStorage.getItem("quizCategoryTitle")
       const category = getCategory(savedCategory)
-      if (category) quiz.categoryTitle = category.title
+      if (savedTitle) quiz.categoryTitle = savedTitle
+      else if (category) quiz.categoryTitle = category.title
     }
 
     if (savedDifficulty) quiz.difficulty = savedDifficulty

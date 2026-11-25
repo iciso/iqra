@@ -1,7 +1,11 @@
 import Link from "next/link"
+import type { TFunction } from "i18next"
 import QuizContainer from "@/components/quiz/quiz-container"
-import type { DifficultyLevel, QuizQuestion } from "@/types/quiz"
+import TranslationBanner from "@/components/quiz/translation-banner"
+import type { ContentStatus, DifficultyLevel, QuizQuestion } from "@/types/quiz"
 import { pageMetadata } from "@/lib/seo"
+import { getRequestLocale, getServerT } from "@/lib/i18n/server-locale"
+import { loadCategoryLocale, localizeCategory, localizeQuestions } from "@/lib/i18n/content.server"
 
 export const metadata = pageMetadata({
   title: "Quiz",
@@ -189,6 +193,8 @@ function SectionPicker({
   totalQuestions,
   sectionSize,
   extraParams,
+  translationStatus,
+  t,
 }: {
   categoryTitle: string
   categoryId: string
@@ -196,6 +202,8 @@ function SectionPicker({
   totalQuestions: number
   sectionSize: number
   extraParams: Record<string, string>
+  translationStatus: ContentStatus | null
+  t: TFunction
 }) {
   const sectionCount = getSectionCount(totalQuestions, sectionSize)
   const sections = Array.from({ length: sectionCount }, (_, i) => i + 1)
@@ -212,14 +220,14 @@ function SectionPicker({
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-3xl">
+      <TranslationBanner status={translationStatus} categoryId={categoryId} />
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold text-green-800 dark:text-green-400">{categoryTitle}</h1>
-        {/* i18n: server, slice C */}
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          Choose a section to play and learn from. Each section has {sectionSize} questions, always in the same order.
+          {t("quiz.section.choose", { size: sectionSize })}
         </p>
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          {totalQuestions} questions · {sectionCount} sections
+          {t("quiz.section.counts", { total: totalQuestions, sections: sectionCount })}
         </p>
       </div>
 
@@ -233,9 +241,9 @@ function SectionPicker({
               href={hrefFor(s)}
               className="rounded-lg border border-green-200 bg-white p-4 text-center transition-colors hover:border-green-500 hover:bg-green-50 dark:border-green-800 dark:bg-green-950 dark:hover:bg-green-900/50"
             >
-              <span className="block text-lg font-semibold text-green-800 dark:text-green-300">Section {s}</span>
+              <span className="block text-lg font-semibold text-green-800 dark:text-green-300">{t("quiz.section.sectionN", { n: s })}</span>
               <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">
-                Questions {from}–{to}
+                {t("quiz.section.range", { from, to })}
               </span>
             </a>
           )
@@ -244,7 +252,7 @@ function SectionPicker({
 
       <div className="mt-8 text-center">
         <Link href="/subjects" className="text-sm text-green-700 underline dark:text-green-400">
-          ← Back to subjects
+          {t("quiz.section.back")}
         </Link>
       </div>
     </div>
@@ -290,6 +298,15 @@ export default async function QuizPage({
     )
   }
 
+  // The reader's language (cookie iqra-lang). This page is already dynamic (searchParams),
+  // so reading the cookie here keeps every other route static.
+  const lng = await getRequestLocale()
+  const t = getServerT(lng)
+  const content = await loadCategoryLocale(lng, category)
+  const translationStatus = content?._meta.status ?? null
+  const shownCat = localizeCategory(cat, content)
+  const difficultyLabel = t(`difficulty.${difficulty}`, { defaultValue: String(difficulty) })
+
   // Numbered sections always use groups of ten; the final section may be shorter.
   const sectionSize = DEFAULT_SECTION_SIZE;
   const pool = buildOrderedPool(getQuizQuestions, category, difficulty)
@@ -297,13 +314,12 @@ export default async function QuizPage({
   if (pool.length === 0) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        {/* i18n: server, slice C */}
-        <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
+        <h1 className="text-2xl font-bold mb-4">{t("quiz.section.noneTitle")}</h1>
         <p className="mb-6">
-          Sorry, there are no questions available for {cat.title} in {String(difficulty)} mode at this time.
+          {t("quiz.section.noneText", { category: shownCat.title, difficulty: difficultyLabel })}
         </p>
         <Link href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Subjects
+          {t("quiz.section.browse")}
         </Link>
       </div>
     )
@@ -328,29 +344,34 @@ export default async function QuizPage({
 
     return (
       <SectionPicker
-        categoryTitle={cat.title}
+        categoryTitle={shownCat.title}
         categoryId={category}
         difficulty={difficulty}
         totalQuestions={pool.length}
         sectionSize={sectionSize}
         extraParams={extraParams}
+        translationStatus={translationStatus}
+        t={t}
       />
     )
   }
 
   const section = hasValidSection ? requestedSection : 1
-  const finalQuestions = getSectionSlice(pool, section, sectionSize)
+  // Translate AFTER slicing: infographics were attached by English question text, and the
+  // overlay never adds, drops or reorders questions, so challenge sections stay identical.
+  const finalQuestions = await localizeQuestions(getSectionSlice(pool, section, sectionSize), lng, category)
 
   return (
     <div className="container mx-auto py-8 px-4">
       <QuizContainer
         questions={finalQuestions}
-        category={cat}
+        category={shownCat}
         difficulty={difficulty === "mixed" ? "easy" : (difficulty as DifficultyLevel)}
         challengeMode={challengeId || params.get("challenge") || undefined}
         opponentId={opponentId}
         opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
         challengerTurn={Boolean(challengerTurn)}
+        translationStatus={translationStatus}
       />
     </div>
   )

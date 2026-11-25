@@ -84,7 +84,15 @@
       "counts": "{{total}} questions · {{sections}} sections",
       "noneTitle": "No Questions Available",
       "noneText": "Sorry, there are no questions available for {{category}} in {{difficulty}} mode at this time.",
-      "browse": "Browse Subjects"
+      "browse": "Browse Subjects",
+      "sectionN": "Section {{n}}",
+      "range": "Questions {{from}}–{{to}}",
+      "back": "← Back to subjects"
+    },
+    "translation": {
+      "review": "Translation under review.",
+      "report": "Report a mistake",
+      "hidden": "This subject will be available in your language after scholar review. It is shown in English for now."
     }
   },
   "results": {
