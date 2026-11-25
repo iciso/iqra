@@ -1,1 +1,272 @@
-{}
+{
+  "header": {
+    "title": "About IQRA",
+    "subtitle": "The first freeware open-source Islamic knowledge quiz app with competitive challenges",
+    "welcome": "(Masha Allah!) Welcome to IQRA. Test your knowledge of Islam through learning or challenges."
+  },
+  "tabs": {
+    "aria": "About IQRA",
+    "mission": "Mission",
+    "quizzes": "Quizzes",
+    "players": "Players",
+    "more": "Open Source & Thanks"
+  },
+  "mission": {
+    "heading": "Our Mission",
+    "charity": "or This is an ongoing charity for the sake of Allah <sym>ﷻ</sym>, The Entirely Generous.<br/>Thus, all apps by IQRA team of Rafique and Joy are freeware, and open source.",
+    "aim": "So, through gaming and social learning, IQRA aims to make Islamic knowledge accessible, engaging, and interactive for Muslims around the world."
+  },
+  "features": {
+    "heading": "Features",
+    "items": {
+      "quiz": {
+        "title": "Comprehensive Quiz System",
+        "desc": "Test your knowledge across multiple Islamic topics"
+      },
+      "challenge": {
+        "title": "Challenge Friends",
+        "desc": "Send challenges to friends and compare your Islamic knowledge"
+      },
+      "learning": {
+        "title": "Interactive Learning",
+        "desc": "Engage with interactive infographics and visual learning aids"
+      },
+      "progress": {
+        "title": "Progress Tracking",
+        "desc": "Monitor your learning journey with detailed statistics"
+      },
+      "badges": {
+        "title": "Badges & Achievements",
+        "desc": "Earn badges as you master different knowledge areas"
+      },
+      "responsive": {
+        "title": "Responsive design",
+        "desc": "For desktop and mobile use"
+      },
+      "contrib": {
+        "title": "Contributions & Recognitions",
+        "desc": "Recognition for identifying errors or suggesting improvements"
+      }
+    }
+  },
+  "quizzes": {
+    "heading": "IQRA Quizzes",
+    "subtitle": "Category-wise Distribution of Questions by Difficulty Level",
+    "chooseTitle": "Choose your learning level:",
+    "select": "Select the Level:",
+    "forEasy": "for Easy,",
+    "forIntermediate": "for Intermediate, or",
+    "forAdvanced": "for Advanced",
+    "beside": "beside any category.",
+    "letterEasy": "E",
+    "letterIntermediate": "I",
+    "letterAdvanced": "A",
+    "challengeQ": "Want to challenge a friend?",
+    "challengeBtn": "C — Challenge",
+    "colCategory": "Category",
+    "levelTitle": "{{level}} level: {{category}}",
+    "total": "TOTAL {{count}}",
+    "platform": "IQRA Quiz Platform",
+    "bank": "Total Question Bank: {{count}} Questions"
+  },
+  "players": {
+    "eyebrow": "IQRA Player Recognition",
+    "heading": "Celebrating Our Players' Contributions!",
+    "intro": "IQRA belongs not only to its creators, but also to the players who make it better. Every correction, constructive suggestion, and improvement identified by our players can make IQRA's Islamic knowledge, data, and user interface more accurate and useful for everyone.",
+    "totalLabel": "Total Rewards Given by the IQRA Team",
+    "totalSub": "to {{players}} players for {{count}} accepted contributions",
+    "contribsBy": "Contributions by {{name}}",
+    "accepted": "Accepted Contributions",
+    "earned": "Reward Earned",
+    "presentTitle": "Reward Presentation — Insha Allah",
+    "presentBody": "Except for Joy Ahmed who is not resident in India, every one else will be presented their respective total rewards during the Kattoo Yamani (KY) Family Meet 2026.",
+    "presentDate": "26 December 2026",
+    "presentPlace": "PWD Beach Rest House, Alleppey",
+    "feedback": "Have you spotted an error or found a way to improve IQRA? Your feedback matters! Send suggestions by WhatsApp to <wa>Rafique</wa> at +91 7558845528. Help us make IQRA better, one thoughtful contribution at a time. May Allah <sym>ﷻ</sym> reward everyone who contributes sincerely to beneficial Islamic learning. Ameen.",
+    "list": {
+      "dhanish-ali": {
+        "label": "Our First Celebrated Contributor",
+        "intro": "With sincere appreciation, we acknowledge Dhanish Ali for identifying and suggesting five corrections to IQRA. All five suggestions were accepted and implemented by the IQRA coding team.",
+        "rewardNote": "₹250 per accepted suggestion",
+        "items": [
+          {
+            "title": "Salah Quiz",
+            "detail": "Women leading in Prayer"
+          },
+          {
+            "title": "Salah Quiz",
+            "detail": "Arkans or Pillars in Salah"
+          },
+          {
+            "title": "Salah Quiz",
+            "detail": "Night Prayer in Islam"
+          },
+          {
+            "title": "Challenges Tabs",
+            "detail": "Challenges display correctly"
+          },
+          {
+            "title": "Harun (AS)",
+            "detail": "Prophethood & Messengership"
+          }
+        ]
+      },
+      "feroza-mi": {
+        "label": "Our Second Celebrated Contributor",
+        "intro": "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. Both suggestions were accepted and implemented by the IQRA coding team.",
+        "rewardNote": "₹250 per accepted suggestion",
+        "items": [
+          {
+            "title": "Quran Quiz",
+            "detail": "Mother of the Quran or Umm al-Quran"
+          },
+          {
+            "title": "Salah Quiz",
+            "detail": "Performing Salah on Time"
+          }
+        ]
+      },
+      "joy-ahmed": {
+        "label": "Our Third Celebrated Contributor",
+        "intro": "With sincere appreciation, we acknowledge Joy Ahmed for six contributions to IQRA's code and design, which made the app cleaner, more mobile-friendly and easier to use.",
+        "rewardNote": "₹250 per contribution",
+        "items": [
+          {
+            "title": "Cleaner routing",
+            "detail": "Updated URL from /categories to /subjects"
+          },
+          {
+            "title": "Mobile responsiveness",
+            "detail": "Layout adapted for mobile devices"
+          },
+          {
+            "title": "Better organization",
+            "detail": "Grouped into subsections"
+          },
+          {
+            "title": "Sleeker UI",
+            "detail": "Narrower subject cards"
+          },
+          {
+            "title": "Dark Mode",
+            "detail": "Enabled"
+          },
+          {
+            "title": "Mock-ups",
+            "detail": "Five mock-ups of the Home page"
+          }
+        ]
+      },
+      "riaz-ahamed": {
+        "label": "Our Fourth Celebrated Contributor",
+        "intro": "With sincere appreciation, we acknowledge Riaz Ahmed Bobby for four suggestions to IQRA's coding and AI, which made coding easier, cheaper, and enjoyable.",
+        "rewardNote": "₹250 per suggestion",
+        "items": [
+          {
+            "title": "Better AIs",
+            "detail": "Grok and Deep Seek"
+          },
+          {
+            "title": "Free DBs",
+            "detail": "Change from Supabase to Neon"
+          },
+          {
+            "title": "No Auth",
+            "detail": "Access without Sign-up"
+          },
+          {
+            "title": "Free Domain, Hosting",
+            "detail": "Cloudflare"
+          }
+        ]
+      }
+    }
+  },
+  "openSource": {
+    "heading": "Open Source",
+    "body": "IQRA is completely open-source and free to use. We welcome contributions from developers, Arabic linguists, Quran scholars, and anyone passionate about making Islamic knowledge more accessible.",
+    "repo": "GitHub IQRA Repository",
+    "contribute": "How to Contribute",
+    "why": "Why IQRA and KALAM?"
+  },
+  "technology": {
+    "heading": "Technology",
+    "intro": "IQRA is built using modern web technologies:",
+    "items": {
+      "next": "React framework for server-rendered applications",
+      "ts": "For type safety and better developer experience",
+      "tailwind": "For responsive and customizable styling",
+      "neon": "Serverless Postgres for quiz results, leaderboard, profiles and challenges",
+      "vercel": "For deployment and hosting"
+    }
+  },
+  "ack": {
+    "heading": "Acknowledgments",
+    "intro": "All praise and thanks are due to Allah <sym>ﷻ</sym>, The Entirely Merciful, The Entirely Generous. IQRA is a labor of love, made possible through the blessings of Allah and the contributions of many, Ameen, Summa Ameen.",
+    "concept": "<b>Concept, Design & Demo Version:</b> By <rafique>Mohamed Essa Rafique</rafique>, whose vision and dedication brought IQRA to life, Alhamdulillah. May Allah <sym>ﷻ</sym> reward <joy>Joy Ahmed</joy> (<mail1>joy_ahmed_007@yahoo.com</mail1>, <mail2>joy@zettabyteincorp.com</mail2> · <gh>GitHub @joyahmed</gh>) for guiding and mentoring Rafique in this noble endeavor.",
+    "vercel": "<b>Alpha & Beta Versions, Scale-up, Maintenance:</b> Powered by <vercel>Vercel</vercel> and their innovative v0 platform. The seamless deployment and scaling of IQRA owe much to Vercel’s robust infrastructure.",
+    "xai": "<b>AI-Powered Debugging & Code Optimization:</b> Special thanks to <xai>xAI</xai> and their AI assistant, Grok, for tirelessly assisting in debugging, optimizing, and enhancing the codebase of both IQRA and KALAM over the past month. Grok’s precision and insights have been instrumental in ensuring a robust and reliable application, Alhamdulillah.",
+    "deepseek": "<b>Data Coding & Content Curation:</b> Deep gratitude to <deepseek>DeepSeek</deepseek> for their invaluable assistance in structuring data and curating Islamic content, ensuring IQRA’s knowledge base is accurate and accessible, Alhamdulillah.",
+    "claude": "<b>Debugging & Refactoring:</b> Sincere thanks also go to <claude>Claude AI</claude> for their meticulous assistance in removing the auth and debugging code, ensuring IQRA’s knowledge base is accessible, to those without email.",
+    "gemini": "<b>Content Creation:</b> Heartfelt thanks to <gemini>Gemini</gemini> for their contributions to crafting engaging and meaningful content for IQRA, enhancing the learning experience for users worldwide, Alhamdulillah.",
+    "meta": "<b>Community & Contributors:</b> Immense gratitude to <meta>Meta</meta> all our future open-source contributors, Quran scholars, Arabic linguists, and community members who would provide feedback, questions, and support to make IQRA a global platform for Islamic learning. Shout out to our prospective members who would join our yet to start Groups and Channels in WhatsApp, and Community pages in Fb and other Meta platforms. May Allah <sym>ﷻ</sym> accept their efforts."
+  },
+  "papers": {
+    "heading": "IQRA Papers",
+    "body": "This document provides the Policy, Proposal, & Plans (PPP) for the future to continue this ongoing charity for the sake of Allah <sym>ﷻ</sym>, The Entirely Merciful, The Entirely Generous.",
+    "button": "IQRA Papers"
+  },
+  "back": "Back to Home",
+  "categories": {
+    "quran": "Quran",
+    "seerah": "Seerah",
+    "aqeedah": "Aqeedah",
+    "shirk": "Shirk",
+    "new-muslims": "New Muslims",
+    "tafsir": "Tafsir",
+    "tazkiyah": "Tazkiyah",
+    "comparative-religion": "Comparative Religion",
+    "islamic-finance": "Islamic Finance",
+    "cryptocurrency": "Cryptocurrency",
+    "history": "History",
+    "hadeeth": "Hadeeth",
+    "fiqh": "Fiqh",
+    "christianity": "Christianity",
+    "bidah": "Bid'ah",
+    "riba": "Riba",
+    "takaful": "Takaful",
+    "hinduism": "Hinduism",
+    "dawah": "Dawah",
+    "gender": "Gender",
+    "lgbtq": "LGBTQ",
+    "psychology": "Psychology",
+    "music": "Music",
+    "islamic-alcohol-drugs": "Alcohol & Drugs",
+    "imagery": "Imagery",
+    "dating": "Dating",
+    "marriage": "Marriage",
+    "parenting": "Parenting",
+    "peace": "Peace",
+    "salah": "Salah",
+    "sawm": "Sawm",
+    "charity": "Charity",
+    "hajj": "Hajj",
+    "madhab": "Madhabs",
+    "inheritance": "Inheritance",
+    "fitnah": "Fitnah",
+    "islamic-eschatology": "Islamic Eschatology",
+    "islamic-medical-ethics": "Islamic Medical Ethics",
+    "surah-78": "Surah 78",
+    "surah-79": "Surah 79",
+    "surah-80": "Surah 80",
+    "surah-81": "Surah 81",
+    "surah-82": "Surah 82",
+    "ta-quran": "Tamil Quran",
+    "ta-aqeedah": "Tamil Aqeedah",
+    "ta-salah": "Tamil Salah",
+    "ta-charity": "Tamil Charity",
+    "ta-fiqh": "Tamil Fiqh",
+    "quranic-arabic-01": "Quranic Arabic 01",
+    "modern-arabic-01": "Modern Arabic 01"
+  }
+}

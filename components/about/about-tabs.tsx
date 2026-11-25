@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 type AboutTabsProps = {
   mission: ReactNode
@@ -13,12 +14,11 @@ type TabId = keyof AboutTabsProps
 
 // Every #id that lives inside a tab must be listed here, under that tab.
 // The FIRST id in each list is the one shown in the address bar when the tab is clicked.
-const tabs: { id: TabId; label: string; hashes: string[] }[] = [
-  { id: "mission", label: "Mission", hashes: ["mission"] },
-  { id: "quizzes", label: "Quizzes", hashes: ["iqra-quizzes"] },
+const tabs: { id: TabId; hashes: string[] }[] = [
+  { id: "mission", hashes: ["mission"] },
+  { id: "quizzes", hashes: ["iqra-quizzes"] },
   {
     id: "players",
-    label: "Players",
     hashes: [
       "player-contributions-dhanish-ali",
       "dhanish-ali",
@@ -28,7 +28,7 @@ const tabs: { id: TabId; label: string; hashes: string[] }[] = [
       // add each new contributor's id here
     ],
   },
-  { id: "more", label: "Open Source & Thanks", hashes: ["open-source", "acknowledgments", "ai-credits"] },
+  { id: "more", hashes: ["open-source", "acknowledgments", "ai-credits"] },
 ]
 
 const subscribeToHash = (onChange: () => void) => {
@@ -43,6 +43,7 @@ const tabFromHash = (hash: string): TabId | null => {
 }
 
 export default function AboutTabs(props: AboutTabsProps) {
+  const { t } = useTranslation("about")
   const hashTab = useSyncExternalStore(subscribeToHash, () => tabFromHash(window.location.hash), () => null)
   const [picked, setPicked] = useState<TabId | null>(null)
 
@@ -75,7 +76,7 @@ export default function AboutTabs(props: AboutTabsProps) {
     <div>
       <div
         role="tablist"
-        aria-label="About IQRA"
+        aria-label={t("tabs.aria")}
         className="sticky top-16 z-10 -mx-4 mb-8 flex gap-1 overflow-x-auto border-b border-green-200 bg-gray-50/95 px-4 backdrop-blur dark:border-green-900 dark:bg-background/95"
       >
         {tabs.map((tab) => {
@@ -93,7 +94,7 @@ export default function AboutTabs(props: AboutTabsProps) {
                   : "border-transparent text-gray-500 hover:text-green-700 dark:text-gray-400 dark:hover:text-green-300"
               }`}
             >
-              {tab.label}
+              {t(`tabs.${tab.id}`)}
             </button>
           )
         })}
