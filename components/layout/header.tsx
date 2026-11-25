@@ -12,6 +12,8 @@ import { useScrolled } from "@/hooks/use-scrolled"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "@/components/i18n/language-switcher"
+import { useLocale } from "@/lib/i18n/locale-context"
+import type { Locale } from "@/lib/i18n/config"
 
 const NAV_ITEMS = [
   { href: "/subjects", key: "nav.subjects" },
@@ -22,10 +24,22 @@ const NAV_ITEMS = [
   { href: "/about", key: "nav.about" },
 ]
 
+// Where the desktop nav takes over from the menu button, per language. Tamil labels are the
+// longest: one line needs ~1170px (logo 86 + nav 1082, measured), more than the lg row (976px at
+// 1024) or the 6xl row (1104px), so Tamil keeps the menu button until xl and gets a wider row there.
+// English and Bangla (nav 800px) fit at lg.
+const NAV_LAYOUT: Record<Locale, { row: string; desktop: string; mobile: string }> = {
+  en: { row: "max-w-6xl", desktop: "hidden lg:flex", mobile: "lg:hidden" },
+  bn: { row: "max-w-6xl", desktop: "hidden lg:flex", mobile: "lg:hidden" },
+  ta: { row: "max-w-7xl", desktop: "hidden xl:flex", mobile: "xl:hidden" },
+}
+
 const isActive = (pathname: string, href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 const Header = () => {
   const { t } = useTranslation()
+  const { locale } = useLocale()
+  const layout = NAV_LAYOUT[locale]
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname() ?? "/"
   const scrolled = useScrolled(8)
@@ -65,7 +79,7 @@ const Header = () => {
         scrolled ? "border-border shadow-sm" : "border-transparent",
       )}
     >
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div className={cn("mx-auto w-full px-4 sm:px-6", layout.row)}>
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
@@ -74,7 +88,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav aria-label={t("nav.main")} className="hidden lg:flex items-center gap-1">
+          <nav aria-label={t("nav.main")} className={cn("items-center gap-1", layout.desktop)}>
             {NAV_ITEMS.map((item) => navButton(item))}
             <ChallengeBell />
             <LanguageSwitcher />
@@ -82,7 +96,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden flex items-center gap-1">
+          <div className={cn("flex items-center gap-1", layout.mobile)}>
             <ChallengeBell />
             <LanguageSwitcher />
             <ThemeToggle />
