@@ -9,6 +9,14 @@ type SubjectText = { name: string; description: string; section: SubjectSection 
 
 export type SubjectSection = "Islamic Studies" | "Qur’an Surah Studies" | "Tamil Islamic Studies" | "Arabic Vocabulary"
 
+// Key of each section in the "subjects" i18n namespace (sections.<key>); the English name above is the fallback.
+export const sectionKeys: Record<SubjectSection, string> = {
+  "Islamic Studies": "islamic",
+  "Qur’an Surah Studies": "surah",
+  "Tamil Islamic Studies": "tamil",
+  "Arabic Vocabulary": "arabic",
+}
+
 const IS: SubjectSection = "Islamic Studies"
 const SURAH: SubjectSection = "Qur’an Surah Studies"
 const TAMIL: SubjectSection = "Tamil Islamic Studies"

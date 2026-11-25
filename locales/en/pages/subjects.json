@@ -1,1 +1,506 @@
-{}
+{
+  "list": {
+    "title": "Subjects",
+    "subtitle": "Pick a section, then a topic and a difficulty to start a quiz.",
+    "stepsLabel": "Quiz setup steps",
+    "steps": {
+      "section": "Section",
+      "topic": "Topic",
+      "difficulty": "Difficulty"
+    },
+    "step1": {
+      "title": "What do you want to practise?",
+      "lede": "Pick a section to see its topics"
+    },
+    "topicCount_one": "{{count}} topic",
+    "topicCount_other": "{{count}} topics",
+    "allSections": "All sections",
+    "selected": "Selected ✓",
+    "tracks": {
+      "islamic-studies": {
+        "title": "Islamic Studies",
+        "description": "Quran, belief, worship, law and more"
+      },
+      "quran-surah-studies": {
+        "title": "Qur’an Surah Studies",
+        "description": "Questions from individual Surahs"
+      },
+      "tamil-islam-studies": {
+        "title": "தமிழ் இஸ்லாமிய ஆய்வுகள்",
+        "description": "Islamic Studies in Tamil"
+      },
+      "vocab": {
+        "title": "Arabic Vocabulary",
+        "description": "Quranic and Modern Standard Arabic"
+      }
+    },
+    "islamic": {
+      "lede": "Choose an Islamic Studies topic to practise"
+    },
+    "surah": {
+      "lede": "Practise questions from individual Surahs. More Surahs can be added as their question banks are ready."
+    },
+    "tamil": {
+      "lede": "பயிற்சி செய்வதற்கு ஓர் இஸ்லாமியக் கல்வித் தலைப்பைத் தேர்ந்தெடுக்கவும்"
+    },
+    "vocab": {
+      "lede": "Choose the vocabulary track you want to practise",
+      "quranic": {
+        "title": "Quranic Arabic",
+        "description": "Learn Quranic Vocabulary"
+      },
+      "modern": {
+        "title": "Modern Standard Arabic",
+        "description": "Learn everyday & formal Arabic"
+      }
+    },
+    "groups": {
+      "quran-sunnah": "Quran & Sunnah",
+      "belief": "Belief",
+      "prayer": "Prayer",
+      "law": "Law",
+      "money": "Money & Finance",
+      "family": "Family & Society",
+      "history": "History & Dawah",
+      "more": "More Topics"
+    },
+    "chooseDifficulty": "Choose a difficulty",
+    "topicLabel": "Topic:",
+    "aboutSubject": "About this subject",
+    "levels": {
+      "easy": "Basic questions for beginners",
+      "intermediate": "Moderate questions to build on the basics",
+      "advanced": "Challenging questions for those with deeper knowledge"
+    },
+    "changeTopic": "Change topic",
+    "startQuiz": "Start Quiz",
+    "allSubjects": "All {{count}} subjects, A–Z",
+    "topics": {
+      "quran": {
+        "title": "Quran",
+        "description": "Quran Basics"
+      },
+      "fiqh": {
+        "title": "Fiqh",
+        "description": "Islamic Jurisprudence"
+      },
+      "tafsir": {
+        "title": "Tafsir",
+        "description": "Quranic Exegesis"
+      },
+      "hadeeth": {
+        "title": "Hadeeth",
+        "description": "Prophetic Traditions"
+      },
+      "aqeedah": {
+        "title": "Aqeedah",
+        "description": "Islamic Monotheism"
+      },
+      "shirk": {
+        "title": "Shirk",
+        "description": "Assigning Partners"
+      },
+      "seerah": {
+        "title": "Seerah",
+        "description": "Prophet's Biography"
+      },
+      "tazkiyah": {
+        "title": "Tazkiyah",
+        "description": "Spiritual Purification"
+      },
+      "salah": {
+        "title": "Salah",
+        "description": "Prayers in Islam"
+      },
+      "sawm": {
+        "title": "Sawm",
+        "description": "Fasting & Ramadaan"
+      },
+      "charity": {
+        "title": "Zakat & Sadaqah",
+        "description": "Charity in Islam"
+      },
+      "hajj": {
+        "title": "Hajj",
+        "description": "Islamic Pilgrimmage"
+      },
+      "history": {
+        "title": "Islamic History",
+        "description": "History of Islam"
+      },
+      "dawah": {
+        "title": "Dawah",
+        "description": "Inviting to Islam"
+      },
+      "new-muslims": {
+        "title": "New Muslims",
+        "description": "Essentials for New Muslims"
+      },
+      "comparative": {
+        "title": "Comparative Religion",
+        "description": "Faiths, Non-Faiths & Islam"
+      },
+      "christ": {
+        "title": "Christianity",
+        "description": "Islam and Christianity"
+      },
+      "hindu": {
+        "title": "Hinduism",
+        "description": "Islam and Hinduism"
+      },
+      "riba": {
+        "title": "Riba",
+        "description": "Usury or interest"
+      },
+      "takaful": {
+        "title": "Takaful",
+        "description": "Islamic Insurance"
+      },
+      "bidah": {
+        "title": "Bidah",
+        "description": "Bidah & Tawhid"
+      },
+      "islamic-finance": {
+        "title": "Islamic Finance",
+        "description": "Islamic Economics"
+      },
+      "crypto": {
+        "title": "Crypto & Blockchain",
+        "description": "Shariah & digital currencies"
+      },
+      "gender": {
+        "title": "Gender",
+        "description": "Gender in Islam"
+      },
+      "lgbtq": {
+        "title": "Islam and LGBTQIA+",
+        "description": "LGBTQIA+ & Islam"
+      },
+      "psych": {
+        "title": "Islamic Psychology",
+        "description": "Psychology & Islam"
+      },
+      "music": {
+        "title": "Music in Islam",
+        "description": "Music in Islam"
+      },
+      "islamic-alcohol-drugs": {
+        "title": "Alcohol & Drugs in Islam",
+        "description": "Alcohol & Drugs in Islam"
+      },
+      "imagery": {
+        "title": "Images & Animation in Islam",
+        "description": "Images & Animation in Islam"
+      },
+      "dating": {
+        "title": "Dating",
+        "description": "Dating in Islam"
+      },
+      "marriage": {
+        "title": "Marriage & Family",
+        "description": "Family Bonding"
+      },
+      "parenting": {
+        "title": "Islamic Parenting",
+        "description": "Islam & parenting"
+      },
+      "madhab": {
+        "title": "Madhabs",
+        "description": "Jurisprudence Schools"
+      },
+      "inheritance": {
+        "title": "Inheritance",
+        "description": "Inheritance & Equity"
+      },
+      "fitnah": {
+        "title": "Fitnah",
+        "description": "Discord & Unity"
+      },
+      "islamic-medical-ethics": {
+        "title": "Medical Ethics",
+        "description": "Islamic Medical Ethics"
+      },
+      "islamic-eschatology": {
+        "title": "Islamic End-Days",
+        "description": "Islamic End Days"
+      },
+      "peace": {
+        "title": "Peace",
+        "description": "Peace in Middle East"
+      },
+      "surah-78": {
+        "title": "Surah An-Naba (78)",
+        "description": "The Great News"
+      },
+      "surah-79": {
+        "title": "Surah An-Naziat (79)",
+        "description": "Those Who Drag Forth"
+      },
+      "surah-80": {
+        "title": "Surah Abasa (80)",
+        "description": "He Frowned"
+      },
+      "surah-81": {
+        "title": "Surah At-Takwir (81)",
+        "description": "The Folding Up"
+      },
+      "surah-82": {
+        "title": "Surah An-Infitar (82)",
+        "description": "The Cleaving"
+      },
+      "ta-quran": {
+        "title": "குர்ஆன்",
+        "description": "குர்ஆன் குறித்த அடிப்படைத் தகவல்கள்"
+      },
+      "ta-aqeedah": {
+        "title": "அகீதா",
+        "description": "ஈமானும் தவ்ஹீதும்"
+      },
+      "ta-salah": {
+        "title": "தொழுகை (ஸலாஹ்)",
+        "description": "பிரார்த்தனைகளும் அவற்றின் வழிமுறைகளும்"
+      },
+      "ta-charity": {
+        "title": "ஸகாத் மற்றும் தர்மம்",
+        "description": "பஸகாத், சதகா வழிகாட்டல்கள்"
+      },
+      "ta-fiqh": {
+        "title": "ஃபிக்ஹ்",
+        "description": "இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்"
+      }
+    }
+  },
+  "detail": {
+    "breadcrumb": "Breadcrumb",
+    "quizTitle": "{{name}} quiz",
+    "questionsPerLevel": "Questions per level",
+    "questionsLabel": "questions",
+    "challenge": "Challenge a friend",
+    "pickLevel": {
+      "title": "Pick a level",
+      "lede": "Each level is its own set of questions. Start wherever you like."
+    },
+    "levels": {
+      "easy": {
+        "description": "Basic questions for beginners."
+      },
+      "intermediate": {
+        "description": "Builds on the basics."
+      },
+      "advanced": {
+        "description": "For those with deeper knowledge."
+      }
+    },
+    "questionsCount_one": "{{count}} questions",
+    "questionsCount_other": "{{count}} questions",
+    "startAria": "Start {{level}} {{name}} quiz",
+    "startQuiz": "Start quiz",
+    "moreIn": "More in {{section}}"
+  },
+  "sections": {
+    "islamic": "Islamic Studies",
+    "surah": "Qur’an Surah Studies",
+    "tamil": "Tamil Islamic Studies",
+    "arabic": "Arabic Vocabulary"
+  },
+  "quran": {
+    "name": "Quran",
+    "description": "What you know about the Holy Quran: its revelation, its surahs and its key verses."
+  },
+  "seerah": {
+    "name": "Seerah",
+    "description": "The life of Prophet Muhammad (peace be upon him), from Makkah to Madinah."
+  },
+  "aqeedah": {
+    "name": "Aqeedah",
+    "description": "The core beliefs of Islam: the six pillars of Iman and Tawhid."
+  },
+  "shirk": {
+    "name": "Shirk",
+    "description": "Associating partners with Allah: its types, its dangers and how to avoid it."
+  },
+  "new-muslims": {
+    "name": "New Muslims",
+    "description": "The essentials for a new Muslim: belief, prayer and daily practice."
+  },
+  "tafsir": {
+    "name": "Tafsir",
+    "description": "Explaining the Quran: what its verses mean and why they were revealed."
+  },
+  "tazkiyah": {
+    "name": "Tazkiyah",
+    "description": "Purifying the soul: sincerity, good character and the diseases of the heart."
+  },
+  "comparative": {
+    "name": "Comparative Religion",
+    "description": "Atheism, science and other worldviews compared with Islamic thought."
+  },
+  "islamic-finance": {
+    "name": "Islamic Finance",
+    "description": "The principles and practice of Islamic economics and banking."
+  },
+  "crypto": {
+    "name": "Crypto & Blockchain",
+    "description": "Shariah views on Bitcoin, cryptocurrencies and blockchain."
+  },
+  "history": {
+    "name": "Islamic History",
+    "description": "The golden ages of Islamic civilisation, its scholars and its discoveries."
+  },
+  "hadeeth": {
+    "name": "Hadeeth",
+    "description": "The sayings and actions of Prophet Muhammad (peace be upon him) and how they were preserved."
+  },
+  "fiqh": {
+    "name": "Fiqh",
+    "description": "Islamic jurisprudence: the rulings of worship and daily life."
+  },
+  "christ": {
+    "name": "Christianity & Islam",
+    "description": "What Islam and Christianity share and where they differ."
+  },
+  "bidah": {
+    "name": "Bidah",
+    "description": "Innovation in religion and how it relates to Tawhid and the Sunnah."
+  },
+  "riba": {
+    "name": "Riba",
+    "description": "Why Islam forbids interest and usury, and what it allows instead."
+  },
+  "takaful": {
+    "name": "Takaful",
+    "description": "Islamic insurance: mutual help and shared risk without Riba, Gharar or Maysir."
+  },
+  "hindu": {
+    "name": "Hinduism & Islam",
+    "description": "What Islam and Hinduism share and where they differ."
+  },
+  "dawah": {
+    "name": "Dawah",
+    "description": "Inviting others to Islam with wisdom and good manners."
+  },
+  "gender": {
+    "name": "Gender in Islam",
+    "description": "The roles, rights and dignity of men and women in Islam."
+  },
+  "lgbtq": {
+    "name": "Islam and LGBTQIA+",
+    "description": "The Islamic perspective on LGBTQIA+ questions."
+  },
+  "psych": {
+    "name": "Islamic Psychology",
+    "description": "Mental health and wellbeing through Islamic teachings."
+  },
+  "music": {
+    "name": "Music in Islam",
+    "description": "What the Quran, the Sunnah and the scholars say about music."
+  },
+  "islamic-alcohol-drugs": {
+    "name": "Alcohol & Drugs in Islam",
+    "description": "The Islamic rulings on alcohol, drugs and other intoxicants, and the wisdom behind them."
+  },
+  "imagery": {
+    "name": "Images & Animation in Islam",
+    "description": "Pictures, drawings and animation in the light of Islamic sources."
+  },
+  "dating": {
+    "name": "Dating in Islam",
+    "description": "Islamic rulings on relationships before marriage, modesty and courtship."
+  },
+  "marriage": {
+    "name": "Marriage & Family",
+    "description": "Marriage, the rights of spouses and keeping family ties."
+  },
+  "parenting": {
+    "name": "Islamic Parenting",
+    "description": "Raising children with Islamic values."
+  },
+  "peace": {
+    "name": "Peace in the Middle East",
+    "description": "Peace in the Middle East through Islamic principles."
+  },
+  "salah": {
+    "name": "Salah",
+    "description": "The second pillar of Islam: the daily prayers and how to perform them."
+  },
+  "sawm": {
+    "name": "Sawm (Fasting)",
+    "description": "Fasting in Islam and the month of Ramadan."
+  },
+  "charity": {
+    "name": "Zakat & Sadaqah",
+    "description": "Obligatory and voluntary charity in Islam."
+  },
+  "hajj": {
+    "name": "Hajj",
+    "description": "The pilgrimage to Makkah: its rites, its rules and its meaning."
+  },
+  "madhab": {
+    "name": "Madhabs",
+    "description": "The four schools of Islamic law, their imams and what they share."
+  },
+  "inheritance": {
+    "name": "Inheritance",
+    "description": "Islamic inheritance law (Mirath), gifts during life and fairness in the family."
+  },
+  "fitnah": {
+    "name": "Fitnah",
+    "description": "Trials and discord: spotting them early and keeping families and communities united."
+  },
+  "islamic-eschatology": {
+    "name": "Islamic End Times",
+    "description": "The signs of the Hour, the grave, the Day of Judgement, Paradise and Hell."
+  },
+  "islamic-medical-ethics": {
+    "name": "Islamic Medical Ethics",
+    "description": "Islamic perspectives on medicine and medical ethics."
+  },
+  "surah-78": {
+    "name": "Surah An-Naba (78)",
+    "description": "Surah An-Naba, The Great News: phrase meanings, tafsir and Arabic vocabulary."
+  },
+  "surah-79": {
+    "name": "Surah An-Nazi’at (79)",
+    "description": "Surah An-Nazi’at, Those Who Drag Forth: phrase meanings, tafsir and Arabic vocabulary."
+  },
+  "surah-80": {
+    "name": "Surah Abasa (80)",
+    "description": "Surah Abasa, He Frowned: phrase meanings, tafsir and Arabic vocabulary."
+  },
+  "surah-81": {
+    "name": "Surah At-Takwir (81)",
+    "description": "Surah At-Takwir, The Folding Up: phrase meanings, tafsir and Arabic vocabulary."
+  },
+  "surah-82": {
+    "name": "Surah Al-Infitar (82)",
+    "description": "Surah Al-Infitar, The Cleaving: phrase meanings, tafsir and Arabic vocabulary."
+  },
+  "ta-quran": {
+    "name": "குர்ஆன் (Quran in Tamil)",
+    "description": "Quran questions in Tamil: புனித குர்ஆனைப் பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள்."
+  },
+  "ta-aqeedah": {
+    "name": "அகீதா (Aqeedah in Tamil)",
+    "description": "The core beliefs of Islam, in Tamil: ஈமானின் ஆறு தூண்கள், தவ்ஹீத்."
+  },
+  "ta-salah": {
+    "name": "தொழுகை (Salah in Tamil)",
+    "description": "The daily prayers and how to perform them, in Tamil: கடமையான தொழுகைகளும் அவற்றின் முறைகளும்."
+  },
+  "ta-charity": {
+    "name": "ஸகாத் மற்றும் தர்மம் (Zakat in Tamil)",
+    "description": "Zakat and Sadaqah, in Tamil: ஸகாத் மற்றும் சதகா வழிகாட்டல்கள்."
+  },
+  "ta-fiqh": {
+    "name": "ஃபிக்ஹ் (Fiqh in Tamil)",
+    "description": "Islamic jurisprudence, in Tamil: இஸ்லாமிய சட்டவியல் மற்றும் நடைமுறைகள்."
+  },
+  "quranic-arabic-01": {
+    "name": "Quranic Arabic",
+    "description": "The meanings of short and common words used in the Quran."
+  },
+  "modern-arabic-01": {
+    "name": "Modern Standard Arabic",
+    "description": "Everyday and formal Arabic (Fusha) vocabulary: the script, how it sounds and what it means."
+  }
+}

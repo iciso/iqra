@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useRef, useSyncExternalStore } from "react"
+import { useTranslation } from "react-i18next"
+import type { TFunction } from "i18next"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -57,17 +59,21 @@ const categories = [
   { id: "peace", title: "Peace", description: "Peace in Middle East", icon: <Telescope className="h-8 w-8 text-green-600 dark:text-green-400" /> },
 ]
 
+// Text of a topic card, looked up in the "subjects" namespace; the English written next to the topic is the fallback.
+const topicText = (t: TFunction, id: string, field: "title" | "description", fallback: string) =>
+  t(`list.topics.${id}.${field}`, { defaultValue: fallback })
+
 const categoryGroups = [
-  { title: "Quran & Sunnah", ids: ["quran", "tafsir", "hadeeth", "seerah"] },
-  { title: "Belief", ids: ["aqeedah", "shirk", "bidah", "islamic-eschatology", "fitnah"] },
-  { title: "Prayer", ids: ["salah", "sawm", "charity", "hajj", "tazkiyah"] },
-  { title: "Law", ids: ["fiqh", "madhab", "inheritance", "islamic-medical-ethics"] },
-  { title: "Money & Finance", ids: ["riba", "takaful", "islamic-finance", "crypto"] },
+  { key: "quran-sunnah", ids: ["quran", "tafsir", "hadeeth", "seerah"] },
+  { key: "belief", ids: ["aqeedah", "shirk", "bidah", "islamic-eschatology", "fitnah"] },
+  { key: "prayer", ids: ["salah", "sawm", "charity", "hajj", "tazkiyah"] },
+  { key: "law", ids: ["fiqh", "madhab", "inheritance", "islamic-medical-ethics"] },
+  { key: "money", ids: ["riba", "takaful", "islamic-finance", "crypto"] },
   {
-    title: "Family & Society",
+    key: "family",
     ids: ["marriage", "parenting", "gender", "dating", "lgbtq", "psych", "music", "imagery", "islamic-alcohol-drugs"],
   },
-  { title: "History & Dawah", ids: ["history", "dawah", "new-muslims", "comparative", "christ", "hindu", "peace"] },
+  { key: "history", ids: ["history", "dawah", "new-muslims", "comparative", "christ", "hindu", "peace"] },
 ]
 
 const groupedIds = new Set(categoryGroups.flatMap((group) => group.ids))
@@ -76,12 +82,12 @@ const ungrouped = categories.filter((category) => !groupedIds.has(category.id))
 // A topic missing from categoryGroups still shows, under "More Topics", so adding one never hides it.
 const groupedCategories = [
   ...categoryGroups.map((group) => ({
-    title: group.title,
+    key: group.key,
     items: group.ids
       .map((id) => categories.find((category) => category.id === id))
       .filter((category): category is (typeof categories)[number] => Boolean(category)),
   })),
-  ...(ungrouped.length ? [{ title: "More Topics", items: ungrouped }] : []),
+  ...(ungrouped.length ? [{ key: "more", items: ungrouped }] : []),
 ]
 
 function ArabicVocabSection({
@@ -91,15 +97,16 @@ function ArabicVocabSection({
   selectedCategory: string | null
   setSelectedCategory: (id: string) => void
 }) {
+  const { t } = useTranslation("subjects")
   return (
     <section id="vocab" className="w-full max-w-7xl mt-2">
       <Card className="border-green-200 shadow-lg dark:border-green-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">
-            Arabic Vocabulary
+            {t("list.tracks.vocab.title")}
           </CardTitle>
           <CardDescription className="text-green-600 dark:text-green-500">
-            Choose the vocabulary track you want to practise
+            {t("list.vocab.lede")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -114,12 +121,12 @@ function ArabicVocabSection({
             >
               <CardHeader className="items-center text-center">
                 <Languages className="h-8 w-8 text-green-600 dark:text-green-400" />
-                <CardTitle className="text-lg">Quranic Arabic</CardTitle>
-                <CardDescription>Learn Quranic Vocabulary</CardDescription>
+                <CardTitle className="text-lg">{t("list.vocab.quranic.title")}</CardTitle>
+                <CardDescription>{t("list.vocab.quranic.description")}</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
                 {selectedCategory === "quranic-arabic-01" && (
-                  <span className="text-xs font-medium text-green-700 dark:text-green-300">Selected ✓</span>
+                  <span className="text-xs font-medium text-green-700 dark:text-green-300">{t("list.selected")}</span>
                 )}
               </CardContent>
             </Card>
@@ -134,12 +141,12 @@ function ArabicVocabSection({
             >
               <CardHeader className="items-center text-center">
                 <Languages className="h-8 w-8 text-green-600 dark:text-green-400" />
-                <CardTitle className="text-lg">Modern Standard Arabic</CardTitle>
-                <CardDescription>Learn everyday & formal Arabic</CardDescription>
+                <CardTitle className="text-lg">{t("list.vocab.modern.title")}</CardTitle>
+                <CardDescription>{t("list.vocab.modern.description")}</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
                 {selectedCategory === "modern-arabic-01" && (
-                  <span className="text-xs font-medium text-green-700 dark:text-green-300">Selected ✓</span>
+                  <span className="text-xs font-medium text-green-700 dark:text-green-300">{t("list.selected")}</span>
                 )}
               </CardContent>
             </Card>
@@ -190,15 +197,16 @@ function TamilIslamSection({
   selectedCategory: string | null
   setSelectedCategory: (id: string) => void
 }) {
+  const { t } = useTranslation("subjects")
   return (
     <section id="tamil-islam-studies" className="w-full max-w-7xl mt-2">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
-            தமிழ் இஸ்லாமிய ஆய்வுகள்
+            {t("list.tracks.tamil-islam-studies.title")}
           </CardTitle>
           <CardDescription className="text-emerald-700 dark:text-emerald-500">
-            பயிற்சி செய்வதற்கு ஓர் இஸ்லாமியக் கல்வித் தலைப்பைத் தேர்ந்தெடுக்கவும்
+            {t("list.tamil.lede")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -220,11 +228,11 @@ function TamilIslamSection({
                 >
                   <span className="flex flex-col items-center">
                     <TamilIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                    <span className="mt-2 font-medium dark:text-white">{tamil.title}</span>
-                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{tamil.description}</span>
+                    <span className="mt-2 font-medium dark:text-white">{topicText(t, tamil.id, "title", tamil.title)}</span>
+                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{topicText(t, tamil.id, "description", tamil.description)}</span>
                     {isSelected && (
                       <span className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-                        Selected ✓
+                        {t("list.selected")}
                       </span>
                     )}
                   </span>
@@ -278,15 +286,16 @@ function QuranSurahSection({
   selectedCategory: string | null
   setSelectedCategory: (id: string) => void
 }) {
+  const { t } = useTranslation("subjects")
   return (
     <section id="quran-surah-studies" className="w-full max-w-7xl mt-2">
       <Card className="border-emerald-200 shadow-lg dark:border-emerald-800">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
-            Qur’an Surah Studies
+            {t("list.tracks.quran-surah-studies.title")}
           </CardTitle>
           <CardDescription className="text-emerald-700 dark:text-emerald-500">
-            Practise questions from individual Surahs. More Surahs can be added as their question banks are ready.
+            {t("list.surah.lede")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -308,11 +317,11 @@ function QuranSurahSection({
                 >
                   <span className="flex flex-col items-center">
                     <SurahIcon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                    <span className="mt-2 font-medium dark:text-white">{surah.title}</span>
-                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{surah.description}</span>
+                    <span className="mt-2 font-medium dark:text-white">{topicText(t, surah.id, "title", surah.title)}</span>
+                    <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{topicText(t, surah.id, "description", surah.description)}</span>
                     {isSelected && (
                       <span className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-                        Selected ✓
+                        {t("list.selected")}
                       </span>
                     )}
                   </span>
@@ -326,10 +335,11 @@ function QuranSurahSection({
   )
 }
 
+// Labels come from common.json (difficulty.<value>); the descriptions are looked up as list.levels.<value>.
 const difficultyLevels = [
-  { value: "easy", label: "Easy", description: "Basic questions for beginners" },
-  { value: "intermediate", label: "Intermediate", description: "Moderate questions to build on the basics" },
-  { value: "advanced", label: "Advanced", description: "Challenging questions for those with deeper knowledge" },
+  { value: "easy", description: "Basic questions for beginners" },
+  { value: "intermediate", description: "Moderate questions to build on the basics" },
+  { value: "advanced", description: "Challenging questions for those with deeper knowledge" },
 ]
 
 type TrackId = "islamic-studies" | "tamil-islam-studies" | "quran-surah-studies" | "vocab"
@@ -341,7 +351,7 @@ const tracks: { id: TrackId; title: string; description: string; count: number; 
   { id: "vocab", title: "Arabic Vocabulary", description: "Quranic and Modern Standard Arabic", count: 2, icon: Languages },
 ]
 
-const steps = ["Section", "Topic", "Difficulty"]
+const steps = ["section", "topic", "difficulty"]
 
 // Old links such as /subjects#vocab or /subjects#quran-surah-studies open straight on that section's topics.
 const trackFromHash = (hash: string): TrackId | null => {
@@ -354,7 +364,7 @@ const subscribeToHash = (onChange: () => void) => {
   return () => window.removeEventListener("hashchange", onChange)
 }
 
-const allTopics: { id: string; title: string }[] = [
+const allTopics: { id: string; title: string; description?: string }[] = [
   ...categories,
   ...tamilCategories,
   ...surahCategories,
@@ -362,12 +372,9 @@ const allTopics: { id: string; title: string }[] = [
   { id: "modern-arabic-01", title: "Modern Standard Arabic" },
 ]
 
-const topicTitle = (id: string | null) => (id ? (allTopics.find((topic) => topic.id === id)?.title ?? id) : "")
-
-// Every subject has its own page (app/subjects/[slug]); this list links them all for search engines and readers.
-const topicsAtoZ = [...allTopics].sort((a, b) => a.title.localeCompare(b.title))
 
 export default function CategoriesPage() {
+  const { t, i18n } = useTranslation("subjects")
   const router = useRouter()
   const hashTrack = useSyncExternalStore(subscribeToHash, () => trackFromHash(window.location.hash), () => null)
   const [stepState, setStep] = useState<number | null>(null)
@@ -403,19 +410,29 @@ export default function CategoriesPage() {
     }
   }
 
+  const titleOf = (topic: { id: string; title: string }) => topicText(t, topic.id, "title", topic.title)
+  const topicTitle = (id: string | null) => {
+    const topic = id ? allTopics.find((item) => item.id === id) : undefined
+    return topic ? titleOf(topic) : (id ?? "")
+  }
+  // Every subject has its own page (app/subjects/[slug]); this list links them all for search engines and readers.
+  const topicsAtoZ = allTopics
+    .map((topic) => ({ id: topic.id, title: titleOf(topic) }))
+    .sort((a, b) => a.title.localeCompare(b.title, i18n.language))
+
   const canOpen = (n: number) => n === 1 || (n === 2 && track !== null) || (n === 3 && selectedCategory !== null)
 
   return (
     <div className={`${pageContainerClass} flex flex-col items-center`}>
-      <PageHeader title="Subjects" subtitle="Pick a section, then a topic and a difficulty to start a quiz." />
+      <PageHeader title={t("list.title")} subtitle={t("list.subtitle")} />
       <div ref={topRef} className="w-full max-w-7xl scroll-mt-20">
-        <ol aria-label="Quiz setup steps" className="mx-auto mb-6 flex max-w-xl items-center justify-center gap-2">
-          {steps.map((label, index) => {
+        <ol aria-label={t("list.stepsLabel")} className="mx-auto mb-6 flex max-w-xl items-center justify-center gap-2">
+          {steps.map((stepKey, index) => {
             const n = index + 1
             const isCurrent = step === n
             const isDone = step > n
             return (
-              <li key={label} className="flex flex-1 items-center gap-2">
+              <li key={stepKey} className="flex flex-1 items-center gap-2">
                 <button
                   type="button"
                   onClick={() => canOpen(n) && goTo(n)}
@@ -436,7 +453,7 @@ export default function CategoriesPage() {
                   >
                     {isDone ? "✓" : n}
                   </span>
-                  <span className="truncate">{label}</span>
+                  <span className="truncate">{t(`list.steps.${stepKey}`)}</span>
                 </button>
               </li>
             )
@@ -448,8 +465,8 @@ export default function CategoriesPage() {
         <section className="w-full max-w-7xl">
           <Card className="border-green-200 shadow-lg dark:border-green-800">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">What do you want to practise?</CardTitle>
-              <CardDescription className="text-green-600 dark:text-green-500">Pick a section to see its topics</CardDescription>
+              <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">{t("list.step1.title")}</CardTitle>
+              <CardDescription className="text-green-600 dark:text-green-500">{t("list.step1.lede")}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -468,10 +485,10 @@ export default function CategoriesPage() {
                     >
                       <span className="flex flex-col items-center">
                         <TrackIcon className="h-10 w-10 text-green-600 dark:text-green-400" />
-                        <span className="mt-3 text-lg font-semibold dark:text-white">{item.title}</span>
-                        <span className="mt-1 text-sm text-gray-500 dark:text-gray-400">{item.description}</span>
+                        <span className="mt-3 text-lg font-semibold dark:text-white">{t(`list.tracks.${item.id}.title`, { defaultValue: item.title })}</span>
+                        <span className="mt-1 text-sm text-gray-500 dark:text-gray-400">{t(`list.tracks.${item.id}.description`, { defaultValue: item.description })}</span>
                         <span className="mt-3 rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                          {item.count} {item.count === 1 ? "topic" : "topics"}
+                          {t("list.topicCount", { count: item.count })}
                         </span>
                       </span>
                     </button>
@@ -488,24 +505,24 @@ export default function CategoriesPage() {
           <div className="w-full max-w-7xl">
             <Button variant="outline" onClick={() => goTo(1)} className="mb-2">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              All sections
+              {t("list.allSections")}
             </Button>
           </div>
           {track === "islamic-studies" && (
             <section id="islamic-studies" className="w-full max-w-7xl mt-2">
               <Card className="border-green-200 shadow-lg dark:border-green-800">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">Islamic Studies</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-400">{t("list.tracks.islamic-studies.title")}</CardTitle>
                   <CardDescription className="text-green-600 dark:text-green-500">
-                    Choose an Islamic Studies topic to practise
+                    {t("list.islamic.lede")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-8">
                     {groupedCategories.map((group) => (
-                      <div key={group.title}>
+                      <div key={group.key}>
                         <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
-                          {group.title}
+                          {t(`list.groups.${group.key}`)}
                         </h3>
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                           {group.items.map((category) => (
@@ -522,8 +539,8 @@ export default function CategoriesPage() {
                             >
                               <span className="flex flex-col items-center text-center">
                                 {category.icon}
-                                <span className="mt-2 font-medium dark:text-white">{category.title}</span>
-                                <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{category.description}</span>
+                                <span className="mt-2 font-medium dark:text-white">{titleOf(category)}</span>
+                                <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">{topicText(t, category.id, "description", category.description)}</span>
                               </span>
                             </button>
                           ))}
@@ -551,14 +568,14 @@ export default function CategoriesPage() {
         <section className="w-full max-w-3xl">
           <Card className="border-green-200 shadow-lg dark:border-green-800">
             <CardHeader className="text-center">
-              <CardTitle className="text-xl font-bold text-green-800 dark:text-green-400">Choose a difficulty</CardTitle>
+              <CardTitle className="text-xl font-bold text-green-800 dark:text-green-400">{t("list.chooseDifficulty")}</CardTitle>
               <CardDescription className="text-green-600 dark:text-green-500">
-                Topic: <span className="font-semibold">{topicTitle(selectedCategory)}</span>
+                {t("list.topicLabel")} <span className="font-semibold">{topicTitle(selectedCategory)}</span>
                 {selectedCategory && (
                   <>
                     {" · "}
                     <Link href={`/subjects/${selectedCategory}`} className="underline underline-offset-4 hover:text-green-800 dark:hover:text-green-300">
-                      About this subject
+                      {t("list.aboutSubject")}
                     </Link>
                   </>
                 )}
@@ -574,8 +591,8 @@ export default function CategoriesPage() {
                     >
                       <RadioGroupItem value={level.value} id={`quiz-difficulty-${level.value}`} />
                       <Label htmlFor={`quiz-difficulty-${level.value}`} className="flex flex-col cursor-pointer">
-                        <span className="font-medium dark:text-white">{level.label}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{level.description}</span>
+                        <span className="font-medium dark:text-white">{t(`difficulty.${level.value}`, { ns: "common" })}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{t(`list.levels.${level.value}`, { defaultValue: level.description })}</span>
                       </Label>
                     </div>
                   ))}
@@ -585,14 +602,14 @@ export default function CategoriesPage() {
             <CardFooter className="flex justify-between gap-3">
               <Button variant="outline" onClick={() => goTo(2)}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Change topic
+                {t("list.changeTopic")}
               </Button>
               <Button
                 className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 flex items-center"
                 onClick={handleStartQuiz}
                 disabled={!selectedCategory || !selectedDifficulty}
               >
-                Start Quiz
+                {t("list.startQuiz")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </CardFooter>
@@ -602,7 +619,7 @@ export default function CategoriesPage() {
 
       <section aria-labelledby="all-subjects-heading" className="mt-12 w-full max-w-7xl">
         <h2 id="all-subjects-heading" className="mb-3 text-center text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-400">
-          All {allTopics.length} subjects, A–Z
+          {t("list.allSubjects", { count: allTopics.length })}
         </h2>
         <ul className="flex flex-wrap justify-center gap-2">
           {topicsAtoZ.map((topic) => (
