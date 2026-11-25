@@ -253,7 +253,7 @@ const IqraHero = () => {
               <Button
                 asChild
                 variant="outline"
-                className="mt-5 h-11 w-full rounded-full border-green-700 bg-white text-base font-semibold text-green-800 hover:bg-green-100 hover:text-green-900 dark:border-green-400 dark:bg-transparent dark:text-green-50 dark:hover:bg-green-900 dark:hover:text-white"
+                className="mt-5 min-h-11 w-full rounded-full border-green-700 bg-white text-base font-semibold text-green-800 hover:bg-green-100 hover:text-green-900 dark:border-green-400 dark:bg-transparent dark:text-green-50 dark:hover:bg-green-900 dark:hover:text-white"
               >
                 <Link href="/subjects">Choose a subject</Link>
               </Button>
@@ -297,7 +297,7 @@ const IqraHero = () => {
               </ul>
               <Button
                 asChild
-                className="mt-5 h-11 w-full rounded-full bg-green-700 text-base font-semibold text-white hover:bg-green-800 hover:text-white dark:bg-white dark:text-green-800 dark:hover:bg-green-50 dark:hover:text-green-900"
+                className="mt-5 min-h-11 w-full rounded-full bg-green-700 text-base font-semibold text-white hover:bg-green-800 hover:text-white dark:bg-white dark:text-green-800 dark:hover:bg-green-50 dark:hover:text-green-900"
               >
                 <Link href="/challenges">
                   <Trophy aria-hidden="true" className="h-4 w-4" />

@@ -279,7 +279,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
                     size="sm"
                     variant="outline"
                     onClick={handleFindMe}
-                    className="h-8 px-2 text-xs dark:border-green-700 dark:text-green-400 bg-transparent"
+                    className="min-h-8 px-2 text-xs dark:border-green-700 dark:text-green-400 bg-transparent"
                   >
                     <UserRoundSearch className="h-3.5 w-3.5 mr-1" />
                     {t("leaderboard.findMe")}
@@ -396,7 +396,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
               <div className="mt-3 flex flex-col items-center justify-center gap-2">
                 <Button
                   variant="outline"
-                  className="flex gap-1 text-xs h-9 dark:border-green-700 dark:text-green-400 bg-transparent hover:bg-green-50 dark:hover:bg-green-950/50"
+                  className="flex gap-1 text-xs min-h-9 dark:border-green-700 dark:text-green-400 bg-transparent hover:bg-green-50 dark:hover:bg-green-950/50"
                   onClick={loadLeaderboardData}
                   disabled={loading}
                   title={t("leaderboard.updateTitle")}

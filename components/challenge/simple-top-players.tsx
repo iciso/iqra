@@ -332,7 +332,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
               size="sm"
               onClick={toggleShowAll}
               title={showAll ? t("players.showTop") : t("players.showAll")}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
+              className="h-7 min-h-7 w-7 md:h-8 md:min-h-8 md:w-8 p-0 bg-transparent"
             >
               <Users className="h-3 w-3 md:h-4 md:w-4" />
             </Button>
@@ -341,7 +341,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
               size="sm"
               onClick={handleRetry}
               disabled={loading}
-              className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
+              className="h-7 min-h-7 w-7 md:h-8 md:min-h-8 md:w-8 p-0 bg-transparent"
             >
               <RefreshCw className={`h-3 w-3 md:h-4 md:w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>

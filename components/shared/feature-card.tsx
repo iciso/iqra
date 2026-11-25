@@ -115,7 +115,7 @@ const FeatureCard = ({
         <CardFooter
           className={cn(
             "flex flex-col gap-3",
-            centered ? "items-center sm:flex-row sm:justify-center" : "items-stretch",
+            centered ? "items-center sm:flex-row sm:flex-wrap sm:justify-center" : "items-stretch",
           )}
         >
           {actions}

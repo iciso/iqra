@@ -32,7 +32,7 @@ export default function BadgesCollection({ earnedBadges }: BadgesCollectionProps
       <Tabs defaultValue="all">
         <TabsList className="w-full mb-4">
           {Object.keys(categories).map((key) => (
-            <TabsTrigger key={key} value={key} className="flex-1 text-xs sm:text-sm">
+            <TabsTrigger key={key} value={key} className="flex-auto text-xs sm:text-sm">
               {labels[key]}
             </TabsTrigger>
           ))}

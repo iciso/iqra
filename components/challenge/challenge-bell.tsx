@@ -85,7 +85,7 @@ export default function ChallengeBell() {
                     </span>
                   </div>
                   <div className="mt-2 flex justify-end gap-2">
-                    <Button size="sm" variant="outline" onClick={() => respond(c.id, "decline")} className="h-9">
+                    <Button size="sm" variant="outline" onClick={() => respond(c.id, "decline")} className="min-h-9">
                       <X className="mr-1 h-3 w-3" />
                       {t("bell.decline")}
                     </Button>
@@ -95,7 +95,7 @@ export default function ChallengeBell() {
                         setOpen(false)
                         void respond(c.id, "accept")
                       }}
-                      className="h-9 bg-green-600 hover:bg-green-700"
+                      className="min-h-9 bg-green-600 hover:bg-green-700"
                     >
                       <Check className="mr-1 h-3 w-3" />
                       {t("bell.accept")}

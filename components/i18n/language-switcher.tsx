@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
 
   return (
     <Select value={current} onValueChange={change}>
-      <SelectTrigger aria-label={t("language.label")} className="h-11 w-auto min-w-11 gap-2 rounded-full px-3">
+      <SelectTrigger aria-label={t("language.label")} className="h-11 w-auto min-w-11 shrink-0 gap-2 rounded-full px-3">
         <Globe className="h-4 w-4 shrink-0" aria-hidden="true" />
         <SelectValue />
       </SelectTrigger>

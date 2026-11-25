@@ -85,7 +85,7 @@ const TopPlayersList = ({ players, loading, onChallenge, showScores = true }: To
                 {player.best_percentage}%
               </p>
             )}
-            <Button size="sm" variant="outline" className="h-8 shrink-0 px-3 text-xs" onClick={() => onChallenge(player)}>
+            <Button size="sm" variant="outline" className="min-h-8 shrink-0 px-3 text-xs" onClick={() => onChallenge(player)}>
               {t("players.challenge")}
             </Button>
           </li>

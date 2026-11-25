@@ -17,7 +17,7 @@ export default function ChallengeScoringInfo() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-full">
+        <Button variant="ghost" size="sm" className="h-6 min-h-6 w-6 p-0 rounded-full">
           <Info className="h-4 w-4" />
         </Button>
       </DialogTrigger>

@@ -272,12 +272,12 @@ export default function ProfilePage() {
         ) : (
           <Tabs defaultValue="stats">
             <TabsList className="mb-4 w-full">
-              <TabsTrigger value="stats" className="flex-1"><BarChart2 className="h-4 w-4 mr-1" />{t("profile.tabStats")}</TabsTrigger>
-              <TabsTrigger value="history" className="flex-1"><Trophy className="h-4 w-4 mr-1" />{t("profile.tabHistory")}</TabsTrigger>
-              <TabsTrigger value="challenges" className="flex-1"><Gamepad2 className="h-4 w-4 mr-1" />{t("profile.tabChallenges")}</TabsTrigger>
+              <TabsTrigger value="stats" className="flex-auto"><BarChart2 className="h-4 w-4 mr-1" />{t("profile.tabStats")}</TabsTrigger>
+              <TabsTrigger value="history" className="flex-auto"><Trophy className="h-4 w-4 mr-1" />{t("profile.tabHistory")}</TabsTrigger>
+              <TabsTrigger value="challenges" className="flex-auto"><Gamepad2 className="h-4 w-4 mr-1" />{t("profile.tabChallenges")}</TabsTrigger>
               <Link 
                     href="/badges" 
-                    className="flex-1 inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all hover:bg-white/50"
+                    className="flex-auto inline-flex items-center justify-center whitespace-normal text-center rounded-sm px-3 py-1.5 text-sm font-medium transition-all hover:bg-white/50"
                   >
                     <Shield className="h-4 w-4 mr-1" />{t("profile.tabBadges")}
                   </Link>           
