@@ -1,0 +1,987 @@
+[
+ {
+  "en": "Allah",
+  "arabic": "الله",
+  "ta": "அல்லாஹ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Iman (faith)",
+  "arabic": "إيمان",
+  "ta": "ஈமான்",
+  "ta_alt": [
+   "நம்பிக்கை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Muslim",
+  "arabic": "مسلم",
+  "ta": "முஸ்லிம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Mumin (believer)",
+  "arabic": "مؤمن",
+  "ta": "முஃமின்",
+  "ta_alt": [
+   "விசுவாசி"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Islam",
+  "arabic": "إسلام",
+  "ta": "இஸ்லாம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Salah (prayer)",
+  "arabic": "صلاة",
+  "ta": "தொழுகை",
+  "ta_alt": [
+   "ஸலாஹ்"
+  ],
+  "note": "தொழுகை is the everyday word; ஸலாஹ் appears in titles"
+ },
+ {
+  "en": "Wudu",
+  "arabic": "وضوء",
+  "ta": "உளூ",
+  "ta_alt": [
+   "அங்கசுத்தி"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tayammum",
+  "arabic": "تيمم",
+  "ta": "தயம்மும்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Ghusl",
+  "arabic": "غسل",
+  "ta": "குஸ்ல்",
+  "ta_alt": [
+   "குளியல்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Zakat",
+  "arabic": "زكاة",
+  "ta": "ஸகாத்",
+  "ta_alt": [],
+  "note": "Never ஜகாத் in the data"
+ },
+ {
+  "en": "Zakat al-Fitr",
+  "arabic": "زكاة الفطر",
+  "ta": "ஸதகத்துல் ஃபித்ர்",
+  "ta_alt": [
+   "ஃபித்ர் ஸகாத்"
+  ],
+  "note": "ஃபித்ர் attested; full phrase form standard"
+ },
+ {
+  "en": "Nisab",
+  "arabic": "نصاب",
+  "ta": "நிஸாப்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sadaqah",
+  "arabic": "صدقة",
+  "ta": "ஸதகா",
+  "ta_alt": [
+   "தர்மம்"
+  ],
+  "note": "தர்மம் is what the data uses for charity in general; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Sawm (fasting)",
+  "arabic": "صوم",
+  "ta": "நோன்பு",
+  "ta_alt": [
+   "ஸவ்ம்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Hajj",
+  "arabic": "حج",
+  "ta": "ஹஜ்",
+  "ta_alt": [
+   "ஹஜ்ஜு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Umrah",
+  "arabic": "عمرة",
+  "ta": "உம்ரா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Ihram",
+  "arabic": "إحرام",
+  "ta": "இஹ்ராம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tawaf",
+  "arabic": "طواف",
+  "ta": "தவாஃப்",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Kaaba",
+  "arabic": "كعبة",
+  "ta": "கஃபா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Arafah",
+  "arabic": "عرفة",
+  "ta": "அரஃபா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qurbani / Udhiyah",
+  "arabic": "أضحية",
+  "ta": "குர்பானி",
+  "ta_alt": [
+   "உள்ஹியா"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tawhid",
+  "arabic": "توحيد",
+  "ta": "தவ்ஹீத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Shirk",
+  "arabic": "شرك",
+  "ta": "ஷிர்க்",
+  "ta_alt": [
+   "இணைவைப்பு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Kufr",
+  "arabic": "كفر",
+  "ta": "குஃப்ர்",
+  "ta_alt": [
+   "இறைமறுப்பு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Nifaq (hypocrisy)",
+  "arabic": "نفاق",
+  "ta": "நிஃபாக்",
+  "ta_alt": [
+   "நயவஞ்சகம்"
+  ],
+  "note": "முனாஃபிக் appears; நிஃபாக் is the standard noun; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Bidah (innovation)",
+  "arabic": "بدعة",
+  "ta": "பித்அத்",
+  "ta_alt": [
+   "புதுமை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Sunnah",
+  "arabic": "سنة",
+  "ta": "சுன்னா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Hadith",
+  "arabic": "حديث",
+  "ta": "ஹதீஸ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sahih (authentic)",
+  "arabic": "صحيح",
+  "ta": "ஸஹீஹ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Daif (weak)",
+  "arabic": "ضعيف",
+  "ta": "ளஈஃப்",
+  "ta_alt": [
+   "பலவீனமான"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Fiqh",
+  "arabic": "فقه",
+  "ta": "ஃபிக்ஹ்",
+  "ta_alt": [
+   "இஸ்லாமிய சட்டவியல்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Madhab",
+  "arabic": "مذهب",
+  "ta": "மத்ஹப்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Imam",
+  "arabic": "إمام",
+  "ta": "இமாம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Mufti",
+  "arabic": "مفتي",
+  "ta": "முஃப்தி",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Fatwa",
+  "arabic": "فتوى",
+  "ta": "ஃபத்வா",
+  "ta_alt": [
+   "மார்க்கத் தீர்ப்பு"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Ijma (consensus)",
+  "arabic": "إجماع",
+  "ta": "இஜ்மா",
+  "ta_alt": [
+   "ஒருமித்த கருத்து"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Qiyas (analogy)",
+  "arabic": "قياس",
+  "ta": "கியாஸ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Ijtihad",
+  "arabic": "اجتهاد",
+  "ta": "இஜ்திஹாத்",
+  "ta_alt": [],
+  "note": "the data uses inflected forms (இஜ்திஹ...)"
+ },
+ {
+  "en": "Halal",
+  "arabic": "حلال",
+  "ta": "ஹலால்",
+  "ta_alt": [
+   "அனுமதிக்கப்பட்டது"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Haram",
+  "arabic": "حرام",
+  "ta": "ஹராம்",
+  "ta_alt": [
+   "தடுக்கப்பட்டது"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Makruh",
+  "arabic": "مكروه",
+  "ta": "மக்ரூஹ்",
+  "ta_alt": [
+   "வெறுக்கப்பட்டது"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Mubah",
+  "arabic": "مباح",
+  "ta": "முபாஹ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Fard",
+  "arabic": "فرض",
+  "ta": "ஃபர்ள்",
+  "ta_alt": [
+   "கடமை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Wajib",
+  "arabic": "واجب",
+  "ta": "வாஜிப்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sunnah muakkadah",
+  "arabic": "سنة مؤكدة",
+  "ta": "சுன்னத் முஅக்கதா",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Mustahabb",
+  "arabic": "مستحب",
+  "ta": "முஸ்தஹப்பு",
+  "ta_alt": [
+   "விரும்பத்தக்கது"
+  ],
+  "note": "the data has முஸ்தஹ... forms"
+ },
+ {
+  "en": "Aqeedah (creed)",
+  "arabic": "عقيدة",
+  "ta": "அகீதா",
+  "ta_alt": [
+   "கொள்கை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Akhirah (hereafter)",
+  "arabic": "آخرة",
+  "ta": "ஆகிரா",
+  "ta_alt": [
+   "மறுமை"
+  ],
+  "note": "மறுமை is the everyday word (37 uses)"
+ },
+ {
+  "en": "Jannah (paradise)",
+  "arabic": "جنة",
+  "ta": "சொர்க்கம்",
+  "ta_alt": [
+   "ஜன்னத்"
+  ],
+  "note": "சொர்க்கம் is used (30 times); ஜன்னத் twice"
+ },
+ {
+  "en": "Jahannam (hell)",
+  "arabic": "جهنم",
+  "ta": "நரகம்",
+  "ta_alt": [
+   "ஜஹன்னம்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Qiyamah (Day of Judgment)",
+  "arabic": "قيامة",
+  "ta": "மறுமை நாள்",
+  "ta_alt": [
+   "கியாமத் நாள்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Barzakh",
+  "arabic": "برزخ",
+  "ta": "பர்ஸக்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qadar (divine decree)",
+  "arabic": "قدر",
+  "ta": "கத்ர்",
+  "ta_alt": [
+   "விதி"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Malak (angel)",
+  "arabic": "ملك",
+  "ta": "வானவர்",
+  "ta_alt": [
+   "மலக்"
+  ],
+  "note": "வானவர் is the everyday word (41 uses)"
+ },
+ {
+  "en": "Jibril (Gabriel)",
+  "arabic": "جبريل",
+  "ta": "ஜிப்ரீல்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Jinn",
+  "arabic": "جن",
+  "ta": "ஜின்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Shaytan",
+  "arabic": "شيطان",
+  "ta": "ஷைத்தான்",
+  "ta_alt": [
+   "சாத்தான்"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Rasul (messenger)",
+  "arabic": "رسول",
+  "ta": "ரசூல்",
+  "ta_alt": [
+   "தூதர்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Nabi (prophet)",
+  "arabic": "نبي",
+  "ta": "நபி",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sahabi (companion)",
+  "arabic": "صحابي",
+  "ta": "ஸஹாபா",
+  "ta_alt": [
+   "தோழர்"
+  ],
+  "note": "plural form attested"
+ },
+ {
+  "en": "Tabii (follower)",
+  "arabic": "تابعي",
+  "ta": "தாபிஈ",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Khalifah (caliph)",
+  "arabic": "خليفة",
+  "ta": "கலீஃபா",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Wahy (revelation)",
+  "arabic": "وحي",
+  "ta": "வஹீ",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Quran",
+  "arabic": "قرآن",
+  "ta": "குர்ஆன்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tafsir",
+  "arabic": "تفسير",
+  "ta": "தஃப்ஸீர்",
+  "ta_alt": [
+   "விளக்கவுரை"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Surah",
+  "arabic": "سورة",
+  "ta": "சூரா",
+  "ta_alt": [
+   "ஸூரா"
+  ],
+  "note": "சூரா used 94 times"
+ },
+ {
+  "en": "Ayah (verse)",
+  "arabic": "آية",
+  "ta": "ஆயத்",
+  "ta_alt": [
+   "வசனம்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Juz",
+  "arabic": "جزء",
+  "ta": "ஜுஸ்உ",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Tajwid",
+  "arabic": "تجويد",
+  "ta": "தஜ்வீத்",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Mushaf",
+  "arabic": "مصحف",
+  "ta": "முஸ்ஹஃப்",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Ramadan",
+  "arabic": "رمضان",
+  "ta": "ரமளான்",
+  "ta_alt": [
+   "ரமழான்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Eid al-Fitr",
+  "arabic": "عيد الفطر",
+  "ta": "ஈதுல் ஃபித்ர்",
+  "ta_alt": [
+   "நோன்புப் பெருநாள்"
+  ],
+  "note": "ஈத் and ஃபித்ர் attested"
+ },
+ {
+  "en": "Eid al-Adha",
+  "arabic": "عيد الأضحى",
+  "ta": "ஈதுல் அள்ஹா",
+  "ta_alt": [
+   "ஹஜ்ஜுப் பெருநாள்"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Jumuah (Friday prayer)",
+  "arabic": "جمعة",
+  "ta": "ஜுமுஆ",
+  "ta_alt": [
+   "வெள்ளிக்கிழமைத் தொழுகை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Khutbah (sermon)",
+  "arabic": "خطبة",
+  "ta": "குத்பா",
+  "ta_alt": [
+   "சொற்பொழிவு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Adhan (call to prayer)",
+  "arabic": "أذان",
+  "ta": "அதான்",
+  "ta_alt": [
+   "பாங்கு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Iqamah",
+  "arabic": "إقامة",
+  "ta": "இகாமத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qiblah",
+  "arabic": "قبلة",
+  "ta": "கிப்லா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Masjid (mosque)",
+  "arabic": "مسجد",
+  "ta": "பள்ளிவாசல்",
+  "ta_alt": [
+   "மஸ்ஜித்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Rakah",
+  "arabic": "ركعة",
+  "ta": "ரக்அத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sujud (prostration)",
+  "arabic": "سجود",
+  "ta": "ஸஜ்தா",
+  "ta_alt": [
+   "சுஜூது"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ruku (bowing)",
+  "arabic": "ركوع",
+  "ta": "ருகூ",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qiyam (standing)",
+  "arabic": "قيام",
+  "ta": "கியாம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tashahhud",
+  "arabic": "تشهد",
+  "ta": "தஷஹ்ஹுத்",
+  "ta_alt": [
+   "அத்தஹிய்யாத்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Salam (end of prayer)",
+  "arabic": "تسليم",
+  "ta": "ஸலாம்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Fajr",
+  "arabic": "فجر",
+  "ta": "ஃபஜ்ர்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Dhuhr",
+  "arabic": "ظهر",
+  "ta": "ளுஹ்ர்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Asr",
+  "arabic": "عصر",
+  "ta": "அஸ்ர்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Maghrib",
+  "arabic": "مغرب",
+  "ta": "மஃக்ரிப்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Isha",
+  "arabic": "عشاء",
+  "ta": "இஷா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Witr",
+  "arabic": "وتر",
+  "ta": "வித்ர்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tarawih",
+  "arabic": "تراويح",
+  "ta": "தராவீஹ்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tahajjud",
+  "arabic": "تهجد",
+  "ta": "தஹஜ்ஜுத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Dua (supplication)",
+  "arabic": "دعاء",
+  "ta": "துஆ",
+  "ta_alt": [
+   "பிரார்த்தனை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Dhikr (remembrance)",
+  "arabic": "ذكر",
+  "ta": "திக்ர்",
+  "ta_alt": [
+   "நினைவுகூரல்"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Tawbah (repentance)",
+  "arabic": "توبة",
+  "ta": "தவ்பா",
+  "ta_alt": [
+   "பாவமன்னிப்பு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Istighfar",
+  "arabic": "استغفار",
+  "ta": "இஸ்திஃக்ஃபார்",
+  "ta_alt": [
+   "பாவமன்னிப்புக் கோருதல்"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Taqwa",
+  "arabic": "تقوى",
+  "ta": "தக்வா",
+  "ta_alt": [
+   "இறையச்சம்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ihsan",
+  "arabic": "إحسان",
+  "ta": "இஹ்ஸான்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sabr (patience)",
+  "arabic": "صبر",
+  "ta": "பொறுமை",
+  "ta_alt": [
+   "ஸப்ர்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Shukr (gratitude)",
+  "arabic": "شكر",
+  "ta": "நன்றி",
+  "ta_alt": [
+   "ஷுக்ர்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Riba (usury)",
+  "arabic": "ربا",
+  "ta": "ரிபா",
+  "ta_alt": [
+   "வட்டி"
+  ],
+  "note": "வட்டி and ரிபா both 17 uses"
+ },
+ {
+  "en": "Nikah (marriage)",
+  "arabic": "نكاح",
+  "ta": "திருமணம்",
+  "ta_alt": [
+   "நிகாஹ்"
+  ],
+  "note": "திருமணம் is the everyday word (17 uses)"
+ },
+ {
+  "en": "Mahr (dower)",
+  "arabic": "مهر",
+  "ta": "மஹர்",
+  "ta_alt": [
+   "மஹ்ர்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Talaq (divorce)",
+  "arabic": "طلاق",
+  "ta": "தலாக்",
+  "ta_alt": [],
+  "note": "data writes தலாக் (also inflected forms)"
+ },
+ {
+  "en": "Iddah",
+  "arabic": "عدة",
+  "ta": "இத்தா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Khul",
+  "arabic": "خلع",
+  "ta": "குலா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Janazah (funeral prayer)",
+  "arabic": "جنازة",
+  "ta": "ஜனாஸா",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Kafan (shroud)",
+  "arabic": "كفن",
+  "ta": "கஃபன்",
+  "ta_alt": [
+   "கஃபன் துணி"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Qabr (grave)",
+  "arabic": "قبر",
+  "ta": "கப்ர்",
+  "ta_alt": [
+   "மண்ணறை"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Mirath (inheritance)",
+  "arabic": "ميراث",
+  "ta": "வாரிசுரிமை",
+  "ta_alt": [
+   "மீராஸ்"
+  ],
+  "note": "the data speaks of வாரிசு (heir)"
+ },
+ {
+  "en": "Faraid (fixed shares)",
+  "arabic": "فرائض",
+  "ta": "ஃபராயிள்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Waris (heir)",
+  "arabic": "وارث",
+  "ta": "வாரிசு",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Wasiyyah (bequest)",
+  "arabic": "وصية",
+  "ta": "வஸிய்யத்",
+  "ta_alt": [
+   "மரண சாசனம்"
+  ],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Waqf (endowment)",
+  "arabic": "وقف",
+  "ta": "வக்ஃபு",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Hijrah (migration)",
+  "arabic": "هجرة",
+  "ta": "ஹிஜ்ரத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Jihad",
+  "arabic": "جهاد",
+  "ta": "ஜிஹாத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Seerah (Prophet's biography)",
+  "arabic": "سيرة",
+  "ta": "ஸீரா",
+  "ta_alt": [
+   "நபிவழி வரலாறு"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Dawah (invitation)",
+  "arabic": "دعوة",
+  "ta": "தஃவா",
+  "ta_alt": [
+   "அழைப்புப் பணி"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ummah",
+  "arabic": "أمة",
+  "ta": "உம்மத்",
+  "ta_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Shahadah",
+  "arabic": "شهادة",
+  "ta": "ஷஹாதா",
+  "ta_alt": [
+   "சாட்சியம்"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Hijab",
+  "arabic": "حجاب",
+  "ta": "ஹிஜாப்",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ },
+ {
+  "en": "Awrah",
+  "arabic": "عورة",
+  "ta": "அவ்ரா",
+  "ta_alt": [],
+  "note": "standard form; not found in data/ta-*.ts, scholar to confirm"
+ }
+]

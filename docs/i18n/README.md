@@ -1,7 +1,7 @@
 # Translating the quiz
 
 Each language has one file per quiz category: `locales/<lng>/<category>.json`.
-`locales/en/` is made from the code (`data/*.ts`) - never edit it by hand. Tamil quizzes (`ta-*`) stay their own categories and have no file.
+`locales/en/` is made from the code (`data/*.ts`) - never edit it by hand. Tamil quizzes (`ta-*`) stay their own categories and have no file of their own (see Tamil below).
 
 ```json
 {
@@ -54,3 +54,10 @@ Rows: one per field. `field` is `question`, `option1`..`option4` or `explanation
 ## Checks
 
 `pnpm content:check` = `export --check` (fails if `locales/en` drifted from `data/*.ts`; fix with `pnpm content:export`) + `scripts/check-content.ts` (ids exist in English, option counts match, no repeated translated options, status is valid).
+
+## Tamil (ta)
+
+- `locales/ta/<category>.json` exists for every category. The legacy `data/ta-*.ts` quizzes (quran, aqeedah, salah, charity, fiqh) stay live as their own categories for now.
+- `pnpm exec tsx scripts/seed-ta-from-legacy.ts` copies that Tamil into the matching `locales/ta` files by position. It copies only when the option count and the correct-answer position match English, and lists what it skipped. Safe to re-run.
+- Spellings to use: `docs/i18n/ta-glossary.json` (taken from how `data/ta-*.ts` writes them; rows marked `not found in data/ta-*.ts` need a scholar to confirm).
+- Seeded files are `review` (or `hidden` for the sensitive subjects) until a scholar approves them.
