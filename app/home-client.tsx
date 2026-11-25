@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import Link from "next/link"
+import { Trans, useTranslation } from "react-i18next"
 import {
   BookOpen,
   Languages,
@@ -41,6 +42,8 @@ const outlineButtonClass =
 const sectionClass = "py-12 lg:py-16"
 
 export default function HomeClient({ initialPlayers }: { initialPlayers?: ChallengePlayersResult }) {
+  const { t } = useTranslation("home")
+
   // Preserve the existing service-worker registration.
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -77,22 +80,21 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
       {/* One container for every section below the hero; sections are spaced evenly (py-12 lg:py-16). */}
       <div className="mx-auto flex w-full max-w-6xl flex-grow flex-col px-4 sm:px-6">
         {/* Rafique's Surah-Quiz and IQRA Players cards. */}
-        <section aria-label="More IQRA features and players" className={sectionClass}>
+        <section aria-label={t("surah.sectionLabel")} className={sectionClass}>
           <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
             <FeatureCard
               data-reveal=""
               icon={<BookOpen aria-hidden="true" />}
-              title="Surah-Quiz"
-              subtitle="Focus on vocabulary from a specific Surah"
-              description={
-                <>
-                  Learn vocabulary from specific Surahs. Browse through Surahs in KALAM
-                  to study their context, meaning, and rulings. Self-test your
-                  knowledge on the 39 completed Surahs in KALAM,
-                  without entry into a Leaderboard.
-                </>
-              }
-              tags={["Surah Quiz", "Reason for Revelation", "Surah Tafsir", "Hadeeth", "Seerah & Context"]}
+              title={t("surah.title")}
+              subtitle={t("surah.subtitle")}
+              description={t("surah.description")}
+              tags={[
+                t("surah.tags.quiz"),
+                t("surah.tags.revelation"),
+                t("surah.tags.tafsir"),
+                t("surah.tags.hadeeth"),
+                t("surah.tags.seerah"),
+              ]}
               actions={
                 <>
                   {/* KALAM is a separate site, so this one still opens in a new tab. */}
@@ -102,18 +104,17 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Start Easy Quiz: 39 Surahs
+                      {t("surah.easyCta")}
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className={outlineButtonClass}>
-                    <Link href="/subjects#quran-surah-studies">Start Expert Quiz: 5 Surahs</Link>
+                    <Link href="/subjects#quran-surah-studies">{t("surah.expertCta")}</Link>
                   </Button>
                 </>
               }
             >
               <p className={noteClass}>
-                Surah quizzes are also available in the KALAM app as Easy or Translation-only quizzes,
-                and in IQRA as an Expert version with Translation, Tafsir and Vocabulary quizzes.
+                {t("surah.note")}
               </p>
             </FeatureCard>
 
@@ -123,9 +124,9 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                 <div className={iconSquareClass}>
                   <Users className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
                 </div>
-                <CardTitle className={titleClass}>IQRA Players</CardTitle>
+                <CardTitle className={titleClass}>{t("players.title")}</CardTitle>
                 <CardDescription className="text-sm sm:text-base">
-                  Find a player and challenge them
+                  {t("players.subtitle")}
                 </CardDescription>
               </CardHeader>
 
@@ -133,16 +134,16 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b pb-2">
                   <p className="flex items-center gap-2 text-sm font-medium text-green-800 dark:text-green-400">
                     <Trophy className="h-4 w-4" />
-                    Available players and top scores
+                    {t("players.available")}
                   </p>
-                  <p className="text-xs text-muted-foreground">Ranked by total points, then best %</p>
+                  <p className="text-xs text-muted-foreground">{t("players.ranking")}</p>
                 </div>
                 <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={6} />
               </CardContent>
 
               <CardFooter className="flex justify-center">
                 <Button asChild className={primaryButtonClass}>
-                  <Link href="/challenges">View All Players</Link>
+                  <Link href="/challenges">{t("players.viewAll")}</Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -154,9 +155,9 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
           <div data-reveal="">
             <SectionHeading
               id="arabic-vocabulary-heading"
-              eyebrow="New learning tracks"
-              title="Arabic Vocabulary"
-              lede="Choose the vocabulary that matches your learning goal. Each track opens the Vocabulary section on the Subjects page."
+              eyebrow={t("vocab.eyebrow")}
+              title={t("vocab.title")}
+              lede={t("vocab.lede")}
             />
           </div>
 
@@ -164,13 +165,13 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             <FeatureCard
               data-reveal=""
               icon={<ScrollText aria-hidden="true" />}
-              title="Quranic Arabic Vocabulary"
-              subtitle="Understand the words of the Qur’an"
-              description="Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows."
-              tags={["Quranic words", "Meanings", "Quran references"]}
+              title={t("vocab.quranic.title")}
+              subtitle={t("vocab.quranic.subtitle")}
+              description={t("vocab.quranic.description")}
+              tags={[t("vocab.quranic.tags.words"), t("vocab.quranic.tags.meanings"), t("vocab.quranic.tags.references")]}
               actions={
                 <Button asChild className={primaryButtonClass}>
-                  <Link href="/subjects#vocab">Explore Quranic Vocabulary</Link>
+                  <Link href="/subjects#vocab">{t("vocab.quranic.cta")}</Link>
                 </Button>
               }
             />
@@ -178,27 +179,30 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             <FeatureCard
               data-reveal=""
               icon={<Languages aria-hidden="true" />}
-              title="Modern Arabic Vocabulary"
-              subtitle="Build contemporary Arabic vocabulary"
-              description="Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added."
-              tags={["Modern Standard Arabic", "Everyday words", "Examples"]}
+              title={t("vocab.modern.title")}
+              subtitle={t("vocab.modern.subtitle")}
+              description={t("vocab.modern.description")}
+              tags={[t("vocab.modern.tags.msa"), t("vocab.modern.tags.everyday"), t("vocab.modern.tags.examples")]}
               actions={
                 <Button asChild className={primaryButtonClass}>
-                  <Link href="/subjects#vocab">Explore Modern Vocabulary</Link>
+                  <Link href="/subjects#vocab">{t("vocab.modern.cta")}</Link>
                 </Button>
               }
             />
           </div>
           <p data-reveal="" className={`mt-6 text-center ${noteClass}`}>
-            Both the Arabic Vocabulary and Surah Quiz buttons lead to self-learning tracks.
-            For challenges, go to the{" "}
-            <Link
-              href="/challenges"
-              className="font-medium text-green-700 underline underline-offset-4 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
-            >
-              Challenges
-            </Link>{" "}
-            page.
+            <Trans
+              t={t}
+              i18nKey="vocab.note"
+              components={{
+                link: (
+                  <Link
+                    href="/challenges"
+                    className="font-medium text-green-700 underline underline-offset-4 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
+                  />
+                ),
+              }}
+            />
           </p>
         </section>
 
@@ -209,19 +213,16 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             className={`${cardClass} border-emerald-200 bg-emerald-50/60 p-6 dark:border-emerald-800 dark:bg-emerald-900/20`}
           >
             <h2 className="mb-4 text-xl font-bold text-emerald-800 sm:text-2xl dark:text-emerald-300">
-              No Donations &amp; Charity
+              {t("noDonations.title")}
             </h2>
             <p className="mb-3 text-sm text-emerald-700 sm:text-base dark:text-emerald-200">
-              IQRA and KALAM apps are built without charity, zakat, or
-              donations – a practice aligned with the true Sunnah of the Noble
-              Prophets, and the Righteous.
+              {t("noDonations.body")}
             </p>
             <p className="mb-4 font-arabic text-xl text-emerald-600 sm:text-3xl dark:text-emerald-300" dir="rtl" lang="ar">
-              قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ
+              {t("noDonations.verse")}
             </p>
             <p className="text-sm text-emerald-600 sm:text-base dark:text-emerald-300">
-              Say, &quot;I do not ask you for this any payment, and I am not of the
-              pretentious&quot; — Surah Sad 38:86.
+              {t("noDonations.translation")}
             </p>
           </div>
         </section>

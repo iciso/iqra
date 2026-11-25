@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react"
 import Link from "next/link"
+import { Trans, useTranslation } from "react-i18next"
 
 import { BookOpen, Footprints, Trophy } from "lucide-react"
 
@@ -14,21 +15,16 @@ import { useOrbitPause } from "@/hooks/use-orbit-pause"
 // + 5 Tamil + 2 Arabic Vocabulary = 50 subjects; Easy / Intermediate / Advanced = 3 levels;
 // 5 Surah quizzes inside IQRA (the ~40 Surah quizzes live in the separate KALAM app).
 const facts = [
-  { value: "50", label: "subjects" },
-  { value: "3", label: "levels" },
-  { value: "5", label: "surah quizzes" },
-]
+  { value: "50", labelKey: "hero.stats.subjects" },
+  { value: "3", labelKey: "hero.stats.levels" },
+  { value: "5", labelKey: "hero.stats.surahQuizzes" },
+] as const
 
 // The name spelled out, initials in brand green: the acronym is the introduction.
-const acronym = [
-  { initial: "I", rest: "slamic" },
-  { initial: "Q", rest: "uiz" },
-  { initial: "R", rest: "ivalry" },
-  { initial: "A", rest: "pp" },
-]
+const acronymKeys = ["i", "q", "r", "a"] as const
 
-const learnTags = ["Easy", "Intermediate", "Advanced"]
-const challengeTags = ["Friend Challenge", "Daily Challenge", "Player Rivalry"]
+const learnTagKeys = ["easy", "intermediate", "advanced"] as const
+const challengeTagKeys = ["friend", "daily", "player"] as const
 
 const round = (n: number) => Math.round(n * 100) / 100
 
@@ -41,18 +37,19 @@ const CENTER = 200
 const LABEL_GAP = 9 // dot radius + breathing room, user units
 const LABEL_HALF_HEIGHT = 8
 const orbitLabels = [
-  { label: "SALAH", angle: -90, tabletOnly: false },
-  { label: "QURAN", angle: -45, tabletOnly: false },
-  { label: "HAJJ", angle: 0, tabletOnly: true },
-  { label: "TAFSIR", angle: 45, tabletOnly: false },
-  { label: "FIQH", angle: 90, tabletOnly: false },
-  { label: "SEERAH", angle: 135, tabletOnly: false },
-  { label: "RIBA", angle: 180, tabletOnly: true },
-  { label: "DAWAH", angle: -135, tabletOnly: false },
+  { key: "salah", angle: -90, tabletOnly: false },
+  { key: "quran", angle: -45, tabletOnly: false },
+  { key: "hajj", angle: 0, tabletOnly: true },
+  { key: "tafsir", angle: 45, tabletOnly: false },
+  { key: "fiqh", angle: 90, tabletOnly: false },
+  { key: "seerah", angle: 135, tabletOnly: false },
+  { key: "riba", angle: 180, tabletOnly: true },
+  { key: "dawah", angle: -135, tabletOnly: false },
 ]
 
 // Measured 2026-11-22: 13px uppercase at 0.12em tracking is 35-62 units wide, about 10 per letter.
-const halfWidth = (label: string) => label.length * 5 + 1.5
+// Letter count of the English key, so the Bangla and Tamil labels keep the same spacing.
+const halfWidth = (key: string) => key.length * 5 + 1.5
 
 const orbitGeometry = (tablet: boolean) => {
   const radius = tablet ? 150 : 140
@@ -62,7 +59,7 @@ const orbitGeometry = (tablet: boolean) => {
       const rad = (item.angle * Math.PI) / 180
       const cos = Math.cos(rad)
       const sin = Math.sin(rad)
-      const hw = halfWidth(item.label)
+      const hw = halfWidth(item.key)
       // Same distance formula as .iqra-orbit-text in globals.css, at the start angle.
       const d = radius + LABEL_GAP + hw * Math.abs(cos) + LABEL_HALF_HEIGHT * Math.abs(sin)
       const dx = round(radius * cos)
@@ -101,7 +98,9 @@ const ringStroke = "stroke-green-700/20 dark:stroke-green-300/20"
 const labelText = "fill-green-900/60 tracking-[0.12em] dark:fill-green-100/70"
 const keyDot = "fill-green-600 dark:fill-green-400"
 const minorDot = "fill-green-700/35 dark:fill-green-200/45"
-const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => (
+const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => {
+  const { t } = useTranslation("home")
+  return (
   <svg
     viewBox={orbit.viewBox}
     aria-hidden="true"
@@ -124,7 +123,7 @@ const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => (
       ))}
     </g>
     {orbit.labels.map((item) => (
-      <g key={item.label} data-label={item.label} className="iqra-orbit-label" style={item.style}>
+      <g key={item.key} data-label={item.key.toUpperCase()} className="iqra-orbit-label" style={item.style}>
         <g className="iqra-orbit-dot">
           <circle cx={item.dot.x} cy={item.dot.y} r={8} opacity={0} className={`iqra-orbit-glint ${keyDot}`} />
           <circle cx={item.dot.x} cy={item.dot.y} r={3.2} className={keyDot} />
@@ -137,14 +136,16 @@ const Orbit = ({ orbit }: { orbit: (typeof orbits)[number] }) => (
           fontSize={13}
           className={`iqra-orbit-text ${labelText}`}
         >
-          {item.label}
+          {t(`hero.orbit.${item.key}`)}
         </text>
       </g>
     ))}
   </svg>
-)
+  )
+}
 
 const IqraHero = () => {
+  const { t } = useTranslation("home")
   const heroRef = useOrbitPause<HTMLElement>()
 
   return (
@@ -177,7 +178,7 @@ const IqraHero = () => {
             <p
               className={`font-heading mt-2 pl-[0.5em] text-xs uppercase tracking-[0.5em] text-green-700 dark:text-green-300 sm:text-sm`}
             >
-              Iqra &middot; Read
+              {t("hero.tagline")}
             </p>
           </div>
         </div>
@@ -188,11 +189,11 @@ const IqraHero = () => {
             data-hero-acronym
             className={`font-heading mt-1 text-lg tracking-wide text-green-950/55 dark:text-green-100/60 sm:text-xl xl:mt-0`}
           >
-            {acronym.map((word, i) => (
-              <span key={word.initial}>
+            {acronymKeys.map((key, i) => (
+              <span key={key}>
                 {i > 0 && " "}
-                <b className="text-[1.3em] font-bold text-green-700 dark:text-green-300">{word.initial}</b>
-                {word.rest}
+                <b className="text-[1.3em] font-bold text-green-700 dark:text-green-300">{t(`hero.acronym.${key}.initial`)}</b>
+                {t(`hero.acronym.${key}.rest`)}
               </span>
             ))}
           </p>
@@ -200,12 +201,17 @@ const IqraHero = () => {
             id="iqra-hero-heading"
             className={`font-heading mt-3 text-balance text-[34px] font-semibold leading-[1.08] text-green-900 dark:text-white sm:text-[44px] xl:text-[48px]`}
           >
-            Quiz to learn. Rival to excel.
+            {t("hero.title")}
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-base xl:mx-0 leading-relaxed text-green-950/70 dark:text-green-100/75 sm:text-lg">
-            Two tracks, one name: <b className="font-semibold text-green-800 dark:text-green-200">Quiz</b> any of 50
-            subjects at your own pace, or turn it into a{" "}
-            <b className="font-semibold text-green-800 dark:text-green-200">Rivalry</b> and challenge a friend.
+            <Trans
+              t={t}
+              i18nKey="hero.intro"
+              components={{
+                quiz: <b className="font-semibold text-green-800 dark:text-green-200" />,
+                rivalry: <b className="font-semibold text-green-800 dark:text-green-200" />,
+              }}
+            />
           </p>
 
           {/* Two tracks, side by side from md up: a calm one for learning, an energetic one for racing a friend. */}
@@ -221,22 +227,26 @@ const IqraHero = () => {
                   <BookOpen aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-300">
-                  Track 1 &middot; Quiz
+                  {t("hero.learn.eyebrow")}
                 </p>
               </div>
               <h2 className="font-heading mt-3 text-2xl font-semibold text-green-900 dark:text-white">
-                <b className="font-bold text-green-700 dark:text-green-300">Quiz</b> &ndash; learn at leisure
+                <Trans
+                  t={t}
+                  i18nKey="hero.learn.title"
+                  components={{ quiz: <b className="font-bold text-green-700 dark:text-green-300" /> }}
+                />
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-950/75 dark:text-green-100/80">
-                Pick any of 50 subjects at your own level. No clock, no rival &ndash; just you and the subject.
+                {t("hero.learn.body")}
               </p>
-              <ul aria-label="Levels" className="mt-3 flex flex-1 flex-wrap content-start items-start gap-1.5">
-                {learnTags.map((tag) => (
+              <ul aria-label={t("hero.learn.levelsLabel")} className="mt-3 flex flex-1 flex-wrap content-start items-start gap-1.5">
+                {learnTagKeys.map((tag) => (
                   <li
                     key={tag}
                     className="rounded-full border border-green-200 bg-white px-2.5 py-1 text-xs text-green-800 dark:border-green-700 dark:bg-green-950 dark:text-green-200"
                   >
-                    {tag}
+                    {t(`hero.learn.${tag}`)}
                   </li>
                 ))}
               </ul>
@@ -260,24 +270,28 @@ const IqraHero = () => {
                   <Footprints aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700 dark:text-green-50">
-                  Track 2 &middot; Rivalry
+                  {t("hero.rival.eyebrow")}
                 </p>
               </div>
               <h2 className="font-heading mt-3 text-2xl font-semibold text-green-900 dark:text-white">
-                <b className="font-bold text-green-700 underline decoration-green-600/60 decoration-2 underline-offset-[6px] dark:text-green-200 dark:decoration-green-300/70">
-                  Rivalry
-                </b>{" "}
-                &ndash; race to excel
+                <Trans
+                  t={t}
+                  i18nKey="hero.rival.title"
+                  components={{
+                    rivalry: (
+                      <b className="font-bold text-green-700 underline decoration-green-600/60 decoration-2 underline-offset-[6px] dark:text-green-200 dark:decoration-green-300/70" />
+                    ),
+                  }}
+                />
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-green-900/80 dark:text-green-50">
-                Send the same quiz to a friend &ndash; the higher score wins. The Prophet (peace be upon him) raced Aisha (RA) and
-                said &ldquo;This is for that&rdquo;: friendly competition is Sunnah.
+                {t("hero.rival.body")}
               </p>
-              <p className="mt-1.5 text-xs text-green-800/70 dark:text-green-100">Sunan Abi Dawud 2578 · Sahih (al-Albani)</p>
-              <ul aria-label="Ways to compete" className="mt-3 flex flex-wrap gap-1.5">
-                {challengeTags.map((tag) => (
+              <p className="mt-1.5 text-xs text-green-800/70 dark:text-green-100">{t("hero.rival.source")}</p>
+              <ul aria-label={t("hero.rival.waysLabel")} className="mt-3 flex flex-wrap gap-1.5">
+                {challengeTagKeys.map((tag) => (
                   <li key={tag} className="rounded-full border border-green-300 bg-white px-2.5 py-1 text-xs text-green-800 dark:border-transparent dark:bg-green-900/50 dark:text-white">
-                    {tag}
+                    {t(`hero.rival.${tag}`)}
                   </li>
                 ))}
               </ul>
@@ -287,7 +301,7 @@ const IqraHero = () => {
               >
                 <Link href="/challenges">
                   <Trophy aria-hidden="true" className="h-4 w-4" />
-                  Challenge a friend
+                  {t("hero.rival.cta")}
                 </Link>
               </Button>
             </Card>
@@ -299,9 +313,9 @@ const IqraHero = () => {
             style={{ "--rise-delay": "400ms" } as CSSProperties}
             className="iqra-rise mt-7 flex flex-wrap justify-center gap-2.5 xl:justify-start">
             {facts.map((fact) => (
-              <StatChip key={fact.label} value={fact.value} label={fact.label} />
+              <StatChip key={fact.labelKey} value={fact.value} label={t(fact.labelKey)} />
             ))}
-            <StatChip href="#no-donations" title="Why no donations - Surah Sad 38:86" label={<>No ads &middot; no donations</>} />
+            <StatChip href="#no-donations" title={t("hero.stats.noDonationsTitle")} label={t("hero.stats.noDonations")} />
           </ul>
         </div>
       </div>

@@ -1,1 +1,133 @@
-{}
+{
+  "hero": {
+    "tagline": "Iqra · Read",
+    "acronym": {
+      "i": { "initial": "I", "rest": "slamic" },
+      "q": { "initial": "Q", "rest": "uiz" },
+      "r": { "initial": "R", "rest": "ivalry" },
+      "a": { "initial": "A", "rest": "pp" }
+    },
+    "title": "Quiz to learn. Rival to excel.",
+    "intro": "Two tracks, one name: <quiz>Quiz</quiz> any of 50 subjects at your own pace, or turn it into a <rivalry>Rivalry</rivalry> and challenge a friend.",
+    "orbit": {
+      "salah": "SALAH",
+      "quran": "QURAN",
+      "hajj": "HAJJ",
+      "tafsir": "TAFSIR",
+      "fiqh": "FIQH",
+      "seerah": "SEERAH",
+      "riba": "RIBA",
+      "dawah": "DAWAH"
+    },
+    "learn": {
+      "eyebrow": "Track 1 · Quiz",
+      "title": "<quiz>Quiz</quiz> – learn at leisure",
+      "body": "Pick any of 50 subjects at your own level. No clock, no rival – just you and the subject.",
+      "levelsLabel": "Levels",
+      "easy": "Easy",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "cta": "Choose a subject"
+    },
+    "rival": {
+      "eyebrow": "Track 2 · Rivalry",
+      "title": "<rivalry>Rivalry</rivalry> – race to excel",
+      "body": "Send the same quiz to a friend – the higher score wins. The Prophet (peace be upon him) raced Aisha (RA) and said “This is for that”: friendly competition is Sunnah.",
+      "source": "Sunan Abi Dawud 2578 · Sahih (al-Albani)",
+      "waysLabel": "Ways to compete",
+      "friend": "Friend Challenge",
+      "daily": "Daily Challenge",
+      "player": "Player Rivalry",
+      "cta": "Challenge a friend"
+    },
+    "stats": {
+      "subjects": "subjects",
+      "levels": "levels",
+      "surahQuizzes": "surah quizzes",
+      "noDonations": "No ads · no donations",
+      "noDonationsTitle": "Why no donations - Surah Sad 38:86"
+    }
+  },
+  "surah": {
+    "sectionLabel": "More IQRA features and players",
+    "title": "Surah-Quiz",
+    "subtitle": "Focus on vocabulary from a specific Surah",
+    "description": "Learn vocabulary from specific Surahs. Browse through Surahs in KALAM to study their context, meaning, and rulings. Self-test your knowledge on the 39 completed Surahs in KALAM, without entry into a Leaderboard.",
+    "tags": {
+      "quiz": "Surah Quiz",
+      "revelation": "Reason for Revelation",
+      "tafsir": "Surah Tafsir",
+      "hadeeth": "Hadeeth",
+      "seerah": "Seerah & Context"
+    },
+    "easyCta": "Start Easy Quiz: 39 Surahs",
+    "expertCta": "Start Expert Quiz: 5 Surahs",
+    "note": "Surah quizzes are also available in the KALAM app as Easy or Translation-only quizzes, and in IQRA as an Expert version with Translation, Tafsir and Vocabulary quizzes."
+  },
+  "players": {
+    "title": "IQRA Players",
+    "subtitle": "Find a player and challenge them",
+    "available": "Available players and top scores",
+    "ranking": "Ranked by total points, then best %",
+    "viewAll": "View All Players"
+  },
+  "vocab": {
+    "eyebrow": "New learning tracks",
+    "title": "Arabic Vocabulary",
+    "lede": "Choose the vocabulary that matches your learning goal. Each track opens the Vocabulary section on the Subjects page.",
+    "quranic": {
+      "title": "Quranic Arabic Vocabulary",
+      "subtitle": "Understand the words of the Qur’an",
+      "description": "Practise words and expressions found in the Qur’an, with meanings and Quranic context as the vocabulary collection grows.",
+      "tags": {
+        "words": "Quranic words",
+        "meanings": "Meanings",
+        "references": "Quran references"
+      },
+      "cta": "Explore Quranic Vocabulary"
+    },
+    "modern": {
+      "title": "Modern Arabic Vocabulary",
+      "subtitle": "Build contemporary Arabic vocabulary",
+      "description": "Practise Modern Standard Arabic words for reading, writing, and everyday communication, with practical examples as they are added.",
+      "tags": {
+        "msa": "Modern Standard Arabic",
+        "everyday": "Everyday words",
+        "examples": "Examples"
+      },
+      "cta": "Explore Modern Vocabulary"
+    },
+    "note": "Both the Arabic Vocabulary and Surah Quiz buttons lead to self-learning tracks. For challenges, go to the <link>Challenges</link> page."
+  },
+  "noDonations": {
+    "title": "No Donations & Charity",
+    "body": "IQRA and KALAM apps are built without charity, zakat, or donations – a practice aligned with the true Sunnah of the Noble Prophets, and the Righteous.",
+    "verse": "قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ",
+    "translation": "Say, \"I do not ask you for this any payment, and I am not of the pretentious\" — Surah Sad 38:86."
+  },
+  "legacy": {
+    "title": "Welcome to the Islamic Knowledge Hub",
+    "subtitle": "Explore and enhance your understanding of Islam through our interactive learning and gaming.",
+    "learn": {
+      "title": "IQRA Learning Mode",
+      "description": "Learn at your own pace with our comprehensive Islamic knowledge quiz system",
+      "body": "The IQRA learning mode provides a structured approach to learning about various aspects of Islam. Test your knowledge, learn from explanations, and track your progress across different subjects.",
+      "p1": "Multiple difficulty levels",
+      "p2": "Detailed explanations for each answer",
+      "p3": "Track your learning progress",
+      "p4": "Covers over 30 Islamic knowledge subjects",
+      "p5": "Introduced interactive Surah quizzes and dedicated Tamil sections",
+      "cta": "Start Learning"
+    },
+    "challenge": {
+      "title": "IQRA Challenge Mode",
+      "description": "Test your knowledge and compete with others in timed challenges",
+      "body": "The IQRA challenge mode puts your Islamic knowledge to the test with timed quizzes and competitive leaderboards. Challenge yourself and others to see who has the best understanding of Islamic topics.",
+      "p1": "Timed challenges for added pressure",
+      "p2": "Compete on global leaderboards",
+      "p3": "Earn badges and achievements",
+      "p4": "Special themed challenges",
+      "cta": "Enter Challenges"
+    }
+  }
+}
