@@ -8,6 +8,7 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { AuthProvider } from "@/contexts/auth-context"
 import I18nProvider from "@/components/i18n/i18n-provider"
+import TranslationNotice from "@/components/i18n/translation-notice"
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -128,6 +129,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
+          <TranslationNotice />
         </AuthProvider>
         </I18nProvider>
           </ThemeProvider>

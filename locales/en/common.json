@@ -131,5 +131,12 @@
   },
   "verse": {
     "credit": "অনুবাদ: ড. আবু বকর মুহাম্মাদ যাকারিয়া — QuranEnc.com"
+  },
+  "notice": {
+    "label": "Translation in progress",
+    "title": "We are putting translations in place.",
+    "body": "Some text may still be in English. We fix any mistakes we find or that you report.",
+    "report": "Report a mistake",
+    "minimize": "Minimize"
   }
 }
