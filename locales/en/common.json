@@ -22,6 +22,7 @@
     "about": "About",
     "contribute": "Contribute",
     "github": "GitHub",
+    "translations": "Help check translations",
     "aiCredits": "Built with AI assistance – see credits",
     "navLabel": "Footer",
     "copyright": "© {{year}} IQRA"
@@ -142,6 +143,7 @@
     "title": "We are putting translations in place.",
     "body": "Some text may still be in English. We fix any mistakes we find or that you report.",
     "report": "Report a mistake",
+    "check": "Help check translations",
     "minimize": "Minimize"
   },
   "notFound": {

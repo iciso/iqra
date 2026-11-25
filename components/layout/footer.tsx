@@ -9,6 +9,7 @@ const linkClass =
 const FOOTER_LINKS = [
   { href: "https://creativecommons.org/licenses/by/4.0/", key: "footer.license", external: true },
   { href: "/about", key: "footer.about", external: false },
+  { href: "/translations", key: "footer.translations", external: false },
   { href: "https://github.com/iciso/iqra/blob/main/contribute.md", key: "footer.contribute", external: true },
   { href: "https://github.com/iciso/iqra", key: "footer.github", external: true },
 ]

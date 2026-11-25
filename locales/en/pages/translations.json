@@ -1,0 +1,18 @@
+{
+  "title": "Help check our translations",
+  "intro": "We translated the IQRA quizzes into Bangla and Tamil with care. Scholars and readers who know these languages help us make sure every word is right.",
+  "home": "Home",
+  "howTitle": "How to help",
+  "step1": "Download a sheet for your language: one subject, or all of them in one file.",
+  "step2": "Open it in Excel or Google Sheets. Read the English and the translation side by side.",
+  "step3": "Where the translation is wrong or missing, type the right text in the <yellow>yellow correction column</yellow>. Put any comment in reviewer_note. Do not change the other columns.",
+  "step4": "Send the file back to the IQRA team by email or WhatsApp. You will find how to reach us on the <about>About page</about>.",
+  "downloadAll": "Download all subjects",
+  "downloadAllHint": "One Excel file, one tab for each of the {{n}} subjects.",
+  "awaitingTitle": "Waiting for scholar review",
+  "awaitingLede": "Players do not see these subjects in this language until a scholar has checked them.",
+  "othersTitle": "Other subjects",
+  "othersLede": "Already shown to players. Corrections are still welcome.",
+  "download": "Download",
+  "downloadOne": "Download the {{name}} sheet"
+}

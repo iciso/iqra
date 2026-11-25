@@ -1,10 +1,14 @@
 "use client"
 
+import Link from "next/link"
 import { X } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useTranslationNotice } from "@/hooks/use-translation-notice"
 
 const REPORT_URL = "https://github.com/iciso/iqra/issues/new?title=Translation%20mistake"
+
+const noticeLinkClass =
+  "inline-flex min-h-11 items-center text-sm font-medium text-green-800 underline underline-offset-4 hover:text-green-950 dark:text-green-300 dark:hover:text-green-100"
 
 /** Small corner card telling Bangla and Tamil readers that translation is still under way. */
 const TranslationNotice = () => {
@@ -40,14 +44,14 @@ const TranslationNotice = () => {
       </p>
       <p className="mt-2 font-heading text-base font-bold leading-snug">{t("notice.title")}</p>
       <p className="mt-1 text-sm leading-relaxed text-green-900 dark:text-green-100">{t("notice.body")}</p>
-      <a
-        href={REPORT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-green-800 underline underline-offset-4 hover:text-green-950 dark:text-green-300 dark:hover:text-green-100"
-      >
-        {t("notice.report")}
-      </a>
+      <div className="mt-3 flex flex-wrap gap-x-4">
+        <a href={REPORT_URL} target="_blank" rel="noopener noreferrer" className={noticeLinkClass}>
+          {t("notice.report")}
+        </a>
+        <Link href="/translations" className={noticeLinkClass}>
+          {t("notice.check")}
+        </Link>
+      </div>
       <button
         type="button"
         aria-expanded={true}

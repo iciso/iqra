@@ -42,11 +42,18 @@ pnpm content:check               # en matches the data; ids, option counts, stat
 
 ## Scholar review
 
+**From the site (Excel):** the page `/translations` (linked from the footer and from the "translation in progress" corner notice) lists every subject for Bangla and Tamil, the hidden ones first under "Waiting for scholar review". Each link downloads an `.xlsx` from `/api/review-sheet?lng=bn|ta&cat=<category>|all`, built on each request from `locales/en` and `locales/<lng>`, so it always matches the live text. `cat=all` is one workbook with one tab per subject, hidden subjects first with a red tab. Layout (`lib/review-sheet/sheet.ts`): green bold header, wrapped cells, yellow `correction` column, frozen at D2, filter on the header. This is the file to hand a scholar.
+
+**From the command line (CSV):**
+
 1. `pnpm review:export bn salah` makes `review/bn/salah.csv` (leave the category out for all of them; `review/bn/ALL.csv` always holds everything). `review/` is not in git.
 2. Open the CSV in Excel or Google Sheets. Bangla shows correctly.
+
+Either way:
+
 3. Read the `english` and `translation` columns. Where the translation is wrong or empty, type the right text in `correction`. Use `reviewer_note` for comments. Do not change the other columns.
 4. Send the file back.
-5. `pnpm review:import bn review/bn/salah.csv` writes every non-empty `correction` into the JSON. A row whose category, id or field does not exist is rejected and listed (the good rows are still written; the command exits 1).
+5. `pnpm review:import bn <file.xlsx or file.csv>` writes every non-empty `correction` into the JSON. Every tab of an `.xlsx` is read. A row whose category, id or field does not exist is rejected and listed (the good rows are still written; the command exits 1). When the `category` column is missing, the CSV file name or the Excel tab name is used.
 6. When the scholar is happy: `pnpm review:approve bn salah`. For a hidden subject this is what makes it appear.
 
 Rows: one per field. `field` is `question`, `option1`..`option4` or `explanation`.
