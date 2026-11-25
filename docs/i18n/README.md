@@ -23,7 +23,7 @@ Each language has one file per quiz category: `locales/<lng>/<category>.json`.
 - `approved`: a scholar checked it. Safe to show.
 - `hidden`: not shown to players in this language until a scholar approves it.
 
-New languages start `hidden` for these sensitive subjects, because a wrong word there can mislead: **aqeedah, shirk, fiqh, bidah, gender, lgbtq, music, dating, marriage, madhab, inheritance**. Everything else starts at `review`.
+New languages start `hidden` for these sensitive subjects, because a wrong word there can mislead: **aqeedah, shirk, fiqh, bidah, gender, lgbtq, music, dating, marriage, madhab, inheritance, imagery, islamic-medical-ethics, riba, islamic-finance, takaful, crypto**. Everything else starts at `review`.
 
 ## Add a language
 
