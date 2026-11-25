@@ -12,14 +12,6 @@ import {
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import IqraHero from "@/components/home/iqra-hero"
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
@@ -29,10 +21,6 @@ import type { ChallengePlayersResult } from "@/lib/server/leaderboard-data"
 
 // One card family for every homepage card (Surah-Quiz, Players, Vocabulary, No Donations).
 const cardClass = "w-full rounded-xl border bg-card shadow-sm"
-// Same tinted square as components/shared/feature-card.tsx.
-const iconSquareClass =
-  "mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 sm:h-14 sm:w-14 dark:bg-green-900/40"
-const titleClass = "text-xl text-green-800 sm:text-2xl dark:text-green-400"
 // Smaller muted note text (Rafique's notes under Surah-Quiz and Vocabulary).
 const noteClass = "text-sm leading-relaxed text-muted-foreground"
 // ONE solid button per card; any other button on the card is the outline one.
@@ -81,7 +69,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
       <div className="mx-auto flex w-full max-w-6xl flex-grow flex-col px-4 sm:px-6">
         {/* Rafique's Surah-Quiz and IQRA Players cards. */}
         <section aria-label={t("surah.sectionLabel")} className={sectionClass}>
-          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
             <FeatureCard
               data-reveal=""
               icon={<BookOpen aria-hidden="true" />}
@@ -95,6 +83,7 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                 t("surah.tags.hadeeth"),
                 t("surah.tags.seerah"),
               ]}
+              actionsLayout="stack"
               actions={
                 <>
                   {/* KALAM is a separate site, so this one still opens in a new tab. */}
@@ -119,18 +108,20 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
             </FeatureCard>
 
             {/* Live players: the top 6 as one plain list (no inner scroll); every player is on /challenges. */}
-            <Card data-reveal="" data-players-card="" className={`flex flex-col ${cardClass}`}>
-              <CardHeader className="pb-2 text-center">
-                <div className={iconSquareClass}>
-                  <Users className="h-6 w-6 text-green-600 sm:h-7 sm:w-7" />
-                </div>
-                <CardTitle className={titleClass}>{t("players.title")}</CardTitle>
-                <CardDescription className="text-sm sm:text-base">
-                  {t("players.subtitle")}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="flex-1">
+            <FeatureCard
+              data-reveal=""
+              data-players-card=""
+              icon={<Users aria-hidden="true" />}
+              title={t("players.title")}
+              subtitle={t("players.subtitle")}
+              actionsLayout="stack"
+              actions={
+                <Button asChild className={primaryButtonClass}>
+                  <Link href="/challenges">{t("players.viewAll")}</Link>
+                </Button>
+              }
+            >
+              <div className="text-left">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b pb-2">
                   <p className="flex items-center gap-2 text-sm font-medium text-green-800 dark:text-green-400">
                     <Trophy className="h-4 w-4" />
@@ -139,14 +130,8 @@ export default function HomeClient({ initialPlayers }: { initialPlayers?: Challe
                   <p className="text-xs text-muted-foreground">{t("players.ranking")}</p>
                 </div>
                 <SimpleTopPlayers initialPlayers={initialPlayers} compact limit={6} />
-              </CardContent>
-
-              <CardFooter className="flex justify-center">
-                <Button asChild className={primaryButtonClass}>
-                  <Link href="/challenges">{t("players.viewAll")}</Link>
-                </Button>
-              </CardFooter>
-            </Card>
+              </div>
+            </FeatureCard>
           </div>
         </section>
 

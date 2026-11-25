@@ -34,6 +34,9 @@ type FeatureCardProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
   eyebrow?: ReactNode
   /** Footer buttons. */
   actions?: ReactNode
+  /** "inline": buttons sit in a row and wrap. "stack": one centred column, every button the
+   *  same width, pinned to the card bottom so cards side by side share one button line. */
+  actionsLayout?: "inline" | "stack"
   /** Anything else for the body (a list, a note); it goes after the tags. */
   children?: ReactNode
   align?: "center" | "left"
@@ -52,6 +55,7 @@ const FeatureCard = ({
   tags,
   eyebrow,
   actions,
+  actionsLayout = "inline",
   children,
   align = "center",
   tone = "green",
@@ -82,7 +86,7 @@ const FeatureCard = ({
       )}
     >
 
-      <CardHeader className={cn("pb-2", centered && "items-center text-center")}>
+      <CardHeader className={cn("pb-4", centered && "items-center text-center")}>
         {eyebrow ? (
           <div className={cn("mb-2 flex w-full items-center gap-3", centered ? "flex-col" : "justify-between")}>
             <Badge className={t.badge}>{eyebrow}</Badge>
@@ -111,7 +115,12 @@ const FeatureCard = ({
         {children}
       </CardContent>
 
-      {actions && (
+      {actions && actionsLayout === "stack" && (
+        <CardFooter className="mt-auto justify-center">
+          <div className="flex w-full max-w-sm flex-col gap-3 [&>*]:w-full">{actions}</div>
+        </CardFooter>
+      )}
+      {actions && actionsLayout === "inline" && (
         <CardFooter
           className={cn(
             "flex flex-col gap-3",
