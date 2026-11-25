@@ -1,6 +1,6 @@
 import { createInstance, type i18n as I18n } from "i18next"
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/i18n/config"
-import { resources } from "@/lib/i18n/resources"
+import { PAGE_NAMESPACES, resources } from "@/lib/i18n/resources"
 
 /**
  * One i18next instance fixed to ONE language. Bundled resources + initAsync: false make it
@@ -15,7 +15,7 @@ export function createI18n(lng: Locale): I18n {
     fallbackLng: DEFAULT_LOCALE,
     supportedLngs: [...LOCALES],
     defaultNS: "common",
-    ns: ["common"],
+    ns: ["common", ...PAGE_NAMESPACES],
     initAsync: false,
     interpolation: { escapeValue: false },
     react: { useSuspense: false },

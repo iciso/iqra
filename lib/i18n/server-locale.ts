@@ -2,7 +2,7 @@ import "server-only"
 import { cookies } from "next/headers"
 import { createInstance, type TFunction } from "i18next"
 import { DEFAULT_LOCALE, LOCALE_COOKIE, LOCALES, isLocale, type Locale } from "@/lib/i18n/config"
-import { resources } from "@/lib/i18n/resources"
+import { PAGE_NAMESPACES, resources } from "@/lib/i18n/resources"
 
 /**
  * The language saved in the `iqra-lang` cookie, else English.
@@ -24,7 +24,7 @@ export function getServerT(lng: Locale): TFunction {
     fallbackLng: DEFAULT_LOCALE,
     supportedLngs: [...LOCALES],
     defaultNS: "common",
-    ns: ["common"],
+    ns: ["common", ...PAGE_NAMESPACES],
     initAsync: false,
     interpolation: { escapeValue: false },
   })
