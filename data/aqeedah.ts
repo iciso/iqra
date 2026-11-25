@@ -8,6 +8,7 @@ const aqeedahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "aqeedah-easy-1",
         question: "How many pillars of Iman (faith) are there in Islam?",
         options: ["Four", "Five", "Six", "Seven"],
         correctAnswer: "Six",
@@ -15,6 +16,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim: Hadith of Jibril"
       },
       {
+        id: "aqeedah-easy-2",
         question: "What is the Arabic term for the Islamic creed or core beliefs?",
         options: ["Fiqh", "Aqeedah", "Tafsir", "Seerah"],
         correctAnswer: "Aqeedah",
@@ -22,6 +24,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim: Hadith of Jibril"
       },
       {
+        id: "aqeedah-easy-3",
         question: "What is the first pillar of Iman?",
         options: ["Belief in Angels", "Belief in Allah", "Belief in the Last Day", "Belief in the Books"],
         correctAnswer: "Belief in Allah",
@@ -29,6 +32,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim: Hadith of Jibril"
       },
       {
+        id: "aqeedah-easy-4",
         question: "What does Tawhid mean?",
         options: ["Prayer", "Oneness of Allah", "Charity", "Fasting"],
         correctAnswer: "Oneness of Allah",
@@ -36,6 +40,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ikhlas 112:1-4"
       },
       {
+        id: "aqeedah-easy-5",
         question: "Which Surah is often called the Surah of Tawhid?",
         options: ["Surah Al-Fatihah", "Surah Al-Ikhlas", "Surah Al-Baqarah", "Surah An-Nas"],
         correctAnswer: "Surah Al-Ikhlas",
@@ -43,6 +48,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ikhlas 112:1-4"
       },
       {
+        id: "aqeedah-easy-6",
         question: "What is the opposite of Tawhid?",
         options: ["Iman", "Shirk", "Ihsan", "Taqwa"],
         correctAnswer: "Shirk",
@@ -50,6 +56,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:48"
       },
       {
+        id: "aqeedah-easy-7",
         question: "From what were the angels created?",
         options: ["Clay", "Fire", "Light", "Water"],
         correctAnswer: "Light",
@@ -57,6 +64,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "aqeedah-easy-8",
         question: "Which angel brought revelation (Wahy) to the Prophets?",
         options: ["Mika'il", "Israfil", "Jibril", "Malik"],
         correctAnswer: "Jibril",
@@ -64,6 +72,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:97"
       },
       {
+        id: "aqeedah-easy-9",
         question: "Which angel will blow the Trumpet on the Day of Judgment?",
         options: ["Jibril", "Mika'il", "Israfil", "Izra'il"],
         correctAnswer: "Israfil",
@@ -71,6 +80,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "aqeedah-easy-10",
         question: "How many primary revealed books are commonly mentioned in Islamic belief?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Four",
@@ -78,6 +88,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:285"
       },
       {
+        id: "aqeedah-easy-11",
         question: "To which Prophet was the Tawrah revealed?",
         options: ["Ibrahim (AS)", "Musa (AS)", "Dawud (AS)", "Isa (AS)"],
         correctAnswer: "Musa (AS)",
@@ -85,6 +96,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ma'idah 5:44"
       },
       {
+        id: "aqeedah-easy-12",
         question: "To which Prophet was the Zabur revealed?",
         options: ["Musa (AS)", "Dawud (AS)", "Isa (AS)", "Ibrahim (AS)"],
         correctAnswer: "Dawud (AS)",
@@ -92,6 +104,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:163"
       },
       {
+        id: "aqeedah-easy-13",
         question: "To which Prophet was the Injeel revealed?",
         options: ["Musa (AS)", "Dawud (AS)", "Isa (AS)", "Muhammad ﷺ"],
         correctAnswer: "Isa (AS)",
@@ -99,6 +112,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ma'idah 5:46"
       },
       {
+        id: "aqeedah-easy-14",
         question: "Which book is the final revelation from Allah?",
         options: ["Tawrah", "Zabur", "Injeel", "Quran"],
         correctAnswer: "Quran",
@@ -106,6 +120,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ahzab 33:40"
       },
       {
+        id: "aqeedah-easy-15",
         question: "Who is the last and final Messenger of Allah?",
         options: ["Isa (AS)", "Musa (AS)", "Ibrahim (AS)", "Muhammad ﷺ"],
         correctAnswer: "Muhammad ﷺ",
@@ -113,6 +128,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ahzab 33:40"
       },
       {
+        id: "aqeedah-easy-16",
         question: "How many Prophets are mentioned by name in the Quran?",
         options: ["20", "25", "30", "35"],
         correctAnswer: "25",
@@ -120,6 +136,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-An'am 6:83-86"
       },
       {
+        id: "aqeedah-easy-17",
         question: "What is the Arabic term for the Day of Judgment?",
         options: ["Yawm al-Qiyamah", "Laylatul Qadr", "Yawm al-Arafah", "Eid al-Fitr"],
         correctAnswer: "Yawm al-Qiyamah",
@@ -127,6 +144,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Qiyamah 75:1"
       },
       {
+        id: "aqeedah-easy-18",
         question: "What does belief in Qadr mean?",
         options: ["Belief in angels", "Belief in divine decree", "Belief in the books", "Belief in the Prophets"],
         correctAnswer: "Belief in divine decree",
@@ -134,6 +152,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim: Hadith of Jibril"
       },
       {
+        id: "aqeedah-easy-19",
         question: "Which of the following is NOT one of the six pillars of Iman?",
         options: ["Belief in Allah", "Belief in Angels", "Belief in the Five Pillars of Islam", "Belief in Qadr"],
         correctAnswer: "Belief in the Five Pillars of Islam",
@@ -141,6 +160,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim: Hadith of Jibril"
       },
       {
+        id: "aqeedah-easy-20",
         question: "Who records the deeds of human beings?",
         options: ["Jibril and Mika'il", "Kiraman Katibin", "Israfil and Malik", "Munkar and Nakir"],
         correctAnswer: "Kiraman Katibin",
@@ -148,6 +168,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Infitar 82:10-12"
       },
       {
+        id: "aqeedah-easy-21",
         question: "What is the name of the angel who takes the souls at death?",
         options: ["Jibril", "Malik", "Izra'il (Angel of Death)", "Ridwan"],
         correctAnswer: "Izra'il (Angel of Death)",
@@ -155,6 +176,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah As-Sajdah 32:11"
       },
       {
+        id: "aqeedah-easy-22",
         question: "What is the main message that all Prophets brought?",
         options: ["Build nations", "Worship Allah alone", "Accumulate wealth", "Perform miracles only"],
         correctAnswer: "Worship Allah alone",
@@ -162,6 +184,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nahl 16:36"
       },
       {
+        id: "aqeedah-easy-23",
         question: "What is the Shahadah?",
         options: ["The declaration of faith", "The daily prayer", "The pilgrimage", "The fast of Ramadan"],
         correctAnswer: "The declaration of faith",
@@ -169,6 +192,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari"
       },
       {
+        id: "aqeedah-easy-24",
         question: "Which of the following is a Name of Allah meaning 'The Most Merciful'?",
         options: ["Al-Malik", "Ar-Rahman", "Al-Aziz", "Al-Hakim"],
         correctAnswer: "Ar-Rahman",
@@ -176,6 +200,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Fatihah 1:1"
       },
       {
+        id: "aqeedah-easy-25",
         question: "Do angels have free will like humans?",
         options: ["Yes, they can choose to disobey", "No, they never disobey Allah", "Only some angels do", "They have limited free will"],
         correctAnswer: "No, they never disobey Allah",
@@ -183,6 +208,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tahrim 66:6"
       },
       {
+        id: "aqeedah-easy-26",
         question: "What is the belief that Allah has no beginning and no end called in relation to His nature?",
         options: ["He is Eternal", "He is Created", "He is Limited", "He is Dependent"],
         correctAnswer: "He is Eternal",
@@ -190,6 +216,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Hadid 57:3"
       },
       {
+        id: "aqeedah-easy-27",
         question: "Which Prophet is known as the father of the Prophets (Abul Anbiya)?",
         options: ["Nuh (AS)", "Ibrahim (AS)", "Musa (AS)", "Adam (AS)"],
         correctAnswer: "Ibrahim (AS)",
@@ -197,6 +224,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Anbiya 21:51-73"
       },
       {
+        id: "aqeedah-easy-28",
         question: "What happens on the Day of Judgment according to Islamic belief?",
         options: ["Everyone is rewarded equally", "People are held accountable for their deeds", "The world continues as normal", "Only Prophets are judged"],
         correctAnswer: "People are held accountable for their deeds",
@@ -204,6 +232,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Az-Zalzalah 99:7-8"
       },
       {
+        id: "aqeedah-easy-29",
         question: "What is Paradise called in Arabic?",
         options: ["Jahannam", "Jannah", "Barzakh", "Siraat"],
         correctAnswer: "Jannah",
@@ -211,6 +240,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:25"
       },
       {
+        id: "aqeedah-easy-30",
         question: "What is Hellfire called in Arabic?",
         options: ["Jannah", "Jahannam", "Araf", "Mizan"],
         correctAnswer: "Jahannam",
@@ -218,6 +248,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:24"
       },
       {
+        id: "aqeedah-easy-31",
         question: "Who is the first Prophet in Islam?",
         options: ["Nuh (AS)", "Ibrahim (AS)", "Adam (AS)", "Idris (AS)"],
         correctAnswer: "Adam (AS)",
@@ -225,6 +256,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:30-39"
       },
       {
+        id: "aqeedah-easy-32",
         question: "What must a Muslim believe about all the Prophets?",
         options: ["Only Muhammad ﷺ is true", "All Prophets were truthful and sent by Allah", "Some Prophets made mistakes in their message", "Prophets are equal to angels"],
         correctAnswer: "All Prophets were truthful and sent by Allah",
@@ -232,6 +264,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:285"
       },
       {
+        id: "aqeedah-easy-33",
         question: "What is the term for the unseen world that includes angels, jinn, and the Hereafter?",
         options: ["Al-Ghayb", "Ash-Shahadah", "Ad-Dunya", "Al-Akhirah only"],
         correctAnswer: "Al-Ghayb",
@@ -239,6 +272,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:3"
       },
       {
+        id: "aqeedah-easy-34",
         question: "Which of the following is a correct statement about Allah?",
         options: ["Allah has a son", "Allah is One and has no partners", "Allah needs helpers", "Allah resembles His creation"],
         correctAnswer: "Allah is One and has no partners",
@@ -246,6 +280,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ikhlas 112:1-4"
       },
       {
+        id: "aqeedah-easy-35",
         question: "What is the reward for those who believe in Allah and do righteous deeds?",
         options: ["Temporary success only", "Gardens of Paradise", "No specific reward", "Only worldly benefits"],
         correctAnswer: "Gardens of Paradise",
@@ -253,6 +288,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:25"
       },
       {
+        id: "aqeedah-easy-36",
         question: "In the Hadith of Jibril, who asked the Prophet ﷺ about Iman?",
         options: ["Angel Mika'il", "Angel Jibril in the form of a man", "A companion named Umar only", "Angel Israfil"],
         correctAnswer: "Angel Jibril in the form of a man",
@@ -262,6 +298,7 @@ const aqeedahCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "aqeedah-intermediate-1",
         question: "Tawhid is commonly divided by scholars into how many main categories?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Three",
@@ -269,6 +306,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical works of Aqeedah (e.g., Kitab at-Tawhid)"
       },
       {
+        id: "aqeedah-intermediate-2",
         question: "What does Tawhid ar-Rububiyyah affirm?",
         options: ["Allah alone deserves worship", "Allah is the sole Creator, Sustainer, and Controller", "Allah's Names must be affirmed without distortion", "Allah has a physical form"],
         correctAnswer: "Allah is the sole Creator, Sustainer, and Controller",
@@ -276,6 +314,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Fatihah 1:2"
       },
       {
+        id: "aqeedah-intermediate-3",
         question: "What does Tawhid al-Uluhiyyah (or Tawhid al-Ibadah) require?",
         options: ["Believing Allah created everything", "Directing all acts of worship to Allah alone", "Affirming Allah's Names only", "Denying Allah's Attributes"],
         correctAnswer: "Directing all acts of worship to Allah alone",
@@ -283,6 +322,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-An'am 6:162-163"
       },
       {
+        id: "aqeedah-intermediate-4",
         question: "What is the correct approach of Ahlus-Sunnah regarding Allah's Names and Attributes?",
         options: ["Deny them completely", "Affirm them as they came without likening to creation or distorting", "Interpret them all metaphorically", "Compare them to human attributes"],
         correctAnswer: "Affirm them as they came without likening to creation or distorting",
@@ -290,6 +330,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Ash-Shura 42:11"
       },
       {
+        id: "aqeedah-intermediate-5",
         question: "What is major shirk (shirk akbar)?",
         options: ["Showing off in good deeds", "Associating partners with Allah in a way that takes one out of Islam", "Swearing by other than Allah", "Wearing amulets without belief"],
         correctAnswer: "Associating partners with Allah in a way that takes one out of Islam",
@@ -297,6 +338,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:48"
       },
       {
+        id: "aqeedah-intermediate-6",
         question: "What is minor shirk (shirk asghar)?",
         options: ["Worshipping idols", "Actions that diminish pure Tawhid but do not expel from Islam, such as showing off (riya)", "Denying the Quran", "Rejecting the Prophets"],
         correctAnswer: "Actions that diminish pure Tawhid but do not expel from Islam, such as showing off (riya)",
@@ -304,6 +346,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Musnad Ahmad"
       },
       {
+        id: "aqeedah-intermediate-7",
         question: "Which angel is associated with provision and rain?",
         options: ["Jibril", "Mika'il", "Israfil", "Malik"],
         correctAnswer: "Mika'il",
@@ -311,6 +354,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical tafsir works"
       },
       {
+        id: "aqeedah-intermediate-8",
         question: "Who is the guardian of Hellfire?",
         options: ["Ridwan", "Malik", "Munkar", "Nakir"],
         correctAnswer: "Malik",
@@ -318,6 +362,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Az-Zukhruf 43:77"
       },
       {
+        id: "aqeedah-intermediate-9",
         question: "Who is the guardian of Paradise?",
         options: ["Malik", "Ridwan", "Israfil", "Jibril"],
         correctAnswer: "Ridwan",
@@ -325,6 +370,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical Islamic literature"
       },
       {
+        id: "aqeedah-intermediate-10",
         question: "What is the difference between a Nabi and a Rasul according to many scholars?",
         options: ["There is no difference", "A Rasul is sent with a new law or message; every Rasul is a Nabi but not every Nabi is a Rasul", "A Nabi is higher in rank", "Only Muhammad ﷺ was a Rasul"],
         correctAnswer: "A Rasul is sent with a new law or message; every Rasul is a Nabi but not every Nabi is a Rasul",
@@ -332,6 +378,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical works of Aqeedah"
       },
       {
+        id: "aqeedah-intermediate-11",
         question: "Who are the five Prophets of strong resolve (Ulul Azm)?",
         options: ["Adam, Nuh, Ibrahim, Musa, Isa", "Nuh, Ibrahim, Musa, Isa, Muhammad ﷺ", "Musa, Harun, Dawud, Sulayman, Isa", "Ibrahim, Ismail, Ishaq, Yaqub, Yusuf"],
         correctAnswer: "Nuh, Ibrahim, Musa, Isa, Muhammad ﷺ",
@@ -339,6 +386,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ahqaf 46:35"
       },
       {
+        id: "aqeedah-intermediate-12",
         question: "What must a Muslim believe regarding the previous scriptures?",
         options: ["They remain completely unchanged and should be followed today", "They were originally from Allah but have been altered; the Quran is the final authority", "They are entirely fabricated", "Only the Injeel is still valid"],
         correctAnswer: "They were originally from Allah but have been altered; the Quran is the final authority",
@@ -346,6 +394,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ma'idah 5:48"
       },
       {
+        id: "aqeedah-intermediate-13",
         question: "What is the belief about the Quran's nature according to Ahlus-Sunnah?",
         options: ["The Quran is created", "The Quran is the uncreated Speech of Allah", "The Quran is only the meaning, not the words", "The Quran is a human composition"],
         correctAnswer: "The Quran is the uncreated Speech of Allah",
@@ -353,6 +402,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tawbah 9:6"
       },
       {
+        id: "aqeedah-intermediate-14",
         question: "What are the four levels of belief in Qadr according to classical scholars?",
         options: ["Knowledge, Writing, Will, Creation", "Faith, Action, Intention, Result", "Past, Present, Future, Eternal", "Good, Bad, Neutral, Mixed"],
         correctAnswer: "Knowledge, Writing, Will, Creation",
@@ -360,6 +410,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical Aqeedah texts (e.g., Ibn Uthaymeen)"
       },
       {
+        id: "aqeedah-intermediate-15",
         question: "What is the Preserved Tablet called in Arabic?",
         options: ["Al-Lawh al-Mahfuz", "Al-Arsh", "Al-Kursi", "As-Siraat"],
         correctAnswer: "Al-Lawh al-Mahfuz",
@@ -367,6 +418,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Buruj 85:21-22"
       },
       {
+        id: "aqeedah-intermediate-16",
         question: "What is the questioning in the grave conducted by?",
         options: ["Jibril and Mika'il", "Munkar and Nakir", "Malik and Ridwan", "Israfil and Izra'il"],
         correctAnswer: "Munkar and Nakir",
@@ -374,6 +426,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi"
       },
       {
+        id: "aqeedah-intermediate-17",
         question: "What is the bridge that will be laid over Hellfire on the Day of Judgment?",
         options: ["Al-Mizan", "As-Siraat", "Al-Hawd", "Al-Arsh"],
         correctAnswer: "As-Siraat",
@@ -381,6 +434,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-intermediate-18",
         question: "What is Al-Mizan on the Day of Judgment?",
         options: ["The bridge over Hell", "The Scale that weighs deeds", "The Pool of the Prophet ﷺ", "The Throne of Allah"],
         correctAnswer: "The Scale that weighs deeds",
@@ -388,6 +442,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Anbiya 21:47"
       },
       {
+        id: "aqeedah-intermediate-19",
         question: "What is Al-Hawd?",
         options: ["The Scale of deeds", "The Pool of the Prophet ﷺ from which believers will drink", "The bridge over Hell", "The Preserved Tablet"],
         correctAnswer: "The Pool of the Prophet ﷺ from which believers will drink",
@@ -395,6 +450,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-intermediate-20",
         question: "What is the belief regarding seeing Allah in the Hereafter according to Ahlus-Sunnah?",
         options: ["It is impossible", "The believers will see Allah in Paradise", "Only Prophets will see Allah", "It is only a metaphorical vision"],
         correctAnswer: "The believers will see Allah in Paradise",
@@ -402,6 +458,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Qiyamah 75:22-23; Sahih Bukhari"
       },
       {
+        id: "aqeedah-intermediate-21",
         question: "What is the status of the Companions (Sahabah) in the creed of Ahlus-Sunnah?",
         options: ["They are ordinary people with no special status", "They are the best of generations and must be respected and loved", "Only a few of them are reliable", "They should be criticized for their differences"],
         correctAnswer: "They are the best of generations and must be respected and loved",
@@ -409,6 +466,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tawbah 9:100"
       },
       {
+        id: "aqeedah-intermediate-22",
         question: "What is the correct belief about the intercession (Shafa'ah) of the Prophet ﷺ?",
         options: ["There is no intercession", "The Prophet ﷺ will intercede by Allah's permission on the Day of Judgment", "Anyone can intercede freely", "Only angels intercede"],
         correctAnswer: "The Prophet ﷺ will intercede by Allah's permission on the Day of Judgment",
@@ -416,6 +474,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:255; Sahih Bukhari"
       },
       {
+        id: "aqeedah-intermediate-23",
         question: "What is the term for the period between death and the Day of Resurrection?",
         options: ["Al-Qiyamah", "Al-Barzakh", "Al-Mahshar", "As-Siraat"],
         correctAnswer: "Al-Barzakh",
@@ -423,6 +482,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Mu'minun 23:100"
       },
       {
+        id: "aqeedah-intermediate-24",
         question: "Which of the following is an example of major shirk?",
         options: ["Showing off in prayer", "Calling upon a deceased saint for help", "Swearing by one's parents", "Wearing a ring for beauty"],
         correctAnswer: "Calling upon a deceased saint for help",
@@ -430,6 +490,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Jinn 72:18-20"
       },
       {
+        id: "aqeedah-intermediate-25",
         question: "What does the Name of Allah 'Al-Quddus' mean?",
         options: ["The Most Merciful", "The Holy, Free from all imperfection", "The All-Powerful", "The All-Knowing"],
         correctAnswer: "The Holy, Free from all imperfection",
@@ -437,6 +498,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Hashr 59:23"
       },
       {
+        id: "aqeedah-intermediate-26",
         question: "What is the correct belief about human free will in relation to Qadr?",
         options: ["Humans have no free will at all", "Humans have free will and are responsible for their choices, while Allah's decree encompasses all", "Qadr means humans are forced in every action", "Free will cancels out Qadr"],
         correctAnswer: "Humans have free will and are responsible for their choices, while Allah's decree encompasses all",
@@ -444,6 +506,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Kahf 18:29"
       },
       {
+        id: "aqeedah-intermediate-27",
         question: "What is the meaning of 'La ilaha illallah'?",
         options: ["There is no creator except Allah", "There is no god truly worthy of worship except Allah", "Allah is the greatest", "Muhammad is the Messenger"],
         correctAnswer: "There is no god truly worthy of worship except Allah",
@@ -451,6 +514,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari"
       },
       {
+        id: "aqeedah-intermediate-28",
         question: "Which of the following is a condition for the acceptance of the Shahadah?",
         options: ["Simply uttering the words without understanding", "Knowledge, certainty, sincerity, truthfulness, love, submission, and acceptance", "Being born into a Muslim family only", "Performing Hajj immediately"],
         correctAnswer: "Knowledge, certainty, sincerity, truthfulness, love, submission, and acceptance",
@@ -458,6 +522,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical works on Tawhid"
       },
       {
+        id: "aqeedah-intermediate-29",
         question: "What is the belief of Ahlus-Sunnah regarding the Attributes of Allah such as His Hand, Face, and Rising over the Throne?",
         options: ["They are denied", "They are affirmed as real without asking how (bila kayf) and without likening to creation", "They are purely metaphorical", "They mean Allah has a body like humans"],
         correctAnswer: "They are affirmed as real without asking how (bila kayf) and without likening to creation",
@@ -465,6 +530,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Taha 20:5; Surah Al-Fath 48:10"
       },
       {
+        id: "aqeedah-intermediate-30",
         question: "What is the Throne of Allah called in Arabic?",
         options: ["Al-Kursi", "Al-Arsh", "Al-Lawh", "Al-Mizan"],
         correctAnswer: "Al-Arsh",
@@ -472,6 +538,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Taha 20:5"
       },
       {
+        id: "aqeedah-intermediate-31",
         question: "What is Al-Kursi?",
         options: ["The Throne", "The Footstool of Allah, which extends over the heavens and earth", "The Preserved Tablet", "The Scale of deeds"],
         correctAnswer: "The Footstool of Allah, which extends over the heavens and earth",
@@ -479,6 +546,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:255"
       },
       {
+        id: "aqeedah-intermediate-32",
         question: "What is the correct belief about the jinn?",
         options: ["They do not exist", "They are a creation of Allah with free will, made from smokeless fire, and some are believers and some are not", "They are the same as angels", "They cannot harm humans"],
         correctAnswer: "They are a creation of Allah with free will, made from smokeless fire, and some are believers and some are not",
@@ -486,6 +554,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Jinn 72:1-15"
       },
       {
+        id: "aqeedah-intermediate-33",
         question: "What is the greatest sin in Islam?",
         options: ["Murder", "Shirk (associating partners with Allah)", "Lying", "Stealing"],
         correctAnswer: "Shirk (associating partners with Allah)",
@@ -493,6 +562,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:48"
       },
       {
+        id: "aqeedah-intermediate-34",
         question: "What is the term for the belief that faith increases with obedience and decreases with disobedience?",
         options: ["Iman is static", "Iman increases and decreases", "Iman is only in the heart", "Iman is only actions"],
         correctAnswer: "Iman increases and decreases",
@@ -500,6 +570,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Anfal 8:2"
       },
       {
+        id: "aqeedah-intermediate-35",
         question: "Who are the best of people after the Prophets according to Ahlus-Sunnah?",
         options: ["The scholars only", "The Companions of the Prophet ﷺ", "The later generations", "The rulers"],
         correctAnswer: "The Companions of the Prophet ﷺ",
@@ -507,6 +578,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari"
       },
       {
+        id: "aqeedah-intermediate-36",
         question: "What is the correct belief about the return of Isa (Jesus), peace be upon him?",
         options: ["He will not return", "He will return near the end of time, kill the Dajjal, and rule with justice", "He already returned", "He will return only as a spirit"],
         correctAnswer: "He will return near the end of time, kill the Dajjal, and rule with justice",
@@ -516,6 +588,7 @@ const aqeedahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "aqeedah-advanced-1",
         question: "What is the precise meaning of Tawhid al-Asma wa as-Sifat according to Ahlus-Sunnah?",
         options: ["Affirming Allah's Names and Attributes exactly as they appear in the texts, without tashbih, ta'til, takyif, or tahrif", "Interpreting all Attributes metaphorically", "Denying Attributes that seem anthropomorphic", "Affirming Attributes while likening them to creation"],
         correctAnswer: "Affirming Allah's Names and Attributes exactly as they appear in the texts, without tashbih, ta'til, takyif, or tahrif",
@@ -523,6 +596,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Ash-Shura 42:11; works of Ibn Taymiyyah"
       },
       {
+        id: "aqeedah-advanced-2",
         question: "What is the difference between the Will of Allah (Al-Iradah) that is Kawniyyah and Shar'iyyah?",
         options: ["There is no difference", "Kawniyyah is the universal creative will that always occurs; Shar'iyyah is the legislative will that Allah loves but may not occur if humans disobey", "Both always occur", "Shar'iyyah is only for Prophets"],
         correctAnswer: "Kawniyyah is the universal creative will that always occurs; Shar'iyyah is the legislative will that Allah loves but may not occur if humans disobey",
@@ -530,6 +604,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical Aqeedah explanations of Qadr"
       },
       {
+        id: "aqeedah-advanced-3",
         question: "What is the ruling on one who denies any of the six pillars of Iman?",
         options: ["He is a sinner but still a Muslim", "He has left the fold of Islam (committed kufr)", "He only needs to repent privately", "It depends on the scholar's opinion only"],
         correctAnswer: "He has left the fold of Islam (committed kufr)",
@@ -537,6 +612,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Consensus of Ahlus-Sunnah"
       },
       {
+        id: "aqeedah-advanced-4",
         question: "What is the correct understanding of Allah's Istiwa (rising) over the Throne?",
         options: ["It means Allah is sitting like a human", "It is a real attribute of Allah in a manner befitting His Majesty, without asking how", "It means Allah took control metaphorically", "It is denied entirely"],
         correctAnswer: "It is a real attribute of Allah in a manner befitting His Majesty, without asking how",
@@ -544,6 +620,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Taha 20:5"
       },
       {
+        id: "aqeedah-advanced-5",
         question: "What is the meaning of Allah's Ma'iyyah (being with His creation)?",
         options: ["Allah is physically mixed with creation", "Allah is with His creation by His knowledge, hearing, seeing, and power — a general and specific nearness", "Allah is only in the heavens", "Allah is everywhere in His Essence"],
         correctAnswer: "Allah is with His creation by His knowledge, hearing, seeing, and power — a general and specific nearness",
@@ -551,6 +628,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Hadid 57:4; Surah Al-Mujadilah 58:7"
       },
       {
+        id: "aqeedah-advanced-6",
         question: "What is the belief regarding the Speech of Allah (Kalamullah)?",
         options: ["It is created", "It is an eternal Attribute of Allah; He speaks when He wills with letters and sound as befitting Him", "It is only meanings without words", "It is limited to the Quran only"],
         correctAnswer: "It is an eternal Attribute of Allah; He speaks when He wills with letters and sound as befitting Him",
@@ -558,6 +636,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tawbah 9:6; works of Ahlus-Sunnah"
       },
       {
+        id: "aqeedah-advanced-7",
         question: "What is the status of one who commits major sins according to Ahlus-Sunnah?",
         options: ["He is a complete kafir", "He is a Muslim with deficient Iman; under Allah's will — He may forgive or punish him", "He is permanently in Hell", "He is equal to the Prophets"],
         correctAnswer: "He is a Muslim with deficient Iman; under Allah's will — He may forgive or punish him",
@@ -565,6 +644,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah An-Nisa 4:48 (exception for shirk); classical creeds"
       },
       {
+        id: "aqeedah-advanced-8",
         question: "What is the correct position on the Companions who fought each other (e.g., the events of the Fitnah)?",
         options: ["All of them were wrong", "We withhold from judging them, love them all, and believe they acted on ijtihad; the wrongdoer is forgiven", "Only one side was completely right and the other is cursed", "We must take sides and criticize openly"],
         correctAnswer: "We withhold from judging them, love them all, and believe they acted on ijtihad; the wrongdoer is forgiven",
@@ -572,6 +652,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Hashr 59:10; classical creeds"
       },
       {
+        id: "aqeedah-advanced-9",
         question: "What is the belief about the Mahdi according to Ahlus-Sunnah?",
         options: ["He is a mythical figure", "A righteous man from the descendants of the Prophet ﷺ will appear near the end of time and fill the earth with justice", "He has already appeared", "He is the same as Isa (AS)"],
         correctAnswer: "A righteous man from the descendants of the Prophet ﷺ will appear near the end of time and fill the earth with justice",
@@ -579,6 +660,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sunan Abu Dawud; Musnad Ahmad"
       },
       {
+        id: "aqeedah-advanced-10",
         question: "What is the correct belief about the Dajjal (False Messiah)?",
         options: ["He is a symbol only", "A real one-eyed man will appear as a major trial near the end of time and will be killed by Isa (AS)", "He already appeared in history", "He is the same as the Mahdi"],
         correctAnswer: "A real one-eyed man will appear as a major trial near the end of time and will be killed by Isa (AS)",
@@ -586,6 +668,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "aqeedah-advanced-11",
         question: "What is the ruling on seeking help (istighathah) from the dead?",
         options: ["It is recommended", "It is major shirk because it directs an act of worship to other than Allah", "It is permissible if the person was a saint", "It is only minor shirk"],
         correctAnswer: "It is major shirk because it directs an act of worship to other than Allah",
@@ -593,6 +676,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Fatihah 1:5; Surah Al-Jinn 72:18"
       },
       {
+        id: "aqeedah-advanced-12",
         question: "What is the difference between Tawassul that is permissible and that which is not?",
         options: ["All Tawassul is forbidden", "Permissible Tawassul is through one's own good deeds, Allah's Names, or the living; forbidden is calling upon the dead or using them as intermediaries in worship", "Only Tawassul through the Prophet ﷺ is allowed after his death by calling him", "Tawassul has no rules"],
         correctAnswer: "Permissible Tawassul is through one's own good deeds, Allah's Names, or the living; forbidden is calling upon the dead or using them as intermediaries in worship",
@@ -600,6 +684,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ma'idah 5:35; classical fatwas"
       },
       {
+        id: "aqeedah-advanced-13",
         question: "What is the belief of Ahlus-Sunnah regarding the punishment and bliss in the grave?",
         options: ["It is only metaphorical", "It is real for both the body and soul; the believer experiences bliss and the disbeliever or major sinner experiences punishment", "Only the soul is affected", "There is no experience in the grave"],
         correctAnswer: "It is real for both the body and soul; the believer experiences bliss and the disbeliever or major sinner experiences punishment",
@@ -607,6 +692,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-advanced-14",
         question: "What is the correct understanding of Allah's Nuzul (descent) to the lowest heaven in the last third of the night?",
         options: ["It is metaphorical for His mercy", "It is a real descent befitting His Majesty, without likening to creation", "It means Allah leaves the Throne", "It is denied"],
         correctAnswer: "It is a real descent befitting His Majesty, without likening to creation",
@@ -614,6 +700,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-advanced-15",
         question: "What is the status of the one who mocks or reviles Allah, His Messenger, or the religion?",
         options: ["He is a sinner but remains Muslim", "He has committed major kufr and left Islam", "He only needs to seek forgiveness", "It depends on intention only"],
         correctAnswer: "He has committed major kufr and left Islam",
@@ -621,6 +708,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tawbah 9:65-66"
       },
       {
+        id: "aqeedah-advanced-16",
         question: "What is the belief about the creation of the actions of the servants?",
         options: ["Humans create their own actions independently", "Allah creates the actions of the servants while they perform them by their will and choice", "Actions are neither created nor real", "Only good actions are created by Allah"],
         correctAnswer: "Allah creates the actions of the servants while they perform them by their will and choice",
@@ -628,6 +716,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah As-Saffat 37:96"
       },
       {
+        id: "aqeedah-advanced-17",
         question: "What is the correct position on the Names of Allah that are mentioned in the Quran and Sunnah?",
         options: ["We may invent new Names based on reason", "We affirm only those Names established in the Quran and authentic Sunnah", "All beautiful words can be used as Names", "Names are limited to ninety-nine only"],
         correctAnswer: "We affirm only those Names established in the Quran and authentic Sunnah",
@@ -635,6 +724,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Classical works on Asma wa Sifat"
       },
       {
+        id: "aqeedah-advanced-18",
         question: "What is the meaning of the phrase 'bila kayf' in the methodology of Ahlus-Sunnah?",
         options: ["Without any meaning", "Without asking 'how' and without likening to creation", "Without affirming the Attribute", "Without using the Arabic language"],
         correctAnswer: "Without asking 'how' and without likening to creation",
@@ -642,6 +732,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Statements of the Salaf (e.g., Imam Malik on Istiwa)"
       },
       {
+        id: "aqeedah-advanced-19",
         question: "What is the ruling on denying the punishment of the grave?",
         options: ["It is a minor difference of opinion", "It is a serious deviation; authentic hadiths establish it, and denying them is rejected", "It is acceptable in modern times", "Only the Quran mentions it"],
         correctAnswer: "It is a serious deviation; authentic hadiths establish it, and denying them is rejected",
@@ -649,6 +740,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-advanced-20",
         question: "What is the correct belief about the intercession of the angels, Prophets, and righteous?",
         options: ["There is no intercession at all", "Intercession is real and occurs only by Allah's permission and for those with whom He is pleased", "Anyone can intercede for anyone", "Only the Prophet ﷺ intercedes"],
         correctAnswer: "Intercession is real and occurs only by Allah's permission and for those with whom He is pleased",
@@ -656,6 +748,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Baqarah 2:255; Sahih Bukhari"
       },
       {
+        id: "aqeedah-advanced-21",
         question: "What is the position of Ahlus-Sunnah on the issue of the Quran being created or uncreated?",
         options: ["The Quran is created", "The Quran is the uncreated Speech of Allah", "The letters are created but the meaning is not", "It is a matter of indifference"],
         correctAnswer: "The Quran is the uncreated Speech of Allah",
@@ -663,6 +756,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Consensus of the Salaf"
       },
       {
+        id: "aqeedah-advanced-22",
         question: "What is the correct understanding of the hadith 'Whoever dies while knowing that there is no god but Allah will enter Paradise'?",
         options: ["Simply uttering the words is enough regardless of action or belief", "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise.", "It means no deeds are required at all", "It applies only to the Companions"],
         correctAnswer: "It means the one who dies upon pure Tawhid, free from major shirk, will eventually enter Paradise.",
@@ -670,6 +764,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "aqeedah-advanced-23",
         question: "What is the belief regarding the Ru'yah (seeing) of Allah in this world?",
         options: ["It is possible for anyone", "No one can see Allah in this world with their eyes; the believers will see Him only in the Hereafter", "The Prophet ﷺ saw Allah with his eyes on earth", "It is metaphorical only"],
         correctAnswer: "No one can see Allah in this world with their eyes; the believers will see Him only in the Hereafter",
@@ -677,6 +772,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-An'am 6:103; Sahih Muslim"
       },
       {
+        id: "aqeedah-advanced-24",
         question: "What is the correct creed regarding the parents of the Prophet ﷺ?",
         options: ["They were believers", "According to authentic reports, they died upon the religion of their people (pre-Islamic); the matter is left to Allah", "They are guaranteed Paradise", "They were Prophets"],
         correctAnswer: "According to authentic reports, they died upon the religion of their people (pre-Islamic); the matter is left to Allah",
@@ -684,6 +780,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Muslim"
       },
       {
+        id: "aqeedah-advanced-25",
         question: "What is the ruling on one who claims that the companions of the Prophet ﷺ apostatized after his death (except a few)?",
         options: ["It is a valid historical opinion", "It is a major deviation and a form of rejection of the Quran and Sunnah that praise the Companions", "It is a minor issue", "It is accepted by some schools"],
         correctAnswer: "It is a major deviation and a form of rejection of the Quran and Sunnah that praise the Companions",
@@ -691,6 +788,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah At-Tawbah 9:100; Surah Al-Fath 48:29"
       },
       {
+        id: "aqeedah-advanced-26",
         question: "What is the correct belief about the miracles (mu'jizat) of the Prophets?",
         options: ["They are myths", "They are real acts that Allah caused to occur at the hands of His Prophets as proof of their truthfulness", "They were performed by the Prophets independently", "Only Muhammad ﷺ had miracles"],
         correctAnswer: "They are real acts that Allah caused to occur at the hands of His Prophets as proof of their truthfulness",
@@ -698,6 +796,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Quranic accounts of the Prophets"
       },
       {
+        id: "aqeedah-advanced-27",
         question: "What is the belief of Ahlus-Sunnah concerning the Scale (Mizan) on the Day of Judgment?",
         options: ["It is only metaphorical for justice", "It is a real Scale with two pans that will weigh the deeds of the servants", "Only good deeds are weighed", "It is not mentioned in authentic texts"],
         correctAnswer: "It is a real Scale with two pans that will weigh the deeds of the servants",
@@ -705,6 +804,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-A'raf 7:8-9"
       },
       {
+        id: "aqeedah-advanced-28",
         question: "What is the correct understanding of the hadith about the seventy-three sects?",
         options: ["All sects are equal", "The saved sect is the one that follows the Quran, Sunnah, and the way of the Companions (Ahlus-Sunnah wal-Jama'ah)", "Only one sect exists today", "The hadith is weak"],
         correctAnswer: "The saved sect is the one that follows the Quran, Sunnah, and the way of the Companions (Ahlus-Sunnah wal-Jama'ah)",
@@ -712,6 +812,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sunan Abu Dawud; Tirmidhi"
       },
       {
+        id: "aqeedah-advanced-29",
         question: "What is the position of Ahlus-Sunnah on the Attributes of Allah that are mentioned in the dual form (e.g., Hands)?",
         options: ["They are denied", "They are affirmed as real dual Attributes befitting Allah, without likening to creation", "They mean power only", "They are metaphorical for favor"],
         correctAnswer: "They are affirmed as real dual Attributes befitting Allah, without likening to creation",
@@ -719,6 +820,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Sad 38:75; Surah Al-Ma'idah 5:64"
       },
       {
+        id: "aqeedah-advanced-30",
         question: "What is the correct creed regarding the Night Journey and Ascension (Isra and Mi'raj)?",
         options: ["It was only a dream", "It was a real, physical journey of the Prophet ﷺ by body and soul from Makkah to Jerusalem and then to the heavens", "It was only spiritual", "It is a later fabrication"],
         correctAnswer: "It was a real, physical journey of the Prophet ﷺ by body and soul from Makkah to Jerusalem and then to the heavens",
@@ -726,6 +828,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Isra 17:1; Sahih Bukhari & Muslim"
       },
       {
+        id: "aqeedah-advanced-31",
         question: "What is the ruling on one who believes that the awliya (saints) have independent control over the universe?",
         options: ["It is a high level of faith", "It is major shirk because control of the universe belongs only to Allah", "It is a minor innovation", "It is acceptable in Sufism"],
         correctAnswer: "It is major shirk because control of the universe belongs only to Allah",
@@ -733,6 +836,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Fatihah 1:2; Surah Yunus 10:107"
       },
       {
+        id: "aqeedah-advanced-32",
         question: "What is the correct belief about the fate of the children of disbelievers who die before the age of puberty?",
         options: ["They are definitely in Hell", "Their fate is left to the knowledge and justice of Allah; some reports indicate they are tested", "They are definitely in Paradise", "They cease to exist"],
         correctAnswer: "Their fate is left to the knowledge and justice of Allah; some reports indicate they are tested",
@@ -740,6 +844,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Sahih Bukhari; classical discussions"
       },
       {
+        id: "aqeedah-advanced-33",
         question: "What is the meaning of the statement of Imam Malik when asked about Istiwa?",
         options: ["Istiwa is unknown", "Istiwa is known, its 'how' is unknown, belief in it is obligatory, and asking about it is innovation", "Istiwa is metaphorical", "Istiwa is denied"],
         correctAnswer: "Istiwa is known, its 'how' is unknown, belief in it is obligatory, and asking about it is innovation",
@@ -747,6 +852,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Reported in classical Aqeedah works"
       },
       {
+        id: "aqeedah-advanced-34",
         question: "What is the correct position on the issue of whether Allah is above His creation?",
         options: ["Allah is everywhere in His Essence", "Allah is above His creation, risen over the Throne, distinct from His creation", "Allah is inside everything", "Direction does not apply to Allah at all"],
         correctAnswer: "Allah is above His creation, risen over the Throne, distinct from His creation",
@@ -754,6 +860,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Mulk 67:16-17; Surah Taha 20:5"
       },
       {
+        id: "aqeedah-advanced-35",
         question: "What is the belief regarding the finality of Prophethood?",
         options: ["Prophets may still come after Muhammad ﷺ", "Muhammad ﷺ is the final Prophet and Messenger; anyone claiming prophethood after him is a liar and kafir", "Only Messengers have ended, not Prophets", "The door of Prophethood is open for reformers"],
         correctAnswer: "Muhammad ﷺ is the final Prophet and Messenger; anyone claiming prophethood after him is a liar and kafir",
@@ -761,6 +868,7 @@ const aqeedahCategory: QuizCategory = {
         references: "Surah Al-Ahzab 33:40"
       },
       {
+        id: "aqeedah-advanced-36",
         question: "What is the comprehensive definition of Iman according to Ahlus-Sunnah?",
         options: ["Belief in the heart only", "Belief in the heart, speech of the tongue, and actions of the limbs; it increases and decreases", "Actions only", "Speech only"],
         correctAnswer: "Belief in the heart, speech of the tongue, and actions of the limbs; it increases and decreases",

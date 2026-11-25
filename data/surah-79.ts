@@ -496,7 +496,7 @@ const surah79IntermediateQuestions: QuizQuestion[] = [
       "They argued that their ancestors were already dwelling in paradise.",
       "They claimed that death was the permanent end with no consciousness."
     ],
-    "correctAnswer": "They mocked the idea of being brought back to life after becoming decayed bones, calling such a return a 'لَّخِسَارَةٌ' (losing return).",
+    "correctAnswer": "They mocked the idea of being brought back to life after becoming decayed bones, calling such a return a 'losing return.'",
     "explanation": "The disbelievers used sarcastic rhetorical questions ('Shall we be restored to Al-Hafirah when we are decayed bones?') to ridicule the prophetic message of resurrection."
   },
   {
@@ -1183,7 +1183,7 @@ const surah79AdvancedQuestions: QuizQuestion[] = [
       "Adjective meaning temporary.",
       "Noun meaning heavy burden."
     ],
-    "correctAnswer": "Accusative noun of purpose/provision from م-ت-ع; meaning enjoyment, utility, or provision.",
+    "correctAnswer": "Accusative noun of purpose/provision (*maf'ul li-ajlihi* or *hal*) from م-ت-ع; meaning enjoyment, utility, or provision.",
     "explanation": "Mata' denotes provision and utility granted for temporary benefit."
   },
   {
@@ -1231,7 +1231,7 @@ const surah79AdvancedQuestions: QuizQuestion[] = [
       "Root أَثَرَ; meaning to leave footprints.",
       "Root أَثِرَ; meaning to become impoverished."
     ],
-    "correctAnswer": "Root أَثَرَ; Form IV verb meaning to prefer, put first, or choose worldly life over the hereafter.",
+    "correctAnswer": "Root أَثَرَ (or ء-ث-ر); Form IV verb meaning to prefer, put first, or choose worldly life over the hereafter.",
     "explanation": "Athara al-hayat ad-dunya means prioritizing transient worldly existence over eternal divine reward."
   },
   {
@@ -1279,7 +1279,7 @@ const surah79AdvancedQuestions: QuizQuestion[] = [
       "Adjective meaning 'infinite.'",
       "Particle meaning 'never.'"
     ],
-    "correctAnswer": "Noun of place/time (*ism makan/zaman*) from ن-ه-ي attached to a pronoun; meaning 'its final terminus, goal, or ultimate knowledge boundary.'",
+    "correctAnswer": "Noun of place/time (*ism makan/zaman*) from ن-ه-ي (Form VIII istanha / muntaha) attached to a pronoun; meaning 'its final terminus, goal, or ultimate knowledge boundary.'",
     "explanation": "Muntaha signifies the absolute endpoint; knowledge of the Hour's timing terminates with Allah alone."
   }
 ];

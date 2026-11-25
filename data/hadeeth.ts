@@ -8,6 +8,7 @@ const hadeethCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "hadeeth-easy-1",
         question: "What does the term 'Hadith' mean?",
         options: ["Prayer", "Narration", "Book", "Law"],
         correctAnswer: "Narration",
@@ -15,6 +16,7 @@ const hadeethCategory: QuizCategory = {
           "Hadith literally means a narration, account, or report. In Islamic context, it refers to the sayings, actions, or approvals of Prophet Muhammad (PBUH).",
       },
       {
+        id: "hadeeth-easy-2",
         question: "What are the two main components of a Hadith?",
         options: ["Quran and Sunnah", "Isnad and Matn", "Sahih and Daif", "Fiqh and Aqeedah"],
         correctAnswer: "Isnad and Matn",
@@ -22,12 +24,14 @@ const hadeethCategory: QuizCategory = {
           "A Hadith consists of the Isnad (chain of narrators) and the Matn (the actual text or content of the narration).",
       },
       {
+        id: "hadeeth-easy-3",
         question: "Who compiled the collection of Hadiths known as 'Sahih Bukhari'?",
         options: ["Imam Muslim", "Imam Bukhari", "Imam Malik", "Imam Abu Dawud"],
         correctAnswer: "Imam Bukhari",
         explanation: "Sahih Bukhari was compiled by Imam Muhammad ibn Ismail al-Bukhari (810-870 CE).",
       },
       {
+        id: "hadeeth-easy-4",
         question: "What is a 'Sahih' Hadith?",
         options: [
           "A Hadith narrated by a companion",
@@ -40,6 +44,7 @@ const hadeethCategory: QuizCategory = {
           "A Sahih (authentic) Hadith is one with a continuous chain of trustworthy narrators, free from defects or irregularities.",
       },
       {
+        id: "hadeeth-easy-5",
         question: "What is the famous Hadith collection compiled by Imam Muslim known as?",
         options: ["Sahih Muslim", "Sunan an-Nasa'i", "Jami at-Tirmidhi", "Muwatta Malik"],
         correctAnswer: "Sahih Muslim",
@@ -47,6 +52,7 @@ const hadeethCategory: QuizCategory = {
           "Sahih Muslim is one of the Kutub al-Sittah (six canonical Hadith books), compiled by Imam Muslim ibn al-Hajjaj.",
       },
       {
+        id: "hadeeth-easy-6",
         question: "According to a famous Hadith, actions are judged by what?",
         options: ["Their outcomes", "Intentions", "Public perception", "Speed"],
         correctAnswer: "Intentions",
@@ -54,6 +60,7 @@ const hadeethCategory: QuizCategory = {
           "The famous opening Hadith of Imam Nawawi's collection states: 'Actions are but by intentions, and every person shall have what he intended.'",
       },
       {
+        id: "hadeeth-easy-7",
         question: "Which of the following is NOT part of the 'Kutub al-Sittah' (Six Canonical Hadith Books)?",
         options: ["Sahih Bukhari", "Sunan Ibn Majah", "Musnad Ahmad", "Sunan Abu Dawud"],
         correctAnswer: "Musnad Ahmad",
@@ -61,6 +68,7 @@ const hadeethCategory: QuizCategory = {
           "Musnad Ahmad is a massive and foundational Hadith collection, but it is not traditionally included among the Kutub al-Sittah.",
       },
       {
+        id: "hadeeth-easy-8",
         question: "What is a 'Da'if' Hadith?",
         options: ["A fabricated Hadith", "A weak Hadith", "A strongly authenticated Hadith", "A Hadith narrated by a Prophet"],
         correctAnswer: "A weak Hadith",
@@ -68,6 +76,7 @@ const hadeethCategory: QuizCategory = {
           "A Da'if (weak) Hadith is one that fails to meet the rigorous criteria of authenticity due to a break in the chain or unreliability of a narrator.",
       },
       {
+        id: "hadeeth-easy-9",
         question: "What term is used for a Hadith whose chain of narration goes directly back to Prophet Muhammad (PBUH)?",
         options: ["Marfu'", "Mawquf", "Maqtu'", "Mursal"],
         correctAnswer: "Marfu'",
@@ -75,6 +84,7 @@ const hadeethCategory: QuizCategory = {
           "A Marfu' Hadith is a prophetic tradition whose chain of transmission is elevated directly to the Messenger of Allah (PBUH).",
       },
       {
+        id: "hadeeth-easy-10",
         question: "What does 'Sunnah' refer to in Islamic terminology?",
         options: ["Only the Quranic verses", "The practices, traditions, and approvals of Prophet Muhammad (PBUH)", "Voluntary charity", "Legal verdicts of judges"],
         correctAnswer: "The practices, traditions, and approvals of Prophet Muhammad (PBUH)",
@@ -82,6 +92,7 @@ const hadeethCategory: QuizCategory = {
           "Sunnah encompasses the way, lifestyle, teachings, and approvals of Prophet Muhammad (PBUH) which serve as a primary source of guidance.",
       },
       {
+        id: "hadeeth-easy-11",
         question: "Which companion of the Prophet narrated the highest number of Hadiths?",
         options: ["Abu Bakr as-Siddiq", "Umar ibn al-Khattab", "Abu Hurayrah", "Aisha bint Abi Bakr"],
         correctAnswer: "Abu Hurayrah",
@@ -89,6 +100,7 @@ const hadeethCategory: QuizCategory = {
           "Abu Hurayrah devoted his time entirely to in-depth companionship of the Prophet, memorizing and narrating over 5,300 Hadiths.",
       },
       {
+        id: "hadeeth-easy-12",
         question: "What is a 'Mutawatir' Hadith?",
         options: [
           "A Hadith narrated by only one person",
@@ -101,6 +113,7 @@ const hadeethCategory: QuizCategory = {
           "A Mutawatir Hadith offers absolute certainty of authenticity because it was reported independently by numerous chains at every generation.",
       },
       {
+        id: "hadeeth-easy-13",
         question: "Which companion compiled one of the earliest written collections of Hadith known as 'Al-Sahifah al-Sadiqah'?",
         options: ["Abdullah ibn Amr ibn al-Aas", "Ali ibn Abi Talib", "Anas ibn Malik", "Jabir ibn Abdullah"],
         correctAnswer: "Abdullah ibn Amr ibn al-Aas",
@@ -108,6 +121,7 @@ const hadeethCategory: QuizCategory = {
           "Abdullah ibn Amr wrote down sayings of the Prophet with the Prophet's explicit permission in his collection known as Al-Sahifah al-Sadiqah.",
       },
       {
+        id: "hadeeth-easy-14",
         question: "What is a 'Mawdu' Hadith?",
         options: ["An authentic Hadith", "A fabricated or forged Hadith", "A Hadith with a missing link", "A Hadith narrated by a woman"],
         correctAnswer: "A fabricated or forged Hadith",
@@ -115,6 +129,7 @@ const hadeethCategory: QuizCategory = {
           "A Mawdu' Hadith is a falsehood falsely attributed to Prophet Muhammad (PBUH), which scholars worked tirelessly to identify and expose.",
       },
       {
+        id: "hadeeth-easy-15",
         question: "In which city did Imam al-Bukhari spend a significant portion of his life studying and compiling Hadith?",
         options: ["Makkah and Madinah", "Cairo", "Bukhara and Samarkand", "Baghdad"],
         correctAnswer: "Bukhara and Samarkand",
@@ -122,6 +137,7 @@ const hadeethCategory: QuizCategory = {
           "Imam al-Bukhari hailed from Bukhara (in modern Uzbekistan) and traveled extensively across the Islamic world to collect Hadith.",
       },
       {
+        id: "hadeeth-easy-16",
         question: "What does 'Isnad' mean in the science of Hadith?",
         options: ["The text of the Hadith", "The chain of narrators", "The grading of authenticity", "The commentary"],
         correctAnswer: "The chain of narrators",
@@ -129,6 +145,7 @@ const hadeethCategory: QuizCategory = {
           "Isnad is the chain of authorities who transmitted a specific report, linking the collector back to the Prophet (PBUH) or companion.",
       },
       {
+        id: "hadeeth-easy-17",
         question: "What is the primary criteria Imam al-Bukhari used to verify that two narrators in a chain actually met each other?",
         options: ["Contemporaneousness only",
           "Definite proof of contemporary existence and proven personal meeting (Liqa)",
@@ -140,6 +157,7 @@ const hadeethCategory: QuizCategory = {
           "Imam al-Bukhari introduced the stringent criterion that narrators must be proven to have actually met, ensuring true oral transmission.",
       },
       {
+        id: "hadeeth-easy-18",
         question: "Which of the six canonical books is often referred to as 'Al-Jami al-Sahih'?",
         options: ["Sunan an-Nasa'i", "Sahih al-Bukhari", "Sunan Abu Dawud", "Sunan Ibn Majah"],
         correctAnswer: "Sahih al-Bukhari",
@@ -147,6 +165,7 @@ const hadeethCategory: QuizCategory = {
           "Imam al-Bukhari titled his work Al-Jami al-Sahih al-Musnad min Hadith Rasul Allah wa Sunanihi wa Ayyamihi.",
       },
       {
+        id: "hadeeth-easy-19",
         question: "What is a 'Qudsi' Hadith (Sacred Hadith)?",
         options: [
           "A verse from the Quran",
@@ -159,6 +178,7 @@ const hadeethCategory: QuizCategory = {
           "Hadith Qudsi are revelations from Allah expressed in the wording of Prophet Muhammad (PBUH), distinct from the miraculous wording of the Quran.",
       },
       {
+        id: "hadeeth-easy-20",
         question: "Which female companion narrated numerous Hadiths regarding the private and domestic life of Prophet Muhammad (PBUH)?",
         options: ["Fatimah bint Muhammad", "Aisha bint Abi Bakr", "Khadijah bint Khuwaylid", "Sumayyah bint Khayyat"],
         correctAnswer: "Aisha bint Abi Bakr",
@@ -166,6 +186,7 @@ const hadeethCategory: QuizCategory = {
           "Aisha is among the top narrators of Hadith, having transmitted over 2,200 narrations regarding Sunnah, jurisprudence, and daily life.",
       },
       {
+        id: "hadeeth-easy-21",
         question: "What is a 'Hasan' Hadith?",
         options: [
           "A weak Hadith",
@@ -178,6 +199,7 @@ const hadeethCategory: QuizCategory = {
           "A Hasan Hadith is reliable and acceptable for establishing legal rulings and moral guidance, though its chain has slightly lighter precision than Sahih.",
       },
       {
+        id: "hadeeth-easy-22",
         question: "Who compiled 'Al-Muwatta', one of the earliest surviving comprehensive collections of Islamic law and Hadith?",
         options: ["Imam Malik ibn Anas", "Imam Abu Hanifa", "Imam Shafi'i", "Imam Ahmad ibn Hanbal"],
         correctAnswer: "Imam Malik ibn Anas",
@@ -185,6 +207,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Malik compiled Al-Muwatta in Madinah, combining Hadiths of the Prophet with legal verdicts of early Madinan jurists.",
       },
       {
+        id: "hadeeth-easy-23",
         question: "What is the science dedicated to evaluating the trustworthiness, character, and memory of Hadith narrators called?",
         options: ["Ilm al-Tafsir", "Ilm al-Rijal (Jarh wa Ta'dil)", "Ilm al-Balagah", "Ilm al-Faraid"],
         correctAnswer: "Ilm al-Rijal (Jarh wa Ta'dil)",
@@ -192,6 +215,7 @@ const hadeethCategory: QuizCategory = {
           "Ilm al-Rijal (Science of Men) and Jarh wa Ta'dil (Invalidation and Accreditation) rigorously scrutinize the biographical profiles of all narrators.",
       },
       {
+        id: "hadeeth-easy-24",
         question: "What is a 'Mawquf' Hadith?",
         options: [
           "A report ending at a Companion (statement or action of a Sahabi)",
@@ -204,6 +228,7 @@ const hadeethCategory: QuizCategory = {
           "A Mawquf Hadith is a narration attributed directly to a Companion rather than the Prophet himself.",
       },
       {
+        id: "hadeeth-easy-25",
         question: "What is a 'Maqtu' Hadith?",
         options: [
           "A report attributed to a Tabi'i (successor) or later generation",
@@ -216,6 +241,7 @@ const hadeethCategory: QuizCategory = {
           "A Maqtu' narration refers to statements or actions originating from the Tabi'un (successors to the companions).",
       },
       {
+        id: "hadeeth-easy-26",
         question: "Which of the six canonical books is organized strictly according to legal topics (Fiqh chapters)?",
         options: ["Musnad Ahmad", "Sahih Bukhari", "Sunan collections (Abu Dawud, Tirmidhi, Nasa'i, Ibn Majah)", "Al-Mustadrak"],
         correctAnswer: "Sunan collections (Abu Dawud, Tirmidhi, Nasa'i, Ibn Majah)",
@@ -223,6 +249,7 @@ const hadeethCategory: QuizCategory = {
           "Sunan books are arranged according to legal chapters (Kitab al-Taharah, Kitab al-Salah, etc.) to assist jurists in finding relevant legal proofs.",
       },
       {
+        id: "hadeeth-easy-27",
         question: "What does 'Matn' refer to in Hadith terminology?",
         options: ["The chain of narrators", "The actual spoken text or content of the Hadith", "The grading of the report", "The introduction of the book"],
         correctAnswer: "The actual spoken text or content of the Hadith",
@@ -230,6 +257,7 @@ const hadeethCategory: QuizCategory = {
           "The Matn is the core text or substance of the saying, action, or description attributed to the Prophet (PBUH).",
       },
       {
+        id: "hadeeth-easy-28",
         question: "Which companion narrated the famous Hadith of Gabriel (Hadith Jibril) concerning Islam, Iman, and Ihsan?",
         options: ["Umar ibn al-Khattab", "Abu Hurayrah", "Anas ibn Malik", "Abdullah ibn Umar"],
         correctAnswer: "Umar ibn al-Khattab",
@@ -237,6 +265,7 @@ const hadeethCategory: QuizCategory = {
           "Umar ibn al-Khattab narrated how Angel Jibril appeared in human form to teach the Muslims the core pillars of Islam, Iman, and Ihsan.",
       },
       {
+        id: "hadeeth-easy-29",
         question: "What is a 'Gharib' Hadith?",
         options: [
           "A Hadith narrated by a very large crowd",
@@ -249,6 +278,7 @@ const hadeethCategory: QuizCategory = {
           "A Gharib (strange/isolated) Hadith is one where at least one stage of the chain features only a single transmitter.",
       },
       {
+        id: "hadeeth-easy-30",
         question: "Who was the companion known as 'Tarjuman al-Quran' (The Interpreter of the Quran) who also narrated many Hadiths?",
         options: ["Abdullah ibn Abbas", "Abdullah ibn Masud", "Zayd ibn Thabit", "Ubayy ibn Ka'b"],
         correctAnswer: "Abdullah ibn Abbas",
@@ -256,6 +286,7 @@ const hadeethCategory: QuizCategory = {
           "Abdullah ibn Abbas was the cousin of the Prophet, renowned for his profound understanding of Quranic tafsir and prophetic traditions.",
       },
       {
+        id: "hadeeth-easy-31",
         question: "What is a 'Mursal' Hadith?",
         options: [
           "A Hadith where a Tabi'i narrates directly from the Prophet without mentioning the intermediate companion",
@@ -268,6 +299,7 @@ const hadeethCategory: QuizCategory = {
           "A Mursal Hadith has a missing link at the level of the companion, which introduces a classification debate among jurists.",
       },
       {
+        id: "hadeeth-easy-32",
         question: "Which early caliph officially ordered the systematic compilation and burning of unofficial divergent Hadith collections to prevent confusion after the Quran was standardized?",
         options: ["Umar ibn al-Khattab", "Uthman ibn Affan", "Umar ibn Abd al-Aziz", "Abu Bakr as-Siddiq"],
         correctAnswer: "Umar ibn Abd al-Aziz",
@@ -275,6 +307,7 @@ const hadeethCategory: QuizCategory = {
           "Umar ibn Abd al-Aziz (Umar II) officially commissioned scholars like Ibn Shihab al-Zuhri to compile and preserve authentic Hadiths systematically.",
       },
       {
+        id: "hadeeth-easy-33",
         question: "What is the term for a Hadith that contains an apparent contradiction with another authentic text, which scholars attempt to resolve?",
         options: ["Mukhtalif al-Hadith", "Mawdu'", "Mudraj", "Maqlub"],
         correctAnswer: "Mukhtalif al-Hadith",
@@ -282,6 +315,7 @@ const hadeethCategory: QuizCategory = {
           "Mukhtalif al-Hadith refers to traditions that appear contradictory, prompting specialized scholars to reconcile or determine chronological abrogation.",
       },
       {
+        id: "hadeeth-easy-34",
         question: "What is a 'Mudraj' Hadith?",
         options: [
           "A Hadith into which a narrator has inserted their own commentary or words",
@@ -294,6 +328,7 @@ const hadeethCategory: QuizCategory = {
           "An interpolation (Mudraj) occurs when explanatory remarks from a narrator get accidentally blended into the prophetic text.",
       },
       {
+        id: "hadeeth-easy-35",
         question: "Which collection is famous for being compiled by Imam Abu Dawud as-Sijistani?",
         options: ["Sunan Abu Dawud", "Sahih Abu Dawud", "Musnad Abu Dawud", "Jami Abu Dawud"],
         correctAnswer: "Sunan Abu Dawud",
@@ -301,6 +336,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Abu Dawud compiled Sunan Abu Dawud, focusing primarily on legal traditions and Sunnahs related to jurisprudence.",
       },
       {
+        id: "hadeeth-easy-36",
         question: "What does the term 'Musnad' mean when used as a title for a Hadith book?",
         options: [
           "A book arranged by the names of the companions who narrated each Hadith",
@@ -313,6 +349,7 @@ const hadeethCategory: QuizCategory = {
           "A Musnad collection (such as Musnad Ahmad) groups all narrations transmitted by each companion together under their name.",
       },
       {
+        id: "hadeeth-easy-37",
         question: "What is a 'Mudhtarib' (confused) Hadith?",
         options: [
           "A Hadith narrated in multiple conflicting ways with equal strength, making resolution impossible",
@@ -325,6 +362,7 @@ const hadeethCategory: QuizCategory = {
           "A Mudhtarib Hadith fluctuates across various contradictory versions without a clear way to determine the correct original wording.",
       },
       {
+        id: "hadeeth-easy-38",
         question: "Which of the six canonical books was compiled by Imam Muhammad ibn Isa at-Tirmidhi?",
         options: ["Jami at-Tirmidhi (Sunan at-Tirmidhi)", "Sahih at-Tirmidhi", "Musnad at-Tirmidhi", "Muwatta at-Tirmidhi"],
         correctAnswer: "Jami at-Tirmidhi (Sunan at-Tirmidhi)",
@@ -332,6 +370,7 @@ const hadeethCategory: QuizCategory = {
           "Imam at-Tirmidhi compiled Jami at-Tirmidhi, renowned for noting the grades of Hadiths and the legal views of various companion and madhhab schools.",
       },
       {
+        id: "hadeeth-easy-39",
         question: "What is a 'Shadh' Hadith?",
         options: [
           "A reliable narration",
@@ -344,6 +383,7 @@ const hadeethCategory: QuizCategory = {
           "A Shadh (irregular) Hadith is considered defective because a trustworthy narrator contradicted a stronger consensus of reliable transmitters.",
       },
       {
+        id: "hadeeth-easy-40",
         question: "Why is the study of Hadith (Ulum al-Hadith) considered critical alongside the Noble Quran?",
         options: [
           "It replaces the Quran",
@@ -358,6 +398,7 @@ const hadeethCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "hadeeth-intermediate-1",
         question: "Which famous 13th-century collection of forty (actually forty-two) foundational Hadiths was compiled by Imam an-Nawawi?",
         options: ["Al-Arba'in al-Nawawiyyah", "Riyad as-Salihin", "Bulugh al-Maram", "Al-Adab al-Mufrad"],
         correctAnswer: "Al-Arba'in al-Nawawiyyah",
@@ -365,6 +406,7 @@ const hadeethCategory: QuizCategory = {
           "Imam an-Nawawi's Forty Hadith is a celebrated concise compendium encapsulating the core principles, ethics, and legal foundations of Islam.",
       },
       {
+        id: "hadeeth-intermediate-2",
         question: "What technical term describes a Hadith whose chain of narration is unbroken, with each narrator explicitly stating they heard it from the one above them (e.g., using 'Haddathana' or 'Sami'tu')?",
         options: ["Musnad / Muttasil", "Mursal", "Munqati", "Mu'allaq"],
         correctAnswer: "Musnad / Muttasil",
@@ -372,6 +414,7 @@ const hadeethCategory: QuizCategory = {
           "A Muttasil (continuous) Hadith is one with an uninterrupted chain from the final narrator back to the Prophet or companion.",
       },
       {
+        id: "hadeeth-intermediate-3",
         question: "What is a 'Mu'allaq' Hadith in the terminology of Hadith sciences?",
         options: [
           "A Hadith with one or more narrators omitted from the beginning of the chain",
@@ -384,6 +427,7 @@ const hadeethCategory: QuizCategory = {
           "A Mu'allaq narration is one where the compiler omits the entire chain or the upper narrators from their side. (Though Imam al-Bukhari uses Mu'allaq reports in chapter headings, his main legal rulings rely on Muttasil chains).",
       },
       {
+        id: "hadeeth-intermediate-4",
         question: "Which prominent companion and scribe of the Prophet compiled a major Mushaf and is famously quoted regarding the preservation of Hadith?",
         options: ["Zayd ibn Thabit", "Abu Hurayrah", "Abdullah ibn Umar", "Anas ibn Malik"],
         correctAnswer: "Zayd ibn Thabit",
@@ -391,6 +435,7 @@ const hadeethCategory: QuizCategory = {
           "Zayd ibn Thabit played a pivotal role in both Quranic compilation and transmitting precise prophetic traditions.",
       },
       {
+        id: "hadeeth-intermediate-5",
         question: "What is a 'Munqati' Hadith?",
         options: [
           "A Hadith in which a single narrator is missing anywhere in the middle of the chain",
@@ -403,6 +448,7 @@ const hadeethCategory: QuizCategory = {
           "A Munqati (broken/disconnected) Hadith suffers from a discontinuity where a narrator is dropped at some point in the Isnad.",
       },
       {
+        id: "hadeeth-intermediate-6",
         question: "Which of the six canonical books was compiled by Imam An-Nasa'i?",
         options: ["Sunan an-Nasa'i (Al-Sunan al-Sugra)", "Sahih an-Nasa'i", "Musnad an-Nasa'i", "Muwatta an-Nasa'i"],
         correctAnswer: "Sunan an-Nasa'i (Al-Sunan al-Sugra)",
@@ -410,6 +456,7 @@ const hadeethCategory: QuizCategory = {
           "Imam an-Nasa'i compiled Al-Sunan al-Sugra (commonly known as Sunan an-Nasa'i), renowned for having very strict criteria regarding narrator reliability.",
       },
       {
+        id: "hadeeth-intermediate-7",
         question: "What is a 'Mu'dal' Hadith?",
         options: [
           "A Hadith where two or more consecutive narrators are missing from the chain",
@@ -422,6 +469,7 @@ const hadeethCategory: QuizCategory = {
           "A Mu'dal narration is considered weaker than a Munqati or Mursal because multiple consecutive links are absent.",
       },
       {
+        id: "hadeeth-intermediate-8",
         question: "Which classical scholar authored 'Bulugh al-Maram min Adillat al-Ahkam', a crucial reference book compiling Hadiths specifically related to Islamic jurisprudence?",
         options: ["Ibn Hajar al-Asqalani", "Imam an-Nawawi", "Ibn Qudamah", "Al-Mundhiri"],
         correctAnswer: "Ibn Hajar al-Asqalani",
@@ -429,6 +477,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Hajar al-Asqalani compiled Bulugh al-Maram, drawing legal proofs from the primary Hadith compendiums for Hanafi, Shafi'i, and other madhhab jurists.",
       },
       {
+        id: "hadeeth-intermediate-9",
         question: "What is a 'Mudallis' (Tadlis) in the context of Hadith narrators?",
         options: [
           "A narrator who obscures a defect in the chain or masks the identity of their immediate teacher",
@@ -441,6 +490,7 @@ const hadeethCategory: QuizCategory = {
           "Tadlis (concealment) involves subtly phrasing a transmission to imply direct hearing from someone when the narration actually came via an intermediary.",
       },
       {
+        id: "hadeeth-intermediate-10",
         question: "Which companion served the Prophet for ten years from childhood and narrated 2,286 Hadiths?",
         options: ["Anas ibn Malik", "Abdullah ibn Umar", "Jabir ibn Abdullah", "Abu Sa'id al-Khudri"],
         correctAnswer: "Anas ibn Malik",
@@ -448,6 +498,7 @@ const hadeethCategory: QuizCategory = {
           "Anas ibn Malik lived in the Prophet's household from childhood until the Prophet's passing, providing intimate eyewitness accounts of his daily habits.",
       },
       {
+        id: "hadeeth-intermediate-11",
         question: "What is a 'Musalsal' Hadith?",
         options: [
           "A Hadith where every narrator in the chain transmits it using the exact same phrase, state, or manner",
@@ -460,6 +511,7 @@ const hadeethCategory: QuizCategory = {
           "A Musalsal (chained) narration features uniform transmission conditions, such as all narrators performing a specific action or using an identical oath.",
       },
       {
+        id: "hadeeth-intermediate-12",
         question: "Which scholar compiled 'Riyad as-Salihin' (Gardens of the Righteous), one of the most widely read ethical and spiritual Hadith compilations worldwide?",
         options: ["Imam an-Nawawi", "Imam al-Bukhari", "Imam at-Tirmidhi", "Ibn Hibban"],
         correctAnswer: "Imam an-Nawawi",
@@ -467,6 +519,7 @@ const hadeethCategory: QuizCategory = {
           "Riyad as-Salihin categorizes authentic Hadiths by moral, spiritual, and social themes to guide everyday Muslim character.",
       },
       {
+        id: "hadeeth-intermediate-13",
         question: "What is a 'Maqlub' Hadith?",
         options: [
           "A Hadith where a narrator accidentally reverses parts of the text (Matn) or swaps the names in the chain (Isnad)",
@@ -479,6 +532,7 @@ const hadeethCategory: QuizCategory = {
           "A Maqlub (inverted/flipped) narration occurs due to a slip of memory by a narrator, which expert critics easily detect.",
       },
       {
+        id: "hadeeth-intermediate-14",
         question: "Which of the six canonical books was compiled by Imam Ibn Majah al-Qazwini?",
         options: ["Sunan Ibn Majah", "Sahih Ibn Majah", "Musnad Ibn Majah", "Muwatta Ibn Majah"],
         correctAnswer: "Sunan Ibn Majah",
@@ -486,6 +540,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Ibn Majah compiled Sunan Ibn Majah, completing the traditional six canonical books of Hadith literature.",
       },
       {
+        id: "hadeeth-intermediate-15",
         question: "What is a 'Ziyadat al-Thiqah' in Hadith criticism?",
         options: [
           "An additional phrase or detail added to the text by a trustworthy narrator",
@@ -498,6 +553,7 @@ const hadeethCategory: QuizCategory = {
           "When a reliable narrator adds extra wording to a Hadith not found in other narrations, Hadith critics evaluate whether the addition is acceptable (Ziyadat al-Thiqah Maqbulah).",
       },
       {
+        id: "hadeeth-intermediate-16",
         question: "Which companion narrated the Hadith of the Seven People whom Allah will shade under His shade on the Day of Judgment?",
         options: ["Abu Hurayrah", "Umar ibn al-Khattab", "Ali ibn Abi Talib", "Abdullah ibn Masud"],
         correctAnswer: "Abu Hurayrah",
@@ -505,6 +561,7 @@ const hadeethCategory: QuizCategory = {
           "Abu Hurayrah narrated the famous Sahih Bukhari and Muslim tradition detailing the seven categories of righteous individuals granted divine shade.",
       },
       {
+        id: "hadeeth-intermediate-17",
         question: "What is an 'I'tilaf wa Ikhtilaf' in Hadith terminology?",
         options: [
           "The study of spelling, pronunciation, and disambiguation of narrator names that look similar in Arabic script",
@@ -517,6 +574,7 @@ const hadeethCategory: QuizCategory = {
           "Because early Arabic script lacked diacritical dots, Ilm al-I'tilaf wa Ikhtilaf prevented scholars from confusing names like Sulayman and Salam.",
       },
       {
+        id: "hadeeth-intermediate-18",
         question: "Which prominent Tabi'i and jurist from Madinah famously stated: 'This knowledge is religion, so look to whom you take your religion from'?",
         options: ["Muhammad ibn Sirin", "Hasan al-Basri", "Said ibn al-Musayyib", "Ata ibn Abi Rabah"],
         correctAnswer: "Muhammad ibn Sirin",
@@ -524,6 +582,7 @@ const hadeethCategory: QuizCategory = {
           "Muhammad ibn Sirin emphasized that the rigorous verification of chains (Isnad) became mandatory once the fitna (civil strife) began.",
       },
       {
+        id: "hadeeth-intermediate-19",
         question: "What is a 'Mutabi'' in Hadith methodology?",
         options: [
           "A supporting narration where another narrator corroborates a weaker narrator by reporting the same meaning or text",
@@ -536,6 +595,7 @@ const hadeethCategory: QuizCategory = {
           "A Mutabi' (corroborating report) helps elevate a weak or single-strand Hadith by showing that another reliable chain supports it.",
       },
       {
+        id: "hadeeth-intermediate-20",
         question: "Which monumental Hadith encyclopedia was compiled by Imam Al-Bayhaqi, gathering traditions supporting Shafi'i jurisprudence?",
         options: ["Al-Sunan al-Kubra (Sunan al-Bayhaqi)", "Sahih al-Bayhaqi", "Musnad al-Bayhaqi", "Al-Muwatta"],
         correctAnswer: "Al-Sunan al-Kubra (Sunan al-Bayhaqi)",
@@ -543,6 +603,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Al-Bayhaqi's massive Al-Sunan al-Kubra is a cornerstone work demonstrating how Shafi'i legal principles align with authentic Sunnah.",
       },
       {
+        id: "hadeeth-intermediate-21",
         question: "What is an 'Ahad' Hadith?",
         options: [
           "A Hadith narrated by individuals that does not reach the level of Mutawatir",
@@ -555,6 +616,7 @@ const hadeethCategory: QuizCategory = {
           "An Ahad Hadith is transmitted by one or more narrators but fails to meet the massive multi-chain threshold of Mutawatir. It still establishes legal rulings if authentic.",
       },
       {
+        id: "hadeeth-intermediate-22",
         question: "Which companion is famous for narrating the Hadith of the 'Three Who Stayed Behind' from the expedition of Tabuk?",
         options: ["Ka'b ibn Malik", "Abdullah ibn Ka'b", "Hassan ibn Thabit", "Abu Ayyub al-Ansari"],
         correctAnswer: "Ka'b ibn Malik",
@@ -562,6 +624,7 @@ const hadeethCategory: QuizCategory = {
           "Ka'b ibn Malik detailed his profound personal test of truthfulness and subsequent forgiveness revealed in Surah At-Tawbah.",
       },
       {
+        id: "hadeeth-intermediate-23",
         question: "What is a 'Nasikh and Mansukh' in Hadith study?",
         options: [
           "The study of abrogating and abrogated texts",
@@ -574,6 +637,7 @@ const hadeethCategory: QuizCategory = {
           "Nasikh (abrogating) and Mansukh (abrogated) rulings ensure jurists understand chronological legal developments in prophetic legislation.",
       },
       {
+        id: "hadeeth-intermediate-24",
         question: "Which brilliant Hadith master and historian compiled 'Tarikh Baghdad' (History of Baghdad), containing biographical entries of thousands of scholars?",
         options: ["Al-Khatib al-Baghdadi", "Ibn Asakir", "Al-Dhahabi", "Ibn Khallikan"],
         correctAnswer: "Al-Khatib al-Baghdadi",
@@ -581,6 +645,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Khatib al-Baghdadi authored monumental works in Hadith terminology, historiography, and biographical evaluation.",
       },
       {
+        id: "hadeeth-intermediate-25",
         question: "What is a 'Mu'allal' (Ma'lul) Hadith?",
         options: [
           "A Hadith that appears sound on the surface but contains a subtle, hidden defect discovered only by expert critics",
@@ -593,6 +658,7 @@ const hadeethCategory: QuizCategory = {
           "Illah (hidden defect) is considered one of the most challenging areas of Hadith criticism, mastered only by elite critics like Imam al-Bukhari and Daraqutni.",
       },
       {
+        id: "hadeeth-intermediate-26",
         question: "Which companion narrated the Hadith stating: 'Cleanliness is half of faith' (Al-tahru shatru al-iman)?",
         options: ["Abu Malik al-Ash'ari", "Abu Hurayrah", "Abdullah ibn Umar", "Anas ibn Malik"],
         correctAnswer: "Abu Malik al-Ash'ari",
@@ -600,6 +666,7 @@ const hadeethCategory: QuizCategory = {
           "Abu Malik al-Ash'ari narrated this foundational Hadith recorded in Sahih Muslim emphasizing spiritual and physical purity.",
       },
       {
+        id: "hadeeth-intermediate-27",
         question: "What is a 'Sahifah' in early Islamic literary history?",
         options: [
           "A written scroll or booklet containing collected Hadiths",
@@ -612,6 +679,7 @@ const hadeethCategory: QuizCategory = {
           "Sahifahs were personal written sheets maintained by companions and early successors before comprehensive standardized books were compiled.",
       },
       {
+        id: "hadeeth-intermediate-28",
         question: "Which great Andalusian Hadith scholar and jurist authored 'Al-Istidhkar' and 'Al-Tamhid', massive commentaries on Imam Malik's Muwatta?",
         options: ["Ibn Abd al-Barr", "Ibn Hazm", "Abu Bakr al-Arabi", "Qadi Ayyad"],
         correctAnswer: "Ibn Abd al-Barr",
@@ -619,6 +687,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Abd al-Barr was a towering Maliki scholar of Al-Andalus who analyzed the chains and legal implications of the Muwatta.",
       },
       {
+        id: "hadeeth-intermediate-29",
         question: "What is a 'Musnad' narration versus a 'Mursal' narration?",
         options: [
           "Musnad has a connected chain to the Prophet, whereas Mursal misses the companion link at the end",
@@ -631,6 +700,7 @@ const hadeethCategory: QuizCategory = {
           "A Musnad report links directly back to the Prophet through a continuous chain, while a Mursal report skips the companion level.",
       },
       {
+        id: "hadeeth-intermediate-30",
         question: "Which companion narrated the famous Hadith: 'None of you truly believes until he loves for his brother what he loves for himself'?",
         options: ["Anas ibn Malik", "Abu Hurayrah", "Umar ibn al-Khattab", "Abdullah ibn Amr"],
         correctAnswer: "Anas ibn Malik",
@@ -638,6 +708,7 @@ const hadeethCategory: QuizCategory = {
           "Anas ibn Malik narrated this essential maxim of Islamic brotherhood and social ethics recorded in Bukhari and Muslim.",
       },
       {
+        id: "hadeeth-intermediate-31",
         question: "What is a 'Matruk' Hadith?",
         options: [
           "A Hadith whose narrator is accused of outright lying or forgery, leading scholars to abandon it",
@@ -650,6 +721,7 @@ const hadeethCategory: QuizCategory = {
           "Matruk (abandoned) describes a narration whose transmitter is heavily suspected of falsehood or extreme carelessness.",
       },
       {
+        id: "hadeeth-intermediate-32",
         question: "Which classical dictionary of Hadith terminology was authored by Ibn al-Salah al-Shahrazuri?",
         options: ["Muqaddimah Ibn al-Salah (Ulum al-Hadith)", "Tadreeb al-Rawi", "Nukhbat al-Fikar", "Al-Kifayah"],
         correctAnswer: "Muqaddimah Ibn al-Salah (Ulum al-Hadith)",
@@ -657,6 +729,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn al-Salah's Ulum al-Hadith became the standard foundational textbook for subsequent works on Hadith methodology.",
       },
       {
+        id: "hadeeth-intermediate-33",
         question: "What is a 'Munafiq' or unmasked liar in Isnad terminology called?",
         options: ["Kadhdhab", "Thiqah", "Saduq", "Hafiz"],
         correctAnswer: "Kadhdhab",
@@ -664,6 +737,7 @@ const hadeethCategory: QuizCategory = {
           "Kadhdhab refers to a narrator proven to have fabricated reports, resulting in the instant rejection of any narration they transmitted.",
       },
       {
+        id: "hadeeth-intermediate-34",
         question: "Which companion narrated the Hadith of Islam being built upon five pillars?",
         options: ["Abdullah ibn Umar", "Abu Hurayrah", "Anas ibn Malik", "Jabir ibn Abdullah"],
         correctAnswer: "Abdullah ibn Umar",
@@ -671,6 +745,7 @@ const hadeethCategory: QuizCategory = {
           "Abdullah ibn Umar narrated the famous tradition found in Bukhari and Muslim outlining the foundational five pillars of Islam.",
       },
       {
+        id: "hadeeth-intermediate-35",
         question: "What is a 'Tabaqat' work in Islamic biographical literature?",
         options: [
           "Biographical dictionaries categorized by generations (layers) of scholars and narrators",
@@ -683,6 +758,7 @@ const hadeethCategory: QuizCategory = {
           "Tabaqat books (like Tabaqat al-Kubra by Ibn Sa'd) organize biographical data chronologically by generation to help verify teacher-student links.",
       },
       {
+        id: "hadeeth-intermediate-36",
         question: "Which prominent Syrian Hadith scholar and historian authored 'Siyar A'lam al-Nubala' and 'Mizan al-I'tidal'?",
         options: ["Al-Dhahabi", "Ibn Kathir", "Ibn Hajar", "Al-Suyuti"],
         correctAnswer: "Al-Dhahabi",
@@ -690,6 +766,7 @@ const hadeethCategory: QuizCategory = {
           "Shams al-Din al-Dhahabi was a master of Hadith criticism and biographical evaluation, producing monumental historical compendiums.",
       },
       {
+        id: "hadeeth-intermediate-37",
         question: "What is an 'Irfan' or individual uniqueness in narrator evaluation called when a single reliable narrator reports something unique?",
         options: ["Fard / Gharib", "Mutawatir", "Mudraj", "Maqlub"],
         correctAnswer: "Fard / Gharib",
@@ -697,6 +774,7 @@ const hadeethCategory: QuizCategory = {
           "A Fard or Gharib report represents an isolated narration where a single transmitter provides a unique detail.",
       },
       {
+        id: "hadeeth-intermediate-38",
         question: "Which companion narrated the Hadith: 'Take advantage of five before five: your youth before your old age...'?",
         options: ["Abdullah ibn Abbas", "Abu Hurayrah", "Ali ibn Abi Talib", "Abdullah ibn Masud"],
         correctAnswer: "Abdullah ibn Abbas",
@@ -704,6 +782,7 @@ const hadeethCategory: QuizCategory = {
           "Abdullah ibn Abbas narrated this profound piece of prophetic counsel emphasizing the urgency of righteous deeds and valuing time.",
       },
       {
+        id: "hadeeth-intermediate-39",
         question: "What is the primary difference between Sahih al-Bukhari and Sahih Muslim in terms of narrator connection criteria?",
         options: [
           "Muslim required proven contemporaneousness and potential meeting, whereas Bukhari strictly required proven physical meeting (Liqa)",
@@ -716,6 +795,7 @@ const hadeethCategory: QuizCategory = {
           "Imam al-Bukhari maintained a stricter condition requiring definitive proof that two narrators met, while Imam Muslim accepted contemporaneousness with established contact.",
       },
       {
+        id: "hadeeth-intermediate-40",
         question: "Which great 15th-century polymath and Hadith master authored 'Al-Jami al-Saghir' and 'Tadreeb al-Rawi'?",
         options: ["Jalal al-Din al-Suyuti", "Ibn Hajar al-Asqalani", "Al-Sakhawi", "Zayn al-Din al-Iraqi"],
         correctAnswer: "Jalal al-Din al-Suyuti",
@@ -725,6 +805,7 @@ const hadeethCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "hadeeth-advanced-1",
         question: "Which scholar is credited with writing the first independent, systematic work exclusively dedicated to the science of Hadith terminology ('Al-Muhaddith al-Fasil bayn al-Rawi wal-Wai')?",
         options: ["Al-Ramhurmuzi", "Al-Hakim al-Nisaburi", "Ibn al-Salah", "Al-Khatib al-Baghdadi"],
         correctAnswer: "Al-Ramhurmuzi",
@@ -732,6 +813,7 @@ const hadeethCategory: QuizCategory = {
           "Qadi Al-Ramhurmuzi (d. 360 AH) authored 'Al-Muhaddith al-Fasil', establishing the foundational framework for the formal science of Hadith methodology.",
       },
       {
+        id: "hadeeth-advanced-2",
         question: "What methodological distinction does Imam al-Hakim al-Nisaburi's 'Al-Mustadrak 'ala al-Sahihayn' aim to achieve?",
         options: [
           "To collect authentic Hadiths meeting the criteria of Bukhari and/or Muslim that were omitted from their books",
@@ -744,6 +826,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Mustadrak attempts to supplement the Sahihayn, though later critics like Al-Dhahabi noted that many included reports actually lean towards Hasan or Da'if due to lax application of criteria.",
       },
       {
+        id: "hadeeth-advanced-3",
         question: "In the science of Jarh wa Ta'dil, how are conflicting evaluations resolved when one critic declares a narrator trustworthy (Mu'addil) and another declares them criticized (Jarih)?",
         options: [
           "Detailed, specific criticism (Jarh Mufassar) takes precedence over general praise (Ta'dil Mujmal) if the critic is qualified",
@@ -756,6 +839,7 @@ const hadeethCategory: QuizCategory = {
           "Because specific criticism points to concrete defects (e.g., memory lapse or specific errors), a substantiated Jarh Mufassar supersedes general accolades unless refuted.",
       },
       {
+        id: "hadeeth-advanced-4",
         question: "What is the precise definition and legal standing of a 'Hadith Mursal Sahabi'?",
         options: [
           "A report where a younger companion narrates something they heard from the Prophet but were too young or absent to witness directly",
@@ -768,6 +852,7 @@ const hadeethCategory: QuizCategory = {
           "A Mursal Sahabi (such as narrations by Ibn Abbas or Anas regarding early Makkah events) is accepted as authentic because companions only narrate from other trustworthy companions or the Prophet.",
       },
       {
+        id: "hadeeth-advanced-5",
         question: "Which monumental 14th-century critical work by Al-Mizzi, later expanded by Ibn Hajar in 'Tahdhib al-Tahdhib', revolutionized biographical evaluation?",
         options: ["Tahdhib al-Kamal fi Asma al-Rijal", "Tarikh Madinat Dimashq", "Al-Jarh wa al-Ta'dil", "Mizan al-I'tidal"],
         correctAnswer: "Tahdhib al-Kamal fi Asma al-Rijal",
@@ -775,6 +860,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Mizzi's 'Tahdhib al-Kamal' comprehensively analyzed every narrator found in the six canonical books, forming the basis for later masterworks.",
       },
       {
+        id: "hadeeth-advanced-6",
         question: "What is the critical methodology behind Ibn Hibban's categorization of narrators in his biographical work 'Al-Thiqat'?",
         options: [
           "He considered unknown narrators (Majhul) to be trustworthy by default unless proven otherwise, which challenged strict consensus",
@@ -787,6 +873,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Hibban's lenient stance on Majhul narrators meant his gradings of Sahih required rigorous cross-verification by other Hadith critics.",
       },
       {
+        id: "hadeeth-advanced-7",
         question: "Which classical work by Ibn al-Qayyim al-Jawziyya is considered the definitive authority on evaluating weak and fabricated Hadiths ('Al-Manar al-Munif fi al-Sahih wa al-Da'if')?",
         options: ["Al-Manar al-Munif", "Zad al-Ma'ad", "I'lam al-Muwaqqi'in", "Al-Wabil al-Sayyib"],
         correctAnswer: "Al-Manar al-Munif",
@@ -794,6 +881,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn al-Qayyim outlined objective thematic rules to identify fabricated traditions based on historical impossibilities, contradictions with reason, or absurd promises.",
       },
       {
+        id: "hadeeth-advanced-8",
         question: "What is a 'Hadith Qudsi' distinguished from in terms of its divine nature and transmission?",
         options: [
           "Its meaning is inspired by Allah, but its wording is from the Prophet; whereas the Quran's exact wording and meaning are both directly from Allah",
@@ -806,6 +894,7 @@ const hadeethCategory: QuizCategory = {
           "While both originate from divine revelation (Wahy), the Quran possesses miraculous inimitability (I'jaz) in its precise Arabic wording, whereas Hadith Qudsi does not.",
       },
       {
+        id: "hadeeth-advanced-9",
         question: "Which scholar authored 'Nasb al-Rayah', an exhaustive critical study of the Hadiths utilized in Al-Zaylai's Hanafi jurisprudence work 'Al-Hidayah'?",
         options: ["Jamal al-Din al-Zaylai", "Ibn Hajar al-Asqalani", "Al-Daraqutni", "Al-Bayhaqi"],
         correctAnswer: "Jamal al-Din al-Zaylai",
@@ -813,6 +902,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Zaylai rigorously investigated and graded all Hadiths cited within foundational Hanafi legal texts, establishing their Isnad strengths.",
       },
       {
+        id: "hadeeth-advanced-10",
         question: "What is the primary significance of Imam Al-Daraqutni's masterwork 'Al-Ilal al-Waridah fi al-Ahadith al-Nabawiyyah'?",
         options: [
           "It provides the most comprehensive analysis of hidden defects (Illal) in Hadith chains",
@@ -825,6 +915,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Daraqutni's 'Al-Ilal' is an elite masterwork dissecting intricate discrepancies and covert flaws in chains that eluded ordinary scholars.",
       },
       {
+        id: "hadeeth-advanced-11",
         question: "How do Hadith masters define the condition of 'Irtifaa'' or 'Raf'' in evaluating whether a statement is Marfu' or Mawquf?",
         options: [
           "A statement by a companion concerning unseen matters of the afterlife or past prophets that cannot be deduced by independent reasoning (Ijtihad)",
@@ -837,6 +928,7 @@ const hadeethCategory: QuizCategory = {
           "A companion's statement regarding metaphysical realities (Mawquf lahu hukm al-Raf') is treated as effectively Marfu' because it must have been learned from the Prophet.",
       },
       {
+        id: "hadeeth-advanced-12",
         question: "Which foundational text by Ibn Abi Hatim al-Razi is one of the earliest and most authoritative biographical encyclopedias of Hadith critics and narrators?",
         options: ["Al-Jarh wa al-Ta'dil", "Tabaqat al-Kubra", "Tarikh Kabir", "Al-Thiqat"],
         correctAnswer: "Al-Jarh wa al-Ta'dil",
@@ -844,6 +936,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Abi Hatim's multi-volume 'Al-Jarh wa al-Ta'dil' compiles thousands of critical assessments by early Imams regarding narrator reliability.",
       },
       {
+        id: "hadeeth-advanced-13",
         question: "What is a 'Ziyadah' (addition) in a Hadith text evaluated by the consensus of critical Hadith masters like Al-Bukhari and Muslim?",
         options: [
           "It is accepted only if narrated by a more reliable transmitter whose addition does not contradict a stronger consensus or create an anomaly (Shadh)",
@@ -856,6 +949,7 @@ const hadeethCategory: QuizCategory = {
           "Hadith critics evaluate Ziyadat al-Thiqah meticulously to ensure the extra phrase does not distort the original meaning or contradict more established versions.",
       },
       {
+        id: "hadeeth-advanced-14",
         question: "Which prominent Andalusian jurist and Zahiri scholar authored 'Al-Muhalla bi al-Athar', rigorously debating legal rulings derived exclusively from Quran, Sahih Sunnah, and consensus?",
         options: ["Ibn Hazm al-Zahiri", "Ibn Abd al-Barr", "Averroes (Ibn Rushd)", "Al-Shatibi"],
         correctAnswer: "Ibn Hazm al-Zahiri",
@@ -863,6 +957,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Hazm's 'Al-Muhalla' is a masterwork of comparative jurisprudence rooted strictly in literalist Hadith interpretation and rejection of analogical deduction.",
       },
       {
+        id: "hadeeth-advanced-15",
         question: "What is the technical definition of an 'Idraj' occurring in the Isnad (chain) rather than the Matn (text)?",
         options: [
           "A narrator inserting the name of a teacher or linking chains together mistakenly or as an explanatory aside",
@@ -875,6 +970,7 @@ const hadeethCategory: QuizCategory = {
           "Isnad Idraj happens when a narrator conflates multiple chains or inserts a narrator name incorrectly, which expert critics identify through comparative analysis.",
       },
       {
+        id: "hadeeth-advanced-16",
         question: "Which classical scholar authored 'Kashf al-Khafa' wa Muzid al-Ilbas', a specialized dictionary identifying widespread popular proverbs and fabricated sayings mistaken for Hadiths?",
         options: ["Ismail al-Ajluni", "Al-Suyuti", "Al-Mulla Ali al-Qari", "Ibn al-Jawzi"],
         correctAnswer: "Ismail al-Ajluni",
@@ -882,6 +978,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Ajluni's 'Kashf al-Khafa' meticulously categorizes common maxims circulating among people, verifying whether they have any authentic Hadith basis.",
       },
       {
+        id: "hadeeth-advanced-17",
         question: "What is the critical significance of Imam Malik's exclusive reliance on the 'Amal Ahl al-Madinah' (Practice of the People of Madinah) in legal methodology?",
         options: [
           "He considered the continuous practical consensus of Madinah's generations to be a form of mass-transmitted living Sunnah surpassing isolated Hadiths",
@@ -894,6 +991,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Malik viewed the unbroken lifestyle practice of Madinah's community as a monumental practical transmission originating directly from the Prophet's era.",
       },
       {
+        id: "hadeeth-advanced-18",
         question: "Which scholarly work by Al-Khatib al-Baghdadi remains the definitive classical masterwork on the etiquette, methodology, and ethics of studying and narrating Hadith?",
         options: ["Al-Jami' li-Akhlaq al-Rawi wa Adab al-Sami'", "Kifayah fi Ilm al-Riwayah", "Tarikh Baghdad", "Sharaf Ashab al-Hadith"],
         correctAnswer: "Al-Jami' li-Akhlaq al-Rawi wa Adab al-Sami'",
@@ -901,6 +999,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Khatib al-Baghdadi detailed the spiritual sincerity, moral integrity, and rigorous scholarly ethics required for anyone engaging in Hadith transmission.",
       },
       {
+        id: "hadeeth-advanced-19",
         question: "What does the term 'Taqreeb' signify in the title of works like Ibn Hajar's 'Taqreeb al-Tahdhib'?",
         options: [
           "Summarizing and bringing closer the biographical evaluations and final grades of narrators for easy reference",
@@ -913,6 +1012,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Hajar's 'Taqreeb al-Tahdhib' condenses massive biographical data into concise, definitive assessments of each narrator's reliability grade.",
       },
       {
+        id: "hadeeth-advanced-20",
         question: "In what manner did early Hadith compilers differentiate between 'Haddathana' (he narrated to us), 'Akhbarana' (he informed us), and 'An'ana' (from)?",
         options: [
           "Haddathana explicitly implies direct oral dictation in a teacher-student setting, whereas An'ana allows for indirect transmission provided contemporaneousness is proven",
@@ -925,6 +1025,7 @@ const hadeethCategory: QuizCategory = {
           "Terminology precision (Sighat al-Tahammul wal-Ada) is vital; explicit hearing terms guarantee direct transmission, while 'An'ana requires verifying that the narrator was not a mudallis.",
       },
       {
+        id: "hadeeth-advanced-21",
         question: "Which major 11th-century compendium by Al-Bayhaqi, 'Dala'il al-Nubuwwah', focuses specifically on what genre of prophetic traditions?",
         options: ["The proofs, miracles, and signs of prophethood", "Legal inheritance laws", "Rules of fasting", "Hadith Qudsi collections"],
         correctAnswer: "The proofs, miracles, and signs of prophethood",
@@ -932,6 +1033,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Bayhaqi compiled extensive historical and miraculous traditions verifying the truthfulness of Prophet Muhammad's mission.",
       },
       {
+        id: "hadeeth-advanced-22",
         question: "What is the underlying methodological premise of Imam Abu Hanifa's strict criteria regarding accepting Ahad Hadiths that contradict general legal principles (Qiyas or Quranic universals)?",
         options: [
           "He required that an Ahad narrator possess exceptional juristic precision (Fiqh) if the report conflicted with established analogical maxims",
@@ -944,6 +1046,7 @@ const hadeethCategory: QuizCategory = {
           "Hanafi legal theory incorporates nuanced harmonizations where solitary reports undergo rigorous cross-examination against broader Quranic principles and established legal norms.",
       },
       {
+        id: "hadeeth-advanced-23",
         question: "Which classical Andalusian scholar authored 'Al-I'tisham' and 'Al-Muwafaqat', foundational works discussing legal theory and distinguishing authentic Sunnah from unwarranted innovations (Bid'ah)?",
         options: ["Al-Shatibi", "Ibn Hazm", "Ibn Abd al-Barr", "Al-Arabi"],
         correctAnswer: "Al-Shatibi",
@@ -951,6 +1054,7 @@ const hadeethCategory: QuizCategory = {
           "Imam Al-Shatibi's works established deep methodological clarity on the objectives of Shariah (Maqasid) and adherence to authentic Sunnah.",
       },
       {
+        id: "hadeeth-advanced-24",
         question: "What is a 'Wajadah' method of Hadith transmission and acquisition?",
         options: [
           "Finding a manuscript written in a known scholar's handwriting without receiving oral permission or direct dictation",
@@ -963,6 +1067,7 @@ const hadeethCategory: QuizCategory = {
           "Wajadah (finding) is a secondary method of transmission where a student discovers verified texts of a master, requiring specific cautious phrasing during narration.",
       },
       {
+        id: "hadeeth-advanced-25",
         question: "Which prominent 20th-century Hadith scholar and critic famously verified and published the massive multi-volume 'Silsilat al-Ahadith al-Sahihah' and 'Da'ifah'?",
         options: ["Muhammad Nasir al-Din al-Albani", "Ahmad Shakir", "Abd al-Rahman al-Mubarakpuri", "Habibur Rahman al-Azami"],
         correctAnswer: "Muhammad Nasir al-Din al-Albani",
@@ -970,6 +1075,7 @@ const hadeethCategory: QuizCategory = {
           "Sheikh Al-Albani dedicated his life to grading, filtering, and publishing authentic and weak traditions across extensive Hadith compendiums.",
       },
       {
+        id: "hadeeth-advanced-26",
         question: "What is the critical distinction between 'Ilm al-Dirayah' and 'Ilm al-Riwayah' within the Islamic sciences?",
         options: [
           "Riwayah is the transmission and collection of texts and chains, whereas Dirayah is the critical analysis and methodology of evaluating their authenticity and meaning",
@@ -982,6 +1088,7 @@ const hadeethCategory: QuizCategory = {
           "Ilm al-Riwayah preserves the wording of traditions, while Ilm al-Dirayah serves as the critical jurisprudence evaluating narrator reliability and textual soundness.",
       },
       {
+        id: "hadeeth-advanced-27",
         question: "Which classical commentary on Sahih Muslim, written by Imam an-Nawawi ('Al-Minhaj sharh Sahih Muslim'), is hailed as a masterpiece of Hadith exegesis and jurisprudence?",
         options: ["Al-Minhaj sharh Sahih Muslim", "Fath al-Bari", "Umdat al-Qari", "Tuhfat al-Ahwadhi"],
         correctAnswer: "Al-Minhaj sharh Sahih Muslim",
@@ -989,6 +1096,7 @@ const hadeethCategory: QuizCategory = {
           "Imam an-Nawawi's exhaustive commentary on Sahih Muslim unpacks legal rulings, linguistic nuances, and theological positions across all schools of thought.",
       },
       {
+        id: "hadeeth-advanced-28",
         question: "What is a 'Mudraj al-Matn' occurring specifically at the beginning of a Hadith text?",
         options: ["A narrator inserting an introductory remark of their own before stating the actual prophetic text",
           "A complete fabrication",
@@ -1000,6 +1108,7 @@ const hadeethCategory: QuizCategory = {
           "When a narrator begins speaking in their own words and seamlessly transitions into quoting the Prophet without a break, expert critics identify it as Mudraj.",
       },
       {
+        id: "hadeeth-advanced-29",
         question: "Which prominent Hadith master compiled 'Matalib al-'Aliyah', gathering extra Hadiths found in the larger Musnads that are absent from the standard six books?",
         options: ["Ibn Hajar al-Asqalani", "Al-Suyuti", "Al-Busiri", "Al-Haythami"],
         correctAnswer: "Ibn Hajar al-Asqalani",
@@ -1007,6 +1116,7 @@ const hadeethCategory: QuizCategory = {
           "Ibn Hajar compiled 'Matalib al-'Aliyah', organizing traditions from major Musnad collections to supplement the canonical books.",
       },
       {
+        id: "hadeeth-advanced-30",
         question: "What is the methodological rule regarding a Hadith classified as 'Hasan li-Ghayrihi' (Hasan due to external factors)?",
         options: [
           "It originates as a weak (Da'if) report with a minor defect, but gets elevated to acceptable Hasan status because it is corroborated by multiple independent chains",
@@ -1019,6 +1129,7 @@ const hadeethCategory: QuizCategory = {
           "Corroboration can lift a mildly weak report (free of lying) into the category of Hasan li-Ghayrihi, making it valid for establishing legal and moral rulings.",
       },
       {
+        id: "hadeeth-advanced-31",
         question: "Which classical lexicon by Ibn Manzur, though primarily a linguistic dictionary ('Lisan al-Arab'), heavily incorporates terminology from Hadith and Quranic exegesis?",
         options: ["Lisan al-Arab", "Al-Qamus al-Muhit", "Taj al-Arus", "Maqayis al-Lughah"],
         correctAnswer: "Lisan al-Arab",
@@ -1026,6 +1137,7 @@ const hadeethCategory: QuizCategory = {
           "Lisan al-Arab is the premier classical Arabic dictionary, drawing extensively upon Hadith texts, Quranic verses, and classical poetry to define word usages.",
       },
       {
+        id: "hadeeth-advanced-32",
         question: "What does the term 'Munafaridah' signify in the evaluation of narrator reliability?",
         options: [
           "Unique reports transmitted by a single narrator that lack corroboration from peers",
@@ -1038,6 +1150,7 @@ const hadeethCategory: QuizCategory = {
           "When a narrator stands completely alone in reporting a specific tradition, Hadith critics scrutinize their precision and reliability meticulously.",
       },
       {
+        id: "hadeeth-advanced-33",
         question: "Which foundational work by Al-Khatib al-Baghdadi, 'Al-Kifayah fi Ilm al-Riwayah', serves as a comprehensive textbook on the technical rules of transmitting Hadith?",
         options: ["Al-Kifayah fi Ilm al-Riwayah", "Al-Jami' li-Akhlaq al-Rawi", "Taqyid al-Ilm", "Sharaf Ashab al-Hadith"],
         correctAnswer: "Al-Kifayah fi Ilm al-Riwayah",
@@ -1045,6 +1158,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Kifayah is a premier theoretical textbook detailing the legal and technical requirements for accepting and transmitting prophetic traditions.",
       },
       {
+        id: "hadeeth-advanced-34",
         question: "What is the critical significance of Al-Busiri's 'Ithaf al-Khiyar al-Maharah' in Hadith literature?",
         options: ["It compiles and evaluates the extra Hadiths found in the major Musnads and Sunans not present in the standard six books",
           "It lists fabricated reports",
@@ -1056,6 +1170,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Busiri's works examine auxiliary Hadith collections to ensure no authentic tradition compiled by early Imams is overlooked.",
       },
       {
+        id: "hadeeth-advanced-35",
         question: "How do Hadith critics distinguish between a narrator's error due to 'Ikhtilat' (confusion/cognitive decline in old age) versus deliberate fabrication?",
         options: [
           "By examining whether the narrator transmitted the report before or after the onset of their memory decline, rejecting only what was narrated after",
@@ -1068,6 +1183,7 @@ const hadeethCategory: QuizCategory = {
           "Hadith critics meticulously dated students' hearing sessions (e.g., distinguishing what students heard from Ibn Lahi'ah early versus late) to filter out post-Ikhtilat errors.",
       },
       {
+        id: "hadeeth-advanced-36",
         question: "Which classical scholar authored 'Tabaqat al-Huffaz', a biographical dictionary dedicated exclusively to master memorizers and critics of Hadith across Islamic history?",
         options: ["Al-Suyuti", "Al-Dhahabi", "Ibn Hajar", "Ibn al-Imad"],
         correctAnswer: "Al-Suyuti",
@@ -1075,6 +1191,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Suyuti's 'Tabaqat al-Huffaz' chronicles the towering luminaries who dedicated their lives to preserving, memorizing, and defending prophetic traditions.",
       },
       {
+        id: "hadeeth-advanced-37",
         question: "What is the primary objective of studying 'Gharib al-Hadith' literature (such as the work by Ibn al-Athir)?",
         options: [
           "To explain rare, unfamiliar, or archaic Arabic vocabulary used in prophetic traditions",
@@ -1087,6 +1204,7 @@ const hadeethCategory: QuizCategory = {
           "Gharib al-Hadith lexicons clarify rare desert idioms and archaic terms spoken by the Prophet so scholars do not misinterpret the Matn.",
       },
       {
+        id: "hadeeth-advanced-38",
         question: "Which monumental encyclopedia of Hadith evaluation, 'Kanz al-Ummal', was compiled by Al-Muttaqi al-Hindi, organizing traditions by subject?",
         options: ["Kanz al-Ummal", "Jam al-Jawami", "Majma al-Zawaid", "Al-Mu'jam al-Kabir"],
         correctAnswer: "Kanz al-Ummal",
@@ -1094,6 +1212,7 @@ const hadeethCategory: QuizCategory = {
           "Al-Muttaqi al-Hindi organized Al-Suyuti's massive collections into 'Kanz al-Ummal', providing a comprehensive thematic subject index of Hadith literature.",
       },
       {
+        id: "hadeeth-advanced-39",
         question: "What ultimate standard do Hadith masters apply to determine whether a complex report is definitively established as a genuine prophetic statement?",
         options: [
           "Uninterrupted authentic chain, trustworthy and precise narrators, absence of hidden defects (Illah), and absence of anomalies (Shadh)",

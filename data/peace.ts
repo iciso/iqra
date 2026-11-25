@@ -8,6 +8,7 @@ const peaceCategory: QuizCategory = {
   levels: {
     easy: [
         {
+            id: "peace-easy-1",
             question: "What is the foundational Islamic principle for peacemaking?",
             options: [
               "Justice (Adl)",
@@ -19,6 +20,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran states: 'Be maintainers of justice' (4:135). Prophet Muhammad (PBUH) established the Constitution of Medina ensuring justice for all communities. True peace requires addressing root injustices while avoiding oppression (5:8). The FBA peacemaking guide emphasizes justice as prerequisite for lasting peace."
           },
           {
+            id: "peace-easy-2",
             question: "How does Islam view interfaith dialogue for peace?",
             options: [
               "Forbidden as it dilutes faith",
@@ -30,6 +32,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Invite to the way of your Lord with wisdom and good instruction, and argue with them in a way that is best' (16:125). Prophet Muhammad (PBUH) engaged Christian delegations (Hadith - Bukhari 1356) and Jewish scholars in respectful dialogue. The FBA guide highlights dialogue's role in conflict prevention."
           },
           {
+            id: "peace-easy-3",
             question: "What Quranic principle governs relations with non-Muslim communities?",
             options: [
               "No relations permitted",
@@ -41,6 +44,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Allah says: 'Allah does not forbid you from those who do not fight you... and cooperate with them in righteousness and piety' (60:8-9). The Prophet's treaties with Jewish tribes (Constitution of Medina) and Christians (Najran Pact) established mutual rights/responsibilities. Modern applications include interfaith humanitarian projects."
           },
           {
+            id: "peace-easy-4",
             question: "Which Islamic concept promotes peaceful coexistence?",
             options: [
               "Dar al-Islam vs Dar al-Harb dichotomy",
@@ -52,6 +56,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran addresses humanity: 'O mankind! We created you from a single pair' (49:13). The Prophet's Farewell Sermon established equality. Modern scholars like Shaykh Abdullah bin Bayyah emphasize 'Wasatiyyah' (moderation) in building inclusive societies while maintaining Islamic identity."
           },
           {
+            id: "peace-easy-5",
             question: "What was the Prophet's approach to territorial disputes?",
             options: [
               "Immediate military action",
@@ -63,6 +68,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Treaty of Hudaybiyyah (628 CE) demonstrated conflict resolution through: 1) Dialogue (Hadith - Bukhari 2731), 2) Compromise (apparent in unfavorable terms), 3) Long-term vision (Quran 48:1). The FBA guide cites this as model for modern peace processes where neither side achieves all demands initially."
           },
           {
+            id: "peace-easy-6",
             question: "How does Islam view the sanctity of peace treaties?",
             options: [
               "Permits breaking them if advantageous",
@@ -74,6 +80,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Fulfill the covenant of Allah when you have taken it' (16:91). Breaking treaties is severely condemned (8:56). Exceptions exist only for self-defense against treaty violators (9:4). Modern applications include honoring UN resolutions and bilateral agreements per Islamic contract law."
           },
           {
+            id: "peace-easy-7",
             question: "What is the Islamic ruling on targeting civilians in conflicts?",
             options: [
               "Permitted if they support enemies",
@@ -85,6 +92,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) forbade killing non-combatants (Hadith - Abu Dawud 2614). Quranic rules of war include: 'Do not transgress limits' (2:190). The Amman Message (2004) reaffirmed this prohibition. Contemporary scholars like Dr. Tim Winter (Abdal Hakim Murad) emphasize its relevance to modern warfare ethics."
           },
           {
+            id: "peace-easy-8",
             question: "Which Quranic verse is called the 'Peace Verse'?",
             options: [
               "2:190 (Fight in the way of Allah)",
@@ -96,6 +104,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The verse states: 'If they incline to peace, then incline to it' (8:61). This establishes: 1) Peace as default, 2) Reciprocity principle, 3) Openness to enemy initiatives. Scholars like Imam al-Ghazali interpreted this as preferring political solutions over military ones whenever possible."
           },
           {
+            id: "peace-easy-9",
             question: "What Islamic principle limits warfare?",
             options: [
               "Military necessity",
@@ -107,6 +116,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic just war theory (fiqh al-jihad) requires: 1) Legitimate authority (Hadith - Abu Dawud 2614), 2) Proportionality (2:194), 3) Avoiding environmental damage (Hadith - Abu Dawud 2614). The FBA guide applies these to modern conflicts, prohibiting tactics causing disproportionate civilian harm."
           },
           {
+            id: "peace-easy-10",
             question: "How did the Prophet handle defeated enemies?",
             options: [
               "Mass executions",
@@ -118,6 +128,7 @@ const peaceCategory: QuizCategory = {
             explanation: "After conquering Mecca, the Prophet (PBUH) declared general amnesty: 'Go, you are free' (Hadith - Bayhaqi). This established post-conflict reconciliation models. Modern applications include truth commissions and restorative justice programs in line with Quranic forgiveness principles (3:134)."
           },
           {
+            id: "peace-easy-11",
             question: "What is the Islamic view on hostage-taking?",
             options: [
               "Permitted as deterrence",
@@ -129,6 +140,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) forbade taking civilians hostage (Hadith - Abu Dawud 2686). Quranic rules of war distinguish combatants from non-combatants (2:190). Contemporary fatwas like those from Al-Azhar (2015) condemn groups using hostage-taking as terrorism, not legitimate jihad."
           },
           {
+            id: "peace-easy-12",
             question: "Which Islamic principle protects religious sites during wars?",
             options: [
               "Only mosques are protected",
@@ -140,6 +152,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) prohibited destroying churches/synagogues (Hadith - Abu Yusuf). Caliph Umar's covenant with Jerusalem Christians guaranteed church protection. Modern scholars cite Quran 22:40 ('Had not Allah checked one set of people...') as basis for interfaith heritage preservation in conflict zones."
           },
           {
+            id: "peace-easy-13",
             question: "What is the Islamic approach to refugees from conflict zones?",
             options: [
               "Accept only Muslim refugees",
@@ -151,6 +164,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran praises the Ansar who hosted Muhajireen: 'They love those who migrated to them' (59:9). The Prophet (PBUH) granted asylum even to polytheists (Hadith - Abu Dawud 2686). Modern Islamic refugee law (fiqh al-laji'in) builds on these precedents, requiring protection regardless of faith."
           },
           {
+            id: "peace-easy-14",
             question: "How does Islam view peacekeeping missions?",
             options: [
               "Forbidden foreign interference",
@@ -162,6 +176,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Quranic commands to 'stand out firmly for justice' (4:135) support multilateral interventions to prevent atrocities. Conditions include: 1) UN authorization, 2) Neutrality, 3) Humanitarian purpose. The FBA guide cites Prophet's (PBUH) arbitration in tribal disputes as model for modern peacekeeping."
           },
           {
+            id: "peace-easy-15",
             question: "What is the Islamic position on war reparations?",
             options: [
               "Only victors receive compensation",
@@ -173,6 +188,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Treaty of Hudaybiyyah included mutual compensation clauses. Islamic law (fiqh al-mu'amalat) requires restitution for unjust damage (Hadith - Muslim 1681). Modern applications include compensation funds for war victims, as seen in post-conflict Iraq reconciliation initiatives advised by Islamic scholars."
           },
           {
+            id: "peace-easy-16",
             question: "Which Quranic term describes peaceful coexistence?",
             options: [
               "Hudna (truce)",
@@ -184,6 +200,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran states: 'Reconciliation is best' (4:128). Sulh involves: 1) Conflict resolution (Hadith - Abu Dawud 3594), 2) Forgiveness (3:134), 3) Future cooperation. Distinguished from temporary hudna (truce), sulh aims for lasting peace. The FBA guide highlights its use in modern intercommunal mediation."
           },
           {
+            id: "peace-easy-17",
             question: "How did early Muslims handle interfaith tensions?",
             options: [
               "Forced conversions",
@@ -195,6 +212,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Constitution of Medina granted Jews equal citizenship with mutual defense obligations. Caliph Umar's covenant with Jerusalem Christians guaranteed religious freedom. Modern scholars like Dr. Umar Faruq Abd-Allah cite these as models for pluralistic societies under Islamic governance frameworks."
           },
           {
+            id: "peace-easy-18",
             question: "What is the Islamic view on autonomous regions for minorities?",
             options: [
               "Allowed with mutual agreement",
@@ -206,6 +224,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) recognized Jewish self-governance in Medina under the Constitution. Islamic legal maxim: 'Custom has the weight of law' supports local autonomy arrangements if they maintain overall justice. The FBA guide notes this principle's relevance to federalism debates in Muslim-majority states."
           },
           {
+            id: "peace-easy-19",
             question: "How does Islam approach post-conflict reconciliation?",
             options: [
               "Vengeance is encouraged",
@@ -217,6 +236,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Repel evil with what is better' (41:34). Prophet (PBUH) forgave his Meccan persecutors. Modern applications include South Africa-style truth commissions informed by Islamic forgiveness principles (3:134) while ensuring justice (4:135). The FBA guide emphasizes restorative justice models."
           },
           {
+            id: "peace-easy-20",
             question: "What is the Islamic ruling on collective punishment?",
             options: [
               "Permitted against enemy populations",
@@ -228,6 +248,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran states: 'No soul bears another's burden' (6:164). Prophet (PBUH) prohibited punishing communities for individuals' crimes (Hadith - Abu Dawud 4369). This Islamic legal principle invalidates modern tactics like blockade warfare affecting civilians, as condemned by ICJ rulings citing Islamic law."
           },
           {
+            id: "peace-easy-21",
             question: "Which Islamic principle governs war prisoners?",
             options: [
               "Immediate execution",
@@ -239,6 +260,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'They feed the poor, the orphan and the captive out of love for Him' (76:8). Prophet (PBUH) set captives free after teaching literacy (Hadith - Bukhari 3046). Modern Islamic humanitarian law requires POW treatment meeting Geneva Convention standards."
           },
           {
+            id: "peace-easy-22",
             question: "How does Islam view neutrality in conflicts?",
             options: [
               "Forbidden - must take sides",
@@ -250,6 +272,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Quranic rules distinguish combatants from civilians (2:190). Islamic law recognizes neutral parties (musta'minun) who cannot be attacked. The FBA guide applies this to modern neutral states/organizations providing humanitarian aid in conflict zones per Prophet's (PBUH) protection of non-combatants."
           },
           {
+            id: "peace-easy-23",
             question: "What is the Islamic approach to war propaganda?",
             options: [
               "Permits any means to demoralize enemies",
@@ -261,6 +284,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran forbids lying: 'Do not conceal testimony' (2:283). Prophet (PBUH) prohibited spreading panic (Hadith - Muslim 4722). Modern applications include ethical war journalism standards prohibiting fake news/dehumanization, as emphasized in Islamic media ethics charters from Al-Azhar."
           },
           {
+            id: "peace-easy-24",
             question: "How does Islam view economic cooperation with former enemies?",
             options: [
               "Forbidden permanently",
@@ -272,6 +296,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran permits trade with former enemies: 'Perhaps Allah will bring about affection between you' (60:7). Post-Hudaybiyyah, Muslims traded with former Meccan adversaries. Modern examples include joint economic zones in post-conflict areas, endorsed by Islamic economists as peacebuilding tools."
           },
           {
+            id: "peace-easy-25",
             question: "What is the Islamic position on war memorials?",
             options: [
               "Forbidden as they promote nationalism",
@@ -283,6 +308,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic tradition values remembering lessons of history (12:111) while avoiding glorification of violence. Balanced memorialization includes: 1) Recognizing all victims (Hadith - Muslim 4650), 2) Emphasizing peace lessons, 3) Avoiding idolatry (Hadith - Bukhari 318). The FBA guide recommends inclusive memorial designs."
           },
           {
+            id: "peace-easy-26",
             question: "How does Islam view peace education?",
             options: [
               "Only military training matters",
@@ -294,6 +320,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran teaches: 'Repel evil with what is better' (41:34). Prophet's (PBUH) teachings emphasized conflict prevention (Hadith - Bukhari 6233). Modern Islamic education integrates peace studies through: 1) Sirah lessons on treaties, 2) Quranic conflict resolution, 3) Interfaith understanding - as promoted by ISESCO programs."
           },
           {
+            id: "peace-easy-27",
             question: "What is the Islamic view on disarmament?",
             options: [
               "Complete disarmament required",
@@ -305,6 +332,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Prepare against them what you can' (8:60) while preferring peace (8:61). Islamic jurisprudence allows arms control treaties if they maintain just deterrence. Modern applications include WMD non-proliferation agreements endorsed by OIC resolutions, provided they apply equally to all parties."
           },
           {
+            id: "peace-easy-28",
             question: "How does Islam approach post-war reconstruction?",
             options: [
               "Victors rebuild as they choose",
@@ -316,6 +344,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran praises those who 'repair what corruption has done' (30:41). Caliph Ali prioritized rebuilding after battles (Nahj al-Balagha). Modern Islamic development models emphasize: 1) Inclusive reconstruction, 2) Environmental restoration (Hadith - Abu Dawud 2614), 3) Trauma healing - as seen in post-ISIS Mosul rebuilding projects."
           },
           {
+            id: "peace-easy-29",
             question: "What is the Islamic principle regarding water resources during conflicts?",
             options: [
                 "Can be weaponized by cutting supplies",
@@ -327,6 +356,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) prohibited poisoning wells (Hadith - Abu Dawud 2614), establishing water as a protected right for all. Quranic principles of preserving life (5:32) and environmental protection (30:41) require maintaining water access during wars. Modern applications include protecting dams and water infrastructure in conflict zones like Yemen and Syria."
             },
           {
+            id: "peace-easy-30",
             question: "What is the Islamic ruling on war crimes tribunals?",
             options: [
               "Victors judge the defeated",
@@ -340,6 +370,7 @@ const peaceCategory: QuizCategory = {
         ],
         advanced: [
           {
+            id: "peace-advanced-1",
             question: "How does Islamic just war theory differ from Western models?",
             options: [
               "Permits total war strategies",
@@ -351,6 +382,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic fiqh al-jihad exceeds Geneva Conventions in: 1) Prohibiting environmental damage (Hadith - Abu Dawud 2614), 2) Requiring prisoner welfare (76:8), 3) Banning weapons causing indiscriminate harm (Hadith - Abu Dawud 2614). Scholars like Dr. Muhammad al-Massari argue Islamic law could strengthen IHL if properly implemented."
           },
           {
+            id: "peace-advanced-2",
             question: "What is the Islamic critique of modern 'forever wars'?",
             options: [
               "They fulfill jihad obligations",
@@ -362,6 +394,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic law requires: 1) Clear military objectives (Hadith - Bukhari 2797), 2) Periodic truce reassessment (Hadith - Abu Dawud 2763), 3) Exit strategies. The FBA guide notes how Prophet's (PBUH) campaigns averaged weeks, not years. Contemporary scholars condemn endless conflicts as violating maqasid al-sharia (higher objectives)."
           },
           {
+            id: "peace-advanced-3",
             question: "How does Islamic law address asymmetric warfare?",
             options: [
               "Permits any means against stronger foes",
@@ -373,6 +406,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quranic command 'Do not transgress limits' (2:190) binds all combatants. Modern fatwas like the Amman Message (2004) condemn terrorism by any group. Scholars distinguish legitimate resistance (per Geneva Protocol I) from prohibited tactics like suicide bombings (Hadith - Bukhari 3015), applying consistent ethical standards."
           },
           {
+            id: "peace-advanced-4",
             question: "What is the Islamic position on nuclear deterrence?",
             options: [
               "Permitted for Muslim states only",
@@ -384,6 +418,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Major fatwas (Al-Azhar 1978, OIC 2018) prohibit WMDs as violating: 1) Civilian immunity (Hadith - Abu Dawud 2614), 2) Environmental protection (Hadith - Abu Dawud 2614), 3) Proportionality (2:194). The FBA guide notes Islamic alternatives like conventional deterrence and conflict prevention diplomacy."
           },
           {
+            id: "peace-advanced-5",
             question: "How does Islamic law view peace processes with non-state actors?",
             options: [
               "Only state-to-state talks are valid",
@@ -395,6 +430,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) negotiated with tribal leaders, not just states. Islamic conflict resolution principles: 1) Include stakeholders (Hadith - Tirmidhi 2517), 2) Local ownership (Quran 49:9), 3) Customary law integration. The FBA guide applies this to modern talks with groups like the Taliban, using tribal jirgas alongside formal processes."
           },
           {
+            id: "peace-advanced-6",
             question: "What is the Islamic framework for transitional justice?",
             options: [
               "Victors impose their justice",
@@ -406,6 +442,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet's (PBUH) Conquest of Mecca model combines: 1) Core accountability (for major crimes), 2) General amnesty (Hadith - Bayhaqi), 3) Truth-telling (Quran 4:135), 4) Reparations. Modern applications include hybrid courts blending sharia and international standards, as proposed for Syria transitional justice."
           },
           {
+            id: "peace-advanced-7",
             question: "How does Islamic law address occupation resistance?",
             options: [
               "Any means of resistance permitted",
@@ -417,6 +454,7 @@ const peaceCategory: QuizCategory = {
             explanation: "While Islamic law permits armed resistance to occupation (within ethical limits), the Quran prioritizes: 'Repel evil with what is better' (41:34). Modern scholars like Dr. Jamal Badawi highlight Palestinian sumud (steadfastness) as Islamic resistance model. The FBA guide notes how boycott campaigns align with prophetic economic resistance strategies."
           },
           {
+            id: "peace-advanced-8",
             question: "What is the Islamic view on autonomous security zones?",
             options: [
               "Permitted as temporary confidence-building",
@@ -428,6 +466,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Hudaybiyyah treaty established a demilitarized zone. Islamic legal maxims allow: 1) Temporary special arrangements (darura), 2) Gradual implementation (tadrij), 3) Custom-based solutions (urf). The FBA guide cites Kurdish autonomous zones as potential models if they maintain overall state sovereignty and justice."
           },
           {
+            id: "peace-advanced-9",
             question: "How does Islamic law govern cyber warfare?",
             options: [
               "All cyber attacks permitted",
@@ -439,6 +478,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Scholars like Dr. Mohamed Ali apply classical rules to cyber: 1) Distinction (civilian infrastructure immunity), 2) Proportionality, 3) No perfidy. The OIC's 2019 resolution prohibits: 1) Hospital system hacking (Hadith - Abu Dawud 2614), 2) Indiscriminate malware (Hadith - Muslim 4650), extending Islamic war ethics to digital battlespaces."
           },
           {
+            id: "peace-advanced-10",
             question: "What is the Islamic approach to war trauma healing?",
             options: [
               "Ignore trauma as weakness",
@@ -450,6 +490,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran describes post-war healing: 'Allah sent down tranquility upon His Messenger and the believers' (48:4). Prophetic methods included: 1) Community reintegration (Hadith - Bukhari 3046), 2) Storytelling therapy (12:111), 3) Forgiveness practices (3:134). Modern Islamic psychology integrates these with evidence-based trauma treatments."
           },
           {
+            id: "peace-advanced-11",
             question: "How does Islamic law view peace negotiations during wars?",
             options: [
               "Forbidden once fighting begins",
@@ -461,6 +502,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'If they incline to peace, then incline to it' (8:61). The Prophet (PBUH) continued negotiations during battles (Uhud). Modern Islamic diplomacy principles: 1) Ceasefire opportunities must be explored (FBA guide), 2) Mediators respected (49:9), 3) Interim agreements allowed (Hadith - Abu Dawud 2763)."
           },
           {
+            id: "peace-advanced-12",
             question: "What is the Islamic position on war correspondents?",
             options: [
               "Forbidden as spies",
@@ -472,6 +514,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic law extends non-combatant status to: 1) Medics (Hadith - Abu Dawud 2614), 2) Reporters upholding truth (Quran 2:42). Conditions include: 1) Neutrality, 2) Avoiding enemy aid (Hadith - Muslim 4733). The FBA guide proposes Islamic media ethics codes for conflict reporting, balancing transparency and security."
           },
           {
+            id: "peace-advanced-13",
             question: "How does Islamic law address environmental warfare?",
             options: [
               "Permitted as tactical option",
@@ -483,6 +526,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) forbade poisoning wells (Hadith - Abu Dawud 2614) and burning lands (Hadith - Malik). Quranic principles: 1) No wanton destruction (2:205), 2) Environmental stewardship (30:41). Modern fatwas (International Islamic Fiqh Academy 2015) prohibit climate warfare tactics as violating these enduring rules."
           },
           {
+            id: "peace-advanced-14",
             question: "What is the Islamic framework for arms control?",
             options: [
               "No limits on weapons development",
@@ -494,6 +538,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic peacemaking encourages: 1) Hudna (truce) periods for confidence-building (Hadith - Abu Dawud 2763), 2) Weapons limitations by mutual consent (Quran 8:61), 3) Verification (Hadith - Bukhari 2691). The FBA guide notes how these principles informed OIC positions on Middle East WMD-free zone proposals."
           },
           {
+            id: "peace-advanced-15",
             question: "How does Islamic law view humanitarian intervention?",
             options: [
               "Forbidden as foreign interference",
@@ -505,6 +550,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quranic command to 'stand out firmly for justice' (4:135) underpins modern Islamic just intervention theory. Conditions: 1) UN authorization, 2) Last resort, 3) Proportional means. Scholars like Dr. Abdullah al-Ahsan cite Prophet's (PBUH) intervention in tribal conflicts as precedent for R2P (Responsibility to Protect) principles."
           },
           {
+            id: "peace-advanced-16",
             question: "What is the Islamic approach to war memorialization?",
             options: [
               "No remembrance allowed",
@@ -516,6 +562,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic historiography preserves war lessons (3:137) while avoiding glorification. Best practices: 1) Inclusive narratives (Hadith - Muslim 4650), 2) Charity for all victims (Hadith - Bukhari 3046), 3) Future-oriented messages (Quran 13:11). The FBA guide highlights Bosnia's multi-faith memorials as contemporary models."
           },
           {
+            id: "peace-advanced-17",
             question: "How does Islamic law govern post-conflict power-sharing?",
             options: [
               "Muslims must hold all power",
@@ -527,6 +574,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Constitution of Medina established power-sharing between Muslims, Jews and pagans. Modern Islamic political theory permits: 1) Consociational democracy, 2) Federalism, 3) Minority protections - if they maintain core Islamic principles (4:135). The FBA guide applies this to post-conflict constitutions like Iraq's."
           },
           {
+            id: "peace-advanced-18",
             question: "What is the Islamic position on sanctions regimes?",
             options: [
               "Permitted against any enemy",
@@ -538,6 +586,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic law prohibits collective punishment (6:164). Smart sanctions targeting leaders are permitted (Hadith - Abu Dawud 4369), but blanket sanctions violating: 1) Right to food (Hadith - Bukhari 5076), 2) Medicine access (Hadith - Ibn Majah 3436) are condemned. OIC resolutions oppose sanctions causing humanitarian crises."
           },
           {
+            id: "peace-advanced-19",
             question: "How does Islamic law address child soldiers?",
             options: [
               "Permitted in defensive wars",
@@ -549,6 +598,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) sent home underage volunteers (Hadith - Bukhari 2737). Islamic rules: 1) Minimum fighting age (puberty - 24:59), 2) No forced recruitment (Hadith - Muslim 4452), 3) Special protection (Hadith - Bukhari 5999). Modern fatwas (Al-Azhar 2017) demand reintegration programs for former child soldiers."
           },
           {
+            id: "peace-advanced-20",
             question: "What is the Islamic view on peacebuilding education?",
             options: [
               "Only military education matters",
@@ -560,6 +610,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Make peace between them with justice' (49:9). Islamic education traditionally includes: 1) Conflict resolution skills (Hadith - Tirmidhi 2517), 2) Interfaith understanding (49:13), 3) Mediation training. Modern madrasa reforms (like Pakistan's 2020 curriculum) integrate peace education across subjects."
           },
           {
+            id: "peace-advanced-21",
             question: "How does Islamic law govern war economies?",
             options: [
               "Permits any funding methods",
@@ -571,6 +622,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic economic ethics forbid: 1) War profiteering (Hadith - Muslim 2990), 2) Resource looting (Hadith - Abu Dawud 2614), 3) Exploitative war contracts. Modern applications include: 1) Transparency in defense spending (Quran 2:282), 2) Blocking conflict minerals trade (Hadith - Ibn Majah 224), 3) Ethical war financing standards."
           },
           {
+            id: "peace-advanced-22",
             question: "What is the Islamic approach to cultural heritage in war zones?",
             options: [
               "Only Islamic sites protected",
@@ -582,6 +634,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) preserved pre-Islamic sites (Hadith - Bukhari 428). Islamic rules: 1) No iconoclasm (Hadith - Muslim 528), 2) Protection of churches/synagogues (Umar's covenant), 3) Cultural preservation as civilizational duty (Quran 22:40). The FBA guide promotes Islamic heritage protection units in conflict areas."
           },
           {
+            id: "peace-advanced-23",
             question: "How does Islamic law view peace treaties with non-state groups?",
             options: [
               "Only states can make treaties",
@@ -593,6 +646,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Prophet (PBUH) made treaties with tribes, not just states. Modern Islamic jurisprudence validates agreements with: 1) Organized armed groups, 2) Tribal leaders, 3) Liberation movements - if they control territory and can enforce terms. The FBA guide applies this to negotiations with groups like the Taliban."
           },
           {
+            id: "peace-advanced-24",
             question: "What is the Islamic position on war propaganda?",
             options: [
               "Any means to demoralize enemy",
@@ -604,6 +658,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran forbids lying: 'Do not conceal testimony' (2:283). Prophetic prohibitions include: 1) Spreading panic (Hadith - Muslim 4722), 2) Dehumanization (49:11), 3) False claims. Modern applications include Islamic media ethics codes for war reporting, requiring verification (Hadith - Bukhari 2691) and context."
           },
           {
+            id: "peace-advanced-25",
             question: "How does Islamic law address post-war identity issues?",
             options: [
               "Forced assimilation required",
@@ -615,6 +670,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Constitution of Medina preserved Jewish tribal identities. Modern Islamic approaches: 1) Cultural autonomy (ta'addudiyya), 2) Anti-discrimination laws (Quran 49:13), 3) Inclusive citizenship. The FBA guide highlights Bosnia's constitutional model incorporating Islamic pluralism principles alongside European standards."
           },
           {
+            id: "peace-advanced-26",
             question: "What is the Islamic framework for refugee return?",
             options: [
               "No right of return",
@@ -626,6 +682,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Do not turn back those who flee' (4:90). Islamic refugee principles: 1) Voluntary return (Hadith - Abu Dawud 2686), 2) Property restitution (Hadith - Bukhari 3046), 3) Reintegration support (59:9). The FBA guide applies this to Palestinian, Rohingya and Syrian refugee cases with Islamic human rights groups."
           },
             {
+            id: "peace-advanced-27",
             question: "How does Islamic law address the use of siege warfare?",
             options: [
                 "Permitted without restrictions",
@@ -637,6 +694,7 @@ const peaceCategory: QuizCategory = {
             explanation: "Islamic rules of war forbid starvation tactics (Hadith - Abu Dawud 2614). Caliph Abu Bakr's instructions to armies: 'Do not cut down fruit-bearing trees' include protecting food supplies. Contemporary scholars cite these rules to condemn sieges like those in Gaza and Madaya that target civilians, violating the Quranic principle of civilian immunity (2:190)."
             },
             {
+            id: "peace-advanced-28",
             question: "What is the Islamic ruling on rebuilding houses of worship destroyed in conflicts?",
             options: [
                 "Only mosques should be rebuilt",
@@ -648,6 +706,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran commands: 'Had not Allah checked one set of people... monasteries, churches, synagogues would have been pulled down' (22:40). Caliph Umar rebuilt Jerusalem's churches after conquest. Modern fatwas (like Dar al-Ifta Egypt 2017) require post-conflict restoration of all religious sites, as seen in the reconstruction of Mosul's churches and Yazidi temples."
             },
             {
+            id: "peace-advanced-29",
             question: "How does Islamic law view the role of women in peace processes?",
             options: [
                 "Excluded from all negotiations",
@@ -659,6 +718,7 @@ const peaceCategory: QuizCategory = {
             explanation: "The Quran records women like Umm Kulthum serving as witnesses (60:12). Prophet Muhammad (PBUH) accepted Umm Salamah's crucial advice during Hudaybiyyah negotiations (Hadith - Ahmad 27425). Modern applications include OIC Resolution 5/45-LEG (2018) promoting women's inclusion in Islamic peacebuilding, exemplified by Yemeni women's mediation networks."
             },
              {
+            id: "peace-advanced-30",
             question: "How does Islamic law view war trauma treatment?",
             options: [
               "Ignore trauma as spiritual weakness",

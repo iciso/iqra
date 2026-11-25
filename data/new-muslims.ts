@@ -8,6 +8,7 @@ const newMuslimsCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "new-muslims-easy-1",
         question: "What is the meaning of the word 'Islam'?",
         options: ["Peace", "Submission to Allah", "Prayer", "Charity"],
         correctAnswer: "Submission to Allah",
@@ -15,6 +16,7 @@ const newMuslimsCategory: QuizCategory = {
           "The word 'Islam' comes from the Arabic root 's-l-m' which means peace, but in the religious context, it means voluntary submission or surrender to the will of Allah.",
       },
       {
+        id: "new-muslims-easy-2",
         question: "What is the declaration of faith (Shahada) in Islam?",
         options: [
           "There is no god but Allah, and Muhammad is the messenger of Allah",
@@ -27,6 +29,7 @@ const newMuslimsCategory: QuizCategory = {
           "The Shahada (declaration of faith) is: 'La ilaha illa Allah, Muhammad rasul Allah' which means 'There is no god but Allah, and Muhammad is the messenger of Allah.' This declaration is the first pillar of Islam.",
       },
       {
+        id: "new-muslims-easy-3",
         question: "How many times a day do Muslims pray?",
         options: ["Once", "Three times", "Five times", "Seven times"],
         correctAnswer: "Five times",
@@ -34,6 +37,7 @@ const newMuslimsCategory: QuizCategory = {
           "Muslims are required to perform five obligatory prayers (Salah) each day: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (sunset), and Isha (night).",
       },
       {
+        id: "new-muslims-easy-4",
         question: "What is the holy book of Islam?",
         options: ["Injeel", "Torah", "Quran", "Zabur"],
         correctAnswer: "Quran",
@@ -41,6 +45,7 @@ const newMuslimsCategory: QuizCategory = {
           "The Quran is the holy book of Islam, believed by Muslims to be the literal word of Allah revealed to Prophet Muhammad (peace be upon him) through the angel Gabriel over a period of 23 years.",
       },
       {
+        id: "new-muslims-easy-5",
         question: "What is Wudu?",
         options: [
           "A type of Islamic clothing",
@@ -53,6 +58,7 @@ const newMuslimsCategory: QuizCategory = {
           "Wudu is the Islamic procedure for washing parts of the body, a type of ritual purification that Muslims perform before prayer (Salah) and before handling the Quran.",
       },
       {
+        id: "new-muslims-easy-6",
         question: "What is the direction Muslims face during prayer?",
         options: ["East", "West", "Towards the Kaaba in Makkah", "Towards Jerusalem"],
         correctAnswer: "Towards the Kaaba in Makkah",
@@ -60,6 +66,7 @@ const newMuslimsCategory: QuizCategory = {
           "Muslims face the direction of the Kaaba in Makkah, Saudi Arabia during prayer. This direction is called the Qibla.",
       },
       {
+        id: "new-muslims-easy-7",
         question: "What is Ramadan?",
         options: [
           "An Islamic festival",
@@ -72,6 +79,7 @@ const newMuslimsCategory: QuizCategory = {
           "Ramadan is the ninth month of the Islamic calendar, during which Muslims fast from dawn until sunset. It is a time of spiritual reflection, improvement, and increased devotion and worship.",
       },
       {
+        id: "new-muslims-easy-8",
         question: "What is Zakat?",
         options: [
           "Islamic fasting",
@@ -84,6 +92,7 @@ const newMuslimsCategory: QuizCategory = {
           "Zakat is one of the five pillars of Islam and refers to the obligatory giving of a set proportion of one's wealth to charity. It is regarded as a type of worship and self-purification.",
       },
       {
+        id: "new-muslims-easy-9",
         question: "What is Hajj?",
         options: [
           "Islamic New Year celebration",
@@ -96,6 +105,7 @@ const newMuslimsCategory: QuizCategory = {
           "Hajj is the annual Islamic pilgrimage to Makkah, Saudi Arabia, and is mandatory for Muslims to perform at least once in their lifetime if they are physically and financially capable.",
       },
        {
+    id: "new-muslims-easy-10",
     question: "What is the first thing a new Muslim should do after taking Shahada?",
     options: [
       "Perform Ghusl (ritual bath)",
@@ -107,6 +117,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "It is recommended for new Muslims to perform Ghusl (full ritual purification) after accepting Islam, as it symbolizes spiritual cleansing and a fresh start."
   },
   {
+    id: "new-muslims-easy-11",
     question: "What is the minimum amount of clothing required for Salah (prayer)?",
     options: [
       "Full body covering",
@@ -118,6 +129,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "The minimum clothing requirement for Salah is covering from the navel to the knees for men, and the entire body except face and hands for women, with loose, opaque garments."
   },
   {
+    id: "new-muslims-easy-12",
     question: "How should a new Muslim begin learning the Quran?",
     options: [
       "Start from the last chapter (Juz Amma)",
@@ -129,6 +141,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "New Muslims are often advised to start with the 30th chapter (Juz Amma) containing shorter surahs that are easier to memorize and frequently recited in prayers."
   },
   {
+    id: "new-muslims-easy-13",
     question: "What is the Islamic greeting?",
     options: [
       "Hello",
@@ -140,6 +153,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "The Islamic greeting is 'As-salamu alaykum' meaning 'Peace be upon you', to which the reply is 'Wa alaykum as-salam' (And upon you be peace)."
   },
   {
+    id: "new-muslims-easy-14",
     question: "What should a Muslim say before eating?",
     options: [
       "Nothing specific",
@@ -151,6 +165,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "It is Sunnah to say 'Bismillah' (In the name of Allah) before eating. If forgotten at the start, one should say 'Bismillahi awwalahu wa akhirahu' (In Allah's name at the beginning and end)."
   },
   {
+    id: "new-muslims-easy-15",
     question: "What is the first month of the Islamic calendar?",
     options: [
       "Ramadan",
@@ -162,6 +177,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Muharram is the first month of the Islamic lunar calendar. It is one of the four sacred months in Islam."
   },
   {
+    id: "new-muslims-easy-16",
     question: "What is the night prayer called in Islam?",
     options: [
       "Fajr",
@@ -173,6 +189,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Tahajjud is the voluntary night prayer performed after waking from sleep. Isha is the obligatory night prayer, while Tarawih are special Ramadan night prayers."
   },
   {
+    id: "new-muslims-easy-17",
     question: "What is the Islamic way to respond when someone sneezes?",
     options: [
       "Say nothing",
@@ -184,6 +201,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "When a Muslim sneezes and says 'Alhamdulillah', others should respond with 'Yarhamukallah'. The sneezer then replies 'Yahdikumullah wa yuslihu balakum' (May Allah guide you and improve your condition)."
   },
   {
+    id: "new-muslims-easy-18",
     question: "What is the minimum age for Zakat payment?",
     options: [
       "There is no age minimum",
@@ -195,6 +213,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Zakat becomes obligatory upon reaching puberty and possessing wealth above the nisab (minimum threshold) for one lunar year. Children's wealth is not subject to Zakat."
   },
   {
+    id: "new-muslims-easy-19",
     question: "What is the Islamic ruling on music with inappropriate lyrics?",
     options: [
       "Permissible if enjoyable",
@@ -206,6 +225,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Music containing inappropriate, vulgar, or shirk-promoting lyrics is considered haram (prohibited) as it can corrupt the heart and lead away from remembrance of Allah."
   },
   {
+    id: "new-muslims-easy-20",
     question: "What is the Islamic view on adoption?",
     options: [
       "Allowed with full legal rights transfer",
@@ -217,6 +237,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Islam permits caring for orphans and needy children (highly encouraged) but prohibits legally changing their lineage. They retain their biological parents' names and inheritance rules differ."
   },
   {
+    id: "new-muslims-easy-21",
     question: "What is the ruling on shaking hands with the opposite gender?",
     options: [
       "Permissible in all cases",
@@ -228,6 +249,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Shaking hands with non-mahram (marriageable) members of the opposite gender is generally prohibited to avoid improper physical contact, except in cases of genuine necessity."
   },
   {
+    id: "new-muslims-easy-22",
     question: "What is the Islamic stance on interest (riba)?",
     options: [
       "Permissible in small amounts",
@@ -239,6 +261,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "All forms of riba (interest) are strictly prohibited in Islam, as stated in the Quran (2:275-279). This includes bank interest, credit card interest, and any loan with excess repayment."
   },
   {
+    id: "new-muslims-easy-23",
     question: "What is the Islamic ruling on tattoos?",
     options: [
       "Permissible if small",
@@ -250,6 +273,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Permanent tattoos are generally considered haram as they involve changing Allah's creation without valid reason and cause unnecessary harm to the body."
   },
   {
+    id: "new-muslims-easy-24",
     question: "What is the Islamic view on celebrating birthdays?",
     options: [
       "Obligatory to celebrate",
@@ -261,6 +285,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "There's no Islamic basis for celebrating birthdays, but simple gatherings without haram elements (music, mixing, extravagance) are generally considered permissible by many scholars."
   },
   {
+    id: "new-muslims-easy-25",
     question: "What is the Islamic ruling on fasting while traveling?",
     options: [
       "Always obligatory",
@@ -272,6 +297,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Travelers may choose to fast or break their fast during Ramadan and make up the missed days later, as Allah desires ease for His servants (Quran 2:184-185)."
   },
   {
+    id: "new-muslims-easy-26",
     question: "What is the Islamic way to dispose of an old Quran?",
     options: [
       "Burn it",
@@ -283,6 +309,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Old Qurans should be respectfully buried in clean ground or preserved. If burial isn't possible, they may be burned as a last resort, following proper Islamic guidelines."
   },
   {
+    id: "new-muslims-easy-27",
     question: "What is the ruling on using perfume containing alcohol?",
     options: [
       "Completely prohibited",
@@ -294,6 +321,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Perfumes with non-intoxicating, industrial alcohol are generally considered permissible as the alcohol undergoes chemical changes and cannot be consumed."
   },
   {
+    id: "new-muslims-easy-28",
     question: "What is the Islamic ruling on photography?",
     options: [
       "Completely prohibited",
@@ -305,6 +333,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Most contemporary scholars permit photography when done for legitimate purposes without promoting vanity or haram activities, differing from early strict opinions."
   },
   {
+    id: "new-muslims-easy-29",
     question: "What is the Islamic view on organ donation?",
     options: [
       "Completely prohibited",
@@ -316,6 +345,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Many Islamic scholars permit organ donation if it saves lives and follows ethical guidelines, considering it an act of charity, though opinions vary on specific cases."
   },
       {
+        id: "new-muslims-easy-30",
         question: "What does 'Halal' mean?",
         options: ["Forbidden", "Permissible", "Doubtful", "Disliked"],
         correctAnswer: "Permissible",
@@ -325,6 +355,7 @@ const newMuslimsCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "new-muslims-advanced-1",
         question: "What is the concept of 'Tawhid' in Islam?",
         options: [
           "The belief in multiple deities",
@@ -337,6 +368,7 @@ const newMuslimsCategory: QuizCategory = {
           "Tawhid is the most fundamental concept in Islam, referring to the oneness and uniqueness of Allah. It means believing that Allah is One, without any partners, and that nothing is comparable to Him.",
       },
       {
+        id: "new-muslims-advanced-2",
         question: "What are the three categories of Tawhid?",
         options: [
           "Tawhid al-Rububiyyah, Tawhid al-Uluhiyyah, Tawhid al-Asma wa al-Sifat",
@@ -349,6 +381,7 @@ const newMuslimsCategory: QuizCategory = {
           "The three categories of Tawhid are: Tawhid al-Rububiyyah (Oneness of Lordship), Tawhid al-Uluhiyyah (Oneness of Worship), and Tawhid al-Asma wa al-Sifat (Oneness of Allah's Names and Attributes).",
       },
       {
+        id: "new-muslims-advanced-3",
         question: "What is the concept of 'Shirk' in Islam?",
         options: [
           "The practice of charity",
@@ -361,6 +394,7 @@ const newMuslimsCategory: QuizCategory = {
           "Shirk is the sin of associating partners with Allah, whether in His Lordship, worship, or in His names and attributes. It is considered the gravest sin in Islam.",
       },
       {
+        id: "new-muslims-advanced-4",
         question: "What is the Islamic concept of 'Iman'?",
         options: [
           "The five daily prayers",
@@ -373,6 +407,7 @@ const newMuslimsCategory: QuizCategory = {
           "Iman refers to faith or belief in Islam. It encompasses belief in Allah, His angels, His books, His messengers, the Day of Judgment, and divine decree (both the good and bad of it).",
       },
       {
+        id: "new-muslims-advanced-5",
         question: "What are the 'Arkaan al-Iman' (Pillars of Faith) in Islam?",
         options: [
           "Prayer, Fasting, Zakat, Hajj, Shahada",
@@ -386,6 +421,7 @@ const newMuslimsCategory: QuizCategory = {
           "The Arkaan al-Iman (Pillars of Faith) in Islam are: Belief in Allah, His Angels, His Books, His Messengers, the Day of Judgment, and Divine Decree (both the good and bad of it).",
       },
       {
+        id: "new-muslims-advanced-6",
         question: "What is the significance of the Sunnah for new Muslims?",
         options: [
           "It is optional and not necessary",
@@ -398,6 +434,7 @@ const newMuslimsCategory: QuizCategory = {
           "The Sunnah, the practices and teachings of Prophet Muhammad (peace be upon him), provides practical guidance for new Muslims on how to implement the Quran’s teachings in daily life, such as prayer, manners, and ethics.",
       },
       {
+        id: "new-muslims-advanced-7",
         question: "What is the role of intention (Niyyah) in Islamic worship?",
         options: [
           "It is not necessary",
@@ -410,6 +447,7 @@ const newMuslimsCategory: QuizCategory = {
           "Niyyah is the sincere intention in the heart to perform an act of worship for the sake of Allah alone. It is a prerequisite for the validity of acts like prayer, fasting, and charity.",
       },
       {
+        id: "new-muslims-advanced-8",
         question: "What is the Islamic ruling on learning the basics of Islam for new Muslims?",
         options: [
           "It is optional",
@@ -422,6 +460,7 @@ const newMuslimsCategory: QuizCategory = {
           "For new Muslims, learning the essentials of Islam, such as the five pillars, basic beliefs, and how to perform worship, is obligatory to fulfill their religious duties correctly.",
       },
       {
+        id: "new-muslims-advanced-9",
         question: "What is the concept of 'Halal' and 'Haram' in Islamic law?",
         options: [
           "Halal is recommended, Haram is obligatory",
@@ -434,6 +473,7 @@ const newMuslimsCategory: QuizCategory = {
           "Halal refers to what is permissible or lawful in Islamic law, while Haram refers to what is forbidden. These categories guide Muslims in food, behavior, and other aspects of life.",
       },
           {
+    id: "new-muslims-advanced-10",
     question: "What is the concept of 'Fitrah' in Islam?",
     options: [
       "Islamic taxes",
@@ -445,6 +485,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Fitrah refers to the innate, natural disposition of humans to recognize their Creator. The Prophet (PBUH) said every child is born upon Fitrah (Sahih Muslim)."
   },
   {
+    id: "new-muslims-advanced-11",
     question: "What is 'Ihsan' in Islamic teachings?",
     options: [
       "Performing worship perfectly as if seeing Allah",
@@ -456,6 +497,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Ihsan means worshipping Allah as if you see Him, and though you don't see Him, knowing He sees you. It represents the highest level of faith and consciousness of Allah."
   },
   {
+    id: "new-muslims-advanced-12",
     question: "What is the ruling on following a madhab (school of thought)?",
     options: [
       "Obligatory to strictly follow one",
@@ -467,6 +509,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "While following a madhab helps in learning Islam systematically, it's not obligatory. Muslims should seek evidence-based knowledge while respecting scholarly traditions."
   },
   {
+    id: "new-muslims-advanced-13",
     question: "What is 'Bid'ah' in Islamic terminology?",
     options: [
       "Any new practice in religion",
@@ -478,6 +521,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Bid'ah refers to introducing innovations in matters of worship or religion that have no basis in Quran or authentic Sunnah. The Prophet (PBUH) warned against all innovations in religion."
   },
   {
+    id: "new-muslims-advanced-14",
     question: "What is the Islamic concept of 'Taqwa'?",
     options: [
       "Fear of punishment only",
@@ -489,6 +533,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Taqwa is often translated as 'piety' or 'fear of Allah', but more accurately means being consciously aware of Allah in all aspects of life, leading to righteous actions."
   },
   {
+    id: "new-muslims-advanced-15",
     question: "What is 'Qada' and 'Qadar' in Islamic belief?",
     options: [
       "Allah's divine decree and predestination",
@@ -500,6 +545,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Qada refers to Allah's eternal decree, while Qadar is the manifestation of that decree in creation. Muslims believe in divine predestination while maintaining human free will and responsibility."
   },
   {
+    id: "new-muslims-advanced-16",
     question: "What is the ruling on celebrating Mawlid (Prophet's birthday)?",
     options: [
       "Obligatory celebration",
@@ -511,6 +557,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Most scholars consider Mawlid an innovation (bid'ah) as it wasn't practiced by the Prophet or his companions. Love for the Prophet should be shown by following his Sunnah, not innovations."
   },
   {
+    id: "new-muslims-advanced-17",
     question: "What is 'Shafa'ah' in Islamic theology?",
     options: [
       "Intercession on Judgment Day",
@@ -522,6 +569,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Shafa'ah refers to the Prophet's (and others') intercession on Judgment Day for believers, granted by Allah's permission. This differs from Christian concepts of intercession."
   },
   {
+    id: "new-muslims-advanced-18",
     question: "What is 'Istikhara' prayer and when is it performed?",
     options: [
       "Prayer for guidance in decision-making",
@@ -533,6 +581,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Salat al-Istikhara is a two-rakah prayer seeking Allah's guidance when making decisions. After praying, one should follow what feels right while trusting Allah's plan."
   },
   {
+    id: "new-muslims-advanced-19",
     question: "What is the Islamic ruling on artificial insemination?",
     options: [
       "Permissible in all cases",
@@ -544,6 +593,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Most scholars permit artificial insemination if using the husband's sperm and wife's egg to preserve lineage. Using third-party donors is prohibited due to lineage and adultery concerns."
   },
   {
+    id: "new-muslims-advanced-20",
     question: "What is 'Ruqyah' in Islamic practice?",
     options: [
       "Islamic exorcism",
@@ -555,6 +605,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Ruqyah is the Islamic practice of healing through recitation of Quran, authentic dua, and permissible means. It differs from magic or shirk-based practices."
   },
   {
+    id: "new-muslims-advanced-21",
     question: "What is 'Sunnah Mu'akkadah' in Islamic law?",
     options: [
       "Highly emphasized prophetic practices",
@@ -566,6 +617,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Sunnah Mu'akkadah refers to practices the Prophet consistently performed and encouraged, like Sunnah prayers before/after fard prayers. They're highly recommended though not obligatory."
   },
   {
+    id: "new-muslims-advanced-22",
     question: "What is the Islamic ruling on cremation?",
     options: [
       "Permissible if requested",
@@ -577,6 +629,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Cremation is prohibited in Islam as it violates the dignity of the human body which should be respectfully buried according to Islamic rites."
   },
   {
+    id: "new-muslims-advanced-23",
     question: "What is 'Aqeedah Tahawiyyah'?",
     options: [
       "A classical text on Islamic creed",
@@ -588,6 +641,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Aqeedah Tahawiyyah is a foundational text summarizing Sunni Islamic creed, written by Imam Abu Ja'far al-Tahawi. It's widely studied to understand correct Islamic beliefs."
   },
   {
+    id: "new-muslims-advanced-24",
     question: "What is the Islamic ruling on life support?",
     options: [
       "Always obligatory",
@@ -599,6 +653,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Life support is permissible when there's medical hope of recovery. If doctors confirm brain death or no chance of recovery, it may be discontinued after consultation with scholars."
   },
   {
+    id: "new-muslims-advanced-25",
     question: "What is 'Fiqh al-Aqalliyyat'?",
     options: [
       "Jurisprudence for Muslim minorities",
@@ -610,6 +665,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Fiqh al-Aqalliyyat refers to Islamic legal rulings adapted for Muslim minorities living in non-Muslim societies, addressing unique challenges while maintaining core principles."
   },
   {
+    id: "new-muslims-advanced-26",
     question: "What is the Islamic ruling on surrogate motherhood?",
     options: [
       "Permissible if all parties consent",
@@ -621,6 +677,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Surrogacy is generally prohibited as it risks confusing lineage (a major Islamic concern) and involves growing the sperm of another male without nikah during the whole procedure."
   },
   {
+    id: "new-muslims-advanced-27",
     question: "What is 'Wasatiyyah' in Islamic discourse?",
     options: [
       "Islamic extremism",
@@ -632,6 +689,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Wasatiyyah refers to Islam's balanced, moderate approach avoiding extremes. The Quran describes Muslims as 'a middle nation' (2:143) between various extremes."
   },
   {
+    id: "new-muslims-advanced-28",
     question: "What is the Islamic ruling on euthanasia?",
     options: [
       "Permissible to relieve suffering",
@@ -643,6 +701,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Active euthanasia is prohibited as it involves taking life which is Allah's sole right. However, withholding extraordinary treatment for terminally ill patients may be permissible."
   },
   {
+    id: "new-muslims-advanced-29",
     question: "What is 'Maqasid al-Shariah'?",
     options: [
       "The higher objectives of Islamic law",
@@ -654,6 +713,7 @@ const newMuslimsCategory: QuizCategory = {
     explanation: "Maqasid al-Shariah refers to Islam's higher objectives: protecting religion, life, intellect, lineage, and property. Understanding these helps apply Islamic principles contextually."
   },
       {
+        id: "new-muslims-advanced-30",
         question: "What is the importance of community for new Muslims?",
         options: [
           "It is irrelevant",

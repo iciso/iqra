@@ -8,6 +8,7 @@ const sawmCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "sawm-easy-1",
         question: "What is the reward multiplier for good deeds according to a hadith on fasting?",
         options: [
           "From one to ten times",
@@ -20,6 +21,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1904"
       },
       {
+        id: "sawm-easy-2",
         question: "Which gate in Paradise is exclusively for those who fast?",
         options: [
           "Bab al-Jannah",
@@ -32,6 +34,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1896"
       },
       {
+        id: "sawm-easy-3",
         question: "What does fasting expiate according to a hadith narrated by Hudhayfah?",
         options: [
           "Only major sins",
@@ -44,6 +47,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 2750"
       },
       {
+        id: "sawm-easy-4",
         question: "When are the gates of mercy opened according to Abu Hurairah?",
         options: [
           "During Hajj",
@@ -56,6 +60,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1899"
       },
       {
+        id: "sawm-easy-5",
         question: "What is the reward for fasting Ramadan and six days of Shawwal?",
         options: [
           "Equivalent to fasting one month",
@@ -68,6 +73,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1164"
       },
       {
+        id: "sawm-easy-6",
         question: "In which month did the Prophet (PBUH) fast the most besides Ramadan?",
         options: [
           "Muharram",
@@ -80,6 +86,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1970"
       },
       {
+        id: "sawm-easy-7",
         question: "What are the Noble Prophet's advice for suhur according to Anas bin Malik?",
         options: [
           "Skip it to fast longer",
@@ -92,6 +99,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1923"
       },
       {
+        id: "sawm-easy-8",
         question: "What should those who fast hasten according to Sahl bin Sa'd?",
         options: [
           "Starting the fast",
@@ -104,6 +112,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1957"
       },
       {
+        id: "sawm-easy-9",
         question: "What if a faster forgets and eats during the day?",
         options: [
           "The fast is invalid",
@@ -116,6 +125,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1933"
       },
       {
+        id: "sawm-easy-10",
         question: "On which days did the Prophet (PBUH) fast regularly besides Ramadan?",
         options: [
           "Tuesdays and Fridays",
@@ -128,6 +138,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan at-Tirmidhi 747"
       },
       {
+        id: "sawm-easy-11",
         question: "What is the Night of Decree better than?",
         options: [
           "One month",
@@ -140,6 +151,7 @@ const sawmCategory: QuizCategory = {
         references: "Surah al-Qadr 97:3"
       },
       {
+        id: "sawm-easy-12",
         question: "Complete the hadeeth: In it Allah has a night which is better than a thousand months; whoever...?",
         options: [
           "is sick is deprived of its goodness",
@@ -152,6 +164,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan an-Nasa'i 2106"
       },
       {
+        id: "sawm-easy-13",
         question: "What is fasting described as in a hadith?",
         options: [
           "A pillar of Islam",
@@ -164,6 +177,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1151"
       },
       {
+        id: "sawm-easy-14",
         question: "What should the one who is fasting say if some one begins to quarrel with him or her?",
         options: [
           "I am right",
@@ -176,6 +190,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1151"
       },
       {
+        id: "sawm-easy-15",
         question: "What is sweeter to Allah than musk on the Day of Judgment?",
         options: [
           "The breath of those who fast",
@@ -188,6 +203,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1904"
       },
       {
+        id: "sawm-easy-16",
         question: "How many joyous occasions does the faster have?",
         options: [
           "One",
@@ -200,6 +216,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1904"
       },
       {
+        id: "sawm-easy-17",
         question: "What is forbidden during fasting besides food and drink?",
         options: [
           "Prayer",
@@ -212,6 +229,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1903"
       },
       {
+        id: "sawm-easy-18",
         question: "What month are the gates of Heaven opened?",
         options: [
           "Dhu al-Hijjah",
@@ -224,6 +242,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1899"
       },
       {
+        id: "sawm-easy-19",
         question: "What is the perpetual fast?",
         options: [
           "Fasting three days a month",
@@ -236,6 +255,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1160"
       },
       {
+        id: "sawm-easy-20",
         question: "What day expiates sins of two years?",
         options: [
           "Ashura",
@@ -248,6 +268,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1162"
       },
       {
+        id: "sawm-easy-21",
         question: "Why did the Prophet fast Mondays?",
         options: [
           "He was born on Monday, and revealation was sent to him first on that day",
@@ -260,6 +281,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1162"
       },
       {
+        id: "sawm-easy-22",
         question: "What is the ruling on kissing without lust during fasting?",
         options: [
           "Always haram",
@@ -272,6 +294,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Abi Dawud 2380"
       },
       {
+        id: "sawm-easy-23",
         question: "Who is exempt from fasting in Ramadan?",
         options: [
           "Everyone must fast",
@@ -284,6 +307,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1854"
       },
       {
+        id: "sawm-easy-24",
         question: "What is Zakat al-Fitr?",
         options: [
           "Optional charity",
@@ -296,6 +320,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1503"
       },
       {
+        id: "sawm-easy-25",
         question: "When is the best time for suhur?",
         options: [
           "At dawn",
@@ -308,6 +333,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1097"
       },
       {
+        id: "sawm-easy-26",
         question: "What invalidates the fast besides eating?",
         options: [
           "Smoking and vomiting intentionally",
@@ -320,6 +346,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1931"
       },
       {
+        id: "sawm-easy-27",
         question: "What is the punishment for missing fast without excuse?",
         options: [
           "Nothing",
@@ -332,6 +359,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1936"
       },
       {
+        id: "sawm-easy-28",
         question: "Which night to seek Laylat al-Qadr?",
         options: [
           "First ten days",
@@ -344,6 +372,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2017"
       },
       {
+        id: "sawm-easy-29",
         question: "What is the sign of Laylat al-Qadr?",
         options: [
           "Rain",
@@ -358,6 +387,7 @@ const sawmCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "sawm-intermediate-1",
         question: "According to the hadith, what is exclusively for Allah in reward?",
         options: [
           "Prayer",
@@ -370,6 +400,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1904"
       },
       {
+        id: "sawm-intermediate-2",
         question: "What happens to devils in Ramadan?",
         options: [
           "They are freed",
@@ -382,6 +413,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1079"
       },
       {
+        id: "sawm-intermediate-3",
         question: "How many branches of faith include haya, related to fasting modesty?",
         options: [
           "Seventy",
@@ -394,6 +426,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 8"
       },
       {
+        id: "sawm-intermediate-4",
         question: "What is the kaffarah for breaking fast intentionally?",
         options: [
           "Feed ten poor",
@@ -406,6 +439,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1936"
       },
       {
+        id: "sawm-intermediate-5",
         question: "Can a fasting person use miswak?",
         options: [
           "No, it invalidates",
@@ -418,6 +452,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1931"
       },
       {
+        id: "sawm-intermediate-6",
         question: "What is the time for iftar?",
         options: [
           "After sunset prayer",
@@ -430,6 +465,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1952"
       },
       {
+        id: "sawm-intermediate-7",
         question: "Is fasting on Ashura obligatory?",
         options: [
           "Yes",
@@ -442,6 +478,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1162"
       },
       {
+        id: "sawm-intermediate-8",
         question: "What is i'tikaf?",
         options: [
           "Fasting",
@@ -454,6 +491,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2029"
       },
       {
+        id: "sawm-intermediate-9",
         question: "Who can give Zakat al-Fitr?",
         options: [
           "Only rich",
@@ -466,6 +504,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1509"
       },
       {
+        id: "sawm-intermediate-10",
         question: "When must Zakat al-Fitr be paid by?",
         options: [
           "Before Fajr of Eid",
@@ -478,6 +517,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1509"
       },
       {
+        id: "sawm-intermediate-11",
         question: "What amount for Zakat al-Fitr?",
         options: [
           "One sa' of food",
@@ -490,6 +530,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1503"
       },
       {
+        id: "sawm-intermediate-12",
         question: "Is voluntary fasting allowed in Ramadan?",
         options: [
           "Yes, extra",
@@ -502,6 +543,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1975"
       },
       {
+        id: "sawm-intermediate-13",
         question: "What if menstruating during Ramadan?",
         options: [
           "Fast anyway",
@@ -514,6 +556,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1971"
       },
       {
+        id: "sawm-intermediate-14",
         question: "Can a traveler fast in Ramadan?",
         options: [
           "Must fast",
@@ -526,6 +569,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1854"
       },
       {
+        id: "sawm-intermediate-15",
         question: "What is the dua for iftar?",
         options: [
           "Allahumma inni laka sumtu",
@@ -538,6 +582,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Abi Dawud 2357"
       },
       {
+        id: "sawm-intermediate-16",
         question: "How long is the fast?",
         options: [
           "12 hours",
@@ -550,6 +595,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1894"
       },
       {
+        id: "sawm-intermediate-17",
         question: "Is honey allowed while fasting?",
         options: [
           "Yes, external",
@@ -562,6 +608,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1931"
       },
       {
+        id: "sawm-intermediate-18",
         question: "What is Tarawih?",
         options: [
           "Obligatory prayer",
@@ -574,6 +621,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2010"
       },
       {
+        id: "sawm-intermediate-19",
         question: "How many rak'ahs in Tarawih?",
         options: [
           "8",
@@ -586,6 +634,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2010"
       },
       {
+        id: "sawm-intermediate-20",
         question: "When to perform i'tikaf?",
         options: [
           "First ten days",
@@ -598,6 +647,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1173"
       },
       {
+        id: "sawm-intermediate-21",
         question: "Can one leave mosque in i'tikaf for Jumu'ah?",
         options: [
           "No",
@@ -610,6 +660,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1184"
       },
       {
+        id: "sawm-intermediate-22",
         question: "What is the virtue of fasting Arafah?",
         options: [
           "One year sins",
@@ -622,6 +673,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1162"
       },
       {
+        id: "sawm-intermediate-23",
         question: "Is fasting on Friday alone recommended?",
         options: [
           "Yes",
@@ -634,6 +686,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1144"
       },
       {
+        id: "sawm-intermediate-24",
         question: "What is the month of patience?",
         options: [
           "Muharram",
@@ -646,6 +699,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Abi Dawud 2437"
       },
       {
+        id: "sawm-intermediate-25",
         question: "Who narrated about suhur blessing?",
         options: [
           "Abu Hurairah",
@@ -658,6 +712,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1923"
       },
       {
+        id: "sawm-intermediate-26",
         question: "What invalidates fast but no kaffarah?",
         options: [
           "Eating",
@@ -670,6 +725,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1931"
       },
       {
+        id: "sawm-intermediate-27",
         question: "Is blood donation allowed while fasting?",
         options: [
           "No",
@@ -682,6 +738,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1933"
       },
       {
+        id: "sawm-intermediate-28",
         question: "What is the best dua time during fast?",
         options: [
           "Suhur",
@@ -694,6 +751,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Abi Dawud 521"
       },
       {
+        id: "sawm-intermediate-29",
         question: "Can a faster swim?",
         options: [
           "No",
@@ -706,6 +764,7 @@ const sawmCategory: QuizCategory = {
         references: "Fatwa from scholars"
       },
       {
+        id: "sawm-intermediate-30",
         question: "What is witr prayer?",
         options: [
           "Fard",
@@ -718,6 +777,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 998"
       },
       {
+        id: "sawm-intermediate-31",
         question: "How to confirm moon sighting for Ramadan?",
         options: [
           "Calculator",
@@ -730,6 +790,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1902"
       },
       {
+        id: "sawm-intermediate-32",
         question: "Is it allowed to fast for deceased?",
         options: [
           "Yes",
@@ -744,6 +805,7 @@ const sawmCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "sawm-advanced-1",
         question: "In the hadith of Abu Bakr, which gates call the righteous?",
         options: [
           "Prayer, fasting, charity, jihad",
@@ -756,6 +818,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1895"
       },
       {
+        id: "sawm-advanced-2",
         question: "What is the grading of the hadith on devils chained in Ramadan?",
         options: [
           "Da'if",
@@ -768,6 +831,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1899"
       },
       {
+        id: "sawm-advanced-3",
         question: "According to fiqh, does smelling perfume invalidate fast?",
         options: [
           "Yes",
@@ -780,6 +844,7 @@ const sawmCategory: QuizCategory = {
         references: "Al-Mughni by Ibn Qudamah"
       },
       {
+        id: "sawm-advanced-4",
         question: "What is the difference between sawm and siyam?",
         options: [
           "Same",
@@ -792,6 +857,7 @@ const sawmCategory: QuizCategory = {
         references: "Lisan al-Arab"
       },
       {
+        id: "sawm-advanced-5",
         question: "In which madhhab is kissing allowed for fasting young man?",
         options: [
           "All",
@@ -804,6 +870,7 @@ const sawmCategory: QuizCategory = {
         references: "Bada'i al-Sana'i"
       },
       {
+        id: "sawm-advanced-6",
         question: "What is the evidence for Zakat al-Fitr being fard?",
         options: [
           "Quran",
@@ -816,6 +883,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1503"
       },
       {
+        id: "sawm-advanced-7",
         question: "Can i'tikaf be done outside mosque?",
         options: [
           "Yes",
@@ -828,18 +896,20 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1173"
       },
       {
+        id: "sawm-advanced-8",
         question: "What is bid'ah in Tarawih?",
         options: [
           "Praying 8 rak'ahs",
           "20 rak'ahs",
           "Congregation",
-          "Witr"
+          "None, all sunnah"
         ],
         correctAnswer: "None, all sunnah",
         explanation: "Both 8 and 20 reported, no bid'ah.",
         references: "Fath al-Bari"
       },
       {
+        id: "sawm-advanced-9",
         question: "Grading of hadith 'fasting and Quran intercede'?",
         options: [
           "Sahih",
@@ -852,6 +922,7 @@ const sawmCategory: QuizCategory = {
         references: "Musnad Ahmad 7454"
       },
       {
+        id: "sawm-advanced-10",
         question: "Fiqh ruling on fasting while ill with medicine?",
         options: [
           "Break if necessary",
@@ -864,6 +935,7 @@ const sawmCategory: QuizCategory = {
         references: "Fatwa from Fiqh Council"
       },
       {
+        id: "sawm-advanced-11",
         question: "What is the tafsir of 'fasting shield'?",
         options: [
           "Protects from fire",
@@ -876,6 +948,7 @@ const sawmCategory: QuizCategory = {
         references: "Tafsir Ibn Kathir"
       },
       {
+        id: "sawm-advanced-12",
         question: "Hadith on three whose fast not accepted?",
         options: [
           "Liar, oath breaker, poor payer",
@@ -888,6 +961,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Ibn Majah 1756"
       },
       {
+        id: "sawm-advanced-13",
         question: "Is voluntary fast on doubted day allowed?",
         options: [
           "Yes",
@@ -900,6 +974,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1909"
       },
       {
+        id: "sawm-advanced-14",
         question: "What is the wisdom of suhur?",
         options: [
           "Strength for day",
@@ -912,6 +987,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1921"
       },
       {
+        id: "sawm-advanced-15",
         question: "Ruling on using eye drops while fasting?",
         options: [
           "Invalidates",
@@ -924,6 +1000,7 @@ const sawmCategory: QuizCategory = {
         references: "Majmu' al-Fatawa"
       },
       {
+        id: "sawm-advanced-16",
         question: "Hadith narrator for 'Ramadan comes as mercy'?",
         options: [
           "Abu Hurairah",
@@ -936,6 +1013,7 @@ const sawmCategory: QuizCategory = {
         references: "Al-Mustadrak 4591"
       },
       {
+        id: "sawm-advanced-17",
         question: "What is consensus on fasting for pregnant?",
         options: [
           "Exempt if harm",
@@ -948,6 +1026,7 @@ const sawmCategory: QuizCategory = {
         references: "Ijma of scholars"
       },
       {
+        id: "sawm-advanced-18",
         question: "Advanced: Difference in madhhabs on ghusl time?",
         options: [
           "Before Fajr",
@@ -960,6 +1039,7 @@ const sawmCategory: QuizCategory = {
         references: "Al-Majmu' by Nawawi"
       },
       {
+        id: "sawm-advanced-19",
         question: "Grading of 'fasting expiates oath'?",
         options: [
           "Sahih",
@@ -972,6 +1052,7 @@ const sawmCategory: QuizCategory = {
         references: "Al-Albani grading"
       },
       {
+        id: "sawm-advanced-20",
         question: "What is the hadith on fasting and Quran on Judgment Day?",
         options: [
           "They say to owner",
@@ -984,6 +1065,7 @@ const sawmCategory: QuizCategory = {
         references: "Musnad Ahmad 7454"
       },
       {
+        id: "sawm-advanced-21",
         question: "Ruling on fasting Arafah for non-Hajji?",
         options: [
           "Sunnah mu'akkadah",
@@ -996,6 +1078,7 @@ const sawmCategory: QuizCategory = {
         references: "Fath al-Bari"
       },
       {
+        id: "sawm-advanced-22",
         question: "Can one intend fast after sunrise?",
         options: [
           "Yes, if not eaten",
@@ -1008,6 +1091,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1921"
       },
       {
+        id: "sawm-advanced-23",
         question: "What is the evidence for 20 rak'ahs Tarawih?",
         options: [
           "Hadith of Aisha",
@@ -1020,6 +1104,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 2010"
       },
       {
+        id: "sawm-advanced-24",
         question: "Fiqh: Does brushing teeth invalidate?",
         options: [
           "Yes",
@@ -1032,6 +1117,7 @@ const sawmCategory: QuizCategory = {
         references: "Fatawa Ibn Baz"
       },
       {
+        id: "sawm-advanced-25",
         question: "Hadith on 'month of Quran'?",
         options: [
           "Ramadan",
@@ -1044,6 +1130,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1075"
       },
       {
+        id: "sawm-advanced-26",
         question: "What if vomit returns to mouth?",
         options: [
           "Break fast",
@@ -1056,6 +1143,7 @@ const sawmCategory: QuizCategory = {
         references: "Al-Mughni"
       },
       {
+        id: "sawm-advanced-27",
         question: "Grading of 'suhur is blessing from Allah'?",
         options: [
           "Sahih",
@@ -1068,6 +1156,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1923"
       },
       {
+        id: "sawm-advanced-28",
         question: "Ruling on fasting for breastfeeding mother?",
         options: [
           "Exempt if harm to milk",
@@ -1080,6 +1169,7 @@ const sawmCategory: QuizCategory = {
         references: "Majmu' al-Fatawa"
       },
       {
+        id: "sawm-advanced-29",
         question: "What is the hadith on three fasts a month?",
         options: [
           "White days",
@@ -1092,6 +1182,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih Muslim 1160"
       },
       {
+        id: "sawm-advanced-30",
         question: "Advanced: Consensus on intention for fast?",
         options: [
           "Nightly",
@@ -1104,6 +1195,7 @@ const sawmCategory: QuizCategory = {
         references: "Ijma"
       },
       {
+        id: "sawm-advanced-31",
         question: "What is the position of Ash'aris on reward of fast?",
         options: [
           "Creation of Allah",
@@ -1116,6 +1208,7 @@ const sawmCategory: QuizCategory = {
         references: "Aqidah Tahawiyyah"
       },
       {
+        id: "sawm-advanced-32",
         question: "Hadith on 'fasting most beloved to Allah'?",
         options: [
           "Yes, from deeds",
@@ -1128,6 +1221,7 @@ const sawmCategory: QuizCategory = {
         references: "Sunan Ibn Majah 1599"
       },
       {
+        id: "sawm-advanced-33",
         question: "Fiqh difference on blood test during fast?",
         options: [
           "All agree no break",
@@ -1140,6 +1234,7 @@ const sawmCategory: QuizCategory = {
         references: "Contemporary fatwas"
       },
       {
+        id: "sawm-advanced-34",
         question: "What is the chain for Rayyan hadith?",
         options: [
           "From Sahl to Bukhari",
@@ -1152,6 +1247,7 @@ const sawmCategory: QuizCategory = {
         references: "Sahih al-Bukhari 1896"
       },
       {
+        id: "sawm-advanced-35",
         question: "Ruling on dental work during fast?",
         options: [
           "Avoid if possible",

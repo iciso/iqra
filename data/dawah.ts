@@ -8,6 +8,7 @@ const dawahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "dawah-easy-1",
         question: "What does the term 'Dawah' mean?",
         options: ["Prayer", "Charity", "Invitation or Call", "Pilgrimage"],
         correctAnswer: "Invitation or Call",
@@ -15,6 +16,7 @@ const dawahCategory: QuizCategory = {
           "Dawah literally means 'invitation' or 'call' in Arabic. In Islamic context, it refers to inviting people to understand and embrace Islam.",
       },
         {
+    id: "dawah-easy-2",
     question: "Which prophet is mentioned in the Quran as calling his father to Islam in a gentle manner?",
     options: [
       "Prophet Musa (AS)",
@@ -26,6 +28,7 @@ const dawahCategory: QuizCategory = {
     explanation: "In Surah Maryam (19:41-48), Prophet Ibrahim (AS) gently calls his father to worship Allah alone, saying 'O my father, why do you worship what can neither hear nor see nor benefit you at all?' This shows the importance of gentleness in dawah."
   },
   {
+    id: "dawah-easy-3",
     question: "What was the first word of revelation to Prophet Muhammad (PBUH)?",
     options: [
       "Pray",
@@ -37,6 +40,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The first revelation in Surah Al-Alaq (96:1) began with 'Read (or Proclaim) in the name of your Lord who created.' This emphasizes the importance of knowledge in Islamic dawah."
   },
   {
+    id: "dawah-easy-4",
     question: "Which companion was known as 'The First Male Muslim'?",
     options: [
       "Abu Bakr (RA)",
@@ -48,6 +52,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Abu Bakr (RA) was the first adult male to accept Islam and became a strong supporter of the Prophet's dawah. His immediate acceptance shows the power of sincere conviction."
   },
   {
+    id: "dawah-easy-5",
     question: "What is the meaning of 'Uswah Hasanah' in the context of dawah?",
     options: [
       "Beautiful speech",
@@ -59,6 +64,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Uswah Hasanah refers to the excellent example set by Prophet Muhammad (PBUH). The Quran (33:21) states he is the best example, showing that living Islam is a powerful form of dawah."
   },
   {
+    id: "dawah-easy-6",
     question: "Which surah is known as 'The Heart of the Quran' and often used in dawah?",
     options: [
       "Surah Al-Fatiha",
@@ -70,6 +76,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Surah Yasin is often called 'The Heart of the Quran' and contains fundamental Islamic teachings about resurrection and divine power, making it valuable for dawah."
   },
   {
+    id: "dawah-easy-7",
     question: "What was the primary language used by Prophet Muhammad (PBUH) for dawah?",
     options: [
       "The language of the people he was addressing",
@@ -81,6 +88,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Prophet communicated in the language his audience understood. While revelation came in Arabic, his dawah was practical and accessible to his listeners."
   },
   {
+    id: "dawah-easy-8",
     question: "Which of these is NOT a method of dawah mentioned in the Quran?",
     options: [
       "Through wisdom",
@@ -92,6 +100,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Quran (2:256) clearly states 'There is no compulsion in religion.' Dawah must be done through wisdom, good preaching, and kind argumentation (16:125)."
   },
   {
+    id: "dawah-easy-9",
     question: "What is the first pillar of Islam that should be emphasized in dawah?",
     options: [
       "Shahadah (Testimony of Faith)",
@@ -103,6 +112,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Shahadah is the foundation of Islam. Prophet Muhammad (PBUH) instructed his companions to first call people to testify to Allah's oneness before teaching other pillars."
   },
   {
+    id: "dawah-easy-10",
     question: "Which companion was sent to teach the Quran in Medina before Hijrah?",
     options: [
       "Mus'ab ibn Umayr (RA)",
@@ -114,6 +124,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Mus'ab ibn Umayr (RA) was sent to Medina to teach Islam before the Hijrah. His successful dawah prepared Medina to become the center of Islamic civilization."
   },
   {
+    id: "dawah-easy-11",
     question: "What is the term for non-Muslims living under Islamic rule who are given protection?",
     options: [
       "Muhajirun",
@@ -125,6 +136,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Dhimmis are protected non-Muslim citizens who enjoy rights under Islamic governance. This system demonstrates Islam's practical tolerance and can be a form of dawah by example."
   },
   {
+    id: "dawah-easy-12",
     question: "Which Quranic verse is known as the 'Verse of Dawah'?",
     options: [
       "Al-Baqarah 2:255 (Ayat al-Kursi)",
@@ -136,6 +148,7 @@ const dawahCategory: QuizCategory = {
     explanation: "An-Nahl 16:125 outlines the three primary methods of dawah: wisdom, good admonition, and arguing in the best manner. It's considered the foundational verse for Islamic outreach."
   },
   {
+    id: "dawah-easy-13",
     question: "What quality of the Prophet made people naturally inclined to listen to his message?",
     options: [
       "His wealth",
@@ -147,6 +160,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Even before prophethood, Muhammad (PBUH) was known as 'As-Sadiq' (the truthful) and 'Al-Amin' (the trustworthy). His impeccable character made people receptive to his message."
   },
   {
+    id: "dawah-easy-14",
     question: "Which of these is NOT a recommended quality for a da'i (person giving dawah)?",
     options: [
       "Patience",
@@ -158,6 +172,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Arrogance contradicts Islamic teachings. The Prophet said, 'No one who has an atom's weight of arrogance in his heart will enter Paradise.' (Muslim) Humility is essential for effective dawah."
   },
   {
+    id: "dawah-easy-15",
     question: "What was the first house established for worship mentioned in the Quran?",
     options: [
       "Al-Aqsa Mosque",
@@ -169,6 +184,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Quran (3:96) states the Kaaba was the first house established for mankind's worship. Its historical significance is often mentioned in dawah about Islamic monotheism."
   },
   {
+    id: "dawah-easy-16",
     question: "How did the Prophet respond when people insulted him during dawah?",
     options: [
       "He insulted them back",
@@ -180,6 +196,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Prophet exemplified patience and often prayed for his persecutors' guidance. His famous prayer for Taif's people after they stoned him shows the ideal response to rejection."
   },
   {
+    id: "dawah-easy-17",
     question: "What is the term for the migration of early Muslims to Abyssinia for religious freedom?",
     options: [
       "Hijrah",
@@ -191,6 +208,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The migration to Abyssinia (615 CE) was the first hijrah in Islamic history, where Muslims sought religious freedom under a just Christian king, showing early interfaith relations."
   },
   {
+    id: "dawah-easy-18",
     question: "Which companion gave dawah to Umar (RA) leading to his conversion?",
     options: [
       "His sister Fatimah and her husband",
@@ -202,6 +220,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Umar's (RA) conversion began when he heard his sister and brother-in-law reciting Quran. This shows how family dawah can be powerful when done with wisdom."
   },
   {
+    id: "dawah-easy-19",
     question: "What percentage of the Quran deals with legal rulings?",
     options: [
       "About 10%",
@@ -213,6 +232,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Only approximately 3% of Quranic verses deal with legal matters. This is important for dawah to show Islam's comprehensive nature beyond just laws."
   },
   {
+    id: "dawah-easy-20",
     question: "Which prophet is mentioned most frequently in the Quran?",
     options: [
       "Prophet Ibrahim (AS)",
@@ -224,6 +244,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Prophet Musa (AS) is mentioned about 136 times, often in contexts showing dialogue with Pharaoh. These narratives provide dawah lessons in speaking truth to power."
   },
   {
+    id: "dawah-easy-21",
     question: "What was the primary method the Prophet used to teach new Muslims?",
     options: [
       "Mass lectures",
@@ -235,6 +256,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Prophet focused on personal and small group teaching, ensuring proper understanding. This method remains effective in dawah for building strong foundations."
       },
       {
+        id: "dawah-easy-22",
         question: "Which Quranic verse mentions 'calling to the way of your Lord with wisdom and good instruction'?",
         options: ["Surah Al-Baqarah 2:256", "Surah An-Nahl 16:125", "Surah Al-Ikhlas 112:1", "Surah Al-Fatiha 1:5"],
         correctAnswer: "Surah An-Nahl 16:125",
@@ -242,6 +264,7 @@ const dawahCategory: QuizCategory = {
           "Surah An-Nahl 16:125 states: 'Invite to the way of your Lord with wisdom and good instruction, and argue with them in a way that is best.'",
       },
       {
+        id: "dawah-easy-23",
         question: "What is the primary purpose of Dawah?",
         options: [
           "To convert as many people as possible",
@@ -254,6 +277,7 @@ const dawahCategory: QuizCategory = {
           "The primary purpose of Dawah is to convey the message of Islam and invite people to the truth. The guidance is ultimately from Allah, and there is no compulsion in religion.",
       },
       {
+        id: "dawah-easy-24",
         question: "Which of the following is NOT one of the key principles of effective Dawah?",
         options: [
           "Wisdom (Hikmah)",
@@ -266,6 +290,7 @@ const dawahCategory: QuizCategory = {
           "Forcing others contradicts the Quranic principle 'There is no compulsion in religion' (2:256). The key principles are wisdom, good instruction, and arguing in the best manner.",
       },
       {
+        id: "dawah-easy-25",
         question: "What is the meaning of 'Hikmah' in the context of Dawah?",
         options: ["Speaking loudly", "Wisdom and sound judgment", "Memorizing many Quranic verses", "Debating skills"],
         correctAnswer: "Wisdom and sound judgment",
@@ -273,6 +298,7 @@ const dawahCategory: QuizCategory = {
           "Hikmah refers to wisdom, sound judgment, and understanding. It involves knowing what to say, when to say it, and how to say it in the most effective manner.",
       },
       {
+        id: "dawah-easy-26",
         question: "What should be the primary source of information when giving Dawah?",
         options: [
           "Personal opinions",
@@ -285,6 +311,7 @@ const dawahCategory: QuizCategory = {
           "The Quran and authentic Sunnah (teachings and practices of Prophet Muhammad) should be the primary sources of information when giving Dawah to ensure accuracy and authenticity.",
       },
       {
+        id: "dawah-easy-27",
         question: "What is the importance of good character (akhlaq) in Dawah?",
         options: [
           "It's not important as long as the information is correct",
@@ -297,6 +324,7 @@ const dawahCategory: QuizCategory = {
           "Good character is essential in Dawah as it practically demonstrates the beauty of Islamic teachings. Prophet Muhammad (PBUH) said, 'I have been sent to perfect good character.'",
       },
       {
+        id: "dawah-easy-28",
         question: "What is the concept of 'Tabligh' in relation to Dawah?",
         options: [
           "Forcing others to accept Islam",
@@ -309,6 +337,7 @@ const dawahCategory: QuizCategory = {
           "Tabligh means conveying or transmitting the message. It emphasizes the duty of Muslims to convey the message of Islam to others, without being responsible for the outcome.",
       },
       {
+        id: "dawah-easy-29",
         question: "What did Prophet Muhammad (PBUH) say about conveying his message?",
         options: [
           "Only scholars should convey the message",
@@ -321,6 +350,7 @@ const dawahCategory: QuizCategory = {
           "Prophet Muhammad (PBUH) said, 'Convey from me, even if it is one verse.' This encourages all Muslims to share whatever knowledge they have, even if it's limited.",
       },
       {
+        id: "dawah-easy-30",
         question: "What is the role of patience (sabr) in Dawah?",
         options: [
           "It's not necessary if you have knowledge",
@@ -333,6 +363,7 @@ const dawahCategory: QuizCategory = {
           "Patience is crucial in Dawah as guidance may take time and face resistance. The prophets exemplified great patience in their dawah efforts despite facing severe opposition.",
       },
         {
+        id: "dawah-easy-31",
         question: "What did the Prophet (PBUH) tell Ali ibn Abi Talib at Khaybar regarding the immense value of guiding a single person to Islam?",
         options: [
           "\"It is better for you than possessing red camels\"",
@@ -345,6 +376,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari and Sahih Muslim, the Prophet (PBUH) told Ali (RA): 'By Allah, if Allah were to guide a single person through you, it is better for you than possessing red camels' (the most prized wealth of the Arabs at that time).",
       },
       {
+        id: "dawah-easy-32",
         question: "When the Prophet (PBUH) was commanded to warn his near relatives (26:214), from where did he publicly summon and address the Quraysh clans?",
         options: ["Mount Safa", "Mount Uhud", "Mount Thawr", "The Plain of Arafat"],
         correctAnswer: "Mount Safa",
@@ -352,6 +384,7 @@ const dawahCategory: QuizCategory = {
           "As recorded in Sahih al-Bukhari, the Prophet (PBUH) ascended Mount Safa and called out to each clan of Quraysh by name, asking if they would believe him if he warned of an army behind the hill, establishing his truthfulness before proclaiming the message of Tawheed.",
       },
       {
+        id: "dawah-easy-33",
         question: "According to Surah al-Ankabut (29:14), for approximately how long did Prophet Nuh (Noah) patiently preach to his people?",
         options: ["100 years", "500 years", "950 years", "1,000 years"],
         correctAnswer: "950 years",
@@ -359,6 +392,7 @@ const dawahCategory: QuizCategory = {
           "The Noble Quran states in Surah al-Ankabut (29:14): 'And We certainly sent Noah to his people, and he remained among them a thousand years less fifty years' (950 years), exemplifying profound endurance in Dawah.",
       },
       {
+        id: "dawah-easy-34",
         question: "How did Prophet Yusuf (peace be upon him) utilize his time in prison to deliver Dawah (Surah Yusuf 12:39-40)?",
         options: [
           "He demanded his release before speaking",
@@ -371,6 +405,7 @@ const dawahCategory: QuizCategory = {
           "In Surah Yusuf (12:39-40), Yusuf (AS) seized the opportunity of his fellow prisoners' inquiry to first explain Tawheed: 'O my two companions of prison, are separate lords better or Allah, the One, the Subduer?'",
       },
       {
+        id: "dawah-easy-35",
         question: "When Allah commanded Prophet Musa and Harun to invite Pharaoh to the truth, what manner of speech did He specifically ordain (Surah Taha 20:44)?",
         options: [
           "Harsh threats and condemnation",
@@ -383,6 +418,7 @@ const dawahCategory: QuizCategory = {
           "Allah commanded Musa and Harun in Surah Taha (20:44): 'And speak to him with gentle speech that perhaps he may be reminded or fear [Allah].' Even with a tyrannical oppressor, dawah begins with gentleness.",
       },
       {
+        id: "dawah-easy-36",
         question: "When the Prophet (PBUH) was rejected and injured by the leaders and people of Ta'if, what was his reaction toward the offer of the Angel of the Mountains to crush the city?",
         options: [
           "He accepted the offer immediately",
@@ -395,6 +431,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari and Sahih Muslim, the Prophet (PBUH) mercifully replied: 'Rather, I hope that Allah will bring forth from their loins people who will worship Allah alone, associating nothing with Him.'",
       },
       {
+        id: "dawah-easy-37",
         question: "Which Surah and verse explicitly defines the global mission of Prophet Muhammad (PBUH) as 'a mercy to the worlds'?",
         options: [
           "Surah al-Anbiya (21:107)",
@@ -407,6 +444,7 @@ const dawahCategory: QuizCategory = {
           "Allah states in Surah al-Anbiya (21:107): 'And We have not sent you, [O Muhammad], except as a mercy to the worlds' (Rahmatan lil-'Alamin), which constitutes the foundational spirit of Islamic Dawah.",
       },
       {
+        id: "dawah-easy-38",
         question: "Which companion represented the Muslims and recited the opening verses of Surah Maryam before the Christian King of Abyssinia (the Negus)?",
         options: ["Ja'far ibn Abi Talib", "Khalid ibn al-Walid", "Abu Bakr al-Siddiq", "Bilal ibn Rabah"],
         correctAnswer: "Ja'far ibn Abi Talib",
@@ -414,6 +452,7 @@ const dawahCategory: QuizCategory = {
           "Ja'far ibn Abi Talib (RA) was the spokesperson for the Muslim emigrants in Abyssinia. He eloquently explained Islam's message and recited verses from Surah Maryam, causing the Negus to weep and grant the Muslims protection.",
       },
       {
+        id: "dawah-easy-39",
         question: "What is the famous rule established in Surah al-Baqarah (2:256) regarding freedom of conscience in entering Islam?",
         options: [
           "\"There is no compulsion in religion\"",
@@ -426,6 +465,7 @@ const dawahCategory: QuizCategory = {
           "Surah al-Baqarah (2:256) establishes the definitive principle: 'There is no compulsion in religion. Verily, the right path has become distinct from the wrong path.' Sincere faith must stem from conviction, not coercion.",
       },
       {
+        id: "dawah-easy-40",
         question: "To which world leaders did the Prophet (PBUH) dispatch official emissaries and letters inviting them to Islam after the Treaty of Hudaybiyyah?",
         options: [
           "Heraclius of Byzantium, Chosroes of Persia, and the Negus of Abyssinia",
@@ -440,6 +480,7 @@ const dawahCategory: QuizCategory = {
      ],
    intermediate: [
       {
+        id: "dawah-intermediate-1",
         question: "What is the vital theological distinction between 'Hidayat al-Irshad' (guidance of showing the path) and 'Hidayat al-Tawfeeq' (guidance of heart and acceptance)?",
         options: [
           "Hidayat al-Irshad is only for angels, while Tawfeeq is for humans",
@@ -452,6 +493,7 @@ const dawahCategory: QuizCategory = {
           "Scholars emphasize that a Da'i is only tasked with conveying and clarifying the truth (Hidayat al-Dalalah wal-Irshad). Transforming the heart and granting true faith (Hidayat al-Tawfeeq) is exclusively in the hands of Allah, as stated in 28:56: 'Indeed, you do not guide whom you like, but Allah guides whom He wills.'",
       },
       {
+        id: "dawah-intermediate-2",
         question: "How did Ja'far ibn Abi Talib (RA) represent the message of Islam when presenting Dawah before the Christian King of Abyssinia (the Negus)?",
         options: [
           "He threatened the king with military confrontation",
@@ -464,6 +506,7 @@ const dawahCategory: QuizCategory = {
           "In an authentic narrative recorded by Imam Ahmad, Ja'far (RA) articulated Islam's ethical transformation of society and recited the opening of Surah Maryam, moving the Negus to tears and earning royal protection for the early Muslims.",
       },
       {
+        id: "dawah-intermediate-3",
         question: "When Mus'ab ibn Umayr (RA) was confronted by the armed tribal chieftain Usayd ibn Hudayr in Madinah, what legendary Dawah response did he give?",
         options: [
           "He drew his sword to defend himself",
@@ -476,6 +519,7 @@ const dawahCategory: QuizCategory = {
           "Mus'ab's sublime composure, gentleness, and reasonable approach disarmed Usayd, who sat, listened to the Quran, and embraced Islam that very hour, soon leading to the conversion of his entire clan.",
       },
       {
+        id: "dawah-intermediate-4",
         question: "When the Angel of the Mountains offered to crush the insolent people of Ta'if between two mountains after they stoned the Prophet (PBUH), how did he respond?",
         options: [
           "He immediately agreed to their destruction",
@@ -488,6 +532,7 @@ const dawahCategory: QuizCategory = {
           "Recorded in Sahih al-Bukhari and Muslim, this magnificent response epitomizes prophetic mercy and long-term vision in Dawah, prioritizing the guidance of future generations over personal retribution.",
       },
       {
+        id: "dawah-intermediate-5",
         question: "According to the famous hadith in Sahih Muslim, what are the three progressive stages of rectifying evil (Nahy 'anil-Munkar)?",
         options: [
           "With armed force, with legal prosecution, or through political debate",
@@ -500,6 +545,7 @@ const dawahCategory: QuizCategory = {
           "The Prophet (PBUH) said in Sahih Muslim: 'Whoever among you sees an evil, let him change it with his hand; if he cannot, then with his tongue; if he cannot, then with his heart, and that is the weakest of faith.' Each stage corresponds to one's legitimate capability.",
       },
       {
+        id: "dawah-intermediate-6",
         question: "Why does Surah al-An'am (6:108) strictly prohibit Muslims from verbally abusing the false gods and idols of other religions?",
         options: [
           "Because pagan idols possess genuine supernatural powers",
@@ -512,6 +558,7 @@ const dawahCategory: QuizCategory = {
           "Surah al-An'am (6:108) warns: 'And do not insult those they invoke other than Allah, lest they insult Allah in enmity without knowledge.' A Da'i must not use counterproductive insults that provoke hatred against Allah and the truth.",
       },
       {
+        id: "dawah-intermediate-7",
         question: "How did Prophet Muhammad (PBUH) begin his public Dawah to the Quraysh clans from atop Mount Safa?",
         options: [
           "By demanding they surrender the keys of the Ka'bah",
@@ -524,6 +571,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, the Prophet (PBUH) first leveraged his lifelong reputation as Al-Amin (the trustworthy) and Al-Sadiq (the truthful). When they confirmed his impeccable honesty, he delivered the warning of monotheism and the Day of Judgment.",
       },
       {
+        id: "dawah-intermediate-8",
         question: "When Prophet Yusuf (Joseph) was unjustly imprisoned and fellow inmates asked him to interpret their dreams, how did he structure his Dawah (Surah Yusuf 12:37-40)?",
         options: [
           "He demanded payment in gold before interpreting the dreams",
@@ -536,6 +584,7 @@ const dawahCategory: QuizCategory = {
           "Prophet Yusuf (AS) seized the receptive moment in prison to direct their hearts to the foundational truth of Tawheed: 'Are different lords better or Allah, the One, the Subduer?' (12:39), demonstrating how a Da'i integrates faith into everyday counseling.",
       },
       {
+        id: "dawah-intermediate-9",
         question: "What universal prophetic principle regarding compensation for delivering religious guidance is repeatedly emphasized throughout the Quran?",
         options: [
           "Charging hourly consulting fees for basic Islamic guidance",
@@ -548,6 +597,7 @@ const dawahCategory: QuizCategory = {
           "Prophets Nuh, Hud, Salih, Lut, and Shu'ayb repeatedly proclaimed: 'Wa ma as'alukum 'alayhi min ajr' (I do not ask of you any payment for it). Sincerity free from commercialized preaching gives Dawah purity and moral authority.",
       },
       {
+        id: "dawah-intermediate-10",
         question: "What profound rule regarding speech and character did the Prophet (PBUH) teach Aisha (RA) in Sahih Muslim?",
         options: [
           "\"Harshness is necessary to make people fear the truth\"",
@@ -560,6 +610,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih Muslim, the Prophet (PBUH) said: 'Inna al-rifqa la yakunu fi shay'in illa zanahu, wa la yunza'u min shay'in illa shanahu.' Gentleness (Rifq) is a foundational virtue that attracts hearts during Dawah.",
       },
       {
+        id: "dawah-intermediate-11",
         question: "What is the Quranic directive regarding dealing with non-Muslim parents who actively pressure their Muslim child to commit Shirk (Surah Luqman 31:15)?",
         options: [
           "Insult and physically disown them immediately",
@@ -572,6 +623,7 @@ const dawahCategory: QuizCategory = {
           "Surah Luqman (31:15) orders: 'But if they endeavor to make you associate with Me that of which you have no knowledge, do not obey them but accompany them in [this] world with appropriate kindness.' Kindness to parents is an enduring form of Dawah bil-Hal.",
       },
       {
+        id: "dawah-intermediate-12",
         question: "What historic role did 'Dar al-Arqam' play during the initial phase of the Prophet's mission in Makkah?",
         options: [
           "It was a military training fortress",
@@ -584,6 +636,7 @@ const dawahCategory: QuizCategory = {
           "The home of al-Arqam ibn Abi al-Arqam served as the clandestine headquarters of the early Muslim community in Makkah, where the Prophet (PBUH) nurtured core converts in faith, character, and Quranic literacy.",
       },
       {
+        id: "dawah-intermediate-13",
         question: "Which early companion's proactive, personal Dawah led immediately to the conversion of senior figures including Uthman ibn Affan, Abdur-Rahman ibn Awf, and Talhah ibn Ubaydullah?",
         options: ["Abu Bakr al-Siddiq (RA)", "Umar ibn al-Khattab (RA)", "Khalid ibn al-Walid (RA)", "Bilal ibn Rabah (RA)"],
         correctAnswer: "Abu Bakr al-Siddiq (RA)",
@@ -591,6 +644,7 @@ const dawahCategory: QuizCategory = {
           "Abu Bakr (RA) was beloved, wise, and highly respected for his genealogical knowledge and integrity. Upon accepting Islam, he immediately invited his circle of noble friends, bringing the foundational pillars of the Ummah into Islam.",
       },
       {
+        id: "dawah-intermediate-14",
         question: "What stern rebuke does Surah al-Baqarah (2:44) address to religious teachers whose personal actions contradict their public preaching?",
         options: [
             "\"Why do you preach to those who already know?\"",
@@ -603,6 +657,7 @@ const dawahCategory: QuizCategory = {
           "Surah al-Baqarah (2:44) warns against intellectual hypocrisy—calling others to virtue while disregarding it in one's private life. Authenticity and personal integrity are essential pillars of Dawah.",
       },
       {
+        id: "dawah-intermediate-15",
         question: "According to the consensus of classical Islamic jurists, what is the collective legal ruling (Hukm) of engaging in Dawah for the Muslim Ummah?",
         options: [
           "Merely a recommended voluntary hobby (Mustahabb)",
@@ -615,6 +670,7 @@ const dawahCategory: QuizCategory = {
           "Based on Surah Ali 'Imran (3:104), Dawah is Fard Kifayah collectively, ensuring an educated body calls to truth; individually, every Muslim must convey Islam and correct wrongdoing according to their level of capability and knowledge.",
       },
       {
+        id: "dawah-intermediate-16",
         question: "How did Prophet Ibrahim (AS) decisively dismantle the philosophical arrogance of King Nimrod in Surah al-Baqarah (2:258)?",
         options: [
           "He challenged him to an archery contest",
@@ -627,6 +683,7 @@ const dawahCategory: QuizCategory = {
           "When the tyrant ridiculously claimed he could give life and death by sparing one prisoner and executing another, Ibrahim (AS) pivoted to an irrefutable cosmic proof of divine omnipotence, immediately silencing the king.",
       },
       {
+        id: "dawah-intermediate-17",
         question: "What rational method did Prophet Ibrahim (AS) use to guide his people away from celestial polytheism in Surah al-An'am (6:76-79)?",
         options: [
           "He destroyed their astronomical charts",
@@ -639,6 +696,7 @@ const dawahCategory: QuizCategory = {
           "Ibrahim (AS) used an engaging pedagogical demonstration: seeing the heavenly bodies set, he declared, 'I do not like those that set' (La uhibbu al-afilin), directing their intellects to the Eternal Creator Who never disappears.",
       },
       {
+        id: "dawah-intermediate-18",
         question: "What famous rule of psychological pedagogy in Dawah did the Prophet (PBUH) articulate in Sahih al-Bukhari to Mu'adh and Abu Musa al-Ash'ari?",
         options: [
           "\"Compel the people through fear and urgency\"",
@@ -651,6 +709,7 @@ const dawahCategory: QuizCategory = {
           "The Prophet (PBUH) instructed his emissaries: 'Yassiru wa la tu'assiru, wa bashshiru wa la tunaffiru' (Make things easy and do not make them hard; bring good cheer and do not drive people away). Facilitation and hope are critical in Dawah.",
       },
       {
+        id: "dawah-intermediate-19",
         question: "How did the Prophet (PBUH) handle the incident of the Bedouin who urinated inside the Prophet's Mosque in Madinah?",
         options: [
           "He had the companions beat and expel him immediately",
@@ -663,6 +722,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, the Prophet's response showcased supreme emotional intelligence and educational wisdom: avoiding medical harm to the man, preventing urine dispersal, solving the contamination cleanly, and educating the ignorant with compassion.",
       },
       {
+        id: "dawah-intermediate-20",
         question: "When a passionate young man asked the Prophet (PBUH) for permission to commit fornication (Zina), how did the Prophet address him?",
         options: [
           "He cursed him and ordered him stoned immediately",
@@ -675,6 +735,7 @@ const dawahCategory: QuizCategory = {
           "Recorded in Musnad Ahmad, the Prophet (PBUH) reasoned with the youth's conscience, awakening his empathy for others' families, and supplicated for his purity. The youth departed with nothing more detestable to him than Zina.",
       },
       {
+        id: "dawah-intermediate-21",
         question: "What does the term 'Al-Balagh al-Mubin' mean in Quranic passages defining the scope of prophetic duty (e.g., Surah al-Nur 24:54)?",
         options: [
           "Secret communication through signs",
@@ -687,6 +748,7 @@ const dawahCategory: QuizCategory = {
           "The Quran repeats: 'And there is not upon the Messenger except clear conveyance (Al-Balagh al-Mubin).' The caller's responsibility is fulfilled when the truth is explained thoroughly, lucidly, and without distortion.",
       },
       {
+        id: "dawah-intermediate-22",
         question: "How did Tufayl ibn Amr al-Dawsi, a noble poet who stuffed cotton in his ears to avoid hearing the Prophet (PBUH), eventually embrace Islam?",
         options: [
           "He was forced by the leaders of Quraysh",
@@ -699,6 +761,7 @@ const dawahCategory: QuizCategory = {
           "Recorded in classical Seerah (Ibn Hisham), Tufayl thought: 'I am a mature, intelligent poet who knows good speech from bad; what prevents me from listening?' Upon hearing the Quran, he was captivated and became an ardent Da'i among his tribe, Daws.",
       },
       {
+        id: "dawah-intermediate-23",
         question: "What did the Jewish youth who used to serve the Prophet (PBUH) do when the Prophet visited him during his mortal illness and called him to Islam?",
         options: [
           "He insulted the Prophet and turned his back",
@@ -711,6 +774,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, the Prophet visited the sick youth, demonstrating care across religious boundaries. When invited to Islam, the boy's father endorsed it, prompting the Prophet to say: 'Praise be to Allah Who saved him from the Fire.'",
       },
       {
+        id: "dawah-intermediate-24",
         question: "What powerful rational argument does Surah at-Tur (52:35) pose to deconstruct philosophical atheism and materialism in Dawah?",
         options: [
           "\"Do they possess the treasures of gold?\"",
@@ -723,6 +787,7 @@ const dawahCategory: QuizCategory = {
           "Surah at-Tur (52:35) articulates an inescapable logical dilemma: either existence arose from absolute nothingness (impossible), or humans created themselves (equally absurd), proving that an Uncreated, All-Powerful Creator is necessary.",
       },
       {
+        id: "dawah-intermediate-25",
         question: "When Jubayr ibn Mut'im, while still a polytheist, heard the Prophet (PBUH) reciting Surah at-Tur during Maghrib prayer, what impact did it have on him?",
         options: [
           "He plugged his ears in anger",
@@ -735,6 +800,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, Jubayr narrated how the profound majesty and cosmic logic of the Quran pierced his skepticism, demonstrating the unparalleled power of reciting the Quran directly during Dawah.",
       },
       {
+        id: "dawah-intermediate-26",
         question: "What does the Quran designate as the primary spiritual barrier that prevents arrogant people from receiving Dawah (Surah al-A'raf 7:146)?",
         options: [
           "Lack of financial literacy",
@@ -747,6 +813,7 @@ const dawahCategory: QuizCategory = {
           "Allah warns in 7:146: 'I will turn away from My signs those who are arrogant upon the earth without right.' Kibr blinds an individual from accepting evident truth regardless of how convincing the proofs are.",
       },
       {
+        id: "dawah-intermediate-27",
         question: "What is the concept of 'Fitrah' and why is it considered the greatest psychological ally of a Da'i?",
         options: [
           "A commercial fee paid after Ramadan",
@@ -759,6 +826,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, the Prophet (PBUH) taught: 'Every child is born upon the Fitrah.' Dawah does not implant an unnatural alien concept; it awakens the slumbering intrinsic human inclination toward monotheism and virtue.",
       },
       {
+        id: "dawah-intermediate-28",
         question: "Why did the Treaty of Hudaybiyyah, despite seeming unfavorable to some companions initially, produce the greatest surge of conversions in early Islamic history?",
         options: [
           "It forced the Quraysh to convert under threat of arms",
@@ -771,6 +839,7 @@ const dawahCategory: QuizCategory = {
           "Imam al-Zuhri noted that peace allowed people to interact without prejudice. More people embraced Islam during the two years following Hudaybiyyah than in all the preceding years combined, as described in Surah al-Fath.",
       },
       {
+        id: "dawah-intermediate-29",
         question: "What pedagogical insight did Mother of the Believers Aisha (RA) offer regarding the gradual revelation of the Quran and its impact on Dawah?",
         options: [
           "All legal prohibitions should have been revealed in a single day",
@@ -783,6 +852,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, Aisha (RA) explained the divine pedagogy of Tadarruj (gradualism): establishing deep love and reverence for Allah in hearts before issuing detailed legislative prohibitions.",
       },
       {
+        id: "dawah-intermediate-30",
         question: "How did Abdullah ibn Salam (RA), the prominent Jewish rabbi of Madinah, react upon first hearing the public address of Prophet Muhammad (PBUH)?",
         options: [
           "He disputed his lineage and debated him publicly",
@@ -795,6 +865,7 @@ const dawahCategory: QuizCategory = {
           "Recorded in Jami` at-Tirmidhi, Abdullah ibn Salam testified that the Prophet's sheer sincerity, radiant countenance, and noble ethical discourse provided unmistakable proof of his divine prophethood.",
       },
       {
+        id: "dawah-intermediate-31",
         question: "What is the Quranic response commanded in Surah al-Furqan (25:63) when the servants of the Most Merciful encounter insults and foolish mockery from the ignorant?",
         options: [
           "Respond with louder insults and curses",
@@ -807,6 +878,7 @@ const dawahCategory: QuizCategory = {
           "Surah al-Furqan (25:63) highlights: 'And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace.' A Da'i never stoops to vulgarity.",
       },
       {
+        id: "dawah-intermediate-32",
         question: "What was the significance of 'Bay'at al-Aqabah' (The Pledges of al-Aqabah) in the strategic progression of Islamic Dawah?",
         options: [
           "They marked the end of Dawah in the Arabian Peninsula",
@@ -819,6 +891,7 @@ const dawahCategory: QuizCategory = {
           "The two Pledges of al-Aqabah provided the fledgling Muslim community with a secure homeland and political sovereignty in Madinah, transitioning Dawah from individual survival in Makkah to community establishment.",
       },
       {
+        id: "dawah-intermediate-33",
         question: "When Dimad al-Azdi, an herbalist and exorcist from Yemen, arrived in Makkah intending to cure the Prophet (PBUH) of alleged madness, what converted him?",
         options: [
           "A military duel",
@@ -831,6 +904,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih Muslim, Dimad asked the Prophet (PBUH) to repeat the words three times, declaring: 'I have heard the words of sorcerers, poets, and soothsayers, but I have never heard anything like these majestic words,' and embraced Islam on the spot.",
       },
       {
+        id: "dawah-intermediate-34",
         question: "What year in the Seerah is renowned as 'Am al-Wufud' (The Year of Delegations) and what was its significance for Dawah?",
         options: [
           "The 2nd year of Hijrah after Badr",
@@ -843,6 +917,7 @@ const dawahCategory: QuizCategory = {
           "Following the Conquest of Makkah and the Battle of Tabuk, tribal delegations arrived in Madinah in waves (Surah an-Nasr), representing the mass entry of Arabian tribes into Islam through peaceful diplomatic Dawah.",
       },
       {
+        id: "dawah-intermediate-35",
         question: "What does the Quran teach regarding the role of divine reflection (Tadabbur) in awakening skeptics and critics?",
         options: [
           "The Quran discourages questioning and deep analysis",
@@ -855,6 +930,7 @@ const dawahCategory: QuizCategory = {
           "The Quran directly appeals to human intellect and conscience, commanding contemplation of its depth, internal coherence, and spiritual resonance to dismantle intellectual prejudice.",
       },
       {
+        id: "dawah-intermediate-36",
         question: "Why is 'Fiqh al-Inkar' (the jurisprudence of forbidding evil) conditioned on not resulting in a greater evil?",
         options: [
           "Because scholars are not interested in public welfare",
@@ -867,6 +943,7 @@ const dawahCategory: QuizCategory = {
           "In *I'lam al-Muwaqqi'in*, Ibn al-Qayyim details that rectifying a wrong is aimed at achieving good; if an intervention produces a greater harm or bloodshed (Mafsada A'zam), Shariah mandates restraint.",
       },
       {
+        id: "dawah-intermediate-37",
         question: "How did Prophet Muhammad (PBUH) instruct his companions to engage with the elderly and youth during community Dawah?",
         options: [
           "\"Treat all people identically with cold detachment\"",
@@ -879,6 +956,7 @@ const dawahCategory: QuizCategory = {
           "This prophetic hadith establishes an empathetic community atmosphere where children are nurtured with tenderness and elders are honored with deference, fostering receptivity to Dawah.",
       },
       {
+        id: "dawah-intermediate-38",
         question: "What was the Prophet's practice when giving public sermons and admonitions so as not to exhaust his audience?",
         options: [
           "He preached continuously for entire days without pause",
@@ -891,6 +969,7 @@ const dawahCategory: QuizCategory = {
           "Abdullah ibn Mas'ud stated: 'The Prophet (PBUH) used to take our circumstances into account with his sermons, choosing suitable days to avoid tiring or boring us.' Effective Dawah respects the cognitive limits of the audience.",
       },
       {
+        id: "dawah-intermediate-39",
         question: "In Surah Fussilat (41:34), what psychological strategy does the Quran prescribe to transform an enemy into a devoted friend?",
         options: [
           "Retaliate with double the offense",
@@ -903,6 +982,7 @@ const dawahCategory: QuizCategory = {
           "Surah Fussilat (41:34) states: 'Repel [evil] by that [deed] which is better; and thereupon, the one whom between you and him is enmity [will become] as though he was a devoted friend.' Magnanimity disarms hostility.",
       },
       {
+        id: "dawah-intermediate-40",
         question: "What is the crucial prerequisite before a Muslim engages in debating polemicists and theological critics of Islam?",
         options: [
           "Merely having high confidence and enthusiasm",
@@ -917,6 +997,7 @@ const dawahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "dawah-advanced-1",
         question: "What is the difference between 'Dawah bil-Hal' and 'Dawah bil-Lisan'?",
         options: [
           "There is no difference",
@@ -930,6 +1011,7 @@ const dawahCategory: QuizCategory = {
           "Dawah bil-Hal refers to invitation through one's actions, conduct, and example, while Dawah bil-Lisan refers to invitation through speech, explanation, and verbal communication.",
       },
         {
+    id: "dawah-advanced-2",
     question: "What is the concept of 'Al-Hikmah al-Ta'rifiyyah' in contemporary dawah?",
     options: [
       "Using complex philosophical arguments exclusively",
@@ -941,6 +1023,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Hikmah al-Ta'rifiyyah means strategic introduction of Islam by beginning with its most universally appealing aspects (mercy, justice, etc.) before detailed discussions, following the Prophet's gradual approach."
   },
   {
+    id: "dawah-advanced-3",
     question: "How did classical scholars categorize different levels of dawah priorities?",
     options: [
       "Daruriyyat (essentials), Hajiyyat (needs), Tahsiniyyat (embellishments)",
@@ -952,6 +1035,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Scholars developed this hierarchy: 1) Essentials (Tawhid, pillars); 2) Needs (social regulations); 3) Embellishments (perfecting practice). This ensures proper dawah sequencing."
   },
   {
+    id: "dawah-advanced-4",
     question: "What is 'Fiqh al-Muwazanat' in the context of dawah?",
     options: [
       "Memorizing scales of fiqh rulings",
@@ -963,6 +1047,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Fiqh al-Muwazanat refers to the jurisprudence of balancing - weighing potential outcomes, prioritizing more important matters, and avoiding disproportionate focus on minor issues at the expense of major ones in dawah."
   },
   {
+    id: "dawah-advanced-5",
     question: "What was Imam Al-Ghazali's approach to addressing philosophical challenges in dawah?",
     options: [
       "Complete rejection of philosophy",
@@ -974,6 +1059,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Ghazali's 'Tahafut al-Falasifa' exemplifies sophisticated engagement with philosophy - accepting logic and sound reasoning while refuting metaphysical errors, a model for intellectual dawah."
   },
   {
+    id: "dawah-advanced-6",
     question: "What is the concept of 'Al-Tadarruj' in Islamic dawah methodology?",
     options: [
       "Sudden and complete transformation",
@@ -985,6 +1071,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Tadarruj refers to the gradual approach seen in Quranic revelation and Prophetic teaching - introducing concepts progressively according to people's capacity, as seen with the phased prohibition of alcohol."
   },
   {
+    id: "dawah-advanced-7",
     question: "How did Ibn Taymiyyah approach dawah to Christian scholars?",
     options: [
       "Through his work 'Al-Jawab al-Sahih' providing detailed, evidence-based responses",
@@ -996,6 +1083,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Ibn Taymiyyah's 4-volume 'Al-Jawab al-Sahih' systematically addresses Christian theological claims using their own scriptures, logic, and Islamic sources - a model for scholarly interfaith dawah."
   },
   {
+    id: "dawah-advanced-8",
     question: "What is 'Al-Fiqh al-Aqalliyyat' and its relevance to dawah?",
     options: [
       "Fiqh for Muslim minorities focusing on their unique circumstances",
@@ -1007,6 +1095,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Fiqh al-Aqalliyyat addresses specific challenges Muslim minorities face, providing relevant guidance for dawah in non-Muslim majority societies while maintaining Islamic principles."
   },
   {
+    id: "dawah-advanced-9",
     question: "What was the approach of the Andalusian scholars in dawah to European intellectuals?",
     options: [
       "Isolation from non-Muslim thinkers",
@@ -1018,6 +1107,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Andalusian scholars like Ibn Rushd engaged European thinkers through translation projects and philosophical discourse, influencing Aquinas and medieval thought while articulating Islamic positions - a model for intellectual dawah."
   },
   {
+    id: "dawah-advanced-10",
     question: "What is the concept of 'Al-Maqasid al-Shariah' in contemporary dawah?",
     options: [
       "Focusing only on literal texts without considering purposes",
@@ -1029,6 +1119,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Emphasizing Islam's higher objectives (protection of religion, life, intellect, lineage, property) helps present Islam as a comprehensive value system rather than just rules, making dawah more meaningful."
   },
   {
+    id: "dawah-advanced-11",
     question: "How did early Muslim scholars approach translation of Greek philosophy for dawah purposes?",
     options: [
       "They rejected all foreign knowledge",
@@ -1040,6 +1131,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The House of Wisdom's translation movement under caliphs like Al-Ma'mun carefully selected and Islamically framed useful Greek concepts while rejecting contradictory ideas - a balanced approach to cultural exchange in dawah."
   },
   {
+    id: "dawah-advanced-12",
     question: "What is 'Al-Manhaj al-Nabawi' in dawah methodology?",
     options: [
       "Following the Prophet's exact historical circumstances without adaptation",
@@ -1051,6 +1143,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Manhaj al-Nabawi means deriving timeless principles from the Prophet's dawah (gradualism, wisdom, prioritizing essentials) and intelligently applying them to modern contexts without mere imitation of 7th century Arabia."
   },
   {
+    id: "dawah-advanced-13",
     question: "What is the concept of 'Al-Taysir' (facilitation) in dawah?",
     options: [
       "Making religion excessively easy by abandoning all obligations",
@@ -1062,6 +1155,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Taysir refers to the Islamic principle of facilitation - easing people into practice by starting with essentials and allowing legitimate concessions (like gradual implementation of prayers) while maintaining core principles."
   },
   {
+    id: "dawah-advanced-14",
     question: "How did classical scholars approach 'Al-Dawah bi-l-Qudwah' (dawah by example)?",
     options: [
       "By focusing only on verbal preaching",
@@ -1073,6 +1167,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Scholars like Al-Shafi'i and Malik emphasized living Islam completely - their integrity, worship, and dealings became powerful dawah that attracted people before they even spoke, exemplifying 'dawah bil-hal'."
   },
   {
+    id: "dawah-advanced-15",
     question: "What is 'Al-Fiqh al-Da'wah' as articulated by contemporary scholars?",
     options: [
       "A new madhab (school of thought)",
@@ -1084,6 +1179,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Fiqh al-Da'wah systematically studies how to apply Islamic legal principles in dawah contexts - understanding audiences, cultural sensitivities, and effective communication strategies within Islamic parameters."
   },
   {
+    id: "dawah-advanced-16",
     question: "How did the Prophet (PBUH) use 'Al-Qisas al-Qur'ani' (Quranic narratives) in dawah?",
     options: [
       "As mere historical stories",
@@ -1095,6 +1191,7 @@ const dawahCategory: QuizCategory = {
     explanation: "The Prophet used Quranic stories (like prophets' struggles) to address his listeners' situations - comforting persecuted Muslims with Yusuf's story, or using Nuh's patience as an example. This shows narrative's power in dawah."
   },
   {
+    id: "dawah-advanced-17",
     question: "What is 'Al-Dawah al-Nisa'iyyah' (women's dawah) in classical Islamic tradition?",
     options: [
       "Non-existent as women didn't participate",
@@ -1106,6 +1203,7 @@ const dawahCategory: QuizCategory = {
     explanation: "History records many female scholars (like Aisha RA, Umm al-Darda) who taught men and women. Their role in preserving and transmitting knowledge demonstrates Islam's endorsement of women's intellectual dawah participation."
   },
   {
+    id: "dawah-advanced-18",
     question: "What was Imam Abu Hanifa's approach to theological dawah debates?",
     options: [
       "Avoiding all theological discussions",
@@ -1117,6 +1215,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Abu Hanifa's 'Al-Fiqh al-Akbar' and recorded debates show his method of using systematic logic to defend Islamic beliefs while remaining rooted in Quran and Sunnah - a model for intellectual dawah."
   },
   {
+    id: "dawah-advanced-19",
     question: "What is the concept of 'Al-Wasatiyyah' in contemporary dawah contexts?",
     options: [
       "Extremism in religion",
@@ -1128,6 +1227,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Al-Wasatiyyah (Quran 2:143) means presenting Islam as the middle path - avoiding extremes, balancing spirituality with practicality, and justice with mercy - making the message appealing and realistic."
   },
   {
+    id: "dawah-advanced-20",
     question: "How did early tafseer scholars approach 'Asbab al-Nuzul' in dawah contexts?",
     options: [
       "Ignoring historical contexts of Quranic verses",
@@ -1139,6 +1239,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Scholars like Al-Wahidi documented occasions of revelation to demonstrate how Quranic teachings addressed actual circumstances - making dawah more relatable by showing Islam's relevance to human experiences."
   },
   {
+    id: "dawah-advanced-21",
     question: "What is 'Al-Dawah al-Ijtimai'iyyah' (social dawah) in contemporary discourse?",
     options: [
       "Isolating from society",
@@ -1150,6 +1251,7 @@ const dawahCategory: QuizCategory = {
     explanation: "This approach implements Islamic social principles (charity, justice, family values) through concrete projects - showing rather than just telling Islam's benefits, following the Prophet's establishment of Medina's welfare system."
   },
   {
+    id: "dawah-advanced-22",
     question: "What was the approach of the Tabi'in generation in continuing the Prophet's dawah?",
     options: [
       "Mechanically repeating his exact words without understanding contexts",
@@ -1161,6 +1263,7 @@ const dawahCategory: QuizCategory = {
     explanation: "Successors like Sa'id ibn al-Musayyab and Hasan al-Basri derived principles from the Prophet's dawah and applied them creatively to new contexts - establishing the methodology of principled adaptation in dawah."
       },
       {
+        id: "dawah-advanced-23",
         question: "What is the concept of 'Mujadalah bil-lati hiya ahsan' in Dawah?",
         options: [
           "Arguing in any way to win the debate",
@@ -1173,6 +1276,7 @@ const dawahCategory: QuizCategory = {
           "'Mujadalah bil-lati hiya ahsan' means debating or arguing in a manner that is best and most gracious. It emphasizes respectful dialogue that aims to reach truth rather than win arguments.",
       },
       {
+        id: "dawah-advanced-24",
         question: "What is the concept of 'Daruriyyat' (necessities) in prioritizing Dawah topics?",
         options: [
           "Focusing only on prayer and fasting",
@@ -1185,6 +1289,7 @@ const dawahCategory: QuizCategory = {
           "Daruriyyat refers to necessities or essentials. In Dawah, it means prioritizing fundamental beliefs (like Tawhid) and practices before moving to secondary or detailed matters.",
       },
       {
+        id: "dawah-advanced-25",
         question:
           "What was Prophet Muhammad's (PBUH) instruction to Mu'adh ibn Jabal when sending him to Yemen for Dawah?",
         options: [
@@ -1198,6 +1303,7 @@ const dawahCategory: QuizCategory = {
           "Prophet Muhammad (PBUH) instructed Mu'adh to first call people to testify that there is no god but Allah (Tawhid), then to establish prayer, and then to give zakat, showing a step-by-step approach to Dawah.",
       },
       {
+        id: "dawah-advanced-26",
         question: "What is the concept of 'Maslaha' (public interest) in relation to Dawah?",
         options: [
           "Ignoring Islamic principles to please others",
@@ -1210,6 +1316,7 @@ const dawahCategory: QuizCategory = {
           "Maslaha refers to public interest or welfare. In Dawah, it means considering what approach would be most beneficial for the audience's understanding and acceptance of the message.",
       },
       {
+        id: "dawah-advanced-27",
         question: "What is the importance of cultural sensitivity in Dawah?",
         options: [
           "It's not important as Islam transcends culture",
@@ -1222,6 +1329,7 @@ const dawahCategory: QuizCategory = {
           "Cultural sensitivity helps distinguish between cultural practices and Islamic teachings, making Dawah more effective by addressing genuine Islamic principles without unnecessary cultural barriers.",
       },
       {
+        id: "dawah-advanced-28",
         question: "What is the concept of 'Tadahhul Hadari' (cultural engagement) in contemporary Dawah?",
         options: [
           "Complete isolation from other cultures",
@@ -1234,6 +1342,7 @@ const dawahCategory: QuizCategory = {
           "Tadahhul Hadari refers to positive cultural engagement, where Muslims interact constructively with other cultures while maintaining their Islamic identity and principles.",
       },
       {
+        id: "dawah-advanced-29",
         question: "What is the role of 'Urf' (custom) consideration in Dawah?",
         options: [
           "Rejecting all local customs",
@@ -1246,6 +1355,7 @@ const dawahCategory: QuizCategory = {
           "Urf refers to custom or convention. In Dawah, considering urf means accepting and working within local customs that don't contradict Islamic principles, making Islam more accessible.",
       },
       {
+        id: "dawah-advanced-30",
         question: "What is the concept of 'Fiqh al-Waqi' (understanding reality) in Dawah?",
         options: [
           "Focusing only on theoretical aspects of Islam",
@@ -1258,6 +1368,7 @@ const dawahCategory: QuizCategory = {
           "Fiqh al-Waqi refers to understanding reality. In Dawah, it means having a deep understanding of the current reality and context of the audience to make the message relevant and effective.",
       },
       {
+        id: "dawah-advanced-31",
         question: "How did Prophet Muhammad (PBUH) employ the Quranic category of 'Mu'allafat al-Qulub' (reconciling hearts) in Dawah following the Battle of Hunayn?",
         options: [
           "He banished former opponents to foreign lands",
@@ -1270,6 +1381,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih Muslim, Safwan ibn Umayyah stated: 'The Messenger of Allah gave to me when he was the most detestable person to me, and he continued to give to me until he became the most beloved person to me.' This demonstrates wise utilization of material diplomacy to open hearts to faith.",
       },
       {
+        id: "dawah-advanced-32",
         question: "What is the core methodology championed in Shaykh al-Islam Ibn Taymiyyah's monumental multi-volume treatise 'Al-Jawab al-Sahih li-man Baddala Din al-Masih'?",
         options: [
           "Dismissing biblical texts without reading them",
@@ -1282,6 +1394,7 @@ const dawahCategory: QuizCategory = {
           "In 'Al-Jawab al-Sahih', Ibn Taymiyyah conducted groundbreaking comparative textual analysis of the Gospels and Old Testament, using rigorous scriptural and rational evidences to show how original monotheism was corrupted into Trinitarian dogma.",
       },
       {
+        id: "dawah-advanced-33",
         question: "In the science of Da'wah methodology, what does 'Fiqh al-Awlawiyyat' (jurisprudence of priorities) dictate when introducing Islam to an entirely unreached society?",
         options: [
           "Beginning immediately with complex inheritance math and penal codes",
@@ -1294,6 +1407,7 @@ const dawahCategory: QuizCategory = {
           "Fiqh al-Awlawiyyat requires prioritizing essentials (Usul) over secondary branches (Furu'). Without first establishing deep conviction in Allah's Oneness and accountability, moral and legal obligations lack meaningful foundation.",
       },
       {
+        id: "dawah-advanced-34",
         question: "What profound guideline regarding intellectual calibration in Dawah is recorded from Ali ibn Abi Talib (RA) in Sahih al-Bukhari?",
         options: [
           "\"Speak to everyone in the most esoteric terms available\"",
@@ -1306,6 +1420,7 @@ const dawahCategory: QuizCategory = {
           "In Sahih al-Bukhari, Ali (RA) emphasized tailoring discourse to the listener's intellectual level (Khatibu an-nasa 'ala qadri 'uqulihim), warning that overloading unlearned minds with obscure details risks driving them to reject divine truth.",
       },
       {
+        id: "dawah-advanced-35",
         question: "In his seminal work 'Faysal al-Tafriqah bayn al-Islam wal-Zandaqah', what critical boundary does Imam Abu Hamid al-Ghazali set to protect the Dawah ecosystem from internal extremism?",
         options: [
           "Permitting unconditional takfir against anyone with differing political opinions",
@@ -1318,6 +1433,7 @@ const dawahCategory: QuizCategory = {
           "Al-Ghazali warned that hasty excommunication (Takfir) causes sectarian strife and dismantles Dawah. He established that so long as an individual affirms the fundamental tenets and does not deny definitive mutawatir consensus, they remain within Islam.",
       },
       {
+        id: "dawah-advanced-36",
         question: "How do contemporary scholars (such as the European Council for Fatwa and Research) conceptualize non-Muslim-majority secular nations in modern Dawah terminology?",
         options: [
           "As 'Dar al-Harb' (Abode of War) requiring permanent isolation",
@@ -1330,6 +1446,7 @@ const dawahCategory: QuizCategory = {
           "Modern jurists classify nations bound by international treaties and visas as Dar al-Ahd / Dar al-Dawah. Living peacefully under legal covenants, Muslims represent Islamic character and actively invite society to truth through constructive citizenship.",
       },
       {
+        id: "dawah-advanced-37",
         question: "How does Surah al-Mumtahanah (60:8) balance theological loyalty with practical humanitarian benevolence towards peaceful non-Muslims in Dawah?",
         options: [
           "It commands boycotting all social interaction with non-Muslims",
@@ -1342,6 +1459,7 @@ const dawahCategory: QuizCategory = {
           "Surah al-Mumtahanah (60:8) uses the word 'Tabarruhum'—derived from Birr (the highest form of active kindness, identical to Birr al-Walidayn)—establishing that compassion and justice towards non-combative non-Muslims are sanctioned by Allah.",
       },
       {
+        id: "dawah-advanced-38",
         question: "What is 'Tahqiq al-Manat' (verifying the locus/context of a ruling) and why is it vital for contemporary Da'is and Muftis living in minority contexts?",
         options: [
           "Checking the grammatical correctness of Arabic poetry",
@@ -1354,6 +1472,7 @@ const dawahCategory: QuizCategory = {
           "In Usul al-Fiqh, Tahqiq al-Manat is ensuring that a recognized Shariah ruling correctly applies to a concrete, real-world case. A Da'i must understand the nuance of lived context so that applying a ruling does not produce harm contrary to Shariah objectives.",
       },
       {
+        id: "dawah-advanced-39",
         question: "How has the evidentiary discourse on 'I'jaz al-Quran' (the miraculous inimitability of the Quran) evolved in modern intellectual Dawah?",
         options: [
           "It has been completely abandoned by modern scholars",
@@ -1366,6 +1485,7 @@ const dawahCategory: QuizCategory = {
           "For non-Arabic speakers who cannot perceive grammatical subtleties directly, scholars like al-Zarqani and modern apologists emphasize the Quran's transcendent moral worldview, legal justice, historical accuracy, and profound psychological impact.",
       },
       {
+        id: "dawah-advanced-40",
         question: "In the epistemology of Dawah established by scholars like Ibn al-Qayyim, what is the proper relationship between 'Aql' (sound reason) and 'Naql' (authentic revelation)?",
         options: [
           "Sound reason and authentic revelation are in eternal, irreconcilable opposition",

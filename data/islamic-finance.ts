@@ -8,6 +8,7 @@ const islamicFinanceCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "islamic-finance-easy-1",
         question: "What is the Arabic term for interest in Islamic finance?",
         options: ["Gharar", "Riba", "Maysir", "Zakat"],
         correctAnswer: "Riba",
@@ -15,6 +16,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Riba is the Arabic term for interest or usury. Its prohibition is one of the fundamental principles of Islamic finance, based on verses from the Quran Surah-Al-Bakara (2:279) and the teachings of Prophet Muhammad (PBUH). In Islamic finance, riba refers to interest charged on loans. Religious practice forbids riba, even at low interest rates, and it is considered both illegal and unethical or usurious. Islamic banking has provided workarounds to riba, including a profit-sharing system in which borrowers agree to return a portion of profits as payment for the loan.",
       },
       {
+        id: "islamic-finance-easy-2",
         question: "What is the primary source of Islamic finance principles?",
         options: ["Economic theories", "Quran and Sunnah", "Banking regulations", "Cultural traditions"],
         correctAnswer: "Quran and Sunnah",
@@ -22,6 +24,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Quran and Sunnah (teachings and practices of Prophet Muhammad) are the primary sources of Islamic finance principles, providing guidance on financial transactions and ethical economic behavior.",
       },
       {
+        id: "islamic-finance-easy-3",
         question: "Which of the following is NOT one of the main prohibitions in Islamic finance?",
         options: ["Riba (interest)", "Gharar (excessive uncertainty)", "Maysir (gambling)", "Sadaqah (charity)"],
         correctAnswer: "Sadaqah (charity)",
@@ -29,6 +32,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Sadaqah refers to voluntary charity and is encouraged in Islam, not prohibited. The main prohibitions in Islamic finance are riba (interest), gharar (excessive uncertainty), and maysir (gambling).",
       },
       {
+        id: "islamic-finance-easy-4",
         question: "What type of Islamic financial contract involves a profit-sharing partnership?",
         options: ["Ijara", "Murabaha", "Musharakah", "Takaful"],
         correctAnswer: "Musharakah",
@@ -36,6 +40,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Musharakah is a joint venture partnership structure in Islamic finance where all partners contribute capital and share profits and losses according to a pre-agreed ratio.",
       },
       {
+        id: "islamic-finance-easy-5",
         question: "What is 'Sukuk' in Islamic finance?",
         options: ["Islamic currency", "Islamic credit card", "Islamic investment certificates", "Islamic loan"],
         correctAnswer: "Islamic investment certificates",
@@ -43,6 +48,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Sukuk are Islamic investment certificates that represent proportional ownership in an asset or business venture. They are sometimes referred to as 'Islamic bonds' though they differ from conventional bonds.",
       },
       {
+        id: "islamic-finance-easy-6",
         question: "What is 'Takaful'?",
         options: ["Islamic banking", "Islamic insurance", "Islamic loan", "Islamic tax"],
         correctAnswer: "Islamic insurance",
@@ -50,6 +56,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Takaful is a type of Islamic insurance based on the principle of mutual cooperation where participants contribute to a pool of funds to guarantee each other against loss or damage.",
       },
       {
+        id: "islamic-finance-easy-7",
         question: "Which Islamic finance concept refers to the sale of goods at a marked-up price?",
         options: ["Mudarabah", "Musharakah", "Murabaha", "Istisna"],
         correctAnswer: "Murabaha",
@@ -57,6 +64,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Murabaha is a cost-plus financing structure where the seller (typically a bank) explicitly declares the cost of the commodity and the profit margin, selling it to the buyer at a marked-up price.",
       },
       {
+        id: "islamic-finance-easy-8",
         question: "What is 'Ijara' in Islamic finance?",
         options: ["Profit-sharing", "Insurance", "Leasing arrangement", "Interest-free loan"],
         correctAnswer: "Leasing arrangement",
@@ -64,6 +72,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Ijara is similar to a conventional lease, where the bank purchases an asset and leases it to a customer for a specific period, with the ownership either remaining with the bank or transferring to the customer at the end of the lease period (Ijara wa Iqtina).",
       },
       {
+        id: "islamic-finance-easy-9",
         question: "What distinguishes an Islamic bank from a conventional bank?",
         options: [
           "Islamic banks only serve Muslim customers",
@@ -76,6 +85,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Islamic banks distinguish themselves by operating in accordance with Shariah (Islamic law) principles, avoiding interest, excessive uncertainty, and investments in prohibited industries, and using profit-and-loss sharing arrangements.",
       },
            {
+    id: "islamic-finance-easy-10",
     question: "What is 'Halal' income in Islamic finance?",
     options: [
       "Income from any source",
@@ -87,6 +97,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Halal income refers to earnings from sources and methods that comply with Islamic principles, avoiding prohibited activities like interest, gambling, or trade in forbidden items."
   },
   {
+    id: "islamic-finance-easy-11",
     question: "What is 'Haraj' in Islamic financial transactions?",
     options: [
       "Excessive difficulty or hardship",
@@ -98,6 +109,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Haraj refers to undue hardship in financial transactions. Islamic law seeks to remove haraj, as the Quran states: 'Allah wishes to lighten your burden, for man was created weak' (4:28)."
   },
   {
+    id: "islamic-finance-easy-12",
     question: "Which Islamic financial contract is used for home financing?",
     options: [
       "Murabaha",
@@ -109,6 +121,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Ijara wa Iqtina (lease-to-own) is commonly used for home financing, where the bank purchases the property and leases it to the customer with an option to own at the end of the lease term."
   },
   {
+    id: "islamic-finance-easy-13",
     question: "What is 'Qard Hasan' in Islamic finance?",
     options: [
       "An interest-free loan",
@@ -120,6 +133,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Qard Hasan is a benevolent loan given without any interest or profit. The borrower only returns the principal amount, though they may voluntarily pay extra as gratitude."
   },
   {
+    id: "islamic-finance-easy-14",
     question: "Which Islamic financial principle prohibits 'Maysir'?",
     options: [
       "Prohibition of gambling",
@@ -131,6 +145,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Maysir refers to gambling or games of chance, which are prohibited in Islam (Quran 5:90). This extends to financial transactions based on uncertainty or chance outcomes."
   },
   {
+    id: "islamic-finance-easy-15",
     question: "What is 'Wakalah' in Islamic finance?",
     options: [
       "Agency contract where one party acts on behalf of another",
@@ -142,6 +157,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Wakalah is an agency agreement where one party authorizes another to perform specific financial tasks on their behalf, commonly used in Islamic fund management and banking services."
   },
   {
+    id: "islamic-finance-easy-16",
     question: "Which Islamic financial concept ensures transparency in transactions?",
     options: [
       "Gharar",
@@ -153,6 +169,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Al-Bay' al-Mubashir refers to direct, transparent sales where all terms are clearly disclosed, contrasting with Bay al-Gharar (uncertain transactions) which are prohibited."
   },
   {
+    id: "islamic-finance-easy-17",
     question: "What is 'Sarf' in Islamic finance?",
     options: [
       "Currency exchange",
@@ -164,6 +181,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Sarf refers to the exchange of monetary values (currency trading), which must be done spot (immediate delivery) and with equal amounts if exchanging the same currencies to avoid riba."
   },
   {
+    id: "islamic-finance-easy-18",
     question: "What is the Islamic ruling on conventional insurance?",
     options: [
       "Permissible if affordable",
@@ -175,6 +193,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Conventional insurance contains excessive uncertainty (gharar) and elements of gambling (maysir), making it prohibited. Islamic alternative is Takaful based on mutual cooperation."
   },
   {
+    id: "islamic-finance-easy-19",
     question: "What is 'Waqf' in Islamic finance?",
     options: [
       "Islamic will",
@@ -186,6 +205,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Waqf is a permanent charitable endowment where assets are dedicated to religious or charitable purposes, generating ongoing benefits for the community while preserving the principal."
   },
   {
+    id: "islamic-finance-easy-20",
     question: "Which Islamic financial contract is suitable for agricultural financing?",
     options: [
       "Murabaha",
@@ -197,6 +217,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Salam is a forward sale contract where payment is made in advance for goods to be delivered later, often used in agricultural financing to provide farmers with upfront capital."
   },
   {
+    id: "islamic-finance-easy-21",
     question: "What is 'Rahn' in Islamic finance?",
     options: [
       "Islamic mortgage",
@@ -208,6 +229,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Rahn refers to collateral provided as security for a financial obligation, permissible in Islam to secure Qard Hasan or other transactions while protecting both parties' interests."
   },
   {
+    id: "islamic-finance-easy-22",
     question: "Which Islamic financial principle requires asset-backing?",
     options: [
       "All financial transactions must be backed by tangible assets",
@@ -219,6 +241,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic finance requires transactions to be tied to real economic activities with tangible assets or services, preventing purely monetary transactions that could involve riba."
   },
   {
+    id: "islamic-finance-easy-23",
     question: "What is 'Dayn' in Islamic finance?",
     options: [
       "Debt or financial obligation",
@@ -230,6 +253,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Dayn refers to debt or financial obligation. While permissible, its trade is heavily restricted in Islamic finance to prevent riba, requiring strict conditions if transferred."
   },
   {
+    id: "islamic-finance-easy-24",
     question: "Which Islamic financial contract is closest to a conventional loan?",
     options: [
       "Murabaha",
@@ -241,6 +265,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Qard Hasan is the closest to a conventional loan but without interest. It's a benevolent loan where only the principal amount needs to be repaid."
   },
   {
+    id: "islamic-finance-easy-25",
     question: "What is 'Khiyar' in Islamic contracts?",
     options: [
       "Option to cancel or confirm a contract within a specified period",
@@ -252,6 +277,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Khiyar refers to options in contracts allowing parties to rescind or confirm agreements under certain conditions, protecting against gharar (excessive uncertainty)."
   },
   {
+    id: "islamic-finance-easy-26",
     question: "What is 'Jua'alah' in Islamic finance?",
     options: [
       "Service fee contract",
@@ -263,6 +289,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Jua'alah is a contract where one party offers a specified reward for completing a particular task or service, permissible when the work is clearly defined."
   },
   {
+    id: "islamic-finance-easy-27",
     question: "Which Islamic financial principle prohibits 'Bay al-Gharar'?",
     options: [
       "Prohibition of uncertain transactions",
@@ -274,6 +301,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Bay al-Gharar refers to sales involving excessive uncertainty or ambiguity about the subject matter or terms, which are prohibited in Islamic finance to ensure fairness."
   },
   {
+    id: "islamic-finance-easy-28",
     question: "What is 'Arbun' in Islamic finance?",
     options: [
       "Down payment with option to cancel",
@@ -285,6 +313,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Arbun is a non-refundable deposit paid in advance to secure the right to complete a purchase, with the understanding the deposit is forfeited if the buyer doesn't proceed."
   },
   {
+    id: "islamic-finance-easy-29",
     question: "Which Islamic financial contract is used for project financing?",
     options: [
       "Istisna",
@@ -296,6 +325,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Istisna is a manufacturing contract where payment is made in stages for large projects like construction, allowing financing while ensuring Shariah compliance."
   },
       {
+        id: "islamic-finance-easy-30",
         question: "What is the purpose of a Shariah board in Islamic financial institutions?",
         options: [
           "To manage the bank's daily operations",
@@ -310,6 +340,7 @@ const islamicFinanceCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "islamic-finance-advanced-1",
         question: "What is 'Bai' al-Inah' and why is it controversial in Islamic finance?",
         options: [
           "A partnership contract that is universally accepted",
@@ -322,6 +353,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Bai' al-Inah involves selling an asset and buying it back at a different price. It is controversial because it can be used to circumvent the prohibition of riba by creating a loan with a predetermined return through back-to-back sales. While accepted by some schools of thought, others consider it a legal fiction to bypass Shariah principles.",
       },
       {
+        id: "islamic-finance-advanced-2",
         question: "How does 'Mudarabah' differ from 'Musharakah' in Islamic finance?",
         options: [
           "There is no difference; they are synonyms",
@@ -335,6 +367,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In a Mudarabah contract, one party (rab al-mal) provides capital while the other (mudarib) provides expertise and management. In Musharakah, all partners contribute capital and have the right to participate in management, sharing profits according to a pre-agreed ratio and losses proportionate to capital contribution.",
       },
       {
+        id: "islamic-finance-advanced-3",
         question: "What is the Islamic concept of 'Maqasid al-Shariah' and how does it relate to finance?",
         options: [
           "It refers only to prayer requirements",
@@ -347,6 +380,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Maqasid al-Shariah refers to the higher objectives of Islamic law, which include the protection of faith, life, intellect, lineage, and wealth. In finance, it provides a framework for evaluating whether financial practices align with the broader goals of Islamic law beyond mere technical compliance.",
       },
       {
+        id: "islamic-finance-advanced-4",
         question: "What distinguishes 'Sukuk' from conventional bonds?",
         options: [
           "Sukuk always provides fixed returns",
@@ -359,6 +393,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Unlike conventional bonds which are pure debt obligations, sukuk represents undivided shares in ownership of tangible assets, usufruct, services, or business ventures. Returns to sukuk holders are derived from the performance of these assets, not from the obligation to pay interest.",
       },
       {
+        id: "islamic-finance-advanced-5",
         question: "What is 'Istisna' in Islamic finance?",
         options: [
           "A contract of exchange with deferred delivery",
@@ -371,6 +406,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Istisna is a manufacturing contract where a party undertakes to produce a specific item with specified features at a predetermined price to be delivered at a future date. It allows for payment flexibility - it can be paid in installments or deferred, making it suitable for financing construction and manufacturing projects.",
       },
       {
+        id: "islamic-finance-advanced-6",
         question: "How does Islamic finance approach the concept of 'time value of money'?",
         options: [
           "It fully accepts it in the same way as conventional finance",
@@ -383,6 +419,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Islamic finance recognizes the time value of money in real economic activities involving actual goods and services (e.g., allowing a higher price for deferred payment in trade), but rejects it in pure monetary transactions (money for money) as this would constitute riba.",
       },
       {
+        id: "islamic-finance-advanced-7",
         question: "What is 'Tawarruq' and why is it controversial?",
         options: [
           "A direct interest-based loan that is always prohibited",
@@ -395,6 +432,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Tawarruq is a transaction where a person buys a commodity on credit and immediately sells it to a third party for cash. While used by many Islamic banks for personal financing, it remains controversial as some scholars view it as synthetic and similar to interest-based lending in economic substance despite technical compliance with Shariah rules.",
       },
       {
+        id: "islamic-finance-advanced-8",
         question: "How does 'Zakat' interact with modern corporate finance in Islam?",
         options: [
           "Corporations are exempt from Zakat",
@@ -407,6 +445,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Islamic finance, corporations can be subject to Zakat, typically calculated at 2.5% of zakatable assets (working capital, net receivables, inventory meant for sale, etc.). The specific methodology may vary based on business type, ownership structure, and the accounting standards employed for Zakat calculation.",
       },
       {
+        id: "islamic-finance-advanced-9",
         question: "What is the 'purification process' in Islamic investment?",
         options: [
           "The process of physically cleaning money before investment",
@@ -419,6 +458,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The purification process in Islamic investment involves identifying and separating any portion of earnings derived from impermissible sources (e.g., interest income or income from prohibited business activities in a partially compliant company) and donating it to charity to 'purify' the remaining permissible returns.",
       },
           {
+    id: "islamic-finance-advanced-10",
     question: "What is the difference between 'Sukuk al-Ijara' and conventional bonds?",
     options: [
       "Sukuk represent ownership in assets while bonds are debt obligations",
@@ -430,6 +470,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Sukuk al-Ijara provide investors with ownership shares in leased assets and rental income, while conventional bonds represent pure debt with interest payments, making their structures fundamentally different."
   },
   {
+    id: "islamic-finance-advanced-11",
     question: "How does 'Musharakah Mutanaqisah' work in Islamic home financing?",
     options: [
       "Bank and customer co-own property with customer gradually buying bank's share",
@@ -441,6 +482,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "In Musharakah Mutanaqisah (diminishing partnership), bank and customer jointly purchase property. The customer uses part of periodic payments to acquire the bank's share until becoming sole owner."
   },
   {
+    id: "islamic-finance-advanced-12",
     question: "What is 'Tawarruq Munazzam' and why is it controversial?",
     options: [
       "Organized tawarruq involving multiple parties to obtain cash, criticized as synthetic riba",
@@ -452,6 +494,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Tawarruq Munazzam involves pre-arranged commodity transactions to generate cash liquidity. Many scholars reject it as a legal trick to circumvent riba prohibition despite technical Shariah compliance."
   },
   {
+    id: "islamic-finance-advanced-13",
     question: "What is the 'Two Tier Mudarabah' model in Islamic banking?",
     options: [
       "Bank acts as mudarib for depositors and as rabb-ul-mal for investors",
@@ -463,6 +506,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "In this model, banks receive funds from depositors under Mudarabah (acting as entrepreneurs), then invest these funds in other ventures (acting as capital providers), creating two-tier profit-sharing."
   },
   {
+    id: "islamic-finance-advanced-14",
     question: "How does 'Bay al-Dayn' differ from conventional debt trading?",
     options: [
       "Bay al-Dayn has strict conditions to prevent riba while conventional debt trading doesn't",
@@ -474,6 +518,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Bay al-Dayn (debt trading) is only permitted under strict conditions: debt must be non-interest bearing, traded at face value, and not used as a riba workaround - unlike conventional debt markets."
   },
   {
+    id: "islamic-finance-advanced-15",
     question: "What is the 'Commodity Murabaha' controversy in Islamic finance?",
     options: [
       "Use of commodity trades merely as cash financing mechanisms, raising substance-over-form concerns",
@@ -485,6 +530,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Commodity Murabaha involves back-to-back trades often with no actual commodity transfer, leading critics to argue it replicates interest-based lending despite technical Shariah compliance."
   },
   {
+    id: "islamic-finance-advanced-16",
     question: "How does Islamic microfinance differ from conventional microfinance?",
     options: [
       "Uses Shariah-compliant contracts like Qard Hasan and diminishing Musharakah",
@@ -496,6 +542,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic microfinance employs contracts like Qard Hasan (benevolent loans), Musharakah (partnership), and Salam (advance purchase) to provide financial services while avoiding riba and gharar."
   },
   {
+    id: "islamic-finance-advanced-17",
     question: "What is 'Hibah' in Islamic banking and how does it relate to deposits?",
     options: [
       "Voluntary gift from bank to depositors, sometimes used as profit substitute",
@@ -507,6 +554,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Some Islamic banks give Hibah (gifts) to depositors as a Shariah-compliant alternative to interest, though scholars debate whether this becomes de facto riba if predictable and systematic."
   },
   {
+    id: "islamic-finance-advanced-18",
     question: "What is the 'Wakalah bi-l-Istithmar' model in Islamic funds?",
     options: [
       "Investment agency where fund manager acts as wakeel for investors",
@@ -518,6 +566,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "In Wakalah bi-l-Istithmar, investors appoint the fund manager as their agent (wakeel) to invest funds according to agreed terms, with the manager receiving a fee rather than profit share."
   },
   {
+    id: "islamic-finance-advanced-19",
     question: "How does 'Sukuk al-Musharakah' differ from 'Sukuk al-Ijara'?",
     options: [
       "Musharakah sukuk represent equity participation while Ijara sukuk represent asset ownership",
@@ -529,6 +578,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Sukuk al-Musharakah provide profit/loss sharing in a business venture, while Sukuk al-Ijara provide returns from leased assets, representing different risk-return profiles and Shariah structures."
   },
   {
+    id: "islamic-finance-advanced-20",
     question: "What is 'Fatwa shopping' in Islamic finance?",
     options: [
       "Seeking multiple scholarly opinions to find the most lenient ruling",
@@ -540,6 +590,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Fatwa shopping refers to institutions seeking out the most permissive scholarly opinions to justify controversial practices, potentially undermining Shariah compliance integrity in Islamic finance."
   },
   {
+    id: "islamic-finance-advanced-21",
     question: "What is the 'Islamic Windows' controversy in conventional banks?",
     options: [
       "Concerns about mixing Islamic and conventional funds and operations",
@@ -551,6 +602,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic Windows (Shariah-compliant services offered by conventional banks) raise concerns about fund co-mingling, purification of impermissible income, and whether they truly maintain Shariah standards."
   },
   {
+    id: "islamic-finance-advanced-22",
     question: "How does 'Zakat' calculation differ for various Islamic financial instruments?",
     options: [
       "Zakatable assets vary by instrument type (e.g., trade assets vs investment assets)",
@@ -562,6 +614,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Zakat calculation differs based on the nature of assets: trade assets (2.5%), agricultural output (5-10%), long-term investments (varies), requiring specific methodologies for different Islamic financial products."
   },
   {
+    id: "islamic-finance-advanced-23",
     question: "What is 'Shariah Arbitrage' in Islamic finance?",
     options: [
       "Structuring similar economic outcomes through different Shariah-compliant forms",
@@ -573,6 +626,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Shariah arbitrage refers to designing Islamic financial products that replicate conventional products' economic effects through technically Shariah-compliant structures, raising substance-over-form concerns."
   },
   {
+    id: "islamic-finance-advanced-24",
     question: "What is the 'AAOIFI' and its role in Islamic finance?",
     options: [
       "Accounting and Auditing Organization for Islamic Financial Institutions setting standards",
@@ -584,6 +638,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "AAOIFI develops and issues Shariah, accounting, auditing, ethics and governance standards for the international Islamic finance industry, promoting harmonization and best practices."
   },
   {
+    id: "islamic-finance-advanced-25",
     question: "How does 'Islamic REIT' (Real Estate Investment Trust) differ from conventional REIT?",
     options: [
       "Islamic REITs comply with Shariah screening and income purification requirements",
@@ -595,6 +650,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic REITs invest in Shariah-compliant properties, avoid interest-based financing, and purify any impermissible income, while maintaining the REIT structure's core benefits."
   },
   {
+    id: "islamic-finance-advanced-26",
     question: "What is 'Tahawwut' (Islamic hedging) and how does it differ from conventional hedging?",
     options: [
       "Permissible risk mitigation using Shariah-compliant contracts like Salam and Arbun",
@@ -606,6 +662,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Tahawwut refers to Shariah-compliant risk management using contracts like parallel Salam, Wa'd (promise), and Arbun that avoid excessive gharar and maysir present in conventional derivatives."
   },
   {
+    id: "islamic-finance-advanced-27",
     question: "What is the 'Islamic Interbank Money Market' and how does it operate?",
     options: [
       "A system for banks to manage liquidity using Shariah-compliant instruments like Commodity Murabaha",
@@ -617,6 +674,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic interbank markets facilitate short-term liquidity management among Islamic financial institutions using Shariah-compliant mechanisms like Commodity Murabaha and Wakalah placements."
   },
   {
+    id: "islamic-finance-advanced-28",
     question: "What is 'Fintech's impact on Islamic finance?",
     options: [
       "Enabling innovative Shariah-compliant solutions like P2P financing and blockchain-based sukuk",
@@ -628,6 +686,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Fintech facilitates Islamic finance through crowdfunding platforms, digital Islamic banks, smart contract-based products, and greater financial inclusion while maintaining Shariah compliance."
   },
   {
+    id: "islamic-finance-advanced-29",
     question: "What is the 'Islamic ESG Investing' approach?",
     options: [
       "Combining Shariah screening with environmental, social and governance criteria",
@@ -639,6 +698,7 @@ const islamicFinanceCategory: QuizCategory = {
     explanation: "Islamic ESG investing integrates Shariah compliance with additional ethical filters, aligning Islamic finance's inherent ethical dimensions with contemporary sustainable development goals."
   },
       {
+        id: "islamic-finance-advanced-30",
         question:
           "What is the principle of 'risk-sharing' in Islamic finance and how does it differ from conventional finance?",
         options: [
@@ -653,6 +713,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Risk-sharing is a fundamental principle in Islamic finance where financial transactions should involve the sharing of risks and rewards among all participants. This differs from conventional finance which often involves risk transfer through interest-based mechanisms where lenders are entitled to returns regardless of the outcome of the business venture being financed.",
          },
         {
+        id: "islamic-finance-advanced-31",
         question: "What is the annual rate of Zakat payable on qualifying wealth and business merchandise that has reached the Nisab and completed one lunar year (Hawl)?",
         options: ["1.5%", "2.5%", "5.0%", "10.0%"],
         correctAnswer: "2.5%",
@@ -660,6 +721,7 @@ const islamicFinanceCategory: QuizCategory = {
           "According to the authentic Sunnah established by Prophet Muhammad (PBUH), the Zakat rate on gold, silver, cash currency, and commercial trading goods is one-fortieth (quarter of a tenth), which equals 2.5% per lunar year.",
       },
       {
+        id: "islamic-finance-advanced-32",
         question: "Which verse in Surah al-Baqarah explicitly establishes that Allah has made commerce lawful while strictly prohibiting interest?",
         options: ["Surah al-Baqarah (2:275)", "Surah al-Baqarah (2:183)", "Surah al-Baqarah (2:255)", "Surah al-Baqarah (2:286)"],
         correctAnswer: "Surah al-Baqarah (2:275)",
@@ -667,6 +729,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Allah the Almighty declares in Surah al-Baqarah (2:275): 'Allah has permitted trade and forbidden usury (Riba).' This verse forms the constitutional cornerstone of Islamic commercial jurisprudence.",
       },
       {
+        id: "islamic-finance-advanced-33",
         question: "In Islamic business ethics, what does the term 'Amanah' mean?",
         options: ["Monopoly", "Trustworthiness and honesty", "Speculation", "Discounting"],
         correctAnswer: "Trustworthiness and honesty",
@@ -674,6 +737,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Amanah refers to honesty, integrity, and fulfilling trust. The Prophet (PBUH) emphasized that the trustworthy and honest merchant (al-Tajir al-Amin) will be with the prophets, truthful, and martyrs on the Day of Resurrection (at-Tirmidhi).",
       },
       {
+        id: "islamic-finance-advanced-34",
         question: "What is the term for the minimum threshold of wealth upon which Zakat becomes obligatory?",
         options: ["Nisab", "Hawl", "Ushr", "Kaffarah"],
         correctAnswer: "Nisab",
@@ -681,6 +745,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Nisab is the specific minimum qualifying amount of wealth prescribed by Shariah (equivalent to 85 grams of fine gold or 595 grams of pure silver) below which a Muslim is exempt from paying Zakat.",
       },
       {
+        id: "islamic-finance-advanced-35",
         question: "What does 'Hawl' refer to in the context of Islamic wealth and Zakat?",
         options: [
           "A commercial fee",
@@ -693,6 +758,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Hawl refers to the completion of one Islamic lunar year (approximately 354 days) of possessing wealth at or above the Nisab threshold, as stipulated in the hadith: 'No Zakat is due on property until a year has passed over it' (Abu Dawood).",
       },
       {
+        id: "islamic-finance-advanced-36",
         question: "What does 'Ghabn Fahish' refer to in Islamic commercial law?",
         options: ["Prompt cash payment", "Gross and excessive overpricing or deception", "Mutual gift giving", "Joint partnership"],
         correctAnswer: "Gross and excessive overpricing or deception",
@@ -700,6 +766,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Ghabn Fahish refers to exorbitant overpricing or unfair valuation that exceeds normal market fluctuations, giving the defrauded party the legal option (Khiyar al-Ghabn) to annul the contract.",
       },
       {
+        id: "islamic-finance-advanced-37",
         question: "What is 'Sadaqah Jariyah' in Islamic charitable finance?",
         options: [
           "A temporary emergency loan",
@@ -712,6 +779,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih Muslim, the Prophet (PBUH) taught that when a person dies, all their deeds cease except three: ongoing charity (Sadaqah Jariyah), beneficial knowledge, or a righteous child who prays for them.",
       },
       {
+        id: "islamic-finance-advanced-38",
         question: "What is 'Iqalah' in Islamic sales law?",
         options: [
           "Mutual consent between buyer and seller to cancel a contract and return the payment and goods",
@@ -724,6 +792,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Iqalah is the voluntary cancellation of a concluded sale by mutual agreement. The Prophet (PBUH) highly encouraged it, saying: 'Whoever cancels a sale with a Muslim who regrets it, Allah will forgive his sins on the Day of Resurrection' (Abu Dawood).",
       },
       {
+        id: "islamic-finance-advanced-39",
         question: "What is the Islamic legal ruling on dealing in, buying, or selling alcohol and pork?",
         options: [
           "Permissible if profits are given to charity",
@@ -736,6 +805,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) stated: 'Indeed, Allah and His Messenger have forbidden the sale of alcohol, dead animals, pork, and idols.' Any commercial trade in unlawful goods is inherently invalid.",
       },
       {
+        id: "islamic-finance-advanced-40",
         question: "What is the primary condition for an Islamic trade transaction to be fundamentally binding and valid?",
         options: [
           "Government registration only",
@@ -750,6 +820,7 @@ const islamicFinanceCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "islamic-finance-intermediate-1",
         question: "Which are the six specific commodities explicitly enumerated in the authentic hadith of Ubadah ibn al-Samit regarding Riba al-Fadl (usury in direct exchange)?",
         options: [
           "Gold, silver, dates, wheat, barley, and salt",
@@ -762,6 +833,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih Muslim, the Prophet (PBUH) ruled: 'Gold for gold, silver for silver, wheat for wheat, barley for barley, dates for dates, and salt for salt, like for like, equal for equal, hand to hand. If these commodities differ, then sell as you wish, provided it is hand to hand.'",
       },
       {
+        id: "islamic-finance-intermediate-2",
         question: "What is 'Riba al-Fadl' in classical Islamic jurisprudence?",
         options: [
           "Unlawful excess or disparity in quantity when exchanging two items of the same ribawi commodity simultaneously",
@@ -774,6 +846,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Riba al-Fadl occurs when exchanging homogeneous ribawi goods (e.g., gold for gold or dates for dates) in unequal quantities, even if quality differs, as forbidden in the authentic hadiths.",
       },
       {
+        id: "islamic-finance-intermediate-3",
         question: "What is 'Riba al-Nasi'ah' in Islamic jurisprudence?",
         options: [
           "Trading currencies at market spot rates",
@@ -786,6 +859,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Riba al-Nasi'ah is the usury of deferment, where a creditor charges extra money in return for granting additional time to repay a loan or debt, which was the prevalent form of Riba in pre-Islamic Arabia.",
       },
       {
+        id: "islamic-finance-intermediate-4",
         question: "What is the authentic hadith ruling concerning selling an item that a seller does not possess or own?",
         options: [
           "\"Sell whatever people demand, even if you do not have it\"",
@@ -798,6 +872,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Hakim ibn Hizam asked the Prophet (PBUH) about selling items he did not own and later purchasing them from the market to deliver. The Prophet (PBUH) explicitly forbade it: 'Do not sell what you do not possess' (Sunan Abi Dawood, at-Tirmidhi).",
       },
       {
+        id: "islamic-finance-intermediate-5",
         question: "What is 'Salam' (or Salaf) forward sale, and what essential conditions must be fulfilled according to the hadith in Sahih al-Bukhari?",
         options: [
           "Sale of an unknown quantity with undefined payment terms",
@@ -810,6 +885,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari, Ibn Abbas narrated that when the Prophet (PBUH) came to Madinah, he regulated Salam: 'Whoever pays in advance for dates must do so for a specified measure, a specified weight, and a specified delivery time,' with price paid upfront.",
       },
       {
+        id: "islamic-finance-intermediate-6",
         question: "What is 'Ihtikar' (hoarding/monopoly) in Islamic commercial ethics, and what is its ruling?",
         options: [
           "Stocking goods to ensure public food security; highly recommended",
@@ -822,6 +898,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih Muslim, the Prophet (PBUH) declared: 'None hoards except a wrongdoer (sinner).' Artificially creating scarcity of essential commodities to exploit buyers is severely condemned in Islam.",
       },
       {
+        id: "islamic-finance-intermediate-7",
         question: "What is 'Najash' in Islamic auction and marketplace ethics?",
         options: [
           "Offering a prompt cash discount to a needy customer",
@@ -834,6 +911,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) strictly prohibited Al-Najash (shill bidding or fake bids), where someone artificially bids up an item's price to trap authentic buyers into paying more.",
       },
       {
+        id: "islamic-finance-intermediate-8",
         question: "What is 'Talaqqi al-Jalab' (or Talaqqi al-Rukban) and why did the Prophet (PBUH) forbid it?",
         options: [
           "Meeting merchants outside the city market to buy their goods cheaply before they know fair market prices",
@@ -846,6 +924,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Prophet (PBUH) forbade intercepting merchant caravans before they reached the open market (Sahih al-Bukhari), safeguarding rural sellers from being exploited due to ignorance of prevailing market prices.",
       },
       {
+        id: "islamic-finance-intermediate-9",
         question: "What is the famous legal maxim regarding the financial liability of a business partner or borrower in Islamic law: 'Al-Kharaj bil-Daman'?",
         options: [
           "Revenue belongs to the government tax collector",
@@ -858,6 +937,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Established by an authentic prophetic hadith (Sunan Abi Dawood, at-Tirmidhi), 'Al-Kharaju bid-Daman' means that whoever bears the risk of loss or destruction of an asset has the lawful right to enjoy its yield and yield-derived profits.",
       },
       {
+        id: "islamic-finance-intermediate-10",
         question: "What is the legal maxim 'Al-Ghunm bil-Ghurm' in Islamic economic jurisprudence?",
         options: [
           "Gain comes with corresponding risk and liability",
@@ -870,6 +950,7 @@ const islamicFinanceCategory: QuizCategory = {
           "'Al-Ghunmu bil-Ghurm' establishes that financial benefit or profit is legally and ethically indivisible from responsibility and potential loss. One cannot demand guaranteed profit without bearing risk.",
       },
       {
+        id: "islamic-finance-intermediate-11",
         question: "In a classical 'Mudarabah' partnership, who bears the monetary/capital loss if the venture incurs an unpreventable financial deficit?",
         options: [
           "The working partner (Mudarib) alone pays from personal savings",
@@ -882,6 +963,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Unless caused by negligence, misconduct, or breach of contract by the manager, financial loss in Mudarabah falls strictly upon the Rab al-Mal's capital, while the Mudarib loses their invested labor and compensation.",
       },
       {
+        id: "islamic-finance-intermediate-12",
         question: "In a standard 'Musharakah' partnership, how must financial capital losses be allocated among partners according to Shariah consensus?",
         options: [
           "Strictly in proportion to each partner's capital contribution",
@@ -894,6 +976,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Jurists across all schools of Islamic jurisprudence agree upon the foundational rule: 'Profit is according to mutual agreement, but loss is strictly according to capital contribution (Al-Wadi'ah 'ala qadr al-mal).'",
       },
       {
+        id: "islamic-finance-intermediate-13",
         question: "Can an Islamic bank or Rab al-Mal stipulate a guaranteed fixed percentage return on capital in a Mudarabah contract?",
         options: [
           "Yes, if agreed upon in writing by both parties",
@@ -906,6 +989,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Stipulating a fixed lump sum or fixed percentage of capital converts the partnership into a loan with interest (Riba). The agreement must stipulate a known percentage share of the realized profit (e.g., 60/40).",
       },
       {
+        id: "islamic-finance-intermediate-14",
         question: "What is 'Bay al-Inah' and why did Prophet Muhammad (PBUH) severely condemn it?",
         options: [
           "Exporting fruits before they are ripe",
@@ -918,6 +1002,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sunan Abi Dawood, the Prophet (PBUH) warned: 'If you trade with al-Inah... Allah will inflict humiliation upon you until you return to your religion.' It is a legal trick (hilah) used to disguise interest-bearing lending.",
       },
       {
+        id: "islamic-finance-intermediate-15",
         question: "What is the primary Shariah flaw in conventional vehicle or equipment leasing compared to an authentic Islamic 'Ijara'?",
         options: [
           "Using computers to print the agreement",
@@ -930,6 +1015,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In true Islamic Ijara, the lessor (owner) must retain the ownership risk, liabilities of ownership, and total destruction risk of the leased asset. Conventional leases often unfairly push asset risk onto the lessee.",
       },
       {
+        id: "islamic-finance-intermediate-16",
         question: "What is 'Ijara Muntahia Bittamleek' (or Ijara wa Iqtina)?",
         options: [
           "A lease contract that concludes with the transfer of ownership of the leased asset to the lessee through a separate gift or sale",
@@ -942,6 +1028,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Ijara Muntahia Bittamleek is an Islamic lease-ending-in-ownership structure where the client leases an asset, and upon paying all rental installments, ownership is transferred via a distinct gift (Hibah) or nominal sale contract.",
       },
       {
+        id: "islamic-finance-intermediate-17",
         question: "Why must the promise to transfer ownership in 'Ijara Muntahia Bittamleek' be executed via a separate undertaking rather than embedded in the lease itself?",
         options: [
           "To save money on governmental notary public fees",
@@ -954,6 +1041,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Prophet (PBUH) forbade combining two contracts into a single transaction (Ahmad, at-Tirmidhi). Shariah standards require the lease agreement and the subsequent transfer of title to be independent legal undertakings.",
       },
       {
+        id: "islamic-finance-intermediate-18",
         question: "What is 'Bay al-Kali bil-Kali' in Islamic contract law, and what is its legal status?",
         options: [
           "Exchanging deferred debt for deferred debt (sale of credit for credit); strictly prohibited by consensus",
@@ -966,6 +1054,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Bay al-Kali bil-Kali involves exchanging delayed delivery of goods for deferred payment of price without either taking place at the contract session. Scholars unanimously prohibit this as pure speculation with no underlying substance.",
       },
       {
+        id: "islamic-finance-intermediate-19",
         question: "What is 'Gharar Yasir' (minor uncertainty) and how does Islamic commercial law treat it?",
         options: [
           "It automatically nullifies any contract it touches",
@@ -978,6 +1067,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Islamic jurisprudence distinguishes between Gharar Fahish (excessive ambiguity, which invalidates contracts) and Gharar Yasir (minor, negligible ambiguity, such as the foundation of a house), which is excused to prevent hardship.",
       },
       {
+        id: "islamic-finance-intermediate-20",
         question: "What is the authentic hadith ruling concerning the sale of unripe fruit still on the tree before its soundness becomes apparent?",
         options: [
           "Permissible under any circumstances",
@@ -990,6 +1080,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) forbade selling fruits until they become evidently ripe (Hatta yabduw salahahu) to prevent taking people's wealth unjustly if blight destroys the crop.",
       },
       {
+        id: "islamic-finance-intermediate-21",
         question: "What is 'Khiyar al-Majlis' in Islamic transaction law?",
         options: [
           "The right of either party to cancel or confirm the sale as long as they have not parted from the contract gathering",
@@ -1002,6 +1093,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) stated: 'The buyer and seller have the option to revoke the contract as long as they have not separated.' This ensures transactions are concluded without duress.",
       },
       {
+        id: "islamic-finance-intermediate-22",
         question: "What is 'Khiyar al-Ayb' in Islamic consumer protection?",
         options: [
           "The buyer's legal option to return merchandise and obtain a full refund if a hidden defect is discovered",
@@ -1014,6 +1106,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Khiyar al-Ayb provides that if a buyer discovers a pre-existing hidden defect in purchased goods that depreciates its value, they possess the Shariah right to return it for a full refund.",
       },
       {
+        id: "islamic-finance-intermediate-23",
         question: "What is 'Khiyar al-Shart' in contractual stipulations?",
         options: [
           "A stipulated condition granting one or both parties a specified trial period during which they can cancel the contract",
@@ -1026,6 +1119,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Khiyar al-Shart is an agreed-upon option giving either party (or both) a specific designated time frame (e.g., three days) to reflect, test the product, and decide whether to ratify or annul the sale.",
       },
       {
+        id: "islamic-finance-intermediate-24",
         question: "What was the Prophet's instruction when Bilal (RA) brought high-quality dates obtained by exchanging two measures of low-quality dates for one measure of high-quality dates?",
         options: [
           "He praised Bilal for making a clever bargain",
@@ -1038,6 +1132,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) pointed out that unequal direct barter of the same ribawi commodity constitutes Riba al-Fadl, teaching the proper market mechanism: monetize first with currency, then buy desired quality.",
       },
       {
+        id: "islamic-finance-intermediate-25",
         question: "What is the Islamic legal ruling on a lender stipulating a mandatory gift or service from the borrower as a condition of a loan?",
         options: [
           "It is fully recommended to show gratitude",
@@ -1050,6 +1145,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The established jurisprudential maxim, supported by Athar of the Sahabah (such as Ibn Mas'ud and Ubayy ibn Ka'b), dictates: 'Every loan that draws a stipulated benefit or increase is a form of Riba.'",
       },
       {
+        id: "islamic-finance-intermediate-26",
         question: "What did the Prophet (PBUH) do when paying back a camel he had borrowed from a companion, and what principle did he establish regarding non-stipulated repayment excellence (Husn al-Qada)?",
         options: [
           "He returned a smaller, younger camel",
@@ -1062,6 +1158,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, when repaying a borrowed camel, the Prophet (PBUH) gave a better one, teaching that voluntary generosity or repayment in better quality without prior agreement is meritorious (Husn al-Qada).",
       },
       {
+        id: "islamic-finance-intermediate-27",
         question: "What is the Shariah ruling on conventional financial options, swaps, and futures contracts according to the International Islamic Fiqh Academy?",
         options: [
           "They are completely permissible standard trade tools",
@@ -1074,6 +1171,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The OIC International Islamic Fiqh Academy (Resolution No. 63) ruled that conventional options and futures are not permissible because the subject matter is not tangible property (Mal) and they involve excessive Gharar and gambling.",
       },
       {
+        id: "islamic-finance-intermediate-28",
         question: "What is 'Hawalah' in classical Islamic financial jurisprudence?",
         options: [
           "Transfer or assignment of a debt from the liability of the original debtor to a willing third party",
@@ -1086,6 +1184,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Hawalah is the formal legal transfer of a debt liability from one debtor to another. The Prophet (PBUH) stated in Sahih al-Bukhari: 'Delay in repayment on the part of a rich debtor is injustice; if your debt is transferred to a solvent party, accept it.'",
       },
       {
+        id: "islamic-finance-intermediate-29",
         question: "What is 'Daman' (or Kafalah) in Islamic law?",
         options: [
           "A commercial leasing arrangement",
@@ -1098,6 +1197,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Kafalah/Daman is a contract of suretyship where a guarantor joins their liability with the debtor to assure the creditor that the claim or debt will be satisfied (Sunan Abi Dawood).",
       },
       {
+        id: "islamic-finance-intermediate-30",
         question: "Can a guarantor (Kafil) charge a monetary fee merely for providing a financial guarantee (Kafalah) in Islamic finance?",
         options: [
           "Yes, banks may charge any percentage they see fit",
@@ -1110,6 +1210,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Under classical jurisprudence and AAOIFI standards, taking a fee for a financial guarantee is prohibited because if the guarantor pays the debt, it becomes a loan, and the fee becomes interest on that loan (Riba). Only actual administrative costs may be recovered.",
       },
       {
+        id: "islamic-finance-intermediate-31",
         question: "What are the eight designated Quranic categories of Zakat recipients specified in Surah at-Tawbah (9:60)?",
         options: [
           "Mosque building, roads, bridges, schools, orphanages, hospitals, parks, and libraries",
@@ -1122,6 +1223,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Surah at-Tawbah (9:60) strictly confines the distribution of Zakat to eight divine categories: Fuqara, Masakin, Amilina alayha, Mu'allafati qulubuhum, Fir-Riqab, Gharimin, Fi Sabilillah, and Ibn al-Sabil.",
       },
       {
+        id: "islamic-finance-intermediate-32",
         question: "What is the Quranic directive regarding a debtor experiencing genuine financial distress and insolvency?",
         options: [
           "Immediate imprisonment until family pays",
@@ -1134,6 +1236,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Allah commands in Surah al-Baqarah (2:280): 'And if someone is in hardship, then let there be postponement until [a time of] ease. And if you give [it as] charity, then it is better for you, if you only knew.'",
       },
       {
+        id: "islamic-finance-intermediate-33",
         question: "What constitutes 'Bay al-Gharar' that was explicitly prohibited by the Messenger of Allah (PBUH)?",
         options: [
           "Any transaction with mutual written contracts",
@@ -1146,6 +1249,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih Muslim, Abu Hurairah narrated that the Prophet (PBUH) prohibited Bay al-Gharar. Classic examples include selling fish swimming uncaught in the sea, birds in the air, or an unborn calf without its mother.",
       },
       {
+        id: "islamic-finance-intermediate-34",
         question: "What is 'Bay al-Hasah' and 'Bay al-Munabadhah' which the Prophet (PBUH) outlawed in the marketplace?",
         options: [
           "Standard currency trades settled immediately",
@@ -1158,6 +1262,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Sahih al-Bukhari and Muslim, the Prophet (PBUH) prohibited these pre-Islamic sales practices because they introduced gambling elements and lack of clear inspection/consent into trade transactions.",
       },
       {
+        id: "islamic-finance-intermediate-35",
         question: "What is the Shariah status of combining a sales contract with a loan contract (Bay wa Salaf) in a single deal?",
         options: [
           "Highly recommended in Islamic banking",
@@ -1170,6 +1275,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Prophet (PBUH) explicitly ruled: 'A sale and a loan combined are not lawful' (La yahillu salafun wa bay') (Abu Dawood, at-Tirmidhi), as it creates an indirect route to usury (Riba).",
       },
       {
+        id: "islamic-finance-intermediate-36",
         question: "What is 'Muqassah' (debt netting/offsetting) in Islamic commercial law?",
         options: [
           "Setting off mutual debts between two parties who owe equal debts to each other",
@@ -1182,6 +1288,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Muqassah is the lawful cancellation or netting of reciprocal debts between two counter-parties when conditions of maturity and currency match, eliminating unnecessary cash transfers.",
       },
       {
+        id: "islamic-finance-intermediate-37",
         question: "In the context of modern Islamic banking, what happens to late payment penalties collected from defaulting clients?",
         options: [
           "They are booked directly into the bank's operational revenue and profit",
@@ -1194,6 +1301,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Under AAOIFI Shariah standards, to prevent the penalty from resembling Riba al-Jahiliyyah, an Islamic financial institution cannot recognize late payment fines as income; they must be disbursed entirely to charity.",
       },
       {
+        id: "islamic-finance-intermediate-38",
         question: "What is 'Urbun' (down payment) and what is the classical scholarly position regarding keeping it if the buyer defaults?",
         options: [
           "It is universally considered interest by all scholars",
@@ -1206,6 +1314,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Hanbali school (supported by practice attributed to Umar ibn al-Khattab) permits retaining Urbun if the buyer backs out, which forms the basis for modern Islamic banking resolutions allowing non-refundable earnest money.",
       },
       {
+        id: "islamic-finance-intermediate-39",
         question: "What is 'Ghabn' in contract law and what protects the vulnerable party against it?",
         options: [
           "The physical delivery of goods; protected by shipping insurance",
@@ -1218,6 +1327,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Ghabn refers to purchasing or selling at a price drastically diverging from fair market valuation through exploitation or deception. The victim has Khiyar al-Ghabn to nullify the contract or seek price rectification.",
       },
       {
+        id: "islamic-finance-intermediate-40",
         question: "What is 'Waqf Ahli' (family endowment) in Islamic estate and asset management?",
         options: [
           "A public cemetery managed by municipal workers",
@@ -1230,6 +1340,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Waqf Ahli (or Dhurri) is a dedicated family trust where the principal asset is preserved in perpetuity and its yields or revenues are dedicated exclusively to support the founder's family and descendants across generations.",
       },
         {
+        id: "islamic-finance-intermediate-41",
         question: "What is the critical 'Illah' (underlying effective legal cause) for Riba in gold and silver according to the majority Shafi'i, Maliki, and contemporary juristic consensus?",
         options: [
           "Weighability by physical balance (Al-Wazn) exclusively",
@@ -1242,6 +1353,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Maliki and Shafi'i schools, followed by the International Islamic Fiqh Academy, identify 'Thamaniyyah' (functioning as money/medium of exchange) as the effective cause in gold and silver, which directly extends the rules of Riba to modern fiat paper currencies.",
       },
       {
+        id: "islamic-finance-intermediate-42",
         question: "What is the foundational Shariah ruling on trading modern fiat paper currencies (e.g., USD for EUR or SAR) established by the OIC Islamic Fiqh Academy?",
         options: [
           "They can be traded on credit with settlement up to six months later",
@@ -1254,6 +1366,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Resolution No. 21 of the International Islamic Fiqh Academy confirmed that modern banknotes possess full monetary character (Thamaniyyah) as distinct genera. Exchanging one currency for another is Bay al-Sarf, necessitating immediate hand-to-hand exchange (Taqabud).",
       },
       {
+        id: "islamic-finance-intermediate-43",
         question: "How did classical jurists resolve the question of 'Qabd al-Hukmi' (constructive possession) in modern digital transactions and wire transfers?",
         options: [
           "Constructive possession is rejected; physical cash notes must always be touched by hand",
@@ -1266,6 +1379,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The Fiqh Academy and AAOIFI recognize 'Qabd Hukmi' (constructive possession), ruling that crediting a recipient's bank account or issuing a certified cashier's check legally constitutes valid possession equivalent to physical handover.",
       },
       {
+        id: "islamic-finance-intermediate-44",
         question: "What is the key Shariah controversy surrounding 'Sukuk al-Istithmar' where the issuer promises to repurchase underlying assets at face value at maturity?",
         options: [
           "Face-value capital guarantees by the manager or obligor convert the equity-based investment certificate into a debt instrument with guaranteed interest, violating Musharakah principles",
@@ -1278,6 +1392,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In 2008, the AAOIFI Shariah Board issued a historic resolution declaring that capital guarantees at nominal face value by the issuer in partnership Sukuk (Musharakah/Mudarabah) violate Shariah because capital cannot be guaranteed by an investment partner.",
       },
       {
+        id: "islamic-finance-intermediate-45",
         question: "What is the primary distinction between 'Istisna' and 'Salam' regarding price payment timing and subject matter?",
         options: [
           "Istisna strictly requires 100% upfront payment, whereas Salam permits payment on delivery",
@@ -1290,6 +1405,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Unlike Salam (which mandates complete advance payment at the contract session to avoid debt-for-debt), Istisna (manufacturing contract) uniquely permits advance, staggered, or fully deferred payment upon delivery by juristic consensus.",
       },
       {
+        id: "islamic-finance-intermediate-46",
         question: "What is 'Da' wa Ta'ajjal' (discount for early debt settlement) and what is the authoritative contemporary juristic ruling regarding it?",
         options: [
           "It is universally considered major Riba without any exception",
@@ -1302,6 +1418,7 @@ const islamicFinanceCategory: QuizCategory = {
           "The International Islamic Fiqh Academy and Ibn Abbas held that reducing a debt balance in exchange for early cash settlement is lawful, provided it was not an enforceable pre-condition in the original credit agreement.",
       },
       {
+        id: "islamic-finance-intermediate-47",
         question: "In the Islamic screening of corporate equities, what is the standard AAOIFI financial threshold benchmark for impermissible debt-to-market-capitalization?",
         options: [
           "Interest-bearing debt must not exceed 30% of market capitalization (or 33% depending on standard)",
@@ -1314,6 +1431,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Under AAOIFI Shariah Standard No. 21 (and similar benchmarks by Dow Jones Islamic Market / FTSE), total interest-bearing debt must not exceed 30% (or 33%) of the company's average market capitalization over a 12-month period.",
       },
       {
+        id: "islamic-finance-intermediate-48",
         question: "What is the principle of 'Tabarru'' in Takaful (Islamic cooperative insurance) and how does it resolve the issue of Gharar?",
         options: [
           "It guarantees that every policyholder receives their full premium back with interest",
@@ -1326,6 +1444,7 @@ const islamicFinanceCategory: QuizCategory = {
           "In Takaful, contributions are treated as voluntary donations (Tabarru') to a collective pool. In Shariah, contracts of donation tolerate ambiguity (Gharar) because they are acts of charity and mutual cooperation, not commercial profit-making sales.",
       },
       {
+        id: "islamic-finance-intermediate-49",
         question: "What is the Shariah mechanism known as 'Wa'd Mulzim' (unilaterally binding promise) and how is it applied in modern Islamic financial structures?",
         options: [
           "A bilateral contract that forces both parties into usury",
@@ -1338,6 +1457,7 @@ const islamicFinanceCategory: QuizCategory = {
           "Adopted by the Islamic Fiqh Academy and AAOIFI, a unilateral promise (Wa'd) can be legally and religiously binding (Mulzim) on the promisor if the promisee has entered into obligations relying on it, essential for Murabaha and foreign exchange forward alternatives.",
       },
       {
+        id: "islamic-finance-intermediate-50",
         question: "What is 'Tawarruq Masrafi' (organized/monetized tawarruq) and why did the OIC Islamic Fiqh Academy issue a strong resolution prohibiting it in 2009?",
         options: [
           "It involves genuine physical commodities delivered to the customer's personal home",

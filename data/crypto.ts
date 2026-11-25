@@ -8,6 +8,7 @@ const cryptoCategory: QuizCategory = {
   levels: {
     easy: [
         {
+        id: "crypto-easy-1",
         question: "What is the primary Shariah concern regarding conventional cryptocurrencies?",
         options: [
           "They use advanced technology",
@@ -19,6 +20,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Scholars cite Hadith prohibiting gharar transactions (Muslim 1513) due to crypto's extreme volatility. AAOIFI Standard 59 highlights valuation uncertainty as major concern. Permissible crypto must demonstrate price stability mechanisms to comply with Islamic finance principles."
       },
       {
+        id: "crypto-easy-2",
         question: "Which Quranic principle is most relevant to blockchain transparency?",
         options: [
           "Surah 2:282 on recording transactions",
@@ -30,6 +32,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "The verse 'O believers! When you contract a debt... write it down' (2:282) establishes Islamic requirement for transparent record-keeping. Blockchain's immutable ledger aligns with this principle, as noted in 2022 Shariah Review Bureau report on halal blockchain applications."
       },
       {
+        id: "crypto-easy-3",
         question: "What makes a cryptocurrency potentially halal according to scholars?",
         options: [
           "Being backed by physical gold",
@@ -41,6 +44,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "The Prophet (PBUH) used gold/silver as currency (Hadith - Bukhari 2068). Scholars like Dr. Mohd Daud Bakar permit gold-backed crypto (e.g., OneGram) as they avoid riba and gharar. 2023 Fiqh Academy resolution requires tangible asset backing for Shariah compliance."
       },
       {
+        id: "crypto-easy-4",
         question: "Which crypto activity is clearly haram?",
         options: [
           "Mining using solar power",
@@ -52,6 +56,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 5:90 prohibits supporting gambling. Scholars unanimously forbid investing in haram industries through any means, including crypto. 2021 OIC Fiqh Academy ruling prohibits all crypto involvement with gambling, alcohol, or adult industries."
       },
       {
+        id: "crypto-easy-5",
         question: "What is the Islamic ruling on Bitcoin mining?",
         options: [
           "Permitted if energy costs don't exceed value",
@@ -63,6 +68,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Based on Islamic waste prevention principle (Hadith - Muslim 4204), mining is allowed only when energy input is justified by output value. 2022 International Shariah Research Academy paper sets 1:1.2 energy-value ratio as threshold for permissibility."
       },
       {
+        id: "crypto-easy-6",
         question: "How does smart contract technology align with Islamic principles?",
         options: [
           "By eliminating human judgment",
@@ -74,6 +80,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 5:1 commands fulfilling contracts. Smart contracts execute agreed terms immutably, preventing disputes (Hadith - Bukhari 1973). 2023 AAOIFI guidelines approve Shariah-compliant smart contracts when terms comply with Islamic transaction rules."
       },
       {
+        id: "crypto-easy-7",
         question: "Which crypto feature resembles Islamic prohibition of riba?",
         options: [
           "Fixed interest staking rewards",
@@ -85,6 +92,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:275 prohibits guaranteed returns (riba). Profit-sharing models like Mudaraba in DeFi align with Islamic finance, as recognized in 2023 Bahrain Islamic Bank crypto guidelines. Fixed interest staking remains controversial among scholars."
       },
       {
+        id: "crypto-easy-8",
         question: "What is the Islamic view on stablecoins?",
         options: [
           "Permitted if fully asset-backed",
@@ -96,6 +104,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh principle: 'Currency must have intrinsic value' (Ibn Qayyim, I'lam al-Muwaqqi'in). Scholars like Dr. Ali Mohiuddin approve fiat-backed stablecoins (e.g., Islamic Dinar) meeting 1:1 reserve requirement, as per 2022 Malaysian Shariah Advisory Council ruling."
       },
       {
+        id: "crypto-easy-9",
         question: "Which blockchain application is most aligned with Islamic social finance?",
         options: [
           "P2E gaming tokens",
@@ -107,6 +116,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 9:60 mandates transparent zakat distribution. Blockchain enables traceable donations from donor to recipient, fulfilling amanah (trust) principle. 2023 UAE's 'Blockchain Zakat Initiative' received Dar al-Ifta approval for enhanced accountability."
       },
           {
+  id: "crypto-easy-10",
   question: "What is the Islamic ruling on accepting cryptocurrency as payment for goods?",
   options: [
     "Permitted if immediate exchange occurs",
@@ -118,6 +128,7 @@ const cryptoCategory: QuizCategory = {
   explanation: "Based on Hadith (Muslim 1587) requiring immediate exchange in trade transactions. 2023 International Islamic Fiqh Academy permits crypto payments when: 1) Both parties agree on value, 2) Settlement is immediate, 3) No excessive gharar exists - following the principle of 'al-bay' (permissible trade) in Quran 2:275."
 },
 {
+  id: "crypto-easy-11",
   question: "Which Islamic finance principle does cryptocurrency mining violate if energy costs exceed output?",
   options: [
     "Ihsan (excellence)",
@@ -129,6 +140,7 @@ const cryptoCategory: QuizCategory = {
   explanation: "Quran 7:31 prohibits wasteful consumption. Hadith (Muslim 4204) condemns squandering resources. 2022 AAOIFI guideline prohibits mining when energy expenditure exceeds 120% of crypto value, as it violates Islamic economic principles of resource optimization and environmental responsibility."
 },
 {
+  id: "crypto-easy-12",
   question: "What is the Shariah position on using cryptocurrency for Hajj expenses?",
   options: [
     "Permitted if from halal sources",
@@ -140,6 +152,7 @@ const cryptoCategory: QuizCategory = {
   explanation: "Quran 22:27 commands spending in Hajj from pure earnings. 2023 Saudi Hajj Ministry ruling allows crypto-funded Hajj when: 1) Assets are Shariah-compliant, 2) Proper conversion to local currency exists, 3) No riba involved - following the principle of 'anfalu halalun tayyib' (pure lawful provisions) from Quran 8:69."
     },
       {
+        id: "crypto-easy-13",
         question: "What makes an NFT potentially halal?",
         options: [
           "Representing digital artwork",
@@ -151,6 +164,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic property rights (Hadith - Bukhari 2125) allow tokenizing physical assets. 2023 International Islamic Fiqh Academy approved asset-backed NFTs while prohibiting speculative digital art NFTs due to gharar concerns."
       },
       {
+        id: "crypto-easy-14",
         question: "How does Islamic law view DAOs (Decentralized Autonomous Organizations)?",
         options: [
           "Permitted if governance follows Shariah",
@@ -162,6 +176,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Shura (consultation) principle (Quran 42:38) allows decentralized governance if rules prohibit haram activities. 2023 Bahrain's Shariyah Review Bureau certified first Islamic DAO with: 1) Shariah board, 2) Profit-sharing model, 3) Halal investment focus."
       },
       {
+        id: "crypto-easy-15",
         question: "What is the Islamic ruling on crypto speculation?",
         options: [
           "Permitted like stock trading",
@@ -173,6 +188,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith compares uncertain gains to gambling (Muslim 1513). 2022 OIC Fiqh Council ruling prohibits day-trading crypto due to excessive gharar. Long-term holding (1+ year) of asset-backed tokens may be permitted per scholar consensus."
       },
       {
+        id: "crypto-easy-16",
         question: "Which Islamic financial principle does DeFi lending violate?",
         options: [
           "Qard (interest-free loan)",
@@ -184,6 +200,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:275 prohibits fixed-interest lending prevalent in DeFi. Islamic alternatives like Aave's 'credit delegation' (profit-sharing loans) received 2023 Shariah certification from Malaysia's Securities Commission for avoiding riba."
       },
       {
+        id: "crypto-easy-17",
         question: "What is the Shariah view on crypto wallets?",
         options: [
           "Permitted if securing halal assets",
@@ -195,6 +212,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh principle: 'Tools take ruling of their usage' (Ibn Qayyim). Wallets storing Shariah-compliant tokens are permissible. 2023 AAOIFI standards require: 1) Private key control, 2) No haram service integration, 3) Transaction screening capability."
       },
       {
+        id: "crypto-easy-18",
         question: "How does Islamic law classify proof-of-stake cryptocurrencies?",
         options: [
           "Permitted as equivalent to profit-sharing",
@@ -206,6 +224,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Scholars like Dr. Abdul Sattar Abu Ghuddah approve PoS when: 1) Rewards proportional to work (Hadith - Ibn Majah 2443), 2) No guaranteed returns. 2023 Shariah certification of Ethereum post-Merge established precedent for Islamic-compliant staking."
       },
       {
+        id: "crypto-easy-19",
         question: "What is the Islamic position on CBDCs (Central Bank Digital Currencies)?",
         options: [
           "Permitted if interest-free",
@@ -217,6 +236,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic finance allows state-issued currency (Hadith - Abu Dawud 3354). Malaysia's 2023 digital ringgit and Saudi's Aber project comply by: 1) No riba, 2) Full reserve backing, 3) Government guarantee - meeting AAOIFI Shariah standards for digital fiat."
       },
       {
+        id: "crypto-easy-20",
         question: "Which crypto activity resembles Islamic hawala system?",
         options: [
           "Cross-border stablecoin transfers",
@@ -228,6 +248,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hawala's trust-based transfers (approved in Hadith - Bukhari 2287) parallel blockchain remittances. UAE's 2022 'Crypto Hawala' framework received Fatwa approval for using asset-backed tokens with: 1) Known parties, 2) No delay in settlement, 3) Fixed exchange rates."
       },
       {
+        id: "crypto-easy-21",
         question: "What makes a crypto exchange Shariah-compliant?",
         options: [
           "Listing only asset-backed tokens",
@@ -239,6 +260,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith prohibits trading uncertain items (Muslim 1513). 2023 Bahrain's licensed 'Islamic Crypto Exchange' screens tokens for: 1) Tangible asset backing, 2) No riba/gharar, 3) Halal business use - following DFSA Islamic finance rules."
       },
       {
+        id: "crypto-easy-22",
         question: "How does Islamic law view tokenized real estate?",
         options: [
           "Permitted with clear ownership rights",
@@ -250,6 +272,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:282 mandates documenting property transactions. Tokenization enables fractional ownership while maintaining: 1) Title deeds (Hadith - Bukhari 2125), 2) Rental distribution transparency. 2023 Saudi's blockchain real estate platform received Shariah approval from GIFA."
       },
       {
+        id: "crypto-easy-23",
         question: "What is the Islamic ruling on crypto donations to mosques?",
         options: [
           "Permitted if from halal sources",
@@ -261,6 +284,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 9:104 accepts all purified wealth. Egypt's Dar al-Ifta 2022 ruling allows mosque crypto donations when: 1) From permissible activities, 2) Value is stable, 3) Properly recorded. Blockchain enables transparent sadaqah tracking per Islamic accountability principles."
       },
       {
+        id: "crypto-easy-24",
         question: "Which Islamic contract is most replicated in DeFi?",
         options: [
           "Murabaha (cost-plus financing)",
@@ -272,6 +296,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:275 favors profit-sharing over interest. DeFi protocols like IslamicCoin use smart contracts to automate Mudaraba terms: 1) Capital provider (rabb-ul-mal), 2) Manager (mudarib), 3) Pre-agreed profit split - certified halal by 2023 Shariyah Review Bureau."
       },
       {
+        id: "crypto-easy-25",
         question: "What is the Shariah view on crypto inheritance?",
         options: [
           "Must be willed according to Islamic shares",
@@ -283,6 +308,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 4:11-12 fixes inheritance portions. Scholars require: 1) Documenting crypto in wills (Hadith - Ibn Majah 2700), 2) Using inheritance smart contracts, 3) Distributing per faraid shares. 2023 Malaysia's Fiqh Academy issued guidelines for crypto estate planning."
       },
       {
+        id: "crypto-easy-26",
         question: "How does Islamic law view crypto price speculation?",
         options: [
           "Permitted as free market activity",
@@ -294,6 +320,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith prohibits uncertain gains (Muslim 1513). 2022 International Islamic Fiqh Academy ruling bans: 1) Day trading, 2) Futures contracts, 3) Leveraged positions in crypto due to excessive gharar. Long-term investing in asset-backed tokens may be permitted."
       },
       {
+        id: "crypto-easy-27",
         question: "What is the Islamic position on metaverse land trading?",
         options: [
           "Permitted if used for halal purposes",
@@ -305,6 +332,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic property rights require tangible assets (Hadith - Bukhari 2125). 2023 OIC Fiqh Council ruling prohibits virtual land NFTs as: 1) No real ownership, 2) Pure speculation, 3) Resemble prohibited 'bay al-gharar'. Exceptions exist for metaverse spaces tied to physical real estate."
       },
       {
+        id: "crypto-easy-28",
         question: "How does Islamic law govern crypto staking rewards?",
         options: [
           "Permitted if not fixed guarantees",
@@ -316,6 +344,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Scholars distinguish between: 1) Fixed interest (haram riba), 2) Variable profit-sharing (halal). 2023 Shariah certification of Cardano staking requires: 1) Reward variability, 2) Actual network service, 3) No minimum guarantees - meeting Islamic investment standards."
       },
       {
+        id: "crypto-easy-29",
         question: "What is the Shariah ruling on crypto mining pools?",
         options: [
           "Permitted as joint ventures",
@@ -327,6 +356,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 5:2 allows cooperation in righteousness. Mining pools are halal when: 1) Profit distribution is transparent (Hadith - Bukhari 2068), 2) Energy sources are permissible, 3) No interest-based lending involved - per 2022 AAOIFI blockchain guidelines."
       },
       {
+        id: "crypto-easy-30",
         question: "Which Islamic principle does blockchain best fulfill?",
         options: [
           "Taqwa (God-consciousness)",
@@ -340,6 +370,7 @@ const cryptoCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "crypto-advanced-1",
         question: "How do Shariah scholars assess the 'mal' (wealth) aspect of cryptocurrencies?",
         options: [
           "Must be tangible commodity",
@@ -351,6 +382,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Classical fiqh defines 'mal' as having intrinsic value (Ibn Abidin, Radd al-Muhtar). 2023 International Islamic Fiqh Academy ruling requires crypto to be: 1) Asset-backed, 2) Non-speculative, 3) Useful in trade - rejecting purely algorithmic coins as lacking Shariah-recognized value."
       },
       {
+        id: "crypto-advanced-2",
         question: "What is the Shariah analysis of zero-knowledge proofs in blockchain?",
         options: [
           "Permitted for privacy if not concealing haram",
@@ -362,6 +394,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic law protects legitimate privacy (Hadith - Abu Dawud 4868) while forbidding concealment of evil (Quran 2:283). 2023 AAOIFI standard approves zk-proofs when: 1) Not hiding illicit funds, 2) Maintaining auditability for authorities, 3) Disclosing necessary transaction details to parties."
       },
       {
+        id: "crypto-advanced-3",
         question: "How does Islamic law treat DAO governance tokens from a zakat perspective?",
         options: [
           "Zakat payable if held above nisab",
@@ -373,6 +406,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh principle: 'Zakat applies to tradeable wealth' (Ibn Qudamah, al-Mughni). 2023 Islamic Financial Services Board guidelines require: 1) Annual valuation, 2) 2.5% payment in liquid assets, 3) Nisab calculation based on gold equivalent - treating governance tokens as mal al-tijarah (trade wealth)."
       },
       {
+        id: "crypto-advanced-4",
         question: "What is the Shariah ruling on perpetual crypto futures contracts?",
         options: [
           "Permitted with stop-loss limits",
@@ -384,6 +418,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith prohibits uncertain deliveries (Muslim 1513). 2022 OIC Fiqh Academy resolution bans perpetual futures due to: 1) No settlement date, 2) Excessive leverage, 3) Synthetic exposure - violating Islamic rules of qard (loan) and bay' (trade). Only spot trading with immediate settlement is permitted."
       },
       {
+        id: "crypto-advanced-5",
         question: "How do scholars view sharding in blockchain from Islamic risk perspective?",
         options: [
           "Permitted if maintaining ledger integrity",
@@ -395,6 +430,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:282 emphasizes complete record-keeping. 2023 Shariyah Review Bureau certified sharded networks when: 1) Full node verification possible, 2) No data loss risk, 3) Consensus remains unbroken - meeting Islamic standards for financial transparency and accountability."
       },
       {
+        id: "crypto-advanced-6",
         question: "What is the Shariah position on rehypothecation in DeFi lending?",
         options: [
           "Permitted if borrower consents",
@@ -406,6 +442,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic law forbids 'selling what one doesn't own' (Hadith - Tirmidhi 1232). 2023 AAOIFI ruling prohibits DeFi rehypothecation as it creates: 1) Unbacked IOUs, 2) Fractional reserves, 3) Systemic risk - violating Quranic command to 'not consume wealth wrongfully' (4:29)."
       },
       {
+        id: "crypto-advanced-7",
         question: "How does Islamic law assess NFT fractionalization?",
         options: [
           "Permitted for physical asset NFTs",
@@ -417,6 +454,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh allows shared ownership (sharika) of tangible assets (Ibn Qudamah, al-Mughni). 2023 ISRA certification permits fractionalized real estate NFTs when: 1) Underlying asset exists, 2) Ownership shares are registered, 3) Management follows Shariah - as implemented in Bahrain's first Islamic property NFT platform."
       },
       {
+        id: "crypto-advanced-8",
         question: "What is the Shariah analysis of cross-chain bridges in DeFi?",
         options: [
           "Permitted if avoiding interest",
@@ -428,6 +466,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic law validates currency exchange (sarf) with conditions (Hadith - Muslim 1587). 2023 Malaysian Shariah Advisory Council approved cross-chain bridges when: 1) No riba in wrapped assets, 2) Immediate settlement, 3) No hidden fees - following same rules as hawala transactions between different currencies."
       },
       {
+        id: "crypto-advanced-9",
         question: "How do scholars view decentralized identity (DID) from Islamic privacy perspective?",
         options: [
           "Permitted for halal self-sovereignty",
@@ -439,6 +478,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 49:12 protects against unauthorized scrutiny. 2023 Al-Azhar research paper endorsed DIDs for: 1) Zakat distribution privacy, 2) Hajj management, 3) Islamic finance KYC - while requiring: 1) Shariah-compliant use, 2) Authorities' lawful access, 3) Prevention of anonymous haram activities."
       },
       {
+        id: "crypto-advanced-10",
         question: "What is the Shariah ruling on algorithmic stablecoins?",
         options: [
           "Permitted if fully collateralized",
@@ -450,6 +490,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic monetary theory requires currency to be: 1) Asset-backed, 2) Non-speculative (Ibn Taymiyyah, al-Hisba). 2023 OIC Fiqh Academy banned algorithmic stablecoins due to: 1) No real reserves, 2) Ponzi-like dynamics, 3) Systemic risk - violating Quranic prohibition of 'eating wealth falsely' (4:29)."
       },
       {
+        id: "crypto-advanced-11",
         question: "How does Islamic law treat crypto options trading?",
         options: [
           "Permitted as risk management",
@@ -461,6 +502,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith prohibits 'selling what you don't possess' (Bukhari 1973). 2022 AAOIFI standard rejects crypto options due to: 1) Uncertain delivery, 2) Speculative premiums, 3) Time-decay mechanics - allowing only salam (forward) contracts with full prepayment and asset specifications per Islamic commercial law."
       },
       {
+        id: "crypto-advanced-12",
         question: "What is the Shariah view on crypto flash loans?",
         options: [
           "Permitted as innovative financing",
@@ -472,6 +514,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:275 forbids any loan with advantage to lender. 2023 International Islamic Fiqh Academy ruled flash loans haram due to: 1) Required fee payment, 2) Exploitative liquidation mechanisms, 3) Resembling prohibited 'riba al-nasi'ah' - permitting only true qard hasan (benevolent loans) in DeFi."
       },
       {
+        id: "crypto-advanced-13",
         question: "How do scholars assess MEV (Maximal Extractable Value) in blockchain?",
         options: [
           "Permitted as miner right",
@@ -483,6 +526,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith condemns secretly taking others' wealth (Bukhari 6858). 2023 Shariyah Review Bureau classified MEV as haram because: 1) Non-consensual value extraction, 2) Front-running violates amanah (trust), 3) Creates unfair advantage - requiring Islamic blockchain designs with MEV minimization protocols."
       },
       {
+        id: "crypto-advanced-14",
         question: "What is the Shariah analysis of crypto liquidity mining?",
         options: [
           "Permitted as profit-sharing",
@@ -494,6 +538,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "When structured as actual service provision (ju'alah), scholars like Dr. Aznan Hasan approve liquidity mining with: 1) Transparent fee distribution, 2) No guaranteed returns, 3) Halal underlying assets - as certified in 2023 Malaysia's first Shariah-compliant DEX using Mudaraba-style LP rewards."
       },
       {
+        id: "crypto-advanced-15",
         question: "How does Islamic law treat NFT royalty mechanisms?",
         options: [
           "Permitted as ongoing artist rights",
@@ -505,6 +550,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh recognizes continuous creation rights (urf al-tijarah). 2023 ISRA guidelines approve NFT royalties when: 1) Percentage is fixed upfront, 2) Applied to original works only, 3) Not excessive - aligning with Prophet's (PBUH) approval of craftsmen's fair compensation (Hadith - Ibn Majah 2443)."
       },
       {
+        id: "crypto-advanced-16",
         question: "What is the Shariah ruling on crypto prediction markets?",
         options: [
           "Permitted for economic forecasting",
@@ -516,6 +562,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 5:90 strictly forbids gambling. 2022 OIC Fiqh Academy resolution bans all prediction platforms due to: 1) Betting on unknowns, 2) Zero-sum outcomes, 3) No real economic activity - permitting only Islamic forward contracts (salam) with actual asset delivery intentions."
       },
       {
+        id: "crypto-advanced-17",
         question: "How do scholars view proof-of-burn cryptocurrency mechanisms?",
         options: [
           "Permitted as voluntary sadaqah",
@@ -527,6 +574,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic economics prohibits wanton waste (Quran 7:31). 2023 AAOIFI standard rejects proof-of-burn due to: 1) Deliberate value elimination, 2) Artificial scarcity creation, 3) No real economic benefit - allowing only productive staking (proof-of-stake) or useful work (proof-of-work) mechanisms."
       },
       {
+        id: "crypto-advanced-18",
         question: "What is the Shariah analysis of crypto airdrops?",
         options: [
           "Permitted as non-reciprocal gifts",
@@ -538,6 +586,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Hadith encourages gift-giving (Tirmidhi 1970). Scholars permit airdrops when: 1) No obligatory action required, 2) Not promoting haram projects, 3) Transparent distribution - as ruled by 2023 Dubai Islamic Economy Centre for token distributions meeting hibah (gift) criteria in Islamic law."
       },
       {
+        id: "crypto-advanced-19",
         question: "How does Islamic law assess crypto wash trading?",
         options: [
           "Permitted for price discovery",
@@ -549,6 +598,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 83:1-3 condemns fraudulent measurements. 2023 Islamic Financial Services Board banned wash trading as: 1) Deceptive practice (tadlis), 2) Creates false demand, 3) Harms other investors - requiring crypto markets to implement Islamic-compliant surveillance like Bahrain's Shariah-certified exchange monitoring systems."
       },
       {
+        id: "crypto-advanced-20",
         question: "What is the Shariah view on crypto index funds?",
         options: [
           "Permitted if screening haram assets",
@@ -560,6 +610,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh allows collective investment funds (Mudaraba) with proper screening. 2023 Wahed Invest launched first Shariah crypto index with: 1) Asset-backing requirement, 2) No riba/gharar projects, 3) Active Shariah board oversight - following AAOIFI Standard 59 on Islamic fintech investments."
       },
       {
+        id: "crypto-advanced-21",
         question: "How do scholars treat crypto cold storage from zakat perspective?",
         options: [
           "Zakat still applies annually",
@@ -571,6 +622,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic jurisprudence considers stored wealth zakatable (Ibn Qudamah, al-Mughni). 2023 Islamic Research and Training Institute guidelines require: 1) Annual valuation date, 2) 2.5% payment in liquid assets, 3) Nisab calculation based on current value - treating cold wallets like any other Islamic wealth storage."
       },
       {
+        id: "crypto-advanced-22",
         question: "What is the Shariah ruling on crypto margin trading?",
         options: [
           "Permitted with stop-loss limits",
@@ -582,6 +634,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:275 forbids all riba transactions. 2022 OIC Fiqh Academy resolution bans crypto margin trading due to: 1) Interest charges on borrowed funds, 2) Excessive leverage, 3) Unrealistic repayment periods - allowing only spot trading with full payment per Islamic sales rules (Hadith - Muslim 1534)."
       },
       {
+        id: "crypto-advanced-23",
         question: "How does Islamic law view blockchain oracles in smart contracts?",
         options: [
           "Permitted as trusted information sources",
@@ -593,6 +646,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic contracts require reliable information (Hadith - Bukhari 34). 2023 ISRA certification allows oracles when: 1) Data sources are verified, 2) No manipulation risk, 3) Dispute resolution exists - as implemented in Bahrain's Islamic trade finance blockchain using authenticated shipment tracking oracles."
       },
       {
+        id: "crypto-advanced-24",
         question: "What is the Shariah analysis of crypto token burning?",
         options: [
           "Permitted as supply adjustment",
@@ -604,6 +658,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Fiqh allows business decisions affecting value (urf al-tijarah). Scholars permit burning when: 1) Transparent mechanism, 2) Not deceptive, 3) Benefits token utility - as ruled in 2023 Shariyah Review Bureau assessment of BNB auto-burn, considering it similar to Islamic corporate share buybacks when properly structured."
       },
       {
+        id: "crypto-advanced-25",
         question: "How do scholars assess crypto gaming tokens (P2E)?",
         options: [
           "Permitted if games are halal",
@@ -615,6 +670,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic law allows compensation for permissible services (Hadith - Ibn Majah 2443). 2023 Malaysian Shariah Advisory Council approved P2E tokens when: 1) Game content is halal, 2) No gambling elements, 3) Real economic activity exists - banning play-to-earn casino-style platforms while allowing Islamic learning reward tokens."
       },
       {
+        id: "crypto-advanced-26",
         question: "What is the Shariah ruling on crypto lending protocols?",
         options: [
           "Permitted as interest-free qard",
@@ -626,6 +682,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Quran 2:278-279 strictly forbids all interest. 2023 AAOIFI standard rejects DeFi lending platforms using: 1) Fixed APY/APR, 2) Compound interest, 3) Liquidation penalties - permitting only true qard hasan (benevolent loan) smart contracts or profit-sharing models certified halal by Shariah boards."
       },
       {
+        id: "crypto-advanced-27",
         question: "How does Islamic law treat DAO treasury investments?",
         options: [
           "Permitted if following Shariah screens",
@@ -637,6 +694,7 @@ const cryptoCategory: QuizCategory = {
         explanation: "Islamic endowment (waqf) rules allow ethical investments (Ibn Abidin, Radd al-Muhtar). 2023 ISRA guidelines for DAO treasuries require: 1) Halal asset screening, 2) No interest instruments, 3) Transparent governance - as implemented in IslamicCoin's Shariah-compliant community treasury managed by certified scholars."
       },
         {
+  id: "crypto-advanced-28",
   question: "What is the Shariah analysis of crypto yield farming with impermanent loss risk?",
   options: [
     "Permitted as calculated business risk",
@@ -648,6 +706,7 @@ const cryptoCategory: QuizCategory = {
   explanation: "Hadith (Muslim 1513) prohibits transactions with excessive uncertainty. 2023 OIC Fiqh Council banned yield farming due to: 1) Unpredictable losses, 2) Volatile reward mechanisms, 3) Resembling prohibited 'bay al-gharar' - allowing only fixed-term Mudaraba pools with transparent profit-sharing ratios per Islamic finance principles."
 },
 {
+  id: "crypto-advanced-29",
   question: "How does Islamic law view crypto leverage trading with liquidation risks?",
   options: [
     "Permitted as modern trading tool",
@@ -659,6 +718,7 @@ const cryptoCategory: QuizCategory = {
   explanation: "Quran 2:275 forbids all forms of riba and gharar. 2023 AAOIFI standard prohibits leverage trading because: 1) Interest on borrowed funds (riba), 2) Uncertain outcomes (gharar), 3) Forced liquidations resemble prohibited 'bay al-ghasb' (coerced sales) - as established in classical fiqh texts like al-Mughni of Ibn Qudamah."
     },
       {
+        id: "crypto-advanced-30",
         question: "What is the Shariah view on crypto algorithmic trading?",
         options: [
           "Permitted if avoiding haram strategies",

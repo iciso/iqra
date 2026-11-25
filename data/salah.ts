@@ -8,6 +8,7 @@ const salahCategory: QuizCategory = {
   levels: {
     easy: [
       {
+        id: "salah-easy-1",
         question: "What is the Arabic term for the five daily prayers in Islam?",
         options: ["Zakat", "Sawm", "Salah", "Hajj"],
         correctAnswer: "Salah",
@@ -15,6 +16,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-easy-2",
         question: "How many times a day is Salah obligatory for Muslims?",
         options: ["Three", "Four", "Five", "Seven"],
         correctAnswer: "Five",
@@ -22,6 +24,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 77"
       },
       {
+        id: "salah-easy-3",
         question: "What is the first obligatory Salah of the day?",
         options: ["Dhuhr", "Fajr", "Maghrib", "Isha"],
         correctAnswer: "Fajr",
@@ -29,6 +32,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "salah-easy-4",
         question: "In which direction do Muslims face while performing Salah?",
         options: ["East", "North", "Qiblah", "Mecca"],
         correctAnswer: "Qiblah",
@@ -36,6 +40,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "salah-easy-5",
         question: "What is the prerequisite for performing Salah, involving washing body parts?",
         options: ["Ghusl", "Tayammum", "Wudu", "Istinja"],
         correctAnswer: "Wudu",
@@ -43,6 +48,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 21"
       },
       {
+        id: "salah-easy-6",
         question: "How many Rak'ahs are in the obligatory Fajr prayer?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Two",
@@ -50,6 +56,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "salah-easy-7",
         question: "What does the term 'Rak'ah' mean in Salah?",
         options: ["A unit of prayer", "A prostration", "A recitation", "A bow"],
         correctAnswer: "A unit of prayer",
@@ -57,6 +64,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "salah-easy-8",
         question: "Which pillar of Islam is Salah considered?",
         options: ["First", "Second", "Third", "Fifth"],
         correctAnswer: "Second",
@@ -64,6 +72,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-easy-9",
         question: "What is the punishment for missing an obligatory Salah intentionally?",
         options: ["Minor sin", "Major sin", "No punishment", "Only advice"],
         correctAnswer: "Major sin",
@@ -71,6 +80,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "salah-easy-10",
         question: "What is the reward for performing Salah on time?",
         options: ["Equal to a Hajj", "Entry to Paradise", "Equal to a Umrah", "Nothing specific"],
         correctAnswer: "Entry to Paradise",
@@ -78,6 +88,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 85"
       },
       {
+        id: "salah-easy-11",
         question: "How many Rak'ahs are in the obligatory Dhuhr prayer?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Four",
@@ -85,6 +96,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "salah-easy-12",
         question: "What is the name of the prayer performed just after sunset?",
         options: ["Asr", "Maghrib", "Isha", "Fajr"],
         correctAnswer: "Maghrib",
@@ -92,6 +104,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "salah-easy-13",
         question: "Can women lead men in congregational Salah?",
         options: ["Yes, always", "No", "Only in special cases", "Only if no men present"],
         correctAnswer: "No",
@@ -99,6 +112,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 121"
       },
       {
+        id: "salah-easy-14",
         question: "What is 'Adhan' in the context of Salah?",
         options: ["The call to prayer", "The ablution", "The prostration", "The sermon"],
         correctAnswer: "The call to prayer",
@@ -106,6 +120,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 151"
       },
       {
+        id: "salah-easy-15",
         question: "How many Rak'ahs are in the obligatory Asr prayer?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Four",
@@ -113,6 +128,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "salah-easy-16",
         question: "What is the purpose of Salah according to the Quran?",
         options: ["To seek wealth", "To remember Allah", "To socialize", "To exercise"],
         correctAnswer: "To remember Allah",
@@ -120,6 +136,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-easy-17",
         question: "What is 'Iqamah'?",
         options: ["The second call to prayer", "The first call", "The ablution call", "The end of prayer"],
         correctAnswer: "The second call to prayer",
@@ -127,6 +144,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 155"
       },
       {
+        id: "salah-easy-18",
         question: "How many Rak'ahs are in the obligatory Isha prayer?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Four",
@@ -134,6 +152,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "salah-easy-19",
         question: "What invalidates Wudu?",
         options: ["Eating", "Sleeping deeply", "Walking", "Talking"],
         correctAnswer: "Sleeping deeply",
@@ -141,6 +160,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "salah-easy-20",
         question: "What is 'Qunut' in Salah?",
         options: ["A supplication in Witr prayer", "A bow", "A prostration", "A recitation"],
         correctAnswer: "A supplication in Witr prayer",
@@ -148,6 +168,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "salah-easy-21",
         question: "Is Salah obligatory on a traveler?",
         options: ["Yes, full", "Shortened", "Exempt", "Doubled"],
         correctAnswer: "Shortened",
@@ -155,6 +176,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 169"
       },
       {
+        id: "salah-easy-22",
         question: "What is the minimum number of people needed for congregational Salah reward?",
         options: ["One", "Two", "Three", "Four"],
         correctAnswer: "Two",
@@ -162,6 +184,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 117"
       },
       {
+        id: "salah-easy-23",
         question: "What is 'Sujud' in Salah?",
         options: ["Standing", "Bowing", "Prostration", "Sitting"],
         correctAnswer: "Prostration",
@@ -169,6 +192,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 105"
       },
       {
+        id: "salah-easy-24",
         question: "Can one pray Salah without Wudu if water is unavailable?",
         options: ["No", "Yes, with Tayammum", "Only at home", "Never"],
         correctAnswer: "Yes, with Tayammum",
@@ -176,6 +200,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 65"
       },
       {
+        id: "salah-easy-25",
         question: "What is the reward for the first row in congregational Salah?",
         options: ["Standard reward", "Highest reward", "No reward", "Half reward"],
         correctAnswer: "Highest reward",
@@ -183,6 +208,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 119"
       },
       {
+        id: "salah-easy-26",
         question: "How many pillars (Arkan) are there in Salah?",
         options: ["Five", "Six", "Seven", "Fourteen"],
         correctAnswer: "Fourteen",
@@ -190,6 +216,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "salah-easy-27",
         question: "What is 'Ruku' in Salah?",
         options: ["Prostration", "Bowing", "Standing", "Sitting"],
         correctAnswer: "Bowing",
@@ -197,6 +224,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "salah-easy-28",
         question: "Is Jumu'ah prayer obligatory for women?",
         options: ["Yes", "No, but recommended", "Only if able", "Exempt"],
         correctAnswer: "No, but recommended",
@@ -204,6 +232,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 193"
       },
       {
+        id: "salah-easy-29",
         question: "What is the rationale for Salah in Hadith?",
         options: ["To purify the soul", "To gain wealth", "To fight enemies", "To travel"],
         correctAnswer: "To purify the soul",
@@ -211,6 +240,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-easy-30",
         question: "How many Rak'ahs in obligatory Maghrib?",
         options: ["Two", "Three", "Four", "Five"],
         correctAnswer: "Three",
@@ -220,6 +250,7 @@ const salahCategory: QuizCategory = {
     ],
     intermediate: [
       {
+        id: "salah-intermediate-1",
         question: "What is the ruling on performing Salah while wearing shoes?",
         options: ["Completely prohibited", "Permissible if clean", "Only for men", "Only outside mosque"],
         correctAnswer: "Permissible if clean",
@@ -227,6 +258,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "salah-intermediate-2",
         question: "What is the minimum amount of body that must be covered during Salah for men?",
         options: ["From navel to knees", "Entire body except face", "Only private parts", "From shoulders to ankles"],
         correctAnswer: "From navel to knees",
@@ -234,6 +266,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 87"
       },
       {
+        id: "salah-intermediate-3",
         question: "What is the ruling on reciting Quran during Ruku and Sujud?",
         options: ["Permissible", "Prohibited", "Recommended", "Obligatory"],
         correctAnswer: "Prohibited",
@@ -241,6 +274,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "salah-intermediate-4",
         question: "What is the ruling on praying in a moving vehicle?",
         options: ["Invalid", "Valid with conditions", "Only for travelers", "Permissible anytime"],
         correctAnswer: "Valid with conditions",
@@ -248,6 +282,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "salah-intermediate-5",
         question: "What is the time period for Dhuhr prayer?",
         options: ["From sunrise to noon", "From noon until shadow equals object", "From noon until Asr", "From midday to sunset"],
         correctAnswer: "From noon until shadow equals object",
@@ -255,6 +290,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "salah-intermediate-6",
         question: "What is the ruling on combining prayers during travel?",
         options: ["Not permitted", "Permitted for Dhuhr and Asr only", "Permitted for Maghrib and Isha only", "Permitted for Dhuhr-Asr and Maghrib-Isha"],
         correctAnswer: "Permitted for Dhuhr-Asr and Maghrib-Isha",
@@ -262,6 +298,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 171"
       },
       {
+        id: "salah-intermediate-7",
         question: "What is the ruling on praying Sunnah prayers while traveling?",
         options: ["Obligatory", "Recommended", "Not recommended", "Prohibited"],
         correctAnswer: "Recommended",
@@ -269,6 +306,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 173"
       },
       {
+        id: "salah-intermediate-8",
         question: "What invalidates Tayammum?",
         options: ["Eating", "Sleeping", "Seeing water", "All of the above"],
         correctAnswer: "Seeing water",
@@ -276,6 +314,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 71"
       },
       {
+        id: "salah-intermediate-9",
         question: "What is the ruling on praying with the intention of following the Imam?",
         options: ["Not necessary", "Obligatory", "Recommended", "Invalidates prayer"],
         correctAnswer: "Obligatory",
@@ -283,6 +322,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 117"
       },
       {
+        id: "salah-intermediate-10",
         question: "What is the ruling on making up missed prayers?",
         options: ["Not required", "Required only for recent ones", "Always required", "Only for Fajr prayer"],
         correctAnswer: "Always required",
@@ -290,6 +330,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 185"
       },
       {
+        id: "salah-intermediate-11",
         question: "What is the minimum recitation required in each Rak'ah?",
         options: ["Surah Al-Fatihah only", "Any verse of Quran", "Surah Al-Fatihah and another Surah", "No specific requirement"],
         correctAnswer: "Surah Al-Fatihah only",
@@ -297,6 +338,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 99"
       },
       {
+        id: "salah-intermediate-12",
         question: "What is the ruling on praying while sitting due to illness?",
         options: ["Invalid", "Valid with conditions", "Only for elderly", "Permissible only for Fard prayers"],
         correctAnswer: "Valid with conditions",
@@ -304,6 +346,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "salah-intermediate-13",
         question: "What is the time period for Fajr prayer?",
         options: ["From dawn to sunrise", "From midnight to sunrise", "From dawn until full daylight", "From early morning to noon"],
         correctAnswer: "From dawn to sunrise",
@@ -311,6 +354,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 79"
       },
       {
+        id: "salah-intermediate-14",
         question: "What is the ruling on reciting aloud in Fajr, Maghrib, and Isha prayers?",
         options: ["Obligatory", "Recommended", "Optional", "Prohibited"],
         correctAnswer: "Recommended",
@@ -318,6 +362,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "salah-intermediate-15",
         question: "What is the ruling on praying behind someone whose prayer is valid but whose Wudu is doubtful?",
         options: ["Valid", "Invalid", "Makruh", "Only if no other Imam available"],
         correctAnswer: "Valid",
@@ -325,6 +370,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 123"
       },
       {
+        id: "salah-intermediate-16",
         question: "What is the ruling on praying in a language other than Arabic?",
         options: ["Permissible for non-Arabs", "Only for new Muslims", "Not permissible", "Only for voluntary prayers"],
         correctAnswer: "Not permissible",
@@ -332,6 +378,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 99"
       },
       {
+        id: "salah-intermediate-17",
         question: "What is the ruling on praying with impurities on one's clothing?",
         options: ["Invalid", "Valid if small amount", "Valid if unaware", "Valid if difficult to remove"],
         correctAnswer: "Invalid",
@@ -339,6 +386,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "salah-intermediate-18",
         question: "What is the ruling on delaying Asr prayer until the sun turns yellow?",
         options: ["Permissible", "Makruh", "Recommended", "Prohibited"],
         correctAnswer: "Makruh",
@@ -346,6 +394,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 81"
       },
       {
+        id: "salah-intermediate-19",
         question: "What is the ruling on praying voluntary prayers at sunrise, zenith, and sunset?",
         options: ["Permissible", "Recommended", "Makruh", "Prohibited"],
         correctAnswer: "Prohibited",
@@ -353,6 +402,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 147"
       },
       {
+        id: "salah-intermediate-20",
         question: "What is the minimum number of people required for Jumu'ah prayer?",
         options: ["Three", "Five", "Forty", "No specific number"],
         correctAnswer: "No specific number",
@@ -360,6 +410,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 191"
       },
       {
+        id: "salah-intermediate-21",
         question: "What is the ruling on praying while hungry when food is served?",
         options: ["Continue prayer", "Break prayer to eat", "Only if very hungry", "Finish quickly then eat"],
         correctAnswer: "Break prayer to eat",
@@ -367,6 +418,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 149"
       },
       {
+        id: "salah-intermediate-22",
         question: "What is the ruling on praying in a built-up graveyard?",
         options: ["Permissible", "Makruh", "Prohibited", "Only for funeral prayers"],
         correctAnswer: "Prohibited",
@@ -374,6 +426,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "salah-intermediate-23",
         question: "What is the ruling on making Sujud on something attached to the earth?",
         options: ["Obligatory", "Recommended", "Permissible", "Not required"],
         correctAnswer: "Obligatory",
@@ -381,6 +434,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 105"
       },
       {
+        id: "salah-intermediate-24",
         question: "What is the ruling on praying with an imitation of an animal on clothing?",
         options: ["Permissible", "Makruh", "Prohibited", "Only if small"],
         correctAnswer: "Makruh",
@@ -388,6 +442,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "salah-intermediate-25",
         question: "What is the ruling on reciting Bismillah aloud in prayer?",
         options: ["Obligatory", "Recommended", "Optional", "Prohibited"],
         correctAnswer: "Optional",
@@ -395,6 +450,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "salah-intermediate-26",
         question: "What is the ruling on praying while needing to use the restroom?",
         options: ["Valid", "Invalid", "Makruh", "Only if urgent"],
         correctAnswer: "Makruh",
@@ -402,6 +458,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "salah-intermediate-27",
         question: "What is the ruling on raising hands during Takbiratul Ihram?",
         options: ["Obligatory", "Recommended", "Optional", "Prohibited"],
         correctAnswer: "Recommended",
@@ -409,6 +466,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 97"
       },
       {
+        id: "salah-intermediate-28",
         question: "What is the ruling on praying voluntary prayers at night while sitting?",
         options: ["Permissible", "Invalid", "Only if sick", "With half reward"],
         correctAnswer: "Permissible",
@@ -416,6 +474,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 93"
       },
       {
+        id: "salah-intermediate-29",
         question: "What is the ruling on saying 'Ameen' after Al-Fatihah?",
         options: ["Obligatory", "Recommended", "Optional", "Prohibited"],
         correctAnswer: "Recommended",
@@ -423,6 +482,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 101"
       },
       {
+        id: "salah-intermediate-30",
         question: "What is the ruling on making Tasleem at the end of prayer?",
         options: ["Obligatory", "Recommended", "Optional", "Prohibited"],
         correctAnswer: "Obligatory",
@@ -432,6 +492,7 @@ const salahCategory: QuizCategory = {
     ],
     advanced: [
       {
+        id: "salah-advanced-1",
         question: "According to Hanafi fiqh, what is the ruling on delaying Salah without excuse?",
         options: ["Makruh", "Haram", "Mubah", "Wajib"],
         correctAnswer: "Haram",
@@ -439,6 +500,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "salah-advanced-2",
         question: "What is the Hadith regarding the reward of one Rak'ah in Fajr?",
         options: ["Equals one night fasting", "Equals 27 Rak'ahs", "Equals Hajj", "Equals charity"],
         correctAnswer: "Equals 27 Rak'ahs",
@@ -446,6 +508,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 119"
       },
       {
+        id: "salah-advanced-3",
         question: "In Shafi'i fiqh, how many essential pillars (Arkan) does Salah have?",
         options: ["12", "13", "14", "17"],
         correctAnswer: "17",
@@ -453,13 +516,15 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "salah-advanced-4",
         question: "What is 'Masjid al-Haram' special ruling for Salah?",
-        options: ["1000 times reward", "500 times", "27 times", "10 times"],
-        correctAnswer: "1000 times",
+        options: ["100,000 times", "500 times", "27 times", "10 times"],
+        correctAnswer: "100,000 times",
         explanation: "Prayer in Masjid al-Haram multiplies reward by 100,000 times according to Hadith.",
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "salah-advanced-5",
         question: "What invalidates Salah according to most fuqaha?",
         options: ["Talking intentionally", "Coughing", "Yawning", "Moving slightly"],
         correctAnswer: "Talking intentionally",
@@ -467,6 +532,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 115"
       },
       {
+        id: "salah-advanced-6",
         question: "What is the punishment for abandoning Salah in Hadith?",
         options: ["Hypocrite", "Out of Islam", "Minor sin only", "No punishment"],
         correctAnswer: "Out of Islam",
@@ -474,6 +540,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 83"
       },
       {
+        id: "salah-advanced-7",
         question: "In Maliki fiqh, is touching opposite gender invalidate Wudu?",
         options: ["Yes, always", "No, unless desire", "Only if lust", "Never"],
         correctAnswer: "No, unless desire",
@@ -481,6 +548,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "salah-advanced-8",
         question: "What is 'Salat al-Duha'?",
         options: ["Fard prayer", "Sunnah Mu'akkadah", "Nawafil voluntary", "Witr"],
         correctAnswer: "Nawafil voluntary",
@@ -488,6 +556,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 145"
       },
       {
+        id: "salah-advanced-9",
         question: "According to a Hadith, what is the key to Paradise?",
         options: ["Fasting", "Charity", "Salah", "Shahadah"],
         correctAnswer: "Salah",
@@ -495,6 +564,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-advanced-10",
         question: "In Hanbali fiqh, what is the ruling on praying behind a prostrating imam?",
         options: ["Invalid", "Valid if unavoidable", "Always valid", "Makruh"],
         correctAnswer: "Valid if unavoidable",
@@ -502,6 +572,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 123"
       },
       {
+        id: "salah-advanced-11",
         question: "What is 'Istisqa' prayer?",
         options: ["For rain", "For forgiveness", "For travel", "For illness"],
         correctAnswer: "For rain",
@@ -509,6 +580,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 209"
       },
       {
+        id: "salah-advanced-12",
         question: "How many Rak'ahs is Witr prayer according to Ahl al-Sunnah?",
         options: ["One only", "Three", "Eleven", "Thirteen"],
         correctAnswer: "Three",
@@ -516,6 +588,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 141"
       },
       {
+        id: "salah-advanced-13",
         question: "What is the fiqh ruling on combining Dhuhr and Asr?",
         options: ["Never allowed", "Only in travel", "In rain or hardship", "Always"],
         correctAnswer: "In rain or hardship",
@@ -523,6 +596,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 171"
       },
       {
+        id: "salah-advanced-14",
         question: "In a Hadith, what did the Prophet say about Salah and Zina?",
         options: ["They are similar in prevention", "Salah causes Zina", "No relation", "Zina prevents Salah"],
         correctAnswer: "They are similar in prevention",
@@ -530,6 +604,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-advanced-15",
         question: "What is 'Tashahhud' in Salah?",
         options: ["Testimony of faith in sitting", "Recitation of Fatiha", "Takbir", "Tasbih"],
         correctAnswer: "Testimony of faith in sitting",
@@ -537,6 +612,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 109"
       },
       {
+        id: "salah-advanced-16",
         question: "According to Shafi'i, is covering ankles mandatory for men in Salah?",
         options: ["Yes", "No, recommended", "Only in congregation", "Never"],
         correctAnswer: "Yes",
@@ -544,6 +620,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 87"
       },
       {
+        id: "salah-advanced-17",
         question: "What is the reward for 12 Rak'ahs of Sunnah daily per Hadith?",
         options: ["A house in Paradise", "Forgiveness", "10 years worship", "1000 good deeds"],
         correctAnswer: "A house in Paradise",
@@ -551,6 +628,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 145"
       },
       {
+        id: "salah-advanced-18",
         question: "In Hanafi fiqh, what breaks Wudu besides urine?",
         options: ["Laughter", "Blood flow", "Eating dates", "Walking"],
         correctAnswer: "Blood flow",
@@ -558,6 +636,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 35"
       },
       {
+        id: "salah-advanced-19",
         question: "What is 'Salat al-Tarawih'?",
         options: ["Ramadan night prayer", "Funeral prayer", "Eclipse prayer", "Fear prayer"],
         correctAnswer: "Ramadan night prayer",
@@ -565,6 +644,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "salah-advanced-20",
         question: "What is the ruling on animal skin rug for Salah?",
         options: ["Invalid unless tanned", "Always valid", "Only wool", "Never"],
         correctAnswer: "Invalid unless tanned",
@@ -572,6 +652,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 89"
       },
       {
+        id: "salah-advanced-21",
         question: "In a Hadith, how is Salah described as a light?",
         options: ["Believer's face light", "Prayer light in heart", "Path light", "All of above"],
         correctAnswer: "All of above",
@@ -579,6 +660,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-advanced-22",
         question: "What is 'Salat al-Kusuf'?",
         options: ["Eclipse prayer", "Rain prayer", "Victory prayer", "Illness prayer"],
         correctAnswer: "Eclipse prayer",
@@ -586,6 +668,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 207"
       },
       {
+        id: "salah-advanced-23",
         question: "According to Maliki, is intention verbal in Salah?",
         options: ["Yes", "No, in heart only", "Both", "Not needed"],
         correctAnswer: "No, in heart only",
@@ -593,6 +676,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 95"
       },
       {
+        id: "salah-advanced-24",
         question: "What is the fiqh on praying in a graveyard?",
         options: ["Prohibited", "Allowed silently", "Recommended", "Only funeral"],
         correctAnswer: "Prohibited",
@@ -600,6 +684,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 91"
       },
       {
+        id: "salah-advanced-25",
         question: "In Hanbali fiqh, how many Tasbihs in Ruku and Sujud?",
         options: ["Three each", "Five each", "Seven in Sujud", "Ten total"],
         correctAnswer: "Three each",
@@ -607,6 +692,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 103"
       },
       {
+        id: "salah-advanced-26",
         question: "What Hadith mentions Salah as Mi'raj?",
         options: ["Night journey", "Daily ascension", "Prophet's miracle", "Believer's Mi'raj"],
         correctAnswer: "Believer's Mi'raj",
@@ -614,6 +700,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 75"
       },
       {
+        id: "salah-advanced-27",
         question: "What is 'Salat al-Istikhara'?",
         options: ["Guidance prayer", "Forgiveness prayer", "Rain prayer", "Victory prayer"],
         correctAnswer: "Guidance prayer",
@@ -621,6 +708,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 147"
       },
       {
+        id: "salah-advanced-28",
         question: "In Shafi'i, is Qunut in Fajr obligatory?",
         options: ["Yes", "No, Sunnah", "Only in hardship", "Never"],
         correctAnswer: "No, Sunnah",
@@ -628,6 +716,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 143"
       },
       {
+        id: "salah-advanced-29",
         question: "What is the fiqh on praying with crossed arms?",
         options: ["Obligatory", "Sunnah", "Makruh", "Prohibited"],
         correctAnswer: "Sunnah",
@@ -635,6 +724,7 @@ const salahCategory: QuizCategory = {
         references: "Fiqh us-Sunnah: Volume 1, Page 97"
       },
       {
+        id: "salah-advanced-30",
         question: "According to Hadith, what is the best prayer after obligatory?",
         options: ["Tahajjud", "Witr", "Duha", "Tasbih"],
         correctAnswer: "Tahajjud",

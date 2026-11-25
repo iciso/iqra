@@ -8,6 +8,7 @@ const genderCategory: QuizCategory = {
   levels: {
     easy: [
         {
+    id: "gender-easy-1",
     question: "What does the Quran say about the creation of men and women?",
     options: [
       "Women were created from men's ribs",
@@ -19,6 +20,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Quran states in Surah An-Nisa (4:1): 'O mankind, fear your Lord, who created you from one soul (nafs wahidah) and created from it its mate...' This emphasizes the equal origin of men and women."
   },
   {
+    id: "gender-easy-2",
     question: "In Islam, are women allowed to own property?",
     options: [
       "No, only men can own property",
@@ -30,6 +32,7 @@ const genderCategory: QuizCategory = {
     explanation: "Islamic law grants women the right to own, inherit, and manage property independently. This was revolutionary compared to pre-Islamic societies. (Quran 4:7, 4:32)"
   },
   {
+    id: "gender-easy-3",
     question: "What did Prophet Muhammad (ﷺ) say about treating women?",
     options: [
       "Women should be obedient without question",
@@ -41,6 +44,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'The best of you are the best to their women.' (Tirmidhi 1162, authenticated by Al-Albani). This highlights kindness and respect towards women."
   },
   {
+    id: "gender-easy-4",
     question: "In Islam, can a woman seek divorce?",
     options: [
       "No, only men can initiate divorce",
@@ -52,6 +56,7 @@ const genderCategory: QuizCategory = {
     explanation: "A woman has the right to seek Khula' (dissolution of marriage) if she is unhappy. This is established in the Quran (2:229) and Sunnah (Bukhari 5273)."
   },
   {
+    id: "gender-easy-5",
     question: "What does the Quran say about a mother's status?",
     options: [
       "Mothers must obey their sons",
@@ -63,6 +68,7 @@ const genderCategory: QuizCategory = {
     explanation: "A man asked the Prophet (ﷺ), 'Who deserves my best companionship?' He replied, 'Your mother' three times, then 'your father.' (Bukhari 5971). This shows a mother's unparalleled status."
   },
   {
+    id: "gender-easy-6",
     question: "Can women work outside the home in Islam?",
     options: [
       "No, women must stay at home",
@@ -74,6 +80,7 @@ const genderCategory: QuizCategory = {
     explanation: "Khadija (RA), the Prophet's (ﷺ) wife, was a successful merchant. Islam permits women to work while observing modesty and Sharia principles. (Quran 28:23-26)"
   },
   {
+    id: "gender-easy-7",
     question: "What is the Islamic ruling on female education?",
     options: [
       "Women should not be educated",
@@ -85,6 +92,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'Seeking knowledge is obligatory upon every Muslim.' (Ibn Majah 224, authenticated by Al-Albani). This includes women, as seen with scholars like Aisha (RA)."
   },
   {
+    id: "gender-easy-8",
     question: "How does Islam view women's consent in marriage?",
     options: [
       "A father can marry his daughter without her consent",
@@ -96,6 +104,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'A virgin cannot be married until her permission is sought.' (Bukhari 6968). Forced marriages are invalid in Islam."
   },
   {
+    id: "gender-easy-9",
     question: "What is the Quranic ruling on inheritance for women?",
     options: [
       "Women inherit half of what men inherit",
@@ -107,6 +116,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 4:11 specifies inheritance shares, where a daughter receives half of a son's share. This is because men are financially responsible for women in Islamic law."
   },
   {
+    id: "gender-easy-10",
     question: "Did the Prophet (ﷺ) have any female teachers?",
     options: [
       "No, he only learned from men",
@@ -118,6 +128,7 @@ const genderCategory: QuizCategory = {
     explanation: "Khadija (RA) was the first to comfort and guide the Prophet (ﷺ) after the first revelation, showing her role as a mentor. (Bukhari 4953)"
   },
   {
+    id: "gender-easy-11",
     question: "What did the Prophet (ﷺ) say about raising daughters?",
     options: [
       "Daughters are a burden",
@@ -129,6 +140,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'Whoever takes care of two girls until they reach adulthood, he and I will come on the Day of Resurrection like this' (holding his fingers together). (Muslim 2631)"
   },
   {
+    id: "gender-easy-12",
     question: "Can women participate in Islamic scholarship?",
     options: [
       "No, only men can be scholars",
@@ -140,6 +152,7 @@ const genderCategory: QuizCategory = {
     explanation: "Aisha (RA) was one of the greatest Hadith narrators and jurists. Many female scholars, like Fatima al-Fihri, contributed to Islamic knowledge."
   },
   {
+    id: "gender-easy-13",
     question: "What is the Islamic ruling on dowry (mahr)?",
     options: [
       "It is optional",
@@ -151,6 +164,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Quran says: 'And give the women their dowry as a free gift.' (4:4). The mahr is the wife's exclusive right."
   },
   {
+    id: "gender-easy-14",
     question: "Are women allowed to refuse marriage proposals?",
     options: [
       "No, fathers decide",
@@ -162,6 +176,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) annulled a forced marriage when a girl objected, saying: 'She is not to be married without her consent.' (Ibn Majah 1873)"
   },
   {
+    id: "gender-easy-15",
     question: "What did the Prophet (ﷺ) say about a husband's treatment of his wife?",
     options: [
       "He can be harsh if she disobeys",
@@ -173,6 +188,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'The best of you are those who are best to their wives.' (Tirmidhi 1162). Kindness is obligatory."
   },
   {
+    id: "gender-easy-16",
     question: "Can women lead prayers?",
     options: [
       "Yes, in all cases",
@@ -184,6 +200,7 @@ const genderCategory: QuizCategory = {
     explanation: "Umm Waraqa (RA) was appointed by the Prophet (ﷺ) to lead her household in prayer (Abu Dawud 592). Women can lead women-only congregations."
   },
   {
+    id: "gender-easy-17",
     question: "What is the Quranic view on modesty for men and women?",
     options: [
       "Only women must be modest",
@@ -195,6 +212,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 24:30-31 commands both men and women to lower their gaze and dress modestly. Modesty is a shared responsibility."
   },
   {
+    id: "gender-easy-18",
     question: "Did women participate in battles during the Prophet's (ﷺ) time?",
     options: [
       "No, warfare was men-only",
@@ -206,6 +224,7 @@ const genderCategory: QuizCategory = {
     explanation: "Nusaybah bint Ka’ab (RA) fought in Uhud, and Rufayda al-Aslamiya (RA) ran a field hospital. Women actively supported jihad. (Musnad Ahmad 1855)"
   },
   {
+    id: "gender-easy-19",
     question: "Can women travel without a mahram?",
     options: [
       "Never",
@@ -217,6 +236,7 @@ const genderCategory: QuizCategory = {
     explanation: "Classical scholars permitted women to travel alone if safety is ensured (e.g., group travel, secure transport). The mahram rule is for protection, not restriction. (Bukhari 1088)"
   },
   {
+    id: "gender-easy-20",
     question: "What is the Islamic ruling on women's voices in public?",
     options: [
       "Women must always whisper",
@@ -228,6 +248,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) conversed with women directly (Bukhari 5766). Modesty in speech is required, not silence."
   },
   {
+    id: "gender-easy-21",
     question: "Are women allowed to refuse intimacy with their husbands?",
     options: [
       "No, it is obligatory",
@@ -239,6 +260,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'When a man calls his wife to bed and she refuses, the angels curse her until morning.' (Bukhari 5193). However, valid reasons (illness, exhaustion) are exempt."
   },
   {
+    id: "gender-easy-22",
     question: "What is the Quranic ruling on polygyny?",
     options: [
       "Men can marry unlimited wives",
@@ -250,6 +272,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 4:3 permits up to four wives but warns: 'If you fear you cannot be just, then only one.' Justice is mandatory."
   },
   {
+    id: "gender-easy-23",
     question: "Can women be judges in Islamic courts?",
     options: [
       "No, only men can judge",
@@ -261,6 +284,7 @@ const genderCategory: QuizCategory = {
     explanation: "Imam Abu Hanifa allowed female judges in civil matters. Some scholars restrict it due to Hadith on leadership, but historical examples exist."
   },
   {
+    id: "gender-easy-24",
     question: "What is the Islamic ruling on women's testimony in court?",
     options: [
       "Two women equal one man in all cases",
@@ -272,6 +296,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 2:282 specifies two female witnesses in financial contracts (for accuracy), but in other cases (e.g., marriage, crimes), women testify equally."
   },
   {
+    id: "gender-easy-25",
     question: "Did the Prophet (ﷺ) consult his wives on state matters?",
     options: [
       "No, he only consulted men",
@@ -283,6 +308,7 @@ const genderCategory: QuizCategory = {
     explanation: "Umm Salamah (RA) advised the Prophet (ﷺ) during Hudaybiyyah, leading to a pivotal treaty. (Sunan Abu Dawud 2762)"
   },
   {
+    id: "gender-easy-26",
     question: "What is the Islamic ruling on women's mosque attendance?",
     options: [
       "Women should never go to mosques",
@@ -294,6 +320,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'Do not prevent women from going to mosques, but their homes are better for them.' (Abu Dawud 567). It’s permitted but not obligatory."
   },
   {
+    id: "gender-easy-27",
     question: "Can women initiate marriage proposals?",
     options: [
       "No, only men can propose",
@@ -305,6 +332,7 @@ const genderCategory: QuizCategory = {
     explanation: "Khadija (RA) sent a marriage proposal to the Prophet (ﷺ) via her friend Nafisa. (Bukhari 4953). Women can express interest respectfully."
   },
   {
+    id: "gender-easy-28",
     question: "What is the Islamic ruling on domestic violence?",
     options: [
       "Husbands can discipline wives lightly",
@@ -316,6 +344,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'Do not strike the female servants of Allah.' (Abu Dawud 2146). Modern scholars condemn all abuse."
   },
   {
+    id: "gender-easy-29",
     question: "Can women be heads of households?",
     options: [
       "No, only men can lead",
@@ -327,6 +356,7 @@ const genderCategory: QuizCategory = {
     explanation: "Khadija (RA) managed her business independently. Women can lead households when necessary, especially in single-parent families."
   },
   {
+    id: "gender-easy-30",
     question: "What is the Islamic view on women's beauty?",
     options: [
       "Women must hide all beauty",
@@ -340,6 +370,7 @@ const genderCategory: QuizCategory = {
   ],
     advanced: [
         {
+    id: "gender-advanced-1",
     question: "What is the ruling on female leadership in Islam according to classical scholars?",
     options: [
       "Women can lead in all positions, including head of state",
@@ -351,6 +382,7 @@ const genderCategory: QuizCategory = {
     explanation: "Classical scholars like Imam Abu Hanifa allowed female judges in civil cases, while others restricted political leadership based on the Hadith where the Prophet (ﷺ) said a people will not succeed if led by a woman (Bukhari 4425). However, women like Aisha (RA) were leading scholars of Hadith."
   },
   {
+    id: "gender-advanced-2",
     question: "What is the Quranic stance on gender equity in testimony?",
     options: [
       "Two women equal one man in all testimonies",
@@ -358,10 +390,11 @@ const genderCategory: QuizCategory = {
       "Women cannot testify at all",
       "Testimony is equal regardless of gender"
     ],
-    correctAnswer: "Two women equal one man in financial matters only",
+    correctAnswer: "Women's testimony is half in financial matters only",
     explanation: "Quran 2:282 specifies two women witnesses in financial transactions to ensure accuracy (due to societal context), but in other areas (like marital issues), women testify equally. This is situational, not a blanket rule."
   },
   {
+    id: "gender-advanced-3",
     question: "Did the Prophet (ﷺ) ever take advice from women?",
     options: [
       "No, decisions were made only by men",
@@ -373,6 +406,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) accepted Umm Salamah's advice during Hudaybiyyah (Sunan Abu Dawud 2762), and Khadija (RA) was his first confidante. This shows women's role in decision-making."
   },
   {
+    id: "gender-advanced-4",
     question: "What was the first university in the world, and who founded it?",
     options: [
       "Al-Azhar, by Imam Ali",
@@ -384,6 +418,7 @@ const genderCategory: QuizCategory = {
     explanation: "Fatima al-Fihri, a Muslim woman, founded Al-Qarawiyyin in 859 CE in Morocco, recognized by UNESCO as the oldest existing degree-granting university."
   },
   {
+    id: "gender-advanced-5",
     question: "What does 'Wali Mujbir' (compulsory guardianship in marriage) mean in Islam?",
     options: [
       "A father can force his daughter to marry without consent",
@@ -395,6 +430,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'A virgin must be consulted for her consent.' (Bukhari 6968). Forced marriages are invalid. The guardian’s role is protective, not dictatorial."
   },
   {
+    id: "gender-advanced-6",
     question: "What is the fiqh ruling on women leading mixed-gender prayers?",
     options: [
       "Permissible in all cases",
@@ -406,6 +442,7 @@ const genderCategory: QuizCategory = {
     explanation: "Classical scholars agree women can lead other women in prayer (Bukhari 684), but not mixed congregations due to Hadith prohibiting women from leading men (Abu Dawud 576)."
   },
   {
+    id: "gender-advanced-7",
     question: "Which female companion was a renowned Hadith narrator?",
     options: [
       "Umm Habiba (RA)",
@@ -417,6 +454,7 @@ const genderCategory: QuizCategory = {
     explanation: "Aisha (RA) narrated over 2,200 Hadiths and was a leading jurist. Her scholarship is central to Sunni Islam. (Bukhari, Muslim)"
   },
   {
+    id: "gender-advanced-8",
     question: "What is the Islamic ruling on women traveling alone?",
     options: [
       "Always prohibited",
@@ -428,6 +466,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) allowed women to travel with a mahram for long distances (Bukhari 1088), but scholars permit solo travel today if safety measures exist (e.g., secure transport)."
   },
   {
+    id: "gender-advanced-9",
     question: "What does the Quran say about gender equity in spiritual rewards?",
     options: [
       "Men receive more rewards",
@@ -439,6 +478,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 3:195 states: 'I will not allow the deed of any worker among you to be lost, whether male or female.' Spiritual equality is unequivocal."
   },
   {
+    id: "gender-advanced-10",
     question: "Which battle did Muslim women participate in as fighters?",
     options: [
       "Battle of Badr",
@@ -450,6 +490,7 @@ const genderCategory: QuizCategory = {
     explanation: "Women like Nusaybah bint Ka’ab (RA) fought at Uhud to defend the Prophet (ﷺ). (Musnad Ahmad 1855). Their bravery is well-documented."
   },
   {
+    id: "gender-advanced-11",
     question: "What is the ruling on women's voices being 'awrah' (to be concealed)?",
     options: [
       "All women's voices are awrah",
@@ -461,6 +502,7 @@ const genderCategory: QuizCategory = {
     explanation: "Classical scholars like Ibn Taymiyyah ruled that the voice isn’t awrah, but speech should avoid softness/flirtation (Quran 33:32). Normal conversation is permitted."
   },
   {
+    id: "gender-advanced-12",
     question: "Can women perform Dawah (Islamic preaching)?",
     options: [
       "No, only men can preach",
@@ -472,6 +514,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) praised women like Umm Waraqa (RA) for teaching. Women can do Dawah while observing hijab and gender interaction rules. (Abu Dawud 592)"
   },
   {
+    id: "gender-advanced-13",
     question: "What is the fiqh ruling on women cutting their hair?",
     options: [
       "Completely prohibited",
@@ -483,6 +526,7 @@ const genderCategory: QuizCategory = {
     explanation: "Scholars permit trimming hair but discourage extreme shortening to avoid imitating men. (Abu Dawud 4187). Moderation is key."
   },
   {
+    id: "gender-advanced-14",
     question: "Which Quranic verse explicitly addresses men and women as equal in faith?",
     options: [
       "Quran 4:34",
@@ -494,6 +538,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 33:35 lists identical rewards for 'Muslim men and women, believing men and women...' emphasizing spiritual equality."
   },
   {
+    id: "gender-advanced-15",
     question: "What is the ruling on women attending funerals?",
     options: [
       "Prohibited",
@@ -505,6 +550,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) initially forbade women from graves but later allowed it (Tirmidhi 1056). Scholars discourage excessive wailing but permit attendance."
   },
   {
+    id: "gender-advanced-16",
     question: "Can women refuse their husband's request to wear the niqab?",
     options: [
       "No, it is obligatory if he demands it",
@@ -516,6 +562,7 @@ const genderCategory: QuizCategory = {
     explanation: "Niqab is a scholarly difference of opinion. A wife cannot be forced beyond Quranic hijab (24:31) unless agreed in the marriage contract."
   },
   {
+    id: "gender-advanced-17",
     question: "What is the Islamic ruling on women's sports participation?",
     options: [
       "Completely prohibited",
@@ -527,6 +574,7 @@ const genderCategory: QuizCategory = {
     explanation: "Aisha (RA) raced the Prophet (ﷺ) (Abu Dawud 2578). Women can engage in sports while observing modesty and segregation rules."
   },
   {
+    id: "gender-advanced-18",
     question: "Which female scholar wrote a famous Tafsir (Quranic exegesis)?",
     options: [
       "Aisha bint Talha",
@@ -538,6 +586,7 @@ const genderCategory: QuizCategory = {
     explanation: "Karima al-Marwaziyya (d. 1076 CE) was a renowned muhaddithah and expert in Sahih al-Bukhari. Her works are still studied today."
   },
   {
+    id: "gender-advanced-19",
     question: "What is the ruling on women shaking hands with non-mahram men?",
     options: [
       "Permitted if done respectfully",
@@ -549,6 +598,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'I do not shake hands with women.' (Muslim 1866). This applies to non-mahram interactions to prevent fitnah."
   },
   {
+    id: "gender-advanced-20",
     question: "Can women inherit from their children in Islam?",
     options: [
       "No, only fathers inherit",
@@ -560,6 +610,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 4:11 grants mothers 1/6 of the estate if the deceased has children, and 1/3 if no children exist. This is a protected right."
   },
   {
+    id: "gender-advanced-21",
     question: "What is the ruling on women attending political councils (Shura)?",
     options: [
       "Prohibited",
@@ -571,6 +622,7 @@ const genderCategory: QuizCategory = {
     explanation: "Umm Salamah (RA) advised the Prophet (ﷺ) on political matters. Qualified women can participate in Shura while observing modesty. (Sunan Abu Dawud 2762)"
   },
   {
+    id: "gender-advanced-22",
     question: "Which Hadith highlights women's right to sexual satisfaction?",
     options: [
       "The Hadith of Hudhayfah",
@@ -582,6 +634,7 @@ const genderCategory: QuizCategory = {
     explanation: "Asma bint Yazid (RA) publicly asked the Prophet (ﷺ) about women's sexual rights, and he affirmed their entitlement to pleasure. (Musnad Ahmad 27555)"
   },
   {
+    id: "gender-advanced-23",
     question: "What is the ruling on women wearing perfume in public?",
     options: [
       "Permitted in moderation",
@@ -593,6 +646,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) said: 'If a woman wears perfume and passes by people, she is such-and-such' (meaning adulterous in intention). (Tirmidhi 2786). It attracts non-mahram attention."
   },
   {
+    id: "gender-advanced-24",
     question: "Can women be witnesses to a marriage contract (Nikah)?",
     options: [
       "No, only men can witness",
@@ -604,6 +658,7 @@ const genderCategory: QuizCategory = {
     explanation: "Unlike financial contracts, marriage witnesses do not require gender ratios. Women can fully witness Nikah. (Sunan Ibn Majah 1881)"
   },
   {
+    id: "gender-advanced-25",
     question: "What is the Islamic ruling on women riding horses/camels?",
     options: [
       "Prohibited as it is masculine",
@@ -615,6 +670,7 @@ const genderCategory: QuizCategory = {
     explanation: "Aisha (RA) rode camels during travel and battles. Women can ride animals for transport or sport while observing modesty. (Bukhari 2877)"
   },
   {
+    id: "gender-advanced-26",
     question: "Which Quranic verse is often misused to justify domestic abuse?",
     options: [
       "Quran 4:34",
@@ -626,6 +682,7 @@ const genderCategory: QuizCategory = {
     explanation: "Quran 4:34's term 'wadribuhunna' (often translated as 'beat lightly') is highly contested. Scholars like Ibn Abbas interpreted it as 'separate,' and modern jurists discourage physical discipline."
   },
   {
+    id: "gender-advanced-27",
     question: "Can women perform Tawaf (circumambulation of the Kaaba) during menstruation?",
     options: [
       "Yes, without restrictions",
@@ -637,6 +694,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) told Aisha (RA) to delay Tawaf during her period (Bukhari 294). Menstruating women can perform all Hajj rites except Tawaf and Salah."
   },
   {
+    id: "gender-advanced-28",
     question: "What is the ruling on women wearing gold jewelry?",
     options: [
       "Permitted in moderation",
@@ -648,6 +706,7 @@ const genderCategory: QuizCategory = {
     explanation: "The Prophet (ﷺ) allowed women to wear gold and silk (Bukhari 5423), which are prohibited for men. Extravagance is discouraged."
   },
   {
+    id: "gender-advanced-29",
     question: "Can women divorce their husbands without court intervention?",
     options: [
       "No, only men can divorce directly",
@@ -659,6 +718,7 @@ const genderCategory: QuizCategory = {
     explanation: "If the husband delegates the right of divorce to his wife (Tafweez), she can pronounce it without court. This is valid in Islamic law. (Quran 2:229)"
   },
   {
+    id: "gender-advanced-30",
     question: "What is the ruling on women's laughter in public?",
     options: [
       "Prohibited as it attracts attention",
