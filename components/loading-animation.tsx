@@ -1,4 +1,7 @@
+"use client"
+
 import { BookOpen } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface LoadingAnimationProps {
   size?: "sm" | "md" | "lg"
@@ -6,6 +9,7 @@ interface LoadingAnimationProps {
 }
 
 export function LoadingAnimation({ size = "md", text }: LoadingAnimationProps) {
+  const { t } = useTranslation()
   const dimensions = {
     sm: {
       container: "w-16 h-16",
@@ -28,7 +32,7 @@ export function LoadingAnimation({ size = "md", text }: LoadingAnimationProps) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4" role="status" aria-label="Loading">
+    <div className="flex flex-col items-center justify-center gap-4" role="status" aria-label={t("quiz.loading.default")}>
       <div className={`relative ${dimensions[size].container} flex items-center justify-center`}>
         {/* A spinning ring around a still book: a faint full circle with one bright arc running round it. */}
         <div
@@ -38,7 +42,7 @@ export function LoadingAnimation({ size = "md", text }: LoadingAnimationProps) {
         <BookOpen className={`${dimensions[size].icons} text-green-600 dark:text-green-400`} strokeWidth={1.5} aria-hidden="true" />
       </div>
       {text && <p className={`${dimensions[size].text} text-green-700 dark:text-green-400 animate-pulse`}>{text}</p>}
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">{t("quiz.loading.default")}</span>
     </div>
   )
 }

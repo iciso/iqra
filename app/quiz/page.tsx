@@ -287,22 +287,23 @@ export default async function QuizPage({
 
   const { category: cat, getQuizQuestions } = await loadCategoryAndQuestions(category)
 
+  // The reader's language (cookie iqra-lang). This page is already dynamic (searchParams),
+  // so reading the cookie here keeps every other route static.
+  const lng = await getRequestLocale()
+  const t = getServerT(lng)
+
   if (!cat) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">Category Not Found</h1>
-        <p className="mb-6">The requested category &quot;{category}&quot; could not be loaded. Please choose another category.</p>
+        <h1 className="text-2xl font-bold mb-4">{t("quiz.notFound.title")}</h1>
+        <p className="mb-6">{t("quiz.notFound.text", { category })}</p>
         <Link href="/subjects" className="inline-block py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
-          Browse Subjects
+          {t("quiz.section.browse")}
         </Link>
       </div>
     )
   }
 
-  // The reader's language (cookie iqra-lang). This page is already dynamic (searchParams),
-  // so reading the cookie here keeps every other route static.
-  const lng = await getRequestLocale()
-  const t = getServerT(lng)
   const content = await loadCategoryLocale(lng, category)
   const translationStatus = content?._meta.status ?? null
   const shownCat = localizeCategory(cat, content)

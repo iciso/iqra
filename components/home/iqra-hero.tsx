@@ -255,7 +255,7 @@ const IqraHero = () => {
                 variant="outline"
                 className="mt-5 min-h-11 w-full rounded-full border-green-700 bg-white text-base font-semibold text-green-800 hover:bg-green-100 hover:text-green-900 dark:border-green-400 dark:bg-transparent dark:text-green-50 dark:hover:bg-green-900 dark:hover:text-white"
               >
-                <Link href="/subjects">Choose a subject</Link>
+                <Link href="/subjects">{t("hero.learn.cta")}</Link>
               </Button>
             </Card>
 

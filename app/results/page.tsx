@@ -519,14 +519,14 @@ export default function ResultsPage() {
                           <Link href="/leaderboard" className="flex-1">
                             <Button className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">
                               <Trophy className="mr-2 h-4 w-4" />
-                              View Leaderboard
+                              {t("results.viewLeaderboard")}
                             </Button>
                           </Link>
                           {challenge && (
                             <Link href="/challenges" className="flex-1">
                               <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                                 <Users className="mr-2 h-4 w-4" />
-                                View Challenges
+                                {t("results.viewChallenges")}
                               </Button>
                             </Link>
                           )}

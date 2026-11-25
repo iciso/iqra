@@ -58,7 +58,8 @@
       "checking": "Checking answer...",
       "next": "Loading next question...",
       "finish": "Saving results...",
-      "default": "Loading..."
+      "default": "Loading...",
+      "quiz": "Loading Quiz..."
     },
     "toast": {
       "challengeSent": "Challenge Sent!",
@@ -93,6 +94,10 @@
       "review": "Translation under review.",
       "report": "Report a mistake",
       "hidden": "This subject will be available in your language after scholar review. It is shown in English for now."
+    },
+    "notFound": {
+      "title": "Category Not Found",
+      "text": "The requested category \"{{category}}\" could not be loaded. Please choose another category."
     }
   },
   "results": {
@@ -138,5 +143,10 @@
     "body": "Some text may still be in English. We fix any mistakes we find or that you report.",
     "report": "Report a mistake",
     "minimize": "Minimize"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "text": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "home": "Return to Home"
   }
 }
