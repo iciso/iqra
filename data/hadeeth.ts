@@ -575,7 +575,7 @@ const hadeethCategory: QuizCategory = {
       },
       {
         id: "hadeeth-intermediate-18",
-        question: "Which prominent Tabi'i and jurist from Madinah famously stated: 'This knowledge is religion, so look to whom you take your religion from'?",
+        question: "Which prominent Tabi'i and jurist from Basra famously stated: 'This knowledge is religion, so look to whom you take your religion from'?",
         options: ["Muhammad ibn Sirin", "Hasan al-Basri", "Said ibn al-Musayyib", "Ata ibn Abi Rabah"],
         correctAnswer: "Muhammad ibn Sirin",
         explanation:
