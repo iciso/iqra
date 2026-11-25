@@ -62,7 +62,7 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-heading), var(--font-bengali), var(--font-tamil), ui-sans-serif, system-ui, sans-serif;
   }
   /* Reem Kufi's own word space is narrow; widen it for every heading-font text. */
   h1,

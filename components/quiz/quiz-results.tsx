@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import { submitQuizResult } from "@/lib/quiz-submit"
 import { useAuth } from "@/contexts/auth-context"
 
@@ -14,6 +15,7 @@ interface QuizResultsProps {
 
 const QuizResults: React.FC<QuizResultsProps> = ({ score, totalQuestions, category, difficulty }) => {
   const { user } = useAuth()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -39,16 +41,14 @@ const QuizResults: React.FC<QuizResultsProps> = ({ score, totalQuestions, catego
 
   return (
     <div>
-      <h2>Quiz Results</h2>
+      <h2>{t("quiz.results.title")}</h2>
       {score !== undefined && totalQuestions !== undefined ? (
         <>
-          <p>
-            Your Score: {score} / {totalQuestions}
-          </p>
-          <p>Percentage: {((score / totalQuestions) * 100).toFixed(2)}%</p>
+          <p>{t("quiz.results.yourScore", { score, total: totalQuestions })}</p>
+          <p>{t("quiz.results.percentage", { value: ((score / totalQuestions) * 100).toFixed(2) })}</p>
         </>
       ) : (
-        <p>Calculating results...</p>
+        <p>{t("quiz.results.calculating")}</p>
       )}
     </div>
   )

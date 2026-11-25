@@ -1,13 +1,16 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 const linkClass =
   "text-muted-foreground underline-offset-4 hover:text-foreground hover:underline dark:text-muted-foreground dark:hover:text-foreground"
 
 const FOOTER_LINKS = [
-  { href: "https://creativecommons.org/licenses/by/4.0/", label: "License 4.0", external: true },
-  { href: "/about", label: "About", external: false },
-  { href: "https://github.com/iciso/iqra/blob/main/contribute.md", label: "Contribute", external: true },
-  { href: "https://github.com/iciso/iqra", label: "GitHub", external: true },
+  { href: "https://creativecommons.org/licenses/by/4.0/", key: "footer.license", external: true },
+  { href: "/about", key: "footer.about", external: false },
+  { href: "https://github.com/iciso/iqra/blob/main/contribute.md", key: "footer.contribute", external: true },
+  { href: "https://github.com/iciso/iqra", key: "footer.github", external: true },
 ]
 
 const WHATSAPP_HREF = "https://wa.me/917558845528?text=Hi%20Rafique%2C%0AMy%20suggestion%20for%20IQRA%20is"
@@ -23,13 +26,14 @@ const WhatsAppIcon = () => (
 
 /** Site footer, shared by every page through app/layout.tsx. */
 const Footer = () => {
+  const { t } = useTranslation()
   const year = new Date().getFullYear()
 
   return (
     <footer className="w-full border-t bg-background text-sm text-muted-foreground">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-3 px-4 py-6 text-center sm:px-6">
         <p data-footer-row="" className="inline-flex flex-wrap items-center justify-center gap-1.5">
-          <span>For suggestions, WhatsApp</span>
+          <span>{t("footer.suggestions")}</span>
           <a
             href={WHATSAPP_HREF}
             target="_blank"
@@ -39,7 +43,7 @@ const Footer = () => {
             <WhatsAppIcon />
             Rafique
           </a>
-          <span>at</span>
+          <span>{t("footer.at")}</span>
           <a
             href="https://wa.me/917558845528"
             target="_blank"
@@ -52,18 +56,18 @@ const Footer = () => {
         </p>
 
         <nav
-          aria-label="Footer"
+          aria-label={t("footer.navLabel")}
           data-footer-row=""
           className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
         >
           {FOOTER_LINKS.map((link) =>
             link.external ? (
               <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                {link.label}
+                {t(link.key)}
               </a>
             ) : (
               <Link key={link.href} href={link.href} className={linkClass}>
-                {link.label}
+                {t(link.key)}
               </Link>
             ),
           )}
@@ -73,12 +77,12 @@ const Footer = () => {
         <p data-footer-row="" className="text-xs">
           {/* Plain <a>, not <Link>: a hash-only change must fire "hashchange" so About opens the right tab. */}
           <a href="/about#ai-credits" data-footer-ai-credits="" className={linkClass}>
-            Built with AI assistance – see credits
+            {t("footer.aiCredits")}
           </a>
         </p>
 
         <p data-footer-row="" className="text-xs">
-          © {year} IQRA
+          {t("footer.copyright", { year })}
         </p>
       </div>
     </footer>

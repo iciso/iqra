@@ -1,0 +1,1112 @@
+[
+ {
+  "en": "Allah",
+  "arabic": "الله",
+  "bn": "আল্লাহ",
+  "bn_alt": [
+   "আল্লাহ্‌"
+  ],
+  "note": "Name of God; spelling varies by publisher"
+ },
+ {
+  "en": "Iman (faith)",
+  "arabic": "إيمان",
+  "bn": "ঈমান",
+  "bn_alt": [
+   "বিশ্বাস"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Muslim",
+  "arabic": "مسلم",
+  "bn": "মুসলিম",
+  "bn_alt": [
+   "মুসলমান"
+  ],
+  "note": "মুসলমান is the everyday form"
+ },
+ {
+  "en": "Mumin (believer)",
+  "arabic": "مؤمن",
+  "bn": "মুমিন",
+  "bn_alt": [
+   "মু'মিন",
+   "ঈমানদার"
+  ],
+  "note": "Zakaria uses মুমিন; Taisirul uses ঈমানদার"
+ },
+ {
+  "en": "Islam",
+  "arabic": "إسلام",
+  "bn": "ইসলাম",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Salah (prayer)",
+  "arabic": "صلاة",
+  "bn": "সালাত",
+  "bn_alt": [
+   "নামায",
+   "নামাজ"
+  ],
+  "note": "Zakaria translation: সালাত; Taisirul: নামায. Everyday Bangladesh: নামাজ"
+ },
+ {
+  "en": "Wudu",
+  "arabic": "وضوء",
+  "bn": "ওযু",
+  "bn_alt": [
+   "অজু",
+   "ওজু",
+   "উযু"
+  ],
+  "note": "Spelling very varied"
+ },
+ {
+  "en": "Tayammum",
+  "arabic": "تيمم",
+  "bn": "তায়াম্মুম",
+  "bn_alt": [
+   "তাইয়াম্মুম"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ghusl",
+  "arabic": "غسل",
+  "bn": "গোসল",
+  "bn_alt": [
+   "গুসল"
+  ],
+  "note": "Ritual full-body wash"
+ },
+ {
+  "en": "Zakat",
+  "arabic": "زكاة",
+  "bn": "যাকাত",
+  "bn_alt": [
+   "জাকাত"
+  ],
+  "note": "Both translations: যাকাত"
+ },
+ {
+  "en": "Zakat al-Fitr",
+  "arabic": "زكاة الفطر",
+  "bn": "ফিতরা",
+  "bn_alt": [
+   "সাদাকাতুল ফিতর",
+   "যাকাতুল ফিতর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Nisab",
+  "arabic": "نصاب",
+  "bn": "নিসাব",
+  "bn_alt": [
+   "নিছাব"
+  ],
+  "note": "Minimum wealth for zakat"
+ },
+ {
+  "en": "Sadaqah",
+  "arabic": "صدقة",
+  "bn": "সাদাকা",
+  "bn_alt": [
+   "সদকা",
+   "সাদাকাহ",
+   "সদাক্বাহ"
+  ],
+  "note": "Zakaria: সাদাকা; Taisirul: সদাক্বাহ"
+ },
+ {
+  "en": "Sawm (fasting)",
+  "arabic": "صوم",
+  "bn": "সিয়াম",
+  "bn_alt": [
+   "রোযা",
+   "রোজা"
+  ],
+  "note": "Zakaria: সিয়াম; Taisirul: রোযা; everyday: রোজা"
+ },
+ {
+  "en": "Hajj",
+  "arabic": "حج",
+  "bn": "হজ",
+  "bn_alt": [
+   "হাজ্জ",
+   "হজ্জ"
+  ],
+  "note": "Zakaria: হজ; Taisirul: হাজ্জ"
+ },
+ {
+  "en": "Umrah",
+  "arabic": "عمرة",
+  "bn": "উমরা",
+  "bn_alt": [
+   "ওমরাহ",
+   "‘উমরাহ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ihram",
+  "arabic": "إحرام",
+  "bn": "ইহরাম",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tawaf",
+  "arabic": "طواف",
+  "bn": "তাওয়াফ",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Kaaba",
+  "arabic": "كعبة",
+  "bn": "কাবা",
+  "bn_alt": [
+   "কা'বা",
+   "কাবা শরীফ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Arafah",
+  "arabic": "عرفة",
+  "bn": "আরাফা",
+  "bn_alt": [
+   "আরাফাত"
+  ],
+  "note": "Day of Arafah: আরাফার দিন"
+ },
+ {
+  "en": "Qurbani / Udhiyah",
+  "arabic": "أضحية",
+  "bn": "কুরবানী",
+  "bn_alt": [
+   "কোরবানি",
+   "উযহিয়া"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tawhid",
+  "arabic": "توحيد",
+  "bn": "তাওহীদ",
+  "bn_alt": [
+   "তৌহিদ",
+   "একত্ববাদ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Shirk",
+  "arabic": "شرك",
+  "bn": "শিরক",
+  "bn_alt": [
+   "শিরক্‌"
+  ],
+  "note": "Associating partners with Allah"
+ },
+ {
+  "en": "Kufr",
+  "arabic": "كفر",
+  "bn": "কুফর",
+  "bn_alt": [
+   "কুফরি"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Nifaq (hypocrisy)",
+  "arabic": "نفاق",
+  "bn": "নিফাক",
+  "bn_alt": [
+   "মুনাফিকী"
+  ],
+  "note": "Munafiq = মুনাফিক"
+ },
+ {
+  "en": "Bidah (innovation)",
+  "arabic": "بدعة",
+  "bn": "বিদআত",
+  "bn_alt": [
+   "বিদ'আত",
+   "বেদাত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Sunnah",
+  "arabic": "سنة",
+  "bn": "সুন্নাহ",
+  "bn_alt": [
+   "সুন্নত"
+  ],
+  "note": "সুন্নত also means a recommended act in fiqh"
+ },
+ {
+  "en": "Hadith",
+  "arabic": "حديث",
+  "bn": "হাদীস",
+  "bn_alt": [
+   "হাদিস"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Sahih (authentic)",
+  "arabic": "صحيح",
+  "bn": "সহীহ",
+  "bn_alt": [
+   "সহিহ",
+   "সহীহ্"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Daif (weak)",
+  "arabic": "ضعيف",
+  "bn": "যঈফ",
+  "bn_alt": [
+   "দুর্বল",
+   "জয়ীফ",
+   "দ'ঈফ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Fiqh",
+  "arabic": "فقه",
+  "bn": "ফিকহ",
+  "bn_alt": [
+   "ফিকাহ"
+  ],
+  "note": "Islamic jurisprudence"
+ },
+ {
+  "en": "Madhab",
+  "arabic": "مذهب",
+  "bn": "মাযহাব",
+  "bn_alt": [
+   "মাজহাব",
+   "মাযহাব"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Imam",
+  "arabic": "إمام",
+  "bn": "ইমাম",
+  "bn_alt": [],
+  "note": "Prayer leader or scholar"
+ },
+ {
+  "en": "Mufti",
+  "arabic": "مفتي",
+  "bn": "মুফতি",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Fatwa",
+  "arabic": "فتوى",
+  "bn": "ফতোয়া",
+  "bn_alt": [
+   "ফাতাওয়া",
+   "ফতওয়া"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ijma (consensus)",
+  "arabic": "إجماع",
+  "bn": "ইজমা",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qiyas (analogy)",
+  "arabic": "قياس",
+  "bn": "কিয়াস",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Ijtihad",
+  "arabic": "اجتهاد",
+  "bn": "ইজতিহাদ",
+  "bn_alt": [
+   "ইজতেহাদ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Halal",
+  "arabic": "حلال",
+  "bn": "হালাল",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Haram",
+  "arabic": "حرام",
+  "bn": "হারাম",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Makruh",
+  "arabic": "مكروه",
+  "bn": "মাকরূহ",
+  "bn_alt": [
+   "মাকরুহ"
+  ],
+  "note": "Disliked"
+ },
+ {
+  "en": "Mubah",
+  "arabic": "مباح",
+  "bn": "মুবাহ",
+  "bn_alt": [
+   "বৈধ"
+  ],
+  "note": "Permissible"
+ },
+ {
+  "en": "Fard",
+  "arabic": "فرض",
+  "bn": "ফরয",
+  "bn_alt": [
+   "ফরজ"
+  ],
+  "note": "Obligatory"
+ },
+ {
+  "en": "Wajib",
+  "arabic": "واجب",
+  "bn": "ওয়াজিব",
+  "bn_alt": [],
+  "note": "Hanafi category between fard and sunnah"
+ },
+ {
+  "en": "Sunnah muakkadah",
+  "arabic": "سنة مؤكدة",
+  "bn": "সুন্নতে মুয়াক্কাদাহ",
+  "bn_alt": [
+   "সুন্নাতে মুআক্কাদাহ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Mustahabb",
+  "arabic": "مستحب",
+  "bn": "মুস্তাহাব",
+  "bn_alt": [],
+  "note": "Recommended"
+ },
+ {
+  "en": "Aqeedah (creed)",
+  "arabic": "عقيدة",
+  "bn": "আকীদা",
+  "bn_alt": [
+   "আক্বীদাহ",
+   "আকিদা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Akhirah (hereafter)",
+  "arabic": "آخرة",
+  "bn": "আখিরাত",
+  "bn_alt": [
+   "আখেরাত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Jannah (paradise)",
+  "arabic": "جنة",
+  "bn": "জান্নাত",
+  "bn_alt": [
+   "বেহেশত"
+  ],
+  "note": "বেহেশত is Persian-origin everyday word"
+ },
+ {
+  "en": "Jahannam (hell)",
+  "arabic": "جهنم",
+  "bn": "জাহান্নাম",
+  "bn_alt": [
+   "দোযখ",
+   "দোজখ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Qiyamah (Day of Judgment)",
+  "arabic": "قيامة",
+  "bn": "কিয়ামত",
+  "bn_alt": [
+   "ক্বিয়ামাত",
+   "কেয়ামত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Barzakh",
+  "arabic": "برزخ",
+  "bn": "বারযাখ",
+  "bn_alt": [
+   "বরযখ"
+  ],
+  "note": "Life between death and resurrection"
+ },
+ {
+  "en": "Qadar (divine decree)",
+  "arabic": "قدر",
+  "bn": "তাকদীর",
+  "bn_alt": [
+   "ক্বদর",
+   "তাক্বদীর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Malak (angel)",
+  "arabic": "ملك",
+  "bn": "ফেরেশতা",
+  "bn_alt": [
+   "মালাক",
+   "ফেরেশতা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Jibril (Gabriel)",
+  "arabic": "جبريل",
+  "bn": "জিবরীল",
+  "bn_alt": [
+   "জিব্রাইল"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Jinn",
+  "arabic": "جن",
+  "bn": "জিন",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Shaytan",
+  "arabic": "شيطان",
+  "bn": "শয়তান",
+  "bn_alt": [
+   "শাইতান"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Rasul (messenger)",
+  "arabic": "رسول",
+  "bn": "রাসূল",
+  "bn_alt": [
+   "রসূল"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Nabi (prophet)",
+  "arabic": "نبي",
+  "bn": "নবী",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Sahabi (companion)",
+  "arabic": "صحابي",
+  "bn": "সাহাবী",
+  "bn_alt": [
+   "সাহাবি",
+   "সাহাবা"
+  ],
+  "note": "Plural: সাহাবীগণ"
+ },
+ {
+  "en": "Tabii (follower)",
+  "arabic": "تابعي",
+  "bn": "তাবেয়ী",
+  "bn_alt": [
+   "তাবিঈ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Khalifah (caliph)",
+  "arabic": "خليفة",
+  "bn": "খলীফা",
+  "bn_alt": [
+   "খলিফা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Wahy (revelation)",
+  "arabic": "وحي",
+  "bn": "ওহী",
+  "bn_alt": [
+   "অহি",
+   "ওহি"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Quran",
+  "arabic": "قرآن",
+  "bn": "কুরআন",
+  "bn_alt": [
+   "কোরআন",
+   "কুর'আন"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tafsir",
+  "arabic": "تفسير",
+  "bn": "তাফসীর",
+  "bn_alt": [
+   "তাফসির"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Surah",
+  "arabic": "سورة",
+  "bn": "সূরা",
+  "bn_alt": [
+   "সুরা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ayah (verse)",
+  "arabic": "آية",
+  "bn": "আয়াত",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Juz",
+  "arabic": "جزء",
+  "bn": "পারা",
+  "bn_alt": [
+   "জুয"
+  ],
+  "note": "Bangladesh says পারা (Persian/Urdu-origin) for the 30 parts"
+ },
+ {
+  "en": "Tajwid",
+  "arabic": "تجويد",
+  "bn": "তাজবীদ",
+  "bn_alt": [
+   "তাজউইদ",
+   "তাজবিদ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Mushaf",
+  "arabic": "مصحف",
+  "bn": "মুসহাফ",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Ramadan",
+  "arabic": "رمضان",
+  "bn": "রমযান",
+  "bn_alt": [
+   "রমজান",
+   "রামাদান"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Eid al-Fitr",
+  "arabic": "عيد الفطر",
+  "bn": "ঈদুল ফিতর",
+  "bn_alt": [
+   "ঈদ-উল-ফিতর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Eid al-Adha",
+  "arabic": "عيد الأضحى",
+  "bn": "ঈদুল আযহা",
+  "bn_alt": [
+   "ঈদুল আজহা",
+   "ঈদ-উল-আযহা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Jumuah (Friday prayer)",
+  "arabic": "جمعة",
+  "bn": "জুমুআ",
+  "bn_alt": [
+   "জুমা",
+   "জুমআ"
+  ],
+  "note": "জুমা is everyday form"
+ },
+ {
+  "en": "Khutbah (sermon)",
+  "arabic": "خطبة",
+  "bn": "খুতবা",
+  "bn_alt": [
+   "খুতবাহ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Adhan (call to prayer)",
+  "arabic": "أذان",
+  "bn": "আযান",
+  "bn_alt": [
+   "আজান"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Iqamah",
+  "arabic": "إقامة",
+  "bn": "ইকামত",
+  "bn_alt": [
+   "ইক্বামাত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Qiblah",
+  "arabic": "قبلة",
+  "bn": "ক্বিবলা",
+  "bn_alt": [
+   "কিবলা",
+   "কেবলা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Masjid (mosque)",
+  "arabic": "مسجد",
+  "bn": "মসজিদ",
+  "bn_alt": [
+   "মাসজিদ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Rakah",
+  "arabic": "ركعة",
+  "bn": "রাকাত",
+  "bn_alt": [
+   "রাক'আত",
+   "রাকআত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Sujud (prostration)",
+  "arabic": "سجود",
+  "bn": "সিজদা",
+  "bn_alt": [
+   "সাজদাহ",
+   "সেজদা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ruku (bowing)",
+  "arabic": "ركوع",
+  "bn": "রুকূ",
+  "bn_alt": [
+   "রুকু",
+   "রুকূ‘"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Qiyam (standing)",
+  "arabic": "قيام",
+  "bn": "কিয়াম",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Tashahhud",
+  "arabic": "تشهد",
+  "bn": "তাশাহহুদ",
+  "bn_alt": [
+   "আত্তাহিয়্যাতু"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Salam (end of prayer)",
+  "arabic": "تسليم",
+  "bn": "সালাম ফেরানো",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Fajr",
+  "arabic": "فجر",
+  "bn": "ফজর",
+  "bn_alt": [
+   "ফাজর"
+  ],
+  "note": "Dawn prayer"
+ },
+ {
+  "en": "Dhuhr",
+  "arabic": "ظهر",
+  "bn": "যোহর",
+  "bn_alt": [
+   "জোহর",
+   "যুহর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Asr",
+  "arabic": "عصر",
+  "bn": "আসর",
+  "bn_alt": [
+   "আছর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Maghrib",
+  "arabic": "مغرب",
+  "bn": "মাগরিব",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Isha",
+  "arabic": "عشاء",
+  "bn": "ইশা",
+  "bn_alt": [
+   "এশা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Witr",
+  "arabic": "وتر",
+  "bn": "বিতর",
+  "bn_alt": [
+   "বিতির",
+   "বেতের"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tarawih",
+  "arabic": "تراويح",
+  "bn": "তারাবীহ",
+  "bn_alt": [
+   "তারাবিহ",
+   "তারাবি"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tahajjud",
+  "arabic": "تهجد",
+  "bn": "তাহাজ্জুদ",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Dua (supplication)",
+  "arabic": "دعاء",
+  "bn": "দু'আ",
+  "bn_alt": [
+   "দোয়া",
+   "দুআ"
+  ],
+  "note": "Everyday form: দোয়া"
+ },
+ {
+  "en": "Dhikr (remembrance)",
+  "arabic": "ذكر",
+  "bn": "যিকির",
+  "bn_alt": [
+   "জিকির",
+   "যিকর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Tawbah (repentance)",
+  "arabic": "توبة",
+  "bn": "তাওবা",
+  "bn_alt": [
+   "তওবা",
+   "তাওবাহ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Istighfar",
+  "arabic": "استغفار",
+  "bn": "ইস্তিগফার",
+  "bn_alt": [
+   "ইসতেগফার"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Taqwa",
+  "arabic": "تقوى",
+  "bn": "তাকওয়া",
+  "bn_alt": [
+   "খোদাভীতি",
+   "মুত্তাকী (adj.)"
+  ],
+  "note": "Taisirul renders 'muttaqi' as মুত্তাকী"
+ },
+ {
+  "en": "Ihsan",
+  "arabic": "إحسان",
+  "bn": "ইহসান",
+  "bn_alt": [
+   "ইহসান্‌"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Sabr (patience)",
+  "arabic": "صبر",
+  "bn": "সবর",
+  "bn_alt": [
+   "ধৈর্য",
+   "সবর"
+  ],
+  "note": "ধৈর্য is the plain-Bangla word"
+ },
+ {
+  "en": "Shukr (gratitude)",
+  "arabic": "شكر",
+  "bn": "শুকর",
+  "bn_alt": [
+   "কৃতজ্ঞতা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Riba (usury)",
+  "arabic": "ربا",
+  "bn": "সুদ",
+  "bn_alt": [
+   "রিবা"
+  ],
+  "note": "Bangla speakers say সুদ"
+ },
+ {
+  "en": "Nikah (marriage)",
+  "arabic": "نكاح",
+  "bn": "বিবাহ",
+  "bn_alt": [
+   "নিকাহ",
+   "নিকাহ্‌"
+  ],
+  "note": "নিকাহ is the Islamic term"
+ },
+ {
+  "en": "Mahr (dower)",
+  "arabic": "مهر",
+  "bn": "মোহর",
+  "bn_alt": [
+   "মাহর",
+   "দেনমোহর"
+  ],
+  "note": "দেনমোহর is Bangladesh usage"
+ },
+ {
+  "en": "Talaq (divorce)",
+  "arabic": "طلاق",
+  "bn": "তালাক",
+  "bn_alt": [
+   "ত্বালাক্ব"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Iddah",
+  "arabic": "عدة",
+  "bn": "ইদ্দত",
+  "bn_alt": [
+   "ইদ্দাত",
+   "ইদ্দাহ"
+  ],
+  "note": "Waiting period"
+ },
+ {
+  "en": "Khul",
+  "arabic": "خلع",
+  "bn": "খুলা",
+  "bn_alt": [
+   "খুলা তালাক"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Janazah (funeral prayer)",
+  "arabic": "جنازة",
+  "bn": "জানাযা",
+  "bn_alt": [
+   "জানাজা"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Kafan (shroud)",
+  "arabic": "كفن",
+  "bn": "কাফন",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Qabr (grave)",
+  "arabic": "قبر",
+  "bn": "কবর",
+  "bn_alt": [
+   "ক্বাবর"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Mirath (inheritance)",
+  "arabic": "ميراث",
+  "bn": "মীরাস",
+  "bn_alt": [
+   "উত্তরাধিকার",
+   "ফারায়েয"
+  ],
+  "note": "Science of shares: ইলমুল ফারায়েয"
+ },
+ {
+  "en": "Faraid (fixed shares)",
+  "arabic": "فرائض",
+  "bn": "ফারায়েয",
+  "bn_alt": [
+   "ফারাইয"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Waris (heir)",
+  "arabic": "وارث",
+  "bn": "ওয়ারিস",
+  "bn_alt": [
+   "উত্তরাধিকারী"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Wasiyyah (bequest)",
+  "arabic": "وصية",
+  "bn": "ওসিয়ত",
+  "bn_alt": [
+   "ওয়াসিয়্যাত"
+  ],
+  "note": "Up to one third"
+ },
+ {
+  "en": "Waqf (endowment)",
+  "arabic": "وقف",
+  "bn": "ওয়াকফ",
+  "bn_alt": [
+   "ওয়াক্ফ"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Hijrah (migration)",
+  "arabic": "هجرة",
+  "bn": "হিজরত",
+  "bn_alt": [],
+  "note": ""
+ },
+ {
+  "en": "Jihad",
+  "arabic": "جهاد",
+  "bn": "জিহাদ",
+  "bn_alt": [],
+  "note": "Striving; state in neutral terms"
+ },
+ {
+  "en": "Seerah (Prophet's biography)",
+  "arabic": "سيرة",
+  "bn": "সীরাত",
+  "bn_alt": [
+   "সিরাত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Dawah (invitation)",
+  "arabic": "دعوة",
+  "bn": "দাওয়াত",
+  "bn_alt": [
+   "দা'ওয়াত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Ummah",
+  "arabic": "أمة",
+  "bn": "উম্মাহ",
+  "bn_alt": [
+   "উম্মত"
+  ],
+  "note": ""
+ },
+ {
+  "en": "Shahadah",
+  "arabic": "شهادة",
+  "bn": "শাহাদাহ",
+  "bn_alt": [
+   "কালিমা"
+  ],
+  "note": "Declaration of faith"
+ },
+ {
+  "en": "Hijab",
+  "arabic": "حجاب",
+  "bn": "হিজাব",
+  "bn_alt": [
+   "পর্দা"
+  ],
+  "note": "পর্দা is everyday Bangla"
+ },
+ {
+  "en": "Awrah",
+  "arabic": "عورة",
+  "bn": "সতর",
+  "bn_alt": [
+   "আওরাত"
+  ],
+  "note": ""
+ }
+]

@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Book, ChevronLeft, ChevronRight, CheckCircle, XCircle, Clock, Info } from "lucide-react"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 import type { QuizQuestion, QuizCategory, DifficultyLevel } from "@/types/quiz"
 import { getRandomOpponent } from "@/utils/opponents"
 import { LoadingAnimation } from "@/components/loading-animation"
@@ -84,6 +85,7 @@ export default function QuizContainer({
   challengerTurn,
 }: QuizContainerProps) {
   const router = useRouter()
+  const { t } = useTranslation()
   const isClient = useIsClient()
   const [currentQuestion, setCurrentQuestion] = useState(0)
 
@@ -136,7 +138,7 @@ export default function QuizContainer({
       : opponentId && !isFallbackChallenge
         ? "profile"
         : "bot"
-  const opponentLevel = challengerTurn ? "Waiting for your quiz" : "Challenger"
+  const opponentLevel = challengerTurn ? t("quiz.waitingForQuiz") : t("quiz.challenger")
   const botOpponent = useMemo(
     () => (isClient && opponentSource === "bot" ? getRandomOpponent() : null),
     [isClient, opponentSource],
@@ -309,8 +311,8 @@ export default function QuizContainer({
     if (isFallbackChallenge) {
       console.log("🎯 QUIZ CONTAINER: Fallback challenge detected - skipping database operations")
       toast({
-        title: "Challenge Sent!",
-        description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+        title: t("quiz.toast.challengeSent"),
+        description: t("quiz.toast.challengeSentDesc", { score, total: questions.length }),
         duration: 5000,
       })
       router.push("/results")
@@ -318,8 +320,8 @@ export default function QuizContainer({
     }
 
     toast({
-      title: "Saving your score...",
-      description: "Please wait while we update the leaderboard.",
+      title: t("quiz.toast.saving"),
+      description: t("quiz.toast.savingDesc"),
       duration: 3000,
     })
 
@@ -333,8 +335,8 @@ export default function QuizContainer({
           console.log("✅ QUIZ CONTAINER: Quiz result submitted successfully")
 
           toast({
-            title: "Challenge Sent Successfully!",
-            description: `Your score (${score}/${questions.length}) has been recorded. Your opponent will be notified.`,
+            title: t("quiz.toast.challengeSentOk"),
+            description: t("quiz.toast.challengeSentDesc", { score, total: questions.length }),
             duration: 5000,
           })
 
@@ -343,8 +345,8 @@ export default function QuizContainer({
         } catch (error) {
           console.error("🎯 QUIZ CONTAINER: Quiz submission error:", error)
           toast({
-            title: "Challenge Sent!",
-            description: `Your score (${score}/${questions.length}) has been recorded.`,
+            title: t("quiz.toast.challengeSent"),
+            description: t("quiz.toast.challengeSentShort", { score, total: questions.length }),
             duration: 5000,
           })
           router.push("/results")
@@ -359,8 +361,8 @@ export default function QuizContainer({
           console.log("✅ Challenge score submitted successfully")
 
           toast({
-            title: "Challenge Completed!",
-            description: `Your score (${score}/${questions.length}) has been recorded!`,
+            title: t("quiz.toast.challengeCompleted"),
+            description: t("quiz.toast.challengeCompletedDesc", { score, total: questions.length }),
             duration: 5000,
           })
 
@@ -369,8 +371,8 @@ export default function QuizContainer({
         } catch (error) {
           console.error("❌ Error in challenge completion:", error)
           toast({
-            title: "Challenge Completed!",
-            description: `Your score: ${score}/${questions.length}. Great job!`,
+            title: t("quiz.toast.challengeCompleted"),
+            description: t("quiz.toast.greatJob", { score, total: questions.length }),
             duration: 5000,
           })
           router.push("/results")
@@ -379,8 +381,8 @@ export default function QuizContainer({
       } else {
         console.log("🎯 QUIZ CONTAINER: Regular quiz completion...")
         toast({
-          title: "Quiz Completed!",
-          description: `Saving your score (${score}/${questions.length}) to the leaderboard...`,
+          title: t("quiz.toast.quizCompleted"),
+          description: t("quiz.toast.quizCompletedDesc", { score, total: questions.length }),
           duration: 3000,
         })
         router.push("/results")
@@ -389,8 +391,8 @@ export default function QuizContainer({
     } catch (error) {
       console.error("🎯 QUIZ CONTAINER: General error in handleFinishQuiz:", error)
       toast({
-        title: "Quiz Completed!",
-        description: `Your score: ${score}/${questions.length}. Great job!`,
+        title: t("quiz.toast.quizCompleted"),
+        description: t("quiz.toast.greatJob", { score, total: questions.length }),
         duration: 3000,
       })
       router.push("/results")
@@ -446,10 +448,10 @@ export default function QuizContainer({
     return (
       <Card className="w-full max-w-md border-green-200 shadow-lg dark:border-green-800">
         <CardContent className="text-center py-8">
-          <p className="dark:text-white mb-4">No questions available for this category and difficulty level.</p>
+          <p className="dark:text-white mb-4">{t("quiz.noQuestions")}</p>
           <Link href="/subjects">
             <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-              Return to Subjects
+              {t("quiz.returnToSubjects")}
             </Button>
           </Link>
         </CardContent>
@@ -458,12 +460,15 @@ export default function QuizContainer({
   }
 
   const question = shuffledQuestions[currentQuestion]
+  const difficultyLabel = t(`difficulty.${difficulty}`, {
+    defaultValue: difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
+  })
 
   const getLoadingText = () => {
-    if (transitionType === "submit") return "Checking answer..."
-    if (transitionType === "next") return "Loading next question..."
-    if (transitionType === "finish") return "Saving results..."
-    return "Loading..."
+    if (transitionType === "submit") return t("quiz.loading.checking")
+    if (transitionType === "next") return t("quiz.loading.next")
+    if (transitionType === "finish") return t("quiz.loading.finish")
+    return t("quiz.loading.default")
   }
 
   return (
@@ -471,19 +476,19 @@ export default function QuizContainer({
       <Button asChild variant="ghost" size="sm" className="-ml-3 mb-2 text-green-700 dark:text-green-400">
         <Link href={challengeMode ? "/challenges" : "/subjects"}>
           <ChevronLeft className="h-4 w-4" />
-          {challengeMode ? "Challenges" : "Subjects"}
+          {challengeMode ? t("quiz.backChallenges") : t("quiz.backSubjects")}
         </Link>
       </Button>
 
       <div className="w-full mb-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-green-700 dark:text-green-400">
-            {category.title} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-            {challengeMode && challengerTurn && ` Challenge (Your Turn)`}
-            {challengeMode && !challengerTurn && ` Challenge`}
+            {category.title} - {difficultyLabel}
+            {challengeMode && challengerTurn && ` ${t("quiz.challengeYourTurn")}`}
+            {challengeMode && !challengerTurn && ` ${t("quiz.challenge")}`}
           </span>
           <span className="text-sm text-green-700 dark:text-green-400">
-            Question {currentQuestion + 1} of {questions.length}
+            {t("quiz.questionOf", { current: currentQuestion + 1, total: questions.length })}
           </span>
         </div>
         <Progress value={progress} className="h-2 bg-green-100 dark:bg-green-800" />
@@ -511,17 +516,17 @@ export default function QuizContainer({
             <CardHeader className="flex flex-col items-center">
               <Book className="w-10 h-10 text-green-600 dark:text-green-400 mb-2" />
               <CardTitle className="text-xl text-green-800 dark:text-green-400">
-                Question {currentQuestion + 1}
+                {t("quiz.questionN", { n: currentQuestion + 1 })}
               </CardTitle>
 
               {challengeMode && opponent && (
                 <div className="flex justify-center mt-2">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
                     <span className="text-xs text-gray-600 dark:text-gray-300">
-                      {challengerTurn ? "Challenging:" : "Opponent:"}
+                      {challengerTurn ? t("quiz.challenging") : t("quiz.opponent")}
                     </span>
                     <div className="flex items-center gap-1">
-                      <span className="font-medium text-sm">{opponentName || opponent.name || "Challenger"}</span>
+                      <span className="font-medium text-sm">{opponentName || opponent.name || t("quiz.challenger")}</span>
                       {!opponentName && opponent.level && !opponent.name.includes("bot") && (
                         <span className="text-xs text-gray-500">({opponent.level})</span>
                       )}
@@ -588,7 +593,7 @@ export default function QuizContainer({
                             <div className="flex items-start">
                               <Info className="h-5 w-5 mr-2 flex-shrink-0 text-blue-700 dark:text-blue-400" />
                               <div>
-                                <strong className="block mb-1">Explanation:</strong>
+                                <strong className="block mb-1">{t("quiz.explanation")}</strong>
                                 {question.explanation}
                               </div>
                             </div>
@@ -604,7 +609,7 @@ export default function QuizContainer({
                             <InteractiveInfographic
                               type={question.infographicType}
                               data={question.infographicData}
-                              title={`${category.title} - Visual Explanation`}
+                              title={t("quiz.visualExplanation", { category: category.title })}
                             />
                           </div>
                         )}
@@ -621,7 +626,7 @@ export default function QuizContainer({
                 disabled={currentQuestion === 0 || isLoading}
                 className="dark:border-green-700 dark:text-green-400 bg-transparent"
               >
-                <ChevronLeft className="mr-1 h-4 w-4" /> Previous
+                <ChevronLeft className="mr-1 h-4 w-4" /> {t("quiz.previous")}
               </Button>
 
               {!showExplanation ? (
@@ -630,7 +635,7 @@ export default function QuizContainer({
                   onClick={handleSubmitAnswer}
                   disabled={!selectedAnswer || isLoading}
                 >
-                  Submit Answer
+                  {t("quiz.submit")}
                 </Button>
               ) : (
                 <Button
@@ -640,9 +645,9 @@ export default function QuizContainer({
                 >
                   {currentQuestion === questions.length - 1
                     ? challengerTurn
-                      ? "Send Challenge"
-                      : "Finish Quiz"
-                    : "Next"}
+                      ? t("quiz.sendChallenge")
+                      : t("quiz.finish")
+                    : t("quiz.next")}
                   {currentQuestion !== questions.length - 1 && <ChevronRight className="ml-1 h-4 w-4" />}
                 </Button>
               )}

@@ -1,0 +1,124 @@
+{
+  "language": {
+    "label": "Language"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "nav": {
+    "main": "Main",
+    "subjects": "Subjects",
+    "challenges": "Challenges",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "how": "How it works",
+    "about": "About",
+    "menu": "Menu"
+  },
+  "footer": {
+    "suggestions": "For suggestions, WhatsApp",
+    "at": "at",
+    "license": "License 4.0",
+    "about": "About",
+    "contribute": "Contribute",
+    "github": "GitHub",
+    "aiCredits": "Built with AI assistance – see credits",
+    "navLabel": "Footer",
+    "copyright": "© {{year}} IQRA"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "intermediate": "Intermediate",
+    "medium": "Intermediate",
+    "advanced": "Advanced",
+    "hard": "Advanced",
+    "mixed": "Mixed"
+  },
+  "quiz": {
+    "noQuestions": "No questions available for this category and difficulty level.",
+    "returnToSubjects": "Return to Subjects",
+    "backChallenges": "Challenges",
+    "backSubjects": "Subjects",
+    "challengeYourTurn": "Challenge (Your Turn)",
+    "challenge": "Challenge",
+    "questionOf": "Question {{current}} of {{total}}",
+    "questionN": "Question {{n}}",
+    "challenging": "Challenging:",
+    "opponent": "Opponent:",
+    "challenger": "Challenger",
+    "waitingForQuiz": "Waiting for your quiz",
+    "explanation": "Explanation:",
+    "visualExplanation": "{{category}} - Visual Explanation",
+    "previous": "Previous",
+    "submit": "Submit Answer",
+    "next": "Next",
+    "finish": "Finish Quiz",
+    "sendChallenge": "Send Challenge",
+    "loading": {
+      "checking": "Checking answer...",
+      "next": "Loading next question...",
+      "finish": "Saving results...",
+      "default": "Loading..."
+    },
+    "toast": {
+      "challengeSent": "Challenge Sent!",
+      "challengeSentOk": "Challenge Sent Successfully!",
+      "challengeSentDesc": "Your score ({{score}}/{{total}}) has been recorded. Your opponent will be notified.",
+      "challengeSentShort": "Your score ({{score}}/{{total}}) has been recorded.",
+      "saving": "Saving your score...",
+      "savingDesc": "Please wait while we update the leaderboard.",
+      "challengeCompleted": "Challenge Completed!",
+      "challengeCompletedDesc": "Your score ({{score}}/{{total}}) has been recorded!",
+      "greatJob": "Your score: {{score}}/{{total}}. Great job!",
+      "quizCompleted": "Quiz Completed!",
+      "quizCompletedDesc": "Saving your score ({{score}}/{{total}}) to the leaderboard..."
+    },
+    "results": {
+      "title": "Quiz Results",
+      "yourScore": "Your Score: {{score}} / {{total}}",
+      "percentage": "Percentage: {{value}}%",
+      "calculating": "Calculating results..."
+    },
+    "section": {
+      "choose": "Choose a section to play and learn from. Each section has {{size}} questions, always in the same order.",
+      "counts": "{{total}} questions · {{sections}} sections",
+      "noneTitle": "No Questions Available",
+      "noneText": "Sorry, there are no questions available for {{category}} in {{difficulty}} mode at this time.",
+      "browse": "Browse Subjects"
+    }
+  },
+  "results": {
+    "loading": "Loading your results...",
+    "titleSent": "Challenge Sent!",
+    "title": "Quiz Results",
+    "challengeSuffix": "Challenge",
+    "youScored": "You scored <green>{{score}}</green> out of <bold>{{total}}</bold>",
+    "excellent": "Excellent! MashaAllah!",
+    "good": "Good job! Keep learning! Alhamdulilah!",
+    "keepStudying": "Keep studying. You can improve! Astaghufiruallah!",
+    "waitingOpponent": "Waiting for opponent",
+    "yourOpponent": "your opponent",
+    "sentTo": "Your challenge has been sent to {{name}}. You'll be notified when they respond.",
+    "viewLeaderboard": "View Leaderboard",
+    "viewChallenges": "View Challenges",
+    "subjects": "Subjects",
+    "challenges": "Challenges",
+    "home": "Home",
+    "challengeResults": "Challenge Results",
+    "you": "You",
+    "welcome": "Welcome, {{name}}! 🎉",
+    "saving": "💾 Saving your score...",
+    "saved": "✅ Your score has been saved to your profile!",
+    "saveFailed": "⚠️ Could not save your score.",
+    "retry": "Retry",
+    "willSave": "✍️ Your score will be saved once you enter (or skip) your name.",
+    "authIssue": "Authentication Issue",
+    "authRefreshText": "Please refresh the page to restore your session.",
+    "refresh": "🔄 Refresh Page",
+    "noResultsTitle": "No quiz results found.",
+    "noResultsText": "Complete a quiz to see your results here!",
+    "startQuiz": "Start a Quiz",
+    "tryAgain": "Try Again",
+    "nextChallenge": "Next Challenge"
+  }
+}

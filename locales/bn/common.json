@@ -1,0 +1,124 @@
+{
+  "language": {
+    "label": "ভাষা"
+  },
+  "theme": {
+    "toggle": "থিম পরিবর্তন করুন"
+  },
+  "nav": {
+    "main": "প্রধান মেনু",
+    "subjects": "বিষয়সমূহ",
+    "challenges": "চ্যালেঞ্জ",
+    "leaderboard": "লিডারবোর্ড",
+    "profile": "প্রোফাইল",
+    "how": "যেভাবে কাজ করে",
+    "about": "আমাদের সম্পর্কে",
+    "menu": "মেনু"
+  },
+  "footer": {
+    "suggestions": "পরামর্শের জন্য হোয়াটসঅ্যাপ করুন",
+    "at": "নম্বর:",
+    "license": "লাইসেন্স ৪.০",
+    "about": "আমাদের সম্পর্কে",
+    "contribute": "অবদান রাখুন",
+    "github": "গিটহাব",
+    "aiCredits": "এআই-এর সহায়তায় তৈরি – কৃতজ্ঞতা দেখুন",
+    "navLabel": "ফুটার",
+    "copyright": "© {{year}} IQRA"
+  },
+  "difficulty": {
+    "easy": "সহজ",
+    "intermediate": "মধ্যম",
+    "medium": "মধ্যম",
+    "advanced": "কঠিন",
+    "hard": "কঠিন",
+    "mixed": "মিশ্র"
+  },
+  "quiz": {
+    "noQuestions": "এই বিষয় ও স্তরের জন্য কোনো প্রশ্ন নেই।",
+    "returnToSubjects": "বিষয়সমূহে ফিরে যান",
+    "backChallenges": "চ্যালেঞ্জ",
+    "backSubjects": "বিষয়সমূহ",
+    "challengeYourTurn": "চ্যালেঞ্জ (আপনার পালা)",
+    "challenge": "চ্যালেঞ্জ",
+    "questionOf": "প্রশ্ন {{current}} / {{total}}",
+    "questionN": "প্রশ্ন {{n}}",
+    "challenging": "চ্যালেঞ্জ করছেন:",
+    "opponent": "প্রতিপক্ষ:",
+    "challenger": "চ্যালেঞ্জার",
+    "waitingForQuiz": "আপনার কুইজের অপেক্ষায়",
+    "explanation": "ব্যাখ্যা:",
+    "visualExplanation": "{{category}} - চিত্রসহ ব্যাখ্যা",
+    "previous": "আগের",
+    "submit": "উত্তর জমা দিন",
+    "next": "পরের",
+    "finish": "কুইজ শেষ করুন",
+    "sendChallenge": "চ্যালেঞ্জ পাঠান",
+    "loading": {
+      "checking": "উত্তর যাচাই হচ্ছে...",
+      "next": "পরের প্রশ্ন আসছে...",
+      "finish": "ফলাফল সংরক্ষণ হচ্ছে...",
+      "default": "লোড হচ্ছে..."
+    },
+    "toast": {
+      "challengeSent": "চ্যালেঞ্জ পাঠানো হয়েছে!",
+      "challengeSentOk": "চ্যালেঞ্জ সফলভাবে পাঠানো হয়েছে!",
+      "challengeSentDesc": "আপনার স্কোর ({{score}}/{{total}}) সংরক্ষণ করা হয়েছে। আপনার প্রতিপক্ষকে জানানো হবে।",
+      "challengeSentShort": "আপনার স্কোর ({{score}}/{{total}}) সংরক্ষণ করা হয়েছে।",
+      "saving": "আপনার স্কোর সংরক্ষণ হচ্ছে...",
+      "savingDesc": "লিডারবোর্ড হালনাগাদ করা পর্যন্ত একটু অপেক্ষা করুন।",
+      "challengeCompleted": "চ্যালেঞ্জ সম্পন্ন হয়েছে!",
+      "challengeCompletedDesc": "আপনার স্কোর ({{score}}/{{total}}) সংরক্ষণ করা হয়েছে!",
+      "greatJob": "আপনার স্কোর: {{score}}/{{total}}। চমৎকার!",
+      "quizCompleted": "কুইজ সম্পন্ন হয়েছে!",
+      "quizCompletedDesc": "আপনার স্কোর ({{score}}/{{total}}) লিডারবোর্ডে সংরক্ষণ হচ্ছে..."
+    },
+    "results": {
+      "title": "কুইজের ফলাফল",
+      "yourScore": "আপনার স্কোর: {{score}} / {{total}}",
+      "percentage": "শতকরা: {{value}}%",
+      "calculating": "ফলাফল হিসাব করা হচ্ছে..."
+    },
+    "section": {
+      "choose": "খেলা ও শেখার জন্য একটি অংশ বেছে নিন। প্রতিটি অংশে {{size}}টি প্রশ্ন আছে, সবসময় একই ক্রমে।",
+      "counts": "{{total}}টি প্রশ্ন · {{sections}}টি অংশ",
+      "noneTitle": "কোনো প্রশ্ন নেই",
+      "noneText": "দুঃখিত, এখন {{category}}-এর জন্য {{difficulty}} স্তরে কোনো প্রশ্ন নেই।",
+      "browse": "বিষয়সমূহ দেখুন"
+    }
+  },
+  "results": {
+    "loading": "আপনার ফলাফল লোড হচ্ছে...",
+    "titleSent": "চ্যালেঞ্জ পাঠানো হয়েছে!",
+    "title": "কুইজের ফলাফল",
+    "challengeSuffix": "চ্যালেঞ্জ",
+    "youScored": "আপনি <bold>{{total}}</bold>-এর মধ্যে <green>{{score}}</green> পেয়েছেন",
+    "excellent": "চমৎকার! মাশাআল্লাহ!",
+    "good": "ভালো করেছেন! শিখতে থাকুন! আলহামদুলিল্লাহ!",
+    "keepStudying": "আরও পড়াশোনা করুন। আপনি আরও ভালো করতে পারবেন! আস্তাগফিরুল্লাহ!",
+    "waitingOpponent": "প্রতিপক্ষের অপেক্ষায়",
+    "yourOpponent": "আপনার প্রতিপক্ষ",
+    "sentTo": "আপনার চ্যালেঞ্জ {{name}}-কে পাঠানো হয়েছে। তিনি সাড়া দিলে আপনাকে জানানো হবে।",
+    "viewLeaderboard": "লিডারবোর্ড দেখুন",
+    "viewChallenges": "চ্যালেঞ্জ দেখুন",
+    "subjects": "বিষয়সমূহ",
+    "challenges": "চ্যালেঞ্জ",
+    "home": "হোম",
+    "challengeResults": "চ্যালেঞ্জের ফলাফল",
+    "you": "আপনি",
+    "welcome": "স্বাগতম, {{name}}! 🎉",
+    "saving": "💾 আপনার স্কোর সংরক্ষণ হচ্ছে...",
+    "saved": "✅ আপনার স্কোর প্রোফাইলে সংরক্ষণ করা হয়েছে!",
+    "saveFailed": "⚠️ আপনার স্কোর সংরক্ষণ করা যায়নি।",
+    "retry": "আবার চেষ্টা করুন",
+    "willSave": "✍️ আপনি নাম দিলে (অথবা বাদ দিলে) আপনার স্কোর সংরক্ষণ করা হবে।",
+    "authIssue": "লগইন সমস্যা",
+    "authRefreshText": "সেশন ফিরিয়ে আনতে পৃষ্ঠাটি রিফ্রেশ করুন।",
+    "refresh": "🔄 পৃষ্ঠা রিফ্রেশ করুন",
+    "noResultsTitle": "কোনো কুইজের ফলাফল পাওয়া যায়নি।",
+    "noResultsText": "ফলাফল দেখতে একটি কুইজ সম্পন্ন করুন!",
+    "startQuiz": "কুইজ শুরু করুন",
+    "tryAgain": "আবার চেষ্টা করুন",
+    "nextChallenge": "পরের চ্যালেঞ্জ"
+  }
+}

@@ -10,19 +10,22 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import ChallengeBell from "@/components/challenge/challenge-bell"
 import { useScrolled } from "@/hooks/use-scrolled"
 import { cn } from "@/lib/utils"
+import { useTranslation } from "react-i18next"
+import LanguageSwitcher from "@/components/i18n/language-switcher"
 
 const NAV_ITEMS = [
-  { href: "/subjects", label: "Subjects" },
-  { href: "/challenges", label: "Challenges" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/profile", label: "Profile" },
-  { href: "/how", label: "How it works" },
-  { href: "/about", label: "About" },
+  { href: "/subjects", key: "nav.subjects" },
+  { href: "/challenges", key: "nav.challenges" },
+  { href: "/leaderboard", key: "nav.leaderboard" },
+  { href: "/profile", key: "nav.profile" },
+  { href: "/how", key: "nav.how" },
+  { href: "/about", key: "nav.about" },
 ]
 
 const isActive = (pathname: string, href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 const Header = () => {
+  const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname() ?? "/"
   const scrolled = useScrolled(8)
@@ -48,7 +51,7 @@ const Header = () => {
           aria-current={active ? "page" : undefined}
           onClick={mobile ? closeMobileMenu : undefined}
         >
-          {item.label}
+          {t(item.key)}
         </Link>
       </Button>
     )
@@ -71,24 +74,26 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav aria-label="Main" className="hidden lg:flex items-center gap-1">
+          <nav aria-label={t("nav.main")} className="hidden lg:flex items-center gap-1">
             {NAV_ITEMS.map((item) => navButton(item))}
             <ChallengeBell />
+            <LanguageSwitcher />
             <ThemeToggle />
           </nav>
 
           {/* Mobile Navigation */}
           <div className="lg:hidden flex items-center gap-1">
             <ChallengeBell />
+            <LanguageSwitcher />
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" aria-label="Menu">
+                <Button variant="ghost" size="sm" aria-label={t("nav.menu")}>
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
-                <nav aria-label="Main" className="flex flex-col space-y-4 mt-8">
+                <nav aria-label={t("nav.main")} className="flex flex-col space-y-4 mt-8">
                   {NAV_ITEMS.map((item) => navButton(item, true))}
                 </nav>
               </SheetContent>

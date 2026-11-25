@@ -1,15 +1,31 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Reem_Kufi, Scheherazade_New } from "next/font/google"
+import { Inter, Noto_Sans_Bengali, Noto_Sans_Tamil, Reem_Kufi, Scheherazade_New } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { AuthProvider } from "@/contexts/auth-context"
+import I18nProvider from "@/components/i18n/i18n-provider"
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"] })
+
+// Inter has no Bengali or Tamil letters. These two fill in for বাংলা and தமிழ் text only: the
+// browser downloads a file just when a page shows those scripts, so English readers pay nothing.
+const notoBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  display: "swap",
+  preload: false,
+  variable: "--font-bengali",
+})
+const notoTamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  display: "swap",
+  preload: false,
+  variable: "--font-tamil",
+})
 
 // Arabic text (ayahs, font-arabic): self-hosted by next/font, exposed as --font-arabic for tailwind.
 // It has the Arabic ligatures (e.g. U+FDFB) that Inter lacks.
@@ -88,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html prefix="og: https://ogp.me/ns#" lang="en" className={`${scheherazade.variable} ${reemKufi.variable} overflow-x-clip`} suppressHydrationWarning>
+    <html prefix="og: https://ogp.me/ns#" lang="en" className={`${scheherazade.variable} ${reemKufi.variable} ${notoBengali.variable} ${notoTamil.variable} overflow-x-clip`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <script
@@ -96,9 +112,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
       </head>
-      <body className={`${inter.className} w-full min-h-screen overflow-x-clip bg-background text-foreground`}>
+      <body
+        style={{
+          fontFamily: `${inter.style.fontFamily}, var(--font-bengali), var(--font-tamil), ui-sans-serif, system-ui, sans-serif`,
+        }}
+        className={`w-full min-h-screen overflow-x-clip bg-background text-foreground`}
+      >
         <div>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <I18nProvider>
         <AuthProvider>
           <div className="flex min-h-dvh w-full flex-col">
             <Header />
@@ -107,6 +129,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </AuthProvider>
+        </I18nProvider>
           </ThemeProvider>
         </div>
       </body>

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import Link from "next/link"
+import { Trans, useTranslation } from "react-i18next"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -128,6 +129,7 @@ const onServer = () => false
 
 export default function ResultsPage() {
   const router = useRouter()
+  const { t } = useTranslation()
   const { user, profile, loading } = useAuth()
   const isClient = useSyncExternalStore(noSubscribe, onClient, onServer)
   // Read once on mount (lazy initializer), never during server rendering.
@@ -274,9 +276,9 @@ export default function ResultsPage() {
   // Determine message based on score
   const getMessage = () => {
     if (percentage === null) return ""
-    if (percentage >= 80) return "Excellent! MashaAllah!"
-    if (percentage >= 60) return "Good job! Keep learning! Alhamdulilah!"
-    return "Keep studying. You can improve! Astaghufiruallah!"
+    if (percentage >= 80) return t("results.excellent")
+    if (percentage >= 60) return t("results.good")
+    return t("results.keepStudying")
   }
 
   const tryAgain = () => {
@@ -305,7 +307,7 @@ export default function ResultsPage() {
       <div className="mx-auto w-full max-w-6xl sm:px-6 flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-md border-green-200 shadow-lg">
           <CardContent className="text-center py-8">
-            <p>Loading your results...</p>
+            <p>{t("results.loading")}</p>
           </CardContent>
         </Card>
       </div>
@@ -330,12 +332,13 @@ export default function ResultsPage() {
       {newBadges.length > 0 && <BadgeNotification badges={newBadges} onClose={() => setNewBadges([])} />}
 
       <PageHeader
-        title={showChallengeSubmitted ? "Challenge Sent!" : "Quiz Results"}
+        title={showChallengeSubmitted ? t("results.titleSent") : t("results.title")}
         subtitle={
           categoryTitle && difficulty ? (
             <>
-              {categoryTitle} - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-              {(showChallengeSubmitted || challenge) && " Challenge"}
+              {categoryTitle} -{" "}
+              {t(`difficulty.${difficulty}`, { defaultValue: difficulty.charAt(0).toUpperCase() + difficulty.slice(1) })}
+              {(showChallengeSubmitted || challenge) && ` ${t("results.challengeSuffix")}`}
             </>
           ) : undefined
         }
@@ -373,31 +376,33 @@ export default function ResultsPage() {
               </div>
             </div>
             <p className="text-xl mb-2 dark:text-white">
-              You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
-              <span className="font-bold">{totalQuestions}</span>
+              <Trans
+                i18nKey="results.youScored"
+                values={{ score, total: totalQuestions }}
+                components={{ green: <span className="font-bold text-green-700 dark:text-green-400" />, bold: <span className="font-bold" /> }}
+              />
             </p>
             <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
             <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-center mb-2">
                 <Clock className="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <span className="text-lg font-medium dark:text-white">Waiting for opponent</span>
+                <span className="text-lg font-medium dark:text-white">{t("results.waitingOpponent")}</span>
               </div>
               <p className="text-blue-600 dark:text-blue-400 mb-4">
-                Your challenge has been sent to {opponent?.name || "your opponent"}. You&apos;ll be notified when they
-                respond.
+                {t("results.sentTo", { name: opponent?.name || t("results.yourOpponent") })}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 w-full">
                 <Link href="/leaderboard" className="flex-1">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">
                     <Trophy className="mr-2 h-4 w-4" />
-                    View Leaderboard
+                    {t("results.viewLeaderboard")}
                   </Button>
                 </Link>
                 <Link href="/challenges" className="flex-1">
                   <Button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
                     <Users className="mr-2 h-4 w-4" />
-                    View Challenges
+                    {t("results.viewChallenges")}
                   </Button>
                 </Link>
               </div>
@@ -407,14 +412,14 @@ export default function ResultsPage() {
             <Link href="/subjects">
               <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Subjects
+                {t("results.subjects")}
               </Button>
             </Link>
             <Button
               className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
               onClick={() => router.push("/")}
             >
-              Home
+              {t("results.home")}
             </Button>
           </CardFooter>
         </Card>
@@ -423,9 +428,9 @@ export default function ResultsPage() {
         <>
           {challenge && opponent && (
             <div className="w-full max-w-md mx-auto mb-6">
-              <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">Challenge Results</h2>
+              <h2 className="text-lg font-semibold mb-3 text-center dark:text-white">{t("results.challengeResults")}</h2>
               <ChallengeResultsComparison
-                userName={isAuthenticated ? profile?.full_name || profile?.username || "You" : "You"}
+                userName={isAuthenticated ? profile?.full_name || profile?.username || t("results.you") : t("results.you")}
                 userScore={score || 0}
                 opponent={opponent}
                 totalQuestions={totalQuestions || 10}
@@ -466,8 +471,11 @@ export default function ResultsPage() {
                       </div>
                     </div>
                     <p className="text-xl mb-2 dark:text-white">
-                      You scored <span className="font-bold text-green-700 dark:text-green-400">{score}</span> out of{" "}
-                      <span className="font-bold">{totalQuestions}</span>
+                      <Trans
+                        i18nKey="results.youScored"
+                        values={{ score, total: totalQuestions }}
+                        components={{ green: <span className="font-bold text-green-700 dark:text-green-400" />, bold: <span className="font-bold" /> }}
+                      />
                     </p>
                     <p className="text-lg text-green-800 dark:text-green-400 mb-6">{getMessage()}</p>
 
@@ -477,18 +485,18 @@ export default function ResultsPage() {
                         <div className="flex items-center justify-center mb-2">
                           <Award className="mr-2 h-5 w-5 text-green-600 dark:text-green-400" />
                           <span className="text-lg font-medium dark:text-white">
-                            Welcome, {profile?.full_name || profile?.username}! 🎉
+                            {t("results.welcome", { name: profile?.full_name || profile?.username })}
                           </span>
                         </div>
                         {saving ? (
-                          <p className="text-blue-600 dark:text-blue-400 mb-4">💾 Saving your score...</p>
+                          <p className="text-blue-600 dark:text-blue-400 mb-4">{t("results.saving")}</p>
                         ) : submitted ? (
                           <p className="text-green-700 dark:text-green-400 mb-4">
-                            ✅ Your score has been saved to your profile!
+                            {t("results.saved")}
                           </p>
                         ) : saveError ? (
                           <p className="text-red-600 dark:text-red-400 mb-4">
-                            ⚠️ Could not save your score.{" "}
+                            {t("results.saveFailed")}{" "}
                             <button
                               className="underline"
                               onClick={() => {
@@ -496,12 +504,12 @@ export default function ResultsPage() {
                                 saveResult()
                               }}
                             >
-                              Retry
+                              {t("results.retry")}
                             </button>
                           </p>
                         ) : !challenge ? (
                           <p className="text-yellow-600 dark:text-yellow-400 mb-4">
-                            ✍️ Your score will be saved once you enter (or skip) your name.
+                            {t("results.willSave")}
                           </p>
                         ) : null}
                         <div className="flex flex-col sm:flex-row gap-3 w-full">
@@ -526,16 +534,16 @@ export default function ResultsPage() {
                       <div className="mt-6 border-t pt-4 border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-center mb-2">
                           <Award className="mr-2 h-5 w-5 text-red-500" />
-                          <span className="text-lg font-medium dark:text-white">Authentication Issue</span>
+                          <span className="text-lg font-medium dark:text-white">{t("results.authIssue")}</span>
                         </div>
                         <p className="text-center text-red-600 dark:text-red-400 mb-4">
-                          Please refresh the page to restore your session.
+                          {t("results.authRefreshText")}
                         </p>
                         <Button
                           onClick={() => window.location.reload()}
                           className="w-full bg-blue-600 hover:bg-blue-700"
                         >
-                          🔄 Refresh Page
+                          {t("results.refresh")}
                         </Button>
                       </div>
                     )}
@@ -543,12 +551,12 @@ export default function ResultsPage() {
                 ) : (
                   <EmptyState
                     icon={<Trophy />}
-                    title="No quiz results found."
-                    text="Complete a quiz to see your results here!"
+                    title={t("results.noResultsTitle")}
+                    text={t("results.noResultsText")}
                     action={
                       <Link href="/subjects">
                         <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600">
-                          Start a Quiz
+                          {t("results.startQuiz")}
                         </Button>
                       </Link>
                     }
@@ -559,21 +567,21 @@ export default function ResultsPage() {
                 <Link href={challenge ? "/challenges" : "/subjects"}>
                   <Button variant="outline" className="dark:border-green-700 dark:text-green-400 bg-transparent">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    {challenge ? "Challenges" : "Subjects"}
+                    {challenge ? t("results.challenges") : t("results.subjects")}
                   </Button>
                 </Link>
                 <Button
                   className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
                   onClick={tryAgain}
                 >
-                  Try Again
+                  {t("results.tryAgain")}
                 </Button>
                 {challenge && nextChallenge && (
                   <Button
                     className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 ml-2"
                     onClick={goToNextChallenge}
                   >
-                    Next Challenge
+                    {t("results.nextChallenge")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 )}

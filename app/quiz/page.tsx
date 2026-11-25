@@ -214,6 +214,7 @@ function SectionPicker({
     <div className="container mx-auto py-8 px-4 max-w-3xl">
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold text-green-800 dark:text-green-400">{categoryTitle}</h1>
+        {/* i18n: server, slice C */}
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
           Choose a section to play and learn from. Each section has {sectionSize} questions, always in the same order.
         </p>
@@ -296,6 +297,7 @@ export default async function QuizPage({
   if (pool.length === 0) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
+        {/* i18n: server, slice C */}
         <h1 className="text-2xl font-bold mb-4">No Questions Available</h1>
         <p className="mb-6">
           Sorry, there are no questions available for {cat.title} in {String(difficulty)} mode at this time.
