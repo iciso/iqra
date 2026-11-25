@@ -3,33 +3,14 @@
 import { useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-export type VerseRef = { sura: number; aya: number }
+import { parseVerseRefs, type VerseRef } from "@/lib/verse-refs"
+
+export type { VerseRef }
+export { parseVerseRefs }
 export type VerseState = VerseRef & { status: "loading" | "ready"; translation: string }
 
-const MAX_VERSES = 3
 const ENDPOINT = "https://quranenc.com/api/v1/translation/aya/bengali_zakaria"
 const memory = new Map<string, string>()
-
-/** Finds references such as (78:13), 78:13 or (2:255-257); a range expands to its ayas, 3 at most in all. */
-export const parseVerseRefs = (text: string): VerseRef[] => {
-  const found: VerseRef[] = []
-  const seen = new Set<string>()
-  const pattern = /(?<![\d:.])(\d{1,3}):(\d{1,3})(?:\s*[-–]\s*(\d{1,3}))?(?![\d:])/g
-  for (const m of text.matchAll(pattern)) {
-    const sura = Number(m[1])
-    const from = Number(m[2])
-    const to = m[3] ? Number(m[3]) : from
-    if (sura < 1 || sura > 114 || from < 1 || from > 286 || to < from) continue
-    for (let aya = from; aya <= to && aya < from + MAX_VERSES; aya++) {
-      const key = `${sura}:${aya}`
-      if (seen.has(key)) continue
-      seen.add(key)
-      found.push({ sura, aya })
-      if (found.length >= MAX_VERSES) return found
-    }
-  }
-  return found
-}
 
 const readStored = (key: string): string | undefined => {
   try {
