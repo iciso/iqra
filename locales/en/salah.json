@@ -1,0 +1,909 @@
+{
+  "_meta": {
+    "status": "approved",
+    "title": "Salah",
+    "description": "The second pillar of Islam: the daily prayers and how to perform them."
+  },
+  "questions": {
+    "salah-easy-1": {
+      "question": "What is the Arabic term for the five daily prayers in Islam?",
+      "options": [
+        "Zakat",
+        "Sawm",
+        "Salah",
+        "Hajj"
+      ],
+      "explanation": "Salah refers to the ritual prayer, the second pillar of Islam, performed five times a day."
+    },
+    "salah-easy-2": {
+      "question": "How many times a day is Salah obligatory for Muslims?",
+      "options": [
+        "Three",
+        "Four",
+        "Five",
+        "Seven"
+      ],
+      "explanation": "Salah is obligatory five times daily: Fajr, Dhuhr, Asr, Maghrib, and Isha."
+    },
+    "salah-easy-3": {
+      "question": "What is the first obligatory Salah of the day?",
+      "options": [
+        "Dhuhr",
+        "Fajr",
+        "Maghrib",
+        "Isha"
+      ],
+      "explanation": "Fajr is the dawn prayer, the first of the five daily obligatory prayers."
+    },
+    "salah-easy-4": {
+      "question": "In which direction do Muslims face while performing Salah?",
+      "options": [
+        "East",
+        "North",
+        "Qiblah",
+        "Mecca"
+      ],
+      "explanation": "The Qiblah is the direction towards the Ka'bah in Mecca, Saudi Arabia."
+    },
+    "salah-easy-5": {
+      "question": "What is the prerequisite for performing Salah, involving washing body parts?",
+      "options": [
+        "Ghusl",
+        "Tayammum",
+        "Wudu",
+        "Istinja"
+      ],
+      "explanation": "Wudu is the ritual ablution that purifies specific body parts before prayer."
+    },
+    "salah-easy-6": {
+      "question": "How many Rak'ahs are in the obligatory Fajr prayer?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "explanation": "Fajr consists of two Rak'ahs of obligatory prayer."
+    },
+    "salah-easy-7": {
+      "question": "What does the term 'Rak'ah' mean in Salah?",
+      "options": [
+        "A unit of prayer",
+        "A prostration",
+        "A recitation",
+        "A bow"
+      ],
+      "explanation": "A Rak'ah is a complete unit of prayer consisting of standing, bowing, prostrating, etc."
+    },
+    "salah-easy-8": {
+      "question": "Which pillar of Islam is Salah considered?",
+      "options": [
+        "First",
+        "Second",
+        "Third",
+        "Fifth"
+      ],
+      "explanation": "Salah is the second pillar of Islam after the Shahadah."
+    },
+    "salah-easy-9": {
+      "question": "What is the punishment for missing an obligatory Salah intentionally?",
+      "options": [
+        "Minor sin",
+        "Major sin",
+        "No punishment",
+        "Only advice"
+      ],
+      "explanation": "Intentionally missing an obligatory Salah is considered a major sin in Islam."
+    },
+    "salah-easy-10": {
+      "question": "What is the reward for performing Salah on time?",
+      "options": [
+        "Equal to a Hajj",
+        "Entry to Paradise",
+        "Equal to a Umrah",
+        "Nothing specific"
+      ],
+      "explanation": "Salah on time brings forgiveness of sins and is a means to enter Paradise."
+    },
+    "salah-easy-11": {
+      "question": "How many Rak'ahs are in the obligatory Dhuhr prayer?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "explanation": "Dhuhr, the noon prayer, consists of four obligatory Rak'ahs."
+    },
+    "salah-easy-12": {
+      "question": "What is the name of the prayer performed just after sunset?",
+      "options": [
+        "Asr",
+        "Maghrib",
+        "Isha",
+        "Fajr"
+      ],
+      "explanation": "Maghrib is the sunset prayer, consisting of three obligatory Rak'ahs."
+    },
+    "salah-easy-13": {
+      "question": "Can women lead men in congregational Salah?",
+      "options": [
+        "Yes, always",
+        "No",
+        "Only in special cases",
+        "Only if no men present"
+      ],
+      "explanation": "In orthodox fiqh, women do not lead men in mixed congregational prayers."
+    },
+    "salah-easy-14": {
+      "question": "What is 'Adhan' in the context of Salah?",
+      "options": [
+        "The call to prayer",
+        "The ablution",
+        "The prostration",
+        "The sermon"
+      ],
+      "explanation": "Adhan is the Islamic call to prayer announced from the mosque."
+    },
+    "salah-easy-15": {
+      "question": "How many Rak'ahs are in the obligatory Asr prayer?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "explanation": "Asr, the afternoon prayer, consists of four obligatory Rak'ahs."
+    },
+    "salah-easy-16": {
+      "question": "What is the purpose of Salah according to the Quran?",
+      "options": [
+        "To seek wealth",
+        "To remember Allah",
+        "To socialize",
+        "To exercise"
+      ],
+      "explanation": "The Quran states Salah is to remember Allah and establish prayer."
+    },
+    "salah-easy-17": {
+      "question": "What is 'Iqamah'?",
+      "options": [
+        "The second call to prayer",
+        "The first call",
+        "The ablution call",
+        "The end of prayer"
+      ],
+      "explanation": "Iqamah is the call immediately before starting congregational prayer."
+    },
+    "salah-easy-18": {
+      "question": "How many Rak'ahs are in the obligatory Isha prayer?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "explanation": "Isha, the night prayer, consists of four obligatory Rak'ahs."
+    },
+    "salah-easy-19": {
+      "question": "What invalidates Wudu?",
+      "options": [
+        "Eating",
+        "Sleeping deeply",
+        "Walking",
+        "Talking"
+      ],
+      "explanation": "Deep sleep invalidates Wudu, requiring renewal before Salah."
+    },
+    "salah-easy-20": {
+      "question": "What is 'Qunut' in Salah?",
+      "options": [
+        "A supplication in Witr prayer",
+        "A bow",
+        "A prostration",
+        "A recitation"
+      ],
+      "explanation": "Qunut is a special supplication recited in the Witr prayer."
+    },
+    "salah-easy-21": {
+      "question": "Is Salah obligatory on a traveler?",
+      "options": [
+        "Yes, full",
+        "Shortened",
+        "Exempt",
+        "Doubled"
+      ],
+      "explanation": "Travelers shorten four-Rak'ah prayers to two Rak'ahs."
+    },
+    "salah-easy-22": {
+      "question": "What is the minimum number of people needed for congregational Salah reward?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "explanation": "Congregational prayer with at least one other person multiplies the reward."
+    },
+    "salah-easy-23": {
+      "question": "What is 'Sujud' in Salah?",
+      "options": [
+        "Standing",
+        "Bowing",
+        "Prostration",
+        "Sitting"
+      ],
+      "explanation": "Sujud is the prostration, a key pillar of Salah performed twice per Rak'ah."
+    },
+    "salah-easy-24": {
+      "question": "Can one pray Salah without Wudu if water is unavailable?",
+      "options": [
+        "No",
+        "Yes, with Tayammum",
+        "Only at home",
+        "Never"
+      ],
+      "explanation": "Tayammum (dry ablution) is performed using clean earth when water is unavailable."
+    },
+    "salah-easy-25": {
+      "question": "What is the reward for the first row in congregational Salah?",
+      "options": [
+        "Standard reward",
+        "Highest reward",
+        "No reward",
+        "Half reward"
+      ],
+      "explanation": "The first row in congregational prayer receives the highest reward."
+    },
+    "salah-easy-26": {
+      "question": "How many pillars (Arkan) are there in Salah?",
+      "options": [
+        "Five",
+        "Six",
+        "Seven",
+        "Fourteen"
+      ],
+      "explanation": "Salah has fourteen major pillars according to most scholars, but varies slightly."
+    },
+    "salah-easy-27": {
+      "question": "What is 'Ruku' in Salah?",
+      "options": [
+        "Prostration",
+        "Bowing",
+        "Standing",
+        "Sitting"
+      ],
+      "explanation": "Ruku is the bowing position in prayer, glorifying Allah."
+    },
+    "salah-easy-28": {
+      "question": "Is Jumu'ah prayer obligatory for women?",
+      "options": [
+        "Yes",
+        "No, but recommended",
+        "Only if able",
+        "Exempt"
+      ],
+      "explanation": "Jumu'ah is obligatory for men but recommended for women."
+    },
+    "salah-easy-29": {
+      "question": "What is the rationale for Salah in Hadith?",
+      "options": [
+        "To purify the soul",
+        "To gain wealth",
+        "To fight enemies",
+        "To travel"
+      ],
+      "explanation": "A Hadith states Salah prevents indecency and evil, purifying the soul."
+    },
+    "salah-easy-30": {
+      "question": "How many Rak'ahs in obligatory Maghrib?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "explanation": "Maghrib consists of three obligatory Rak'ahs."
+    },
+    "salah-intermediate-1": {
+      "question": "What is the ruling on performing Salah while wearing shoes?",
+      "options": [
+        "Completely prohibited",
+        "Permissible if clean",
+        "Only for men",
+        "Only outside mosque"
+      ],
+      "explanation": "It is permissible to pray with shoes if they are clean and free from impurities."
+    },
+    "salah-intermediate-2": {
+      "question": "What is the minimum amount of body that must be covered during Salah for men?",
+      "options": [
+        "From navel to knees",
+        "Entire body except face",
+        "Only private parts",
+        "From shoulders to ankles"
+      ],
+      "explanation": "The minimum requirement for men is to cover from the navel to the knees."
+    },
+    "salah-intermediate-3": {
+      "question": "What is the ruling on reciting Quran during Ruku and Sujud?",
+      "options": [
+        "Permissible",
+        "Prohibited",
+        "Recommended",
+        "Obligatory"
+      ],
+      "explanation": "Reciting Quran during Ruku and Sujud is prohibited; instead, specific tasbih should be recited."
+    },
+    "salah-intermediate-4": {
+      "question": "What is the ruling on praying in a moving vehicle?",
+      "options": [
+        "Invalid",
+        "Valid with conditions",
+        "Only for travelers",
+        "Permissible anytime"
+      ],
+      "explanation": "It is valid to pray in a moving vehicle if facing the Qiblah is not possible, by making gestures."
+    },
+    "salah-intermediate-5": {
+      "question": "What is the time period for Dhuhr prayer?",
+      "options": [
+        "From sunrise to noon",
+        "From noon until shadow equals object",
+        "From noon until Asr",
+        "From midday to sunset"
+      ],
+      "explanation": "Dhuhr time begins when the sun passes its zenith and continues until the shadow of an object equals its length."
+    },
+    "salah-intermediate-6": {
+      "question": "What is the ruling on combining prayers during travel?",
+      "options": [
+        "Not permitted",
+        "Permitted for Dhuhr and Asr only",
+        "Permitted for Maghrib and Isha only",
+        "Permitted for Dhuhr-Asr and Maghrib-Isha"
+      ],
+      "explanation": "Travelers may combine Dhuhr with Asr and Maghrib with Isha either by advancing or delaying."
+    },
+    "salah-intermediate-7": {
+      "question": "What is the ruling on praying Sunnah prayers while traveling?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Not recommended",
+        "Prohibited"
+      ],
+      "explanation": "Sunnah prayers are recommended but not obligatory while traveling."
+    },
+    "salah-intermediate-8": {
+      "question": "What invalidates Tayammum?",
+      "options": [
+        "Eating",
+        "Sleeping",
+        "Seeing water",
+        "All of the above"
+      ],
+      "explanation": "Tayammum becomes invalid when water becomes available and can be used for Wudu."
+    },
+    "salah-intermediate-9": {
+      "question": "What is the ruling on praying with the intention of following the Imam?",
+      "options": [
+        "Not necessary",
+        "Obligatory",
+        "Recommended",
+        "Invalidates prayer"
+      ],
+      "explanation": "It is obligatory to have the intention of following the Imam when praying in congregation."
+    },
+    "salah-intermediate-10": {
+      "question": "What is the ruling on making up missed prayers?",
+      "options": [
+        "Not required",
+        "Required only for recent ones",
+        "Always required",
+        "Only for Fajr prayer"
+      ],
+      "explanation": "Missed obligatory prayers must be made up as soon as possible, regardless of how long they were delayed."
+    },
+    "salah-intermediate-11": {
+      "question": "What is the minimum recitation required in each Rak'ah?",
+      "options": [
+        "Surah Al-Fatihah only",
+        "Any verse of Quran",
+        "Surah Al-Fatihah and another Surah",
+        "No specific requirement"
+      ],
+      "explanation": "The minimum requirement is recitation of Surah Al-Fatihah in each Rak'ah."
+    },
+    "salah-intermediate-12": {
+      "question": "What is the ruling on praying while sitting due to illness?",
+      "options": [
+        "Invalid",
+        "Valid with conditions",
+        "Only for elderly",
+        "Permissible only for Fard prayers"
+      ],
+      "explanation": "One may pray sitting if unable to stand, and if unable to sit, then lying down."
+    },
+    "salah-intermediate-13": {
+      "question": "What is the time period for Fajr prayer?",
+      "options": [
+        "From dawn to sunrise",
+        "From midnight to sunrise",
+        "From dawn until full daylight",
+        "From early morning to noon"
+      ],
+      "explanation": "Fajr time begins at true dawn and continues until just before sunrise."
+    },
+    "salah-intermediate-14": {
+      "question": "What is the ruling on reciting aloud in Fajr, Maghrib, and Isha prayers?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Optional",
+        "Prohibited"
+      ],
+      "explanation": "It is Sunnah to recite aloud in Fajr, first two Rak'ahs of Maghrib and Isha for the Imam."
+    },
+    "salah-intermediate-15": {
+      "question": "What is the ruling on praying behind someone whose prayer is valid but whose Wudu is doubtful?",
+      "options": [
+        "Valid",
+        "Invalid",
+        "Makruh",
+        "Only if no other Imam available"
+      ],
+      "explanation": "The prayer is valid as long as the Imam's prayer is valid, even if there are doubts about his Wudu."
+    },
+    "salah-intermediate-16": {
+      "question": "What is the ruling on praying in a language other than Arabic?",
+      "options": [
+        "Permissible for non-Arabs",
+        "Only for new Muslims",
+        "Not permissible",
+        "Only for voluntary prayers"
+      ],
+      "explanation": "The recitation in Salah must be in Arabic, even for non-Arabic speakers."
+    },
+    "salah-intermediate-17": {
+      "question": "What is the ruling on praying with impurities on one's clothing?",
+      "options": [
+        "Invalid",
+        "Valid if small amount",
+        "Valid if unaware",
+        "Valid if difficult to remove"
+      ],
+      "explanation": "Prayer is invalid if performed with Najasah (impurities) on one's clothing or body."
+    },
+    "salah-intermediate-18": {
+      "question": "What is the ruling on delaying Asr prayer until the sun turns yellow?",
+      "options": [
+        "Permissible",
+        "Makruh",
+        "Recommended",
+        "Prohibited"
+      ],
+      "explanation": "It is disliked to delay Asr prayer until the sun becomes yellow; it should be prayed earlier in its time."
+    },
+    "salah-intermediate-19": {
+      "question": "What is the ruling on praying voluntary prayers at sunrise, zenith, and sunset?",
+      "options": [
+        "Permissible",
+        "Recommended",
+        "Makruh",
+        "Prohibited"
+      ],
+      "explanation": "It is prohibited to pray voluntary prayers at sunrise, when the sun is at its zenith, and at sunset."
+    },
+    "salah-intermediate-20": {
+      "question": "What is the minimum number of people required for Jumu'ah prayer?",
+      "options": [
+        "Three",
+        "Five",
+        "Forty",
+        "No specific number"
+      ],
+      "explanation": "There is no specific number mentioned in authentic sources; it requires a congregation."
+    },
+    "salah-intermediate-21": {
+      "question": "What is the ruling on praying while hungry when food is served?",
+      "options": [
+        "Continue prayer",
+        "Break prayer to eat",
+        "Only if very hungry",
+        "Finish quickly then eat"
+      ],
+      "explanation": "If food is served and one is hungry, it is recommended to break the voluntary prayer to eat."
+    },
+    "salah-intermediate-22": {
+      "question": "What is the ruling on praying in a built-up graveyard?",
+      "options": [
+        "Permissible",
+        "Makruh",
+        "Prohibited",
+        "Only for funeral prayers"
+      ],
+      "explanation": "It is prohibited to pray in graveyards, except for the funeral prayer."
+    },
+    "salah-intermediate-23": {
+      "question": "What is the ruling on making Sujud on something attached to the earth?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Permissible",
+        "Not required"
+      ],
+      "explanation": "It is obligatory to make Sujud on something attached to the earth, like the ground or a prayer mat."
+    },
+    "salah-intermediate-24": {
+      "question": "What is the ruling on praying with an imitation of an animal on clothing?",
+      "options": [
+        "Permissible",
+        "Makruh",
+        "Prohibited",
+        "Only if small"
+      ],
+      "explanation": "It is disliked to pray with clothing containing images of animate beings."
+    },
+    "salah-intermediate-25": {
+      "question": "What is the ruling on reciting Bismillah aloud in prayer?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Optional",
+        "Prohibited"
+      ],
+      "explanation": "Reciting Bismillah aloud is optional; it may be recited silently or aloud."
+    },
+    "salah-intermediate-26": {
+      "question": "What is the ruling on praying while needing to use the restroom?",
+      "options": [
+        "Valid",
+        "Invalid",
+        "Makruh",
+        "Only if urgent"
+      ],
+      "explanation": "It is disliked to pray while needing to relieve oneself as it distracts from concentration."
+    },
+    "salah-intermediate-27": {
+      "question": "What is the ruling on raising hands during Takbiratul Ihram?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Optional",
+        "Prohibited"
+      ],
+      "explanation": "Raising hands during the opening Takbir is a recommended Sunnah, not obligatory."
+    },
+    "salah-intermediate-28": {
+      "question": "What is the ruling on praying voluntary prayers at night while sitting?",
+      "options": [
+        "Permissible",
+        "Invalid",
+        "Only if sick",
+        "With half reward"
+      ],
+      "explanation": "It is permissible to pray voluntary prayers while sitting, even if one can stand, with full reward."
+    },
+    "salah-intermediate-29": {
+      "question": "What is the ruling on saying 'Ameen' after Al-Fatihah?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Optional",
+        "Prohibited"
+      ],
+      "explanation": "Saying 'Ameen' after Al-Fatihah is a recommended Sunnah for both Imam and followers."
+    },
+    "salah-intermediate-30": {
+      "question": "What is the ruling on making Tasleem at the end of prayer?",
+      "options": [
+        "Obligatory",
+        "Recommended",
+        "Optional",
+        "Prohibited"
+      ],
+      "explanation": "Making Tasleem (saying As-salamu alaykum) to both sides is an obligatory part of Salah."
+    },
+    "salah-advanced-1": {
+      "question": "According to Hanafi fiqh, what is the ruling on delaying Salah without excuse?",
+      "options": [
+        "Makruh",
+        "Haram",
+        "Mubah",
+        "Wajib"
+      ],
+      "explanation": "In Hanafi school, delaying obligatory Salah beyond its time without valid excuse is haram."
+    },
+    "salah-advanced-2": {
+      "question": "What is the Hadith regarding the reward of one Rak'ah in Fajr?",
+      "options": [
+        "Equals one night fasting",
+        "Equals 27 Rak'ahs",
+        "Equals Hajj",
+        "Equals charity"
+      ],
+      "explanation": "A Hadith states one Rak'ah of Fajr in congregation equals 27 Rak'ahs otherwise."
+    },
+    "salah-advanced-3": {
+      "question": "In Shafi'i fiqh, how many essential pillars (Arkan) does Salah have?",
+      "options": [
+        "12",
+        "13",
+        "14",
+        "17"
+      ],
+      "explanation": "Shafi'i school lists 17 essential pillars for the validity of Salah."
+    },
+    "salah-advanced-4": {
+      "question": "What is 'Masjid al-Haram' special ruling for Salah?",
+      "options": [
+        "100,000 times",
+        "500 times",
+        "27 times",
+        "10 times"
+      ],
+      "explanation": "Prayer in Masjid al-Haram multiplies reward by 100,000 times according to Hadith."
+    },
+    "salah-advanced-5": {
+      "question": "What invalidates Salah according to most fuqaha?",
+      "options": [
+        "Talking intentionally",
+        "Coughing",
+        "Yawning",
+        "Moving slightly"
+      ],
+      "explanation": "Intentional speech invalidates Salah, as it breaks concentration and recitation."
+    },
+    "salah-advanced-6": {
+      "question": "What is the punishment for abandoning Salah in Hadith?",
+      "options": [
+        "Hypocrite",
+        "Out of Islam",
+        "Minor sin only",
+        "No punishment"
+      ],
+      "explanation": "A Hadith warns that abandoning prayer takes one out of the fold of Islam."
+    },
+    "salah-advanced-7": {
+      "question": "In Maliki fiqh, is touching opposite gender invalidate Wudu?",
+      "options": [
+        "Yes, always",
+        "No, unless desire",
+        "Only if lust",
+        "Never"
+      ],
+      "explanation": "Maliki school holds that touching opposite gender invalidates Wudu only with desire."
+    },
+    "salah-advanced-8": {
+      "question": "What is 'Salat al-Duha'?",
+      "options": [
+        "Fard prayer",
+        "Sunnah Mu'akkadah",
+        "Nawafil voluntary",
+        "Witr"
+      ],
+      "explanation": "Salat al-Duha is a voluntary prayer performed in the forenoon, recommended in Sunnah."
+    },
+    "salah-advanced-9": {
+      "question": "According to a Hadith, what is the key to Paradise?",
+      "options": [
+        "Fasting",
+        "Charity",
+        "Salah",
+        "Shahadah"
+      ],
+      "explanation": "The Prophet said the first thing judged on Judgment Day is Salah; it is the key to Paradise."
+    },
+    "salah-advanced-10": {
+      "question": "In Hanbali fiqh, what is the ruling on praying behind a prostrating imam?",
+      "options": [
+        "Invalid",
+        "Valid if unavoidable",
+        "Always valid",
+        "Makruh"
+      ],
+      "explanation": "Hanbali allows following an imam in prostration if no choice, but prefers correction."
+    },
+    "salah-advanced-11": {
+      "question": "What is 'Istisqa' prayer?",
+      "options": [
+        "For rain",
+        "For forgiveness",
+        "For travel",
+        "For illness"
+      ],
+      "explanation": "Salat al-Istisqa is a special congregational prayer seeking Allah's mercy for rain."
+    },
+    "salah-advanced-12": {
+      "question": "How many Rak'ahs is Witr prayer according to Ahl al-Sunnah?",
+      "options": [
+        "One only",
+        "Three",
+        "Eleven",
+        "Thirteen"
+      ],
+      "explanation": "Witr is typically three Rak'ahs with Qunut in the third, odd-numbered voluntary prayer."
+    },
+    "salah-advanced-13": {
+      "question": "What is the fiqh ruling on combining Dhuhr and Asr?",
+      "options": [
+        "Never allowed",
+        "Only in travel",
+        "In rain or hardship",
+        "Always"
+      ],
+      "explanation": "Combining prayers is allowed in travel, rain, or excused hardship per most schools."
+    },
+    "salah-advanced-14": {
+      "question": "In a Hadith, what did the Prophet say about Salah and Zina?",
+      "options": [
+        "They are similar in prevention",
+        "Salah causes Zina",
+        "No relation",
+        "Zina prevents Salah"
+      ],
+      "explanation": "Just as Zina is prevented by veiling, Salah prevents immorality per a Hadith."
+    },
+    "salah-advanced-15": {
+      "question": "What is 'Tashahhud' in Salah?",
+      "options": [
+        "Testimony of faith in sitting",
+        "Recitation of Fatiha",
+        "Takbir",
+        "Tasbih"
+      ],
+      "explanation": "Tashahhud is the sitting testimony reciting Shahadah and salutations on Prophet."
+    },
+    "salah-advanced-16": {
+      "question": "According to Shafi'i, is covering ankles mandatory for men in Salah?",
+      "options": [
+        "Yes",
+        "No, recommended",
+        "Only in congregation",
+        "Never"
+      ],
+      "explanation": "Shafi'i requires men to cover from navel to knees, including ankles, for validity."
+    },
+    "salah-advanced-17": {
+      "question": "What is the reward for 12 Rak'ahs of Sunnah daily per Hadith?",
+      "options": [
+        "A house in Paradise",
+        "Forgiveness",
+        "10 years worship",
+        "1000 good deeds"
+      ],
+      "explanation": "The Prophet promised a house in Paradise for consistent 12 voluntary Rak'ahs daily."
+    },
+    "salah-advanced-18": {
+      "question": "In Hanafi fiqh, what breaks Wudu besides urine?",
+      "options": [
+        "Laughter",
+        "Blood flow",
+        "Eating dates",
+        "Walking"
+      ],
+      "explanation": "Hanafi holds that flowing blood or pus from body invalidates Wudu."
+    },
+    "salah-advanced-19": {
+      "question": "What is 'Salat al-Tarawih'?",
+      "options": [
+        "Ramadan night prayer",
+        "Funeral prayer",
+        "Eclipse prayer",
+        "Fear prayer"
+      ],
+      "explanation": "Tarawih are voluntary night prayers performed in congregation during Ramadan."
+    },
+    "salah-advanced-20": {
+      "question": "What is the ruling on animal skin rug for Salah?",
+      "options": [
+        "Invalid unless tanned",
+        "Always valid",
+        "Only wool",
+        "Never"
+      ],
+      "explanation": "Praying on untanned animal skin is invalid per Hadith prohibition."
+    },
+    "salah-advanced-21": {
+      "question": "In a Hadith, how is Salah described as a light?",
+      "options": [
+        "Believer's face light",
+        "Prayer light in heart",
+        "Path light",
+        "All of above"
+      ],
+      "explanation": "Hadiths describe Salah as light for the believer's face, heart, and path to Paradise."
+    },
+    "salah-advanced-22": {
+      "question": "What is 'Salat al-Kusuf'?",
+      "options": [
+        "Eclipse prayer",
+        "Rain prayer",
+        "Victory prayer",
+        "Illness prayer"
+      ],
+      "explanation": "Salat al-Kusuf is a two-Rak'ah prayer performed during solar or lunar eclipses."
+    },
+    "salah-advanced-23": {
+      "question": "According to Maliki, is intention verbal in Salah?",
+      "options": [
+        "Yes",
+        "No, in heart only",
+        "Both",
+        "Not needed"
+      ],
+      "explanation": "Maliki school holds intention for Salah is in the heart, not verbalized."
+    },
+    "salah-advanced-24": {
+      "question": "What is the fiqh on praying in a graveyard?",
+      "options": [
+        "Prohibited",
+        "Allowed silently",
+        "Recommended",
+        "Only funeral"
+      ],
+      "explanation": "Praying ritual Salah in graveyards is prohibited based on Hadith."
+    },
+    "salah-advanced-25": {
+      "question": "In Hanbali fiqh, how many Tasbihs in Ruku and Sujud?",
+      "options": [
+        "Three each",
+        "Five each",
+        "Seven in Sujud",
+        "Ten total"
+      ],
+      "explanation": "Hanbali requires three 'Subhana Rabbiyal Adheem' in Ruku and 'Subhana Rabbiyal A'la' in Sujud."
+    },
+    "salah-advanced-26": {
+      "question": "What Hadith mentions Salah as Mi'raj?",
+      "options": [
+        "Night journey",
+        "Daily ascension",
+        "Prophet's miracle",
+        "Believer's Mi'raj"
+      ],
+      "explanation": "The Prophet called Salah the Mi'raj (ascension) for every believer."
+    },
+    "salah-advanced-27": {
+      "question": "What is 'Salat al-Istikhara'?",
+      "options": [
+        "Guidance prayer",
+        "Forgiveness prayer",
+        "Rain prayer",
+        "Victory prayer"
+      ],
+      "explanation": "Istikhara is a two-Rak'ah voluntary prayer seeking Allah's guidance in decisions."
+    },
+    "salah-advanced-28": {
+      "question": "In Shafi'i, is Qunut in Fajr obligatory?",
+      "options": [
+        "Yes",
+        "No, Sunnah",
+        "Only in hardship",
+        "Never"
+      ],
+      "explanation": "Shafi'i holds Qunut in Fajr as Sunnah Mu'akkadah, not obligatory."
+    },
+    "salah-advanced-29": {
+      "question": "What is the fiqh on praying with crossed arms?",
+      "options": [
+        "Obligatory",
+        "Sunnah",
+        "Makruh",
+        "Prohibited"
+      ],
+      "explanation": "Placing right hand over left on chest is Sunnah in standing position."
+    },
+    "salah-advanced-30": {
+      "question": "According to Hadith, what is the best prayer after obligatory?",
+      "options": [
+        "Tahajjud",
+        "Witr",
+        "Duha",
+        "Tasbih"
+      ],
+      "explanation": "The Prophet said the best voluntary prayer is night prayer (Tahajjud)."
+    }
+  }
+}

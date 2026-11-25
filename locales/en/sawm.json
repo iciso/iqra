@@ -1,0 +1,969 @@
+{
+  "_meta": {
+    "status": "approved",
+    "title": "Sawm (Fasting)",
+    "description": "Fasting in Islam and the month of Ramadan."
+  },
+  "questions": {
+    "sawm-easy-1": {
+      "question": "What is the reward multiplier for good deeds according to a hadith on fasting?",
+      "options": [
+        "From one to ten times",
+        "From ten to seven hundred times",
+        "Exactly one hundred times",
+        "Unlimited times"
+      ],
+      "explanation": "The Prophet (PBUH) said that every good deed is multiplied from ten to seven hundred times, with fasting being specially rewarded by Allah."
+    },
+    "sawm-easy-2": {
+      "question": "Which gate in Paradise is exclusively for those who fast?",
+      "options": [
+        "Bab al-Jannah",
+        "Bab al-Rayyan",
+        "Bab al-Salat",
+        "Bab al-Jihad"
+      ],
+      "explanation": "The Prophet (PBUH) mentioned that those who fast will enter through the gate of al-Rayyan on the Day of Resurrection."
+    },
+    "sawm-easy-3": {
+      "question": "What does fasting expiate according to a hadith narrated by Hudhayfah?",
+      "options": [
+        "Only major sins",
+        "Afflictions in property, family, and neighbors",
+        "Debts only",
+        "Illness alone"
+      ],
+      "explanation": "Fasting, along with prayer and charity, expiates afflictions in property, family, and neighbors."
+    },
+    "sawm-easy-4": {
+      "question": "When are the gates of mercy opened according to Abu Hurairah?",
+      "options": [
+        "During Hajj",
+        "In the month of Ramadan",
+        "On Fridays",
+        "During Dhul-Hijjah"
+      ],
+      "explanation": "The gates of mercy are opened, gates of Hell closed, and devils chained in Ramadan."
+    },
+    "sawm-easy-5": {
+      "question": "What is the reward for fasting Ramadan and six days of Shawwal?",
+      "options": [
+        "Equivalent to fasting one month",
+        "As if fasted the whole year",
+        "Forgiveness of minor sins only",
+        "A house in Paradise"
+      ],
+      "explanation": "The Prophet (PBUH) said it is like fasting the entire year."
+    },
+    "sawm-easy-6": {
+      "question": "In which month did the Prophet (PBUH) fast the most besides Ramadan?",
+      "options": [
+        "Muharram",
+        "Rabi' al-Awwal",
+        "Sha'ban",
+        "Rajab"
+      ],
+      "explanation": "Narrated by 'Aisha, the Prophet fasted most of Sha'ban."
+    },
+    "sawm-easy-7": {
+      "question": "What are the Noble Prophet's advice for suhur according to Anas bin Malik?",
+      "options": [
+        "Skip it to fast longer",
+        "Take it as there is blessing in it",
+        "Eat heavily",
+        "Only drink water"
+      ],
+      "explanation": "The Prophet (PBUH) encouraged taking suhur for its blessing."
+    },
+    "sawm-easy-8": {
+      "question": "What should those who fast hasten according to Sahl bin Sa'd?",
+      "options": [
+        "Starting the fast",
+        "Breaking the fast",
+        "Prayer after iftar",
+        "Going to sleep"
+      ],
+      "explanation": "People remain on the right path as long as they hasten iftar."
+    },
+    "sawm-easy-9": {
+      "question": "What if a faster forgets and eats during the day?",
+      "options": [
+        "The fast is invalid",
+        "Continue fasting",
+        "Make up the day later",
+        "Pay kaffarah"
+      ],
+      "explanation": "The Prophet (PBUH) said Allah feeds him and gives him drink."
+    },
+    "sawm-easy-10": {
+      "question": "On which days did the Prophet (PBUH) fast regularly besides Ramadan?",
+      "options": [
+        "Tuesdays and Fridays",
+        "Mondays and Thursdays",
+        "Wednesdays and Saturdays",
+        "Sundays and Wednesdays"
+      ],
+      "explanation": "Deeds are presented on those days, so he fasted them."
+    },
+    "sawm-easy-11": {
+      "question": "What is the Night of Decree better than?",
+      "options": [
+        "One month",
+        "A thousand months",
+        "Hajj",
+        "One year"
+      ],
+      "explanation": "Laylat al-Qadr is better than a thousand months."
+    },
+    "sawm-easy-12": {
+      "question": "Complete the hadeeth: In it Allah has a night which is better than a thousand months; whoever...?",
+      "options": [
+        "is sick is deprived of its goodness",
+        "is deprived of its goodness is indeed deprived.",
+        "is travelling is deprived of its goodness",
+        "Women"
+      ],
+      "explanation": "The Messenger of Allah said: 'There has come to you Ramadan, a blessed month, which Allah, the Mighty and Sublime, has enjoined you to fast. In it the gates of heavens are opened and the gates of Hell are closed, and every devil is chained up. In it Allah has a night which is better than a thousand months; whoever is deprived of its goodness is indeed deprived."
+    },
+    "sawm-easy-13": {
+      "question": "What is fasting described as in a hadith?",
+      "options": [
+        "A pillar of Islam",
+        "A shield",
+        "A form of jihad",
+        "An act of charity"
+      ],
+      "explanation": "Fasting is a shield against sin and fire."
+    },
+    "sawm-easy-14": {
+      "question": "What should the one who is fasting say if some one begins to quarrel with him or her?",
+      "options": [
+        "I am right",
+        "I am fasting",
+        "Leave me alone",
+        "Allah forgive you"
+      ],
+      "explanation": "To remind others and protect the fast."
+    },
+    "sawm-easy-15": {
+      "question": "What is sweeter to Allah than musk on the Day of Judgment?",
+      "options": [
+        "The breath of those who fast",
+        "Good deeds done by the pious",
+        "Prayers",
+        "Charity"
+      ],
+      "explanation": "The smell of the faster's mouth is better than musk."
+    },
+    "sawm-easy-16": {
+      "question": "How many joyous occasions does the faster have?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "explanation": "At breaking fast and meeting his Lord."
+    },
+    "sawm-easy-17": {
+      "question": "What is forbidden during fasting besides food and drink?",
+      "options": [
+        "Prayer",
+        "Forged speech and evil actions",
+        "Reading Quran",
+        "Sleeping"
+      ],
+      "explanation": "Allah does not need one to leave food if they don't leave sins."
+    },
+    "sawm-easy-18": {
+      "question": "What month are the gates of Heaven opened?",
+      "options": [
+        "Dhu al-Hijjah",
+        "Ramadan",
+        "Muharram",
+        "Rabi al-Awwal"
+      ],
+      "explanation": "Gates of Heaven opened, Hell closed in Ramadan."
+    },
+    "sawm-easy-19": {
+      "question": "What is the perpetual fast?",
+      "options": [
+        "Fasting three days a month",
+        "Fasting every other day",
+        "Fasting Ramadan only",
+        "Fasting Mondays only"
+      ],
+      "explanation": "Three days every month and Ramadan is perpetual."
+    },
+    "sawm-easy-20": {
+      "question": "What day expiates sins of two years?",
+      "options": [
+        "Ashura",
+        "Arafah",
+        "Friday",
+        "Monday"
+      ],
+      "explanation": "Fasting Arafah expiates the sins of the preceding and coming year."
+    },
+    "sawm-easy-21": {
+      "question": "Why did the Prophet fast Mondays?",
+      "options": [
+        "He was born on Monday, and revealation was sent to him first on that day",
+        "Deeds presented that day, so maximum rewards",
+        "It is sunnah only for the prophets",
+        "To make up missed fasts, and prepare for the next year"
+      ],
+      "explanation": "It was the day on which I was born. on which I was commissioned with prophethood or revelation was sent to me,"
+    },
+    "sawm-easy-22": {
+      "question": "What is the ruling on kissing without lust during fasting?",
+      "options": [
+        "Always haram",
+        "Permissible if there is no fear of ejaculation",
+        "Only for married",
+        "Prohibited for all"
+      ],
+      "explanation": "For those who have self-control."
+    },
+    "sawm-easy-23": {
+      "question": "Who is exempt from fasting in Ramadan?",
+      "options": [
+        "Everyone must fast",
+        "The sick and travelers",
+        "Children only",
+        "Women during menses"
+      ],
+      "explanation": "They can make up later."
+    },
+    "sawm-easy-24": {
+      "question": "What is Zakat al-Fitr?",
+      "options": [
+        "Optional charity",
+        "Obligatory to purify fast",
+        "For travelers",
+        "Only for poor"
+      ],
+      "explanation": "Paid at end of Ramadan to allow poor to celebrate."
+    },
+    "sawm-easy-25": {
+      "question": "When is the best time for suhur?",
+      "options": [
+        "At dawn",
+        "Just before Fajr",
+        "Midnight",
+        "After Maghrib"
+      ],
+      "explanation": "Delay it as much as possible."
+    },
+    "sawm-easy-26": {
+      "question": "What invalidates the fast besides eating?",
+      "options": [
+        "Smoking and vomiting intentionally",
+        "Walking",
+        "Talking",
+        "Praying"
+      ],
+      "explanation": "Intentional acts that reach throat or smoke."
+    },
+    "sawm-easy-27": {
+      "question": "What is the punishment for missing fast without excuse?",
+      "options": [
+        "Nothing",
+        "Make up and feed poor",
+        "Only make up",
+        "Kaffarah"
+      ],
+      "explanation": "For missed fasts in Ramadan."
+    },
+    "sawm-easy-28": {
+      "question": "Which night to seek Laylat al-Qadr?",
+      "options": [
+        "First ten days",
+        "Odd nights of last ten",
+        "Even nights",
+        "Last night only"
+      ],
+      "explanation": "Search in odd nights of last ten days of Ramadan."
+    },
+    "sawm-easy-29": {
+      "question": "What is the sign of Laylat al-Qadr?",
+      "options": [
+        "Rain",
+        "Peace until dawn",
+        "Thunder",
+        "Wind"
+      ],
+      "explanation": "It is peaceful, no one hears a voice until dawn."
+    },
+    "sawm-intermediate-1": {
+      "question": "According to the hadith, what is exclusively for Allah in reward?",
+      "options": [
+        "Prayer",
+        "Charity",
+        "Fasting",
+        "Hajj"
+      ],
+      "explanation": "Fasting is done for Allah, and He alone gives its reward."
+    },
+    "sawm-intermediate-2": {
+      "question": "What happens to devils in Ramadan?",
+      "options": [
+        "They are freed",
+        "They are chained",
+        "They increase",
+        "They repent"
+      ],
+      "explanation": "Gates of Hell closed, devils chained in Ramadan."
+    },
+    "sawm-intermediate-3": {
+      "question": "How many branches of faith include haya, related to fasting modesty?",
+      "options": [
+        "Seventy",
+        "Sixty-odd",
+        "One hundred",
+        "Fifty"
+      ],
+      "explanation": "Faith has over sixty branches, haya being one, important for fasters."
+    },
+    "sawm-intermediate-4": {
+      "question": "What is the kaffarah for breaking fast intentionally?",
+      "options": [
+        "Feed ten poor",
+        "Free slave and fast two months",
+        "One month fast",
+        "Nothing"
+      ],
+      "explanation": "Kaffarah is freeing a slave, or fasting two consecutive months, or feeding sixty poor."
+    },
+    "sawm-intermediate-5": {
+      "question": "Can a fasting person use miswak?",
+      "options": [
+        "No, it invalidates",
+        "Yes, but not flavored",
+        "Yes, anytime",
+        "Only at night"
+      ],
+      "explanation": "The Prophet used miswak while fasting."
+    },
+    "sawm-intermediate-6": {
+      "question": "What is the time for iftar?",
+      "options": [
+        "After sunset prayer",
+        "At sunset",
+        "When Maghrib starts",
+        "After eating"
+      ],
+      "explanation": "Break fast as soon as sun sets."
+    },
+    "sawm-intermediate-7": {
+      "question": "Is fasting on Ashura obligatory?",
+      "options": [
+        "Yes",
+        "Recommended",
+        "Haram",
+        "Makruh"
+      ],
+      "explanation": "It is sunnah, expiates previous year."
+    },
+    "sawm-intermediate-8": {
+      "question": "What is i'tikaf?",
+      "options": [
+        "Fasting",
+        "Seclusion in mosque",
+        "Charity",
+        "Prayer only"
+      ],
+      "explanation": "Recommended in last ten days of Ramadan."
+    },
+    "sawm-intermediate-9": {
+      "question": "Who can give Zakat al-Fitr?",
+      "options": [
+        "Only rich",
+        "Every Muslim who can",
+        "Imam only",
+        "Poor only"
+      ],
+      "explanation": "On behalf of self and dependents."
+    },
+    "sawm-intermediate-10": {
+      "question": "When must Zakat al-Fitr be paid by?",
+      "options": [
+        "Before Fajr of Eid",
+        "After Eid prayer",
+        "During Ramadan",
+        "Anytime"
+      ],
+      "explanation": "Paid before Eid prayer."
+    },
+    "sawm-intermediate-11": {
+      "question": "What amount for Zakat al-Fitr?",
+      "options": [
+        "One sa' of food",
+        "One dirham",
+        "One camel",
+        "One sheep"
+      ],
+      "explanation": "One sa' of staple food like dates or barley."
+    },
+    "sawm-intermediate-12": {
+      "question": "Is voluntary fasting allowed in Ramadan?",
+      "options": [
+        "Yes, extra",
+        "No, only obligatory",
+        "Only on weekends",
+        "Haram"
+      ],
+      "explanation": "Ramadan fast is obligatory, no extra nafl in it."
+    },
+    "sawm-intermediate-13": {
+      "question": "What if menstruating during Ramadan?",
+      "options": [
+        "Fast anyway",
+        "Make up later",
+        "No need",
+        "Pay fine"
+      ],
+      "explanation": "Women make up missed days after purity."
+    },
+    "sawm-intermediate-14": {
+      "question": "Can a traveler fast in Ramadan?",
+      "options": [
+        "Must fast",
+        "Allowed to break",
+        "Haram to break",
+        "Always fast"
+      ],
+      "explanation": "Traveler can break and make up later."
+    },
+    "sawm-intermediate-15": {
+      "question": "What is the dua for iftar?",
+      "options": [
+        "Allahumma inni laka sumtu",
+        "Any dua",
+        "Specific only",
+        "No dua needed"
+      ],
+      "explanation": "Dua at breaking fast is not rejected."
+    },
+    "sawm-intermediate-16": {
+      "question": "How long is the fast?",
+      "options": [
+        "12 hours",
+        "From dawn to sunset",
+        "24 hours",
+        "Till Zuhr"
+      ],
+      "explanation": "From Fajr to Maghrib."
+    },
+    "sawm-intermediate-17": {
+      "question": "Is honey allowed while fasting?",
+      "options": [
+        "Yes, external",
+        "No, invalidates",
+        "Only at night",
+        "For sick only"
+      ],
+      "explanation": "Honey swallowed invalidates fast."
+    },
+    "sawm-intermediate-18": {
+      "question": "What is Tarawih?",
+      "options": [
+        "Obligatory prayer",
+        "Optional night prayer in Ramadan",
+        "Eid prayer",
+        "Fajr sunnah"
+      ],
+      "explanation": "Prayed in congregation in Ramadan."
+    },
+    "sawm-intermediate-19": {
+      "question": "How many rak'ahs in Tarawih?",
+      "options": [
+        "8",
+        "20",
+        "4",
+        "11"
+      ],
+      "explanation": "Traditionally 20 rak'ahs with Witr."
+    },
+    "sawm-intermediate-20": {
+      "question": "When to perform i'tikaf?",
+      "options": [
+        "First ten days",
+        "Last ten days",
+        "Whole month",
+        "Eid day"
+      ],
+      "explanation": "Sunnah in last ten of Ramadan."
+    },
+    "sawm-intermediate-21": {
+      "question": "Can one leave mosque in i'tikaf for Jumu'ah?",
+      "options": [
+        "No",
+        "Yes",
+        "Only if close",
+        "Haram"
+      ],
+      "explanation": "Allowed for obligatory prayers."
+    },
+    "sawm-intermediate-22": {
+      "question": "What is the virtue of fasting Arafah?",
+      "options": [
+        "One year sins",
+        "Two years sins",
+        "Ramadan equivalent",
+        "Hajj reward"
+      ],
+      "explanation": "Preceding and coming year."
+    },
+    "sawm-intermediate-23": {
+      "question": "Is fasting on Friday alone recommended?",
+      "options": [
+        "Yes",
+        "No, makruh",
+        "Obligatory",
+        "Haram"
+      ],
+      "explanation": "Fasting only Friday is disliked unless with Thursday or Saturday."
+    },
+    "sawm-intermediate-24": {
+      "question": "What is the month of patience?",
+      "options": [
+        "Muharram",
+        "Ramadan",
+        "Sha'ban",
+        "Dhul-Hijjah"
+      ],
+      "explanation": "Ramadan is the month of patience."
+    },
+    "sawm-intermediate-25": {
+      "question": "Who narrated about suhur blessing?",
+      "options": [
+        "Abu Hurairah",
+        "Anas bin Malik",
+        "Ibn Umar",
+        "Aisha"
+      ],
+      "explanation": "Anas narrated 'Take suhur, blessing in it.'"
+    },
+    "sawm-intermediate-26": {
+      "question": "What invalidates fast but no kaffarah?",
+      "options": [
+        "Eating",
+        "Vomiting intentionally",
+        "Sexual intercourse",
+        "All require kaffarah"
+      ],
+      "explanation": "Only make up, no kaffarah."
+    },
+    "sawm-intermediate-27": {
+      "question": "Is blood donation allowed while fasting?",
+      "options": [
+        "No",
+        "Yes, if not weakening",
+        "Only small amount",
+        "Haram"
+      ],
+      "explanation": "Cupping was allowed, similar."
+    },
+    "sawm-intermediate-28": {
+      "question": "What is the best dua time during fast?",
+      "options": [
+        "Suhur",
+        "Between adhan and iqamah",
+        "Iftar",
+        "All times"
+      ],
+      "explanation": "Supplication not rejected then."
+    },
+    "sawm-intermediate-29": {
+      "question": "Can a faster swim?",
+      "options": [
+        "No",
+        "Yes, if no water swallowed",
+        "Only bath",
+        "Haram"
+      ],
+      "explanation": "As long as no intake."
+    },
+    "sawm-intermediate-30": {
+      "question": "What is witr prayer?",
+      "options": [
+        "Fard",
+        "Sunnah after Tarawih",
+        "Nafl only",
+        "Eid"
+      ],
+      "explanation": "Odd prayer closing night prayers."
+    },
+    "sawm-intermediate-31": {
+      "question": "How to confirm moon sighting for Ramadan?",
+      "options": [
+        "Calculator",
+        "Testimony of one upright Muslim",
+        "Two witnesses",
+        "Global announcement"
+      ],
+      "explanation": "Sighting by two upright Muslims."
+    },
+    "sawm-intermediate-32": {
+      "question": "Is it allowed to fast for deceased?",
+      "options": [
+        "Yes",
+        "No",
+        "Only if willed",
+        "Haram"
+      ],
+      "explanation": "Fasting cannot be done on behalf of dead."
+    },
+    "sawm-advanced-1": {
+      "question": "In the hadith of Abu Bakr, which gates call the righteous?",
+      "options": [
+        "Prayer, fasting, charity, jihad",
+        "Only fasting and prayer",
+        "All gates same",
+        "No gates mentioned"
+      ],
+      "explanation": "Gates of Prayer, Rayyan for fasting, Charity, Jihad."
+    },
+    "sawm-advanced-2": {
+      "question": "What is the grading of the hadith on devils chained in Ramadan?",
+      "options": [
+        "Da'if",
+        "Sahih",
+        "Hasan",
+        "Mawdu'"
+      ],
+      "explanation": "Narrated by Bukhari and Muslim."
+    },
+    "sawm-advanced-3": {
+      "question": "According to fiqh, does smelling perfume invalidate fast?",
+      "options": [
+        "Yes",
+        "No",
+        "If inhaled deeply",
+        "Only liquid"
+      ],
+      "explanation": "External scents do not invalidate."
+    },
+    "sawm-advanced-4": {
+      "question": "What is the difference between sawm and siyam?",
+      "options": [
+        "Same",
+        "Sawm is obligatory, siyam voluntary",
+        "Siyam is total abstinence",
+        "No difference"
+      ],
+      "explanation": "Synonyms for fasting in Arabic."
+    },
+    "sawm-advanced-5": {
+      "question": "In which madhhab is kissing allowed for fasting young man?",
+      "options": [
+        "All",
+        "Hanafi, if no desire",
+        "Shafi'i only",
+        "Maliki no"
+      ],
+      "explanation": "Hanafi allows if strong self-control."
+    },
+    "sawm-advanced-6": {
+      "question": "What is the evidence for Zakat al-Fitr being fard?",
+      "options": [
+        "Quran",
+        "Hadith of Ibn Umar",
+        "Ijma",
+        "Qiyas"
+      ],
+      "explanation": "Prophet made it obligatory."
+    },
+    "sawm-advanced-7": {
+      "question": "Can i'tikaf be done outside mosque?",
+      "options": [
+        "Yes",
+        "No, must in masjid",
+        "At home",
+        "In any place"
+      ],
+      "explanation": "Seclusion in mosque."
+    },
+    "sawm-advanced-8": {
+      "question": "What is bid'ah in Tarawih?",
+      "options": [
+        "Praying 8 rak'ahs",
+        "20 rak'ahs",
+        "Congregation",
+        "None, all sunnah"
+      ],
+      "explanation": "Both 8 and 20 reported, no bid'ah."
+    },
+    "sawm-advanced-9": {
+      "question": "Grading of hadith 'fasting and Quran intercede'?",
+      "options": [
+        "Sahih",
+        "Hasan",
+        "Da'if",
+        "Mawdu"
+      ],
+      "explanation": "Narrated by Ahmad, sahih chain."
+    },
+    "sawm-advanced-10": {
+      "question": "Fiqh ruling on fasting while ill with medicine?",
+      "options": [
+        "Break if necessary",
+        "Always fast",
+        "Only oral",
+        "Injection ok"
+      ],
+      "explanation": "If medicine nourishes, breaks fast."
+    },
+    "sawm-advanced-11": {
+      "question": "What is the tafsir of 'fasting shield'?",
+      "options": [
+        "Protects from fire",
+        "From sin",
+        "Both",
+        "Health only"
+      ],
+      "explanation": "Shield from Hell and sins."
+    },
+    "sawm-advanced-12": {
+      "question": "Hadith on three whose fast not accepted?",
+      "options": [
+        "Liar, oath breaker, poor payer",
+        "Adulterer, usurer, drinker",
+        "All above",
+        "No such hadith"
+      ],
+      "explanation": "Their fast not accepted until repent."
+    },
+    "sawm-advanced-13": {
+      "question": "Is voluntary fast on doubted day allowed?",
+      "options": [
+        "Yes",
+        "No",
+        "Only if sure",
+        "Makruh"
+      ],
+      "explanation": "Do not fast day of doubt."
+    },
+    "sawm-advanced-14": {
+      "question": "What is the wisdom of suhur?",
+      "options": [
+        "Strength for day",
+        "Blessing and mercy",
+        "Both",
+        "Night prayer"
+      ],
+      "explanation": "Provides strength and has blessing."
+    },
+    "sawm-advanced-15": {
+      "question": "Ruling on using eye drops while fasting?",
+      "options": [
+        "Invalidates",
+        "Does not",
+        "If tastes in throat",
+        "Haram"
+      ],
+      "explanation": "Unless reaches stomach with amount."
+    },
+    "sawm-advanced-16": {
+      "question": "Hadith narrator for 'Ramadan comes as mercy'?",
+      "options": [
+        "Abu Hurairah",
+        "Ibn Abbas",
+        "Anas",
+        "Salman al-Farisi"
+      ],
+      "explanation": "O people of faith, month of Ramadan."
+    },
+    "sawm-advanced-17": {
+      "question": "What is consensus on fasting for pregnant?",
+      "options": [
+        "Exempt if harm",
+        "Always fast",
+        "No exemption",
+        "Feed only"
+      ],
+      "explanation": "Fear harm to self or child."
+    },
+    "sawm-advanced-18": {
+      "question": "Advanced: Difference in madhhabs on ghusl time?",
+      "options": [
+        "Before Fajr",
+        "After Fajr",
+        "At true dawn",
+        "Flexible"
+      ],
+      "explanation": "Ghusl before Fajr for fast."
+    },
+    "sawm-advanced-19": {
+      "question": "Grading of 'fasting expiates oath'?",
+      "options": [
+        "Sahih",
+        "Hasan li ghayrihi",
+        "Da'if",
+        "Sahih li ghayrihi"
+      ],
+      "explanation": "Weak chain."
+    },
+    "sawm-advanced-20": {
+      "question": "What is the hadith on fasting and Quran on Judgment Day?",
+      "options": [
+        "They say to owner",
+        "Intercede for him",
+        "Both",
+        "No intercession"
+      ],
+      "explanation": "Fasting and Quran intercede."
+    },
+    "sawm-advanced-21": {
+      "question": "Ruling on fasting Arafah for non-Hajji?",
+      "options": [
+        "Sunnah mu'akkadah",
+        "Mustahabb",
+        "Wajib",
+        "Makruh"
+      ],
+      "explanation": "Highly recommended for expiation."
+    },
+    "sawm-advanced-22": {
+      "question": "Can one intend fast after sunrise?",
+      "options": [
+        "Yes, if not eaten",
+        "No",
+        "Only nafl",
+        "Haram"
+      ],
+      "explanation": "Intention must be before dawn."
+    },
+    "sawm-advanced-23": {
+      "question": "What is the evidence for 20 rak'ahs Tarawih?",
+      "options": [
+        "Hadith of Aisha",
+        "Practice of Umar",
+        "Ibn Abbas",
+        "All"
+      ],
+      "explanation": "Umar revived it as sunnah."
+    },
+    "sawm-advanced-24": {
+      "question": "Fiqh: Does brushing teeth invalidate?",
+      "options": [
+        "Yes",
+        "No, if no swallow",
+        "Only paste",
+        "Siwak only"
+      ],
+      "explanation": "Toothpaste ok if not swallowed."
+    },
+    "sawm-advanced-25": {
+      "question": "Hadith on 'month of Quran'?",
+      "options": [
+        "Ramadan",
+        "Sha'ban",
+        "Rajab",
+        "Muharram"
+      ],
+      "explanation": "Gabriel reviews Quran with Prophet in Ramadan."
+    },
+    "sawm-advanced-26": {
+      "question": "What if vomit returns to mouth?",
+      "options": [
+        "Break fast",
+        "Swallow if unavoidable",
+        "Spit always",
+        "Invalidates"
+      ],
+      "explanation": "If cannot spit, swallow doesn't break."
+    },
+    "sawm-advanced-27": {
+      "question": "Grading of 'suhur is blessing from Allah'?",
+      "options": [
+        "Sahih",
+        "Hasan",
+        "Da'if",
+        "Mawdu"
+      ],
+      "explanation": "Bukhari and Muslim."
+    },
+    "sawm-advanced-28": {
+      "question": "Ruling on fasting for breastfeeding mother?",
+      "options": [
+        "Exempt if harm to milk",
+        "Always fast",
+        "No milk during fast",
+        "Feed child only"
+      ],
+      "explanation": "Similar to pregnant."
+    },
+    "sawm-advanced-29": {
+      "question": "What is the hadith on three fasts a month?",
+      "options": [
+        "White days",
+        "Any three",
+        "Consecutive",
+        "Mondays"
+      ],
+      "explanation": "13th, 14th, 15th lunar."
+    },
+    "sawm-advanced-30": {
+      "question": "Advanced: Consensus on intention for fast?",
+      "options": [
+        "Nightly",
+        "Daily",
+        "Once for Ramadan",
+        "Flexible"
+      ],
+      "explanation": "Intention once at beginning for whole month."
+    },
+    "sawm-advanced-31": {
+      "question": "What is the position of Ash'aris on reward of fast?",
+      "options": [
+        "Creation of Allah",
+        "Not created",
+        "Same as deeds",
+        "Unknown"
+      ],
+      "explanation": "Rewards are created."
+    },
+    "sawm-advanced-32": {
+      "question": "Hadith on 'fasting most beloved to Allah'?",
+      "options": [
+        "Yes, from deeds",
+        "Prayer more",
+        "Charity",
+        "No"
+      ],
+      "explanation": "Fasting most beloved deed to Allah."
+    },
+    "sawm-advanced-33": {
+      "question": "Fiqh difference on blood test during fast?",
+      "options": [
+        "All agree no break",
+        "Some say breaks",
+        "Injection breaks",
+        "All break"
+      ],
+      "explanation": "Taking blood doesn't nourish."
+    },
+    "sawm-advanced-34": {
+      "question": "What is the chain for Rayyan hadith?",
+      "options": [
+        "From Sahl to Bukhari",
+        "Abu Hurairah",
+        "Anas",
+        "Umar"
+      ],
+      "explanation": "Sahl bin Sa'd narrated it."
+    },
+    "sawm-advanced-35": {
+      "question": "Ruling on dental work during fast?",
+      "options": [
+        "Avoid if possible",
+        "Allowed if no swallow",
+        "Breaks fast",
+        "Haram"
+      ],
+      "explanation": "If water swallowed, breaks."
+    }
+  }
+}

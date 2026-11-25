@@ -8,7 +8,13 @@
     "lint": "eslint .",
     "start": "next start",
     "check:locales": "tsx scripts/check-locales.ts",
-    "check:questions": "tsx scripts/check-questions.ts"
+    "check:questions": "tsx scripts/check-questions.ts",
+    "content:export": "tsx scripts/export-content.ts",
+    "content:check": "tsx scripts/export-content.ts --check && tsx scripts/check-content.ts",
+    "content:new-locale": "tsx scripts/new-locale.ts",
+    "review:export": "tsx scripts/review-sheet.ts export",
+    "review:import": "tsx scripts/review-sheet.ts import",
+    "review:approve": "tsx scripts/review-sheet.ts approve"
   },
   "dependencies": {
     "@headlessui/react": "2.2.10",
@@ -64,6 +70,7 @@
     "react-i18next": "^18.0.3",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
+    "server-only": "^0.0.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",

@@ -1,0 +1,609 @@
+{
+  "_meta": {
+    "status": "approved",
+    "title": "Islamic Parenting",
+    "description": "Raising children with Islamic values."
+  },
+  "questions": {
+    "parenting-easy-1": {
+      "question": "According to Islam, who is primarily responsible for teaching children basic manners?",
+      "options": [
+        "Teachers at school",
+        "Their peers",
+        "Parents",
+        "Imams at the mosque"
+      ],
+      "explanation": "The Prophet ﷺ said, 'Every one of you is a shepherd and is responsible for his flock.' (Sahih al-Bukhari 893, Sahih Muslim 1829). Parents are responsible for their children's upbringing."
+    },
+    "parenting-easy-2": {
+      "question": "Which Surah of the Quran contains Luqman's advice to his son?",
+      "options": [
+        "Surah Yusuf",
+        "Surah Luqman",
+        "Surah Maryam",
+        "Surah Nuh"
+      ],
+      "explanation": "Surah Luqman (31:12–19) contains practical wisdom on Islamic parenting, including advice on tawheed, prayer, humility, and behavior."
+    },
+    "parenting-easy-3": {
+      "question": "What is the first thing a parent should whisper into a newborn's ear in Islam?",
+      "options": [
+        "Their name",
+        "A lullaby",
+        "Adhan (Call to Prayer)",
+        "Surah Fatiha"
+      ],
+      "explanation": "It is Sunnah to recite the Adhan in the baby's right ear and Iqamah in the left ear (Abu Dawood 5105) to instill Tawheed from birth."
+    },
+    "parenting-easy-4": {
+      "question": "How important is showing love to children in Islam?",
+      "options": [
+        "Not necessary",
+        "Sometimes necessary",
+        "Highly encouraged",
+        "Only for daughters"
+      ],
+      "explanation": "The Prophet ﷺ would kiss children and show affection. When someone questioned this, he replied: 'He who does not show mercy will not be shown mercy.' (Sahih al-Bukhari 5997)"
+    },
+    "parenting-easy-5": {
+      "question": "What does Islam say about calling children by good names?",
+      "options": [
+        "Any name is fine",
+        "Only Arabic names allowed",
+        "Good names are encouraged",
+        "Name doesn’t matter in Islam"
+      ],
+      "explanation": "The Prophet ﷺ said, 'You will be called on the Day of Resurrection by your names and by your father's names, so give yourselves good names.' (Abu Dawood 4948)"
+    },
+    "parenting-easy-6": {
+      "question": "Why should children be taught to pray from a young age?",
+      "options": [
+        "So they don't forget",
+        "To become scholars",
+        "To earn money",
+        "Because it is an Islamic obligation"
+      ],
+      "explanation": "The Prophet ﷺ said: 'Instruct your children to pray when they are seven...' (Abu Dawood 495) - emphasizing early spiritual discipline."
+    },
+    "parenting-easy-7": {
+      "question": "What is the reward for raising righteous children?",
+      "options": [
+        "None",
+        "Only in this world",
+        "Ongoing charity (sadaqah jariyah)",
+        "One-time reward"
+      ],
+      "explanation": "The Prophet ﷺ said: 'When a person dies, his deeds end except from three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.' (Sahih Muslim 1631)"
+    },
+    "parenting-easy-8": {
+      "question": "Why is fair treatment among children emphasized in Islam?",
+      "options": [
+        "To avoid jealousy",
+        "To avoid favoritism",
+        "To uphold justice",
+        "All of the above"
+      ],
+      "explanation": "The Prophet ﷺ forbade unfair preference between children (Sahih Muslim 1623). Justice prevents jealousy and promotes harmony."
+    },
+    "parenting-easy-9": {
+      "question": "How does Islam guide parents about disciplining children?",
+      "options": [
+        "With anger",
+        "By mocking",
+        "With mercy and wisdom",
+        "By ignoring them"
+      ],
+      "explanation": "The Prophet ﷺ said, 'There is no kindness in a thing except it beautifies it.' (Sahih Muslim 2594)"
+    },
+    "parenting-easy-10": {
+      "question": "What is the Islamic age for moral responsibility (taklif)?",
+      "options": [
+        "5",
+        "7",
+        "Puberty",
+        "18"
+      ],
+      "explanation": "Children are accountable in Islamic law once they reach puberty (Buloogh). Before that, they are taught but not held accountable. (Fath al-Bari 2/545)"
+    },
+    "parenting-easy-11": {
+      "question": "What is the Islamic term for the natural disposition children are born with?",
+      "options": [
+        "Taqwa",
+        "Iman",
+        "Fitrah",
+        "Tawheed"
+      ],
+      "explanation": "The Prophet ﷺ said, 'Every child is born upon the Fitrah (natural inclination to believe in Allah)...' (Sahih Muslim 2658)."
+    },
+    "parenting-easy-12": {
+      "question": "Which parent is most responsible for breastfeeding in Islam?",
+      "options": [
+        "Father",
+        "Mother",
+        "Grandmother",
+        "Both equally"
+      ],
+      "explanation": "The Quran mentions: 'Mothers may breastfeed their children two complete years...' (Surah Al-Baqarah 2:233)."
+    },
+    "parenting-easy-13": {
+      "question": "Is physical abuse acceptable in Islamic parenting?",
+      "options": [
+        "Yes",
+        "Only if they disobey",
+        "No",
+        "Only for teens"
+      ],
+      "explanation": "Islam forbids harshness. The Prophet ﷺ never hit a child or servant. (Sahih Muslim 2328)"
+    },
+    "parenting-easy-14": {
+      "question": "Should parents make dua for their children?",
+      "options": [
+        "No",
+        "Yes",
+        "Only for boys",
+        "Only in Ramadan"
+      ],
+      "explanation": "Ibrahim عليه السلام prayed: 'My Lord, make me an establisher of prayer, and [many] from my descendants.' (Surah Ibrahim 14:40)"
+    },
+    "parenting-easy-15": {
+      "question": "Can both parents share in the reward of a righteous child?",
+      "options": [
+        "No",
+        "Only the father",
+        "Yes",
+        "Only the mother"
+      ],
+      "explanation": "Righteous children are a sadaqah jariyah for both parents. (Sahih Muslim 1631)"
+    },
+    "parenting-easy-16": {
+      "question": "How should Islamic parents speak to their children?",
+      "options": [
+        "With anger",
+        "With kindness",
+        "With threats",
+        "Like a boss"
+      ],
+      "explanation": "Allah told Musa عليه السلام to speak kindly even to Pharaoh! (Surah Taha 20:44). How much more to our own children?"
+    },
+    "parenting-easy-17": {
+      "question": "At what age should a child be taught to pray regularly?",
+      "options": [
+        "3",
+        "7",
+        "15",
+        "10"
+      ],
+      "explanation": "The Prophet ﷺ said: 'Instruct your children to pray when they are seven.' (Abu Dawood 495)"
+    },
+    "parenting-easy-18": {
+      "question": "Should children be encouraged to recite Quran?",
+      "options": [
+        "Yes",
+        "No",
+        "Only boys",
+        "Only if they want"
+      ],
+      "explanation": "The Prophet ﷺ encouraged memorization of the Quran and said the best of you are those who learn and teach it. (Bukhari 5027)"
+    },
+    "parenting-easy-19": {
+      "question": "Why should parents avoid yelling at children constantly?",
+      "options": [
+        "Because it's ineffective",
+        "Because children get used to it",
+        "Because it breaks their spirit",
+        "All of the above"
+      ],
+      "explanation": "Harshness leads to rebellion. The Prophet ﷺ never shouted at children; he modeled patience and mercy. (Muslim 2328)"
+    },
+    "parenting-easy-20": {
+      "question": "What does Islam say about teaching children gratitude?",
+      "options": [
+        "Not necessary",
+        "Only to Allah",
+        "Encouraged to both Allah and parents",
+        "Just for special occasions"
+      ],
+      "explanation": "Allah says: 'Be grateful to Me and to your parents.' (Surah Luqman 31:14)"
+    },
+    "parenting-easy-21": {
+      "question": "Is favoritism between siblings discouraged in Islam?",
+      "options": [
+        "Yes",
+        "No",
+        "Sometimes",
+        "Only in gifts"
+      ],
+      "explanation": "The Prophet ﷺ forbade giving a gift to one child and not the others. (Sahih Muslim 1623)"
+    },
+    "parenting-easy-22": {
+      "question": "What is the best Islamic gift to a child?",
+      "options": [
+        "Money",
+        "Toys",
+        "Education and good character",
+        "Clothes"
+      ],
+      "explanation": "The Prophet ﷺ said: 'No father has given a better gift to his children than good manners.' (Tirmidhi 1952)"
+    },
+    "parenting-easy-23": {
+      "question": "Should parents force left-handed children to use their right hand?",
+      "options": [
+        "Yes",
+        "No",
+        "Only for eating",
+        "Only for writing"
+      ],
+      "explanation": "The Prophet ﷺ instructed to eat with the right hand. (Sahih Muslim 2020), but forcing natural habits outside worship is discouraged."
+    },
+    "parenting-easy-24": {
+      "question": "Is talking about the Prophet’s ﷺ childhood beneficial for kids?",
+      "options": [
+        "No",
+        "Only for scholars",
+        "Yes",
+        "Only during Eid"
+      ],
+      "explanation": "Stories of the Prophet’s ﷺ compassion and integrity even as a child inspire young Muslims to emulate him. (Ibn Hisham, Seerah)"
+    },
+    "parenting-easy-25": {
+      "question": "Can stories of the Sahabah help in parenting?",
+      "options": [
+        "No",
+        "Only for boys",
+        "Yes",
+        "Only in sermons"
+      ],
+      "explanation": "The Prophet ﷺ encouraged remembering the companions. Their love for parents and discipline inspire Islamic values. (Bukhari 3700)"
+    },
+    "parenting-easy-26": {
+      "question": "What’s the Islamic view on rewarding children?",
+      "options": [
+        "Discouraged",
+        "Only for boys",
+        "Permissible with wisdom",
+        "Against Sunnah"
+      ],
+      "explanation": "Positive reinforcement aligns with the Prophet’s ﷺ style of encouragement. (Tirmidhi 1989)"
+    },
+    "parenting-easy-27": {
+      "question": "Why should parents watch their own behavior in front of kids?",
+      "options": [
+        "Because kids copy them",
+        "Kids don’t understand",
+        "To impress others",
+        "It’s not important"
+      ],
+      "explanation": "Children imitate what they see. The Prophet ﷺ led by example even in private. (Bukhari 7278)"
+    },
+    "parenting-easy-28": {
+      "question": "Can chores be assigned to children in Islam?",
+      "options": [
+        "No",
+        "Yes",
+        "Only to daughters",
+        "Only boys"
+      ],
+      "explanation": "Fatimah رضي الله عنها did household work, and the Prophet ﷺ shared chores. (Bukhari 6761)"
+    },
+    "parenting-easy-29": {
+      "question": "What is an early Islamic value children should learn?",
+      "options": [
+        "Patience",
+        "Tawheed",
+        "Cleanliness",
+        "All of the above"
+      ],
+      "explanation": "The Prophet ﷺ emphasized basic values from early age. (Bukhari 135)"
+    },
+    "parenting-easy-30": {
+      "question": "Can bedtime dua and stories nurture Islamic faith?",
+      "options": [
+        "No",
+        "Yes",
+        "Only for girls",
+        "Only in Ramadan"
+      ],
+      "explanation": "Establishing routines like dua before sleep instills faith and love of Allah. (Abu Dawood 5040)"
+    },
+    "parenting-advanced-1": {
+      "question": "What was the Prophet’s ﷺ response when a Bedouin said he had never kissed his children?",
+      "options": [
+        "He praised him for being strong",
+        "He told him to continue",
+        "He rebuked him",
+        "He wept silently"
+      ],
+      "explanation": "The Prophet ﷺ said, 'What can I do for you if Allah has removed mercy from your heart?' (Sahih al-Bukhari 5997)."
+    },
+    "parenting-advanced-2": {
+      "question": "How can Islamic parenting deal with screen addiction in teens?",
+      "options": [
+        "Ignore it",
+        "Give unlimited screen time",
+        "Model balanced behavior and encourage Quranic reflection",
+        "Punish them harshly"
+      ],
+      "explanation": "Surah Al-Furqan (25:63–74) describes balanced believers. Parents must lead by example. (Tirmidhi 1919)"
+    },
+    "parenting-advanced-3": {
+      "question": "What is the Islamic ruling on raising voices and cursing children?",
+      "options": [
+        "It’s okay sometimes",
+        "Permissible if angry",
+        "Not allowed",
+        "Rewardable"
+      ],
+      "explanation": "The Prophet ﷺ said: 'A believer is not a curser or one who utters obscene words.' (Tirmidhi 1977)"
+    },
+    "parenting-advanced-4": {
+      "question": "How did the Prophet ﷺ show empathy to children experiencing loss?",
+      "options": [
+        "Ignored them",
+        "Told them to be strong",
+        "Visited and comforted them",
+        "Sent someone else"
+      ],
+      "explanation": "He visited a boy whose bird died and offered kind words. (Abu Dawood 4969)"
+    },
+    "parenting-advanced-5": {
+      "question": "What should be the Islamic response to teens struggling with identity and confidence?",
+      "options": [
+        "Shame them",
+        "Compare them to others",
+        "Use stories of Prophets like Yusuf to uplift them",
+        "Ignore it"
+      ],
+      "explanation": "Surah Yusuf (12) teaches moral strength, resilience, and trusting Allah through hardship."
+    },
+    "parenting-advanced-6": {
+      "question": "What does the Quran say about consulting children in family matters?",
+      "options": [
+        "Not needed",
+        "Only sons",
+        "Encouraged if mature",
+        "Strictly father's role"
+      ],
+      "explanation": "Prophet Yaqub involved his sons in decisions (Surah Yusuf 12:5–6). Shura builds responsibility."
+    },
+    "parenting-advanced-7": {
+      "question": "What is the best way to correct a teen's mistake in Islam?",
+      "options": [
+        "Mock them",
+        "Expose publicly",
+        "Use private, kind advice",
+        "Ignore it"
+      ],
+      "explanation": "The Prophet ﷺ corrected mistakes with compassion and privacy. (Musnad Ahmad 20830)"
+    },
+    "parenting-advanced-8": {
+      "question": "Why should children be trained to control anger?",
+      "options": [
+        "For social skills",
+        "To avoid yelling",
+        "It is a Sunnah trait",
+        "All of the above"
+      ],
+      "explanation": "The Prophet ﷺ advised a man three times: 'Do not get angry.' (Sahih al-Bukhari 6116)"
+    },
+    "parenting-advanced-9": {
+      "question": "What is the Islamic approach if a child rejects practicing Islam?",
+      "options": [
+        "Cut ties",
+        "Use force",
+        "Approach with patience and dua",
+        "Send them away"
+      ],
+      "explanation": "Nuh عليه السلام called his son persistently but kindly (Surah Hud 11:42–46)"
+    },
+    "parenting-advanced-10": {
+      "question": "Is it Sunnah to play with children?",
+      "options": [
+        "No",
+        "Yes, occasionally",
+        "Yes, frequently",
+        "Only with boys"
+      ],
+      "explanation": "The Prophet ﷺ raced with Aisha and played with Hasan and Husain (Sunan Ibn Majah 193)."
+    },
+    "parenting-advanced-11": {
+      "question": "What should parents do when children complain of boredom in worship?",
+      "options": [
+        "Scold them",
+        "Force them more",
+        "Make worship interactive and loving",
+        "Ignore them"
+      ],
+      "explanation": "The Prophet ﷺ said: 'Make things easy and do not make them difficult.' (Bukhari 69). Islam promotes encouragement."
+    },
+    "parenting-advanced-12": {
+      "question": "How can Muslim parents raise children in non-Muslim countries?",
+      "options": [
+        "Assimilate fully",
+        "Isolate completely",
+        "Balance integration with identity preservation",
+        "Avoid interaction"
+      ],
+      "explanation": "‘You are the best nation raised for mankind…’ (Surah Aal-Imran 3:110). Balancing deen and dunya is key."
+    },
+    "parenting-advanced-13": {
+      "question": "How should Muslim parents handle gender identity confusion in teens?",
+      "options": [
+        "Mock them",
+        "Educate with compassion and Quranic guidance",
+        "Ignore it",
+        "Disown them"
+      ],
+      "explanation": "Teach the divine creation plan: ‘And He created them male and female.’ (Surah An-Najm 53:45). Approach with mercy and knowledge."
+    },
+    "parenting-advanced-14": {
+      "question": "How should working Muslim parents balance career and children?",
+      "options": [
+        "Quit job",
+        "Leave children to others",
+        "Prioritize family with barakah in time",
+        "Ignore parenting"
+      ],
+      "explanation": "The Prophet ﷺ divided his time wisely among family, worship, and people. (Shama'il Tirmidhi)"
+    },
+    "parenting-advanced-15": {
+      "question": "What role does dua play in parenting challenges?",
+      "options": [
+        "Not helpful",
+        "Only for scholars",
+        "Essential",
+        "Only in Ramadan"
+      ],
+      "explanation": "Prophets constantly made dua for offspring (e.g., Zakariyya in Surah Maryam 19:5–6)."
+    },
+    "parenting-advanced-16": {
+      "question": "What’s the Islamic guidance for teen rebellion?",
+      "options": [
+        "Hit them",
+        "Kick them out",
+        "Address with mercy and consistency",
+        "Ignore it"
+      ],
+      "explanation": "Allah guided Nuh عليه السلام with sabr when his son disbelieved. (Surah Hud 11:42–46)"
+    },
+    "parenting-advanced-17": {
+      "question": "Can extracurriculars be part of Islamic parenting?",
+      "options": [
+        "No",
+        "Only Quran classes",
+        "Yes, with Islamic ethics",
+        "Discouraged"
+      ],
+      "explanation": "The Prophet ﷺ encouraged archery, horse-riding, swimming. (Musnad Ahmad 15645)"
+    },
+    "parenting-advanced-18": {
+      "question": "How should Islamic parents address online dangers?",
+      "options": [
+        "Ignore",
+        "Block everything",
+        "Monitor and guide with adab",
+        "Trust blindly"
+      ],
+      "explanation": "Parents are shepherds of their flocks (Bukhari 893). Digital shepherding is part of this responsibility."
+    },
+    "parenting-advanced-19": {
+      "question": "How did the Prophet ﷺ respond to parenting stress?",
+      "options": [
+        "Isolated",
+        "Complained",
+        "Turned to dua and patience",
+        "Yelled"
+      ],
+      "explanation": "He would say, 'O Turner of hearts, keep our hearts firm on Your religion.' (Tirmidhi 2140)"
+    },
+    "parenting-advanced-20": {
+      "question": "What role does emotional intelligence play in Islamic parenting?",
+      "options": [
+        "No role",
+        "Only for scholars",
+        "Critical role",
+        "Just for mothers"
+      ],
+      "explanation": "The Prophet ﷺ showed awareness of children's feelings and emotions (e.g., bird story – Abu Dawood 4969)."
+    },
+    "parenting-advanced-21": {
+      "question": "How did the Prophet ﷺ teach boundaries to children?",
+      "options": [
+        "Through harshness",
+        "Through storytelling",
+        "By example and gentle correction",
+        "Public lectures"
+      ],
+      "explanation": "He said to Ibn Abbas: 'O young boy, I will teach you some words...' (Tirmidhi 2516)"
+    },
+    "parenting-advanced-22": {
+      "question": "What is the Islamic perspective on gender equality in parenting?",
+      "options": [
+        "Boys favored",
+        "Equal rights and love",
+        "Only girls honored",
+        "Not mentioned"
+      ],
+      "explanation": "The Prophet ﷺ emphasized justice between children and showed love for daughters. (Sahih Muslim 2318)"
+    },
+    "parenting-advanced-23": {
+      "question": "What does Islam say about scaring children to enforce discipline?",
+      "options": [
+        "Permissible",
+        "Recommended",
+        "Not allowed",
+        "Sunnah"
+      ],
+      "explanation": "The Prophet ﷺ never instilled fear as discipline but used compassion. (Muslim 2316)"
+    },
+    "parenting-advanced-24": {
+      "question": "How does Islam handle cases of children with special needs?",
+      "options": [
+        "Ignore them",
+        "Hide them",
+        "Honor and include them",
+        "Only care in secret"
+      ],
+      "explanation": "Islam honors all souls. Abdullah ibn Umm Maktum, a blind man, was honored and made mu’adhin. (Sahih Muslim 405)"
+    },
+    "parenting-advanced-25": {
+      "question": "Which dua of Zakariyyah عليه السلام is a model for childless parents?",
+      "options": [
+        "Surah Maryam 19:4",
+        "Surah Yusuf 12:86",
+        "Surah Taha 20:25",
+        "Surah Fatiha"
+      ],
+      "explanation": "'My Lord, my bones have weakened… grant me an heir.' (Quran 19:4–5)"
+    },
+    "parenting-advanced-26": {
+      "question": "What does Islam say about overburdening children with academics at the cost of deen?",
+      "options": [
+        "Encouraged",
+        "Neutral",
+        "Balance both",
+        "Ignore deen"
+      ],
+      "explanation": "Allah warns against forgetting the Hereafter for worldly gain. (Quran 28:77)"
+    },
+    "parenting-advanced-27": {
+      "question": "How can Islamic parenting address bullying behavior in children?",
+      "options": [
+        "Encourage it",
+        "Ignore it",
+        "Teach empathy from Sunnah",
+        "Punish severely"
+      ],
+      "explanation": "The Prophet ﷺ taught kindness to animals and humans (Sahih al-Bukhari 5998)."
+    },
+    "parenting-advanced-28": {
+      "question": "Can non-Muslim adoptive parenting align with Islamic parenting values?",
+      "options": [
+        "Never",
+        "Sometimes",
+        "Yes, with shared morals",
+        "Only if they convert"
+      ],
+      "explanation": "Islam values justice, mercy, and moral upbringing regardless of background. (Quran 49:13)"
+    },
+    "parenting-advanced-29": {
+      "question": "What Prophet’s parenting story teaches us to never lose hope in disobedient children?",
+      "options": [
+        "Ibrahim",
+        "Musa",
+        "Nuh",
+        "Yusuf"
+      ],
+      "explanation": "Nuh عليه السلام kept inviting his son until the very end. (Quran 11:42–46)"
+    },
+    "parenting-advanced-30": {
+      "question": "What’s the Islamic advice when children ask difficult questions about Islam?",
+      "options": [
+        "Avoid",
+        "Reprimand",
+        "Welcome and answer wisely",
+        "Redirect to scholars only"
+      ],
+      "explanation": "Allah addresses questions in the Quran: 'They ask you… Say…' (Surah Al-Baqarah 2:189). Encourage open dialogue."
+    }
+  }
+}
