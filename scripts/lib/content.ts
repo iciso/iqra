@@ -19,7 +19,7 @@ export type Entry = { question?: string; options?: string[]; explanation?: strin
 export type ContentFile = { _meta: Meta; questions: Record<string, Entry> }
 
 /** Categories that start "hidden" in a new language until a scholar approves them. */
-export const SENSITIVE = ["fiqh", "madhab", "bidah", "music", "aqeedah", "shirk", "inheritance", "gender", "lgbtq", "dating", "marriage"]
+export const SENSITIVE = ["fiqh", "madhab", "bidah", "music", "aqeedah", "shirk", "inheritance", "gender", "lgbtq", "dating", "marriage", "imagery", "islamic-medical-ethics", "riba", "islamic-finance", "takaful", "crypto"]
 
 const LEVELS = ["easy", "intermediate", "advanced"] as const
 
