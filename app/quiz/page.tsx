@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { TFunction } from "i18next"
 import QuizContainer from "@/components/quiz/quiz-container"
 import TranslationBanner from "@/components/quiz/translation-banner"
+import FixedLocaleProvider from "@/components/i18n/fixed-locale-provider"
 import type { ContentStatus, DifficultyLevel, QuizQuestion } from "@/types/quiz"
 import { pageMetadata } from "@/lib/seo"
 import { getRequestLocale, getServerT } from "@/lib/i18n/server-locale"
@@ -343,16 +344,18 @@ export default async function QuizPage({
     })
 
     return (
-      <SectionPicker
-        categoryTitle={shownCat.title}
-        categoryId={category}
-        difficulty={difficulty}
-        totalQuestions={pool.length}
-        sectionSize={sectionSize}
-        extraParams={extraParams}
-        translationStatus={translationStatus}
-        t={t}
-      />
+      <FixedLocaleProvider lng={lng}>
+        <SectionPicker
+          categoryTitle={shownCat.title}
+          categoryId={category}
+          difficulty={difficulty}
+          totalQuestions={pool.length}
+          sectionSize={sectionSize}
+          extraParams={extraParams}
+          translationStatus={translationStatus}
+          t={t}
+        />
+      </FixedLocaleProvider>
     )
   }
 
@@ -362,17 +365,19 @@ export default async function QuizPage({
   const finalQuestions = await localizeQuestions(getSectionSlice(pool, section, sectionSize), lng, category)
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <QuizContainer
-        questions={finalQuestions}
-        category={shownCat}
-        difficulty={difficulty === "mixed" ? "easy" : (difficulty as DifficultyLevel)}
-        challengeMode={challengeId || params.get("challenge") || undefined}
-        opponentId={opponentId}
-        opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
-        challengerTurn={Boolean(challengerTurn)}
-        translationStatus={translationStatus}
-      />
-    </div>
+    <FixedLocaleProvider lng={lng}>
+      <div className="container mx-auto py-8 px-4">
+        <QuizContainer
+          questions={finalQuestions}
+          category={shownCat}
+          difficulty={difficulty === "mixed" ? "easy" : (difficulty as DifficultyLevel)}
+          challengeMode={challengeId || params.get("challenge") || undefined}
+          opponentId={opponentId}
+          opponentName={opponentName ? decodeURIComponent(opponentName) : undefined}
+          challengerTurn={Boolean(challengerTurn)}
+          translationStatus={translationStatus}
+        />
+      </div>
+    </FixedLocaleProvider>
   )
 }
