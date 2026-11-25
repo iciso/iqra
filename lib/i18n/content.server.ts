@@ -2,6 +2,7 @@ import "server-only"
 import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 import type { Locale } from "@/lib/i18n/config"
+import { isStale } from "@/lib/i18n/source-fingerprint"
 import { isPinnedOption } from "@/lib/quiz-options"
 import type { ContentStatus, QuizCategory, QuizQuestion } from "@/types/quiz"
 
@@ -12,6 +13,8 @@ export interface QuestionTranslation {
   question?: string
   options?: string[]
   explanation?: string
+  /** Fingerprint of the English this was translated from (lib/i18n/source-fingerprint.ts). */
+  src?: string
 }
 
 export interface CategoryLocale {
@@ -65,6 +68,9 @@ function localizeOne(q: QuizQuestion, tr: QuestionTranslation | undefined): Quiz
   const pinned = q.options.map(isPinnedOption)
   const english = { ...q, pinned }
   if (!tr) return english
+  // The English changed after this was translated: the old meaning would be wrong, so show English.
+  // No src (files from before fingerprints) keeps the translation.
+  if (isStale(tr.src, q)) return english
 
   const correctIndex = correctIndexOf(q)
   let options = q.options

@@ -15,6 +15,7 @@ import taAqeedah from "../data/ta-aqeedah"
 import taSalah from "../data/ta-salah"
 import taCharity from "../data/ta-charity"
 import taFiqh from "../data/ta-fiqh"
+import { englishFingerprint } from "../lib/i18n/source-fingerprint"
 import { hasContent, readContent, writeContent } from "./lib/content"
 
 const LEVELS = ["easy", "intermediate", "advanced"] as const
@@ -43,8 +44,9 @@ for (const [id, en, ta] of pairs) {
       const ti = tq.options.indexOf(tq.correctAnswer as string)
       if (ei < 0 || ti < 0 || ei !== ti) { skipped.push(`${label}: correct answer at index ${ti} in Tamil, ${ei} in English`); continue }
       if (!tq.question || tq.options.some((o) => !o)) { skipped.push(`${label}: empty Tamil text`); continue }
-      const entry: { question: string; options: string[]; explanation?: string } = { question: tq.question, options: [...tq.options] }
+      const entry: { question: string; options: string[]; explanation?: string; src?: string } = { question: tq.question, options: [...tq.options] }
       if (tq.explanation) entry.explanation = tq.explanation
+      entry.src = englishFingerprint(eq)
       file.questions[String(eq.id)] = entry
       seeded++
     }

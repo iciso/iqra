@@ -56,7 +56,18 @@ Either way:
 5. `pnpm review:import bn <file.xlsx or file.csv>` writes every non-empty `correction` into the JSON. Every tab of an `.xlsx` is read. A row whose category, id or field does not exist is rejected and listed (the good rows are still written; the command exits 1). When the `category` column is missing, the CSV file name or the Excel tab name is used.
 6. When the scholar is happy: `pnpm review:approve bn salah`. For a hidden subject this is what makes it appear.
 
-Rows: one per field. `field` is `question`, `option1`..`option4` or `explanation`.
+Rows: one per field. `field` is `question`, `option1`..`option4` or `explanation`. The last column, `status`, is for reading only (see below); the import ignores it.
+
+## When English changes
+
+Each translated question keeps `"src"`: an 8-character fingerprint of the English it was translated from (question + options + explanation; `lib/i18n/source-fingerprint.ts`). When someone edits that English in `data/*.ts`, the fingerprint stops matching and the translation is **stale**:
+
+- The site shows English for that question, because the old translation carries the old meaning. A question without `src` keeps its translation.
+- `pnpm content:check` warns with the number of stale translations per language (a warning, not an error).
+- `pnpm content:stale [bn ta]` lists the stale ids per category.
+- The review sheets (Excel and CSV) say `english changed - retranslate` in `status`, with the translation cell orange. Other rows say `ok` or `missing`.
+- Fix: write the new text in `correction` and import it. The import sets `src` to today's English, so the question shows translated again. It stamps the whole question, so correct every field that needs it, not just one.
+- Fixed the JSON by hand instead? Delete that question's `src` line, then `pnpm exec tsx scripts/backfill-src.ts`: it stamps every question without `src` from today's English.
 
 ## Checks
 

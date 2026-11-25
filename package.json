@@ -12,6 +12,7 @@
     "content:export": "tsx scripts/export-content.ts",
     "content:check": "tsx scripts/export-content.ts --check && tsx scripts/check-content.ts",
     "content:new-locale": "tsx scripts/new-locale.ts",
+    "content:stale": "tsx scripts/content-stale.ts",
     "review:export": "tsx scripts/review-sheet.ts export",
     "review:import": "tsx scripts/review-sheet.ts import",
     "review:approve": "tsx scripts/review-sheet.ts approve"

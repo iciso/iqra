@@ -3,9 +3,10 @@
  * File shape (frozen): locales/<lng>/<categoryId>.json
  *   { "_meta": { status, title?, description? }, "questions": { "<id>": { question?, options?, explanation? } } }
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { getAllCategories } from "../../data/quiz-data-manager"
+import { isStale } from "../../lib/i18n/source-fingerprint"
 import { subjects } from "../../lib/subjects"
 
 export const ROOT = join(__dirname, "..", "..")
@@ -15,7 +16,8 @@ export const STATUSES = ["review", "approved", "hidden"] as const
 export type Status = (typeof STATUSES)[number]
 
 export type Meta = { status: Status; title?: string; description?: string }
-export type Entry = { question?: string; options?: string[]; explanation?: string }
+/** src = fingerprint of the English it was translated from (lib/i18n/source-fingerprint.ts). */
+export type Entry = { question?: string; options?: string[]; explanation?: string; src?: string }
 export type ContentFile = { _meta: Meta; questions: Record<string, Entry> }
 
 /** Categories that start "hidden" in a new language until a scholar approves them. */
@@ -64,6 +66,29 @@ export function writeContent(lng: string, category: string, f: ContentFile) {
   writeFileSync(filePath(lng, category), serialize(f))
 }
 export const hasContent = (lng: string, category: string) => existsSync(filePath(lng, category))
+
+/** Languages with translation files: every folder in locales/ except en. */
+export function translationLocales(): string[] {
+  return readdirSync(LOCALES, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && d.name !== "en")
+    .map((d) => d.name)
+    .sort()
+}
+
+/**
+ * Translated question ids whose English changed after they were translated (src no longer matches),
+ * per category, in English order. Categories with none are left out. `english` defaults to the data.
+ */
+export function staleByCategory(lng: string, english = loadExport()): Map<string, string[]> {
+  const out = new Map<string, string[]>()
+  for (const { id, file } of english) {
+    if (!hasContent(lng, id)) continue
+    const tr = readContent(lng, id).questions ?? {}
+    const ids = Object.keys(file.questions).filter((qid) => tr[qid] !== undefined && isStale(tr[qid].src, file.questions[qid]))
+    if (ids.length > 0) out.set(id, ids)
+  }
+  return out
+}
 
 // ---- CSV -----------------------------------------------------------------------------------
 

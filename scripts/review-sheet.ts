@@ -4,8 +4,11 @@
  *   pnpm review:import <lng> <file.csv|file.xlsx>   writes every non-empty "correction" into locales/<lng>/<category>.json
  *   pnpm review:approve <lng> <category>            sets _meta.status "approved"
  *
- * Columns: category, id, field, english, translation, correction, reviewer_note
+ * Columns: category, id, field, english, translation, correction, reviewer_note, status
  * field is: question | option1 | option2 | ... | explanation. One row per field.
+ * status (ok | english changed - retranslate | missing) is for the reader only: the import ignores it.
+ * Importing a correction stamps the question's "src" with the current English fingerprint
+ * (lib/i18n/source-fingerprint.ts), so it counts as translated from today's English.
  * (A "category" column leads each row so ALL.csv can be imported; per-category files work with or
  * without it - the file name (CSV) or the tab name (Excel) is used when the column is missing.)
  * The .xlsx is the one the site hands out: /translations -> /api/review-sheet (lib/review-sheet/sheet.ts).
@@ -18,7 +21,8 @@ import {
   csvLine, hasContent, loadExport, parseCsv, readContent, REVIEW, STATUSES, writeContent,
   type ContentFile, type Entry,
 } from "./lib/content"
-import { fieldsOf, REVIEW_HEADER, sheetTables, translationOf } from "../lib/review-sheet/sheet"
+import { englishFingerprint } from "../lib/i18n/source-fingerprint"
+import { REVIEW_HEADER, reviewRows, sheetTables } from "../lib/review-sheet/sheet"
 
 const HEADER = [...REVIEW_HEADER]
 
@@ -32,13 +36,7 @@ function exportSheet(lng: string, wanted: string[]) {
   const combined: string[] = [csvLine(HEADER)]
   for (const { id, file } of items) {
     if (!hasContent(lng, id)) throw new Error(`locales/${lng}/${id}.json does not exist - run: pnpm content:new-locale ${lng}`)
-    const tr = readContent(lng, id)
-    const lines: string[] = []
-    for (const [qid, en] of Object.entries(file.questions)) {
-      for (const [field, english] of fieldsOf(en)) {
-        lines.push(csvLine([id, qid, field, english, translationOf(tr.questions[qid], field), "", ""]))
-      }
-    }
+    const lines = reviewRows(id, file, readContent(lng, id)).map(csvLine)
     writeFileSync(join(dir, `${id}.csv`), bom + [csvLine(HEADER), ...lines].join("\r\n") + "\r\n")
     combined.push(...lines)
     console.log(`${id}: ${lines.length} rows`)
@@ -72,6 +70,7 @@ async function importSheet(lng: string, path: string) {
   const rejected: string[] = []
 
   for (const { where, fallbackCat, rows } of tables) {
+    // Columns are found by name; any other column (status, reviewer_note, english, translation) is ignored.
     const head = rows[0].map((h) => h.trim().toLowerCase())
     const col = (n: string) => head.indexOf(n)
     const [cId, cField, cCorr] = [col("id"), col("field"), col("correction")]
@@ -108,6 +107,7 @@ async function importSheet(lng: string, path: string) {
         opts[n - 1] = value
         e.options = opts
       }
+      e.src = englishFingerprint(en!)
       counts.set(cat, (counts.get(cat) ?? 0) + 1)
     }
   }
@@ -123,6 +123,7 @@ async function importSheet(lng: string, path: string) {
       if (e.question !== undefined) out.question = e.question
       if (e.options !== undefined) out.options = e.options
       if (e.explanation !== undefined) out.explanation = e.explanation
+      if (e.src !== undefined) out.src = e.src
       sorted[id] = out
     }
     f.questions = sorted
