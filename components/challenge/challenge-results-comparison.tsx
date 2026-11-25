@@ -1,3 +1,6 @@
+"use client"
+
+import { useTranslation } from "react-i18next"
 import { Card, CardContent } from "@/components/ui/card"
 import { Trophy, Medal, UserCheck } from "lucide-react"
 import OpponentProfile, { type Opponent } from "./opponent-profile"
@@ -15,6 +18,7 @@ export default function ChallengeResultsComparison({
   opponent,
   totalQuestions,
 }: ChallengeResultsComparisonProps) {
+  const { t } = useTranslation("challenges")
   if (!opponent.score) {
     return null
   }
@@ -38,7 +42,7 @@ export default function ChallengeResultsComparison({
               ) : (
                 <Medal className="h-4 w-4 text-gray-500" />
               )}
-              <span>{userWon ? "You won!" : tie ? "It's a tie!" : "Better luck next time!"}</span>
+              <span>{userWon ? t("comparison.won") : tie ? t("comparison.tie") : t("comparison.betterLuck")}</span>
             </h3>
           </div>
 
@@ -48,7 +52,7 @@ export default function ChallengeResultsComparison({
                 <OpponentProfile
                   opponent={{
                     id: "user",
-                    name: userName || "You",
+                    name: userName || t("comparison.you"),
                     type: "user",
                   }}
                   size="sm"
@@ -61,16 +65,16 @@ export default function ChallengeResultsComparison({
             </div>
 
             <div className="p-4 text-center">
-              <div className="font-medium text-xs uppercase text-gray-500 mb-2">Results</div>
+              <div className="font-medium text-xs uppercase text-gray-500 mb-2">{t("comparison.results")}</div>
               <div className="text-lg font-bold">
                 {userScore} - {opponent.score}
               </div>
               <div className="text-xs text-gray-500 mt-1">
                 {userWon
-                  ? "You won by " + (userScore - opponent.score)
+                  ? t("comparison.wonBy", { n: userScore - opponent.score })
                   : tie
-                    ? "Tied score"
-                    : "Lost by " + (opponent.score - userScore)}
+                    ? t("comparison.tied")
+                    : t("comparison.lostBy", { n: opponent.score - userScore })}
               </div>
             </div>
 

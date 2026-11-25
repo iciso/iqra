@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -56,7 +57,10 @@ const difficultyOptions = [
 ]
 
 export default function SocialChallengerSelector({ onChallengerSelect }: SocialChallengerSelectorProps) {
+  const { t } = useTranslation("challenges")
   const [dialogOpen, setDialogOpen] = useState(false)
+  const categoryLabel = (value: string) =>
+    t(`selector.cat.${value}`, { defaultValue: categoryOptions.find((c) => c.value === value)?.label ?? value })
   const [yourName, setYourName] = useState("")
   const [opponentName, setOpponentName] = useState("")
   const [category, setCategory] = useState("quran")
@@ -76,11 +80,11 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
     const trimmedOpponentName = opponentName.trim()
 
     if (!trimmedYourName || trimmedYourName.length < 2) {
-      toast({ title: "Enter your name", description: "Your name must be at least 2 characters", variant: "destructive" })
+      toast({ title: t("selector.enterYourName"), description: t("selector.yourNameShort"), variant: "destructive" })
       return
     }
     if (!trimmedOpponentName || trimmedOpponentName.length < 2) {
-      toast({ title: "Enter opponent's name", description: "Opponent name must be at least 2 characters", variant: "destructive" })
+      toast({ title: t("selector.enterOpponent"), description: t("selector.opponentShort"), variant: "destructive" })
       return
     }
 
@@ -104,13 +108,13 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
 
       const result = await response.json()
       if (!response.ok) {
-        throw new Error(result.error || "Failed to create challenge")
+        throw new Error(result.error || t("selector.createFailed"))
       }
 
       setChallengeSent(true)
       toast({
-        title: "Challenge Sent! 🎯",
-        description: `You've challenged ${trimmedOpponentName} to a ${categoryOptions.find((c) => c.value === category)?.label} quiz!`,
+        title: t("selector.sentTitle"),
+        description: t("selector.sentText", { name: trimmedOpponentName, category: categoryLabel(category) }),
       })
 
       if (onChallengerSelect) {
@@ -124,8 +128,8 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
       }, 2000)
     } catch (error) {
       toast({
-        title: "Error",
-        description: (error as { message?: string } | null)?.message || "Failed to send challenge",
+        title: t("selector.errorTitle"),
+        description: (error as { message?: string } | null)?.message || t("selector.sendFailed"),
         variant: "destructive",
       })
     } finally {
@@ -138,16 +142,16 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
       <DialogTrigger asChild>
         <Button variant="outline" className="dark:border-green-700 dark:text-green-400">
           <Gamepad2 className="h-4 w-4 mr-2" />
-          Challenge Someone
+          {t("selector.trigger")}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Gamepad2 className="h-5 w-5" />
-            Send a Challenge
+            {t("selector.title")}
           </DialogTitle>
-          <DialogDescription>No sign-in needed. Just enter names and pick a quiz.</DialogDescription>
+          <DialogDescription>{t("selector.description")}</DialogDescription>
         </DialogHeader>
 
         {challengeSent ? (
@@ -155,31 +159,31 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
             <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
               <Zap className="h-6 w-6 text-green-600" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Challenge Sent! 🎯</h3>
-            <p className="text-gray-500">{opponentName} will see this on their homepage next time they visit.</p>
+            <h3 className="text-lg font-medium mb-2">{t("selector.sentHeading")}</h3>
+            <p className="text-gray-500">{t("selector.sentNote", { name: opponentName })}</p>
           </div>
         ) : (
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Your Name</label>
+              <label className="text-sm font-medium">{t("selector.yourName")}</label>
               <Input
-                placeholder="Enter your name"
+                placeholder={t("selector.yourNamePlaceholder")}
                 value={yourName}
                 onChange={(e) => setYourName(e.target.value)}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Opponent&apos;s Name</label>
+              <label className="text-sm font-medium">{t("selector.opponentName")}</label>
               <Input
-                placeholder="Who are you challenging?"
+                placeholder={t("selector.opponentPlaceholder")}
                 value={opponentName}
                 onChange={(e) => setOpponentName(e.target.value)}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Category</label>
+              <label className="text-sm font-medium">{t("selector.category")}</label>
               <Select value={category} onValueChange={setCategory}>
                 <SelectTrigger>
                   <SelectValue />
@@ -187,7 +191,7 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
                 <SelectContent>
                   {categoryOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
-                      {option.label}
+                      {categoryLabel(option.value)}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -195,7 +199,7 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
             </div>
 
             <div>
-              <label className="text-sm font-medium">Difficulty</label>
+              <label className="text-sm font-medium">{t("selector.difficulty")}</label>
               <Select value={difficulty} onValueChange={setDifficulty}>
                 <SelectTrigger>
                   <SelectValue />
@@ -203,7 +207,7 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
                 <SelectContent>
                   {difficultyOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
-                      {option.label}
+                      {t(`difficulty.${option.value}`, { ns: "common", defaultValue: option.label })}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -214,12 +218,12 @@ export default function SocialChallengerSelector({ onChallengerSelect }: SocialC
               {isSubmitting ? (
                 <>
                   <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                  Sending...
+                  {t("selector.sending")}
                 </>
               ) : (
                 <>
                   <Zap className="h-4 w-4 mr-2" />
-                  Send Challenge
+                  {t("selector.send")}
                 </>
               )}
             </Button>

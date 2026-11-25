@@ -1,9 +1,5 @@
-import { LoadingAnimation } from "@/components/loading-animation"
+import { ChallengeLoading } from "@/components/challenge/challenge-pages"
 
 export default function LeaderboardLoading() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <LoadingAnimation size="lg" text="Loading Leaderboard..." />
-    </div>
-  )
+  return <ChallengeLoading textKey="leaderboard" />
 }

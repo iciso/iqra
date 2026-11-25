@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react"
+import { useTranslation } from "react-i18next"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Trophy, Medal, RefreshCw, Target, UserRoundSearch } from "lucide-react"
@@ -33,6 +34,7 @@ const onClient = () => true
 const onServer = () => false
 
 export default function LeaderboardClient({ initialEntries }: { initialEntries?: LeaderboardEntriesResult }) {
+  const { t } = useTranslation("challenges")
   const { toast } = useToast()
   const { user } = useAuth()
   // Loaded by the server page; used once for the first load, then refreshes call the Server Action.
@@ -165,8 +167,8 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     } catch (error) {
       console.error("❌ Critical error loading leaderboard:", error)
       toast({
-        title: "Error loading leaderboard",
-        description: "Please try refreshing the page",
+        title: t("leaderboard.errorTitle"),
+        description: t("leaderboard.errorText"),
         variant: "destructive",
       })
       setLeaderboard([])
@@ -209,12 +211,12 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
 
   const handleFindMe = () => {
     if (!user) {
-      toast({ title: "Not signed in", description: "Sign in to locate your rank.", variant: "default" })
+      toast({ title: t("leaderboard.notSignedInTitle"), description: t("leaderboard.notSignedInText"), variant: "default" })
       return
     }
     const el = document.getElementById(`leader-row-${user.id}`)
     if (!el) {
-      toast({ title: "No games yet", description: "Play a quiz to appear on the leaderboard." })
+      toast({ title: t("leaderboard.noGamesTitle"), description: t("leaderboard.noGamesText") })
       return
     }
     el.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -224,7 +226,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
     return (
       <div className={pageContainerClass}>
       <PageHeader
-        title="IQRA Quiz Hall of Fame"
+        title={t("leaderboard.title")}
         icon={
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
             <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -233,7 +235,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
       />
         <Card className="w-full border-green-200 shadow-sm dark:border-green-800">
           <CardContent className="text-center py-8">
-            <p>Loading leaderboard...</p>
+            <p>{t("leaderboard.loadingFirst")}</p>
           </CardContent>
         </Card>
       </div>
@@ -243,7 +245,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
   return (
     <div className={pageContainerClass}>
       <PageHeader
-        title="IQRA Quiz Hall of Fame"
+        title={t("leaderboard.title")}
         icon={
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/40">
             <Trophy className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -256,10 +258,10 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
           <div className="grid gap-2 sm:grid-cols-2 text-left">
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
               <div className="flex items-center justify-between">
-                <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Your Rank</span>
+                <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">{t("leaderboard.yourRank")}</span>
                 {lastRefresh && (
                   <span className="text-[10px] md:text-xs text-gray-500">
-                    Updated {lastRefresh.toLocaleTimeString()}
+                    {t("leaderboard.updated", { time: lastRefresh.toLocaleTimeString() })}
                   </span>
                 )}
               </div>
@@ -270,7 +272,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
                       #{myRank}
                     </div>
                     <div className="text-xs text-gray-600 dark:text-gray-300">
-                      {myEntry.score} pts • {myEntry.percentage}% best
+                      {t("leaderboard.stats", { score: myEntry.score, percentage: myEntry.percentage })}
                     </div>
                   </div>
                   <Button
@@ -280,29 +282,32 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
                     className="h-8 px-2 text-xs dark:border-green-700 dark:text-green-400 bg-transparent"
                   >
                     <UserRoundSearch className="h-3.5 w-3.5 mr-1" />
-                    Find me
+                    {t("leaderboard.findMe")}
                   </Button>
                 </div>
               ) : (
                 <div className="mt-1 text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
-                  New here? Play a quiz to appear on the board.
+                  {t("leaderboard.newHere")}
                 </div>
               )}
             </div>
 
             <div className="rounded-md border border-green-200 dark:border-green-800 p-3 bg-white/60 dark:bg-green-900/30">
-              <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">Next goal</span>
+              <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">{t("leaderboard.nextGoal")}</span>
               {nextMilestone ? (
                 <div className="mt-1 flex items-start gap-2">
                   <Target className="h-4 w-4 text-green-600 mt-0.5" />
                   <div className="text-xs md:text-sm text-gray-700 dark:text-gray-200">
-                    You’re {nextMilestone.pointsBehind} pts behind #{nextMilestone.targetRank}{" "}
-                    {nextMilestone.targetName}.
+                    {t("leaderboard.behind", {
+                      points: nextMilestone.pointsBehind,
+                      rank: nextMilestone.targetRank,
+                      name: nextMilestone.targetName,
+                    })}
                   </div>
                 </div>
               ) : (
                 <div className="mt-1 text-xs md:text-sm text-gray-700 dark:text-gray-200">
-                  Keep playing to climb the ranks!
+                  {t("leaderboard.keepPlaying")}
                 </div>
               )}
             </div>
@@ -313,18 +318,18 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
           {loading ? (
             <div className="text-center py-8 md:py-12">
               <RefreshCw className="h-6 w-6 md:h-8 md:w-8 animate-spin mx-auto mb-3 md:mb-4 text-green-600" />
-              <p className="text-gray-600 dark:text-gray-300 text-sm">Loading leaderboard data...</p>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">{t("leaderboard.loadingData")}</p>
             </div>
           ) : sorted.length > 0 ? (
             <>
               <div className="overflow-x-auto -mx-2 sm:mx-0 max-h-[70vh] overflow-y-auto rounded-md">
                 <Table className="w-full">
-                  <TableCaption className="text-xs">Total players: {sorted.length}</TableCaption>
+                  <TableCaption className="text-xs">{t("leaderboard.totalPlayers", { count: sorted.length })}</TableCaption>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-14 text-xs">Rank</TableHead>
-                      <TableHead className="text-xs">Player</TableHead>
-                      <TableHead className="text-right text-xs">Score</TableHead>
+                      <TableHead className="w-14 text-xs">{t("leaderboard.rank")}</TableHead>
+                      <TableHead className="text-xs">{t("leaderboard.player")}</TableHead>
+                      <TableHead className="text-right text-xs">{t("leaderboard.score")}</TableHead>
                       <TableHead className="text-right text-xs">%</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -359,7 +364,7 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
                                   </span>
                                   {isMe && (
                                     <Badge variant="outline" className="text-[10px] ml-1">
-                                      You
+                                      {t("leaderboard.you")}
                                     </Badge>
                                   )}
                                 </div>
@@ -394,18 +399,18 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
                   className="flex gap-1 text-xs h-9 dark:border-green-700 dark:text-green-400 bg-transparent hover:bg-green-50 dark:hover:bg-green-950/50"
                   onClick={loadLeaderboardData}
                   disabled={loading}
-                  title="Merge and update scores from all your quiz attempts"
+                  title={t("leaderboard.updateTitle")}
                 >
                   <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-                  <span className="truncate">{loading ? "Merging scores..." : "Update My Scores"}</span>
+                  <span className="truncate">{loading ? t("leaderboard.merging") : t("leaderboard.updateScores")}</span>
                 </Button>
                 <p className="text-xs text-gray-500 dark:text-gray-400 text-center max-w-xs">
-                  Combines all your quiz attempts to calculate your final score and ranking
+                  {t("leaderboard.updateHelp")}
                 </p>
               </div>
             </>
           ) : (
-            <EmptyState title="No players yet." text="Play a quiz to appear on the leaderboard." />
+            <EmptyState title={t("leaderboard.emptyTitle")} text={t("leaderboard.emptyText")} />
           )}
         </CardContent>
 
@@ -414,13 +419,13 @@ export default function LeaderboardClient({ initialEntries }: { initialEntries?:
             href="/challenges"
             className="inline-flex items-center justify-center rounded-md text-xs md:text-sm font-medium bg-green-600 text-white hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 h-8 md:h-10 px-3 md:px-4 py-2"
           >
-            Back to Challenges
+            {t("leaderboard.backToChallenges")}
           </a>
           <a
             href="/badges"
             className="inline-flex items-center justify-center rounded-md text-xs md:text-sm font-medium border dark:border-green-700 dark:text-green-400 h-8 md:h-10 px-3 md:px-4 py-2"
           >
-            View Badges
+            {t("leaderboard.viewBadges")}
           </a>
         </CardFooter>
       </Card>

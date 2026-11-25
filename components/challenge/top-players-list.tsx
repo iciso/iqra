@@ -1,4 +1,7 @@
+"use client"
+
 import { Users } from "lucide-react"
+import { Trans, useTranslation } from "react-i18next"
 import Link from "next/link"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -25,9 +28,10 @@ const SKELETON_ROWS = [0, 1, 2, 3, 4]
 
 /** Home-page players list: one plain divided list, no inner scroll. The full list lives on /challenges. */
 const TopPlayersList = ({ players, loading, onChallenge, showScores = true }: TopPlayersListProps) => {
+  const { t } = useTranslation("challenges")
   if (loading) {
     return (
-      <ul aria-busy="true" aria-label="Loading players" className="divide-y">
+      <ul aria-busy="true" aria-label={t("players.loadingAria")} className="divide-y">
         {SKELETON_ROWS.map((row) => (
           <li key={row} className="flex items-center gap-3 py-3">
             <span className="h-4 w-5 animate-pulse rounded bg-muted" />
@@ -44,15 +48,15 @@ const TopPlayersList = ({ players, loading, onChallenge, showScores = true }: To
     return (
       <EmptyState
         icon={<Users />}
-        title="No players yet"
+        title={t("players.emptyTitle")}
         text={
-          <>
-            Be the first:{" "}
-            <Link href="/subjects" className="font-medium text-green-700 underline-offset-4 dark:text-green-400 hover:underline">
-              pick a subject and take a quiz
-            </Link>
-            .
-          </>
+          <Trans
+            t={t}
+            i18nKey="players.emptyText"
+            components={{
+              l: <Link href="/subjects" className="font-medium text-green-700 underline-offset-4 dark:text-green-400 hover:underline" />,
+            }}
+          />
         }
       />
     )
@@ -77,12 +81,12 @@ const TopPlayersList = ({ players, loading, onChallenge, showScores = true }: To
             <p className="min-w-0 flex-1 truncate text-sm font-medium">{name}</p>
             {showScores && (
               <p className="shrink-0 text-right text-xs leading-tight tabular-nums text-muted-foreground">
-                <span className="block font-medium text-foreground">{player.total_score} pts</span>
+                <span className="block font-medium text-foreground">{t("pts", { value: player.total_score })}</span>
                 {player.best_percentage}%
               </p>
             )}
             <Button size="sm" variant="outline" className="h-8 shrink-0 px-3 text-xs" onClick={() => onChallenge(player)}>
-              Challenge
+              {t("players.challenge")}
             </Button>
           </li>
         )

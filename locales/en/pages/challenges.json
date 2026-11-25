@@ -1,1 +1,473 @@
-{}
+{
+  "page": {
+    "title": "Challenges",
+    "subtitle": "Test your knowledge against other players"
+  },
+  "loading": {
+    "leaderboard": "Loading Leaderboard...",
+    "challenges": "Loading Challenges...",
+    "challenge": "Preparing Challenge...",
+    "quizChallenges": "Loading Quiz Challenges..."
+  },
+  "error": {
+    "challengeTitle": "Error Loading Challenge",
+    "challengeText": "We're sorry, but there was an error loading the challenge page.",
+    "challengesTitle": "Error Loading Challenges",
+    "challengesText": "We're sorry, but there was an error loading the challenges page.",
+    "tryAgain": "Try again"
+  },
+  "notFound": {
+    "title": "404 - Challenge Not Found",
+    "text": "The challenge you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "home": "Return to Home"
+  },
+  "comingSoon": {
+    "heading": "IQRA Challenge Mode",
+    "intro": "Test your Islamic knowledge against time and compete with others on our leaderboards.",
+    "title": "Challenges Coming Soon",
+    "text": "We're preparing exciting Islamic knowledge challenges for you.",
+    "browse": "Browse Learning Subjects"
+  },
+  "resultsNotFound": {
+    "title": "Challenge not found",
+    "text": "This challenge may have expired or does not exist.",
+    "back": "Back to Challenges"
+  },
+  "pts": "{{value}} pts",
+  "leaderboard": {
+    "title": "IQRA Quiz Hall of Fame",
+    "loadingFirst": "Loading leaderboard...",
+    "yourRank": "Your Rank",
+    "updated": "Updated {{time}}",
+    "stats": "{{score}} pts • {{percentage}}% best",
+    "findMe": "Find me",
+    "newHere": "New here? Play a quiz to appear on the board.",
+    "nextGoal": "Next goal",
+    "behind": "You’re {{points}} pts behind #{{rank}} {{name}}.",
+    "keepPlaying": "Keep playing to climb the ranks!",
+    "loadingData": "Loading leaderboard data...",
+    "totalPlayers": "Total players: {{count}}",
+    "rank": "Rank",
+    "player": "Player",
+    "score": "Score",
+    "you": "You",
+    "updateScores": "Update My Scores",
+    "merging": "Merging scores...",
+    "updateTitle": "Merge and update scores from all your quiz attempts",
+    "updateHelp": "Combines all your quiz attempts to calculate your final score and ranking",
+    "backToChallenges": "Back to Challenges",
+    "viewBadges": "View Badges",
+    "emptyTitle": "No players yet.",
+    "emptyText": "Play a quiz to appear on the leaderboard.",
+    "errorTitle": "Error loading leaderboard",
+    "errorText": "Please try refreshing the page",
+    "notSignedInTitle": "Not signed in",
+    "notSignedInText": "Sign in to locate your rank.",
+    "noGamesTitle": "No games yet",
+    "noGamesText": "Play a quiz to appear on the leaderboard."
+  },
+  "results": {
+    "back": "Back to Challenges",
+    "inProgress": "Challenge In Progress",
+    "tie": "It's a Tie! 🤝",
+    "youWon": "You Won! 🎉",
+    "betterLuck": "Better luck next time!",
+    "wins": "{{name}} Wins! 🏆",
+    "questionCount": "{{count}} questions",
+    "waitingFor": "Waiting for {{name}} to accept and play",
+    "challenger": "Challenger",
+    "challenged": "Challenged",
+    "you": "You",
+    "outOf": "out of {{total}}",
+    "notPlayed": "Not yet played",
+    "winsWith": "{{winner}} wins with {{ws}}/{{wt}} vs {{loser}}'s {{ls}}/{{lt}}!",
+    "keepPlayingMsg": "Keep playing to sharpen your Islamic knowledge! 📚",
+    "newChallenge": "New Challenge",
+    "viewLeaderboard": "View Leaderboard"
+  },
+  "timeLeft": {
+    "expired": "Expired",
+    "hm": "{{h}}h {{m}}m left",
+    "m": "{{m}}m left"
+  },
+  "bell": {
+    "none": "Challenges: none pending",
+    "pending": "Challenges: {{count}} pending",
+    "playingAs": "Playing as <b>{{name}}</b>",
+    "changeName": "Change name",
+    "checking": "Checking for challenges...",
+    "failed": "Could not check for challenges right now. We will try again soon.",
+    "empty": "No challenges yet",
+    "challengedYou": "<g>{{name}}</g> challenged you",
+    "decline": "Decline",
+    "accept": "Accept"
+  },
+  "players": {
+    "loadingAria": "Loading players",
+    "emptyTitle": "No players yet",
+    "emptyText": "Be the first: <l>pick a subject and take a quiz</l>.",
+    "challenge": "Challenge",
+    "topPlayers": "Top Players",
+    "initializing": "Initializing...",
+    "loadingTop": "Loading top players...",
+    "titleRegistered": "Registered Users ({{count}})",
+    "titleAll": "All Players ({{count}})",
+    "titleTop": "Top Players ({{count}})",
+    "showTop": "Show top players only",
+    "showAll": "Show all players",
+    "noneFound": "No players found",
+    "registeredUser": "Registered User",
+    "player": "Player"
+  },
+  "name": {
+    "required": "Please set your name on your Profile page first.",
+    "goProfile": "Go to Profile →",
+    "tooShort": "Please enter at least {{count}} characters",
+    "label": "What is your name? Your friend will see it on the challenge.",
+    "placeholder": "Your name",
+    "save": "Save"
+  },
+  "comparison": {
+    "won": "You won!",
+    "tie": "It's a tie!",
+    "betterLuck": "Better luck next time!",
+    "you": "You",
+    "results": "Results",
+    "wonBy": "You won by {{n}}",
+    "tied": "Tied score",
+    "lostBy": "Lost by {{n}}"
+  },
+  "dialog": {
+    "selectCategoryTitle": "Select Category",
+    "selectCategoryText": "Please select a category before sending the challenge",
+    "selectSectionTitle": "Select a section",
+    "selectSectionText": "Please choose a difficulty level and a section of questions",
+    "nameRequiredTitle": "Name required",
+    "nameRequiredText": "Enter your name below, then the challenge is sent.",
+    "createdTitle": "Challenge Created! 🎯",
+    "createdText": "{{category}} challenge sent to {{name}}. Take your quiz now!",
+    "errorTitle": "Error",
+    "sendFailed": "Failed to send challenge",
+    "sendFailedRetry": "Failed to send challenge. Please try again.",
+    "title": "Challenge {{name}}",
+    "descSr": "Select a category and difficulty to challenge this player.",
+    "created": "Challenge Created! 🎯",
+    "taking": "Taking you to your quiz now...",
+    "notified": "{{name}} will be notified and can accept when ready.",
+    "best": "Best: {{value}}%",
+    "challengingIn": "Challenging in",
+    "selectCategory": "Select Category",
+    "errorHeading": "Challenge Error",
+    "dontWorry": "Don't worry! You can still take the quiz and we'll try to save your results.",
+    "whatChallenge": "What do you want to challenge them in?",
+    "groupIslamic": "Islamic Knowledge Topics",
+    "groupTamil": "தமிழ் இஸ்லாமிய ஆய்வுகள்",
+    "groupQuranic": "Quranic Studies",
+    "groupArabic": "Arabic Vocabulary",
+    "selected": "Selected ✓",
+    "settings": "Challenge Settings",
+    "difficultyLevel": "Difficulty Level",
+    "loadingShort": "Loading...",
+    "questions": "{{count}} questions",
+    "chooseSection": "Choose a section",
+    "sectionN": "Section {{n}}",
+    "range": "Questions {{from}}-{{to}}",
+    "played": "Played",
+    "details": "Challenge Details:",
+    "detailQuestions": "{{count}} questions, in the same order for both players",
+    "detailTime": "5 minutes time limit",
+    "detailWinner": "Winner gets +2 points",
+    "creating": "Creating Challenge...",
+    "send": "Send Challenge",
+    "sendIn": "in {{category}}",
+    "cancel": "Cancel"
+  },
+  "selector": {
+    "trigger": "Challenge Someone",
+    "title": "Send a Challenge",
+    "description": "No sign-in needed. Just enter names and pick a quiz.",
+    "enterYourName": "Enter your name",
+    "yourNameShort": "Your name must be at least 2 characters",
+    "enterOpponent": "Enter opponent's name",
+    "opponentShort": "Opponent name must be at least 2 characters",
+    "sentTitle": "Challenge Sent! 🎯",
+    "sentText": "You've challenged {{name}} to a {{category}} quiz!",
+    "createFailed": "Failed to create challenge",
+    "sendFailed": "Failed to send challenge",
+    "errorTitle": "Error",
+    "sentHeading": "Challenge Sent! 🎯",
+    "sentNote": "{{name}} will see this on their homepage next time they visit.",
+    "yourName": "Your Name",
+    "yourNamePlaceholder": "Enter your name",
+    "opponentName": "Opponent's Name",
+    "opponentPlaceholder": "Who are you challenging?",
+    "category": "Category",
+    "difficulty": "Difficulty",
+    "sending": "Sending...",
+    "send": "Send Challenge",
+    "cat": {
+      "quran": "Quran Knowledge",
+      "seerah": "Seerah (Prophet's Biography)",
+      "fiqh": "Fiqh (Islamic Jurisprudence)",
+      "hadeeth": "Hadeeth",
+      "aqeedah": "Aqeedah (Islamic Creed)",
+      "tafsir": "Tafsir (Quran Commentary)",
+      "comparative": "Comparative Religion",
+      "islamic-finance": "Islamic Finance",
+      "tazkiyah": "Tazkiyah (Spiritual Purification)",
+      "history": "Islamic History & Civilization",
+      "new-muslims": "New Muslims",
+      "islamic-medical-ethics": "Islamic Medical Ethics",
+      "dawah": "Dawah (Islamic Outreach)"
+    }
+  },
+  "scoring": {
+    "title": "Challenge Scoring System",
+    "srDescription": "Information about how challenge scoring and bonuses work",
+    "howTitle": "How Challenge Scoring Works",
+    "bothTitle": "Challenge Completed by Both",
+    "bothText": "100% of your score + 50% bonus + time bonus",
+    "bothBadge": "Best Reward",
+    "waitTitle": "Waiting for Opponent",
+    "waitText": "100% of your score + 25% bonus",
+    "waitBadge": "Good Reward",
+    "declinedTitle": "Challenge Declined",
+    "declinedText": "50% of your score + 5 bonus points",
+    "declinedBadge": "Fair Reward",
+    "expiredTitle": "Challenge Expired",
+    "expiredText": "30% of your score + 3 bonus points",
+    "expiredBadge": "Small Reward",
+    "badgesTitle": "Challenge Badges You Can Earn",
+    "masterName": "Challenge Master",
+    "masterText": "Score 80%+ in completed challenge",
+    "winnerName": "Challenge Winner",
+    "winnerText": "Successfully complete any challenge",
+    "soloName": "Solo Challenger",
+    "soloText": "Complete while waiting for opponent",
+    "persistentName": "Persistent Challenger",
+    "persistentText": "Score 70%+ on declined challenge",
+    "initiatorName": "Challenge Initiator",
+    "initiatorText": "Send challenges (even if declined)",
+    "patientName": "Patient Challenger",
+    "patientText": "Wait patiently for responses",
+    "fairTitle": "Why This System is Fair",
+    "fair1b": "Your effort is always rewarded",
+    "fair1": " - Even if someone declines, you get points for trying",
+    "fair2b": "Encourages more challenges",
+    "fair2": " - Less risk means more fun social interaction",
+    "fair3b": "Rewards good performance",
+    "fair3": " - Higher scores get better bonuses",
+    "fair4b": "Time bonuses",
+    "fair4": " - Faster completion earns extra points",
+    "fair5b": "Special badges",
+    "fair5": " - Collect achievements for different challenge activities",
+    "gotIt": "Got it! Let's Challenge!"
+  },
+  "categoryNames": {
+    "quran": "Quran Knowledge",
+    "seerah": "Seerah",
+    "fiqh": "Fiqh",
+    "hadeeth": "Hadeeth",
+    "aqeedah": "Aqeedah",
+    "tafsir": "Tafsir",
+    "comparative": "Comparative Religion",
+    "islamic-finance": "Islamic Finance",
+    "tazkiyah": "Tazkiyah",
+    "history": "Islamic History",
+    "dawah": "Dawah",
+    "salah": "Salah",
+    "sawm": "Sawm",
+    "new-muslims": "New Muslims",
+    "islamic-medical-ethics": "Islamic Medical Ethics",
+    "crypto": "Crypto & Islam",
+    "gender": "Gender in Islam",
+    "lgbtq": "LGBTQ & Islam",
+    "psych": "Islamic Psychology",
+    "parenting": "Islamic Parenting",
+    "peace": "Peace & Islam",
+    "christ": "Christianity & Islam",
+    "hindu": "Hinduism & Islam"
+  },
+  "topics": {
+    "quran": {
+      "label": "Quran",
+      "description": "Quran Knowledge"
+    },
+    "fiqh": {
+      "label": "Fiqh",
+      "description": "Islamic Jurisprudence"
+    },
+    "tafsir": {
+      "label": "Tafsir",
+      "description": "Quran Commentary"
+    },
+    "hadeeth": {
+      "label": "Hadeeth",
+      "description": "Prophetic Traditions"
+    },
+    "aqeedah": {
+      "label": "Aqeedah",
+      "description": "Islamic Creed"
+    },
+    "shirk": {
+      "label": "Shirk",
+      "description": "Assigning Partners"
+    },
+    "seerah": {
+      "label": "Seerah",
+      "description": "Prophet's Biography"
+    },
+    "tazkiyah": {
+      "label": "Tazkiyah",
+      "description": "Spiritual Purification"
+    },
+    "salah": {
+      "label": "Salah",
+      "description": "Prayers in Islam"
+    },
+    "charity": {
+      "label": "Zakat & Sadaqah",
+      "description": "Charity in Islam"
+    },
+    "sawm": {
+      "label": "Sawm",
+      "description": "Fasting & Ramadaan"
+    },
+    "hajj": {
+      "label": "Hajj",
+      "description": "Islamic Pilgrimmage"
+    },
+    "history": {
+      "label": "Islamic History",
+      "description": "History of Islam and Muslims"
+    },
+    "dawah": {
+      "label": "Dawah",
+      "description": "Inviting to Islam"
+    },
+    "new-muslims": {
+      "label": "New Muslims",
+      "description": "Essentials for New Muslims"
+    },
+    "comparative": {
+      "label": "Comparative Religion",
+      "description": "Faiths, Non-Faiths & Islam"
+    },
+    "christ": {
+      "label": "Christianity",
+      "description": "Islam & Christianity"
+    },
+    "hindu": {
+      "label": "Hinduism",
+      "description": "Islam & Hinduism"
+    },
+    "bidah": {
+      "label": "Bidah",
+      "description": "Bidah & Tawheed"
+    },
+    "riba": {
+      "label": "Riba",
+      "description": "Usury or Interest"
+    },
+    "takaful": {
+      "label": "Takaful",
+      "description": "Islamic Insurance"
+    },
+    "islamic-finance": {
+      "label": "Islamic Finance",
+      "description": "Islamic Economics"
+    },
+    "crypto": {
+      "label": "Crypto & Blockchain",
+      "description": "Shariah & digital currencies"
+    },
+    "gender": {
+      "label": "Gender",
+      "description": "Gender in Islam"
+    },
+    "lgbtq": {
+      "label": "LGBTQIA+",
+      "description": "LGBTQIA+ & Islam"
+    },
+    "psych": {
+      "label": "Islamic Psychology",
+      "description": "Psychology & Islam"
+    },
+    "music": {
+      "label": "Music in Islam",
+      "description": "Music in Islam"
+    },
+    "islamic-alcohol-drugs": {
+      "label": "Alcohol & Drugs in Islam",
+      "description": "Alcohol & Drugs in Islam"
+    },
+    "imagery": {
+      "label": "Images in Islam",
+      "description": "Images & Animation in Islam"
+    },
+    "dating": {
+      "label": "Dating",
+      "description": "Dating in Islam"
+    },
+    "marriage": {
+      "label": "Marriage & Family",
+      "description": "Family Bonding"
+    },
+    "parenting": {
+      "label": "Islamic Parenting",
+      "description": "Islam & parenting"
+    },
+    "madhab": {
+      "label": "Madhabs",
+      "description": "Jurisprudence Schools"
+    },
+    "inheritance": {
+      "label": "Inheritance",
+      "description": "Inheritance & Equity"
+    },
+    "fitnah": {
+      "label": "Fitnah",
+      "description": "Discord & Unity"
+    },
+    "islamic-medical-ethics": {
+      "label": "Medical Ethics",
+      "description": "Islamic Medical Ethics"
+    },
+    "islamic-eschatology": {
+      "label": "Islamic End-Days",
+      "description": "Islamic End-Days"
+    },
+    "peace": {
+      "label": "Peace",
+      "description": "Peace in Middle East"
+    },
+    "surah-78": {
+      "label": "Surah-78 An-Naba",
+      "description": "The Great News"
+    },
+    "surah-79": {
+      "label": "Surah-79 An-Naziah",
+      "description": "Those Who Drag Forth"
+    },
+    "surah-80": {
+      "label": "Surah-80 Abasa",
+      "description": "He Frowned"
+    },
+    "surah-81": {
+      "label": "Surah-81 At-Takwir",
+      "description": "The Folding Up"
+    },
+    "surah-82": {
+      "label": "Surah-82 An-Infitar",
+      "description": "The Cleaving"
+    },
+    "quranic-arabic-01": {
+      "label": "Quranic Arabic 01",
+      "description": "Quranic Arabic - Level 1"
+    },
+    "modern-arabic-01": {
+      "label": "Modern Arabic 01",
+      "description": "Modern Arabic - Level 1"
+    }
+  }
+}

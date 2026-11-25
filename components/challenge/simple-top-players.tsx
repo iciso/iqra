@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useEffectEvent, useRef } from "react"
+import { useTranslation } from "react-i18next"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -42,6 +43,7 @@ const usablePlayers = (result?: ChallengePlayersResult | null): Player[] =>
     : []
 
 export default function SimpleTopPlayers({ initialPlayers, compact = false, limit = 8 }: SimpleTopPlayersProps = {}) {
+  const { t } = useTranslation("challenges")
   const { user, loading: authLoading } = useAuth()
   const initialRef = useRef<ChallengePlayersResult | null>(initialPlayers ?? null)
   const [players, setPlayers] = useState<Player[]>(() => usablePlayers(initialPlayers))
@@ -276,13 +278,13 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-yellow-500" />
-            Top Players
+            {t("players.topPlayers")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-center py-4">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
-            <span className="ml-2 text-sm">Initializing...</span>
+            <span className="ml-2 text-sm">{t("players.initializing")}</span>
           </div>
         </CardContent>
       </Card>
@@ -295,13 +297,13 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-yellow-500" />
-            Top Players
+            {t("players.topPlayers")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-center py-4">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-yellow-500 border-t-transparent"></div>
-            <span className="ml-2 text-sm">Loading top players...</span>
+            <span className="ml-2 text-sm">{t("players.loadingTop")}</span>
           </div>
         </CardContent>
       </Card>
@@ -309,10 +311,10 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
   }
 
   const cardTitle = isUsingFallback
-    ? `Registered Users (${players.length})`
+    ? t("players.titleRegistered", { count: players.length })
     : showAll
-      ? `All Players (${players.length})`
-      : `Top Players (${players.length})`
+      ? t("players.titleAll", { count: players.length })
+      : t("players.titleTop", { count: players.length })
 
   return (
     <Card>
@@ -329,7 +331,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
               variant="outline"
               size="sm"
               onClick={toggleShowAll}
-              title={showAll ? "Show top players only" : "Show all players"}
+              title={showAll ? t("players.showTop") : t("players.showAll")}
               className="h-7 w-7 md:h-8 md:w-8 p-0 bg-transparent"
             >
               <Users className="h-3 w-3 md:h-4 md:w-4" />
@@ -348,7 +350,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
       </CardHeader>
       <CardContent className="px-3 md:px-6 py-2 md:py-4 max-h-[70vh] overflow-y-auto">
         {players.length === 0 ? (
-          <EmptyState compact icon={<Users />} title="No players found" />
+          <EmptyState compact icon={<Users />} title={t("players.noneFound")} />
         ) : (
           <div className="space-y-2 md:space-y-3">
             {players.map((player, index) => (
@@ -365,14 +367,14 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
                   <div className="min-w-0 flex-1">
                     <p className="font-medium text-xs md:text-sm truncate">{player.full_name || player.username}</p>
                     <p className="text-xs text-gray-500 hidden xs:block">
-                      {isUsingFallback ? "Registered User" : "Player"}
+                      {isUsingFallback ? t("players.registeredUser") : t("players.player")}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
                   {!isUsingFallback && (
                     <div className="text-right mr-1 md:mr-2">
-                      <p className="font-medium text-xs md:text-sm">{player.total_score} pts</p>
+                      <p className="font-medium text-xs md:text-sm">{t("pts", { value: player.total_score })}</p>
                       <p className="text-xs text-gray-500">{player.best_percentage}%</p>
                     </div>
                   )}
@@ -389,7 +391,7 @@ export default function SimpleTopPlayers({ initialPlayers, compact = false, limi
                     }
                     className="h-7 md:h-8 py-0 px-2 md:px-3 text-xs bg-green-600 hover:bg-green-700"
                   >
-                    Challenge
+                    {t("players.challenge")}
                   </Button>
                 </div>
               </div>

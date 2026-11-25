@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import InlineNamePrompt from "./inline-name-prompt"
 import { savePlayerName } from "@/lib/player-name"
 import { Button } from "@/components/ui/button"
@@ -567,6 +568,8 @@ function nextSection(data: SectionData | null, level: string): number | null {
   return (sections.find((s) => !played.includes(s.number)) ?? sections[0])?.number ?? 1
 }
 
+const allCategories = [...challengeCategories, ...tamilCategories, ...surahCategories, ...arabicVocabularyCategories]
+
 const difficulties = [
   { value: "easy", label: "Easy", emoji: "🟢" },
   { value: "intermediate", label: "Intermediate", emoji: "🟡" },
@@ -575,6 +578,13 @@ const difficulties = [
 
 export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent }: CategoryFirstChallengeDialogProps) {
   const router = useRouter()
+  const { t } = useTranslation("challenges")
+  const topicLabel = (id: string) => {
+    const fallback = allCategories.find((c) => c.id === id)?.label ?? id
+    return t(`topics.${id}.label`, { defaultValue: fallback })
+  }
+  const topicDescription = (category: { id: string; description: string }) =>
+    t(`topics.${category.id}.description`, { defaultValue: category.description })
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [nameRequired, setNameRequired] = useState(false)    
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy")
@@ -652,8 +662,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
   const handleSendChallenge = async () => {
     if (!selectedCategory) {
       toast({
-        title: "Select Category",
-        description: "Please select a category before sending the challenge",
+        title: t("dialog.selectCategoryTitle"),
+        description: t("dialog.selectCategoryText"),
         variant: "destructive",
       })
       return
@@ -661,8 +671,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
     if (selectedSection === null) {
       toast({
-        title: "Select a section",
-        description: "Please choose a difficulty level and a section of questions",
+        title: t("dialog.selectSectionTitle"),
+        description: t("dialog.selectSectionText"),
         variant: "destructive",
       })
       return
@@ -690,8 +700,8 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
       if (!challengerName || challengerName.length < 2) {
         setNameRequired(true)
         toast({
-          title: "Name required",
-          description: "Enter your name below, then the challenge is sent.",
+          title: t("dialog.nameRequiredTitle"),
+          description: t("dialog.nameRequiredText"),
         })
         setIsSubmitting(false)
         return
@@ -720,10 +730,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
 
       setChallengeSent(true)
 
-      const categoryLabel = challengeCategories.find((c) => c.id === selectedCategory)?.label || selectedCategory
+      const categoryLabel = topicLabel(selectedCategory)
       toast({
-        title: "Challenge Created! 🎯",
-        description: `${categoryLabel} challenge sent to ${opponent.full_name || opponent.username}. Take your quiz now!`,
+        title: t("dialog.createdTitle"),
+        description: t("dialog.createdText", { category: categoryLabel, name: opponent.full_name || opponent.username }),
       })
 
       setTimeout(() => {
@@ -734,10 +744,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
     } catch (error) {
       console.error("❌ Error sending challenge:", error)
       const message = (error as { message?: string } | null)?.message
-      setError(message || "Failed to send challenge. Please try again.")
+      setError(message || t("dialog.sendFailedRetry"))
       toast({
-        title: "Error",
-        description: message || "Failed to send challenge",
+        title: t("dialog.errorTitle"),
+        description: message || t("dialog.sendFailed"),
         variant: "destructive",
       })
     } finally {
@@ -763,9 +773,9 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-xl break-words pr-6">
             <Gamepad2 className="h-6 w-6 text-green-600" />
-            Challenge {opponent.full_name || opponent.username}
+            {t("dialog.title", { name: opponent.full_name || opponent.username })}
           </DialogTitle> 
-          <DialogDescription className="sr-only">Select a category and difficulty to challenge this player.</DialogDescription>
+          <DialogDescription className="sr-only">{t("dialog.descSr")}</DialogDescription>
         </DialogHeader>
 
         <div className="min-w-0 space-y-6">
@@ -774,11 +784,11 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               <div className="mx-auto w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
                 <Zap className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Challenge Created! 🎯</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">Taking you to your quiz now...</p>
+              <h3 className="text-xl font-semibold mb-2">{t("dialog.created")}</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">{t("dialog.taking")}</p>
               <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
                 <Clock className="h-4 w-4" />
-                <span>{opponent.full_name || opponent.username} will be notified and can accept when ready.</span>
+                <span>{t("dialog.notified", { name: opponent.full_name || opponent.username })}</span>
               </div>
             </div>
           ) : (
@@ -797,22 +807,20 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                   <div className="flex flex-wrap items-center gap-2 mt-1">
                     {opponent.best_percentage && (
                       <Badge variant="secondary" className="text-xs">
-                        Best: {opponent.best_percentage}%
+                        {t("dialog.best", { value: opponent.best_percentage })}
                       </Badge>
                     )}
                     {opponent.total_score && (
                       <Badge variant="outline" className="text-xs">
-                        {opponent.total_score} pts
+                        {t("pts", { value: opponent.total_score })}
                       </Badge>
                     )}
                   </div>
                 </div>
                 <div className="min-w-0 text-right max-sm:w-full max-sm:text-left">
-                  <div className="text-sm text-gray-500">Challenging in</div>
+                  <div className="text-sm text-gray-500">{t("dialog.challengingIn")}</div>
                   <div className="font-medium">
-                    {selectedCategory
-                      ? challengeCategories.find((c) => c.id === selectedCategory)?.label
-                      : "Select Category"}
+                    {selectedCategory ? topicLabel(selectedCategory) : t("dialog.selectCategory")}
                   </div>
                 </div>
               </div>
@@ -833,10 +841,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-red-800">Challenge Error</p>
+                    <p className="font-medium text-red-800">{t("dialog.errorHeading")}</p>
                     <p className="text-red-700 text-sm">{error}</p>
                     <p className="text-sm text-red-600 mt-1">
-                      Don&apos;t worry! You can still take the quiz and we&apos;ll try to save your results.
+                      {t("dialog.dontWorry")}
                     </p>
                   </div>
                 </div>
@@ -846,13 +854,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               <div>
                 <h3 className="text-lg font-semibold mb-3 flex items-start gap-2 break-words">
                   <Target className="h-5 w-5 shrink-0 mt-0.5 text-blue-600" />
-                  What do you want to challenge them in?
+                  {t("dialog.whatChallenge")}
                 </h3>
               
                 {/* Islamic Topics */}
                 <div className="mb-6">
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                    Islamic Knowledge Topics
+                    {t("dialog.groupIslamic")}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {challengeCategories.map((category) => {
@@ -875,10 +883,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                               <IconComponent className="h-5 w-5 text-white" />
                             </span>
                             <span className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
-                              {category.label}
+                              {topicLabel(category.id)}
                             </span>
-                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</span>
-                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{topicDescription(category)}</span>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">{t("dialog.selected")}</Badge>}
                           </span>
                         </button>
                       )
@@ -889,7 +897,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 {/* Tamil Islamic Studies */}
                 <div className="mb-6">
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                   தமிழ் இஸ்லாமிய ஆய்வுகள்
+                   {t("dialog.groupTamil")}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {tamilCategories.map((category) => {
@@ -912,10 +920,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                               <IconComponent className="h-5 w-5 text-white" />
                             </span>
                             <span className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
-                              {category.label}
+                              {topicLabel(category.id)}
                             </span>
-                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</span>
-                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{topicDescription(category)}</span>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">{t("dialog.selected")}</Badge>}
                           </span>
                         </button>
                       )
@@ -926,7 +934,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 {/* Quranic Studies */}
                 <div className="mb-6">
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                   Quranic Studies
+                   {t("dialog.groupQuranic")}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {surahCategories.map((category) => {
@@ -949,10 +957,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                               <IconComponent className="h-5 w-5 text-white" />
                             </span>
                             <span className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
-                              {category.label}
+                              {topicLabel(category.id)}
                             </span>
-                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</span>
-                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Selected ✓</Badge>}
+                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{topicDescription(category)}</span>
+                            {isSelected && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">{t("dialog.selected")}</Badge>}
                           </span>
                         </button>
                       )
@@ -964,7 +972,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 <div>
                   <h4 className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3 uppercase tracking-wide flex items-center gap-2">
                     <Book className="h-4 w-4" />
-                    Arabic Vocabulary
+                    {t("dialog.groupArabic")}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {arabicVocabularyCategories.map((category) => {
@@ -987,10 +995,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                               <IconComponent className="h-5 w-5 text-white" />
                             </span>
                             <span className={`font-semibold ${isSelected ? `${category.textColor} dark:text-gray-100` : "text-gray-900 dark:text-gray-100"}`}>
-                              {category.label}
+                              {topicLabel(category.id)}
                             </span>
-                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{category.description}</span>
-                            {isSelected && <Badge className="mt-2 bg-purple-100 text-purple-800 text-xs">Selected ✓</Badge>}
+                            <span className="block text-xs text-gray-600 dark:text-gray-400 mt-1">{topicDescription(category)}</span>
+                            {isSelected && <Badge className="mt-2 bg-purple-100 text-purple-800 text-xs">{t("dialog.selected")}</Badge>}
                           </span>
                         </button>
                       )
@@ -1004,14 +1012,14 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                 <div className={`p-4 rounded-lg ${challengeCategories.find((c) => c.id === selectedCategory)?.bgLight || "bg-gray-50"} dark:bg-gray-800/60`}>
                   <h4 className="font-medium mb-3 flex items-center gap-2">
                     <Trophy className="h-4 w-4" />
-                    Challenge Settings
+                    {t("dialog.settings")}
                   </h4>
               
-                  <label className="text-sm font-medium mb-2 block">Difficulty Level</label>
+                  <label className="text-sm font-medium mb-2 block">{t("dialog.difficultyLevel")}</label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                     {difficulties.map((difficulty) => {
                       const currentCount = sectionData?.levels[difficulty.value]?.count ?? 30
-                      const countText = loadingSections ? "Loading..." : `${currentCount} questions`
+                      const countText = loadingSections ? t("dialog.loadingShort") : t("dialog.questions", { count: currentCount })
                       const isActive = selectedDifficulty === difficulty.value
                       return (
                         <button
@@ -1025,7 +1033,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                         >
                           <div className="flex items-center gap-2 font-medium">
                             <span>{difficulty.emoji}</span>
-                            {difficulty.label}
+                            {t(`difficulty.${difficulty.value}`, { ns: "common", defaultValue: difficulty.label })}
                           </div>
                           <div className="text-xs text-gray-500 mt-1">
                             {countText}
@@ -1037,7 +1045,7 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
               
                   {levelInfo && levelInfo.sections.length > 0 && (
                     <>
-                      <label className="text-sm font-medium mb-2 block">Choose a section</label>
+                      <label className="text-sm font-medium mb-2 block">{t("dialog.chooseSection")}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                         {levelInfo.sections.map((section) => {
                           const start = (section.number - 1) * 10 + 1
@@ -1054,13 +1062,13 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                                 isActive ? "border-blue-500 ring-2 ring-blue-500" : "border-gray-200 dark:border-gray-600 hover:border-gray-400"
                               }`}
                             >
-                              <div className="font-medium">Section {section.number}</div>
+                              <div className="font-medium">{t("dialog.sectionN", { n: section.number })}</div>
                               <div className="text-xs text-gray-500">
-                                Questions {start}-{end}
+                                {t("dialog.range", { from: start, to: end })}
                               </div>
                               {alreadyPlayed && (
                                 <Badge variant="secondary" className="mt-1 text-xs">
-                                  Played
+                                  {t("dialog.played")}
                                 </Badge>
                               )}
                             </button>
@@ -1071,10 +1079,10 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                   )}
               
                   <div className="text-sm text-gray-600 dark:text-gray-400">
-                    <div className="font-medium">Challenge Details:</div>
-                    <div>• {questionCount} questions, in the same order for both players</div>
-                    <div>• 5 minutes time limit</div>
-                    <div>• Winner gets +2 points</div>
+                    <div className="font-medium">{t("dialog.details")}</div>
+                    <div>• {t("dialog.detailQuestions", { count: questionCount })}</div>
+                    <div>• {t("dialog.detailTime")}</div>
+                    <div>• {t("dialog.detailWinner")}</div>
                   </div>
                 </div>
               )}
@@ -1089,22 +1097,22 @@ export default function CategoryFirstChallengeDialog({ isOpen, onClose, opponent
                   {isSubmitting ? (
                     <>
                       <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                      Creating Challenge...
+                      {t("dialog.creating")}
                     </>
                   ) : (
                     <>
                       <Zap className="h-5 w-5 mr-2" />
-                      Send Challenge
+                      {t("dialog.send")}
                       {selectedCategory && (
                         <span className="ml-2 text-green-200">
-                          in {challengeCategories.find((c) => c.id === selectedCategory)?.label}
+                          {t("dialog.sendIn", { category: topicLabel(selectedCategory) })}
                         </span>
                       )}
                     </>
                   )}
                 </Button>
                 <Button variant="outline" onClick={handleClose} className="h-12 flex-1 px-8 sm:flex-none" disabled={isSubmitting}>
-                  Cancel
+                  {t("dialog.cancel")}
                 </Button>
               </div>
             </>

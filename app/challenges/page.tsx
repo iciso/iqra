@@ -1,7 +1,7 @@
 import { connection } from "next/server"
 import SimpleTopPlayers from "@/components/challenge/simple-top-players"
 import { getChallengePlayers } from "@/lib/server/leaderboard-data"
-import PageHeader from "@/components/shared/page-header"
+import { ChallengesHeader } from "@/components/challenge/challenge-pages"
 import { pageContainerClass } from "@/lib/page-layout"
 
 export default async function Challenges() {
@@ -11,7 +11,7 @@ export default async function Challenges() {
 
   return (
     <div className={pageContainerClass}>
-      <PageHeader title="Challenges" subtitle="Test your knowledge against other players" />
+      <ChallengesHeader />
       <SimpleTopPlayers initialPlayers={initialPlayers} />
     </div>
   )
