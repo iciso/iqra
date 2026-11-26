@@ -113,7 +113,7 @@
       },
       "feroza-mi": {
         "label": "Our Second Celebrated Contributor",
-        "intro": "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. Both suggestions were accepted and implemented by the IQRA coding team.",
+        "intro": "With sincere appreciation, we acknowledge Feroza MI for identifying and suggesting two corrections to the answer options in IQRA's quizzes. His suggestions were accepted and implemented by the IQRA coding team.",
         "rewardNote": "₹250 per accepted suggestion",
         "items": [
           {
@@ -128,7 +128,7 @@
       },
       "joy-ahmed": {
         "label": "Our Third Celebrated Contributor",
-        "intro": "With sincere appreciation, we acknowledge Joy Ahmed for six contributions to IQRA's code and design, which made the app cleaner, more mobile-friendly and easier to use.",
+        "intro": "With sincere appreciation, we acknowledge Joy Ahmed for twelve contributions to IQRA's code and design, which made the app cleaner, more mobile-friendly and easier to use.",
         "rewardNote": "₹250 per contribution",
         "items": [
           {
@@ -154,6 +154,30 @@
           {
             "title": "Mock-ups",
             "detail": "Five mock-ups of the Home page"
+          },
+             {
+            "title": "Home Page",
+            "detail": "A brand new redesigned, revamped one"
+          },
+          {
+            "title": "Meta Data",
+            "detail": "SEO, Logo, twitter image, opengraph image, dynamic description"
+          },
+          {
+            "title": "How-it-works Page",
+            "detail": "New page on IQRA workflows"
+          },
+          {
+            "title": "Notifications",
+            "detail": "Changed from old Textbox to sleek Bell Icon"
+          },
+          {
+            "title": "Correction",
+            "detail": "Birthplace of Muhammad Ibn Sirin in Hadeeth-Intermediate Level"
+          },
+          {
+            "title": "Translations",
+            "detail": "i18n Bangla and Tamil translations added"
           }
         ]
       },
