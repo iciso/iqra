@@ -64,7 +64,7 @@ export type Contributor = {
 export const contributors: Contributor[] = [
   { id: "dhanish-ali", name: "Dhanish Ali", reward: 1250, icons: ["🧕", "🏛️", "🕌", "📗", "📜"] },
   { id: "feroza-mi", name: "Feroza MI", reward: 500, icons: ["📖", "🕌"] },
-  { id: "joy-ahmed", name: "Joy Ahmed", reward: 1500, icons: ["💫", "📲", "💯", "👏", "🌙", "🏠"] },
+  { id: "joy-ahmed", name: "Joy Ahmed", reward: 3500, icons: ["💫", "📲", "💯", "👏", "🌙", "🏠", "🤖", "📊", "🔓", "🏛️", "🕌", "📗"] },
   { id: "riaz-ahamed", name: "Riaz Ahamed Bobby", reward: 1000, icons: ["🤖", "📊", "🔓", "👏"] },
 ]
 
